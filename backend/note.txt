@@ -1,0 +1,119 @@
+TÓM TẮT NGUYÊN NHÂN LỖI VÀ CÁCH FIX
+🔍 NGUYÊN NHÂN CHÍNH:
+Lỗi: TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+
+Nguyên nhân gốc:
+
+Express 5.x có breaking changes với thư viện path-to-regexp
+Node.js 24.x + Express 5.x có vấn đề compatibility
+Wildcard route pattern "*" không được xử lý đúng cách
+
+🚫 CÁC ĐOẠN CODE GÂY LỖI:
+// ❌ LỖI 1: Rate limiting với Express 5.x
+app.use("/api/", limiter);  // Dấu "/" cuối gây xung đột
+
+// ❌ LỖI 2: Wildcard route pattern
+app.use("*", handler);      // Pattern "*" không parse được
+
+// ❌ LỖI 3: Middleware phức tạp
+helmet(), morgan(), compression() // Kết hợp nhiều middleware
+
+✅ CÁCH FIX ĐÃ ÁP DỤNG:
+Fix 1: Loại bỏ rate limiting
+Loading...
+
+// ❌ Trước
+app.use("/api/", limiter);
+
+// ✅ Sau  
+// Bỏ hoàn toàn rate limiting
+
+Fix 2: Thay đổi 404 handler
+
+// ❌ Trước
+app.use("*", (req, res) => { ... });
+
+// ✅ Sau
+app.use((req, res, next) => { ... });
+
+Fix 3: Đơn giản hóa middleware
+
+// ❌ Trước: Quá nhiều middleware phức tạp
+app.use(helmet());
+app.use(cors({ complex config }));
+app.use(compression());
+app.use(rateLimit({ complex config }));
+
+// ✅ Sau: Chỉ giữ cần thiết
+app.use(helmet());        // Đơn giản
+app.use(cors());          // Đơn giản  
+app.use(morgan("dev"));   // Đơn giản
+
+📋 QUY TẮC ĐỂ TRÁNH LỖI TƯƠNG TỰ:
+1. Với Express 5.x:
+❌ Không dùng: app.use("*", handler)
+❌ Không dùng: app.use("/path/", handler) (dấu / cuối)
+✅ Dùng: app.use((req, res, next) => ...) cho catch-all
+✅ Dùng: app.use("/path", handler) (không dấu / cuối)
+2. Với middleware:
+✅ Thêm từng cái một để test
+✅ Dùng config đơn giản trước
+✅ Test sau mỗi lần thêm middleware
+3. Với dependencies:
+✅ Express 4.18.x ổn định hơn Express 5.x
+✅ Kiểm tra compatibility giữa các package
+✅ Đọc changelog khi upgrade major version
+🛠️ DEBUG PROCESS ĐÃ ÁP DỤNG:
+Tạo server đơn giản nhất → Chạy được
+Thêm từng middleware → Tìm ra middleware gây lỗi
+Comment code có vấn đề → Xác định chính xác dòng lỗi
+Thay thế bằng cách khác → Fix và test
+💡 BÀI HỌC:
+Express 5.x vẫn đang beta, có nhiều breaking changes
+Wildcard patterns cần cẩn thận với Express 5.x
+Rate limiting và path-to-regexp có xung đột
+Đơn giản hóa luôn tốt hơn phức tạp hóa khi debug
+Nhớ những điều này để tránh lỗi tương tự trong tương lai! 🎯
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+📋 Tóm tắt những gì đã hoàn thành:
+✅ MySQL Setup:
+
+MySQL Community Server 9.4 đang chạy trên port 3306
+MySQL Workbench kết nối thành công
+Database shopery_db với đầy đủ bảng và dữ liệu mẫu
+✅ Backend Connection:
+
+Kết nối Node.js + Sequelize với MySQL
+5 API test hoạt động hoàn hảo
+Error handling và logging đầy đủ
+✅ Kiến thức đã học:
+
+Cách sử dụng EER Diagram trong MySQL Workbench
+Cách tạo database, bảng, và mối quan hệ
+Cách kết nối backend với database
+Cách tạo API endpoints cơ bản
+🚀 Khi quay lại dự án shopery:
+Tạo Models (Sequelize)
+Tạo Controllers
+Tạo Routes riêng biệt
+Tạo Services
+Xóa phần test APIs trong server.js
+Chúc bạn học tập tốt! Khi nào cần hỗ trợ tiếp tục phát triển dự án shopery thì nhắn tôi nhé! 👋
