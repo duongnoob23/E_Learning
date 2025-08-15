@@ -117,3 +117,11 @@ Tạo Routes riêng biệt
 Tạo Services
 Xóa phần test APIs trong server.js
 Chúc bạn học tập tốt! Khi nào cần hỗ trợ tiếp tục phát triển dự án shopery thì nhắn tôi nhé! 👋
+
+
+
+cấu hình tiếp routes cho cả admin và client cho api User
+test postman các api , tự code lại thì càng tốt
+
+code lại phần navigatioin bên web, code fake dữ liệu trang Home, tìm figma trang flashcard, code giao diện flash card, code logic , ghép api cho flashcard
+
