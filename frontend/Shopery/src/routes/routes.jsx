@@ -1,8 +1,8 @@
 // Main Routes Configuration - Kết hợp Admin và Client routes
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import AdminRoutes from "./AdminRoutes";
-import ClientRoutes from "./ClientRoutes";
+import AdminRoutes from "../Admin/routes/adminRoutes";
+import ClientRoutes from "../Client/routes/clientRoutes";
 
 const AppRoutes = () => {
   return (

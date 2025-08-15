@@ -1,16 +1,18 @@
 // Client Header Component
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../../../redux/slices/authSlice";
 import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
+    await dispatch(logoutUser());
     navigate("/login");
   };
 
@@ -45,13 +47,8 @@ const Header = () => {
               </Link>
             </li>
             <li className="header__nav-item">
-              <Link to="/courses" className="header__nav-link">
-                Courses
-              </Link>
-            </li>
-            <li className="header__nav-item">
-              <Link to="/careers" className="header__nav-link">
-                Careers
+              <Link to="/flashcard" className="header__nav-link">
+                Flashcard
               </Link>
             </li>
             <li className="header__nav-item">
@@ -59,11 +56,11 @@ const Header = () => {
                 Blog
               </Link>
             </li>
-            <li className="header__nav-item">
-              <Link to="/about" className="header__nav-link">
-                About Us
+            {/* <li className="header__nav-item">
+              <Link to="/courses" className="header__nav-link">
+                Courses
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
 

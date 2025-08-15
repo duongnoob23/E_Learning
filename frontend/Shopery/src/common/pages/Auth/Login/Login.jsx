@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../../../redux/slices/authSlice";
 import "./Login.css";
 
 const Login = ({ isAdmin = false }) => {
-  const navigate = useNavigate();
-  const { login, isLoading, error, clearAuthError } = useAuth();
-
-  // State quản lý form
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -18,8 +15,30 @@ const Login = ({ isAdmin = false }) => {
     confirmPassword: "",
     email: "",
   });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Xử lý thay đổi input
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Lấy state từ Redux
+  const {
+    isAuthenticated,
+    user,
+    error: authError,
+  } = useSelector((state) => state.auth);
+
+  // Nếu đã đăng nhập, chuyển hướng
+  React.useEffect(() => {
+    if (isAuthenticated && user) {
+      if (isAdmin && user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else if (!isAdmin && user.role === "client") {
+        navigate("/");
+      }
+    }
+  }, [isAuthenticated, user, navigate, isAdmin]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -27,62 +46,74 @@ const Login = ({ isAdmin = false }) => {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
-    if (error) {
-      clearAuthError();
+    // Xóa lỗi khi user bắt đầu nhập
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
     }
   };
 
-  // Xử lý submit form
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.username.trim()) {
+      newErrors.username = "Tên đăng nhập không được để trống";
+    }
+
+    if (!isLoginMode && !formData.email.trim()) {
+      newErrors.email = "Email không được để trống";
+    }
+
+    if (!formData.password.trim()) {
+      newErrors.password = "Mật khẩu không được để trống";
+    }
+
+    if (!isLoginMode && formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Mật khẩu xác nhận không khớp";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isLoginMode) {
-      // Validate login form
-      if (!formData.username.trim() || !formData.password.trim()) {
-        alert("Vui lòng điền đầy đủ thông tin đăng nhập");
-        return;
-      }
+    if (!validateForm()) {
+      return;
+    }
 
-      // Xử lý đăng nhập
-      const credentials = {
-        username: formData.username.trim(),
-        password: formData.password.trim(),
-      };
+    setIsLoading(true);
+    setErrors({});
 
-      const result = await login(credentials);
+    try {
+      if (isLoginMode) {
+        // Đăng nhập
+        const result = await dispatch(
+          loginUser({
+            username: formData.username,
+            password: formData.password,
+          })
+        ).unwrap();
 
-      if (result.success) {
-        // Redirect based on role
-        if (isAdmin) {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/");
+        if (result.success) {
+          // Chuyển hướng dựa vào role
+          if (result.user.role === "admin") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/");
+          }
         }
       } else {
-        // Error sẽ được hiển thị từ Redux state
-        console.log("Login failed:", result.error);
+        // Đăng ký - tạm thời chưa implement
+        console.log("Đăng ký:", formData);
       }
-    } else {
-      // Validate register form
-      if (
-        !formData.username.trim() ||
-        !formData.password.trim() ||
-        !formData.email.trim() ||
-        !formData.confirmPassword.trim()
-      ) {
-        alert("Vui lòng điền đầy đủ thông tin đăng ký");
-        return;
-      }
-
-      if (formData.password !== formData.confirmPassword) {
-        alert("Mật khẩu xác nhận không khớp");
-        return;
-      }
-
-      // Xử lý đăng ký
-      console.log("Register:", formData);
-      // TODO: Implement register logic
+    } catch (error) {
+      setErrors({ submit: error.message || "Có lỗi xảy ra" });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -148,7 +179,10 @@ const Login = ({ isAdmin = false }) => {
             {/* Form */}
             <form className="auth-page__form" onSubmit={handleSubmit}>
               {/* Hiển thị lỗi */}
-              {error && <div className="auth-page__error">{error}</div>}
+              {authError && <div className="auth-page__error">{authError}</div>}
+              {errors.submit && (
+                <div className="auth-page__error">{errors.submit}</div>
+              )}
 
               {/* Username field */}
               <div className="auth-page__field">
@@ -156,11 +190,18 @@ const Login = ({ isAdmin = false }) => {
                 <input
                   type="text"
                   name="username"
-                  className="auth-page__input"
+                  className={`auth-page__input ${
+                    errors.username ? "error" : ""
+                  }`}
                   placeholder="Nhập tên đăng nhập của bạn"
                   value={formData.username}
                   onChange={handleInputChange}
                 />
+                {errors.username && (
+                  <span className="auth-page__error-text">
+                    {errors.username}
+                  </span>
+                )}
               </div>
 
               {/* Email field - chỉ hiển thị khi Register */}
@@ -173,11 +214,14 @@ const Login = ({ isAdmin = false }) => {
                 <input
                   type="text"
                   name="email"
-                  className="auth-page__input"
+                  className={`auth-page__input ${errors.email ? "error" : ""}`}
                   placeholder="Nhập địa chỉ email của bạn"
                   value={formData.email}
                   onChange={handleInputChange}
                 />
+                {errors.email && (
+                  <span className="auth-page__error-text">{errors.email}</span>
+                )}
               </div>
 
               {/* Password field */}
@@ -187,7 +231,9 @@ const Login = ({ isAdmin = false }) => {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    className="auth-page__input"
+                    className={`auth-page__input ${
+                      errors.password ? "error" : ""
+                    }`}
                     placeholder="Nhập mật khẩu của bạn"
                     value={formData.password}
                     onChange={handleInputChange}
@@ -200,6 +246,11 @@ const Login = ({ isAdmin = false }) => {
                     {showPassword ? "👁️" : "👁️‍🗨️"}
                   </button>
                 </div>
+                {errors.password && (
+                  <span className="auth-page__error-text">
+                    {errors.password}
+                  </span>
+                )}
               </div>
 
               {/* Confirm Password - chỉ hiển thị khi Register */}
@@ -213,7 +264,9 @@ const Login = ({ isAdmin = false }) => {
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
-                    className="auth-page__input"
+                    className={`auth-page__input ${
+                      errors.confirmPassword ? "error" : ""
+                    }`}
                     placeholder="Nhập lại mật khẩu của bạn"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
@@ -226,6 +279,11 @@ const Login = ({ isAdmin = false }) => {
                     {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
                   </button>
                 </div>
+                {errors.confirmPassword && (
+                  <span className="auth-page__error-text">
+                    {errors.confirmPassword}
+                  </span>
+                )}
               </div>
 
               {/* Remember me và Forgot password - chỉ hiển thị khi Login */}

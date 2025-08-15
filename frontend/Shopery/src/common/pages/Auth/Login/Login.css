@@ -160,6 +160,7 @@
   border: 1px solid #feb2b2;
 }
 
+/* Form Fields */
 .auth-page__field {
   margin-bottom: 16px; /* Giảm từ 20px xuống 16px */
   transition: all 0.3s ease;
@@ -213,6 +214,17 @@
 
 .auth-page__input::placeholder {
   color: #a0aec0;
+}
+
+.auth-page__input.error {
+  border-color: #fc8181;
+}
+
+.auth-page__error-text {
+  color: #e53e3e;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
 }
 
 /* Password wrapper */

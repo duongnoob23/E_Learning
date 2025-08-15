@@ -1,121 +1,52 @@
-// Client API - API calls cho Client
-import axiosInstance from '../../common/services/axiosInstance'
+// Client API - API calls cho Client (e-learning)
+import axiosInstance from "../../common/services/axiosInstance";
 
 export const clientApi = {
-  // Products
-  getFeaturedProducts: async () => {
-    return await axiosInstance.get('/client/products/featured')
+  // User Profile & Settings
+  changePassword: async (passwordData) => {
+    return await axiosInstance.put("/user/change-password", passwordData);
   },
 
-  getProducts: async (params = {}) => {
-    return await axiosInstance.get('/client/products', { params })
+  updateProfile: async (userData) => {
+    return await axiosInstance.put("/user/profile", userData);
   },
 
-  getProductDetail: async (productId) => {
-    return await axiosInstance.get(`/client/products/${productId}`)
+  uploadAvatar: async (formData) => {
+    return await axiosInstance.post("/user/upload-avatar", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   },
 
-  searchProducts: async (query, params = {}) => {
-    return await axiosInstance.get('/client/products/search', { 
-      params: { q: query, ...params } 
-    })
+  // Learning Progress
+  getLearningProgress: async () => {
+    return await axiosInstance.get("/user/learning-progress");
   },
 
-  // Categories
-  getCategories: async () => {
-    return await axiosInstance.get('/client/categories')
+  updateLearningProgress: async (progressData) => {
+    return await axiosInstance.put("/user/learning-progress", progressData);
   },
 
-  getCategoryProducts: async (categoryId, params = {}) => {
-    return await axiosInstance.get(`/client/categories/${categoryId}/products`, { params })
+  // Flashcards
+  getFlashcards: async (category = "all") => {
+    return await axiosInstance.get(`/flashcards?category=${category}`);
   },
 
-  // Cart
-  getCart: async () => {
-    return await axiosInstance.get('/client/cart')
+  markFlashcardAsLearned: async (flashcardId) => {
+    return await axiosInstance.post(`/flashcards/${flashcardId}/learned`);
   },
 
-  addToCart: async (productId, quantity = 1) => {
-    return await axiosInstance.post('/client/cart/add', { productId, quantity })
+  // Study Sessions
+  startStudySession: async (sessionData) => {
+    return await axiosInstance.post("/study-sessions/start", sessionData);
   },
 
-  updateCartItem: async (itemId, quantity) => {
-    return await axiosInstance.put(`/client/cart/items/${itemId}`, { quantity })
+  endStudySession: async (sessionId, results) => {
+    return await axiosInstance.put(`/study-sessions/${sessionId}/end`, results);
   },
 
-  removeFromCart: async (itemId) => {
-    return await axiosInstance.delete(`/client/cart/items/${itemId}`)
+  getStudyHistory: async () => {
+    return await axiosInstance.get("/study-sessions/history");
   },
-
-  clearCart: async () => {
-    return await axiosInstance.delete('/client/cart')
-  },
-
-  // Wishlist
-  getWishlist: async () => {
-    return await axiosInstance.get('/client/wishlist')
-  },
-
-  addToWishlist: async (productId) => {
-    return await axiosInstance.post('/client/wishlist/add', { productId })
-  },
-
-  removeFromWishlist: async (productId) => {
-    return await axiosInstance.delete(`/client/wishlist/${productId}`)
-  },
-
-  // Orders
-  getOrders: async (params = {}) => {
-    return await axiosInstance.get('/client/orders', { params })
-  },
-
-  getOrderDetail: async (orderId) => {
-    return await axiosInstance.get(`/client/orders/${orderId}`)
-  },
-
-  createOrder: async (orderData) => {
-    return await axiosInstance.post('/client/orders', orderData)
-  },
-
-  cancelOrder: async (orderId) => {
-    return await axiosInstance.put(`/client/orders/${orderId}/cancel`)
-  },
-
-  // Reviews
-  getProductReviews: async (productId, params = {}) => {
-    return await axiosInstance.get(`/client/products/${productId}/reviews`, { params })
-  },
-
-  createReview: async (productId, reviewData) => {
-    return await axiosInstance.post(`/client/products/${productId}/reviews`, reviewData)
-  },
-
-  updateReview: async (reviewId, reviewData) => {
-    return await axiosInstance.put(`/client/reviews/${reviewId}`, reviewData)
-  },
-
-  deleteReview: async (reviewId) => {
-    return await axiosInstance.delete(`/client/reviews/${reviewId}`)
-  },
-
-  // Address
-  getAddresses: async () => {
-    return await axiosInstance.get('/client/addresses')
-  },
-
-  createAddress: async (addressData) => {
-    return await axiosInstance.post('/client/addresses', addressData)
-  },
-
-  updateAddress: async (addressId, addressData) => {
-    return await axiosInstance.put(`/client/addresses/${addressId}`, addressData)
-  },
-
-  deleteAddress: async (addressId) => {
-    return await axiosInstance.delete(`/client/addresses/${addressId}`)
-  },
-
-  setDefaultAddress: async (addressId) => {
-    return await axiosInstance.put(`/client/addresses/${addressId}/default`)
-  },
-}
+};
