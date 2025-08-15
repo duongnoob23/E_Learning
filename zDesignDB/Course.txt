@@ -1,0 +1,126 @@
+//////////////////////////////////////////////////////////
+// BẢNG KHÓA HỌC (COURSES)
+//////////////////////////////////////////////////////////
+
+Table courses {
+  id int [pk, note: 'Khóa chính']
+  title varchar [note: 'Tiêu đề khóa học']
+  description text [note: 'Mô tả ngắn gọn hiển thị ở danh sách']
+  detailed_description text [note: 'Mô tả chi tiết khi xem trang khóa học']
+  course_type varchar [note: 'Loại hình học: self_study (tự học), live (trực tuyến), hybrid (kết hợp)']
+  pricing_type varchar [note: 'Loại giá: free (miễn phí), paid (trả phí), premium (cao cấp)']
+  price decimal [note: 'Giá hiện tại']
+  original_price decimal [note: 'Giá gốc']
+  discount_price decimal [note: 'Giá sau giảm']
+  instructor_id int [note: 'Giảng viên chính của khóa học']
+  category_id int [note: 'Danh mục khóa học (ví dụ: Lập trình, Ngoại ngữ)']
+  level varchar [note: 'Trình độ: beginner, intermediate, advanced']
+  duration_hours int [note: 'Tổng thời lượng học (giờ)']
+  total_lessons int [note: 'Tổng số bài học']
+  total_exercises int [note: 'Tổng số bài tập (nếu có)']
+  max_students int [note: 'Giới hạn học viên']
+  current_students int [note: 'Số học viên đang học']
+  status varchar [note: 'Trạng thái: draft, published, archived']
+  featured boolean [note: 'Khóa học nổi bật']
+  certificate_included boolean [note: 'Có cấp chứng chỉ hay không']
+  lifetime_access boolean [note: 'Truy cập trọn đời']
+  requirements text [note: 'Yêu cầu đầu vào']
+  what_you_learn text [note: 'Học viên sẽ học được gì']
+  target_audience text [note: 'Đối tượng học viên']
+  created_at datetime
+  updated_at datetime
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CHƯƠNG (SECTION) TRONG KHÓA HỌC
+//////////////////////////////////////////////////////////
+
+Table course_sections {
+  id int [pk]
+  course_id int [ref: > courses.id, note: 'Liên kết với khóa học']
+  title varchar [note: 'Tên chương']
+  description text [note: 'Mô tả chương']
+  order_index int [note: 'Thứ tự sắp xếp chương']
+  is_free boolean [note: 'Chương miễn phí xem trước']
+  created_at datetime
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG BÀI HỌC TRONG CHƯƠNG
+//////////////////////////////////////////////////////////
+
+Table course_lessons {
+  id int [pk]
+  section_id int [ref: > course_sections.id, note: 'Liên kết với chương']
+  title varchar [note: 'Tên bài học']
+  description text [note: 'Mô tả ngắn bài học']
+  lesson_type varchar [note: 'Loại bài học: video, reading, quiz']
+  video_url varchar [note: 'Link video (nếu là loại video)']
+  video_duration int [note: 'Thời lượng video (giây)']
+  video_thumbnail varchar [note: 'Ảnh thumbnail video']
+  content_text text [note: 'Nội dung dạng văn bản']
+  content_html text [note: 'Nội dung dạng HTML']
+  order_index int [note: 'Thứ tự trong chương']
+  is_free boolean [note: 'Bài học miễn phí xem trước']
+  created_at datetime
+  updated_at datetime
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LỚP HỌC TRỰC TUYẾN (CHO LIVE/HYBRID)
+//////////////////////////////////////////////////////////
+
+Table classes {
+  id int [pk]
+  course_id int [ref: > courses.id, note: 'Thuộc khóa học nào']
+  name varchar [note: 'Tên lớp']
+  instructor_id int [note: 'Giảng viên phụ trách lớp']
+  start_date date [note: 'Ngày khai giảng']
+  end_date date [note: 'Ngày kết thúc']
+  max_students int [note: 'Giới hạn học viên']
+  status varchar [note: 'Trạng thái: active, completed, canceled']
+  created_at datetime
+  updated_at datetime
+}
+
+//////////////////////////////////////////////////////////
+// DANH SÁCH HỌC VIÊN TRONG LỚP LIVE
+//////////////////////////////////////////////////////////
+
+Table class_students {
+  id int [pk]
+  class_id int [ref: > classes.id, note: 'Liên kết với lớp học']
+  user_id int [note: 'Học viên']
+  enrolled_at datetime [note: 'Ngày đăng ký vào lớp']
+  status varchar [note: 'Trạng thái: enrolled, dropped, completed']
+}
+
+//////////////////////////////////////////////////////////
+// LỊCH HỌC CỦA LỚP (TỪNG BUỔI LIVE)
+//////////////////////////////////////////////////////////
+
+Table class_sessions {
+  id int [pk]
+  class_id int [ref: > classes.id, note: 'Liên kết với lớp học']
+  session_title varchar [note: 'Tên buổi học']
+  start_time datetime [note: 'Thời gian bắt đầu']
+  end_time datetime [note: 'Thời gian kết thúc']
+  meeting_link varchar [note: 'Link phòng học trực tuyến']
+  meeting_id varchar [note: 'ID phòng học']
+  meeting_password varchar [note: 'Mật khẩu phòng học']
+  recording_url varchar [note: 'Link ghi hình buổi học']
+  created_at datetime
+}
+
+//////////////////////////////////////////////////////////
+// ĐIỂM DANH TRONG BUỔI LIVE
+//////////////////////////////////////////////////////////
+
+Table attendance {
+  id int [pk]
+  session_id int [ref: > class_sessions.id, note: 'Liên kết với buổi học']
+  user_id int [note: 'Học viên']
+  join_time datetime [note: 'Thời điểm học viên vào']
+  leave_time datetime [note: 'Thời điểm rời đi']
+  status varchar [note: 'Trạng thái: present, absent, late']
+}

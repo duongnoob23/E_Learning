@@ -1,0 +1,265 @@
+
+
+//////////////////////////////////////////////////////////
+// BẢNG NGƯỜI DÙNG (USERS) - Đã có từ trước
+//////////////////////////////////////////////////////////
+
+Table users {
+  id integer [primary key, increment, note: 'Khóa chính']
+  email varchar(255) [unique, not null, note: 'Email đăng nhập']
+  password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
+  full_name varchar(255) [not null, note: 'Họ tên đầy đủ']
+  avatar_url varchar(500) [note: 'Link ảnh đại diện']
+  role enum('student', 'teacher', 'admin') [default: 'student', note: 'Vai trò: học viên, giảng viên, admin']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LỚP HỌC TRỰC TUYẾN (ONLINE CLASSES)
+//////////////////////////////////////////////////////////
+
+Table online_classes {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(255) [not null, note: 'Tên lớp học']
+  description text [note: 'Mô tả lớp học']
+  instructor_id integer [ref: > users.id, not null, note: 'Giảng viên chính']
+  assistant_instructor_id integer [ref: > users.id, note: 'Trợ giảng']
+  class_level enum('beginner', 'intermediate', 'advanced') [default: 'intermediate', note: 'Trình độ lớp']
+  max_students integer [not null, note: 'Số học viên tối đa']
+  current_students integer [default: 0, note: 'Số học viên hiện tại']
+  start_date date [not null, note: 'Ngày khai giảng']
+  end_date date [not null, note: 'Ngày kết thúc']
+  schedule_days varchar(50) [note: 'Ngày học trong tuần (Mon,Tue,Wed)']
+  start_time time [not null, note: 'Giờ bắt đầu học']
+  end_time time [not null, note: 'Giờ kết thúc học']
+  timezone varchar(50) [default: 'Asia/Ho_Chi_Minh', note: 'Múi giờ']
+  meeting_platform enum('zoom', 'google_meet', 'teams', 'other') [default: 'zoom', note: 'Nền tảng họp trực tuyến']
+  default_meeting_link varchar(500) [note: 'Link phòng học mặc định']
+  default_meeting_id varchar(100) [note: 'ID phòng học mặc định']
+  default_meeting_password varchar(100) [note: 'Mật khẩu phòng học mặc định']
+  price decimal(10,2) [note: 'Học phí lớp học']
+  is_free boolean [default: false, note: 'Lớp học miễn phí']
+  status enum('draft', 'enrolling', 'active', 'completed', 'cancelled') [default: 'draft', note: 'Trạng thái lớp học']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG ĐĂNG KÝ LỚP HỌC (CLASS ENROLLMENTS)
+//////////////////////////////////////////////////////////
+
+Table class_enrollments {
+  id integer [primary key, increment, note: 'Khóa chính']
+  class_id integer [ref: > online_classes.id, not null, note: 'Liên kết với lớp học']
+  student_id integer [ref: > users.id, not null, note: 'Học viên đăng ký']
+  enrollment_date timestamp [default: `now()`, note: 'Ngày đăng ký']
+  payment_status enum('pending', 'paid', 'refunded', 'cancelled') [default: 'pending', note: 'Trạng thái thanh toán']
+  payment_amount decimal(10,2) [note: 'Số tiền đã thanh toán']
+  payment_date timestamp [note: 'Ngày thanh toán']
+  status enum('enrolled', 'attending', 'completed', 'dropped', 'suspended') [default: 'enrolled', note: 'Trạng thái học tập']
+  completion_date timestamp [note: 'Ngày hoàn thành khóa học']
+  certificate_issued boolean [default: false, note: 'Đã cấp chứng chỉ']
+  certificate_url varchar(500) [note: 'Link chứng chỉ']
+  notes text [note: 'Ghi chú']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (class_id, student_id) [unique, note: 'Đảm bảo mỗi học viên chỉ đăng ký 1 lần mỗi lớp']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG BUỔI HỌC (CLASS SESSIONS)
+//////////////////////////////////////////////////////////
+
+Table class_sessions {
+  id integer [primary key, increment, note: 'Khóa chính']
+  class_id integer [ref: > online_classes.id, not null, note: 'Liên kết với lớp học']
+  session_number integer [not null, note: 'Số thứ tự buổi học']
+  title varchar(255) [not null, note: 'Tiêu đề buổi học']
+  description text [note: 'Mô tả buổi học']
+  scheduled_date date [not null, note: 'Ngày dự kiến học']
+  scheduled_start_time timestamp [not null, note: 'Thời gian bắt đầu dự kiến']
+  scheduled_end_time timestamp [not null, note: 'Thời gian kết thúc dự kiến']
+  actual_start_time timestamp [note: 'Thời gian bắt đầu thực tế']
+  actual_end_time timestamp [note: 'Thời gian kết thúc thực tế']
+  meeting_link varchar(500) [note: 'Link phòng học (Zoom/Google Meet)']
+  meeting_id varchar(100) [note: 'ID phòng học']
+  meeting_password varchar(100) [note: 'Mật khẩu phòng học']
+  meeting_platform enum('zoom', 'google_meet', 'teams', 'other') [note: 'Nền tảng họp trực tuyến']
+  instructor_id integer [ref: > users.id, note: 'Giảng viên thực hiện buổi học']
+  status enum('scheduled', 'ongoing', 'completed', 'cancelled', 'rescheduled') [default: 'scheduled', note: 'Trạng thái buổi học']
+  cancellation_reason text [note: 'Lý do hủy buổi học']
+  rescheduled_to_session_id integer [ref: > class_sessions.id, note: 'Buổi học được dời đến']
+  notes text [note: 'Ghi chú buổi học']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (class_id, session_number) [unique, note: 'Đảm bảo số thứ tự buổi học không trùng trong cùng lớp']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG ĐIỂM DANH (ATTENDANCE)
+//////////////////////////////////////////////////////////
+
+Table attendance {
+  id integer [primary key, increment, note: 'Khóa chính']
+  session_id integer [ref: > class_sessions.id, not null, note: 'Liên kết với buổi học']
+  student_id integer [ref: > users.id, not null, note: 'Học viên']
+  status enum('present', 'absent', 'late', 'excused', 'left_early') [default: 'absent', note: 'Trạng thái điểm danh']
+  join_time timestamp [note: 'Thời gian vào phòng học']
+  leave_time timestamp [note: 'Thời gian rời phòng học']
+  duration_minutes integer [note: 'Thời gian tham gia (phút)']
+  attendance_method enum('automatic', 'manual', 'self_check') [default: 'automatic', note: 'Phương thức điểm danh']
+  marked_by integer [ref: > users.id, note: 'Người điểm danh']
+  notes text [note: 'Ghi chú điểm danh']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (session_id, student_id) [unique, note: 'Đảm bảo mỗi học viên chỉ có 1 bản ghi điểm danh mỗi buổi học']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG VIDEO GHI HÌNH (SESSION RECORDINGS)
+//////////////////////////////////////////////////////////
+
+Table session_recordings {
+  id integer [primary key, increment, note: 'Khóa chính']
+  session_id integer [ref: > class_sessions.id, not null, note: 'Liên kết với buổi học']
+  recording_type enum('full_session', 'partial', 'highlight') [default: 'full_session', note: 'Loại ghi hình']
+  title varchar(255) [not null, note: 'Tiêu đề video']
+  description text [note: 'Mô tả video']
+  video_url varchar(500) [not null, note: 'Link video']
+  thumbnail_url varchar(500) [note: 'Link thumbnail video']
+  duration_seconds integer [note: 'Thời lượng video (giây)']
+  file_size_mb decimal(10,2) [note: 'Kích thước file (MB)']
+  video_quality enum('low', 'medium', 'high', 'hd', '4k') [default: 'medium', note: 'Chất lượng video']
+  recording_platform enum('zoom', 'google_meet', 'teams', 'obs', 'other') [note: 'Nền tảng ghi hình']
+  access_level enum('public', 'enrolled_students', 'private') [default: 'enrolled_students', note: 'Mức độ truy cập']
+  is_processed boolean [default: false, note: 'Đã xử lý video chưa']
+  processing_status enum('pending', 'processing', 'completed', 'failed') [default: 'pending', note: 'Trạng thái xử lý']
+  uploaded_by integer [ref: > users.id, not null, note: 'Người upload video']
+  uploaded_at timestamp [default: `now()`, note: 'Thời gian upload']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TÀI LIỆU LỚP HỌC (CLASS MATERIALS)
+//////////////////////////////////////////////////////////
+
+Table class_materials {
+  id integer [primary key, increment, note: 'Khóa chính']
+  class_id integer [ref: > online_classes.id, not null, note: 'Liên kết với lớp học']
+  session_id integer [ref: > class_sessions.id, note: 'Liên kết với buổi học cụ thể (null = tài liệu chung)']
+  title varchar(255) [not null, note: 'Tiêu đề tài liệu']
+  description text [note: 'Mô tả tài liệu']
+  material_type enum('document', 'presentation', 'video', 'audio', 'link', 'other') [not null, note: 'Loại tài liệu']
+  file_url varchar(500) [note: 'Link file tài liệu']
+  file_name varchar(255) [note: 'Tên file']
+  file_size_mb decimal(10,2) [note: 'Kích thước file (MB)']
+  file_type varchar(100) [note: 'Loại file (MIME type)']
+  external_link varchar(500) [note: 'Link bên ngoài']
+  is_required boolean [default: false, note: 'Tài liệu bắt buộc']
+  is_public boolean [default: true, note: 'Tài liệu công khai']
+  uploaded_by integer [ref: > users.id, not null, note: 'Người upload']
+  download_count integer [default: 0, note: 'Số lần tải xuống']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG BÀI TẬP LỚP HỌC (CLASS ASSIGNMENTS)
+//////////////////////////////////////////////////////////
+
+Table class_assignments {
+  id integer [primary key, increment, note: 'Khóa chính']
+  class_id integer [ref: > online_classes.id, not null, note: 'Liên kết với lớp học']
+  session_id integer [ref: > class_sessions.id, note: 'Liên kết với buổi học (null = bài tập chung)']
+  title varchar(255) [not null, note: 'Tiêu đề bài tập']
+  description text [not null, note: 'Mô tả bài tập']
+  assignment_type enum('homework', 'quiz', 'project', 'presentation', 'other') [default: 'homework', note: 'Loại bài tập']
+  due_date timestamp [note: 'Hạn nộp bài']
+  max_score integer [note: 'Điểm tối đa']
+  is_required boolean [default: true, note: 'Bài tập bắt buộc']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_by integer [ref: > users.id, not null, note: 'Người tạo bài tập']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG NỘP BÀI TẬP (ASSIGNMENT SUBMISSIONS)
+//////////////////////////////////////////////////////////
+
+Table assignment_submissions {
+  id integer [primary key, increment, note: 'Khóa chính']
+  assignment_id integer [ref: > class_assignments.id, not null, note: 'Liên kết với bài tập']
+  student_id integer [ref: > users.id, not null, note: 'Học viên nộp bài']
+  submission_text text [note: 'Nội dung bài nộp (text)']
+  file_url varchar(500) [note: 'Link file bài nộp']
+  file_name varchar(255) [note: 'Tên file']
+  file_size_mb decimal(10,2) [note: 'Kích thước file (MB)']
+  submitted_at timestamp [default: `now()`, note: 'Thời gian nộp bài']
+  score integer [note: 'Điểm đạt được']
+  feedback text [note: 'Nhận xét của giảng viên']
+  graded_by integer [ref: > users.id, note: 'Người chấm điểm']
+  graded_at timestamp [note: 'Thời gian chấm điểm']
+  status enum('submitted', 'late', 'graded', 'returned') [default: 'submitted', note: 'Trạng thái bài nộp']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (assignment_id, student_id) [unique, note: 'Đảm bảo mỗi học viên chỉ nộp 1 lần mỗi bài tập']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THÔNG BÁO LỚP HỌC (CLASS ANNOUNCEMENTS)
+//////////////////////////////////////////////////////////
+
+Table class_announcements {
+  id integer [primary key, increment, note: 'Khóa chính']
+  class_id integer [ref: > online_classes.id, not null, note: 'Liên kết với lớp học']
+  title varchar(255) [not null, note: 'Tiêu đề thông báo']
+  content text [not null, note: 'Nội dung thông báo']
+  announcement_type enum('general', 'reminder', 'important', 'urgent') [default: 'general', note: 'Loại thông báo']
+  is_pinned boolean [default: false, note: 'Ghim thông báo']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  published_at timestamp [default: `now()`, note: 'Thời gian đăng thông báo']
+  created_by integer [ref: > users.id, not null, note: 'Người tạo thông báo']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THAM GIA BUỔI HỌC (SESSION PARTICIPANTS)
+//////////////////////////////////////////////////////////
+
+Table session_participants {
+  id integer [primary key, increment, note: 'Khóa chính']
+  session_id integer [ref: > class_sessions.id, not null, note: 'Liên kết với buổi học']
+  user_id integer [ref: > users.id, not null, note: 'Người tham gia']
+  participant_type enum('instructor', 'student', 'guest', 'observer') [default: 'student', note: 'Loại người tham gia']
+  join_time timestamp [note: 'Thời gian vào phòng']
+  leave_time timestamp [note: 'Thời gian rời phòng']
+  duration_minutes integer [note: 'Thời gian tham gia (phút)']
+  device_info text [note: 'Thông tin thiết bị']
+  connection_quality enum('excellent', 'good', 'fair', 'poor') [note: 'Chất lượng kết nối']
+  is_host boolean [default: false, note: 'Có phải host không']
+  is_co_host boolean [default: false, note: 'Có phải co-host không']
+  permissions text [note: 'Quyền hạn trong phòng học']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (session_id, user_id) [unique, note: 'Đảm bảo mỗi user chỉ có 1 bản ghi tham gia mỗi buổi học']
+  }
+}

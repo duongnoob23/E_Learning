@@ -1,0 +1,195 @@
+
+//////////////////////////////////////////////////////////
+// BẢNG NGƯỜI DÙNG (USERS) - Đã có từ trước
+//////////////////////////////////////////////////////////
+
+Table users {
+  id integer [primary key, increment, note: 'Khóa chính']
+  email varchar(255) [unique, not null, note: 'Email đăng nhập']
+  password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
+  full_name varchar(255) [not null, note: 'Họ tên đầy đủ']
+  avatar_url varchar(500) [note: 'Link ảnh đại diện']
+  role enum('student', 'teacher', 'admin') [default: 'student', note: 'Vai trò: học viên, giảng viên, admin']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG DANH MỤC SẢN PHẨM (PRODUCT CATEGORIES)
+//////////////////////////////////////////////////////////
+
+Table product_categories {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(255) [not null, note: 'Tên danh mục']
+  description text [note: 'Mô tả danh mục']
+  parent_category_id integer [ref: > product_categories.id, note: 'Danh mục cha']
+  image_url varchar(500) [note: 'Ảnh đại diện danh mục']
+  sort_order integer [default: 0, note: 'Thứ tự sắp xếp']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG SẢN PHẨM (PRODUCTS)
+//////////////////////////////////////////////////////////
+
+Table products {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(255) [not null, note: 'Tên sản phẩm']
+  description text [note: 'Mô tả sản phẩm']
+  category_id integer [ref: > product_categories.id, not null, note: 'Danh mục sản phẩm']
+  product_type enum('physical', 'digital', 'service') [not null, note: 'Loại sản phẩm']
+  sku varchar(100) [unique, note: 'Mã sản phẩm (SKU)']
+  brand varchar(100) [note: 'Thương hiệu']
+  base_price decimal(10,2) [not null, note: 'Giá gốc']
+  sale_price decimal(10,2) [note: 'Giá khuyến mãi']
+  stock_quantity integer [default: 0, note: 'Số lượng tồn kho']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  is_featured boolean [default: false, note: 'Sản phẩm nổi bật']
+  image_url varchar(500) [note: 'Hình ảnh chính']
+  created_by integer [ref: > users.id, note: 'Người tạo sản phẩm']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG GIỎ HÀNG (SHOPPING CARTS)
+//////////////////////////////////////////////////////////
+
+Table shopping_carts {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, note: 'Người dùng (null = guest)']
+  session_id varchar(255) [note: 'Session ID cho guest']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG MỤC GIỎ HÀNG (CART ITEMS)
+//////////////////////////////////////////////////////////
+
+Table cart_items {
+  id integer [primary key, increment, note: 'Khóa chính']
+  cart_id integer [ref: > shopping_carts.id, not null, note: 'Liên kết với giỏ hàng']
+  product_id integer [ref: > products.id, not null, note: 'Liên kết với sản phẩm']
+  quantity integer [not null, default: 1, note: 'Số lượng']
+  unit_price decimal(10,2) [not null, note: 'Đơn giá']
+  total_price decimal(10,2) [not null, note: 'Tổng giá']
+  added_at timestamp [default: `now()`, note: 'Thời gian thêm vào giỏ']
+  
+  indexes {
+    (cart_id, product_id) [unique, note: 'Đảm bảo mỗi sản phẩm chỉ có 1 lần trong giỏ hàng']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG ĐƠN HÀNG (ORDERS)
+//////////////////////////////////////////////////////////
+
+Table orders {
+  id integer [primary key, increment, note: 'Khóa chính']
+  order_number varchar(50) [unique, not null, note: 'Mã đơn hàng']
+  user_id integer [ref: > users.id, not null, note: 'Khách hàng']
+  order_status enum('pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled') [default: 'pending', note: 'Trạng thái đơn hàng']
+  payment_status enum('pending', 'paid', 'failed', 'refunded') [default: 'pending', note: 'Trạng thái thanh toán']
+  subtotal decimal(10,2) [not null, note: 'Tổng tiền hàng']
+  shipping_amount decimal(10,2) [default: 0, note: 'Phí vận chuyển']
+  discount_amount decimal(10,2) [default: 0, note: 'Giảm giá']
+  total_amount decimal(10,2) [not null, note: 'Tổng tiền cuối cùng']
+  shipping_address text [note: 'Địa chỉ giao hàng']
+  shipping_phone varchar(20) [note: 'Số điện thoại giao hàng']
+  notes text [note: 'Ghi chú đơn hàng']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CHI TIẾT ĐƠN HÀNG (ORDER ITEMS)
+//////////////////////////////////////////////////////////
+
+Table order_items {
+  id integer [primary key, increment, note: 'Khóa chính']
+  order_id integer [ref: > orders.id, not null, note: 'Liên kết với đơn hàng']
+  product_id integer [ref: > products.id, not null, note: 'Liên kết với sản phẩm']
+  product_name varchar(255) [not null, note: 'Tên sản phẩm (lưu lại)']
+  quantity integer [not null, note: 'Số lượng']
+  unit_price decimal(10,2) [not null, note: 'Đơn giá']
+  total_price decimal(10,2) [not null, note: 'Tổng giá']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THANH TOÁN (PAYMENTS)
+//////////////////////////////////////////////////////////
+
+Table payments {
+  id integer [primary key, increment, note: 'Khóa chính']
+  order_id integer [ref: > orders.id, not null, note: 'Liên kết với đơn hàng']
+  payment_method enum('cash', 'bank_transfer', 'momo', 'zalopay', 'vnpay', 'paypal') [not null, note: 'Phương thức thanh toán']
+  transaction_id varchar(255) [note: 'ID giao dịch từ cổng thanh toán']
+  amount decimal(10,2) [not null, note: 'Số tiền thanh toán']
+  payment_status enum('pending', 'processing', 'completed', 'failed', 'cancelled') [default: 'pending', note: 'Trạng thái thanh toán']
+  payment_date timestamp [note: 'Thời gian thanh toán']
+  notes text [note: 'Ghi chú']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG MÃ GIẢM GIÁ (COUPONS)
+//////////////////////////////////////////////////////////
+
+Table coupons {
+  id integer [primary key, increment, note: 'Khóa chính']
+  code varchar(50) [unique, not null, note: 'Mã giảm giá']
+  name varchar(255) [not null, note: 'Tên mã giảm giá']
+  description text [note: 'Mô tả']
+  discount_type enum('percentage', 'fixed_amount') [not null, note: 'Loại giảm giá']
+  discount_value decimal(10,2) [not null, note: 'Giá trị giảm giá']
+  minimum_order_amount decimal(10,2) [note: 'Giá trị đơn hàng tối thiểu']
+  usage_limit integer [note: 'Giới hạn sử dụng (null = không giới hạn)']
+  used_count integer [default: 0, note: 'Số lần đã sử dụng']
+  valid_from timestamp [not null, note: 'Thời gian bắt đầu hiệu lực']
+  valid_until timestamp [not null, note: 'Thời gian kết thúc hiệu lực']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG SỬ DỤNG MÃ GIẢM GIÁ (COUPON USAGES)
+//////////////////////////////////////////////////////////
+
+Table coupon_usages {
+  id integer [primary key, increment, note: 'Khóa chính']
+  coupon_id integer [ref: > coupons.id, not null, note: 'Liên kết với mã giảm giá']
+  order_id integer [ref: > orders.id, not null, note: 'Liên kết với đơn hàng']
+  user_id integer [ref: > users.id, not null, note: 'Người sử dụng']
+  discount_amount decimal(10,2) [not null, note: 'Số tiền được giảm']
+  used_at timestamp [default: `now()`, note: 'Thời gian sử dụng']
+  
+  indexes {
+    (coupon_id, order_id) [unique, note: 'Đảm bảo mỗi mã giảm giá chỉ được sử dụng 1 lần mỗi đơn hàng']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG ĐÁNH GIÁ SẢN PHẨM (PRODUCT REVIEWS)
+//////////////////////////////////////////////////////////
+
+Table product_reviews {
+  id integer [primary key, increment, note: 'Khóa chính']
+  product_id integer [ref: > products.id, not null, note: 'Liên kết với sản phẩm']
+  user_id integer [ref: > users.id, not null, note: 'Người đánh giá']
+  rating integer [not null, note: 'Điểm đánh giá (1-5)']
+  comment text [note: 'Nội dung đánh giá']
+  is_approved boolean [default: false, note: 'Đã được duyệt']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (product_id, user_id) [unique, note: 'Đảm bảo mỗi user chỉ đánh giá 1 lần mỗi sản phẩm']
+  }
+}

@@ -1,0 +1,349 @@
+/* Trang đăng nhập - CSS theo chuẩn BEM */
+
+/* Container chính */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.auth-page__container {
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  height: 700px; /* Cố định chiều cao để tránh nhảy giao diện */
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Phần bên trái - Hình ảnh */
+.auth-page__image-section {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+}
+
+.auth-page__image-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.auth-page__image-title {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.auth-page__image-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Phần bên phải - Form */
+.auth-page__form-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto; /* Cho phép scroll khi cần */
+}
+
+.auth-page__form-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100%; /* Đảm bảo chiều cao tối thiểu */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Header */
+.auth-page__header {
+  text-align: center;
+  margin-bottom: 30px; /* Giảm từ 40px xuống 30px */
+}
+
+.auth-page__welcome {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 20px 0; /* Giảm từ 24px xuống 20px */
+  line-height: 1.2;
+}
+
+.auth-page__toggle {
+  display: flex;
+  background: #f7fafc;
+  border-radius: 50px;
+  padding: 4px;
+  margin-bottom: 16px; /* Giảm từ 20px xuống 16px */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slider animation cho toggle - Cải thiện animation */
+.auth-page__toggle-slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: linear-gradient(135deg, #4fd1c7 0%, #81e6d9 100%);
+  border-radius: 46px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(79, 209, 199, 0.3);
+  z-index: 1;
+}
+
+.auth-page__toggle-slider--register {
+  transform: translateX(100%);
+}
+
+.auth-page__toggle-btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #718096;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 46px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-page__toggle-btn--active {
+  color: white;
+}
+
+.auth-page__description {
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Form */
+.auth-page__form {
+  width: 100%;
+  transition: all 0.3s ease; /* Smooth transition khi thay đổi form */
+}
+
+.auth-page__error {
+  background: #fed7d7;
+  color: #c53030;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px; /* Giảm từ 20px xuống 16px */
+  border: 1px solid #feb2b2;
+}
+
+.auth-page__field {
+  margin-bottom: 16px; /* Giảm từ 20px xuống 16px */
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 80px; /* Cố định chiều cao tối đa */
+  overflow: hidden;
+}
+
+/* Animation cho các field register */
+.auth-page__field--register {
+  opacity: 0;
+  transform: translateY(-10px);
+  max-height: 0;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.auth-page__field--register.auth-page__field--visible {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 80px;
+  margin-bottom: 16px; /* Giảm từ 20px xuống 16px */
+}
+
+.auth-page__label {
+  display: block;
+  color: #2d3748;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px; /* Giảm từ 8px xuống 6px */
+}
+
+.auth-page__input {
+  width: 100%;
+  padding: 12px 16px; /* Giảm từ 14px xuống 12px */
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #2d3748;
+  background: white;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.auth-page__input:focus {
+  outline: none;
+  border-color: #4fd1c7;
+  box-shadow: 0 0 0 3px rgba(79, 209, 199, 0.1);
+}
+
+.auth-page__input::placeholder {
+  color: #a0aec0;
+}
+
+/* Password wrapper */
+.auth-page__password-wrapper {
+  position: relative;
+}
+
+.auth-page__password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #718096;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.auth-page__password-toggle:hover {
+  color: #4a5568;
+}
+
+/* Options - Remember me và Forgot password */
+.auth-page__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Giảm từ 24px xuống 20px */
+  transition: all 0.3s ease;
+  opacity: 1;
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.auth-page__options:not(.auth-page__options--visible) {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+}
+
+.auth-page__checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.auth-page__checkbox input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: #4fd1c7;
+}
+
+.auth-page__checkbox-text {
+  user-select: none;
+}
+
+.auth-page__forgot-link {
+  background: none;
+  border: none;
+  color: #4fd1c7;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-page__forgot-link:hover {
+  color: #38b2ac;
+  text-decoration: underline;
+}
+
+/* Submit button */
+.auth-page__submit-btn {
+  width: 100%;
+  padding: 14px; /* Giảm từ 16px xuống 14px */
+  background: linear-gradient(135deg, #4fd1c7 0%, #81e6d9 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(79, 209, 199, 0.3);
+}
+
+.auth-page__submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 209, 199, 0.4);
+}
+
+.auth-page__submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .auth-page__container {
+    flex-direction: column;
+    margin: 20px;
+    min-height: auto;
+    height: auto;
+  }
+
+  .auth-page__image-section {
+    min-height: 200px;
+    padding: 20px;
+  }
+
+  .auth-page__form-section {
+    padding: 30px 20px;
+  }
+
+  .auth-page__welcome {
+    font-size: 24px;
+  }
+
+  .auth-page__image-title {
+    font-size: 24px;
+  }
+}

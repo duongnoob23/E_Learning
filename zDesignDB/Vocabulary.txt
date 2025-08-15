@@ -1,0 +1,124 @@
+////////////////////////////////////////////////////////
+// BẢNG NGƯỜI DÙNG
+////////////////////////////////////////////////////////
+Table users {
+  user_id int [pk, increment, note: 'Khóa chính - ID người dùng']
+  username varchar [note: 'Tên đăng nhập']
+  password_hash varchar [note: 'Mật khẩu đã mã hóa']
+  email varchar [note: 'Email của người dùng']
+  created_at datetime [note: 'Ngày tạo tài khoản']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG CHỦ ĐỀ TỪ VỰNG (HỆ THỐNG + NGƯỜI DÙNG TỰ TẠO)
+////////////////////////////////////////////////////////
+Table topics {
+  topic_id int [pk, increment, note: 'Khóa chính - ID chủ đề']
+  topic_name varchar [note: 'Tên chủ đề từ vựng']
+  description text [note: 'Mô tả nội dung chủ đề']
+  image_url varchar [note: 'Ảnh đại diện cho chủ đề']
+  created_at datetime [note: 'Ngày tạo chủ đề']
+  created_by int [ref: > users.user_id, note: 'ID người tạo, NULL nếu là chủ đề hệ thống']
+  is_completed boolean [note: 'Trạng thái hoàn thành chủ đề (true/false)']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG TỪ VỰNG HỆ THỐNG
+////////////////////////////////////////////////////////
+Table words {
+  word_id int [pk, increment, note: 'Khóa chính - ID từ vựng']
+  topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào']
+  word varchar [note: 'Từ tiếng Anh']
+  part_of_speech varchar [note: 'Loại từ: noun, verb, adjective...']
+  pronunciation varchar [note: 'Phiên âm (IPA)']
+  meaning_vi text [note: 'Nghĩa tiếng Việt']
+  example_en text [note: 'Câu ví dụ tiếng Anh']
+  example_vi text [note: 'Dịch câu ví dụ sang tiếng Việt']
+  image_url varchar [note: 'Ảnh minh họa cho từ']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG TỪ VỰNG NGƯỜI DÙNG TẠO HOẶC CHỌN
+////////////////////////////////////////////////////////
+Table user_words {
+  user_word_id int [pk, increment, note: 'Khóa chính - ID từ vựng của user']
+  topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào (do user tạo)']
+  word varchar [note: 'Từ tiếng Anh']
+  part_of_speech varchar [note: 'Loại từ']
+  pronunciation varchar [note: 'Phiên âm']
+  meaning_vi text [note: 'Nghĩa tiếng Việt']
+  example_en text [note: 'Câu ví dụ tiếng Anh']
+  example_vi text [note: 'Dịch câu ví dụ']
+  image_url varchar [note: 'Ảnh minh họa']
+  from_system_word_id int [ref: > words.word_id, note: 'Nếu từ lấy từ hệ thống thì lưu ID, NULL nếu tự nhập']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG ĐÁNH DẤU HỌC THUỘC TỪ
+////////////////////////////////////////////////////////
+Table user_word_progress {
+  user_id int [ref: > users.user_id, note: 'Người học']
+  word_id int [ref: > words.word_id, note: 'ID từ hệ thống (nếu có)']
+  user_word_id int [ref: > user_words.user_word_id, note: 'ID từ do user tạo (nếu có)']
+  is_learned boolean [note: 'Đã học thuộc chưa']
+  learned_at datetime [note: 'Ngày đánh dấu học thuộc']
+  indexes {
+    (user_id, word_id, user_word_id) [pk]
+  }
+}
+
+////////////////////////////////////////////////////////
+// BẢNG CHỦ ĐỀ YÊU THÍCH
+////////////////////////////////////////////////////////
+Table favorite_topics {
+  user_id int [ref: > users.user_id, note: 'Người dùng']
+  topic_id int [ref: > topics.topic_id, note: 'Chủ đề yêu thích']
+  added_at datetime [note: 'Ngày thêm vào yêu thích']
+  indexes {
+    (user_id, topic_id) [pk]
+  }
+}
+
+////////////////////////////////////////////////////////
+// BẢNG LOẠI BÀI TẬP
+////////////////////////////////////////////////////////
+Table exercise_types {
+  exercise_type_id int [pk, increment, note: 'Khóa chính - ID loại bài tập']
+  name varchar [note: 'Tên loại bài tập (Gap-fill, Multiple-choice, Matching)']
+  description text [note: 'Mô tả loại bài tập']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG BÀI TẬP
+////////////////////////////////////////////////////////
+Table exercises {
+  exercise_id int [pk, increment, note: 'Khóa chính - ID bài tập']
+  topic_id int [ref: > topics.topic_id, note: 'Chủ đề liên quan']
+  exercise_type_id int [ref: > exercise_types.exercise_type_id, note: 'Loại bài tập']
+  created_at datetime [note: 'Ngày tạo bài tập']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG CÂU HỎI TRONG BÀI TẬP
+////////////////////////////////////////////////////////
+Table exercise_questions {
+  question_id int [pk, increment, note: 'Khóa chính - ID câu hỏi']
+  exercise_id int [ref: > exercises.exercise_id, note: 'Thuộc bài tập nào']
+  question_text text [note: 'Nội dung câu hỏi']
+  correct_answer text [note: 'Đáp án đúng']
+  options json [note: 'Các lựa chọn (nếu là trắc nghiệm)']
+  related_word_id int [ref: > words.word_id, note: 'Liên kết tới từ cụ thể (nếu cần)']
+}
+
+////////////////////////////////////////////////////////
+// BẢNG KẾT QUẢ LÀM BÀI
+////////////////////////////////////////////////////////
+Table exercise_results {
+  result_id int [pk, increment, note: 'Khóa chính - ID kết quả']
+  user_id int [ref: > users.user_id, note: 'Người làm bài']
+  question_id int [ref: > exercise_questions.question_id, note: 'Câu hỏi đã làm']
+  user_answer text [note: 'Câu trả lời của người dùng']
+  is_correct boolean [note: 'Trả lời đúng hay sai']
+  answered_at datetime [note: 'Thời gian trả lời']
+}
+

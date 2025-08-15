@@ -1,0 +1,56 @@
+///////////////////////////////////////////////////////
+// Bảng users: lưu thông tin tài khoản người dùng
+///////////////////////////////////////////////////////
+Table users {
+  user_id int [pk, increment] // Khóa chính, tự tăng
+  username varchar(50) [not null, unique] // Tên đăng nhập duy nhất
+  password_hash varchar(255) [not null] // Mật khẩu đã mã hóa
+  email varchar(100) [not null, unique] // Email duy nhất, dùng để liên lạc/khôi phục mật khẩu
+  full_name varchar(100) // Họ tên đầy đủ
+  phone_number varchar(20) // Số điện thoại
+  avatar_url varchar(255) // Ảnh đại diện
+  status varchar(20) // Trạng thái tài khoản: active, inactive, banned
+  created_at datetime [default: `CURRENT_TIMESTAMP`] // Ngày tạo
+  updated_at datetime [default: `CURRENT_TIMESTAMP`] // Ngày cập nhật
+}
+
+///////////////////////////////////////////////////////
+// Bảng roles: lưu các vai trò (quyền tổng quát)
+///////////////////////////////////////////////////////
+Table roles {
+  role_id int [pk, increment] // Khóa chính
+  role_name varchar(50) [not null, unique] // Tên vai trò: Student, Teacher, Admin...
+  description text // Mô tả quyền hạn của vai trò
+}
+
+///////////////////////////////////////////////////////
+// Bảng user_roles: ánh xạ người dùng - vai trò (N-N)
+///////////////////////////////////////////////////////
+Table user_roles {
+  user_id int [ref: > users.user_id] // Khóa ngoại tới users
+  role_id int [ref: > roles.role_id] // Khóa ngoại tới roles
+  assigned_at datetime [default: `CURRENT_TIMESTAMP`] // Thời điểm gán vai trò
+}
+
+///////////////////////////////////////////////////////
+// Bảng permissions: lưu hành động cụ thể mà hệ thống hỗ trợ
+///////////////////////////////////////////////////////
+Table permissions {
+  permission_id int [pk, increment] // Khóa chính
+  permission_name varchar(100) [not null, unique] // Tên quyền: view_course, edit_course...
+  description text // Mô tả hành động
+}
+
+///////////////////////////////////////////////////////
+// Bảng role_permissions: ánh xạ vai trò - quyền (N-N)
+///////////////////////////////////////////////////////
+Table role_permissions {
+  role_id int [ref: > roles.role_id] // Khóa ngoại tới roles
+  permission_id int [ref: > permissions.permission_id] // Khóa ngoại tới permissions
+}
+
+///////////////////////////////////////////////////////
+// Quan hệ giữa các bảng
+///////////////////////////////////////////////////////
+// 1 user có thể có nhiều role → user_roles (N-N)
+// 1 role có thể có nhiều permission → role_permissions (N-N)

@@ -1,0 +1,231 @@
+-- ===================================
+-- TẠO DATABASE VÀ SỬ DỤNG
+-- ===================================
+CREATE DATABASE IF NOT EXISTS shopery_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE shopery_db;
+
+-- ===================================
+-- XÓA CÁC BẢNG CŨ (NẾU CÓ)
+-- ===================================
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS cart_items;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS users;
+
+-- ===================================
+-- TẠO CÁC BẢNG
+-- ===================================
+
+-- Bảng Users (Người dùng)
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    phone VARCHAR(20),
+    address TEXT,
+    avatar_url VARCHAR(255),
+    role ENUM('customer', 'admin') DEFAULT 'customer',
+    is_active BOOLEAN DEFAULT TRUE,
+    email_verified BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Bảng Categories (Danh mục sản phẩm)
+CREATE TABLE categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    image_url VARCHAR(255),
+    parent_id INT DEFAULT NULL,
+    sort_order INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (parent_id) REFERENCES categories(id) ON DELETE SET NULL
+);
+
+-- Bảng Products (Sản phẩm)
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    slug VARCHAR(250) UNIQUE,
+    description TEXT,
+    short_description VARCHAR(500),
+    price DECIMAL(12,2) NOT NULL,
+    sale_price DECIMAL(12,2),
+    stock_quantity INT DEFAULT 0,
+    sku VARCHAR(100) UNIQUE,
+    category_id INT,
+    brand VARCHAR(100),
+    weight DECIMAL(8,2),
+    dimensions VARCHAR(100),
+    image_url VARCHAR(255),
+    gallery JSON,
+    attributes JSON,
+    is_featured BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    meta_title VARCHAR(200),
+    meta_description VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+    INDEX idx_category (category_id),
+    INDEX idx_price (price),
+    INDEX idx_featured (is_featured),
+    INDEX idx_active (is_active)
+);
+
+-- Bảng Cart Items (Giỏ hàng)
+CREATE TABLE cart_items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_product (user_id, product_id)
+);
+
+-- Bảng Orders (Đơn hàng)
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_number VARCHAR(50) UNIQUE NOT NULL,
+    user_id INT NOT NULL,
+    total_amount DECIMAL(12,2) NOT NULL,
+    discount_amount DECIMAL(12,2) DEFAULT 0,
+    shipping_fee DECIMAL(12,2) DEFAULT 0,
+    tax_amount DECIMAL(12,2) DEFAULT 0,
+    final_amount DECIMAL(12,2) NOT NULL,
+    status ENUM('pending', 'confirmed', 'processing', 'shipping', 'delivered', 'cancelled', 'refunded') DEFAULT 'pending',
+    payment_method ENUM('cash', 'card', 'bank_transfer', 'momo', 'zalopay') DEFAULT 'cash',
+    payment_status ENUM('pending', 'paid', 'failed', 'refunded') DEFAULT 'pending',
+    shipping_address JSON NOT NULL,
+    billing_address JSON,
+    notes TEXT,
+    shipped_at TIMESTAMP NULL,
+    delivered_at TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user (user_id),
+    INDEX idx_status (status),
+    INDEX idx_payment_status (payment_status)
+);
+
+-- Bảng Order Items (Chi tiết đơn hàng)
+CREATE TABLE order_items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    product_name VARCHAR(200) NOT NULL,
+    product_sku VARCHAR(100),
+    quantity INT NOT NULL,
+    unit_price DECIMAL(12,2) NOT NULL,
+    total_price DECIMAL(12,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- ===================================
+-- THÊM DỮ LIỆU MẪU
+-- ===================================
+
+-- Thêm Users
+INSERT INTO users (username, email, password, full_name, phone, address, role, email_verified) VALUES
+('admin', 'admin@shopery.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Quản trị viên', '0123456789', '123 Đường ABC, Quận 1, TP.HCM', 'admin', TRUE),
+('nguyenvana', 'nguyenvana@gmail.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Nguyễn Văn A', '0987654321', '456 Đường XYZ, Quận 2, TP.HCM', 'customer', TRUE),
+('tranthib', 'tranthib@gmail.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Trần Thị B', '0912345678', '789 Đường DEF, Quận 3, TP.HCM', 'customer', TRUE),
+('levanc', 'levanc@gmail.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Lê Văn C', '0909123456', '321 Đường GHI, Quận 4, TP.HCM', 'customer', FALSE);
+
+-- Thêm Categories
+INSERT INTO categories (name, description, image_url, sort_order) VALUES
+('Điện thoại & Tablet', 'Điện thoại thông minh, máy tính bảng', '/images/categories/phone.jpg', 1),
+('Laptop & Máy tính', 'Laptop, PC, linh kiện máy tính', '/images/categories/laptop.jpg', 2),
+('Âm thanh & Phụ kiện', 'Tai nghe, loa, phụ kiện điện tử', '/images/categories/audio.jpg', 3),
+('Thời trang Nam', 'Quần áo, giày dép nam', '/images/categories/men-fashion.jpg', 4),
+('Thời trang Nữ', 'Quần áo, giày dép nữ', '/images/categories/women-fashion.jpg', 5),
+('Gia dụng & Đời sống', 'Đồ gia dụng, nội thất', '/images/categories/home.jpg', 6),
+('Sách & Văn phòng phẩm', 'Sách, dụng cụ học tập', '/images/categories/books.jpg', 7),
+('Thể thao & Du lịch', 'Đồ thể thao, phụ kiện du lịch', '/images/categories/sports.jpg', 8);
+
+-- Thêm Sub-categories
+INSERT INTO categories (name, description, parent_id, sort_order) VALUES
+('iPhone', 'Điện thoại iPhone', 1, 1),
+('Samsung', 'Điện thoại Samsung', 1, 2),
+('Gaming Laptop', 'Laptop chơi game', 2, 1),
+('Ultrabook', 'Laptop mỏng nhẹ', 2, 2);
+
+-- Thêm Products
+INSERT INTO products (name, slug, description, short_description, price, sale_price, stock_quantity, sku, category_id, brand, weight, image_url, is_featured, meta_title) VALUES
+('iPhone 15 Pro Max 256GB', 'iphone-15-pro-max-256gb', 'iPhone 15 Pro Max với chip A17 Pro, camera 48MP, màn hình Super Retina XDR 6.7 inch', 'iPhone 15 Pro Max mới nhất với nhiều tính năng vượt trội', 29990000, 27990000, 50, 'IP15PM256', 9, 'Apple', 0.221, '/images/products/iphone-15-pro-max.jpg', TRUE, 'iPhone 15 Pro Max 256GB - Shopery'),
+
+('Samsung Galaxy S24 Ultra', 'samsung-galaxy-s24-ultra', 'Samsung Galaxy S24 Ultra với S Pen, camera 200MP, màn hình Dynamic AMOLED 6.8 inch', 'Flagship mới nhất của Samsung với hiệu năng đỉnh cao', 26990000, 24990000, 30, 'SGS24U', 1, 'Samsung', 0.232, '/images/products/galaxy-s24-ultra.jpg', TRUE, 'Samsung Galaxy S24 Ultra - Shopery'),
+
+('MacBook Air M3 13 inch', 'macbook-air-m3-13-inch', 'MacBook Air M3 với chip Apple M3, màn hình Liquid Retina 13.6 inch, pin 18 giờ', 'MacBook Air mỏng nhẹ với hiệu năng mạnh mẽ', 28990000, 26990000, 25, 'MBA13M3', 2, 'Apple', 1.24, '/images/products/macbook-air-m3.jpg', TRUE, 'MacBook Air M3 13 inch - Shopery'),
+
+('Dell XPS 13 Plus', 'dell-xps-13-plus', 'Dell XPS 13 Plus với Intel Core i7, RAM 16GB, SSD 512GB, màn hình 4K', 'Ultrabook cao cấp cho công việc và giải trí', 32990000, 29990000, 15, 'DXPS13P', 12, 'Dell', 1.26, '/images/products/dell-xps-13-plus.jpg', FALSE, 'Dell XPS 13 Plus - Shopery'),
+
+('AirPods Pro 2nd Gen', 'airpods-pro-2nd-gen', 'AirPods Pro thế hệ 2 với chip H2, chống ồn chủ động, âm thanh không gian', 'Tai nghe true wireless cao cấp từ Apple', 5990000, 5490000, 100, 'APP2G', 3, 'Apple', 0.056, '/images/products/airpods-pro-2.jpg', TRUE, 'AirPods Pro 2nd Gen - Shopery'),
+
+('Sony WH-1000XM5', 'sony-wh-1000xm5', 'Tai nghe chống ồn Sony WH-1000XM5 với âm thanh Hi-Res, pin 30 giờ', 'Tai nghe chống ồn hàng đầu thế giới', 7990000, 6990000, 40, 'SWH1000XM5', 3, 'Sony', 0.249, '/images/products/sony-wh-1000xm5.jpg', FALSE, 'Sony WH-1000XM5 - Shopery'),
+
+('ASUS ROG Strix G15', 'asus-rog-strix-g15', 'Laptop gaming ASUS ROG Strix G15 với RTX 4060, AMD Ryzen 7, RAM 16GB', 'Laptop gaming mạnh mẽ cho game thủ', 25990000, 23990000, 20, 'ASROGS15', 11, 'ASUS', 2.3, '/images/products/asus-rog-strix-g15.jpg', TRUE, 'ASUS ROG Strix G15 - Shopery'),
+
+('iPad Air 5th Gen', 'ipad-air-5th-gen', 'iPad Air thế hệ 5 với chip M1, màn hình Liquid Retina 10.9 inch', 'Máy tính bảng cao cấp cho công việc và giải trí', 14990000, 13990000, 35, 'IPA5G', 1, 'Apple', 0.461, '/images/products/ipad-air-5.jpg', FALSE, 'iPad Air 5th Gen - Shopery'),
+
+('Xiaomi 13 Pro', 'xiaomi-13-pro', 'Xiaomi 13 Pro với Snapdragon 8 Gen 2, camera Leica 50MP, sạc nhanh 120W', 'Flagship Xiaomi với camera chuyên nghiệp', 18990000, 16990000, 45, 'XM13P', 10, 'Xiaomi', 0.210, '/images/products/xiaomi-13-pro.jpg', FALSE, 'Xiaomi 13 Pro - Shopery'),
+
+('Surface Laptop 5', 'surface-laptop-5', 'Microsoft Surface Laptop 5 với Intel Core i7, màn hình cảm ứng 13.5 inch', 'Laptop cao cấp cho doanh nhân', 24990000, 22990000, 18, 'MSL5', 12, 'Microsoft', 1.27, '/images/products/surface-laptop-5.jpg', FALSE, 'Surface Laptop 5 - Shopery');
+
+-- Thêm Cart Items (Giỏ hàng mẫu)
+INSERT INTO cart_items (user_id, product_id, quantity) VALUES
+(2, 1, 1),
+(2, 5, 2),
+(3, 3, 1),
+(3, 7, 1),
+(4, 2, 1);
+
+-- Thêm Orders (Đơn hàng mẫu)
+INSERT INTO orders (order_number, user_id, total_amount, discount_amount, shipping_fee, final_amount, status, payment_method, payment_status, shipping_address) VALUES
+('ORD001', 2, 27990000, 1000000, 50000, 27040000, 'delivered', 'card', 'paid', '{"name": "Nguyễn Văn A", "phone": "0987654321", "address": "456 Đường XYZ, Quận 2, TP.HCM", "city": "TP.HCM", "district": "Quận 2"}'),
+('ORD002', 3, 26990000, 0, 50000, 27040000, 'shipping', 'bank_transfer', 'paid', '{"name": "Trần Thị B", "phone": "0912345678", "address": "789 Đường DEF, Quận 3, TP.HCM", "city": "TP.HCM", "district": "Quận 3"}'),
+('ORD003', 4, 24990000, 500000, 50000, 24540000, 'pending', 'cash', 'pending', '{"name": "Lê Văn C", "phone": "0909123456", "address": "321 Đường GHI, Quận 4, TP.HCM", "city": "TP.HCM", "district": "Quận 4"}');
+
+-- Thêm Order Items
+INSERT INTO order_items (order_id, product_id, product_name, product_sku, quantity, unit_price, total_price) VALUES
+(1, 1, 'iPhone 15 Pro Max 256GB', 'IP15PM256', 1, 27990000, 27990000),
+(2, 3, 'MacBook Air M3 13 inch', 'MBA13M3', 1, 26990000, 26990000),
+(3, 2, 'Samsung Galaxy S24 Ultra', 'SGS24U', 1, 24990000, 24990000);
+
+-- ===================================
+-- KIỂM TRA DỮ LIỆU
+-- ===================================
+SELECT 'USERS' as Table_Name, COUNT(*) as Record_Count FROM users
+UNION ALL
+SELECT 'CATEGORIES', COUNT(*) FROM categories
+UNION ALL
+SELECT 'PRODUCTS', COUNT(*) FROM products
+UNION ALL
+SELECT 'CART_ITEMS', COUNT(*) FROM cart_items
+UNION ALL
+SELECT 'ORDERS', COUNT(*) FROM orders
+UNION ALL
+SELECT 'ORDER_ITEMS', COUNT(*) FROM order_items;
+
+-- Hiển thị một số dữ liệu mẫu
+SELECT 'Top 5 Products:' as Info;
+SELECT id, name, price, sale_priceusers, stock_quantity, brand FROM products LIMIT 5;
+
+SELECT 'Categories with Product Count:' as Info;
+SELECT c.name, COUNT(p.id) as product_count 
+FROM categories c 
+LEFT JOIN products p ON c.id = p.category_id 
+GROUP BY c.id, c.name;

@@ -1,0 +1,244 @@
+
+//////////////////////////////////////////////////////////
+// BẢNG NGƯỜI DÙNG (USERS)
+//////////////////////////////////////////////////////////
+
+Table users {
+  id integer [primary key, increment, note: 'Khóa chính']
+  email varchar(255) [unique, not null, note: 'Email đăng nhập']
+  password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
+  full_name varchar(255) [not null, note: 'Họ tên đầy đủ']
+  avatar_url varchar(500) [note: 'Link ảnh đại diện']
+  role enum('student', 'teacher', 'admin') [default: 'student', note: 'Vai trò: học viên, giảng viên, admin']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG NHÓM HỌC (STUDY GROUPS)
+//////////////////////////////////////////////////////////
+
+Table study_groups {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(255) [not null, note: 'Tên nhóm học']
+  description text [note: 'Mô tả nhóm học']
+  avatar_url varchar(500) [note: 'Ảnh đại diện nhóm']
+  group_type enum('public', 'private', 'invite_only') [default: 'public', note: 'Loại nhóm: công khai, riêng tư, chỉ mời']
+  max_members integer [note: 'Giới hạn thành viên (null = không giới hạn)']
+  current_members integer [default: 0, note: 'Số thành viên hiện tại']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_by integer [ref: > users.id, not null, note: 'Người tạo nhóm']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THÀNH VIÊN NHÓM (GROUP MEMBERS)
+//////////////////////////////////////////////////////////
+
+Table group_members {
+  id integer [primary key, increment, note: 'Khóa chính']
+  group_id integer [ref: > study_groups.id, not null, note: 'Liên kết với nhóm học']
+  user_id integer [ref: > users.id, not null, note: 'Thành viên']
+  role enum('member', 'moderator', 'admin') [default: 'member', note: 'Vai trò trong nhóm']
+  joined_at timestamp [default: `now()`, note: 'Thời gian tham gia']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  
+  indexes {
+    (group_id, user_id) [unique, note: 'Đảm bảo mỗi user chỉ tham gia 1 lần trong nhóm']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LỜI MỜI THAM GIA NHÓM (GROUP INVITATIONS)
+//////////////////////////////////////////////////////////
+
+Table group_invitations {
+  id integer [primary key, increment, note: 'Khóa chính']
+  group_id integer [ref: > study_groups.id, not null, note: 'Nhóm được mời']
+  invited_user_id integer [ref: > users.id, not null, note: 'Người được mời']
+  invited_by integer [ref: > users.id, not null, note: 'Người gửi lời mời']
+  message text [note: 'Lời nhắn kèm lời mời']
+  status enum('pending', 'accepted', 'declined', 'expired') [default: 'pending', note: 'Trạng thái lời mời']
+  expires_at timestamp [note: 'Thời gian hết hạn lời mời']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CUỘC TRÒ CHUYỆN (CONVERSATIONS)
+//////////////////////////////////////////////////////////
+
+Table conversations {
+  id integer [primary key, increment, note: 'Khóa chính']
+  conversation_type enum('direct', 'group') [not null, note: 'Loại cuộc trò chuyện: 1-1 hoặc nhóm']
+  name varchar(255) [note: 'Tên cuộc trò chuyện (cho nhóm)']
+  avatar_url varchar(500) [note: 'Ảnh đại diện cuộc trò chuyện']
+  group_id integer [ref: > study_groups.id, note: 'Liên kết với nhóm (nếu là group chat)']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THÀNH VIÊN CUỘC TRÒ CHUYỆN (CONVERSATION PARTICIPANTS)
+//////////////////////////////////////////////////////////
+
+Table conversation_participants {
+  id integer [primary key, increment, note: 'Khóa chính']
+  conversation_id integer [ref: > conversations.id, not null, note: 'Liên kết với cuộc trò chuyện']
+  user_id integer [ref: > users.id, not null, note: 'Thành viên tham gia']
+  role enum('participant', 'admin') [default: 'participant', note: 'Vai trò trong cuộc trò chuyện']
+  joined_at timestamp [default: `now()`, note: 'Thời gian tham gia']
+  last_read_at timestamp [note: 'Thời gian đọc tin nhắn cuối cùng']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  
+  indexes {
+    (conversation_id, user_id) [unique, note: 'Đảm bảo mỗi user chỉ tham gia 1 lần trong cuộc trò chuyện']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TIN NHẮN (MESSAGES)
+//////////////////////////////////////////////////////////
+
+Table messages {
+  id integer [primary key, increment, note: 'Khóa chính']
+  conversation_id integer [ref: > conversations.id, not null, note: 'Liên kết với cuộc trò chuyện']
+  sender_id integer [ref: > users.id, not null, note: 'Người gửi tin nhắn']
+  message_type enum('text', 'image', 'video', 'audio', 'file', 'sticker', 'system') [default: 'text', note: 'Loại tin nhắn']
+  content text [note: 'Nội dung tin nhắn (cho text)']
+  media_url varchar(500) [note: 'Link media (cho image, video, audio, file)']
+  file_name varchar(255) [note: 'Tên file (cho file)']
+  file_size integer [note: 'Kích thước file (bytes)']
+  file_type varchar(100) [note: 'Loại file (MIME type)']
+  duration_seconds integer [note: 'Thời lượng (cho audio, video)']
+  sticker_id varchar(100) [note: 'ID sticker (cho sticker)']
+  reply_to_message_id integer [ref: > messages.id, note: 'Tin nhắn được reply']
+  is_edited boolean [default: false, note: 'Đã chỉnh sửa chưa']
+  edited_at timestamp [note: 'Thời gian chỉnh sửa']
+  is_deleted boolean [default: false, note: 'Đã xóa chưa']
+  deleted_at timestamp [note: 'Thời gian xóa']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TRẠNG THÁI ĐỌC TIN NHẮN (MESSAGE READ STATUS)
+//////////////////////////////////////////////////////////
+
+Table message_read_status {
+  id integer [primary key, increment, note: 'Khóa chính']
+  message_id integer [ref: > messages.id, not null, note: 'Liên kết với tin nhắn']
+  user_id integer [ref: > users.id, not null, note: 'Người đọc']
+  read_at timestamp [default: `now()`, note: 'Thời gian đọc']
+  
+  indexes {
+    (message_id, user_id) [unique, note: 'Đảm bảo mỗi user chỉ đọc 1 lần mỗi tin nhắn']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG REACTION TIN NHẮN (MESSAGE REACTIONS)
+//////////////////////////////////////////////////////////
+
+Table message_reactions {
+  id integer [primary key, increment, note: 'Khóa chính']
+  message_id integer [ref: > messages.id, not null, note: 'Liên kết với tin nhắn']
+  user_id integer [ref: > users.id, not null, note: 'Người reaction']
+  reaction_type enum('like', 'love', 'haha', 'wow', 'sad', 'angry', 'heart', 'thumbs_up', 'thumbs_down') [not null, note: 'Loại reaction']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (message_id, user_id, reaction_type) [unique, note: 'Đảm bảo mỗi user chỉ reaction 1 loại cho mỗi tin nhắn']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THÔNG BÁO (NOTIFICATIONS)
+//////////////////////////////////////////////////////////
+
+Table notifications {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Người nhận thông báo']
+  notification_type enum('message', 'group_invitation', 'group_activity', 'system') [not null, note: 'Loại thông báo']
+  title varchar(255) [not null, note: 'Tiêu đề thông báo']
+  message text [not null, note: 'Nội dung thông báo']
+  entity_type enum('conversation', 'group') [note: 'Loại đối tượng liên quan']
+  entity_id integer [note: 'ID đối tượng liên quan']
+  sender_id integer [ref: > users.id, note: 'Người gửi thông báo']
+  is_read boolean [default: false, note: 'Đã đọc chưa']
+  read_at timestamp [note: 'Thời gian đọc']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CÀI ĐẶT THÔNG BÁO (NOTIFICATION SETTINGS)
+//////////////////////////////////////////////////////////
+
+Table notification_settings {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Người dùng']
+  notification_type enum('message', 'group_invitation', 'group_activity', 'system') [not null, note: 'Loại thông báo']
+  email_enabled boolean [default: true, note: 'Bật thông báo email']
+  push_enabled boolean [default: true, note: 'Bật thông báo push']
+  in_app_enabled boolean [default: true, note: 'Bật thông báo trong app']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (user_id, notification_type) [unique, note: 'Đảm bảo mỗi user chỉ có 1 cài đặt cho mỗi loại thông báo']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG ONLINE STATUS (TRẠNG THÁI ONLINE)
+//////////////////////////////////////////////////////////
+
+Table user_online_status {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Người dùng']
+  status enum('online', 'away', 'busy', 'offline') [default: 'offline', note: 'Trạng thái online']
+  last_seen_at timestamp [default: `now()`, note: 'Thời gian hoạt động cuối']
+  is_typing boolean [default: false, note: 'Đang gõ tin nhắn']
+  typing_in_conversation_id integer [ref: > conversations.id, note: 'Đang gõ trong cuộc trò chuyện nào']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    user_id [unique, note: 'Mỗi user chỉ có 1 trạng thái online']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG STICKER PACKS (BỘ STICKER)
+//////////////////////////////////////////////////////////
+
+Table sticker_packs {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(255) [not null, note: 'Tên bộ sticker']
+  description text [note: 'Mô tả bộ sticker']
+  cover_image_url varchar(500) [note: 'Ảnh bìa bộ sticker']
+  is_free boolean [default: true, note: 'Miễn phí hay trả phí']
+  price decimal(10,2) [note: 'Giá (nếu trả phí)']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG STICKERS (STICKER)
+//////////////////////////////////////////////////////////
+
+Table stickers {
+  id integer [primary key, increment, note: 'Khóa chính']
+  pack_id integer [ref: > sticker_packs.id, not null, note: 'Liên kết với bộ sticker']
+  name varchar(255) [not null, note: 'Tên sticker']
+  image_url varchar(500) [not null, note: 'Link ảnh sticker']
+  emoji varchar(10) [note: 'Emoji tương ứng']
+  usage_count integer [default: 0, note: 'Số lần sử dụng']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+
+Ref: "users"."password_hash" < "users"."email"
