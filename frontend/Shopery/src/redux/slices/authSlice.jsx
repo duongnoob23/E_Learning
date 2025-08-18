@@ -1,137 +1,145 @@
 // Auth Slice - Quản lý trạng thái đăng nhập (Dùng chung)
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { authApi } from '../../common/services/Auth/authApi'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { authApi } from "../../common/services/Auth/authApi";
 
 // Helper functions
 const tokenHelper = {
   getAccessToken: () => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('access_token')
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("access_token");
     }
-    return null
+    return null;
   },
 
   getRefreshToken: () => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('refresh_token')
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("refresh_token");
     }
-    return null
+    return null;
   },
 
   getUserInfo: () => {
-    if (typeof window !== 'undefined') {
-      const userInfo = localStorage.getItem('user_info')
-      return userInfo ? JSON.parse(userInfo) : null
+    if (typeof window !== "undefined") {
+      const userInfo = localStorage.getItem("user_info");
+      return userInfo ? JSON.parse(userInfo) : null;
     }
-    return null
+    return null;
   },
 
   setTokens: (accessToken, refreshToken) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('access_token', accessToken)
+    if (typeof window !== "undefined") {
+      localStorage.setItem("access_token", accessToken);
       if (refreshToken) {
-        localStorage.setItem('refresh_token', refreshToken)
+        localStorage.setItem("refresh_token", refreshToken);
       }
     }
   },
 
   setUserInfo: (userInfo) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('user_info', JSON.stringify(userInfo))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("user_info", JSON.stringify(userInfo));
     }
   },
 
   removeTokens: () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('access_token')
-      localStorage.removeItem('refresh_token')
-      localStorage.removeItem('user_info')
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("user_info");
     }
   },
 
   isTokenExpired: (token) => {
-    if (!token) return true
-    
+    if (!token) return true;
+
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]))
-      const currentTime = Date.now() / 1000
-      return payload.exp < currentTime
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const currentTime = Date.now() / 1000;
+      return payload.exp < currentTime;
     } catch (error) {
-      return true
+      return true;
     }
   },
 
   isAuthenticated: () => {
-    const token = tokenHelper.getAccessToken()
-    return token && !tokenHelper.isTokenExpired(token)
-  }
-}
+    const token = tokenHelper.getAccessToken();
+    return token && !tokenHelper.isTokenExpired(token);
+  },
+};
 
 // Async thunks
 export const loginUser = createAsyncThunk(
-  'auth/loginUser',
+  "auth/loginUser",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await authApi.login(credentials)
-      const { token, refreshToken, user } = response.data
-      
+      const response = await authApi.login(credentials);
+      const { token, refreshToken, user } = response.data;
+
       // Lưu token và user info vào localStorage
-      tokenHelper.setTokens(token, refreshToken)
-      tokenHelper.setUserInfo(user)
-      
-      return { token, refreshToken, user }
+      tokenHelper.setTokens(token, refreshToken);
+      //tokenHelper.setUserInfo(user);
+
+      return { token, refreshToken, user };
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Đăng nhập thất bại')
+      return rejectWithValue(
+        error.response?.data?.message || "Đăng nhập thất bại"
+      );
     }
   }
-)
+);
 
 export const registerUser = createAsyncThunk(
-  'auth/registerUser',
+  "auth/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await authApi.register(userData)
-      return response.data
+      const response = await authApi.register(userData);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Đăng ký thất bại')
+      return rejectWithValue(
+        error.response?.data?.message || "Đăng ký thất bại"
+      );
     }
   }
-)
+);
 
 export const logoutUser = createAsyncThunk(
-  'auth/logoutUser',
+  "auth/logoutUser",
   async (_, { rejectWithValue }) => {
     try {
-      await authApi.logout()
-      tokenHelper.removeTokens()
-      return true
+      // await authApi.logout()
+      // tạm thời không cần gọi api logout chỉ  cần xóa token thôi
+      console.log("🚀 ~ logout:");
+      tokenHelper.removeTokens();
+      return true;
     } catch (error) {
-      tokenHelper.removeTokens() // Vẫn xóa token dù API lỗi
-      return rejectWithValue(error.response?.data?.message || 'Đăng xuất thất bại')
+      tokenHelper.removeTokens(); // Vẫn xóa token dù API lỗi
+      return rejectWithValue(
+        error.response?.data?.message || "Đăng xuất thất bại"
+      );
     }
   }
-)
+);
 
 export const refreshToken = createAsyncThunk(
-  'auth/refreshToken',
+  "auth/refreshToken",
   async (_, { rejectWithValue }) => {
     try {
-      const refreshToken = tokenHelper.getRefreshToken()
+      const refreshToken = tokenHelper.getRefreshToken();
       if (!refreshToken) {
-        throw new Error('No refresh token')
+        throw new Error("No refresh token");
       }
-      
-      const response = await authApi.refreshToken(refreshToken)
-      const { token: newToken, refreshToken: newRefreshToken } = response.data
-      
-      tokenHelper.setTokens(newToken, newRefreshToken)
-      return { token: newToken, refreshToken: newRefreshToken }
+
+      const response = await authApi.refreshToken(refreshToken);
+      const { token: newToken, refreshToken: newRefreshToken } = response.data;
+
+      tokenHelper.setTokens(newToken, newRefreshToken);
+      return { token: newToken, refreshToken: newRefreshToken };
     } catch (error) {
-      tokenHelper.removeTokens()
-      return rejectWithValue('Phiên đăng nhập đã hết hạn')
+      tokenHelper.removeTokens();
+      return rejectWithValue("Phiên đăng nhập đã hết hạn");
     }
   }
-)
+);
 
 const initialState = {
   user: tokenHelper.getUserInfo(),
@@ -140,88 +148,89 @@ const initialState = {
   isAuthenticated: tokenHelper.isAuthenticated(),
   isLoading: false,
   error: null,
-}
+};
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     clearError: (state) => {
-      state.error = null
+      state.error = null;
     },
     setCredentials: (state, action) => {
-      const { token, refreshToken, user } = action.payload
-      state.token = token
-      state.refreshToken = refreshToken
-      state.user = user
-      state.isAuthenticated = true
-      
+      const { token, refreshToken, user } = action.payload;
+      state.token = token;
+      state.refreshToken = refreshToken;
+      state.user = user;
+      state.isAuthenticated = true;
+
       // Lưu vào localStorage
-      tokenHelper.setTokens(token, refreshToken)
-      tokenHelper.setUserInfo(user)
+      tokenHelper.setTokens(token, refreshToken);
+      tokenHelper.setUserInfo(user);
     },
     clearCredentials: (state) => {
-      state.user = null
-      state.token = null
-      state.refreshToken = null
-      state.isAuthenticated = false
-      tokenHelper.removeTokens()
+      state.user = null;
+      state.token = null;
+      state.refreshToken = null;
+      state.isAuthenticated = false;
+      tokenHelper.removeTokens();
     },
   },
   extraReducers: (builder) => {
     builder
       // Login
       .addCase(loginUser.pending, (state) => {
-        state.isLoading = true
-        state.error = null
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.user = action.payload.user
-        state.token = action.payload.token
-        state.refreshToken = action.payload.refreshToken
-        state.isAuthenticated = true
-        state.error = null
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.isAuthenticated = true;
+        state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
-        state.isAuthenticated = false
+        state.isLoading = false;
+        state.error = action.payload;
+        state.isAuthenticated = false;
       })
       // Register
       .addCase(registerUser.pending, (state) => {
-        state.isLoading = true
-        state.error = null
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(registerUser.fulfilled, (state) => {
-        state.isLoading = false
-        state.error = null
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
+        state.isLoading = false;
+        state.error = action.payload;
       })
       // Logout
       .addCase(logoutUser.fulfilled, (state) => {
-        state.user = null
-        state.token = null
-        state.refreshToken = null
-        state.isAuthenticated = false
-        state.error = null
+        state.user = null;
+        state.token = null;
+        state.refreshToken = null;
+        state.isAuthenticated = false;
+        state.error = null;
       })
       // Refresh Token
       .addCase(refreshToken.fulfilled, (state, action) => {
-        state.token = action.payload.token
-        state.refreshToken = action.payload.refreshToken
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
       })
       .addCase(refreshToken.rejected, (state) => {
-        state.user = null
-        state.token = null
-        state.refreshToken = null
-        state.isAuthenticated = false
-      })
+        state.user = null;
+        state.token = null;
+        state.refreshToken = null;
+        state.isAuthenticated = false;
+      });
   },
-})
+});
 
-export const { clearError, setCredentials, clearCredentials } = authSlice.actions
-export default authSlice.reducer
+export const { clearError, setCredentials, clearCredentials } =
+  authSlice.actions;
+export default authSlice.reducer;

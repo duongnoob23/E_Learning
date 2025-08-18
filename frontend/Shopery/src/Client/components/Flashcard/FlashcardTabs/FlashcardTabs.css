@@ -1,0 +1,28 @@
+/* Client/components/Flashcard/FlashcardTabs/FlashcardTabs.css */
+.flashcard-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+  }
+  
+  .flashcard-tab {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  
+  .flashcard-tab:hover {
+    color: #374151;
+  }
+  
+  .flashcard-tab.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+  }

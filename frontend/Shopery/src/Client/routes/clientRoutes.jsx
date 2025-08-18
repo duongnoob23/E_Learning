@@ -1,4 +1,4 @@
-// Client Routes Configuration
+// Client/routes/clientRoutes.jsx (cập nhật)
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from "../../routes/PrivateRoute";
@@ -64,9 +64,20 @@ const ClientRoutes = () => {
 
       {/* PRIVATE ROUTES - Cần đăng nhập client */}
 
-      {/* Flashcard Route */}
+      {/* Flashcard Routes */}
       <Route
         path="/flashcard"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Flashcard />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/flashcard/topic/:topicId"
         element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>

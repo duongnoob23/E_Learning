@@ -20,3 +20,4 @@ const PublicRoute = ({ children, restricted = false }) => {
 };
 
 export default PublicRoute;
+// public thì cần gì check, tại sao phải check restricted và isAuthenticated ở trong public route

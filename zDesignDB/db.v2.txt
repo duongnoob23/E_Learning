@@ -1,0 +1,554 @@
+-- =============================================
+-- TẠO DATABASE VÀ SỬ DỤNG
+-- =============================================
+CREATE DATABASE IF NOT EXISTS e_learnning2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE e_learnning2;
+
+-- =============================================
+-- XÓA TOÀN BỘ BẢNG CŨ (THEO THỨ TỰ KHÓA NGOẠI)
+-- =============================================
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS learning_achievements;
+DROP TABLE IF EXISTS study_notifications;
+DROP TABLE IF EXISTS study_settings;
+DROP TABLE IF EXISTS study_modes;
+DROP TABLE IF EXISTS import_details;
+DROP TABLE IF EXISTS batch_imports;
+DROP TABLE IF EXISTS learning_statistics;
+DROP TABLE IF EXISTS word_study_history;
+DROP TABLE IF EXISTS session_details;
+DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS favorite_topics;
+DROP TABLE IF EXISTS word_learning_progress;
+DROP TABLE IF EXISTS user_words;
+DROP TABLE IF EXISTS words;
+DROP TABLE IF EXISTS topics;
+DROP TABLE IF EXISTS password_reset_tokens;
+DROP TABLE IF EXISTS login_history;
+DROP TABLE IF EXISTS email_verifications;
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS otp_codes;
+DROP TABLE IF EXISTS role_permissions;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS users;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- =============================================
+-- TẠO BẢNG MỚI (CẤU TRÚC HOÀN CHỈNH)
+-- =============================================
+
+-- BẢNG USERS
+CREATE TABLE users (
+    user_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID người dùng',
+    username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên đăng nhập',
+    password_hash VARCHAR(255) NOT NULL COMMENT 'Mật khẩu đã mã hóa',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email duy nhất',
+    full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
+    phone_number VARCHAR(20) COMMENT 'Số điện thoại',
+    avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
+    status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active, inactive, banned, pending_verification',
+    email_verified BOOLEAN DEFAULT FALSE COMMENT 'Email đã xác thực chưa',
+    phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Số điện thoại đã xác thực chưa',
+    last_login DATETIME COMMENT 'Lần đăng nhập cuối',
+    failed_login_attempts INT DEFAULT 0 COMMENT 'Số lần đăng nhập thất bại',
+    locked_until DATETIME COMMENT 'Thời gian khóa tài khoản',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
+) ENGINE=InnoDB;
+
+-- BẢNG ROLES
+CREATE TABLE roles (
+    role_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID vai trò',
+    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Student, Teacher, Admin...',
+    description TEXT COMMENT 'Mô tả quyền hạn của vai trò',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Vai trò có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG USER_ROLES
+CREATE TABLE user_roles (
+    user_id VARCHAR(20),
+    role_id VARCHAR(20),
+    assigned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm gán vai trò',
+    assigned_by VARCHAR(20) COMMENT 'Người gán vai trò',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Vai trò có đang hoạt động không',
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (assigned_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG PERMISSIONS
+CREATE TABLE permissions (
+    permission_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID quyền',
+    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: /user/create, /user/read...',
+    description TEXT COMMENT 'Mô tả hành động',
+    resource VARCHAR(50) COMMENT 'Tài nguyên: user, role, topic, word...',
+    action VARCHAR(20) COMMENT 'Hành động: create, read, update, delete',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Quyền có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG ROLE_PERMISSIONS
+CREATE TABLE role_permissions (
+    role_id VARCHAR(20),
+    permission_id VARCHAR(20),
+    granted_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm cấp quyền',
+    granted_by VARCHAR(20) COMMENT 'Người cấp quyền',
+    PRIMARY KEY (role_id, permission_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES permissions(permission_id) ON DELETE CASCADE,
+    FOREIGN KEY (granted_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG OTP_CODES
+CREATE TABLE otp_codes (
+    otp_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID OTP',
+    user_id VARCHAR(20) COMMENT 'Người dùng',
+    email VARCHAR(100) COMMENT 'Email gửi OTP',
+    phone_number VARCHAR(20) COMMENT 'Số điện thoại gửi OTP',
+    otp_code VARCHAR(6) NOT NULL COMMENT 'Mã OTP 6 số',
+    otp_type ENUM('email_verification', 'password_reset', 'login_2fa', 'phone_verification') NOT NULL COMMENT 'Loại OTP',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã sử dụng chưa',
+    attempts INT DEFAULT 0 COMMENT 'Số lần thử nhập OTP',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG REFRESH_TOKENS
+CREATE TABLE refresh_tokens (
+    token_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID token',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    token_hash VARCHAR(255) NOT NULL COMMENT 'Hash của refresh token',
+    device_info TEXT COMMENT 'Thông tin thiết bị',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    is_revoked BOOLEAN DEFAULT FALSE COMMENT 'Đã thu hồi chưa',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG EMAIL_VERIFICATIONS
+CREATE TABLE email_verifications (
+    verification_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID xác thực',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    email VARCHAR(100) NOT NULL COMMENT 'Email cần xác thực',
+    verification_token VARCHAR(255) NOT NULL COMMENT 'Token xác thực',
+    is_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực chưa',
+    verified_at DATETIME COMMENT 'Thời gian xác thực',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG LOGIN_HISTORY
+CREATE TABLE login_history (
+    login_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID lịch sử',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    login_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian đăng nhập',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    login_status ENUM('success', 'failed', 'blocked', '2fa_required') NOT NULL COMMENT 'Trạng thái đăng nhập',
+    failure_reason VARCHAR(255) COMMENT 'Lý do thất bại',
+    session_duration INT COMMENT 'Thời gian session (giây)',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG PASSWORD_RESET_TOKENS
+CREATE TABLE password_reset_tokens (
+    reset_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID reset',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    reset_token VARCHAR(255) NOT NULL COMMENT 'Token reset password',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã sử dụng chưa',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG TOPICS
+CREATE TABLE topics (
+    topic_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chủ đề',
+    topic_name VARCHAR(255) NOT NULL COMMENT 'Tên chủ đề từ vựng',
+    description TEXT COMMENT 'Mô tả nội dung chủ đề',
+    image_url VARCHAR(255) COMMENT 'Ảnh đại diện cho chủ đề',
+    logo_url VARCHAR(255) COMMENT 'Logo website (cho topic hệ thống)',
+    topic_type ENUM('system', 'user_created') NOT NULL COMMENT 'Loại topic: hệ thống hoặc user tạo',
+    created_by VARCHAR(20) COMMENT 'ID người tạo, NULL nếu là topic hệ thống',
+    is_public BOOLEAN DEFAULT TRUE COMMENT 'Topic có công khai không (cho user topic)',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Topic có đang hoạt động không',
+    word_count INT DEFAULT 0 COMMENT 'Số lượng từ trong topic',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo chủ đề',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG WORDS
+CREATE TABLE words (
+    word_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Thuộc chủ đề nào',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ: noun, verb, adjective...',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm (IPA)',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Câu ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Dịch câu ví dụ',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa cho từ',
+    notes TEXT COMMENT 'Ghi chú cho từ',
+    word_type ENUM('system', 'user_created') NOT NULL COMMENT 'Loại từ: hệ thống hoặc user tạo',
+    created_by VARCHAR(20) COMMENT 'ID người tạo, NULL nếu là từ hệ thống',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Từ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo từ',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG USER_WORDS
+CREATE TABLE user_words (
+    user_word_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng cá nhân',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người sở hữu từ',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Thuộc chủ đề nào',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Câu ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Dịch câu ví dụ',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa',
+    notes TEXT COMMENT 'Ghi chú cá nhân',
+    from_system_word_id VARCHAR(20) COMMENT 'Nếu copy từ hệ thống thì lưu ID gốc',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Từ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo từ',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG WORD_LEARNING_PROGRESS
+CREATE TABLE word_learning_progress (
+    progress_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID tiến độ',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người học',
+    word_id VARCHAR(20) COMMENT 'ID từ hệ thống (nếu học từ hệ thống)',
+    user_word_id VARCHAR(20) COMMENT 'ID từ cá nhân (nếu học từ cá nhân)',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề đang học',
+    learning_status ENUM('not_started', 'learning', 'mastered', 'review') DEFAULT 'not_started' COMMENT 'Trạng thái học',
+    mastery_level INT DEFAULT 0 COMMENT 'Mức độ thuộc từ (0-5)',
+    is_marked_as_learned BOOLEAN DEFAULT FALSE COMMENT 'Đã đánh dấu học xong chưa (dấu sao)',
+    marked_at DATETIME COMMENT 'Thời gian đánh dấu học xong',
+    last_reviewed_at DATETIME COMMENT 'Lần ôn tập cuối',
+    review_count INT DEFAULT 0 COMMENT 'Số lần ôn tập',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu trả lời đúng',
+    total_attempts INT DEFAULT 0 COMMENT 'Tổng số lần thử',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày bắt đầu học',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    INDEX idx_user_topic (user_id, topic_id),
+    INDEX idx_user_word (user_id, word_id),
+    INDEX idx_user_userword (user_id, user_word_id),
+    INDEX idx_learned_status (user_id, is_marked_as_learned)
+) ENGINE=InnoDB;
+
+-- BẢNG FAVORITE_TOPICS
+CREATE TABLE favorite_topics (
+    favorite_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID yêu thích',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề yêu thích',
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày thêm vào yêu thích',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic (user_id, topic_id)
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_SESSIONS
+CREATE TABLE study_sessions (
+    session_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID phiên học',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người học',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề đang học',
+    session_type ENUM('flashcard', 'list_view', 'quiz', 'review') NOT NULL COMMENT 'Loại phiên học',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian bắt đầu',
+    ended_at DATETIME COMMENT 'Thời gian kết thúc',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ trong phiên',
+    learned_words INT DEFAULT 0 COMMENT 'Số từ đã học xong',
+    session_duration INT COMMENT 'Thời gian phiên học (giây)',
+    is_completed BOOLEAN DEFAULT FALSE COMMENT 'Phiên học đã hoàn thành chưa',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG SESSION_DETAILS
+CREATE TABLE session_details (
+    detail_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chi tiết',
+    session_id VARCHAR(20) NOT NULL COMMENT 'Thuộc phiên học nào',
+    word_id VARCHAR(20) COMMENT 'ID từ hệ thống',
+    user_word_id VARCHAR(20) COMMENT 'ID từ cá nhân',
+    action_type ENUM('view', 'flip', 'mark_learned', 'unmark_learned', 'skip', 'correct', 'incorrect') NOT NULL COMMENT 'Hành động thực hiện',
+    action_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian thực hiện',
+    time_spent INT COMMENT 'Thời gian xem từ (giây)',
+    is_correct BOOLEAN COMMENT 'Trả lời đúng hay sai (cho quiz)',
+    notes TEXT COMMENT 'Ghi chú cho hành động',
+    FOREIGN KEY (session_id) REFERENCES study_sessions(session_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG WORD_STUDY_HISTORY
+CREATE TABLE word_study_history (
+    history_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID lịch sử',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người học',
+    word_id VARCHAR(20) COMMENT 'ID từ hệ thống',
+    user_word_id VARCHAR(20) COMMENT 'ID từ cá nhân',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề học',
+    action_type ENUM('view', 'mark_learned', 'unmark_learned', 'review', 'start_learning') NOT NULL COMMENT 'Hành động',
+    action_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian thực hiện',
+    session_id VARCHAR(20) COMMENT 'Thuộc phiên học nào',
+    mastery_level_before INT COMMENT 'Mức độ thuộc trước khi thực hiện',
+    mastery_level_after INT COMMENT 'Mức độ thuộc sau khi thực hiện',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES study_sessions(session_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG LEARNING_STATISTICS
+CREATE TABLE learning_statistics (
+    stat_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID thống kê',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người học',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề',
+    date DATE NOT NULL COMMENT 'Ngày thống kê',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ trong topic',
+    learned_words INT DEFAULT 0 COMMENT 'Số từ đã học xong',
+    study_time INT DEFAULT 0 COMMENT 'Thời gian học (phút)',
+    sessions_count INT DEFAULT 0 COMMENT 'Số phiên học',
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Tỷ lệ chính xác (%)',
+    words_marked_learned INT DEFAULT 0 COMMENT 'Số từ đánh dấu học xong trong ngày',
+    words_unmarked INT DEFAULT 0 COMMENT 'Số từ bỏ đánh dấu trong ngày',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo thống kê',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic_date (user_id, topic_id, date)
+) ENGINE=InnoDB;
+
+-- BẢNG BATCH_IMPORTS
+CREATE TABLE batch_imports (
+    import_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID import',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người import',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề import vào',
+    import_name VARCHAR(255) COMMENT 'Tên file import',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ import',
+    success_count INT DEFAULT 0 COMMENT 'Số từ import thành công',
+    error_count INT DEFAULT 0 COMMENT 'Số từ lỗi',
+    import_status ENUM('pending', 'processing', 'completed', 'failed') DEFAULT 'pending' COMMENT 'Trạng thái import',
+    error_log TEXT COMMENT 'Log lỗi nếu có',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian bắt đầu',
+    completed_at DATETIME COMMENT 'Thời gian hoàn thành',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG IMPORT_DETAILS
+CREATE TABLE import_details (
+    detail_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chi tiết',
+    import_id VARCHAR(20) NOT NULL COMMENT 'Thuộc import nào',
+    row_number INT COMMENT 'Số thứ tự dòng trong file',
+    word VARCHAR(255) COMMENT 'Từ tiếng Anh',
+    meaning_vi TEXT COMMENT 'Nghĩa tiếng Việt',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    example_en TEXT COMMENT 'Ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Ví dụ tiếng Việt',
+    notes TEXT COMMENT 'Ghi chú',
+    import_status ENUM('pending', 'success', 'error') DEFAULT 'pending' COMMENT 'Trạng thái import từng từ',
+    error_message TEXT COMMENT 'Thông báo lỗi nếu có',
+    created_word_id VARCHAR(20) COMMENT 'ID từ được tạo thành công',
+    FOREIGN KEY (import_id) REFERENCES batch_imports(import_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_word_id) REFERENCES user_words(user_word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_MODES
+CREATE TABLE study_modes (
+    mode_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chế độ học',
+    mode_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên chế độ: flashcard, list_view, review_only',
+    description TEXT COMMENT 'Mô tả chế độ học',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Chế độ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_SETTINGS
+CREATE TABLE study_settings (
+    setting_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID cài đặt',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    topic_id VARCHAR(20) NOT NULL COMMENT 'Chủ đề',
+    auto_mark_learned BOOLEAN DEFAULT FALSE COMMENT 'Tự động đánh dấu học xong sau N lần đúng',
+    auto_mark_threshold INT DEFAULT 3 COMMENT 'Số lần đúng để tự động đánh dấu học xong',
+    show_learned_words BOOLEAN DEFAULT FALSE COMMENT 'Hiển thị từ đã học trong danh sách',
+    review_interval INT DEFAULT 7 COMMENT 'Khoảng thời gian ôn tập (ngày)',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo cài đặt',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic_setting (user_id, topic_id)
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_NOTIFICATIONS
+CREATE TABLE study_notifications (
+    notification_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID thông báo',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người nhận',
+    topic_id VARCHAR(20) COMMENT 'Chủ đề liên quan',
+    notification_type ENUM('review_reminder', 'achievement', 'streak_reminder', 'new_words') NOT NULL COMMENT 'Loại thông báo',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề thông báo',
+    message TEXT NOT NULL COMMENT 'Nội dung thông báo',
+    is_read BOOLEAN DEFAULT FALSE COMMENT 'Đã đọc chưa',
+    read_at DATETIME COMMENT 'Thời gian đọc',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian tạo',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL,
+    INDEX idx_user_read (user_id, is_read)
+) ENGINE=InnoDB;
+
+-- BẢNG LEARNING_ACHIEVEMENTS
+CREATE TABLE learning_achievements (
+    achievement_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID thành tích',
+    user_id VARCHAR(20) NOT NULL COMMENT 'Người dùng',
+    topic_id VARCHAR(20) COMMENT 'Chủ đề',
+    achievement_type ENUM('first_word', 'word_streak', 'topic_completed', 'perfect_score', 'study_time') NOT NULL COMMENT 'Loại thành tích',
+    achievement_name VARCHAR(255) NOT NULL COMMENT 'Tên thành tích',
+    description TEXT COMMENT 'Mô tả thành tích',
+    value INT COMMENT 'Giá trị đạt được (số từ, thời gian, điểm...)',
+    earned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian đạt được',
+    is_notified BOOLEAN DEFAULT FALSE COMMENT 'Đã thông báo chưa',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- =============================================
+// INSERT DỮ LIỆU MẪU
+// =============================================
+
+-- INSERT USERS
+INSERT INTO users (user_id, username, password_hash, email, full_name, phone_number, status, email_verified) VALUES
+('USER_001', 'admin1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'admin1@example.com', 'System Administrator', '0900000001', 'active', TRUE),
+('USER_002', 'teacher1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'teacher1@example.com', 'John Teacher', '0900000002', 'active', TRUE),
+('USER_003', 'student1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student1@example.com', 'Alice Student', '0900000003', 'active', TRUE),
+('USER_004', 'student2', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student2@example.com', 'Bob Learner', '0900000004', 'active', TRUE),
+('USER_005', 'guest1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'guest1@example.com', 'Guest Viewer', '0900000005', 'active', TRUE);
+
+-- INSERT ROLES
+INSERT INTO roles (role_id, role_name, description) VALUES
+('ROLE_001', 'Admin', 'Toàn quyền hệ thống'),
+('ROLE_002', 'Teacher', 'Quản lý chủ đề, từ vựng, bài tập'),
+('ROLE_003', 'Student', 'Học và làm bài tập'),
+('ROLE_004', 'Guest', 'Chỉ đọc nội dung công khai');
+
+-- INSERT PERMISSIONS
+INSERT INTO permissions (permission_id, permission_name, description, resource, action) VALUES
+-- User management
+('PERM_001', '/user/create', 'Tạo người dùng', 'user', 'create'),
+('PERM_002', '/user/read', 'Xem danh sách / chi tiết người dùng', 'user', 'read'),
+('PERM_003', '/user/update', 'Cập nhật người dùng', 'user', 'update'),
+('PERM_004', '/user/delete', 'Xóa người dùng', 'user', 'delete'),
+-- Role management
+('PERM_005', '/role/create', 'Tạo vai trò', 'role', 'create'),
+('PERM_006', '/role/read', 'Xem vai trò', 'role', 'read'),
+('PERM_007', '/role/update', 'Cập nhật vai trò', 'role', 'update'),
+('PERM_008', '/role/delete', 'Xóa vai trò', 'role', 'delete'),
+('PERM_009', '/role/assign', 'Gán vai trò cho người dùng', 'role', 'assign'),
+-- Permission management
+('PERM_010', '/permission/create', 'Tạo quyền', 'permission', 'create'),
+('PERM_011', '/permission/read', 'Xem quyền', 'permission', 'read'),
+('PERM_012', '/permission/update', 'Cập nhật quyền', 'permission', 'update'),
+('PERM_013', '/permission/delete', 'Xóa quyền', 'permission', 'delete'),
+('PERM_014', '/permission/assign', 'Gán quyền cho vai trò', 'permission', 'assign'),
+-- Topic management
+('PERM_015', '/topic/create', 'Tạo chủ đề', 'topic', 'create'),
+('PERM_016', '/topic/read', 'Xem chủ đề', 'topic', 'read'),
+('PERM_017', '/topic/update', 'Cập nhật chủ đề', 'topic', 'update'),
+('PERM_018', '/topic/delete', 'Xóa chủ đề', 'topic', 'delete'),
+-- Word management
+('PERM_019', '/word/create', 'Tạo từ vựng', 'word', 'create'),
+('PERM_020', '/word/read', 'Xem từ vựng', 'word', 'read'),
+('PERM_021', '/word/update', 'Cập nhật từ vựng', 'word', 'update'),
+('PERM_022', '/word/delete', 'Xóa từ vựng', 'word', 'delete'),
+-- Flashcard learning
+('PERM_023', '/flashcard/start', 'Bắt đầu học flashcard', 'flashcard', 'start'),
+('PERM_024', '/flashcard/review', 'Ôn tập flashcard', 'flashcard', 'review'),
+('PERM_025', '/flashcard/mark', 'Đánh dấu đã thuộc / loại khỏi ôn tập', 'flashcard', 'mark'),
+-- Exercise
+('PERM_026', '/exercise/create', 'Tạo bài tập', 'exercise', 'create'),
+('PERM_027', '/exercise/read', 'Xem bài tập', 'exercise', 'read'),
+('PERM_028', '/exercise/update', 'Cập nhật bài tập', 'exercise', 'update'),
+('PERM_029', '/exercise/delete', 'Xóa bài tập', 'exercise', 'delete'),
+('PERM_030', '/exercise/submit', 'Nộp bài làm', 'exercise', 'submit');
+
+-- INSERT USER_ROLES
+INSERT INTO user_roles (user_id, role_id, assigned_by) VALUES
+('USER_001', 'ROLE_001', 'USER_001'),
+('USER_002', 'ROLE_002', 'USER_001'),
+('USER_003', 'ROLE_003', 'USER_001'),
+('USER_004', 'ROLE_003', 'USER_001'),
+('USER_005', 'ROLE_004', 'USER_001');
+
+-- INSERT ROLE_PERMISSIONS
+-- Admin: full permissions
+INSERT INTO role_permissions (role_id, permission_id, granted_by)
+SELECT 'ROLE_001' AS role_id, permission_id, 'USER_001' AS granted_by FROM permissions;
+
+-- Teacher: topic/word CRUD, exercise CRUD, xem exercise
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+('ROLE_002', 'PERM_015', 'USER_001'),('ROLE_002', 'PERM_016', 'USER_001'),('ROLE_002', 'PERM_017', 'USER_001'),('ROLE_002', 'PERM_018', 'USER_001'),
+('ROLE_002', 'PERM_019', 'USER_001'),('ROLE_002', 'PERM_020', 'USER_001'),('ROLE_002', 'PERM_021', 'USER_001'),('ROLE_002', 'PERM_022', 'USER_001'),
+('ROLE_002', 'PERM_026', 'USER_001'),('ROLE_002', 'PERM_027', 'USER_001'),('ROLE_002', 'PERM_028', 'USER_001'),('ROLE_002', 'PERM_029', 'USER_001');
+
+-- Student: đọc nội dung + học flashcard + nộp bài
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+('ROLE_003', 'PERM_016', 'USER_001'),('ROLE_003', 'PERM_020', 'USER_001'),
+('ROLE_003', 'PERM_023', 'USER_001'),('ROLE_003', 'PERM_024', 'USER_001'),('ROLE_003', 'PERM_025', 'USER_001'),
+('ROLE_003', 'PERM_027', 'USER_001'),('ROLE_003', 'PERM_030', 'USER_001');
+
+-- Guest: chỉ read topic/word
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+('ROLE_004', 'PERM_016', 'USER_001'),('ROLE_004', 'PERM_020', 'USER_001');
+
+-- INSERT TOPICS
+INSERT INTO topics (topic_id, topic_name, description, image_url, topic_type, created_by, word_count) VALUES
+('TOPIC_001', 'Từ vựng tiếng Anh văn phòng', 'Từ vựng dùng trong môi trường công sở', 'https://img.example.com/office.jpg', 'system', 'USER_002', 6),
+('TOPIC_002', 'Tiếng Anh giao tiếp cơ bản', 'Câu và từ vựng giao tiếp hằng ngày', 'https://img.example.com/basic-comm.jpg', 'system', 'USER_002', 6),
+('TOPIC_003', '900 từ TOEFL (mẫu)', 'Từ vựng thường gặp trong TOEFL', 'https://img.example.com/toefl.jpg', 'system', 'USER_001', 6),
+('TOPIC_004', '900 từ IELTS (mẫu)', 'Từ vựng thường gặp trong IELTS', 'https://img.example.com/ielts.jpg', 'system', 'USER_002', 6),
+('TOPIC_005', 'My Business Words', 'Từ vựng kinh doanh cá nhân', 'https://img.example.com/business.jpg', 'user_created', 'USER_003', 3),
+('TOPIC_006', 'Travel Vocabulary', 'Từ vựng du lịch cá nhân', 'https://img.example.com/travel.jpg', 'user_created', 'USER_004', 2);
+
+-- INSERT WORDS (System words)
+INSERT INTO words (word_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, word_type, created_by) VALUES
+-- Topic 1: Office
+('WORD_001', 'TOPIC_001', 'absent', 'adjective', '/ˈæbsənt/', 'vắng mặt', 'Most students were absent from school at least once.', 'Hầu hết sinh viên đã vắng mặt ít nhất một lần.', 'system', 'USER_002'),
+('WORD_002', 'TOPIC_001', 'approve', 'verb', '/əˈpruːv/', 'chấp thuận', 'The manager approved the budget for Q3.', 'Quản lý đã chấp thuận ngân sách quý 3.', 'system', 'USER_002'),
+('WORD_003', 'TOPIC_001', 'deadline', 'noun', '/ˈdedlaɪn/', 'hạn chót', 'We must meet the project deadline.', 'Chúng ta phải kịp hạn chót dự án.', 'system', 'USER_002'),
+('WORD_004', 'TOPIC_001', 'meeting', 'noun', '/ˈmiːtɪŋ/', 'cuộc họp', 'The weekly meeting is on Monday morning.', 'Cuộc họp hằng tuần vào sáng thứ Hai.', 'system', 'USER_002'),
+('WORD_005', 'TOPIC_001', 'bonus', 'noun', '/ˈbəʊnəs/', 'tiền thưởng', 'Employees receive a bonus for high performance.', 'Nhân viên nhận thưởng khi hiệu suất cao.', 'system', 'USER_002'),
+('WORD_006', 'TOPIC_001', 'resign', 'verb', '/rɪˈzaɪn/', 'từ chức', 'He decided to resign from his position.', 'Anh ấy quyết định từ chức.', 'system', 'USER_002'),
+
+-- Topic 2: Basic Communication
+('WORD_007', 'TOPIC_002', 'greet', 'verb', '/ɡriːt/', 'chào hỏi', 'They greeted each other warmly.', 'Họ chào nhau nồng nhiệt.', 'system', 'USER_002'),
+('WORD_008', 'TOPIC_002', 'introduce', 'verb', '/ˌɪntrəˈdjuːs/', 'giới thiệu', 'Let me introduce you to my friend.', 'Để tôi giới thiệu bạn với bạn tôi.', 'system', 'USER_002'),
+('WORD_009', 'TOPIC_002', 'polite', 'adjective', '/pəˈlaɪt/', 'lịch sự', 'It is polite to say thank you.', 'Lịch sự khi nói cảm ơn.', 'system', 'USER_002'),
+('WORD_010', 'TOPIC_002', 'request', 'noun', '/rɪˈkwest/', 'yêu cầu', 'I sent a request for information.', 'Tôi đã gửi yêu cầu thông tin.', 'system', 'USER_002'),
+('WORD_011', 'TOPIC_002', 'respond', 'verb', '/rɪˈspɒnd/', 'phản hồi', 'Please respond to my email.', 'Vui lòng phản hồi email của tôi.', 'system', 'USER_002'),
+('WORD_012', 'TOPIC_002', 'confirm', 'verb', '/kənˈfɜːm/', 'xác nhận', 'She confirmed the reservation.', 'Cô ấy xác nhận đặt chỗ.', 'system', 'USER_002'),
+
+-- Topic 3: TOEFL
+('WORD_013', 'TOPIC_003', 'analyze', 'verb', '/ˈænəlaɪz/', 'phân tích', 'Analyze the data carefully.', 'Phân tích dữ liệu cẩn thận.', 'system', 'USER_001'),
+('WORD_014', 'TOPIC_003', 'assume', 'verb', '/əˈsjuːm/', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', 'system', 'USER_001'),
+('WORD_015', 'TOPIC_003', 'distinct', 'adjective', '/dɪˈstɪŋkt/', 'riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', 'system', 'USER_001'),
+('WORD_016', 'TOPIC_003', 'estimate', 'verb', '/ˈestɪmeɪt/', 'ước tính', 'We estimate the cost.', 'Chúng tôi ước tính chi phí.', 'system', 'USER_001'),
+('WORD_017', 'TOPIC_003', 'interpr

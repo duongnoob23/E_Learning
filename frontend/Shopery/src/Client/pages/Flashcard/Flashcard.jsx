@@ -1,115 +1,207 @@
-// Flashcard Page - Trang học từ vựng
+// Client/pages/Flashcard/Flashcard.jsx
 import React, { useState } from "react";
+import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTabs";
+import FlashcardCard from "../../components/Flashcard/FlashcardCard/FlashcardCard";
+import FlashcardDetail from "../../components/Flashcard/FlashcardDetail/FlashcardDetail";
 import "./Flashcard.css";
 
 const Flashcard = () => {
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [activeTab, setActiveTab] = useState("explore");
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
-  // Dữ liệu mẫu - sau này sẽ lấy từ API
-  const flashcards = [
+  // Dữ liệu fake cho tab "Khám phá"
+  const exploreTopics = [
     {
       id: 1,
-      word: "Hello",
-      meaning: "Xin chào",
-      example: "Hello, how are you?",
-      pronunciation: "/həˈloʊ/",
+      title: "Từ vựng tiếng Anh văn phòng",
+      description: "Bộ từ vựng cơ bản cho môi trường công sở",
+      wordCount: 536,
+      viewCount: 23598,
+      logo: "/images/study4-logo.png",
+      category: "business",
+      difficulty: "intermediate",
     },
     {
       id: 2,
-      word: "Goodbye",
-      meaning: "Tạm biệt",
-      example: "Goodbye, see you later!",
-      pronunciation: "/ˌɡʊdˈbaɪ/",
+      title: "Từ vựng tiếng Anh giao tiếp trung cấp",
+      description: "Từ vựng cần thiết cho giao tiếp hàng ngày",
+      wordCount: 798,
+      viewCount: 14835,
+      logo: "/images/study4-logo.png",
+      category: "communication",
+      difficulty: "intermediate",
     },
     {
       id: 3,
-      word: "Thank you",
-      meaning: "Cảm ơn",
-      example: "Thank you for your help.",
-      pronunciation: "/ˈθæŋk ju/",
+      title: "Từ vựng Tiếng Anh giao tiếp cơ bản",
+      description: "Những từ vựng cơ bản nhất cho người mới bắt đầu",
+      wordCount: 993,
+      viewCount: 37563,
+      logo: "/images/study4-logo.png",
+      category: "communication",
+      difficulty: "beginner",
+    },
+    {
+      id: 4,
+      title: "900 từ TOEFL (có ảnh)",
+      description: "Bộ từ vựng TOEFL với hình ảnh minh họa",
+      wordCount: 899,
+      viewCount: 6801,
+      logo: "/images/study4-logo.png",
+      category: "exam",
+      difficulty: "advanced",
+    },
+    {
+      id: 5,
+      title: "900 từ IELTS (có ảnh)",
+      description: "Từ vựng IELTS với hình ảnh trực quan",
+      wordCount: 899,
+      viewCount: 29427,
+      logo: "/images/study4-logo.png",
+      category: "exam",
+      difficulty: "advanced",
+    },
+    {
+      id: 6,
+      title: "900 từ SAT (có ảnh)",
+      description: "Từ vựng SAT cho học sinh trung học",
+      wordCount: 860,
+      viewCount: 2781,
+      logo: "/images/study4-logo.png",
+      category: "exam",
+      difficulty: "advanced",
+    },
+    {
+      id: 7,
+      title: "GRE-GMAT Vocabulary List",
+      description: "Từ vựng chuyên ngành cho GRE và GMAT",
+      wordCount: 868,
+      viewCount: 693,
+      logo: "/images/study4-logo.png",
+      category: "exam",
+      difficulty: "advanced",
+    },
+    {
+      id: 8,
+      title: "Academic word list",
+      description: "Từ vựng học thuật cho nghiên cứu",
+      wordCount: 570,
+      viewCount: 3471,
+      logo: "/images/study4-logo.png",
+      category: "academic",
+      difficulty: "advanced",
     },
   ];
 
-  const handleNext = () => {
-    if (currentCardIndex < flashcards.length - 1) {
-      setCurrentCardIndex(currentCardIndex + 1);
-      setIsFlipped(false);
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setSelectedTopic(null);
+  };
+
+  const handleTopicClick = (topic) => {
+    setSelectedTopic(topic);
+  };
+
+  const handlePractice = () => {
+    console.log("Practice mode for topic:", selectedTopic.id);
+  };
+
+  const handleStudy = () => {
+    console.log("Study mode for topic:", selectedTopic.id);
+  };
+
+  const handleBack = () => {
+    setSelectedTopic(null);
+  };
+
+  const getCurrentTopics = () => {
+    switch (activeTab) {
+      case "explore":
+        return exploreTopics;
+      case "my-lists":
+        return [];
+      case "learning":
+        return [];
+      default:
+        return [];
     }
   };
 
-  const handlePrevious = () => {
-    if (currentCardIndex > 0) {
-      setCurrentCardIndex(currentCardIndex - 1);
-      setIsFlipped(false);
-    }
-  };
+  const currentTopics = getCurrentTopics();
 
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
-  };
-
-  const currentCard = flashcards[currentCardIndex];
+  if (selectedTopic) {
+    return (
+      <FlashcardDetail
+        topic={selectedTopic}
+        onBack={handleBack}
+        onPractice={handlePractice}
+        onStudy={handleStudy}
+      />
+    );
+  }
 
   return (
     <div className="flashcard-page">
       <div className="flashcard-container">
         <div className="flashcard-header">
-          <h1>Học từ vựng</h1>
-          <p>Thẻ học từ vựng tiếng Anh</p>
+          <h1>Flashcards</h1>
         </div>
 
-        <div className="flashcard-progress">
-          <span>
-            {currentCardIndex + 1} / {flashcards.length}
-          </span>
+        <FlashcardTabs activeTab={activeTab} onTabChange={handleTabChange} />
+
+        {/* Info Banner */}
+        <div className="info-banner">
+          <div className="info-icon">ℹ</div>
+          <p>
+            Chú ý: Bạn có thể tạo flashcards từ highlights (bao gồm các
+            highlights các bạn đã tạo trước đây) trong trang chi tiết
+          </p>
         </div>
 
-        <div className="flashcard-card" onClick={handleFlip}>
-          <div className={`flashcard-inner ${isFlipped ? "flipped" : ""}`}>
-            <div className="flashcard-front">
-              <h2 className="flashcard-word">{currentCard.word}</h2>
-              <p className="flashcard-pronunciation">
-                {currentCard.pronunciation}
-              </p>
-              <p className="flashcard-hint">Nhấp để xem nghĩa</p>
-            </div>
-            <div className="flashcard-back">
-              <h3 className="flashcard-meaning">{currentCard.meaning}</h3>
-              <p className="flashcard-example">{currentCard.example}</p>
+        {/* Content based on active tab */}
+        {activeTab === "explore" && (
+          <div className="topics-section">
+            <h3>Khám phá các chủ đề:</h3>
+            <div className="topics-grid">
+              {currentTopics.map((topic) => (
+                <FlashcardCard
+                  key={topic.id}
+                  topic={topic}
+                  onClick={handleTopicClick}
+                  showUserInfo={false}
+                />
+              ))}
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="flashcard-controls">
-          <button
-            className="flashcard-btn flashcard-btn--prev"
-            onClick={handlePrevious}
-            disabled={currentCardIndex === 0}
-          >
-            ← Trước
-          </button>
+        {activeTab === "my-lists" && (
+          <div className="topics-section">
+            <h3>List từ đã tạo:</h3>
+            <div className="empty-learning">
+              <p>Chưa có list từ nào được tạo.</p>
+            </div>
+          </div>
+        )}
 
-          <button
-            className="flashcard-btn flashcard-btn--flip"
-            onClick={handleFlip}
-          >
-            {isFlipped ? "Xem từ" : "Xem nghĩa"}
-          </button>
+        {activeTab === "learning" && (
+          <div className="topics-section">
+            <h3>Đang học:</h3>
+            <div className="empty-learning">
+              <p>
+                Bạn chưa học list từ nào. Khám phá ngay hoặc bắt đầu tạo các
+                list từ mới.
+              </p>
+            </div>
+          </div>
+        )}
 
-          <button
-            className="flashcard-btn flashcard-btn--next"
-            onClick={handleNext}
-            disabled={currentCardIndex === flashcards.length - 1}
-          >
-            Tiếp →
-          </button>
-        </div>
-
-        <div className="flashcard-actions">
-          <button className="flashcard-action-btn">Đánh dấu đã học</button>
-          <button className="flashcard-action-btn">Thêm vào yêu thích</button>
-        </div>
+        {/* Pagination */}
+        {currentTopics.length > 0 && (
+          <div className="pagination">
+            <button className="pagination-btn active">1</button>
+          </div>
+        )}
       </div>
     </div>
   );

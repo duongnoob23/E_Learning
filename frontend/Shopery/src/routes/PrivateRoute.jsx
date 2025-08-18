@@ -7,6 +7,8 @@ const PrivateRoute = ({ children, requiredRole, requiredPermissions = [] }) => {
   const { isAuthenticated, isLoading, user } = useSelector(
     (state) => state.auth
   );
+  console.log("🚀 ~ PrivateRoute ~ user:", user);
+  console.log("🚀 ~ PrivateRoute ~ isAuthenticated:", isAuthenticated);
   const location = useLocation();
 
   // Đang loading
@@ -24,23 +26,27 @@ const PrivateRoute = ({ children, requiredRole, requiredPermissions = [] }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Kiểm tra role nếu được yêu cầu
-  if (requiredRole && user?.role !== requiredRole) {
-    return <Navigate to="/" replace />;
-  }
+  // // Kiểm tra role nếu được yêu cầu
+  // if (requiredRole && user?.role !== requiredRole) {
+  //   return <Navigate to="/" replace />;
+  // }
 
-  // Kiểm tra permissions nếu được yêu cầu
-  if (requiredPermissions.length > 0) {
-    const hasAllPermissions = requiredPermissions.every((permission) =>
-      user?.permissions?.includes(permission)
-    );
+  // // Kiểm tra permissions nếu được yêu cầu
+  // if (requiredPermissions.length > 0) {
+  //   const hasAllPermissions = requiredPermissions.every((permission) =>
+  //     user?.permissions?.includes(permission)
+  //   );
 
-    if (!hasAllPermissions) {
-      return <Navigate to="/" replace />;
-    }
-  }
+  //   if (!hasAllPermissions) {
+  //     return <Navigate to="/" replace />;
+  //   }
+  // }
 
   return children;
 };
 
 export default PrivateRoute;
+
+// trang admin không cần phải đẩy về login, chỉ có client cần thế thôi, tại vì admin không truy cập được trang nào khác ngoài login cảcả
+
+// phải hỏi kĩ lại nội dung của private routesroutes

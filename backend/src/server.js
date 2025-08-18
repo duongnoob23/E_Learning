@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const routes = require("./routes");
 require("dotenv").config();
 
 // Import database connection
@@ -20,21 +21,13 @@ app.use(helmet());
 // CORS - Cho phép frontend gọi API
 app.use(cors());
 
+app.use(express.json());
+app.use(routes);
+
 //Logging middleware (chỉ trong development)
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
-// Basic middleware
-app.use(express.json());
-
-// Test route
-app.get("/", (req, res) => {
-  res.json({
-    message: "E-commerce API is working!",
-    timestamp: new Date().toISOString(),
-  });
-});
 
 // 404 handler - Bắt lỗi route không tồn tại (không dùng "*")
 app.use((req, res, next) => {

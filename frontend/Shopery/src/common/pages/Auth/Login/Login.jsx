@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../../redux/slices/authSlice";
@@ -29,7 +29,7 @@ const Login = ({ isAdmin = false }) => {
   } = useSelector((state) => state.auth);
 
   // Nếu đã đăng nhập, chuyển hướng
-  React.useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated && user) {
       if (isAdmin && user.role === "admin") {
         navigate("/admin/dashboard");
@@ -58,11 +58,11 @@ const Login = ({ isAdmin = false }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.username.trim()) {
+    if (!isLoginMode && !formData.username.trim()) {
       newErrors.username = "Tên đăng nhập không được để trống";
     }
 
-    if (!isLoginMode && !formData.email.trim()) {
+    if (!formData.email.trim()) {
       newErrors.email = "Email không được để trống";
     }
 
@@ -79,21 +79,22 @@ const Login = ({ isAdmin = false }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); // dừng submit
+    console.log("🚀 ~ handleSubmit ~ 1:", 1);
     if (!validateForm()) {
       return;
-    }
-
+    } // kiểm tra chưa validate form thì return
+    console.log("🚀 ~ handleSubmit ~ 2:", 2);
     setIsLoading(true);
     setErrors({});
 
     try {
       if (isLoginMode) {
         // Đăng nhập
+        console.log("🚀 ~ handleSubmit ~ 3:", 3);
         const result = await dispatch(
           loginUser({
-            username: formData.username,
+            email: formData.email,
             password: formData.password,
           })
         ).unwrap();
@@ -185,29 +186,37 @@ const Login = ({ isAdmin = false }) => {
               )}
 
               {/* Username field */}
-              <div className="auth-page__field">
-                <label className="auth-page__label">Tên đăng nhập</label>
-                <input
-                  type="text"
-                  name="username"
-                  className={`auth-page__input ${
-                    errors.username ? "error" : ""
-                  }`}
-                  placeholder="Nhập tên đăng nhập của bạn"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                />
-                {errors.username && (
-                  <span className="auth-page__error-text">
-                    {errors.username}
-                  </span>
-                )}
+              <div
+                className={`auth-page__field auth-page__field--register ${
+                  !isLoginMode ? "auth-page__field--visible" : ""
+                }`}
+              >
+                <div className="auth-page__field">
+                  <label className="auth-page__label">Tên đăng nhập</label>
+                  <input
+                    type="text"
+                    name="username"
+                    className={`auth-page__input ${
+                      errors.username ? "error" : ""
+                    }`}
+                    placeholder="Nhập tên đăng nhập của bạn"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                  />
+                  {errors.username && (
+                    <span className="auth-page__error-text">
+                      {errors.username}
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Email field - chỉ hiển thị khi Register */}
               <div
                 className={`auth-page__field auth-page__field--register ${
-                  !isLoginMode ? "auth-page__field--visible" : ""
+                  !isLoginMode
+                    ? "auth-page__field--visible"
+                    : "auth-page__field--visible"
                 }`}
               >
                 <label className="auth-page__label">Email</label>
@@ -328,3 +337,11 @@ const Login = ({ isAdmin = false }) => {
 };
 
 export default Login;
+
+// luồng đăng nhập của admin cũng đang bị lỗi , khi nhập tài khoản client vào tài khoản của admin thì nó ko phản hổi gì
+
+// có nên code riêng luồng login admin/client register admin/client và user login/register không
+
+// học lại accessToken ,refreshToken, Jwt
+
+// chưa có chức năng đăng kí trên web

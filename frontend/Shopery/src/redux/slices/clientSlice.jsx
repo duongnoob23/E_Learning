@@ -1,220 +1,290 @@
-// Client Slice - Chỉ dành cho Client
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { clientApi } from '../../Client/services/clientApi'
+// redux/slices/clientSlice.jsx (sửa lại cho web học tiếng Anh)
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { clientApi } from "../../Client/services/clientApi";
 
-// Async thunks cho Client
-export const fetchFeaturedProducts = createAsyncThunk(
-  'client/fetchFeaturedProducts',
+// Async thunks cho Flashcard
+export const fetchFlashcardTopics = createAsyncThunk(
+  "client/fetchFlashcardTopics",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await clientApi.getFeaturedProducts()
-      return response.data
+      const response = await clientApi.getFlashcardTopics();
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Lỗi khi tải sản phẩm nổi bật')
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tải chủ đề flashcard"
+      );
     }
   }
-)
+);
 
-export const fetchCategories = createAsyncThunk(
-  'client/fetchCategories',
+export const fetchMyTopics = createAsyncThunk(
+  "client/fetchMyTopics",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await clientApi.getCategories()
-      return response.data
+      const response = await clientApi.getMyTopics();
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Lỗi khi tải danh mục')
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tải chủ đề của tôi"
+      );
     }
   }
-)
+);
 
-export const fetchProducts = createAsyncThunk(
-  'client/fetchProducts',
-  async (params, { rejectWithValue }) => {
-    try {
-      const response = await clientApi.getProducts(params)
-      return response.data
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Lỗi khi tải sản phẩm')
-    }
-  }
-)
-
-export const addToCart = createAsyncThunk(
-  'client/addToCart',
-  async ({ productId, quantity }, { rejectWithValue }) => {
-    try {
-      const response = await clientApi.addToCart(productId, quantity)
-      return response.data
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Lỗi khi thêm vào giỏ hàng')
-    }
-  }
-)
-
-export const fetchCart = createAsyncThunk(
-  'client/fetchCart',
+export const fetchLearningTopics = createAsyncThunk(
+  "client/fetchLearningTopics",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await clientApi.getCart()
-      return response.data
+      const response = await clientApi.getLearningTopics();
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Lỗi khi tải giỏ hàng')
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tải chủ đề đang học"
+      );
     }
   }
-)
+);
+
+export const createTopic = createAsyncThunk(
+  "client/createTopic",
+  async (topicData, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.createTopic(topicData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tạo chủ đề"
+      );
+    }
+  }
+);
+
+export const addWordToTopic = createAsyncThunk(
+  "client/addWordToTopic",
+  async (wordData, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.addWordToTopic(wordData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi thêm từ"
+      );
+    }
+  }
+);
+
+export const getTopicDetail = createAsyncThunk(
+  "client/getTopicDetail",
+  async (topicId, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.getTopicDetail(topicId);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tải chi tiết chủ đề"
+      );
+    }
+  }
+);
+
+// Async thunks cho Study Sessions
+export const startStudySession = createAsyncThunk(
+  "client/startStudySession",
+  async (sessionData, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.startStudySession(sessionData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi bắt đầu phiên học"
+      );
+    }
+  }
+);
+
+export const endStudySession = createAsyncThunk(
+  "client/endStudySession",
+  async ({ sessionId, results }, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.endStudySession(sessionId, results);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi kết thúc phiên học"
+      );
+    }
+  }
+);
+
+export const getStudyHistory = createAsyncThunk(
+  "client/getStudyHistory",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await clientApi.getStudyHistory();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Lỗi khi tải lịch sử học"
+      );
+    }
+  }
+);
 
 const initialState = {
-  // Products
-  featuredProducts: [],
-  products: [],
-  productDetail: null,
-  totalProducts: 0,
-  currentPage: 1,
-  
-  // Categories
-  categories: [],
-  
-  // Cart
-  cart: {
-    items: [],
-    total: 0,
-    itemCount: 0,
+  // Flashcard Topics
+  flashcardTopics: [],
+  myTopics: [],
+  learningTopics: [],
+  currentTopic: null,
+
+  // Study Sessions
+  currentSession: null,
+  studyHistory: [],
+
+  // Learning Progress
+  learningProgress: {
+    totalWordsLearned: 0,
+    totalSessions: 0,
+    streakDays: 0,
+    averageScore: 0,
   },
-  
-  // Wishlist
-  wishlist: [],
-  
+
   // Search
   searchResults: [],
-  searchQuery: '',
-  
+  searchQuery: "",
+
   // Filters
   filters: {
-    category: '',
-    priceRange: [0, 1000000],
-    sortBy: 'newest',
+    category: "",
+    difficulty: "all",
+    sortBy: "newest",
   },
-  
+
   // Loading states
   isLoading: false,
-  isProductsLoading: false,
-  isCartLoading: false,
-  
+  isTopicsLoading: false,
+  isSessionLoading: false,
+
   // Error states
   error: null,
-  productsError: null,
-  cartError: null,
-}
+  topicsError: null,
+  sessionError: null,
+};
 
 const clientSlice = createSlice({
-  name: 'client',
+  name: "client",
   initialState,
   reducers: {
     clearError: (state) => {
-      state.error = null
-      state.productsError = null
-      state.cartError = null
-    },
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload
-    },
-    setFilters: (state, action) => {
-      state.filters = { ...state.filters, ...action.payload }
+      state.error = null;
+      state.topicsError = null;
+      state.sessionError = null;
     },
     setSearchQuery: (state, action) => {
-      state.searchQuery = action.payload
+      state.searchQuery = action.payload;
     },
-    clearProductDetail: (state) => {
-      state.productDetail = null
+    setFilters: (state, action) => {
+      state.filters = { ...state.filters, ...action.payload };
     },
-    updateCartItemQuantity: (state, action) => {
-      const { itemId, quantity } = action.payload
-      const item = state.cart.items.find(item => item.id === itemId)
-      if (item) {
-        item.quantity = quantity
-        // Recalculate total
-        state.cart.total = state.cart.items.reduce((total, item) => 
-          total + (item.price * item.quantity), 0
-        )
-      }
+    clearCurrentTopic: (state) => {
+      state.currentTopic = null;
     },
-    removeFromCart: (state, action) => {
-      const itemId = action.payload
-      state.cart.items = state.cart.items.filter(item => item.id !== itemId)
-      state.cart.itemCount = state.cart.items.length
-      state.cart.total = state.cart.items.reduce((total, item) => 
-        total + (item.price * item.quantity), 0
-      )
+    clearCurrentSession: (state) => {
+      state.currentSession = null;
+    },
+    updateLearningProgress: (state, action) => {
+      state.learningProgress = { ...state.learningProgress, ...action.payload };
     },
   },
   extraReducers: (builder) => {
     builder
-      // Featured Products
-      .addCase(fetchFeaturedProducts.pending, (state) => {
-        state.isLoading = true
-        state.error = null
+      // Flashcard Topics
+      .addCase(fetchFlashcardTopics.pending, (state) => {
+        state.isTopicsLoading = true;
+        state.topicsError = null;
       })
-      .addCase(fetchFeaturedProducts.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.featuredProducts = action.payload
-        state.error = null
+      .addCase(fetchFlashcardTopics.fulfilled, (state, action) => {
+        state.isTopicsLoading = false;
+        state.flashcardTopics = action.payload;
+        state.topicsError = null;
       })
-      .addCase(fetchFeaturedProducts.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
+      .addCase(fetchFlashcardTopics.rejected, (state, action) => {
+        state.isTopicsLoading = false;
+        state.topicsError = action.payload;
       })
-      
-      // Categories
-      .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.categories = action.payload
+
+      // My Topics
+      .addCase(fetchMyTopics.fulfilled, (state, action) => {
+        state.myTopics = action.payload;
       })
-      
-      // Products
-      .addCase(fetchProducts.pending, (state) => {
-        state.isProductsLoading = true
-        state.productsError = null
+
+      // Learning Topics
+      .addCase(fetchLearningTopics.fulfilled, (state, action) => {
+        state.learningTopics = action.payload;
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.isProductsLoading = false
-        state.products = action.payload.products
-        state.totalProducts = action.payload.total
-        state.productsError = null
+
+      // Create Topic
+      .addCase(createTopic.fulfilled, (state, action) => {
+        state.myTopics.unshift(action.payload);
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
-        state.isProductsLoading = false
-        state.productsError = action.payload
+
+      // Add Word to Topic
+      .addCase(addWordToTopic.fulfilled, (state, action) => {
+        const { topicId, word } = action.payload;
+        const topic = state.myTopics.find((t) => t.id === topicId);
+        if (topic) {
+          topic.words.push(word);
+          topic.wordCount += 1;
+        }
       })
-      
-      // Cart
-      .addCase(fetchCart.pending, (state) => {
-        state.isCartLoading = true
-        state.cartError = null
+
+      // Get Topic Detail
+      .addCase(getTopicDetail.fulfilled, (state, action) => {
+        state.currentTopic = action.payload;
       })
-      .addCase(fetchCart.fulfilled, (state, action) => {
-        state.isCartLoading = false
-        state.cart = action.payload
-        state.cartError = null
+
+      // Study Sessions
+      .addCase(startStudySession.pending, (state) => {
+        state.isSessionLoading = true;
+        state.sessionError = null;
       })
-      .addCase(fetchCart.rejected, (state, action) => {
-        state.isCartLoading = false
-        state.cartError = action.payload
+      .addCase(startStudySession.fulfilled, (state, action) => {
+        state.isSessionLoading = false;
+        state.currentSession = action.payload;
+        state.sessionError = null;
       })
-      
-      // Add to Cart
-      .addCase(addToCart.fulfilled, (state, action) => {
-        state.cart = action.payload
+      .addCase(startStudySession.rejected, (state, action) => {
+        state.isSessionLoading = false;
+        state.sessionError = action.payload;
       })
+
+      .addCase(endStudySession.fulfilled, (state, action) => {
+        state.currentSession = null;
+        // Update learning progress based on session results
+        const { score, wordsLearned } = action.payload;
+        state.learningProgress.totalSessions += 1;
+        state.learningProgress.totalWordsLearned += wordsLearned;
+        // Calculate new average score
+        const currentTotal =
+          state.learningProgress.averageScore *
+          (state.learningProgress.totalSessions - 1);
+        state.learningProgress.averageScore =
+          (currentTotal + score) / state.learningProgress.totalSessions;
+      })
+
+      .addCase(getStudyHistory.fulfilled, (state, action) => {
+        state.studyHistory = action.payload;
+      });
   },
-})
+});
 
-export const { 
-  clearError, 
-  setCurrentPage, 
-  setFilters, 
+export const {
+  clearError,
   setSearchQuery,
-  clearProductDetail,
-  updateCartItemQuantity,
-  removeFromCart
-} = clientSlice.actions
+  setFilters,
+  clearCurrentTopic,
+  clearCurrentSession,
+  updateLearningProgress,
+} = clientSlice.actions;
 
-export default clientSlice.reducer
+export default clientSlice.reducer;

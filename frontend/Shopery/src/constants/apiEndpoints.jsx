@@ -1,4 +1,4 @@
-// API Endpoints - Định nghĩa các endpoint API cho e-learning
+// constants/apiEndpoints.jsx (cập nhật)
 export const API_ENDPOINTS = {
   // Auth endpoints
   AUTH: {
@@ -32,6 +32,26 @@ export const API_ENDPOINTS = {
     LEARNING_PROGRESS: "/user/learning-progress",
     FLASHCARDS: "/flashcards",
     STUDY_SESSIONS: "/study-sessions",
+  },
+
+  // Flashcard endpoints
+  FLASHCARD: {
+    TOPICS: "/flashcards/topics",
+    MY_TOPICS: "/flashcards/my-topics",
+    LEARNING_TOPICS: "/flashcards/learning-topics",
+    TOPIC_DETAIL: (topicId) => `/flashcards/topics/${topicId}`,
+    CREATE_TOPIC: "/flashcards/topics",
+    UPDATE_TOPIC: (topicId) => `/flashcards/topics/${topicId}`,
+    DELETE_TOPIC: (topicId) => `/flashcards/topics/${topicId}`,
+    ADD_WORD: (topicId) => `/flashcards/topics/${topicId}/words`,
+    UPDATE_WORD: (topicId, wordId) =>
+      `/flashcards/topics/${topicId}/words/${wordId}`,
+    DELETE_WORD: (topicId, wordId) =>
+      `/flashcards/topics/${topicId}/words/${wordId}`,
+    START_LEARNING: (topicId) => `/flashcards/topics/${topicId}/start-learning`,
+    STOP_LEARNING: (topicId) => `/flashcards/topics/${topicId}/stop-learning`,
+    MARK_WORD_LEARNED: (topicId, wordId) =>
+      `/flashcards/topics/${topicId}/words/${wordId}/learned`,
   },
 
   // Common endpoints

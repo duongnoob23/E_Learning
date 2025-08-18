@@ -78,9 +78,9 @@ const Header = () => {
               <Link to="/login" className="header__btn header__btn--login">
                 Login
               </Link>
-              <Link to="/register" className="header__btn header__btn--signup">
+              {/* <Link to="/register" className="header__btn header__btn--signup">
                 Sign Up
-              </Link>
+              </Link> */}
             </>
           )}
         </div>
