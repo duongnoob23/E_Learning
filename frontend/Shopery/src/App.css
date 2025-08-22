@@ -1,4 +1,12 @@
 /* App Component Styles */
+*{
+  box-sizing: border-box;
+}
+
+html{
+  box-sizing: border-box;
+}
+
 .App {
   min-height: 100vh;
   display: flex;

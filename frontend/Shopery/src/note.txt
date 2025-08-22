@@ -1,0 +1,89 @@
+CÁC NỘI DUNG ĐÃ HỎI CHAT ĐỂ CẢI THIỆN DỰ ÁN HƠN 
+
+những câu hỏi sau của tôi bạn chỉ cần phân tích chứ không cần phải sửa code, nào tôi bảo bắt đầu sửa thì mới bắt đầu mọi việc nhé
+đầu tiền là phần accessToken, RefreshToken, JWT  để làm gì vậy
+phần jwt tôi đã hiểu và đã thực hành ở phần BE trong code tôi rồi nhưng có vẻ chưa đúng lắm 
+phần jwt sẽ trả về một đoạn Mã random được mã hóa , với nội dung trong đó là thông tin gì đó, kèm theo trả về thông tin user để ngưới dùng , lấy về danh sách các quyền (tôi thiết kế quyền kiểu restApi /create/user )và một số thứ khác , sau đó FE sẽ lấy thông tin trả về từ api , set isAuthentication = true (đã đăng nhập) , lấy thông tin User , thấy AccessToken , refreshTOken lưu vào trong localStorage, thì đối với phần jwt tôi đã hiểu rổi
+là khi người dùng click một hành động bất trì thì api được gọi và jwt sẽ gửi ở trong header về , be sẽ decode jwt và xem trong danh sách quyền của người dùng có chưa quyền đang thực hiện không và trả cho next hoặc return api 
+giải thích jwt kĩ như này cho tôi, giải thích tương tự cho accessToken và refreshToken cho sinh viên năm nhất có thể hiểu được 
+
+
+
+
+
+
+
+
+vào trong phần học từ mới qua flashcard sẽ các các nghiệp vụ như sau:
+có 3 phần chính (list từ của tôi, Đang học, Khám phá):
+với cả phần list từ của tôi là phần topic của riêng từng user tạo ra , có thể thêm vào  mục topic yêu thích của user đó 
+phần khám phá chứa các topic- chủ đề của hệ thống chúng, tất cả người dùng đều có , cũng có thể thêm vào mục topic yêu thích của user đó
+-> thiết kế bảng topic như nào để lưu riêng topic của hệ thống và của user riêng , -> favourite_topic riêng 
+trong phần List từ của tôi thì có thể tạo chủ đề mới bằng cách ấn vào dấu + , các chủ đề sẽ hiển thị sang bên cạnh dấu + , khi click vào các chủ đề mới thì sẽ có 3 button chính "Chỉnh sửa", "Thêm Từ mới", "Thêm nhiều từ mới cùng lúc"
+với nút thêm từ mới sẽ là một modal gồm các input từ mới, định nghĩa, ảnh, loại từ, phiên âm, ví dụ tiếng anh,tiếng việt, ghi chú
+với tạo từ hàng loạt thì vẫn sẽ là tạo từ mới nhưng ko phải ở dạng modal nữa mà bảng ở dạng excel và có thể nhập nhiều từ cùng lúc , có thể thêm số lượng từ mới nhập
+tôi mô tả chi tiết cho bạn hiểu các nghiệp vụ -> dễ thiết kế CSDL
+nút chỉnh sửa là sửa thông tin của chủ đề hiện tại đang thêm từ mới thôi
+ở mỗi từ được thêm vào sẽ có một nút chỉnh sửa riêng để 
+trong phần khám phá sẽ là một loạt topic có sẵn của hệ thống có tiêu đề,  ảnh ,logo website
+khi ấn vào trong có 2 kiểu, 1 là danh sách các từ mới hiển thị theo kiểu truyền thống ghi vở từ trên xuống , mỗi item hiển thị đầy đủ thông tin 
+nếu chuyển sang chế độ flashcard để học thi sẽ có thẻ 2 mặt để lật qua lại có thông tin (bạn biết rồi đó) và ở dưới, phải có nút loại từ này khỏi danh sách ôn tập(tick và icon ngôi sao để biết là học xong rồi ), nghĩa là csdl phải có bảng phiên học, để nếu người đó học từ đó rồi, nhớ rồi thì phải bỏ nó khỏi danh sách các từ trong chủ đề đang học -> phần này tôi chưa biết thiết kế kiểu gì 
+thêm nữa với mỗi topic, khi người dùng bấm vào thì có nghĩa là họ đang học topic đó thì  bên ngoài phải hiển thị là đang học, còn khi cả danh sách từ của chủ đề đó được tích dấu sao hết thì bên ngoài topic phải hiển thị là học xong rồi 
+giựa vào phần db cũ ở trong file 
+D:\KY_II_NAM_4\Thuc_Tap_Tot_Nghiep\E-commerce\zDesignDB\db.v1.txt
+và phần user-role-permission vừa phần tích thì thiết kế lại phần word-topic cho tôi, cho tôi code của phần dbdiagram.io
+
+
+
+
+
+7. Bảng words - Từ vựng hệ thống
+Mục đích: Lưu từ vựng do admin/teacher tạo, tất cả user có thể học
+Thuộc tính:
+word_type: Phân biệt từ hệ thống vs user tạo
+created_by: Ai tạo từ này
+notes: Ghi chú cho từ
+8. Bảng user_words - Từ vựng cá nhân
+Mục đích: Lưu từ vựng do user tạo, chỉ user đó có thể học
+Thuộc tính quan trọng:
+from_system_word_id: Liên kết với từ hệ thống gốc (nếu copy)
+user_id: Chủ sở hữu từ
+notes: Ghi chú cá nhân
+2 bảng này khác gì nhau , tôi tưởng word với word_type và created_by đã giúp chúng ta phân biệt được các từ vựng cá nhân của mỗi user_id khác nhau rôi
+hmm nếu tất cả từ vựng của user khác nhau cùng lưu chung sẽ hơi nặng, tôi chưa hiểu bạn thiết kế 2 bảng này lắm
+giải thích cho tôi, tôi cần là , ví dụ người dùng bắt đầu học một topic ,ng dùng học flcard và ghi nhớ một số thì họ sẽ tích dấu sao, thì sau khi họ đăng nhập hoặc sang topic khác quy lại thì phần từ vựng sẽ không chứ khác từ đã đánh dấu sao nữa, kể cả list từ hay flcard đều sẽ chỉ còn các từ chưa tích thôi, thêm vào đó ta sẽ  có một trang nữa là các từ đã thuộc đi là toàn các từ đánh dấu sao, để bỏ sao thì click vào thôi là nó sẽ quay lại từ chưa thuộc 
+chúng ta nên làm thế hay là mối phiên học đều có đầy đủ các từ , khi đến từ ta thuộc rồi thì ta click vào dấu sao để không gặp từ đó nữa hay là có cách nào hay hơn không 
+
+
+
+
+
+có một vấn đề như sau , bạn đọc lại file D:\KY_II_NAM_4\Thuc_Tap_Tot_Nghiep\E-commerce\frontend\Shopery\src\common\pages\Auth\Login\Login.jsx
+thì có thể hiểu trước đây bạn code kiểu trang login register cùng một file, hiện tại file 
+D:\KY_II_NAM_4\Thuc_Tap_Tot_Nghiep\E-commerce\frontend\Shopery\src\common\pages\Auth\Register\Register.jsx
+gần như là không dùng tới , bởi vì logic isLoginMode đã xử lý các components hiện lên của trang login và register rồi
+vấn đề ở đây là trong dự án thực tế login register có để trùng nhau vậy không và ngoài ra khi isAdmin = true thì trang admin lại còn có cả tính năng register -> điều này vốn không xảy ra , tối muốn trang login của admin riêng vì trang admin tôi sẽ code khác hoàn toàn 
+vấn đề thứ 2 là login register có nên để chung vậy không 
+có nên code riêng luồng login admin/client register admin/client và user login/register không
+phân tích và trả lời các vấn đề cho đến khi tôi bảo code
+
+
+
+
+còn một vấn đề nữa, nếu như chúng ta phân tích thì  luồng login /register của client và admin đang khác hoàn toàn nhau nên tôi sẽ cho nó vào bên trong pages của src/admin và src/client riêng là  hợp lệ ha , 
+ngoài ra nếu tôi muốn khi click vào login thì vẫn nhảy sang trang login và register thì nhảy sang trang register mà vẫn có hiệu ứng toggle thì phải làm sao 
+hoặc là dùng hiệu ứng, trang login là ảnh ở bên trái, form ở bên phải, khi click vào Sign in thì form nhảy sang bên phải, ảnh sang bên trái, muốn làm vậy  thì phải code phần  giao diện login, register như nào 
+thay thêm routes ra sao
+
+
+
+
+
+
+
+
+hiện tại tôi cần bạn làm giúp các công việc sau
+bỏ toggle bên login đi, thêm nút để nhảy sang trang register,bỏ logic liên quan đến isloginMode vì giờ chúng ta đã có 2 trang riêng biệt rồi, trang register cũng thêm nút để nhảy sáng trang login 
+hoặc là vẫn giữa nguyên toggle và khi click vào login thì nhảy qua trang login toggle sang nút login, ấn vào register thì nhảy qua bên register
+hiện tại css lại trang register sao cho đẹp như trang login nhưng ảnh bên phải , form bên trái
+rồi mới thực hiện code transitioin đổi qua lại giữa hai trang, bạn hiểu ý tôi chưa, cho tôi biết cần thay đổi các file nào và thay đổi gì

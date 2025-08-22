@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../../redux/slices/authSlice";
-import "./Login.css";
+import "./Register.css";
 
-const Login = ({ isAdmin = false }) => {
+const Register = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -31,13 +31,11 @@ const Login = ({ isAdmin = false }) => {
   // Nếu đã đăng nhập, chuyển hướng
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (isAdmin && user.role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (!isAdmin && user.role === "client") {
+      if (user.role === "client") {
         navigate("/");
       }
     }
-  }, [isAuthenticated, user, navigate, isAdmin]);
+  }, [isAuthenticated, user, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,11 +78,9 @@ const Login = ({ isAdmin = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
-    console.log("🚀 ~ handleSubmit ~ 1:", 1);
     if (!validateForm()) {
       return;
     } // kiểm tra chưa validate form thì return
-    console.log("🚀 ~ handleSubmit ~ 2:", 2);
     setIsLoading(true);
     setErrors({});
 
@@ -109,7 +105,6 @@ const Login = ({ isAdmin = false }) => {
         }
       } else {
         // Đăng ký - tạm thời chưa implement
-        console.log("Đăng ký:", formData);
       }
     } catch (error) {
       setErrors({ submit: error.message || "Có lỗi xảy ra" });
@@ -121,27 +116,12 @@ const Login = ({ isAdmin = false }) => {
   return (
     <div className="auth-page">
       <div className="auth-page__container">
-        {/* Phần bên trái - Hình ảnh */}
-        <div className="auth-page__image-section">
-          <div className="auth-page__image-overlay">
-            <h2 className="auth-page__image-title">Chào mừng đến với TOTC</h2>
-            <p className="auth-page__image-subtitle">
-              Khám phá hàng ngàn khóa học chất lượng với giá tốt nhất. Mua sắm
-              thông minh, tiết kiệm thời gian và chi phí.
-            </p>
-          </div>
-        </div>
-
-        {/* Phần bên phải - Form */}
+        {/* Phần bên trái - Form */}
         <div className="auth-page__form-section">
           <div className="auth-page__form-container">
             {/* Header */}
             <div className="auth-page__header">
-              <h1 className="auth-page__welcome">
-                {isAdmin
-                  ? "Chào mừng đến Admin Panel"
-                  : "Chào mừng đến với TOTC!"}
-              </h1>
+              <h1 className="auth-page__welcome">Chào mừng đến với TOTC!</h1>
 
               {/* Toggle buttons */}
               <div className="auth-page__toggle">
@@ -154,7 +134,7 @@ const Login = ({ isAdmin = false }) => {
                   className={`auth-page__toggle-btn ${
                     isLoginMode ? "auth-page__toggle-btn--active" : ""
                   }`}
-                  onClick={() => setIsLoginMode(true)}
+                  onClick={() => navigate("/login")}
                   type="button"
                 >
                   Đăng nhập
@@ -163,12 +143,14 @@ const Login = ({ isAdmin = false }) => {
                   className={`auth-page__toggle-btn ${
                     !isLoginMode ? "auth-page__toggle-btn--active" : ""
                   }`}
-                  onClick={() => setIsLoginMode(false)}
+                  onClick={() => navigate("/register")}
                   type="button"
                 >
-                  Đăng ký
+                  Đăng kí
                 </button>
               </div>
+
+              {/* <Auth /> */}
 
               <p className="auth-page__description">
                 {isLoginMode
@@ -186,11 +168,7 @@ const Login = ({ isAdmin = false }) => {
               )}
 
               {/* Username field */}
-              <div
-                className={`auth-page__field auth-page__field--register ${
-                  !isLoginMode ? "auth-page__field--visible" : ""
-                }`}
-              >
+              <div className={`auth-page__field `}>
                 <div className="auth-page__field">
                   <label className="auth-page__label">Tên đăng nhập</label>
                   <input
@@ -212,13 +190,7 @@ const Login = ({ isAdmin = false }) => {
               </div>
 
               {/* Email field - chỉ hiển thị khi Register */}
-              <div
-                className={`auth-page__field auth-page__field--register ${
-                  !isLoginMode
-                    ? "auth-page__field--visible"
-                    : "auth-page__field--visible"
-                }`}
-              >
+              <div className={`auth-page__field `}>
                 <label className="auth-page__label">Email</label>
                 <input
                   type="text"
@@ -264,9 +236,7 @@ const Login = ({ isAdmin = false }) => {
 
               {/* Confirm Password - chỉ hiển thị khi Register */}
               <div
-                className={`auth-page__field auth-page__field--register ${
-                  !isLoginMode ? "auth-page__field--visible" : ""
-                }`}
+                className={`auth-page__field auth-page__field--register auth-page__field--visible`}
               >
                 <label className="auth-page__label">Xác nhận mật khẩu</label>
                 <div className="auth-page__password-wrapper">
@@ -296,25 +266,6 @@ const Login = ({ isAdmin = false }) => {
               </div>
 
               {/* Remember me và Forgot password - chỉ hiển thị khi Login */}
-              <div
-                className={`auth-page__options ${
-                  isLoginMode ? "auth-page__options--visible" : ""
-                }`}
-              >
-                <label className="auth-page__checkbox">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                  />
-                  <span className="auth-page__checkbox-text">
-                    Ghi nhớ đăng nhập
-                  </span>
-                </label>
-                <button type="button" className="auth-page__forgot-link">
-                  Quên mật khẩu?
-                </button>
-              </div>
 
               {/* Submit button */}
               <button
@@ -331,17 +282,32 @@ const Login = ({ isAdmin = false }) => {
             </form>
           </div>
         </div>
+        {/* Phần bên phải - Hình ảnh */}
+
+        <div className="auth-page__image-section">
+          <div className="auth-page__image-overlay">
+            <h2 className="auth-page__image-title">Chào mừng đến với TOTC</h2>
+            <p className="auth-page__image-subtitle">
+              Khám phá hàng ngàn khóa học chất lượng với giá tốt nhất. Mua sắm
+              thông minh, tiết kiệm thời gian và chi phí.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
 
 // luồng đăng nhập của admin cũng đang bị lỗi , khi nhập tài khoản client vào tài khoản của admin thì nó ko phản hổi gì
 
 // có nên code riêng luồng login admin/client register admin/client và user login/register không
 
-// học lại accessToken ,refreshToken, Jwt
-
 // chưa có chức năng đăng kí trên web
+
+// code lại giao diện đơn vị REM
+
+// một web cần phải check gì nhiều, lỗi khi fetch api , sập server, responsive...
+
+// đọc lại db e_learnning2 để hiểu xem giữ liệu nó thực tế chưachưa

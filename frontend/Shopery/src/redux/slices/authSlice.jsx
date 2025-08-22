@@ -73,7 +73,12 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authApi.login(credentials);
+      console.log("🚀 ~ response: ", response);
+
       const { token, refreshToken, user } = response.data;
+      console.log("🚀 ~ user:", user);
+      console.log("🚀 ~ refreshToken:", refreshToken);
+      console.log("🚀 ~ token:", token);
 
       // Lưu token và user info vào localStorage
       tokenHelper.setTokens(token, refreshToken);

@@ -1,0 +1,267 @@
+/* .auth-page{
+  min-height: 100vh;
+  display :flex;
+  justify-content :center;
+  align-items: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-shadow: black 20px 20px 60px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-page__container{
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  height: 700px;
+  width: 100%;
+
+}
+
+.auth-page__image-section{
+  width: 50%;
+  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+  background-size:cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding:40px; 
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50px 0 0 50px;
+  position: relative;
+}
+
+.auth-page__image-overlay{
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.auth-page__image-title{
+  font-size: 32px;
+  font-weight: 700;
+  color:white;
+  line-height: 1.2;
+}
+
+.auth-page__image-subtitle{
+  font-size: 24px;
+  color: white;
+  line-height: 1.1;
+  font-weight: 300;
+
+}
+
+.auth-page__form-section{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-page__form-container{
+  padding:80px;
+  width: 100%;
+  height: 100%;
+  diplay:flex;
+  justify-content:center;
+  align-items:center;
+
+}
+
+.auth-page__welcome{
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111827;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-page__toggle{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F7FAFC;
+  border-radius:50px;
+  position:relative;
+  overflow: hidden;
+}
+
+.auth-page__toggle-slider{
+  position:absolute;
+  top:4px;
+  left:4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background-color: #72E0D4;
+  border-radius: 46px;
+  z-index:1;
+  transform: translateX(- 100% );
+  transition: all 0.3s ease;
+}
+
+.auth-page__toggle-btn{
+
+  width: 50%;
+  height: 100%;
+  color:#98A1B0;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-page__toggle-slider--register{
+  transform: translateX(100%);
+}
+
+.auth-page__toggle-btn--active{
+  color:white
+}
+
+.auth-page__description{
+  color:#98A1B0;
+  font-size: 16px;
+  margin-top: 16px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.auth-page__form{
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.auth-page__field{
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.auth-page__label{
+  color:#2d3748;
+  font-style: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.auth-page__input{
+  width: 100%;
+  padding: 12px 16px;
+  border:1px solid #e2e8f0;
+  border-radius: 16px;
+  font-style: 16px;
+  margin-bottom: 4px;
+  transition:all 0.3 ease;
+  background-color: white;
+}
+
+.auth-page__input:focus{
+  border-color: #4fd1c7;
+  outline:none;
+}
+
+.auth-page__password-wrapper{
+  position: relative;
+}
+.auth-page__password-toggle{
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  background:none;
+  border:none;
+  font-size:18px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  ;
+
+}
+
+.auth-page__terms{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin-top: 16px;
+}
+
+.auth-page__options{
+  display: flex;
+  justify-content: space-between;
+  margin-top:16px;
+  color: #718096;
+}
+
+.auth-page__checkbox{
+  display: flex;
+  align-items: center;
+  cursor:pointer;
+  font-style: 14px;
+  color:black
+}
+
+.auth-page__checkbox input[type="checkbox"]{
+margin-right: 8px;
+  display: block;
+}
+
+.auth-page__submit-btn{
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #4fd1c7;
+  border-radius: 12px;
+  color: white;
+  font-style: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.auth-page__forgot-link{
+
+  color:#4fd1c7;
+  font-style: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.auth-page__submit-btn:hover{
+  transform: translatey(-1px);
+
+}
+
+.auth-page__field--visible{
+  opacity: 0;
+  max-height: 0;
+    transition: all 0.3s ease;
+    transform: translateY(-10px);
+}
+
+.auth-page__options--visible{
+  opacity:0;
+  transition: all 0.3s ease ;
+  max-height: 0;
+}
+
+.auth-page__field {
+  transition: all 0.6s ease;
+  width: 100%;
+  margin-bottom: 16px;
+  opacity: 1;
+  max-height: 150px; 
+}
+
+.auth-page__field--visible {
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.6s ease;
+} */
+
+/* việc thực hiện chuyển động mượt mà phải là từ opacity: 1 -> 0 , có transition , quan trọng ko được dùng display:none vì nó không áp dụng hiệu ứng vào , có max-height -> ảnh hưởng thời gian chuyển động */

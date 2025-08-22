@@ -251,11 +251,7 @@ CREATE TABLE word_learning_progress (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
     FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
-    INDEX idx_user_topic (user_id, topic_id),
-    INDEX idx_user_word (user_id, word_id),
-    INDEX idx_user_userword (user_id, user_word_id),
-    INDEX idx_learned_status (user_id, is_marked_as_learned)
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- BẢNG FAVORITE_TOPICS
@@ -356,11 +352,11 @@ CREATE TABLE batch_imports (
     FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- BẢNG IMPORT_DETAILS
+-- BẢNG IMPORT_DETAILS (Sửa lỗi row_number)
 CREATE TABLE import_details (
     detail_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chi tiết',
     import_id VARCHAR(20) NOT NULL COMMENT 'Thuộc import nào',
-    row_number INT COMMENT 'Số thứ tự dòng trong file',
+    row_num INT COMMENT 'Số thứ tự dòng trong file',
     word VARCHAR(255) COMMENT 'Từ tiếng Anh',
     meaning_vi TEXT COMMENT 'Nghĩa tiếng Việt',
     part_of_speech VARCHAR(50) COMMENT 'Loại từ',
@@ -412,8 +408,7 @@ CREATE TABLE study_notifications (
     read_at DATETIME COMMENT 'Thời gian đọc',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian tạo',
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL,
-    INDEX idx_user_read (user_id, is_read)
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 -- BẢNG LEARNING_ACHIEVEMENTS
@@ -432,8 +427,8 @@ CREATE TABLE learning_achievements (
 ) ENGINE=InnoDB;
 
 -- =============================================
-// INSERT DỮ LIỆU MẪU
-// =============================================
+-- INSERT DỮ LIỆU MẪU
+-- =============================================
 
 -- INSERT USERS
 INSERT INTO users (user_id, username, password_hash, email, full_name, phone_number, status, email_verified) VALUES
@@ -551,4 +546,221 @@ INSERT INTO words (word_id, topic_id, word, part_of_speech, pronunciation, meani
 ('WORD_014', 'TOPIC_003', 'assume', 'verb', '/əˈsjuːm/', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', 'system', 'USER_001'),
 ('WORD_015', 'TOPIC_003', 'distinct', 'adjective', '/dɪˈstɪŋkt/', 'riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', 'system', 'USER_001'),
 ('WORD_016', 'TOPIC_003', 'estimate', 'verb', '/ˈestɪmeɪt/', 'ước tính', 'We estimate the cost.', 'Chúng tôi ước tính chi phí.', 'system', 'USER_001'),
-('WORD_017', 'TOPIC_003', 'interpr
+('WORD_017', 'TOPIC_003', 'interpret', 'verb', '/ɪnˈtɜːprɪt/', 'diễn giải', 'Interpret the chart.', 'Diễn giải biểu đồ.', 'system', 'USER_001'),
+-- Topic 3: TOEFL (tiếp)
+('WORD_018', 'TOPIC_003', 'predict', 'verb', '/prɪˈdɪkt/', 'dự đoán', 'Predict the trend.', 'Dự đoán xu hướng.', 'system', 'USER_001'),
+
+-- Topic 4: IELTS
+('WORD_019', 'TOPIC_004', 'coherent', 'adjective', '/kəʊˈhɪərənt/', 'mạch lạc', 'A coherent essay.', 'Bài luận mạch lạc.', 'system', 'USER_002'),
+('WORD_020', 'TOPIC_004', 'derive', 'verb', '/dɪˈraɪv/', 'bắt nguồn', 'This word derives from Latin.', 'Từ này bắt nguồn từ tiếng Latin.', 'system', 'USER_002'),
+('WORD_021', 'TOPIC_004', 'fluctuate', 'verb', '/ˈflʌktʃueɪt/', 'dao động', 'Prices fluctuate daily.', 'Giá dao động hằng ngày.', 'system', 'USER_002'),
+('WORD_022', 'TOPIC_004', 'perspective', 'noun', '/pəˈspektɪv/', 'quan điểm', 'From my perspective...', 'Từ quan điểm của tôi...', 'system', 'USER_002'),
+('WORD_023', 'TOPIC_004', 'subsequent', 'adjective', '/ˈsʌbsɪkwənt/', 'tiếp theo', 'Subsequent changes occurred.', 'Những thay đổi tiếp theo đã xảy ra.', 'system', 'USER_002'),
+('WORD_024', 'TOPIC_004', 'viable', 'adjective', '/ˈvaɪəbl/', 'khả thi', 'A viable solution.', 'Giải pháp khả thi.', 'system', 'USER_002');
+
+-- INSERT USER_WORDS (Personal words)
+INSERT INTO user_words (user_word_id, user_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, notes) VALUES
+-- User 3's business words
+('UWORD_001', 'USER_003', 'TOPIC_005', 'revenue', 'noun', '/ˈrevənjuː/', 'doanh thu', 'The company revenue increased by 20%.', 'Doanh thu công ty tăng 20%.', 'Từ kinh doanh quan trọng'),
+('UWORD_002', 'USER_003', 'TOPIC_005', 'profit', 'noun', '/ˈprɒfɪt/', 'lợi nhuận', 'We made a good profit this quarter.', 'Chúng ta có lợi nhuận tốt quý này.', 'Mục tiêu kinh doanh'),
+('UWORD_003', 'USER_003', 'TOPIC_005', 'strategy', 'noun', '/ˈstrætədʒi/', 'chiến lược', 'Our marketing strategy is working well.', 'Chiến lược marketing của chúng ta đang hoạt động tốt.', 'Kế hoạch dài hạn'),
+
+-- User 4's travel words
+('UWORD_004', 'USER_004', 'TOPIC_006', 'itinerary', 'noun', '/aɪˈtɪnərəri/', 'lịch trình', 'Check the itinerary before departure.', 'Kiểm tra lịch trình trước khi khởi hành.', 'Kế hoạch du lịch'),
+('UWORD_005', 'USER_004', 'TOPIC_006', 'souvenir', 'noun', '/ˌsuːvəˈnɪə/', 'quà lưu niệm', 'Buy a souvenir for your family.', 'Mua quà lưu niệm cho gia đình.', 'Kỷ niệm chuyến đi');
+
+-- INSERT FAVORITE_TOPICS
+INSERT INTO favorite_topics (favorite_id, user_id, topic_id) VALUES
+('FAV_001', 'USER_003', 'TOPIC_001'),
+('FAV_002', 'USER_003', 'TOPIC_002'),
+('FAV_003', 'USER_003', 'TOPIC_003'),
+('FAV_004', 'USER_004', 'TOPIC_004'),
+('FAV_005', 'USER_004', 'TOPIC_001');
+
+-- INSERT WORD_LEARNING_PROGRESS
+INSERT INTO word_learning_progress (progress_id, user_id, word_id, topic_id, learning_status, mastery_level, is_marked_as_learned, marked_at, review_count, correct_answers, total_attempts) VALUES
+-- User 3's progress on system words
+('PROG_001', 'USER_003', 'WORD_001', 'TOPIC_001', 'mastered', 5, TRUE, NOW(), 3, 5, 5),
+('PROG_002', 'USER_003', 'WORD_002', 'TOPIC_001', 'learning', 3, FALSE, NULL, 2, 3, 5),
+('PROG_003', 'USER_003', 'WORD_003', 'TOPIC_001', 'mastered', 5, TRUE, NOW(), 4, 6, 6),
+('PROG_004', 'USER_003', 'WORD_007', 'TOPIC_002', 'learning', 2, FALSE, NULL, 1, 2, 3),
+('PROG_005', 'USER_003', 'WORD_008', 'TOPIC_002', 'not_started', 0, FALSE, NULL, 0, 0, 0),
+
+-- User 4's progress on system words
+('PROG_006', 'USER_004', 'WORD_019', 'TOPIC_004', 'mastered', 5, TRUE, NOW(), 3, 4, 4),
+('PROG_007', 'USER_004', 'WORD_020', 'TOPIC_004', 'learning', 3, FALSE, NULL, 2, 3, 4),
+('PROG_008', 'USER_004', 'WORD_021', 'TOPIC_004', 'not_started', 0, FALSE, NULL, 0, 0, 0);
+
+-- INSERT WORD_LEARNING_PROGRESS for user words
+INSERT INTO word_learning_progress (progress_id, user_id, user_word_id, topic_id, learning_status, mastery_level, is_marked_as_learned, marked_at, review_count, correct_answers, total_attempts) VALUES
+-- User 3's progress on personal words
+('PROG_009', 'USER_003', 'UWORD_001', 'TOPIC_005', 'mastered', 5, TRUE, NOW(), 2, 3, 3),
+('PROG_010', 'USER_003', 'UWORD_002', 'TOPIC_005', 'learning', 2, FALSE, NULL, 1, 1, 2),
+('PROG_011', 'USER_003', 'UWORD_003', 'TOPIC_005', 'not_started', 0, FALSE, NULL, 0, 0, 0),
+
+-- User 4's progress on personal words
+('PROG_012', 'USER_004', 'UWORD_004', 'TOPIC_006', 'mastered', 5, TRUE, NOW(), 2, 2, 2),
+('PROG_013', 'USER_004', 'UWORD_005', 'TOPIC_006', 'learning', 1, FALSE, NULL, 1, 1, 2);
+
+-- INSERT STUDY_SESSIONS
+INSERT INTO study_sessions (session_id, user_id, topic_id, session_type, started_at, ended_at, total_words, learned_words, session_duration, is_completed) VALUES
+('SESS_001', 'USER_003', 'TOPIC_001', 'flashcard', NOW() - INTERVAL 2 HOUR, NOW() - INTERVAL 1 HOUR, 6, 2, 3600, TRUE),
+('SESS_002', 'USER_003', 'TOPIC_002', 'list_view', NOW() - INTERVAL 1 HOUR, NOW() - INTERVAL 30 MINUTE, 6, 0, 1800, TRUE),
+('SESS_003', 'USER_004', 'TOPIC_004', 'flashcard', NOW() - INTERVAL 30 MINUTE, NOW() - INTERVAL 15 MINUTE, 6, 1, 900, TRUE),
+('SESS_004', 'USER_003', 'TOPIC_005', 'flashcard', NOW() - INTERVAL 15 MINUTE, NULL, 3, 1, 900, FALSE);
+
+-- INSERT SESSION_DETAILS
+INSERT INTO session_details (detail_id, session_id, word_id, action_type, action_time, time_spent, is_correct) VALUES
+-- Session 1 details
+('DET_001', 'SESS_001', 'WORD_001', 'view', NOW() - INTERVAL 2 HOUR, 30, NULL),
+('DET_002', 'SESS_001', 'WORD_001', 'flip', NOW() - INTERVAL 2 HOUR + INTERVAL 30 SECOND, 15, NULL),
+('DET_003', 'SESS_001', 'WORD_001', 'mark_learned', NOW() - INTERVAL 2 HOUR + INTERVAL 45 SECOND, 0, NULL),
+('DET_004', 'SESS_001', 'WORD_002', 'view', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE, 25, NULL),
+('DET_005', 'SESS_001', 'WORD_002', 'flip', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE + INTERVAL 25 SECOND, 20, NULL),
+('DET_006', 'SESS_001', 'WORD_002', 'skip', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE + INTERVAL 45 SECOND, 0, NULL),
+
+-- Session 2 details
+('DET_007', 'SESS_002', 'WORD_007', 'view', NOW() - INTERVAL 1 HOUR, 45, NULL),
+('DET_008', 'SESS_002', 'WORD_008', 'view', NOW() - INTERVAL 1 HOUR + INTERVAL 1 MINUTE, 30, NULL),
+
+-- Session 3 details
+('DET_009', 'SESS_003', 'WORD_019', 'view', NOW() - INTERVAL 30 MINUTE, 20, NULL),
+('DET_010', 'SESS_003', 'WORD_019', 'flip', NOW() - INTERVAL 30 MINUTE + INTERVAL 20 SECOND, 15, NULL),
+('DET_011', 'SESS_003', 'WORD_019', 'mark_learned', NOW() - INTERVAL 30 MINUTE + INTERVAL 35 SECOND, 0, NULL);
+
+-- INSERT SESSION_DETAILS for user words
+INSERT INTO session_details (detail_id, session_id, user_word_id, action_type, action_time, time_spent, is_correct) VALUES
+-- Session 4 details (user words)
+('DET_012', 'SESS_004', 'UWORD_001', 'view', NOW() - INTERVAL 15 MINUTE, 25, NULL),
+('DET_013', 'SESS_004', 'UWORD_001', 'flip', NOW() - INTERVAL 15 MINUTE + INTERVAL 25 SECOND, 20, NULL),
+('DET_014', 'SESS_004', 'UWORD_001', 'mark_learned', NOW() - INTERVAL 15 MINUTE + INTERVAL 45 SECOND, 0, NULL),
+('DET_015', 'SESS_004', 'UWORD_002', 'view', NOW() - INTERVAL 15 MINUTE + INTERVAL 1 MINUTE, 30, NULL);
+
+-- INSERT WORD_STUDY_HISTORY
+INSERT INTO word_study_history (history_id, user_id, word_id, topic_id, action_type, action_time, session_id, mastery_level_before, mastery_level_after) VALUES
+('HIST_001', 'USER_003', 'WORD_001', 'TOPIC_001', 'start_learning', NOW() - INTERVAL 2 HOUR, 'SESS_001', 0, 1),
+('HIST_002', 'USER_003', 'WORD_001', 'TOPIC_001', 'mark_learned', NOW() - INTERVAL 2 HOUR + INTERVAL 45 SECOND, 'SESS_001', 3, 5),
+('HIST_003', 'USER_003', 'WORD_002', 'TOPIC_001', 'start_learning', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE, 'SESS_001', 0, 1),
+('HIST_004', 'USER_004', 'WORD_019', 'TOPIC_004', 'start_learning', NOW() - INTERVAL 30 MINUTE, 'SESS_003', 0, 1),
+('HIST_005', 'USER_004', 'WORD_019', 'TOPIC_004', 'mark_learned', NOW() - INTERVAL 30 MINUTE + INTERVAL 35 SECOND, 'SESS_003', 3, 5);
+
+-- INSERT WORD_STUDY_HISTORY for user words
+INSERT INTO word_study_history (history_id, user_id, user_word_id, topic_id, action_type, action_time, session_id, mastery_level_before, mastery_level_after) VALUES
+('HIST_006', 'USER_003', 'UWORD_001', 'TOPIC_005', 'start_learning', NOW() - INTERVAL 15 MINUTE, 'SESS_004', 0, 1),
+('HIST_007', 'USER_003', 'UWORD_001', 'TOPIC_005', 'mark_learned', NOW() - INTERVAL 15 MINUTE + INTERVAL 45 SECOND, 'SESS_004', 3, 5);
+
+-- INSERT LEARNING_STATISTICS
+INSERT INTO learning_statistics (stat_id, user_id, topic_id, date, total_words, learned_words, study_time, sessions_count, accuracy_rate, words_marked_learned, words_unmarked) VALUES
+('STAT_001', 'USER_003', 'TOPIC_001', CURDATE(), 6, 2, 60, 1, 85.50, 2, 0),
+('STAT_002', 'USER_003', 'TOPIC_002', CURDATE(), 6, 0, 30, 1, 0.00, 0, 0),
+('STAT_003', 'USER_004', 'TOPIC_004', CURDATE(), 6, 1, 15, 1, 90.00, 1, 0),
+('STAT_004', 'USER_003', 'TOPIC_005', CURDATE(), 3, 1, 15, 1, 100.00, 1, 0);
+
+-- INSERT STUDY_MODES
+INSERT INTO study_modes (mode_id, mode_name, description) VALUES
+('MODE_001', 'flashcard', 'Học bằng thẻ flashcard hai mặt'),
+('MODE_002', 'list_view', 'Xem danh sách từ truyền thống'),
+('MODE_003', 'quiz', 'Làm bài tập trắc nghiệm'),
+('MODE_004', 'review', 'Ôn tập từ đã học');
+
+-- INSERT STUDY_SETTINGS
+INSERT INTO study_settings (setting_id, user_id, topic_id, auto_mark_learned, auto_mark_threshold, show_learned_words, review_interval) VALUES
+('SETT_001', 'USER_003', 'TOPIC_001', TRUE, 3, FALSE, 7),
+('SETT_002', 'USER_003', 'TOPIC_002', FALSE, 5, TRUE, 14),
+('SETT_003', 'USER_004', 'TOPIC_004', TRUE, 4, FALSE, 7),
+('SETT_004', 'USER_003', 'TOPIC_005', TRUE, 2, FALSE, 3);
+
+-- INSERT STUDY_NOTIFICATIONS
+INSERT INTO study_notifications (notification_id, user_id, topic_id, notification_type, title, message, is_read) VALUES
+('NOTIF_001', 'USER_003', 'TOPIC_001', 'review_reminder', 'Nhắc nhở ôn tập', 'Bạn có 5 từ cần ôn tập trong chủ đề "Từ vựng tiếng Anh văn phòng"', FALSE),
+('NOTIF_002', 'USER_003', 'TOPIC_002', 'achievement', 'Thành tích mới', 'Chúc mừng! Bạn đã hoàn thành 50% chủ đề "Tiếng Anh giao tiếp cơ bản"', FALSE),
+('NOTIF_003', 'USER_004', 'TOPIC_004', 'streak_reminder', 'Duy trì chuỗi học', 'Bạn đã học liên tiếp 3 ngày. Hãy tiếp tục duy trì!', TRUE);
+
+-- INSERT LEARNING_ACHIEVEMENTS
+INSERT INTO learning_achievements (achievement_id, user_id, topic_id, achievement_type, achievement_name, description, value, earned_at) VALUES
+('ACH_001', 'USER_003', 'TOPIC_001', 'first_word', 'Bước đầu tiên', 'Học từ đầu tiên trong chủ đề', 1, NOW() - INTERVAL 2 HOUR),
+('ACH_002', 'USER_003', 'TOPIC_001', 'word_streak', 'Chuỗi học tập', 'Học liên tiếp 3 từ đúng', 3, NOW() - INTERVAL 1 HOUR),
+('ACH_003', 'USER_004', 'TOPIC_004', 'perfect_score', 'Hoàn hảo', 'Trả lời đúng 100% trong một phiên học', 100, NOW() - INTERVAL 30 MINUTE),
+('ACH_004', 'USER_003', 'TOPIC_005', 'topic_completed', 'Hoàn thành chủ đề', 'Học xong tất cả từ trong chủ đề cá nhân', 3, NOW() - INTERVAL 15 MINUTE);
+
+-- INSERT BATCH_IMPORTS
+INSERT INTO batch_imports (import_id, user_id, topic_id, import_name, total_words, success_count, error_count, import_status, started_at, completed_at) VALUES
+('IMPORT_001', 'USER_003', 'TOPIC_005', 'business_vocabulary.xlsx', 10, 8, 2, 'completed', NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY + INTERVAL 5 MINUTE),
+('IMPORT_002', 'USER_004', 'TOPIC_006', 'travel_words.csv', 5, 5, 0, 'completed', NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY + INTERVAL 2 MINUTE);
+
+-- INSERT IMPORT_DETAILS
+INSERT INTO import_details (detail_id, import_id, row_num, word, meaning_vi, part_of_speech, import_status, created_word_id) VALUES
+-- Import 1 details
+('IMP_DET_001', 'IMPORT_001', 1, 'revenue', 'doanh thu', 'noun', 'success', 'UWORD_001'),
+('IMP_DET_002', 'IMPORT_001', 2, 'profit', 'lợi nhuận', 'noun', 'success', 'UWORD_002'),
+('IMP_DET_003', 'IMPORT_001', 3, 'strategy', 'chiến lược', 'noun', 'success', 'UWORD_003'),
+('IMP_DET_004', 'IMPORT_001', 4, 'invalid_word', '', '', 'error', NULL),
+('IMP_DET_005', 'IMPORT_001', 5, 'another_invalid', '', '', 'error', NULL),
+
+-- Import 2 details
+('IMP_DET_006', 'IMPORT_002', 1, 'itinerary', 'lịch trình', 'noun', 'success', 'UWORD_004'),
+('IMP_DET_007', 'IMPORT_002', 2, 'souvenir', 'quà lưu niệm', 'noun', 'success', 'UWORD_005');
+
+-- INSERT REFRESH_TOKENS
+INSERT INTO refresh_tokens (token_id, user_id, token_hash, device_info, ip_address, user_agent, expires_at) VALUES
+('TOKEN_001', 'USER_003', '$2b$10$hashed_refresh_token_1', '{"browser": "Chrome", "os": "Windows 10"}', '192.168.1.100', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() + INTERVAL 7 DAY),
+('TOKEN_002', 'USER_004', '$2b$10$hashed_refresh_token_2', '{"browser": "Firefox", "os": "macOS"}', '192.168.1.101', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36', NOW() + INTERVAL 7 DAY);
+
+-- INSERT LOGIN_HISTORY
+INSERT INTO login_history (login_id, user_id, login_time, ip_address, user_agent, login_status, session_duration) VALUES
+('LOGIN_001', 'USER_003', NOW() - INTERVAL 2 HOUR, '192.168.1.100', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', 'success', 3600),
+('LOGIN_002', 'USER_004', NOW() - INTERVAL 30 MINUTE, '192.168.1.101', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36', 'success', 1800),
+('LOGIN_003', 'USER_003', NOW() - INTERVAL 1 DAY, '192.168.1.100', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', 'success', 7200);
+
+-- INSERT EMAIL_VERIFICATIONS
+INSERT INTO email_verifications (verification_id, user_id, email, verification_token, is_verified, verified_at, expires_at) VALUES
+('VERIFY_001', 'USER_003', 'student1@example.com', 'verification_token_123', TRUE, NOW() - INTERVAL 1 DAY, NOW() + INTERVAL 23 DAY),
+('VERIFY_002', 'USER_004', 'student2@example.com', 'verification_token_456', TRUE, NOW() - INTERVAL 2 DAY, NOW() + INTERVAL 22 DAY);
+
+-- INSERT OTP_CODES
+INSERT INTO otp_codes (otp_id, user_id, email, otp_code, otp_type, expires_at) VALUES
+('OTP_001', 'USER_003', 'student1@example.com', '123456', 'email_verification', NOW() + INTERVAL 10 MINUTE),
+('OTP_002', 'USER_004', 'student2@example.com', '654321', 'password_reset', NOW() + INTERVAL 10 MINUTE);
+
+-- INSERT PASSWORD_RESET_TOKENS
+INSERT INTO password_reset_tokens (reset_id, user_id, reset_token, expires_at) VALUES
+('RESET_001', 'USER_003', 'reset_token_123', NOW() + INTERVAL 1 HOUR),
+('RESET_002', 'USER_004', 'reset_token_456', NOW() + INTERVAL 1 HOUR);
+
+-- =============================================
+-- CẬP NHẬT SỐ LƯỢNG TỪ TRONG TOPICS
+-- =============================================
+UPDATE topics SET word_count = (
+    SELECT COUNT(*) FROM words WHERE words.topic_id = topics.topic_id
+) WHERE topic_type = 'system';
+
+UPDATE topics SET word_count = (
+    SELECT COUNT(*) FROM user_words WHERE user_words.topic_id = topics.topic_id
+) WHERE topic_type = 'user_created';
+
+-- =============================================
+-- TẠO INDEXES CƠ BẢN CHO PERFORMANCE
+-- =============================================
+CREATE INDEX idx_words_topic ON words(topic_id);
+CREATE INDEX idx_user_words_topic ON user_words(topic_id);
+CREATE INDEX idx_user_words_user ON user_words(user_id);
+CREATE INDEX idx_progress_user_topic ON word_learning_progress(user_id, topic_id);
+CREATE INDEX idx_sessions_user_topic ON study_sessions(user_id, topic_id);
+CREATE INDEX idx_history_user_topic ON word_study_history(user_id, topic_id);
+CREATE INDEX idx_notifications_user_read ON study_notifications(user_id, is_read);
+CREATE INDEX idx_achievements_user ON learning_achievements(user_id);
+CREATE INDEX idx_statistics_user_date ON learning_statistics(user_id, date);
+
+-- =============================================
+-- HOÀN THÀNH
+-- =============================================
+SELECT 'Database e_learnning2 đã được tạo thành công!' as message;
+SELECT COUNT(*) as total_users FROM users;
+SELECT COUNT(*) as total_topics FROM topics;
+SELECT COUNT(*) as total_words FROM words;
+SELECT COUNT(*) as total_user_words FROM user_words;
+
+
+
+// có lỗi một chút nhưng ko sao
+03:32:37	CREATE TABLE import_details (     detail_id VARCHAR(20) PRIMARY KEY COMMENT 'Khóa chính - ID chi tiết',     import_id VARCHAR(20) NOT NULL COMMENT 'Thuộc import nào',     row_number INT COMMENT 'Số thứ tự dòng trong file',     word VARCHAR(255) COMMENT 'Từ tiếng Anh',     meaning_vi TEXT COMMENT 'Nghĩa tiếng Việt',     part_of_speech VARCHAR(50) COMMENT 'Loại từ',     pronunciation VARCHAR(255) COMMENT 'Phiên âm',     example_en TEXT COMMENT 'Ví dụ tiếng Anh',     example_vi TEXT COMMENT 'Ví dụ tiếng Việt',     notes TEXT COMMENT 'Ghi chú',     import_status ENUM('pending', 'success', 'error') DEFAULT 'pending' COMMENT 'Trạng thái import từng từ',     error_message TEXT COMMENT 'Thông báo lỗi nếu có',     created_word_id VARCHAR(20) COMMENT 'ID từ được tạo thành công',     FOREIGN KEY (import_id) REFERENCES batch_imports(import_id) ON DELETE CASCADE,     FOREIGN KEY (created_word_id) REFERENCES user_words(user_word_id) ON DELETE SET NULL ) ENGINE=InnoDB	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'row_number INT COMMENT 'Số thứ tự dòng trong file',     word VARCHAR(255)' at line 4	0.000 sec

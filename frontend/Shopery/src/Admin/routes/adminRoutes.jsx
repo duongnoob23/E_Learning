@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from "../../routes/PrivateRoute";
 
 // Auth Pages
-import Login from "../../common/pages/Auth/Login/Login";
+import Login from "../../Admin/pages/Auth/Login/AdminLogin";
 
 // Admin Layout
 import Sidebar from "../components/layout/Sidebar/Sidebar";
@@ -35,8 +35,7 @@ const AdminRoutes = () => {
   return (
     <Routes>
       {/* Public Admin Routes */}
-      <Route path="/login" element={<Login isAdmin={true} />} />
-      <Route path="/register" element={<Login isAdmin={true} />} />
+      <Route path="/login" element={<Login />} />
 
       {/* Protected Admin Routes */}
       <Route
@@ -58,3 +57,5 @@ const AdminRoutes = () => {
 };
 
 export default AdminRoutes;
+
+// check lại phần route của admin routes

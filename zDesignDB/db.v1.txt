@@ -1,623 +1,623 @@
--- =============================================
--- TẠO DATABASE VÀ SỬ DỤNG
--- =============================================
-CREATE DATABASE IF NOT EXISTS e_learnning CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE e_learnning;
+  -- =============================================
+  -- TẠO DATABASE VÀ SỬ DỤNG
+  -- =============================================
+  CREATE DATABASE IF NOT EXISTS e_learnning CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+  USE e_learnning;
 
 
--- =============================================
--- XÓA TOÀN BỘ BẢNG CŨ (THEO THỨ TỰ KHÓA NGOẠI)
--- =============================================
-SET FOREIGN_KEY_CHECKS = 0;
+  -- =============================================
+  -- XÓA TOÀN BỘ BẢNG CŨ (THEO THỨ TỰ KHÓA NGOẠI)
+  -- =============================================
+  SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS exercise_results;
-DROP TABLE IF EXISTS exercise_questions;
-DROP TABLE IF EXISTS exercises;
-DROP TABLE IF EXISTS exercise_types;
+  DROP TABLE IF EXISTS exercise_results;
+  DROP TABLE IF EXISTS exercise_questions;
+  DROP TABLE IF EXISTS exercises;
+  DROP TABLE IF EXISTS exercise_types;
 
-DROP TABLE IF EXISTS favorite_topics;
-DROP TABLE IF EXISTS user_word_progress;
-DROP TABLE IF EXISTS user_words;
-DROP TABLE IF EXISTS words;
-DROP TABLE IF EXISTS topics;
+  DROP TABLE IF EXISTS favorite_topics;
+  DROP TABLE IF EXISTS user_word_progress;
+  DROP TABLE IF EXISTS user_words;
+  DROP TABLE IF EXISTS words;
+  DROP TABLE IF EXISTS topics;
 
-DROP TABLE IF EXISTS role_permissions;
-DROP TABLE IF EXISTS permissions;
-DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS users;
+  DROP TABLE IF EXISTS role_permissions;
+  DROP TABLE IF EXISTS permissions;
+  DROP TABLE IF EXISTS user_roles;
+  DROP TABLE IF EXISTS roles;
+  DROP TABLE IF EXISTS users;
 
-SET FOREIGN_KEY_CHECKS = 1;
+  SET FOREIGN_KEY_CHECKS = 1;
 
--- =============================================
--- TẠO BẢNG MỚI (CẤU TRÚC VOCABULARY APP)
--- =============================================
+  -- =============================================
+  -- TẠO BẢNG MỚI (CẤU TRÚC VOCABULARY APP)
+  -- =============================================
 
--- BẢNG USERS
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID người dùng',
-    username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên đăng nhập',
-    password_hash VARCHAR(255) NOT NULL COMMENT 'Mật khẩu đã mã hóa',
-    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email duy nhất',
-    full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
-    phone_number VARCHAR(20) COMMENT 'Số điện thoại',
-    avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
-    status VARCHAR(20) COMMENT 'Trạng thái: active, inactive, banned',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
-) ENGINE=InnoDB;
+  -- BẢNG USERS
+  CREATE TABLE users (
+      user_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID người dùng',
+      username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên đăng nhập',
+      password_hash VARCHAR(255) NOT NULL COMMENT 'Mật khẩu đã mã hóa',
+      email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email duy nhất',
+      full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
+      phone_number VARCHAR(20) COMMENT 'Số điện thoại',
+      avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
+      status VARCHAR(20) COMMENT 'Trạng thái: active, inactive, banned',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
+  ) ENGINE=InnoDB;
 
--- BẢNG ROLES
-CREATE TABLE roles (
-    role_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID vai trò',
-    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Student, Teacher, Admin...',
-    description TEXT COMMENT 'Mô tả quyền hạn của vai trò'
-) ENGINE=InnoDB;
+  -- BẢNG ROLES
+  CREATE TABLE roles (
+      role_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID vai trò',
+      role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Student, Teacher, Admin...',
+      description TEXT COMMENT 'Mô tả quyền hạn của vai trò'
+  ) ENGINE=InnoDB;
 
--- BẢNG USER_ROLES
-CREATE TABLE user_roles (
-    user_id INT,
-    role_id INT,
-    assigned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm gán vai trò',
-    PRIMARY KEY (user_id, role_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG USER_ROLES
+  CREATE TABLE user_roles (
+      user_id INT,
+      role_id INT,
+      assigned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm gán vai trò',
+      PRIMARY KEY (user_id, role_id),
+      FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG PERMISSIONS
-CREATE TABLE permissions (
-    permission_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID quyền',
-    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: view_course, edit_course...',
-    description TEXT COMMENT 'Mô tả hành động'
-) ENGINE=InnoDB;
+  -- BẢNG PERMISSIONS
+  CREATE TABLE permissions (
+      permission_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID quyền',
+      permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: view_course, edit_course...',
+      description TEXT COMMENT 'Mô tả hành động'
+  ) ENGINE=InnoDB;
 
--- BẢNG ROLE_PERMISSIONS
-CREATE TABLE role_permissions (
-    role_id INT,
-    permission_id INT,
-    PRIMARY KEY (role_id, permission_id),
-    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
-    FOREIGN KEY (permission_id) REFERENCES permissions(permission_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG ROLE_PERMISSIONS
+  CREATE TABLE role_permissions (
+      role_id INT,
+      permission_id INT,
+      PRIMARY KEY (role_id, permission_id),
+      FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+      FOREIGN KEY (permission_id) REFERENCES permissions(permission_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG TOPICS
-CREATE TABLE topics (
-    topic_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID chủ đề',
-    topic_name VARCHAR(255) COMMENT 'Tên chủ đề từ vựng',
-    description TEXT COMMENT 'Mô tả nội dung chủ đề',
-    image_url VARCHAR(255) COMMENT 'Ảnh đại diện cho chủ đề',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo chủ đề',
-    created_by INT COMMENT 'ID người tạo',
-    is_completed BOOLEAN DEFAULT FALSE COMMENT 'Trạng thái hoàn thành',
-    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
-) ENGINE=InnoDB;
+  -- BẢNG TOPICS
+  CREATE TABLE topics (
+      topic_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID chủ đề',
+      topic_name VARCHAR(255) COMMENT 'Tên chủ đề từ vựng',
+      description TEXT COMMENT 'Mô tả nội dung chủ đề',
+      image_url VARCHAR(255) COMMENT 'Ảnh đại diện cho chủ đề',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo chủ đề',
+      created_by INT COMMENT 'ID người tạo',
+      is_completed BOOLEAN DEFAULT FALSE COMMENT 'Trạng thái hoàn thành',
+      FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+  ) ENGINE=InnoDB;
 
--- BẢNG WORDS
-CREATE TABLE words (
-    word_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng',
-    topic_id INT,
-    word VARCHAR(255),
-    part_of_speech VARCHAR(50),
-    pronunciation VARCHAR(255),
-    meaning_vi TEXT,
-    example_en TEXT,
-    example_vi TEXT,
-    image_url VARCHAR(255),
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG WORDS
+  CREATE TABLE words (
+      word_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng',
+      topic_id INT,
+      word VARCHAR(255),
+      part_of_speech VARCHAR(50),
+      pronunciation VARCHAR(255),
+      meaning_vi TEXT,
+      example_en TEXT,
+      example_vi TEXT,
+      image_url VARCHAR(255),
+      FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG USER_WORDS
-CREATE TABLE user_words (
-    user_word_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng của user',
-    topic_id INT,
-    word VARCHAR(255),
-    part_of_speech VARCHAR(50),
-    pronunciation VARCHAR(255),
-    meaning_vi TEXT,
-    example_en TEXT,
-    example_vi TEXT,
-    image_url VARCHAR(255),
-    from_system_word_id INT,
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
-    FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
-) ENGINE=InnoDB;
+  -- BẢNG USER_WORDS
+  CREATE TABLE user_words (
+      user_word_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Khóa chính - ID từ vựng của user',
+      topic_id INT,
+      word VARCHAR(255),
+      part_of_speech VARCHAR(50),
+      pronunciation VARCHAR(255),
+      meaning_vi TEXT,
+      example_en TEXT,
+      example_vi TEXT,
+      image_url VARCHAR(255),
+      from_system_word_id INT,
+      FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+      FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
+  ) ENGINE=InnoDB;
 
--- BẢNG USER_WORD_PROGRESS
-CREATE TABLE user_word_progress (
-    user_id INT,
-    word_id INT,
-    user_word_id INT,
-    is_learned BOOLEAN DEFAULT FALSE,
-    learned_at DATETIME,
-    PRIMARY KEY (user_id, word_id, user_word_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
-    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG USER_WORD_PROGRESS
+  CREATE TABLE user_word_progress (
+      user_id INT,
+      word_id INT,
+      user_word_id INT,
+      is_learned BOOLEAN DEFAULT FALSE,
+      learned_at DATETIME,
+      PRIMARY KEY (user_id, word_id, user_word_id),
+      FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+      FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG FAVORITE_TOPICS
-CREATE TABLE favorite_topics (
-    user_id INT,
-    topic_id INT,
-    added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, topic_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG FAVORITE_TOPICS
+  CREATE TABLE favorite_topics (
+      user_id INT,
+      topic_id INT,
+      added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (user_id, topic_id),
+      FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG EXERCISE_TYPES
-CREATE TABLE exercise_types (
-    exercise_type_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    description TEXT
-) ENGINE=InnoDB;
+  -- BẢNG EXERCISE_TYPES
+  CREATE TABLE exercise_types (
+      exercise_type_id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(255),
+      description TEXT
+  ) ENGINE=InnoDB;
 
--- BẢNG EXERCISES
-CREATE TABLE exercises (
-    exercise_id INT AUTO_INCREMENT PRIMARY KEY,
-    topic_id INT,
-    exercise_type_id INT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
-    FOREIGN KEY (exercise_type_id) REFERENCES exercise_types(exercise_type_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG EXERCISES
+  CREATE TABLE exercises (
+      exercise_id INT AUTO_INCREMENT PRIMARY KEY,
+      topic_id INT,
+      exercise_type_id INT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+      FOREIGN KEY (exercise_type_id) REFERENCES exercise_types(exercise_type_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
--- BẢNG EXERCISE_QUESTIONS
-CREATE TABLE exercise_questions (
-    question_id INT AUTO_INCREMENT PRIMARY KEY,
-    exercise_id INT,
-    question_text TEXT,
-    correct_answer TEXT,
-    options JSON,
-    related_word_id INT,
-    FOREIGN KEY (exercise_id) REFERENCES exercises(exercise_id) ON DELETE CASCADE,
-    FOREIGN KEY (related_word_id) REFERENCES words(word_id) ON DELETE SET NULL
-) ENGINE=InnoDB;
+  -- BẢNG EXERCISE_QUESTIONS
+  CREATE TABLE exercise_questions (
+      question_id INT AUTO_INCREMENT PRIMARY KEY,
+      exercise_id INT,
+      question_text TEXT,
+      correct_answer TEXT,
+      options JSON,
+      related_word_id INT,
+      FOREIGN KEY (exercise_id) REFERENCES exercises(exercise_id) ON DELETE CASCADE,
+      FOREIGN KEY (related_word_id) REFERENCES words(word_id) ON DELETE SET NULL
+  ) ENGINE=InnoDB;
 
--- BẢNG EXERCISE_RESULTS
-CREATE TABLE exercise_results (
-    result_id INT AUTO_INCREMENT PRIMARY KEY,   
-    user_id INT,
-    question_id INT,
-    user_answer TEXT,
-    is_correct BOOLEAN,
-    answered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES exercise_questions(question_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+  -- BẢNG EXERCISE_RESULTS
+  CREATE TABLE exercise_results (
+      result_id INT AUTO_INCREMENT PRIMARY KEY,   
+      user_id INT,
+      question_id INT,
+      user_answer TEXT,
+      is_correct BOOLEAN,
+      answered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (question_id) REFERENCES exercise_questions(question_id) ON DELETE CASCADE
+  ) ENGINE=InnoDB;
 
-////////////////////////////////////////////////////////////////////////////////////
-/////////////////////     INSERT FAKE DATABAE           //////////////////////////// 
-////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////     INSERT FAKE DATABAE           //////////////////////////// 
+  ////////////////////////////////////////////////////////////////////////////////////
 
-/* ===============================
-   RESET DATA (KEEP STRUCTURE)
-   =============================== */
-USE e_learnning;
+  /* ===============================
+    RESET DATA (KEEP STRUCTURE)
+    =============================== */
+  USE e_learnning;
 
-SET FOREIGN_KEY_CHECKS = 0;
+  SET FOREIGN_KEY_CHECKS = 0;
 
-TRUNCATE TABLE exercise_results;
-TRUNCATE TABLE exercise_questions;
-TRUNCATE TABLE exercises;
-TRUNCATE TABLE exercise_types;
-TRUNCATE TABLE favorite_topics;
-TRUNCATE TABLE user_word_progress;
-TRUNCATE TABLE user_words;
-TRUNCATE TABLE words;
-TRUNCATE TABLE topics;
-TRUNCATE TABLE role_permissions;
-TRUNCATE TABLE permissions;
-TRUNCATE TABLE user_roles;
-TRUNCATE TABLE roles;
-TRUNCATE TABLE users;
+  TRUNCATE TABLE exercise_results;
+  TRUNCATE TABLE exercise_questions;
+  TRUNCATE TABLE exercises;
+  TRUNCATE TABLE exercise_types;
+  TRUNCATE TABLE favorite_topics;
+  TRUNCATE TABLE user_word_progress;
+  TRUNCATE TABLE user_words;
+  TRUNCATE TABLE words;
+  TRUNCATE TABLE topics;
+  TRUNCATE TABLE role_permissions;
+  TRUNCATE TABLE permissions;
+  TRUNCATE TABLE user_roles;
+  TRUNCATE TABLE roles;
+  TRUNCATE TABLE users;
 
-SET FOREIGN_KEY_CHECKS = 1;
+  SET FOREIGN_KEY_CHECKS = 1;
 
-/* ===============================
-   USERS (5 ACCOUNTS)
-   =============================== */
-INSERT INTO users
-(user_id, username, password_hash, email, full_name, phone_number, avatar_url, status, created_at, updated_at)
-VALUES
-(1, 'admin1',   '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'admin1@example.com',   'System Admin',  '0900000001', NULL, 'active', NOW(), NOW()),
-(2, 'teacher1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'teacher1@example.com', 'John Teacher',  '0900000002', NULL, 'active', NOW(), NOW()),
-(3, 'student1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student1@example.com', 'Alice Student', '0900000003', NULL, 'active', NOW(), NOW()),
-(4, 'student2', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student2@example.com', 'Bob Learner',   '0900000004', NULL, 'active', NOW(), NOW()),
-(5, 'guest1',   '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'guest1@example.com',   'Guest Viewer',  '0900000005', NULL, 'active', NOW(), NOW());
+  /* ===============================
+    USERS (5 ACCOUNTS)
+    =============================== */
+  INSERT INTO users
+  (user_id, username, password_hash, email, full_name, phone_number, avatar_url, status, created_at, updated_at)
+  VALUES
+  (1, 'admin1',   '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'admin1@example.com',   'System Admin',  '0900000001', NULL, 'active', NOW(), NOW()),
+  (2, 'teacher1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'teacher1@example.com', 'John Teacher',  '0900000002', NULL, 'active', NOW(), NOW()),
+  (3, 'student1', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student1@example.com', 'Alice Student', '0900000003', NULL, 'active', NOW(), NOW()),
+  (4, 'student2', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'student2@example.com', 'Bob Learner',   '0900000004', NULL, 'active', NOW(), NOW()),
+  (5, 'guest1',   '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'guest1@example.com',   'Guest Viewer',  '0900000005', NULL, 'active', NOW(), NOW());
 
-/* ===============================
-   ROLES
-   =============================== */
-INSERT INTO roles (role_id, role_name, description) VALUES
-(1, 'Admin',   'Toàn quyền hệ thống'),
-(2, 'Teacher', 'Quản lý chủ đề, từ vựng, bài tập'),
-(3, 'Student', 'Học và làm bài tập'),
-(4, 'Guest',   'Chỉ đọc nội dung công khai');
+  /* ===============================
+    ROLES
+    =============================== */
+  INSERT INTO roles (role_id, role_name, description) VALUES
+  (1, 'Admin',   'Toàn quyền hệ thống'),
+  (2, 'Teacher', 'Quản lý chủ đề, từ vựng, bài tập'),
+  (3, 'Student', 'Học và làm bài tập'),
+  (4, 'Guest',   'Chỉ đọc nội dung công khai');
 
-/* ===============================
-   PERMISSIONS (Granular, REST-like)
-   =============================== */
-INSERT INTO permissions (permission_id, permission_name, description) VALUES
--- User management
-(1,  '/user/create',       'Tạo người dùng'),
-(2,  '/user/read',         'Xem danh sách / chi tiết người dùng'),
-(3,  '/user/update',       'Cập nhật người dùng'),
-(4,  '/user/delete',       'Xóa người dùng'),
--- Role management
-(5,  '/role/create',       'Tạo vai trò'),
-(6,  '/role/read',         'Xem vai trò'),
-(7,  '/role/update',       'Cập nhật vai trò'),
-(8,  '/role/delete',       'Xóa vai trò'),
-(9,  '/role/assign',       'Gán vai trò cho người dùng'),
--- Permission management
-(10, '/permission/create', 'Tạo quyền'),
-(11, '/permission/read',   'Xem quyền'),
-(12, '/permission/update', 'Cập nhật quyền'),
-(13, '/permission/delete', 'Xóa quyền'),
-(14, '/permission/assign', 'Gán quyền cho vai trò'),
--- Topic
-(15, '/topic/create',      'Tạo chủ đề'),
-(16, '/topic/read',        'Xem chủ đề'),
-(17, '/topic/update',      'Cập nhật chủ đề'),
-(18, '/topic/delete',      'Xóa chủ đề'),
--- Word
-(19, '/word/create',       'Tạo từ vựng'),
-(20, '/word/read',         'Xem từ vựng'),
-(21, '/word/update',       'Cập nhật từ vựng'),
-(22, '/word/delete',       'Xóa từ vựng'),
--- Flashcard (learning)
-(23, '/flashcard/start',   'Bắt đầu học flashcard'),
-(24, '/flashcard/review',  'Ôn tập flashcard'),
-(25, '/flashcard/mark',    'Đánh dấu đã thuộc / loại khỏi ôn tập'),
--- Exercise
-(26, '/exercise/create',   'Tạo bài tập'),
-(27, '/exercise/read',     'Xem bài tập'),
-(28, '/exercise/update',   'Cập nhật bài tập'),
-(29, '/exercise/delete',   'Xóa bài tập'),
-(30, '/exercise/submit',   'Nộp bài làm');
+  /* ===============================
+    PERMISSIONS (Granular, REST-like)
+    =============================== */
+  INSERT INTO permissions (permission_id, permission_name, description) VALUES
+  -- User management
+  (1,  '/user/create',       'Tạo người dùng'),
+  (2,  '/user/read',         'Xem danh sách / chi tiết người dùng'),
+  (3,  '/user/update',       'Cập nhật người dùng'),
+  (4,  '/user/delete',       'Xóa người dùng'),
+  -- Role management
+  (5,  '/role/create',       'Tạo vai trò'),
+  (6,  '/role/read',         'Xem vai trò'),
+  (7,  '/role/update',       'Cập nhật vai trò'),
+  (8,  '/role/delete',       'Xóa vai trò'),
+  (9,  '/role/assign',       'Gán vai trò cho người dùng'),
+  -- Permission management
+  (10, '/permission/create', 'Tạo quyền'),
+  (11, '/permission/read',   'Xem quyền'),
+  (12, '/permission/update', 'Cập nhật quyền'),
+  (13, '/permission/delete', 'Xóa quyền'),
+  (14, '/permission/assign', 'Gán quyền cho vai trò'),
+  -- Topic
+  (15, '/topic/create',      'Tạo chủ đề'),
+  (16, '/topic/read',        'Xem chủ đề'),
+  (17, '/topic/update',      'Cập nhật chủ đề'),
+  (18, '/topic/delete',      'Xóa chủ đề'),
+  -- Word
+  (19, '/word/create',       'Tạo từ vựng'),
+  (20, '/word/read',         'Xem từ vựng'),
+  (21, '/word/update',       'Cập nhật từ vựng'),
+  (22, '/word/delete',       'Xóa từ vựng'),
+  -- Flashcard (learning)
+  (23, '/flashcard/start',   'Bắt đầu học flashcard'),
+  (24, '/flashcard/review',  'Ôn tập flashcard'),
+  (25, '/flashcard/mark',    'Đánh dấu đã thuộc / loại khỏi ôn tập'),
+  -- Exercise
+  (26, '/exercise/create',   'Tạo bài tập'),
+  (27, '/exercise/read',     'Xem bài tập'),
+  (28, '/exercise/update',   'Cập nhật bài tập'),
+  (29, '/exercise/delete',   'Xóa bài tập'),
+  (30, '/exercise/submit',   'Nộp bài làm');
 
-/* ===============================
-   ROLE_PERMISSIONS
-   =============================== */
+  /* ===============================
+    ROLE_PERMISSIONS
+    =============================== */
 
--- Admin: full permissions
-INSERT INTO role_permissions (role_id, permission_id)
-SELECT 1 AS role_id, permission_id FROM permissions;
+  -- Admin: full permissions
+  INSERT INTO role_permissions (role_id, permission_id)
+  SELECT 1 AS role_id, permission_id FROM permissions;
 
--- Teacher: topic/word CRUD, exercise CRUD, xem exercise
-INSERT INTO role_permissions (role_id, permission_id) VALUES
-(2, 15),(2,16),(2,17),(2,18),   -- topic CRUD
-(2, 19),(2,20),(2,21),(2,22),   -- word CRUD
-(2, 26),(2,27),(2,28),(2,29);   -- exercise CRUD + read
+  -- Teacher: topic/word CRUD, exercise CRUD, xem exercise
+  INSERT INTO role_permissions (role_id, permission_id) VALUES
+  (2, 15),(2,16),(2,17),(2,18),   -- topic CRUD
+  (2, 19),(2,20),(2,21),(2,22),   -- word CRUD
+  (2, 26),(2,27),(2,28),(2,29);   -- exercise CRUD + read
 
--- Student: đọc nội dung + học flashcard + nộp bài
-INSERT INTO role_permissions (role_id, permission_id) VALUES
-(3, 16),(3,20),                 -- read topic/word
-(3, 23),(3,24),(3,25),          -- flashcard
-(3, 27),(3, 30);                -- view exercise + submit
+  -- Student: đọc nội dung + học flashcard + nộp bài
+  INSERT INTO role_permissions (role_id, permission_id) VALUES
+  (3, 16),(3,20),                 -- read topic/word
+  (3, 23),(3,24),(3,25),          -- flashcard
+  (3, 27),(3, 30);                -- view exercise + submit
 
--- Guest: chỉ read topic/word
-INSERT INTO role_permissions (role_id, permission_id) VALUES
-(4, 16),(4,20);
+  -- Guest: chỉ read topic/word
+  INSERT INTO role_permissions (role_id, permission_id) VALUES
+  (4, 16),(4,20);
 
--- USER_ROLES mapping
-INSERT INTO user_roles (user_id, role_id, assigned_at) VALUES
-(1,1,NOW()),
-(2,2,NOW()),
-(3,3,NOW()),
-(4,3,NOW()),
-(5,4,NOW());
+  -- USER_ROLES mapping
+  INSERT INTO user_roles (user_id, role_id, assigned_at) VALUES
+  (1,1,NOW()),
+  (2,2,NOW()),
+  (3,3,NOW()),
+  (4,3,NOW()),
+  (5,4,NOW());
 
-/* ===============================
-   TOPICS (8 chủ đề)
-   created_by: teacher1(2) hoặc admin1(1)
-   =============================== */
-INSERT INTO topics
-(topic_id, topic_name, description, image_url, created_at, created_by, is_completed)
-VALUES
-(1, 'Từ vựng tiếng Anh văn phòng', 'Từ vựng dùng trong môi trường công sở', 'https://img.example.com/office.jpg', NOW(), 2, FALSE),
-(2, 'Tiếng Anh giao tiếp cơ bản',  'Câu và từ vựng giao tiếp hằng ngày',     'https://img.example.com/basic-comm.jpg', NOW(), 2, FALSE),
-(3, '900 từ TOEFL (mẫu)',          'Từ vựng thường gặp trong TOEFL',          'https://img.example.com/toefl.jpg', NOW(), 1, FALSE),
-(4, '900 từ IELTS (mẫu)',          'Từ vựng thường gặp trong IELTS',          'https://img.example.com/ielts.jpg', NOW(), 2, FALSE),
-(5, 'SAT Vocabulary (mẫu)',        'Từ vựng SAT chọn lọc',                    'https://img.example.com/sat.jpg', NOW(), 2, FALSE),
-(6, 'GRE-GMAT Vocabulary',         'Từ vựng học thuật nâng cao',              'https://img.example.com/gre.jpg', NOW(), 1, FALSE),
-(7, 'Academic Word List',          'Danh sách từ học thuật',                  'https://img.example.com/awl.jpg', NOW(), 2, FALSE),
-(8, 'Tiếng Anh du lịch',           'Từ vựng khi đi du lịch',                  'https://img.example.com/travel.jpg', NOW(), 2, FALSE);
+  /* ===============================
+    TOPICS (8 chủ đề)
+    created_by: teacher1(2) hoặc admin1(1)
+    =============================== */
+  INSERT INTO topics
+  (topic_id, topic_name, description, image_url, created_at, created_by, is_completed)
+  VALUES
+  (1, 'Từ vựng tiếng Anh văn phòng', 'Từ vựng dùng trong môi trường công sở', 'https://img.example.com/office.jpg', NOW(), 2, FALSE),
+  (2, 'Tiếng Anh giao tiếp cơ bản',  'Câu và từ vựng giao tiếp hằng ngày',     'https://img.example.com/basic-comm.jpg', NOW(), 2, FALSE),
+  (3, '900 từ TOEFL (mẫu)',          'Từ vựng thường gặp trong TOEFL',          'https://img.example.com/toefl.jpg', NOW(), 1, FALSE),
+  (4, '900 từ IELTS (mẫu)',          'Từ vựng thường gặp trong IELTS',          'https://img.example.com/ielts.jpg', NOW(), 2, FALSE),
+  (5, 'SAT Vocabulary (mẫu)',        'Từ vựng SAT chọn lọc',                    'https://img.example.com/sat.jpg', NOW(), 2, FALSE),
+  (6, 'GRE-GMAT Vocabulary',         'Từ vựng học thuật nâng cao',              'https://img.example.com/gre.jpg', NOW(), 1, FALSE),
+  (7, 'Academic Word List',          'Danh sách từ học thuật',                  'https://img.example.com/awl.jpg', NOW(), 2, FALSE),
+  (8, 'Tiếng Anh du lịch',           'Từ vựng khi đi du lịch',                  'https://img.example.com/travel.jpg', NOW(), 2, FALSE);
 
-/* ===============================
-   WORDS (mỗi topic ~6 từ)
-   =============================== */
--- Topic 1: Office
-INSERT INTO words (word_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url) VALUES
-(1, 1, 'absent',   'adjective', '/ˈæbsənt/', 'vắng mặt', 'Most students were absent from school at least once.', 'Hầu hết sinh viên đã vắng mặt ít nhất một lần.', 'https://img.example.com/absent.jpg'),
-(2, 1, 'approve',  'verb',      '/əˈpruːv/', 'chấp thuận', 'The manager approved the budget for Q3.', 'Quản lý đã chấp thuận ngân sách quý 3.', 'https://img.example.com/approve.jpg'),
-(3, 1, 'deadline', 'noun',      '/ˈdedlaɪn/','hạn chót', 'We must meet the project deadline.', 'Chúng ta phải kịp hạn chót dự án.', 'https://img.example.com/deadline.jpg'),
-(4, 1, 'meeting',  'noun',      '/ˈmiːtɪŋ/', 'cuộc họp', 'The weekly meeting is on Monday morning.', 'Cuộc họp hằng tuần vào sáng thứ Hai.', 'https://img.example.com/meeting.jpg'),
-(5, 1, 'bonus',    'noun',      '/ˈbəʊnəs/','tiền thưởng', 'Employees receive a bonus for high performance.', 'Nhân viên nhận thưởng khi hiệu suất cao.', 'https://img.example.com/bonus.jpg'),
-(6, 1, 'resign',   'verb',      '/rɪˈzaɪn/', 'từ chức', 'He decided to resign from his position.', 'Anh ấy quyết định từ chức.', 'https://img.example.com/resign.jpg');
+  /* ===============================
+    WORDS (mỗi topic ~6 từ)
+    =============================== */
+  -- Topic 1: Office
+  INSERT INTO words (word_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url) VALUES
+  (1, 1, 'absent',   'adjective', '/ˈæbsənt/', 'vắng mặt', 'Most students were absent from school at least once.', 'Hầu hết sinh viên đã vắng mặt ít nhất một lần.', 'https://img.example.com/absent.jpg'),
+  (2, 1, 'approve',  'verb',      '/əˈpruːv/', 'chấp thuận', 'The manager approved the budget for Q3.', 'Quản lý đã chấp thuận ngân sách quý 3.', 'https://img.example.com/approve.jpg'),
+  (3, 1, 'deadline', 'noun',      '/ˈdedlaɪn/','hạn chót', 'We must meet the project deadline.', 'Chúng ta phải kịp hạn chót dự án.', 'https://img.example.com/deadline.jpg'),
+  (4, 1, 'meeting',  'noun',      '/ˈmiːtɪŋ/', 'cuộc họp', 'The weekly meeting is on Monday morning.', 'Cuộc họp hằng tuần vào sáng thứ Hai.', 'https://img.example.com/meeting.jpg'),
+  (5, 1, 'bonus',    'noun',      '/ˈbəʊnəs/','tiền thưởng', 'Employees receive a bonus for high performance.', 'Nhân viên nhận thưởng khi hiệu suất cao.', 'https://img.example.com/bonus.jpg'),
+  (6, 1, 'resign',   'verb',      '/rɪˈzaɪn/', 'từ chức', 'He decided to resign from his position.', 'Anh ấy quyết định từ chức.', 'https://img.example.com/resign.jpg');
 
--- Topic 2: Basic Communication
-INSERT INTO words VALUES
-(7,  2, 'greet',    'verb', '/ɡriːt/', 'chào hỏi', 'They greeted each other warmly.', 'Họ chào nhau nồng nhiệt.', 'https://img.example.com/greet.jpg'),
-(8,  2, 'introduce','verb', '/ˌɪntrəˈdjuːs/', 'giới thiệu', 'Let me introduce you to my friend.', 'Để tôi giới thiệu bạn với bạn tôi.', 'https://img.example.com/introduce.jpg'),
-(9,  2, 'polite',   'adjective','/pəˈlaɪt/','lịch sự', 'It is polite to say thank you.', 'Lịch sự khi nói cảm ơn.', 'https://img.example.com/polite.jpg'),
-(10, 2, 'request',  'noun', '/rɪˈkwest/','yêu cầu', 'I sent a request for information.', 'Tôi đã gửi yêu cầu thông tin.', 'https://img.example.com/request.jpg'),
-(11, 2, 'respond',  'verb', '/rɪˈspɒnd/','phản hồi', 'Please respond to my email.', 'Vui lòng phản hồi email của tôi.', 'https://img.example.com/respond.jpg'),
-(12, 2, 'confirm',  'verb', '/kənˈfɜːm/','xác nhận', 'She confirmed the reservation.', 'Cô ấy xác nhận đặt chỗ.', 'https://img.example.com/confirm.jpg');
+  -- Topic 2: Basic Communication
+  INSERT INTO words VALUES
+  (7,  2, 'greet',    'verb', '/ɡriːt/', 'chào hỏi', 'They greeted each other warmly.', 'Họ chào nhau nồng nhiệt.', 'https://img.example.com/greet.jpg'),
+  (8,  2, 'introduce','verb', '/ˌɪntrəˈdjuːs/', 'giới thiệu', 'Let me introduce you to my friend.', 'Để tôi giới thiệu bạn với bạn tôi.', 'https://img.example.com/introduce.jpg'),
+  (9,  2, 'polite',   'adjective','/pəˈlaɪt/','lịch sự', 'It is polite to say thank you.', 'Lịch sự khi nói cảm ơn.', 'https://img.example.com/polite.jpg'),
+  (10, 2, 'request',  'noun', '/rɪˈkwest/','yêu cầu', 'I sent a request for information.', 'Tôi đã gửi yêu cầu thông tin.', 'https://img.example.com/request.jpg'),
+  (11, 2, 'respond',  'verb', '/rɪˈspɒnd/','phản hồi', 'Please respond to my email.', 'Vui lòng phản hồi email của tôi.', 'https://img.example.com/respond.jpg'),
+  (12, 2, 'confirm',  'verb', '/kənˈfɜːm/','xác nhận', 'She confirmed the reservation.', 'Cô ấy xác nhận đặt chỗ.', 'https://img.example.com/confirm.jpg');
 
--- Topic 3: TOEFL
-INSERT INTO words VALUES
-(13, 3, 'analyze',   'verb', '/ˈænəlaɪz/', 'phân tích', 'Analyze the data carefully.', 'Phân tích dữ liệu cẩn thận.', 'https://img.example.com/analyze.jpg'),
-(14, 3, 'assume',    'verb', '/əˈsjuːm/', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', 'https://img.example.com/assume.jpg'),
-(15, 3, 'distinct',  'adjective','/dɪˈstɪŋkt/','riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', 'https://img.example.com/distinct.jpg'),
-(16, 3, 'estimate',  'verb', '/ˈestɪmeɪt/','ước tính', 'We estimate the cost.', 'Chúng tôi ước tính chi phí.', 'https://img.example.com/estimate.jpg'),
-(17, 3, 'interpret', 'verb', '/ɪnˈtɜːprɪt/','diễn giải', 'Interpret the chart.', 'Diễn giải biểu đồ.', 'https://img.example.com/interpret.jpg'),
-(18, 3, 'predict',   'verb', '/prɪˈdɪkt/','dự đoán', 'Predict the trend.', 'Dự đoán xu hướng.', 'https://img.example.com/predict.jpg');
+  -- Topic 3: TOEFL
+  INSERT INTO words VALUES
+  (13, 3, 'analyze',   'verb', '/ˈænəlaɪz/', 'phân tích', 'Analyze the data carefully.', 'Phân tích dữ liệu cẩn thận.', 'https://img.example.com/analyze.jpg'),
+  (14, 3, 'assume',    'verb', '/əˈsjuːm/', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', 'https://img.example.com/assume.jpg'),
+  (15, 3, 'distinct',  'adjective','/dɪˈstɪŋkt/','riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', 'https://img.example.com/distinct.jpg'),
+  (16, 3, 'estimate',  'verb', '/ˈestɪmeɪt/','ước tính', 'We estimate the cost.', 'Chúng tôi ước tính chi phí.', 'https://img.example.com/estimate.jpg'),
+  (17, 3, 'interpret', 'verb', '/ɪnˈtɜːprɪt/','diễn giải', 'Interpret the chart.', 'Diễn giải biểu đồ.', 'https://img.example.com/interpret.jpg'),
+  (18, 3, 'predict',   'verb', '/prɪˈdɪkt/','dự đoán', 'Predict the trend.', 'Dự đoán xu hướng.', 'https://img.example.com/predict.jpg');
 
--- Topic 4: IELTS
-INSERT INTO words VALUES
-(19, 4, 'coherent', 'adjective','/kəʊˈhɪərənt/','mạch lạc', 'A coherent essay.', 'Bài luận mạch lạc.', 'https://img.example.com/coherent.jpg'),
-(20, 4, 'derive',   'verb', '/dɪˈraɪv/','bắt nguồn', 'This word derives from Latin.', 'Từ này bắt nguồn từ tiếng Latin.', 'https://img.example.com/derive.jpg'),
-(21, 4, 'fluctuate','verb', '/ˈflʌktʃueɪt/','dao động', 'Prices fluctuate daily.', 'Giá dao động hằng ngày.', 'https://img.example.com/fluctuate.jpg'),
-(22, 4, 'perspective','noun','/pəˈspektɪv/','quan điểm', 'From my perspective...', 'Từ quan điểm của tôi...', 'https://img.example.com/perspective.jpg'),
-(23, 4, 'subsequent','adjective','/ˈsʌbsɪkwənt/','tiếp theo', 'Subsequent changes occurred.', 'Những thay đổi tiếp theo đã xảy ra.', 'https://img.example.com/subsequent.jpg'),
-(24, 4, 'viable',   'adjective','/ˈvaɪəbl/','khả thi', 'A viable solution.', 'Giải pháp khả thi.', 'https://img.example.com/viable.jpg');
+  -- Topic 4: IELTS
+  INSERT INTO words VALUES
+  (19, 4, 'coherent', 'adjective','/kəʊˈhɪərənt/','mạch lạc', 'A coherent essay.', 'Bài luận mạch lạc.', 'https://img.example.com/coherent.jpg'),
+  (20, 4, 'derive',   'verb', '/dɪˈraɪv/','bắt nguồn', 'This word derives from Latin.', 'Từ này bắt nguồn từ tiếng Latin.', 'https://img.example.com/derive.jpg'),
+  (21, 4, 'fluctuate','verb', '/ˈflʌktʃueɪt/','dao động', 'Prices fluctuate daily.', 'Giá dao động hằng ngày.', 'https://img.example.com/fluctuate.jpg'),
+  (22, 4, 'perspective','noun','/pəˈspektɪv/','quan điểm', 'From my perspective...', 'Từ quan điểm của tôi...', 'https://img.example.com/perspective.jpg'),
+  (23, 4, 'subsequent','adjective','/ˈsʌbsɪkwənt/','tiếp theo', 'Subsequent changes occurred.', 'Những thay đổi tiếp theo đã xảy ra.', 'https://img.example.com/subsequent.jpg'),
+  (24, 4, 'viable',   'adjective','/ˈvaɪəbl/','khả thi', 'A viable solution.', 'Giải pháp khả thi.', 'https://img.example.com/viable.jpg');
 
--- Topic 5: SAT
-INSERT INTO words VALUES
-(25, 5, 'alleviate','verb', '/əˈliːvieɪt/','làm giảm', 'This medicine alleviates pain.', 'Thuốc này làm giảm đau.', 'https://img.example.com/alleviate.jpg'),
-(26, 5, 'candid',  'adjective','/ˈkændɪd/','thẳng thắn', 'A candid interview.', 'Một cuộc phỏng vấn thẳng thắn.', 'https://img.example.com/candid.jpg'),
-(27, 5, 'diligent','adjective','/ˈdɪlɪdʒənt/','siêng năng', 'A diligent student.', 'Một học sinh siêng năng.', 'https://img.example.com/diligent.jpg'),
-(28, 5, 'emulate', 'verb', '/ˈemjʊleɪt/','noi gương', 'He emulates his mentor.', 'Anh ấy noi gương người hướng dẫn.', 'https://img.example.com/emulate.jpg'),
-(29, 5, 'frugal',  'adjective','/ˈfruːɡl/','tiết kiệm', 'She lives a frugal life.', 'Cô ấy sống tiết kiệm.', 'https://img.example.com/frugal.jpg'),
-(30, 5, 'gratify', 'verb', '/ˈɡrætɪfaɪ/','làm hài lòng', 'The news gratified investors.', 'Tin tức làm hài lòng nhà đầu tư.', 'https://img.example.com/gratify.jpg');
+  -- Topic 5: SAT
+  INSERT INTO words VALUES
+  (25, 5, 'alleviate','verb', '/əˈliːvieɪt/','làm giảm', 'This medicine alleviates pain.', 'Thuốc này làm giảm đau.', 'https://img.example.com/alleviate.jpg'),
+  (26, 5, 'candid',  'adjective','/ˈkændɪd/','thẳng thắn', 'A candid interview.', 'Một cuộc phỏng vấn thẳng thắn.', 'https://img.example.com/candid.jpg'),
+  (27, 5, 'diligent','adjective','/ˈdɪlɪdʒənt/','siêng năng', 'A diligent student.', 'Một học sinh siêng năng.', 'https://img.example.com/diligent.jpg'),
+  (28, 5, 'emulate', 'verb', '/ˈemjʊleɪt/','noi gương', 'He emulates his mentor.', 'Anh ấy noi gương người hướng dẫn.', 'https://img.example.com/emulate.jpg'),
+  (29, 5, 'frugal',  'adjective','/ˈfruːɡl/','tiết kiệm', 'She lives a frugal life.', 'Cô ấy sống tiết kiệm.', 'https://img.example.com/frugal.jpg'),
+  (30, 5, 'gratify', 'verb', '/ˈɡrætɪfaɪ/','làm hài lòng', 'The news gratified investors.', 'Tin tức làm hài lòng nhà đầu tư.', 'https://img.example.com/gratify.jpg');
 
--- Topic 6: GRE/GMAT
-INSERT INTO words VALUES
-(31, 6, 'abate',     'verb', '/əˈbeɪt/','giảm bớt', 'The storm abated.', 'Cơn bão đã dịu bớt.', 'https://img.example.com/abate.jpg'),
-(32, 6, 'bolster',   'verb', '/ˈbəʊlstə/','củng cố', 'Bolster confidence.', 'Củng cố sự tự tin.', 'https://img.example.com/bolster.jpg'),
-(33, 6, 'capricious','adjective','/kəˈprɪʃəs/','thất thường', 'Capricious weather.', 'Thời tiết thất thường.', 'https://img.example.com/capricious.jpg'),
-(34, 6, 'deference', 'noun','/ˈdefərəns/','sự kính trọng', 'In deference to...', 'Vì kính trọng...', 'https://img.example.com/deference.jpg'),
-(35, 6, 'enervate',  'verb','/ˈenəveɪt/','làm suy yếu', 'Heat enervates.', 'Cái nóng làm suy yếu.', 'https://img.example.com/enervate.jpg'),
-(36, 6, 'furtive',   'adjective','/ˈfɜːtɪv/','lén lút', 'A furtive glance.', 'Cái liếc nhìn lén lút.', 'https://img.example.com/furtive.jpg');
+  -- Topic 6: GRE/GMAT
+  INSERT INTO words VALUES
+  (31, 6, 'abate',     'verb', '/əˈbeɪt/','giảm bớt', 'The storm abated.', 'Cơn bão đã dịu bớt.', 'https://img.example.com/abate.jpg'),
+  (32, 6, 'bolster',   'verb', '/ˈbəʊlstə/','củng cố', 'Bolster confidence.', 'Củng cố sự tự tin.', 'https://img.example.com/bolster.jpg'),
+  (33, 6, 'capricious','adjective','/kəˈprɪʃəs/','thất thường', 'Capricious weather.', 'Thời tiết thất thường.', 'https://img.example.com/capricious.jpg'),
+  (34, 6, 'deference', 'noun','/ˈdefərəns/','sự kính trọng', 'In deference to...', 'Vì kính trọng...', 'https://img.example.com/deference.jpg'),
+  (35, 6, 'enervate',  'verb','/ˈenəveɪt/','làm suy yếu', 'Heat enervates.', 'Cái nóng làm suy yếu.', 'https://img.example.com/enervate.jpg'),
+  (36, 6, 'furtive',   'adjective','/ˈfɜːtɪv/','lén lút', 'A furtive glance.', 'Cái liếc nhìn lén lút.', 'https://img.example.com/furtive.jpg');
 
--- Topic 7: Academic Word List
-INSERT INTO words VALUES
-(37, 7, 'adjacent',   'adjective','/əˈdʒeɪs(ə)nt/','gần kề', 'Adjacent rooms.', 'Phòng liền kề.', 'https://img.example.com/adjacent.jpg'),
-(38, 7, 'aggregate',  'noun','/ˈæɡrɪɡət/','tổng hợp', 'In the aggregate.', 'Tính tổng hợp.', 'https://img.example.com/aggregate.jpg'),
-(39, 7, 'coincide',   'verb','/ˌkəʊɪnˈsaɪd/','trùng hợp', 'Events coincide.', 'Các sự kiện trùng hợp.', 'https://img.example.com/coincide.jpg'),
-(40, 7, 'deviate',    'verb','/ˈdiːvieɪt/','lệch hướng', 'Do not deviate from the plan.', 'Đừng lệch kế hoạch.', 'https://img.example.com/deviate.jpg'),
-(41, 7, 'inhibit',    'verb','/ɪnˈhɪbɪt/','ngăn cản', 'Inhibit growth.', 'Ngăn cản tăng trưởng.', 'https://img.example.com/inhibit.jpg'),
-(42, 7, 'mediate',    'verb','/ˈmiːdieɪt/','hoà giải', 'Mediate the dispute.', 'Hoà giải tranh chấp.', 'https://img.example.com/mediate.jpg');
+  -- Topic 7: Academic Word List
+  INSERT INTO words VALUES
+  (37, 7, 'adjacent',   'adjective','/əˈdʒeɪs(ə)nt/','gần kề', 'Adjacent rooms.', 'Phòng liền kề.', 'https://img.example.com/adjacent.jpg'),
+  (38, 7, 'aggregate',  'noun','/ˈæɡrɪɡət/','tổng hợp', 'In the aggregate.', 'Tính tổng hợp.', 'https://img.example.com/aggregate.jpg'),
+  (39, 7, 'coincide',   'verb','/ˌkəʊɪnˈsaɪd/','trùng hợp', 'Events coincide.', 'Các sự kiện trùng hợp.', 'https://img.example.com/coincide.jpg'),
+  (40, 7, 'deviate',    'verb','/ˈdiːvieɪt/','lệch hướng', 'Do not deviate from the plan.', 'Đừng lệch kế hoạch.', 'https://img.example.com/deviate.jpg'),
+  (41, 7, 'inhibit',    'verb','/ɪnˈhɪbɪt/','ngăn cản', 'Inhibit growth.', 'Ngăn cản tăng trưởng.', 'https://img.example.com/inhibit.jpg'),
+  (42, 7, 'mediate',    'verb','/ˈmiːdieɪt/','hoà giải', 'Mediate the dispute.', 'Hoà giải tranh chấp.', 'https://img.example.com/mediate.jpg');
 
--- Topic 8: Travel
-INSERT INTO words VALUES
-(43, 8, 'itinerary','noun','/aɪˈtɪnərəri/','lịch trình', 'Check the itinerary.', 'Kiểm tra lịch trình.', 'https://img.example.com/itinerary.jpg'),
-(44, 8, 'souvenir', 'noun','/ˌsuːvəˈnɪə/','quà lưu niệm', 'Buy a souvenir.', 'Mua quà lưu niệm.', 'https://img.example.com/souvenir.jpg'),
-(45, 8, 'delayed',  'adjective','/dɪˈleɪd/','bị hoãn', 'The flight is delayed.', 'Chuyến bay bị hoãn.', 'https://img.example.com/delayed.jpg'),
-(46, 8, 'boarding', 'noun','/ˈbɔːdɪŋ/','lên máy bay', 'Boarding starts at 7.', 'Lên máy bay lúc 7 giờ.', 'https://img.example.com/boarding.jpg'),
-(47, 8, 'customs',  'noun','/ˈkʌstəmz/','hải quan', 'Go through customs.', 'Làm thủ tục hải quan.', 'https://img.example.com/customs.jpg'),
-(48, 8, 'voucher',  'noun','/ˈvaʊtʃə/','phiếu giảm giá', 'Use a hotel voucher.', 'Dùng phiếu khách sạn.', 'https://img.example.com/voucher.jpg');
+  -- Topic 8: Travel
+  INSERT INTO words VALUES
+  (43, 8, 'itinerary','noun','/aɪˈtɪnərəri/','lịch trình', 'Check the itinerary.', 'Kiểm tra lịch trình.', 'https://img.example.com/itinerary.jpg'),
+  (44, 8, 'souvenir', 'noun','/ˌsuːvəˈnɪə/','quà lưu niệm', 'Buy a souvenir.', 'Mua quà lưu niệm.', 'https://img.example.com/souvenir.jpg'),
+  (45, 8, 'delayed',  'adjective','/dɪˈleɪd/','bị hoãn', 'The flight is delayed.', 'Chuyến bay bị hoãn.', 'https://img.example.com/delayed.jpg'),
+  (46, 8, 'boarding', 'noun','/ˈbɔːdɪŋ/','lên máy bay', 'Boarding starts at 7.', 'Lên máy bay lúc 7 giờ.', 'https://img.example.com/boarding.jpg'),
+  (47, 8, 'customs',  'noun','/ˈkʌstəmz/','hải quan', 'Go through customs.', 'Làm thủ tục hải quan.', 'https://img.example.com/customs.jpg'),
+  (48, 8, 'voucher',  'noun','/ˈvaʊtʃə/','phiếu giảm giá', 'Use a hotel voucher.', 'Dùng phiếu khách sạn.', 'https://img.example.com/voucher.jpg');
 
-/* ===============================
-   FAVORITE TOPICS (students)
-   =============================== */
-INSERT INTO favorite_topics (user_id, topic_id, added_at) VALUES
-(3,1,NOW()),(3,2,NOW()),(3,8,NOW()),
-(4,3,NOW()),(4,4,NOW());
+  /* ===============================
+    FAVORITE TOPICS (students)
+    =============================== */
+  INSERT INTO favorite_topics (user_id, topic_id, added_at) VALUES
+  (3,1,NOW()),(3,2,NOW()),(3,8,NOW()),
+  (4,3,NOW()),(4,4,NOW());
 
-/* ===============================
-   USER_WORDS (bản sao/cá nhân hoá từ hệ thống)
-   =============================== */
--- student1 cá nhân hoá một số từ ở topic 1 & 2
-INSERT INTO user_words
-(user_word_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, from_system_word_id)
-VALUES
-(1, 1, 'deadline', 'noun', '/ˈdedlaɪn/', 'hạn chót (cá nhân)', 'I set a personal deadline.', 'Tôi đặt hạn chót cá nhân.', 'https://img.example.com/deadline-user.jpg', 3),
-(2, 1, 'approve',  'verb', '/əˈpruːv/', 'chấp thuận (cá nhân)', 'My mentor approved my plan.', 'Người hướng dẫn đã chấp thuận kế hoạch.', 'https://img.example.com/approve-user.jpg', 2),
-(3, 2, 'respond',  'verb', '/rɪˈspɒnd/','phản hồi (cá nhân)', 'I respond within 24 hours.', 'Tôi phản hồi trong 24 giờ.', 'https://img.example.com/respond-user.jpg', 11);
+  /* ===============================
+    USER_WORDS (bản sao/cá nhân hoá từ hệ thống)
+    =============================== */
+  -- student1 cá nhân hoá một số từ ở topic 1 & 2
+  INSERT INTO user_words
+  (user_word_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, from_system_word_id)
+  VALUES
+  (1, 1, 'deadline', 'noun', '/ˈdedlaɪn/', 'hạn chót (cá nhân)', 'I set a personal deadline.', 'Tôi đặt hạn chót cá nhân.', 'https://img.example.com/deadline-user.jpg', 3),
+  (2, 1, 'approve',  'verb', '/əˈpruːv/', 'chấp thuận (cá nhân)', 'My mentor approved my plan.', 'Người hướng dẫn đã chấp thuận kế hoạch.', 'https://img.example.com/approve-user.jpg', 2),
+  (3, 2, 'respond',  'verb', '/rɪˈspɒnd/','phản hồi (cá nhân)', 'I respond within 24 hours.', 'Tôi phản hồi trong 24 giờ.', 'https://img.example.com/respond-user.jpg', 11);
 
-/* ===============================
-   USER_WORD_PROGRESS
-   (PK: user_id, word_id, user_word_id) -> mapping với user_words ở trên
-   =============================== */
-INSERT INTO user_word_progress
-(user_id, word_id, user_word_id, is_learned, learned_at)
-VALUES
-(3, 3, 1, TRUE,  NOW()),    -- student1 learned system word 3 via user_word 1
-(3, 2, 2, FALSE, NULL),     -- đang học
-(3,11, 3, TRUE,  NOW());    -- đã học xong "respond"
+  /* ===============================
+    USER_WORD_PROGRESS
+    (PK: user_id, word_id, user_word_id) -> mapping với user_words ở trên
+    =============================== */
+  INSERT INTO user_word_progress
+  (user_id, word_id, user_word_id, is_learned, learned_at)
+  VALUES
+  (3, 3, 1, TRUE,  NOW()),    -- student1 learned system word 3 via user_word 1
+  (3, 2, 2, FALSE, NULL),     -- đang học
+  (3,11, 3, TRUE,  NOW());    -- đã học xong "respond"
 
-/* ===============================
-   EXERCISE TYPES
-   =============================== */
-INSERT INTO exercise_types (exercise_type_id, name, description) VALUES
-(1, 'Multiple Choice', 'Chọn đáp án đúng'),
-(2, 'Fill in the Blank', 'Điền vào chỗ trống'),
-(3, 'True/False', 'Đúng/Sai');
+  /* ===============================
+    EXERCISE TYPES
+    =============================== */
+  INSERT INTO exercise_types (exercise_type_id, name, description) VALUES
+  (1, 'Multiple Choice', 'Chọn đáp án đúng'),
+  (2, 'Fill in the Blank', 'Điền vào chỗ trống'),
+  (3, 'True/False', 'Đúng/Sai');
 
-/* ===============================
-   EXERCISES (mỗi topic 1 bài ví dụ)
-   =============================== */
-INSERT INTO exercises (exercise_id, topic_id, exercise_type_id, created_at) VALUES
-(1, 1, 1, NOW()), -- Office - Multiple Choice
-(2, 2, 2, NOW()); -- Communication - Fill in the Blank
+  /* ===============================
+    EXERCISES (mỗi topic 1 bài ví dụ)
+    =============================== */
+  INSERT INTO exercises (exercise_id, topic_id, exercise_type_id, created_at) VALUES
+  (1, 1, 1, NOW()), -- Office - Multiple Choice
+  (2, 2, 2, NOW()); -- Communication - Fill in the Blank
 
-/* ===============================
-   EXERCISE QUESTIONS (tham chiếu words.*)
-   =============================== */
--- Exercise 1 (topic 1)
-INSERT INTO exercise_questions
-(question_id, exercise_id, question_text, correct_answer, options, related_word_id)
-VALUES
-(1, 1, 'Choose the best meaning of "deadline".', 'hạn chót',
- JSON_ARRAY('lịch họp','hạn chót','tiền thưởng','bản báo cáo'), 3),
-(2, 1, 'What does "resign" mean?', 'từ chức',
- JSON_ARRAY('tuyển dụng','từ chức','thăng chức','xin nghỉ phép'), 6),
-(3, 1, '"Approve" is closest in meaning to:', 'chấp thuận',
- JSON_ARRAY('phê bình','chấp thuận','trì hoãn','từ chối'), 2);
+  /* ===============================
+    EXERCISE QUESTIONS (tham chiếu words.*)
+    =============================== */
+  -- Exercise 1 (topic 1)
+  INSERT INTO exercise_questions
+  (question_id, exercise_id, question_text, correct_answer, options, related_word_id)
+  VALUES
+  (1, 1, 'Choose the best meaning of "deadline".', 'hạn chót',
+  JSON_ARRAY('lịch họp','hạn chót','tiền thưởng','bản báo cáo'), 3),
+  (2, 1, 'What does "resign" mean?', 'từ chức',
+  JSON_ARRAY('tuyển dụng','từ chức','thăng chức','xin nghỉ phép'), 6),
+  (3, 1, '"Approve" is closest in meaning to:', 'chấp thuận',
+  JSON_ARRAY('phê bình','chấp thuận','trì hoãn','từ chối'), 2);
 
--- Exercise 2 (topic 2)
-INSERT INTO exercise_questions
-(question_id, exercise_id, question_text, correct_answer, options, related_word_id)
-VALUES
-(4, 2, 'Fill the blank: Please _____ to my email.', 'respond',
- JSON_ARRAY('confirm','request','respond','greet'), 11),
-(5, 2, 'Fill the blank: Let me _____ you to my team.', 'introduce',
- JSON_ARRAY('introduce','approve','respond','confirm'), 8);
+  -- Exercise 2 (topic 2)
+  INSERT INTO exercise_questions
+  (question_id, exercise_id, question_text, correct_answer, options, related_word_id)
+  VALUES
+  (4, 2, 'Fill the blank: Please _____ to my email.', 'respond',
+  JSON_ARRAY('confirm','request','respond','greet'), 11),
+  (5, 2, 'Fill the blank: Let me _____ you to my team.', 'introduce',
+  JSON_ARRAY('introduce','approve','respond','confirm'), 8);
 
-/* ===============================
-   EXERCISE RESULTS (student1 làm bài)
-   =============================== */
-INSERT INTO exercise_results
-(result_id, user_id, question_id, user_answer, is_correct, answered_at)
-VALUES
-(1, 3, 1, 'hạn chót', TRUE,  NOW()),
-(2, 3, 2, 'từ chức',  TRUE,  NOW()),
-(3, 3, 3, 'chấp thuận', TRUE, NOW()),
-(4, 3, 4, 'respond', TRUE, NOW()),
-(5, 3, 5, 'introduce', TRUE, NOW());
-
-
-////////////////////////////////////////////////////////////////////////////////////
-/////////////////////     DBdiagram.io                  //////////////////////////// 
-////////////////////////////////////////////////////////////////////////////////////
+  /* ===============================
+    EXERCISE RESULTS (student1 làm bài)
+    =============================== */
+  INSERT INTO exercise_results
+  (result_id, user_id, question_id, user_answer, is_correct, answered_at)
+  VALUES
+  (1, 3, 1, 'hạn chót', TRUE,  NOW()),
+  (2, 3, 2, 'từ chức',  TRUE,  NOW()),
+  (3, 3, 3, 'chấp thuận', TRUE, NOW()),
+  (4, 3, 4, 'respond', TRUE, NOW()),
+  (5, 3, 5, 'introduce', TRUE, NOW());
 
 
-// =============================================
-// BẢNG NGƯỜI DÙNG & QUẢN LÝ QUYỀN
-// =============================================
-Table users {
-  user_id int [pk, increment, note: 'Khóa chính - ID người dùng']
-  username varchar(50) [not null, unique, note: 'Tên đăng nhập']
-  password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
-  email varchar(100) [not null, unique, note: 'Email duy nhất']
-  full_name varchar(100) [note: 'Họ tên đầy đủ']
-  phone_number varchar(20) [note: 'Số điện thoại']
-  avatar_url varchar(255) [note: 'Ảnh đại diện']
-  status varchar(20) [note: 'Trạng thái: active, inactive, banned']
-  created_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Ngày tạo']
-  updated_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Ngày cập nhật']
-}
+  ////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////     DBdiagram.io                  //////////////////////////// 
+  ////////////////////////////////////////////////////////////////////////////////////
 
-Table roles {
-  role_id int [pk, increment, note: 'Khóa chính - ID vai trò']
-  role_name varchar(50) [not null, unique, note: 'Tên vai trò: Student, Teacher, Admin...']
-  description text [note: 'Mô tả quyền hạn của vai trò']
-}
 
-Table user_roles {
-  user_id int [ref: > users.user_id, note: 'Khóa ngoại tới users']
-  role_id int [ref: > roles.role_id, note: 'Khóa ngoại tới roles']
-  assigned_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Thời điểm gán vai trò']
-  indexes {
-    (user_id, role_id) [pk]
+  // =============================================
+  // BẢNG NGƯỜI DÙNG & QUẢN LÝ QUYỀN
+  // =============================================
+  Table users {
+    user_id int [pk, increment, note: 'Khóa chính - ID người dùng']
+    username varchar(50) [not null, unique, note: 'Tên đăng nhập']
+    password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
+    email varchar(100) [not null, unique, note: 'Email duy nhất']
+    full_name varchar(100) [note: 'Họ tên đầy đủ']
+    phone_number varchar(20) [note: 'Số điện thoại']
+    avatar_url varchar(255) [note: 'Ảnh đại diện']
+    status varchar(20) [note: 'Trạng thái: active, inactive, banned']
+    created_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Ngày tạo']
+    updated_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Ngày cập nhật']
   }
-}
 
-Table permissions {
-  permission_id int [pk, increment, note: 'Khóa chính - ID quyền']
-  permission_name varchar(100) [not null, unique, note: 'Tên quyền: view_course, edit_course...']
-  description text [note: 'Mô tả hành động']
-}
-
-Table role_permissions {
-  role_id int [ref: > roles.role_id, note: 'Khóa ngoại tới roles']
-  permission_id int [ref: > permissions.permission_id, note: 'Khóa ngoại tới permissions']
-  indexes {
-    (role_id, permission_id) [pk]
+  Table roles {
+    role_id int [pk, increment, note: 'Khóa chính - ID vai trò']
+    role_name varchar(50) [not null, unique, note: 'Tên vai trò: Student, Teacher, Admin...']
+    description text [note: 'Mô tả quyền hạn của vai trò']
   }
-}
 
-// =============================================
-// BẢNG CHỦ ĐỀ & TỪ VỰNG
-// =============================================
-Table topics {
-  topic_id int [pk, increment, note: 'Khóa chính - ID chủ đề']
-  topic_name varchar [note: 'Tên chủ đề từ vựng']
-  description text [note: 'Mô tả nội dung chủ đề']
-  image_url varchar [note: 'Ảnh đại diện cho chủ đề']
-  created_at datetime [note: 'Ngày tạo chủ đề']
-  created_by int [ref: > users.user_id, note: 'ID người tạo, NULL nếu là chủ đề hệ thống']
-  is_completed boolean [note: 'Trạng thái hoàn thành chủ đề']
-}
-
-Table words {
-  word_id int [pk, increment, note: 'Khóa chính - ID từ vựng']
-  topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào']
-  word varchar [note: 'Từ tiếng Anh']
-  part_of_speech varchar [note: 'Loại từ: noun, verb...']
-  pronunciation varchar [note: 'Phiên âm (IPA)']
-  meaning_vi text [note: 'Nghĩa tiếng Việt']
-  example_en text [note: 'Câu ví dụ tiếng Anh']
-  example_vi text [note: 'Dịch câu ví dụ']
-  image_url varchar [note: 'Ảnh minh họa cho từ']
-}
-
-Table user_words {
-  user_word_id int [pk, increment, note: 'Khóa chính - ID từ vựng của user']
-  topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào (do user tạo)']
-  word varchar [note: 'Từ tiếng Anh']
-  part_of_speech varchar [note: 'Loại từ']
-  pronunciation varchar [note: 'Phiên âm']
-  meaning_vi text [note: 'Nghĩa tiếng Việt']
-  example_en text [note: 'Câu ví dụ tiếng Anh']
-  example_vi text [note: 'Dịch câu ví dụ']
-  image_url varchar [note: 'Ảnh minh họa']
-  from_system_word_id int [ref: > words.word_id, note: 'Nếu từ lấy từ hệ thống thì lưu ID']
-}
-
-Table user_word_progress {
-  user_id int [ref: > users.user_id, note: 'Người học']
-  word_id int [ref: > words.word_id, note: 'ID từ hệ thống']
-  user_word_id int [ref: > user_words.user_word_id, note: 'ID từ do user tạo']
-  is_learned boolean [note: 'Đã học thuộc chưa']
-  learned_at datetime [note: 'Ngày đánh dấu học thuộc']
-  indexes {
-    (user_id, word_id, user_word_id) [pk]
+  Table user_roles {
+    user_id int [ref: > users.user_id, note: 'Khóa ngoại tới users']
+    role_id int [ref: > roles.role_id, note: 'Khóa ngoại tới roles']
+    assigned_at datetime [default: `CURRENT_TIMESTAMP`, note: 'Thời điểm gán vai trò']
+    indexes {
+      (user_id, role_id) [pk]
+    }
   }
-}
 
-Table favorite_topics {
-  user_id int [ref: > users.user_id, note: 'Người dùng']
-  topic_id int [ref: > topics.topic_id, note: 'Chủ đề yêu thích']
-  added_at datetime [note: 'Ngày thêm vào yêu thích']
-  indexes {
-    (user_id, topic_id) [pk]
+  Table permissions {
+    permission_id int [pk, increment, note: 'Khóa chính - ID quyền']
+    permission_name varchar(100) [not null, unique, note: 'Tên quyền: view_course, edit_course...']
+    description text [note: 'Mô tả hành động']
   }
-}
 
-// =============================================
-// BẢNG BÀI TẬP
-// =============================================
-Table exercise_types {
-  exercise_type_id int [pk, increment, note: 'Khóa chính - ID loại bài tập']
-  name varchar [note: 'Tên loại bài tập']
-  description text [note: 'Mô tả loại bài tập']
-}
+  Table role_permissions {
+    role_id int [ref: > roles.role_id, note: 'Khóa ngoại tới roles']
+    permission_id int [ref: > permissions.permission_id, note: 'Khóa ngoại tới permissions']
+    indexes {
+      (role_id, permission_id) [pk]
+    }
+  }
 
-Table exercises {
-  exercise_id int [pk, increment, note: 'Khóa chính - ID bài tập']
-  topic_id int [ref: > topics.topic_id, note: 'Chủ đề liên quan']
-  exercise_type_id int [ref: > exercise_types.exercise_type_id, note: 'Loại bài tập']
-  created_at datetime [note: 'Ngày tạo bài tập']
-}
+  // =============================================
+  // BẢNG CHỦ ĐỀ & TỪ VỰNG
+  // =============================================
+  Table topics {
+    topic_id int [pk, increment, note: 'Khóa chính - ID chủ đề']
+    topic_name varchar [note: 'Tên chủ đề từ vựng']
+    description text [note: 'Mô tả nội dung chủ đề']
+    image_url varchar [note: 'Ảnh đại diện cho chủ đề']
+    created_at datetime [note: 'Ngày tạo chủ đề']
+    created_by int [ref: > users.user_id, note: 'ID người tạo, NULL nếu là chủ đề hệ thống']
+    is_completed boolean [note: 'Trạng thái hoàn thành chủ đề']
+  }
 
-Table exercise_questions {
-  question_id int [pk, increment, note: 'Khóa chính - ID câu hỏi']
-  exercise_id int [ref: > exercises.exercise_id, note: 'Thuộc bài tập nào']
-  question_text text [note: 'Nội dung câu hỏi']
-  correct_answer text [note: 'Đáp án đúng']
-  options json [note: 'Các lựa chọn (nếu trắc nghiệm)']
-  related_word_id int [ref: > words.word_id, note: 'Liên kết tới từ cụ thể']
-}
+  Table words {
+    word_id int [pk, increment, note: 'Khóa chính - ID từ vựng']
+    topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào']
+    word varchar [note: 'Từ tiếng Anh']
+    part_of_speech varchar [note: 'Loại từ: noun, verb...']
+    pronunciation varchar [note: 'Phiên âm (IPA)']
+    meaning_vi text [note: 'Nghĩa tiếng Việt']
+    example_en text [note: 'Câu ví dụ tiếng Anh']
+    example_vi text [note: 'Dịch câu ví dụ']
+    image_url varchar [note: 'Ảnh minh họa cho từ']
+  }
 
-Table exercise_results {
-  result_id int [pk, increment, note: 'Khóa chính - ID kết quả']
-  user_id int [ref: > users.user_id, note: 'Người làm bài']
-  question_id int [ref: > exercise_questions.question_id, note: 'Câu hỏi đã làm']
-  user_answer text [note: 'Câu trả lời của người dùng']
-  is_correct boolean [note: 'Trả lời đúng hay sai']
-  answered_at datetime [note: 'Thời gian trả lời']
-}
+  Table user_words {
+    user_word_id int [pk, increment, note: 'Khóa chính - ID từ vựng của user']
+    topic_id int [ref: > topics.topic_id, note: 'Thuộc chủ đề nào (do user tạo)']
+    word varchar [note: 'Từ tiếng Anh']
+    part_of_speech varchar [note: 'Loại từ']
+    pronunciation varchar [note: 'Phiên âm']
+    meaning_vi text [note: 'Nghĩa tiếng Việt']
+    example_en text [note: 'Câu ví dụ tiếng Anh']
+    example_vi text [note: 'Dịch câu ví dụ']
+    image_url varchar [note: 'Ảnh minh họa']
+    from_system_word_id int [ref: > words.word_id, note: 'Nếu từ lấy từ hệ thống thì lưu ID']
+  }
+
+  Table user_word_progress {
+    user_id int [ref: > users.user_id, note: 'Người học']
+    word_id int [ref: > words.word_id, note: 'ID từ hệ thống']
+    user_word_id int [ref: > user_words.user_word_id, note: 'ID từ do user tạo']
+    is_learned boolean [note: 'Đã học thuộc chưa']
+    learned_at datetime [note: 'Ngày đánh dấu học thuộc']
+    indexes {
+      (user_id, word_id, user_word_id) [pk]
+    }
+  }
+
+  Table favorite_topics {
+    user_id int [ref: > users.user_id, note: 'Người dùng']
+    topic_id int [ref: > topics.topic_id, note: 'Chủ đề yêu thích']
+    added_at datetime [note: 'Ngày thêm vào yêu thích']
+    indexes {
+      (user_id, topic_id) [pk]
+    }
+  }
+
+  // =============================================
+  // BẢNG BÀI TẬP
+  // =============================================
+  Table exercise_types {
+    exercise_type_id int [pk, increment, note: 'Khóa chính - ID loại bài tập']
+    name varchar [note: 'Tên loại bài tập']
+    description text [note: 'Mô tả loại bài tập']
+  }
+
+  Table exercises {
+    exercise_id int [pk, increment, note: 'Khóa chính - ID bài tập']
+    topic_id int [ref: > topics.topic_id, note: 'Chủ đề liên quan']
+    exercise_type_id int [ref: > exercise_types.exercise_type_id, note: 'Loại bài tập']
+    created_at datetime [note: 'Ngày tạo bài tập']
+  }
+
+  Table exercise_questions {
+    question_id int [pk, increment, note: 'Khóa chính - ID câu hỏi']
+    exercise_id int [ref: > exercises.exercise_id, note: 'Thuộc bài tập nào']
+    question_text text [note: 'Nội dung câu hỏi']
+    correct_answer text [note: 'Đáp án đúng']
+    options json [note: 'Các lựa chọn (nếu trắc nghiệm)']
+    related_word_id int [ref: > words.word_id, note: 'Liên kết tới từ cụ thể']
+  }
+
+  Table exercise_results {
+    result_id int [pk, increment, note: 'Khóa chính - ID kết quả']
+    user_id int [ref: > users.user_id, note: 'Người làm bài']
+    question_id int [ref: > exercise_questions.question_id, note: 'Câu hỏi đã làm']
+    user_answer text [note: 'Câu trả lời của người dùng']
+    is_correct boolean [note: 'Trả lời đúng hay sai']
+    answered_at datetime [note: 'Thời gian trả lời']
+  }

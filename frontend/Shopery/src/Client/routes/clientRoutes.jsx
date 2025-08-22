@@ -14,10 +14,12 @@ import Flashcard from "../pages/Flashcard/Flashcard";
 import Blog from "../pages/Blog/Blog";
 
 // Auth Pages
-import Login from "../../common/pages/Auth/Login/Login";
+import Login from "../../Client/pages/Auth/Login/Login";
+import Register from "../../Client/pages/Auth/Register/Register";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
+    //
     <Header />
     <main className="client-main">{children}</main>
     <Footer />
@@ -45,7 +47,7 @@ const ClientRoutes = () => {
         element={
           <PublicRoute restricted={true}>
             <ClientLayout>
-              <Login isAdmin={false} />
+              <Login />
             </ClientLayout>
           </PublicRoute>
         }
@@ -56,7 +58,7 @@ const ClientRoutes = () => {
         element={
           <PublicRoute restricted={true}>
             <ClientLayout>
-              <Login isAdmin={false} />
+              <Register />
             </ClientLayout>
           </PublicRoute>
         }
