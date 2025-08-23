@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../../redux/slices/authSlice";
+import OTP from "../../../components/Auth/OTP/OTP";
+import { toast } from "react-toastify";
 import "./Login.css";
 
 const Login = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -30,9 +33,7 @@ const Login = () => {
   // Nếu đã đăng nhập, chuyển hướng
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (user.role === "client") {
-        navigate("/");
-      }
+      navigate("/");
     }
   }, [isAuthenticated, user, navigate]);
 
@@ -59,7 +60,7 @@ const Login = () => {
       newErrors.email = "Email không được để trống";
     }
 
-    if (!formData.password.trim()) {
+    if (isLoginMode && !formData.password.trim()) {
       newErrors.password = "Mật khẩu không được để trống";
     }
     setErrors(newErrors);
@@ -68,180 +69,224 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
+    console.log("0");
     if (!validateForm()) {
       return;
     } // kiểm tra chưa validate form thì return
     setIsLoading(true);
     setErrors({});
-
+    console.log("1");
     try {
-      // Đăng nhập
-      console.log("🚀 ~ handleSubmit ~ 3:", 3);
-      const result = await dispatch(
-        loginUser({
-          email: formData.email,
-          password: formData.password,
-        })
-      ).unwrap();
-
-      if (result.success) {
-        // Chuyển hướng dựa vào role
-        if (result.user.role === "admin") {
-          navigate("/admin/dashboard");
-        } else {
+      if (isLoginMode) {
+        // gọi api đăng nhập
+        const result = await dispatch(
+          loginUser({
+            email: formData.email,
+            password: formData.password,
+          })
+        ).unwrap();
+        if (+result?.EC === 0) {
           navigate("/");
+          toast.success(result?.EM || "Đăng nhập thành công");
         }
+      } else if (!isLoginMode) {
+        // gọi api lấy lại mật khẩu;
+        setShowOtpModal(true);
+        console.log("🚀 ~ handleSubmit ~ setShowOtpModal:");
       }
+      // Đăng nhập
     } catch (error) {
-      setErrors({ submit: error.message || "Có lỗi xảy ra" });
+      toast.error(error?.EM || "Đăng nhập thất bại");
+
+      setErrors({
+        submit: error?.EM || "Có lỗi xảy ra",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleOTP = async (e) => {
+    console.log("submit");
+  };
   return (
-    <div className="auth-page">
-      <div className="auth-page__container">
-        {/* Phần bên trái - Hình ảnh */}
-        <div className="auth-page__image-section">
-          <div className="auth-page__image-overlay">
-            <h2 className="auth-page__image-title">Chào mừng đến với TOTC</h2>
-            <p className="auth-page__image-subtitle">
-              Khám phá hàng ngàn khóa học chất lượng với giá tốt nhất. Mua sắm
-              thông minh, tiết kiệm thời gian và chi phí.
-            </p>
-          </div>
-        </div>
-
-        {/* Phần bên phải - Form */}
-        <div className="auth-page__form-section">
-          <div className="auth-page__form-container">
-            {/* Header */}
-            <div className="auth-page__header">
-              <h1 className="auth-page__welcome">Chào mừng đến với TOTC!</h1>
-
-              {/* Toggle buttons */}
-              <div className="auth-page__toggle">
-                <div
-                  className={`auth-page__toggle-slider ${
-                    !isLoginMode ? "auth-page__toggle-slider--register" : ""
-                  }`}
-                ></div>
-                <button
-                  className={`auth-page__toggle-btn ${
-                    isLoginMode ? "auth-page__toggle-btn--active" : ""
-                  }`}
-                  onClick={() => navigate("/login")}
-                  type="button"
-                >
-                  Đăng nhập
-                </button>
-                <button
-                  className={`auth-page__toggle-btn ${
-                    !isLoginMode ? "auth-page__toggle-btn--active" : ""
-                  }`}
-                  onClick={() => navigate("/register")}
-                  type="button"
-                >
-                  Đăng kí
-                </button>
-              </div>
-              {/* <Auth /> */}
-
-              <p className="auth-page__description">
-                {isLoginMode
-                  ? "Đăng nhập để truy cập vào tài khoản của bạn và khám phá hàng ngàn khóa học chất lượng với ưu đãi đặc biệt."
-                  : "Tạo tài khoản mới để bắt đầu hành trình học tập tuyệt vời cùng TOTC. Nhận ngay voucher 50K cho khóa học đầu tiên!"}
+    <>
+      <div className="auth-page">
+        <div className="auth-page__container">
+          {/* Phần bên trái - Hình ảnh */}
+          <div className="auth-page__image-section">
+            <div className="auth-page__image-overlay">
+              <h2 className="auth-page__image-title">Chào mừng đến với TOTC</h2>
+              <p className="auth-page__image-subtitle">
+                Khám phá hàng ngàn khóa học chất lượng với giá tốt nhất. Mua sắm
+                thông minh, tiết kiệm thời gian và chi phí.
               </p>
             </div>
+          </div>
 
-            {/* Form */}
-            <form className="auth-page__form" onSubmit={handleSubmit}>
-              {/* Hiển thị lỗi */}
-              {authError && <div className="auth-page__error">{authError}</div>}
+          {/* Phần bên phải - Form */}
+          <div className="auth-page__form-section">
+            {!isLoginMode && (
+              <button
+                className="auth-page__return"
+                onClick={(e) => setIsLoginMode(true)}
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            )}
+            <div className="auth-page__form-container">
+              {/* Header */}
+              <div className="auth-page__header">
+                <h1 className="auth-page__welcome">
+                  {isLoginMode == true
+                    ? `Chào mừng đến với TOTC!`
+                    : `Lấy lại mật khẩu!`}
+                </h1>
+
+                {/* Toggle buttons */}
+                {isLoginMode == true && (
+                  <div className="auth-page__toggle">
+                    <div
+                      className={`auth-page__toggle-slider auth-page__toggle-slider--register`}
+                    ></div>
+                    <button
+                      className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
+                      onClick={() => navigate("/login")}
+                      type="button"
+                    >
+                      Đăng nhập
+                    </button>
+                    <button
+                      className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
+                      onClick={() => navigate("/register")}
+                      type="button"
+                    >
+                      Đăng kí
+                    </button>
+                  </div>
+                )}
+                {/* <Auth /> */}
+
+                <p className="auth-page__description">
+                  {isLoginMode
+                    ? `Đăng nhập để truy cập vào tài khoản của bạn 
+                    và khám phá hàng ngàn khóa học chất lượng 
+                    với ưu đãi đặc biệt`
+                    : "Nhập email hoặc số điện thoại của bạn để đặt lại mật khẩu nhanh chóng"}
+                </p>
+              </div>
+
+              {/* Form */}
+              <form className="auth-page__form" onSubmit={handleSubmit}>
+                {/* Hiển thị lỗi */}
+                {/* {authError && (
+                <div className="auth-page__error">{authError?.EM}</div>
+              )}
               {errors.submit && (
                 <div className="auth-page__error">{errors.submit}</div>
-              )}
+              )} */}
 
-              {/* Email field - chỉ hiển thị khi Register */}
-              <div className={`auth-page__field `}>
-                <label className="auth-page__label">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  className={`auth-page__input ${errors.email ? "error" : ""}`}
-                  placeholder="Nhập địa chỉ email của bạn"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                {errors.email && (
-                  <span className="auth-page__error-text">{errors.email}</span>
-                )}
-              </div>
-
-              {/* Password field */}
-              <div className="auth-page__field">
-                <label className="auth-page__label">Mật khẩu</label>
-                <div className="auth-page__password-wrapper">
+                {/* Email field - chỉ hiển thị khi Register */}
+                <div className={`auth-page__field `}>
+                  <label className="auth-page__label">Email</label>
                   <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
+                    type="text"
+                    name="email"
                     className={`auth-page__input ${
-                      errors.password ? "error" : ""
+                      errors.email ? "error" : ""
                     }`}
-                    placeholder="Nhập mật khẩu của bạn"
-                    value={formData.password}
+                    placeholder="Nhập địa chỉ email của bạn"
+                    value={formData.email}
                     onChange={handleInputChange}
                   />
-                  <button
-                    type="button"
-                    className="auth-page__password-toggle"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? "👁️" : "👁️‍🗨️"}
-                  </button>
+                  {errors.email && (
+                    <span className="auth-page__error-text">
+                      {errors.email}
+                    </span>
+                  )}
                 </div>
-                {errors.password && (
-                  <span className="auth-page__error-text">
-                    {errors.password}
-                  </span>
+
+                {/* Password field */}
+                {isLoginMode && (
+                  <div className="auth-page__field">
+                    <label className="auth-page__label">Mật khẩu</label>
+                    <div className="auth-page__password-wrapper">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        className={`auth-page__input ${
+                          errors.password ? "error" : ""
+                        }`}
+                        placeholder="Nhập mật khẩu của bạn"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                      />
+                      <button
+                        type="button"
+                        className="auth-page__password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? "👁️" : "👁️‍🗨️"}
+                      </button>
+                    </div>
+                    {errors.password && (
+                      <span className="auth-page__error-text">
+                        {errors.password}
+                      </span>
+                    )}
+                  </div>
                 )}
-              </div>
 
-              {/* Remember me và Forgot password - chỉ hiển thị khi Login */}
-              <div className={`auth-page__options auth-page__options--visible`}>
-                <label className="auth-page__checkbox">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                  />
-                  <span className="auth-page__checkbox-text">
-                    Ghi nhớ đăng nhập
-                  </span>
-                </label>
-                <button type="button" className="auth-page__forgot-link">
-                  Quên mật khẩu?
+                {/* Remember me và Forgot password - chỉ hiển thị khi Login */}
+                {isLoginMode && (
+                  <div
+                    className={`auth-page__options auth-page__options--visible`}
+                  >
+                    <label className="auth-page__checkbox">
+                      <input
+                        type="checkbox"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                      />
+                      <span className="auth-page__checkbox-text">
+                        Ghi nhớ đăng nhập
+                      </span>
+                    </label>
+                    <button
+                      type="button"
+                      className="auth-page__forgot-link"
+                      onClick={(e) => setIsLoginMode(false)}
+                    >
+                      Quên mật khẩu
+                    </button>
+                  </div>
+                )}
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="auth-page__submit-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading
+                    ? "Đang xử lý..."
+                    : isLoginMode
+                    ? "Đăng nhập"
+                    : "Nhận mã OTP"}
                 </button>
-              </div>
-
-              {/* Submit button */}
-              <button
-                type="submit"
-                className="auth-page__submit-btn"
-                disabled={isLoading}
-              >
-                {isLoading
-                  ? "Đang xử lý..."
-                  : isLoginMode
-                  ? "Đăng nhập"
-                  : "Đăng ký"}
-              </button>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      {showOtpModal && (
+        <OTP
+          onClose={() => setShowOtpModal(false)}
+          email={formData.email}
+          onSubmit={handleOTP}
+        />
+      )}
+    </>
   );
 };
 

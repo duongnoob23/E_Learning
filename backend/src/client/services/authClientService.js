@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const sequelize = require("../../config/database");
 const { QueryTypes } = require("sequelize");
 const { User } = require("../../models");
-
+// const User = require("../../models").User;
 // Tìm user theo email
 exports.login = async (email, password) => {
   try {
@@ -40,6 +40,8 @@ exports.login = async (email, password) => {
       process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET, // Có thể dùng secret khác cho refresh
       { expiresIn: "7d" } // Expires in 7 ngày
     );
+
+    // tôi chua lưu nó vào đâu
 
     // Thông tin user (loại trừ password_hash và các thông tin nhạy cảm)
     const userInfo = {
@@ -102,6 +104,8 @@ exports.register = async (
         DT: null,
       };
     }
+
+    // verify OTP
 
     // Hash mật khẩu
     const saltRounds = 10;

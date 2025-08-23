@@ -16,6 +16,7 @@ import Blog from "../pages/Blog/Blog";
 // Auth Pages
 import Login from "../../Client/pages/Auth/Login/Login";
 import Register from "../../Client/pages/Auth/Register/Register";
+import ForgotPassword from "../pages/Auth/ForgotPassword/ForgotPassword";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
@@ -59,6 +60,17 @@ const ClientRoutes = () => {
           <PublicRoute restricted={true}>
             <ClientLayout>
               <Register />
+            </ClientLayout>
+          </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/forgot-password"
+        element={
+          <PublicRoute restricted={true}>
+            <ClientLayout>
+              <ForgotPassword />
             </ClientLayout>
           </PublicRoute>
         }

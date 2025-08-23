@@ -68,27 +68,27 @@ const validateInput2 = (
   }
 
   // Kiểm tra các trường tùy chọn
-  if (fullName && fullName.length > 100) {
-    return { isValid: false, message: "Họ tên không được vượt quá 100 ký tự" };
-  }
-  if (phoneNumber) {
-    const phoneRegex = /^\+?[1-9]\d{1,14}$/; // Định dạng số điện thoại quốc tế
-    if (!phoneRegex.test(phoneNumber)) {
-      return { isValid: false, message: "Số điện thoại không đúng định dạng" };
-    }
-    if (phoneNumber.length > 20) {
-      return {
-        isValid: false,
-        message: "Số điện thoại không được vượt quá 20 ký tự",
-      };
-    }
-  }
-  if (avatarUrl && avatarUrl.length > 255) {
-    return {
-      isValid: false,
-      message: "URL ảnh đại diện không được vượt quá 255 ký tự",
-    };
-  }
+  // if (fullName && fullName.length > 100) {
+  //   return { isValid: false, message: "Họ tên không được vượt quá 100 ký tự" };
+  // }
+  // if (phoneNumber) {
+  //   const phoneRegex = /^\+?[1-9]\d{1,14}$/; // Định dạng số điện thoại quốc tế
+  //   if (!phoneRegex.test(phoneNumber)) {
+  //     return { isValid: false, message: "Số điện thoại không đúng định dạng" };
+  //   }
+  //   if (phoneNumber.length > 20) {
+  //     return {
+  //       isValid: false,
+  //       message: "Số điện thoại không được vượt quá 20 ký tự",
+  //     };
+  //   }
+  // }
+  // if (avatarUrl && avatarUrl.length > 255) {
+  //   return {
+  //     isValid: false,
+  //     message: "URL ảnh đại diện không được vượt quá 255 ký tự",
+  //   };
+  // }
 
   return { isValid: true, message: "" };
 };

@@ -1,0 +1,45 @@
+
+
+____________________________Lỗi Crash do lưu data trong error Redux___________________
+
+
+Bạn dùng Redux Toolkit + createAsyncThunk + unwrap cho login.
+Khi login sai (ví dụ email không tồn tại) → thunk trả về rejectWithValue({EM, EC, DT}).
+Trong Login.jsx, bạn có state error và trong JSX lại có đoạn render kiểu:
+{authError && <div className="auth-page__error">{authError}</div>}
+Nhưng authError lúc này không phải là string, mà là object {EM, EC, DT}.
+👉 React không cho render object trực tiếp → nó crash với lỗi:
+Uncaught Error: Objects are not valid as a React child (found: object with keys {EM, EC, DT})
+2️⃣ Biểu hiện
+App crash toàn bộ UI, kèm theo gợi ý của React: dùng Error Boundary hoặc kiểm tra chỗ render.
+Console log thì thấy error hoặc authError in ra là object chứ không phải string.
+3️⃣ Cách suy luận
+Nhìn vào rejectWithValue trong thunk → nó luôn return object {EM, EC, DT}.
+Với .unwrap() thì catch nhận đúng object này, không phải exception thuần.
+Trong UI, bạn render authError trực tiếp → React cố convert object thành string → crash.
+👉 Kết luận: giao diện muốn string nhưng bạn truyền object.
+4️⃣ Cách fix
+Có 2 hướng, tuỳ bạn muốn state authError lưu gì:
+🔹 Hướng 1: Lưu object trong Redux
+authError trong slice giữ nguyên {EM, EC, DT}.
+Trong UI chỉ hiển thị message:
+{authError && <div className="auth-page__error">{authError.EM}</div>}
+🔹 Hướng 2: Lưu string trong Redux
+Trong slice, khi bị reject thì chỉ lưu error = action.payload?.EM || "Có lỗi xảy ra".
+Trong UI render bình thường:
+{authError && <div className="auth-page__error">{authError}</div>}
+5️⃣ Vai trò unwrap & rejectWithValue
+rejectWithValue: cho phép bạn chủ động bắn lỗi có shape chuẩn {EM, EC, DT} thay vì Error object mặc định.
+.unwrap(): giúp await dispatch(thunk) throw luôn reject payload → bạn xử lý trong try/catch dễ hơn.
+Nếu không unwrap → dispatch(thunk) chỉ trả về action (fulfilled/rejected) → bạn phải check thủ công trong extraReducers.
+✅ Tóm gọn
+Nguyên nhân: bạn render object thay vì string trong JSX.
+Biểu hiện: React crash với lỗi "Objects are not valid as a React child".
+Fix: hoặc chỉ render authError.EM, hoặc chỉ lưu string vào authError.
+Best practice: thống nhất 1 kiểu (hoặc object, hoặc string) trong slice để UI dễ xử lý.
+
+
+
+
+
+____________________________Lỗi ___________________

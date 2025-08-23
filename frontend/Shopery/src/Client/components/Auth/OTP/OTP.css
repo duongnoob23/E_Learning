@@ -1,0 +1,138 @@
+.OTP__overlay{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.259);
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    
+
+}
+
+.OTP__container{
+    /* width: 20%;
+    height: 42%; */
+    width: 400px;
+    height: 400px;
+    background-color: yellow;
+    padding: 30px 40px;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.OTP__btn--close{
+    position: absolute;
+    top:5%;
+    right: 5%;
+    color:gray;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.OTP__image--otp{
+    width: 15%;
+    margin-bottom: 10px;
+
+}
+
+.OTP__title{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.OTP__desc{
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.OTP__form{
+    width: 100%;
+    height: 40%;
+    margin-bottom: 20px;
+}
+
+.OTP__inputs{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+
+}
+
+.OTP__input{
+    width: calc(100% / 6 - 5px);
+    height: 100%;
+    border-radius: 12px;
+    border:1px solid #4FD1C5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    background-color: #E6FFFA;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.OTP__btn--submit{
+    width: 100%;
+    height: 50%;
+    padding:15px 0;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #CBD5E1;
+    transition: all 0.2s ease ;
+    font-size: large;
+    font-weight: bold;
+    color: #65768C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.OTP__btn--submit.OTP__btn--active{
+    color:white;
+    background-color: #4FD1C5;
+}
+
+/* .OTP__btn--submit:hover{
+    color:white;
+    background-color: #4FD1C5;
+} */
+
+.OTP__last{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OTP__notReceive{
+    width: 65%;
+    padding: 0;
+}
+.OTP__resend{
+    width: 35%;
+    text-decoration:underline;
+    color:#4FD1C5;
+    padding: 0;
+    font-weight: bold;
+    font-size:16px;
+}
+

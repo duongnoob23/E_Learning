@@ -1,7 +1,10 @@
 // Auth Slice - Quản lý trạng thái đăng nhập (Dùng chung)
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../common/services/Auth/authApi";
-
+import {
+  normalizeAuthResponse,
+  normalizeError,
+} from "../../Helper/responseHandler";
 // Helper functions
 const tokenHelper = {
   getAccessToken: () => {
@@ -72,23 +75,28 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await authApi.login(credentials);
-      console.log("🚀 ~ response: ", response);
+      const res = await authApi.login(credentials);
+      const { EM, EC, DT } = normalizeAuthResponse(res);
 
-      const { token, refreshToken, user } = response.data;
-      console.log("🚀 ~ user:", user);
-      console.log("🚀 ~ refreshToken:", refreshToken);
-      console.log("🚀 ~ token:", token);
+      if (EC !== "0" || !DT) {
+        return rejectWithValue({ EM, EC, DT });
+      }
 
-      // Lưu token và user info vào localStorage
-      tokenHelper.setTokens(token, refreshToken);
-      //tokenHelper.setUserInfo(user);
+      const { access_token, refresh_token, user } = DT || {};
+      if (!access_token || !refresh_token || !user) {
+        return rejectWithValue({
+          EM: "Thiếu access_token, refresh_token hoặc user",
+          EC: "-2",
+          DT: null,
+        });
+      }
 
-      return { token, refreshToken, user };
+      tokenHelper.setTokens(access_token, refresh_token);
+      tokenHelper.setUserInfo(user);
+
+      return { EM, EC, DT };
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Đăng nhập thất bại"
-      );
+      return rejectWithValue(normalizeError(error));
     }
   }
 );
@@ -98,11 +106,15 @@ export const registerUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await authApi.register(userData);
-      return response.data;
+      const { EM, EC, DT } = normalizeAuthResponse(response);
+
+      if (EC !== "0" || !DT) {
+        return rejectWithValue({ EM, EC, DT });
+      }
+
+      return { EM, EC, DT };
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Đăng ký thất bại"
-      );
+      return rejectWithValue(normalizeError(error));
     }
   }
 );
@@ -195,10 +207,12 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.isAuthenticated = true;
         state.error = null;
+        console.log("🚀 ~ action.payload:", action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        console.log("🚀 ~ action.payload:", action.payload);
         state.isAuthenticated = false;
       })
       // Register
