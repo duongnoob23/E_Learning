@@ -9,13 +9,27 @@ import OTP from "../../../components/Auth/OTP/OTP";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showOtpModal, setShowOtpModal] = useState(true);
+  const [showOtpModal, setShowOtpModal] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     confirmPassword: "",
     email: "",
   });
+
+  const [data, setData] = useState({
+    usename: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+  });
+
+  const handleChangeDate = (name, value) => {
+    let newData = [...data];
+    newData[name] = value;
+    setData(newData);
+    setData((pre) => ({ ...pre, [name]: value }));
+  };
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -331,14 +345,6 @@ const Register = () => {
           onSubmit={handleOtpSubmit}
         />
       )}
-      {/* {showOtpModal && (
-        <OtpModal
-          open={showOtpModal}
-          onClose={() => setShowOtpModal(false)}
-          email={formData.email}
-          onSubmit={handleOtpSubmit}
-        />
-      )} */}
     </div>
   );
 };

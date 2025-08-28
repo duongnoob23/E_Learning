@@ -87,3 +87,39 @@ bỏ toggle bên login đi, thêm nút để nhảy sang trang register,bỏ log
 hoặc là vẫn giữa nguyên toggle và khi click vào login thì nhảy qua trang login toggle sang nút login, ấn vào register thì nhảy qua bên register
 hiện tại css lại trang register sao cho đẹp như trang login nhưng ảnh bên phải , form bên trái
 rồi mới thực hiện code transitioin đổi qua lại giữa hai trang, bạn hiểu ý tôi chưa, cho tôi biết cần thay đổi các file nào và thay đổi gì
+
+
+
+
+
+
+
+
+
+đọc cây thư mục của tôi trong phần FE để chuẩn bị giúp tôi cấu trúc thư mục thêm, ví dụ tôi chuẩn bị code cho phần trang Course(Khóa học),CourseDetail(Chi tiết khoa học, chưa mua và đã mua) trang lớn với nhiều phần components trong đó thì tôi nên cấu trúc thư muc như nào, phân giao diện trang Khóa học tôi sẽ gửi cho bạn ngay sau đây
+
+tôi muốn biết file nào thêm mới, file nào thay đổi khi mà thêm Course và CourseDetail này vào, CourseDetail có phải  là một trang không hay chỉ là một componets thôi
+
+phần path cho courseDetail là gì /course/courseDetail hay là courseDetail thôi, riêng path route cho course tôi đã cấu hình xong rồi giờ tôi sẽ gửi giao diện cho bạn ngoài ra mô tả chi tiết giao diện có phần nào 
+
+ Giao diện trang course sẽ như sau
+phần giao diện chính sẽ chia làm 2 phần , phần danh sách khóa học và phần bộ lọc filter 
+
+ở trên cùng là tiêu đề All Course , với input, icon tìm kiếm để search khóa học theo tên, icon List + icon Ô vuông để người dùng chuyển đổi phần danh sách qua lại theo dạng danh sách hoặc dạng 2-3 cột 
+
+phần filter sẽ có các thuộc tính lọc sau tương tự trong anh
+1. lọc ra các thể loại (Toeic 2 kĩ năng, Toeic 4 kĩ năng, IElST,Tiếng anh cơ bản)
+2. Lọc theo Instructor (lọc theo danh sách các giảng viên tạo khóa học ví dụ : Lâm Tiến Dưỡng, Vũ Dan Phong, Vũ Công Duy ,Vũ Hoài thư)
+3. Phần giá (ở đây có thể chia làm 3 mục click chọn (tất cả, miễn phí, trả phí)) ngoài ra  có thể làm thanh kéo thả để chọn mức giá cả
+4. phần Review(các khóa học theo xếp loại đánh giá 5,4,3,2,1 sao)
+5.Level xếp theo độ khó(All level,Beginnerr, Intermidiate,Expert)
+
+nhớ là cuối mỗi thuộc tính lọc đều có số lượng khóa học thỏa mãn , fake dữ liệu là 15 khóa học cho mỗi thuộc tính
+
+phần danh sách thì List với mõi item là ảnh bên trái , nội dung bên phải, với phần danh sách2-3 cột thì ảnh ở trên thông tin ở dưới 
+
+với mõi khóa học sẽ có dạng ảnh, có tab best seller , 20% off
+tiêu đề , giảng viên, mô tả khóa học, số lượng đánh giá, số lượng sao, giá cả
+
+
+

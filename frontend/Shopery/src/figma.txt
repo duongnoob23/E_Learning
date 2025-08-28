@@ -1,0 +1,12 @@
+Giao diện - HOME
+
++ Header có Home ,Course ,Blog ,Shop,Cart (icon),About Us, Notification(icon)
++ vẫn lấy giao diện TOTC
++ Thêm phần Video Giao diện Coursiva
++ Thêm phần Growup your skill ở EduPress
++ Thêm phần tìm kiếm MyCourse.io
++ Tránh hiển thị khóa học vì hiện tại dữ liệu ít không có khóa học thì trống
++ Sau này có khóa học sẽ thêm phần gợi ý Khóa học sau 
+
+
+Giao diện 
