@@ -30,7 +30,7 @@ const courseData = [
   {
     id: 2,
     title: "TOEIC 4 Kỹ Năng - Full Skills",
-    instructor: "Vũ Dan Phong",
+    instructor: "Vũ Danh Phong",
     desc: "Chinh phục TOEIC 4 kỹ năng với lộ trình bài bản, tài liệu chuẩn quốc tế.",
     rating: 4.6,
     reviews: 980,
@@ -106,7 +106,7 @@ const courseData = [
   {
     id: 6,
     title: "TOEIC Listening Practice",
-    instructor: "Vũ Dan Phong",
+    instructor: "Vũ Danh Phong",
     desc: "Luyện nghe TOEIC với đề thi thật, cập nhật liên tục.",
     rating: 4.2,
     reviews: 670,
@@ -182,7 +182,7 @@ const courseData = [
   {
     id: 10,
     title: "Tiếng Anh Phỏng Vấn Xin Việc",
-    instructor: "Vũ Dan Phong",
+    instructor: "Vũ Danh Phong",
     desc: "Chuẩn bị phỏng vấn xin việc bằng tiếng Anh, luyện tập thực tế.",
     rating: 4.1,
     reviews: 400,
@@ -336,7 +336,7 @@ function Course() {
     <div className="course-container">
       <div className="course-page">
         <div className="course-header">
-          <h2>All Courses</h2>
+          <h2>Toàn bộ khóa học</h2>
           <div className="course-search">
             <input
               type="text"
@@ -545,7 +545,7 @@ function Course() {
                           style={{
                             color:
                               i < Math.round(course.rating)
-                                ? PRIMARY_COLOR
+                                ? "#ffd60a"
                                 : "#e4e5e9",
                           }}
                         ></i>
@@ -580,7 +580,7 @@ function Course() {
                     )}
                   </div>
                   <button
-                    onClick={() => navigate(`/courses/${course.id}`)}
+                    onClick={() => navigate("/course/1")}
                     className="btn-view-more"
                   >
                     View More <i className="fa fa-arrow-right"></i>

@@ -1,126 +1,394 @@
-//////////////////////////////////////////////////////////
-// BẢNG KHÓA HỌC (COURSES)
-//////////////////////////////////////////////////////////
+// Thiết kế cơ sở dữ liệu chi tiết cho hệ thống khóa học TOTC
+// Dựa trên phân tích giao diện Course.jsx và CoursePreview.jsx
 
+https://dbdiagram.io/d/68afee6f777b52b76cea97d4
+
+// Bảng Users - Người dùng hệ thống
+Table users {
+  id int [pk, increment]
+  username varchar(50) [unique, not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]
+  full_name varchar(100) [not null]
+  avatar varchar(255)
+  phone varchar(20)
+  date_of_birth date
+  gender enum('male', 'female', 'other')
+  address text
+  bio text
+  
+  // Role và trạng thái
+  role enum('admin', 'instructor', 'student') [default: 'student']
+  status enum('active', 'inactive', 'banned') [default: 'active']
+  email_verified boolean [default: false]
+  phone_verified boolean [default: false]
+  
+  // Thông tin bổ sung
+  last_login timestamp
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Bảng Categories - Danh mục khóa học (Filter: Thể loại)
+Table categories {
+  id int [pk, increment]
+  name varchar(100) [not null] // "Toeic 2 kĩ năng", "IELTS", "Tiếng anh cơ bản"
+  slug varchar(100) [unique, not null]
+  description text
+  icon varchar(50)
+  color varchar(7) // Màu sắc cho category
+  image varchar(255) // Ảnh đại diện category
+  sort_order int [default: 0]
+  is_active boolean [default: true]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Bảng Levels - Trình độ khóa học (Filter: Level)
+Table levels {
+  id int [pk, increment]
+  name varchar(50) [not null] // "Beginner", "Intermediate", "Expert"
+  slug varchar(50) [unique, not null]
+  description text
+  color varchar(7)
+  sort_order int [default: 0]
+  is_active boolean [default: true]
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Instructors - Giảng viên (Filter: Instructor)
+Table instructors {
+  id int [pk, increment]
+  user_id int [ref: > users.id] // Link với bảng users
+  name varchar(100) [not null]
+  avatar varchar(255)
+  bio text // Tiểu sử giảng viên
+  experience_years int // Số năm kinh nghiệm
+  specializations text // Chuyên môn
+  education text // Học vấn
+  achievements text // Thành tích
+  social_links json // Facebook, YouTube, Email, LinkedIn
+  is_featured boolean [default: false]
+  is_verified boolean [default: false]
+  is_active boolean [default: true]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Bảng Courses - Khóa học chính
 Table courses {
-  id int [pk, note: 'Khóa chính']
-  title varchar [note: 'Tiêu đề khóa học']
-  description text [note: 'Mô tả ngắn gọn hiển thị ở danh sách']
-  detailed_description text [note: 'Mô tả chi tiết khi xem trang khóa học']
-  course_type varchar [note: 'Loại hình học: self_study (tự học), live (trực tuyến), hybrid (kết hợp)']
-  pricing_type varchar [note: 'Loại giá: free (miễn phí), paid (trả phí), premium (cao cấp)']
-  price decimal [note: 'Giá hiện tại']
-  original_price decimal [note: 'Giá gốc']
-  discount_price decimal [note: 'Giá sau giảm']
-  instructor_id int [note: 'Giảng viên chính của khóa học']
-  category_id int [note: 'Danh mục khóa học (ví dụ: Lập trình, Ngoại ngữ)']
-  level varchar [note: 'Trình độ: beginner, intermediate, advanced']
-  duration_hours int [note: 'Tổng thời lượng học (giờ)']
-  total_lessons int [note: 'Tổng số bài học']
-  total_exercises int [note: 'Tổng số bài tập (nếu có)']
-  max_students int [note: 'Giới hạn học viên']
-  current_students int [note: 'Số học viên đang học']
-  status varchar [note: 'Trạng thái: draft, published, archived']
-  featured boolean [note: 'Khóa học nổi bật']
-  certificate_included boolean [note: 'Có cấp chứng chỉ hay không']
-  lifetime_access boolean [note: 'Truy cập trọn đời']
-  requirements text [note: 'Yêu cầu đầu vào']
-  what_you_learn text [note: 'Học viên sẽ học được gì']
-  target_audience text [note: 'Đối tượng học viên']
-  created_at datetime
-  updated_at datetime
+  id int [pk, increment]
+  title varchar(200) [not null]
+  slug varchar(200) [unique, not null]
+  short_description text // Mô tả ngắn
+  description text // Mô tả chi tiết
+  
+  // Foreign keys cho filter
+  category_id int [ref: > categories.id]
+  level_id int [ref: > levels.id]
+  instructor_id int [ref: > instructors.id]
+  
+  // Thông tin cơ bản
+  image varchar(255) // Ảnh đại diện khóa học
+  video_preview varchar(255) // Link video preview
+  video_duration varchar(20) // "9:15"
+  video_progress decimal(3,2) [default: 0] // 0.1 = 10%
+  
+  // Thống kê khóa học
+  total_lessons int [default: 0] // Số bài học
+  total_duration varchar(50) // "15hr 45mins"
+  total_students int [default: 0] // Số học viên đã đăng ký
+  rating decimal(3,2) [default: 0] // 4.7 - Số sao trung bình
+  rating_count int [default: 0] // Số lượt đánh giá
+  
+  // Giá cả và khuyến mãi
+  price decimal(10,2) [not null, default: 0]
+  old_price decimal(10,2)
+  discount_percent int [default: 0] // Phần trăm giảm giá
+  is_free boolean [default: false] // Free hay mất phí
+  is_best_seller boolean [default: false] // Best Seller tag
+  is_featured boolean [default: false]
+  
+  // Trạng thái
+  status enum('draft', 'published', 'archived') [default: 'draft']
+  published_at timestamp
+  
+  // SEO
+  meta_title varchar(200)
+  meta_description text
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// BẢNG CHƯƠNG (SECTION) TRONG KHÓA HỌC
-//////////////////////////////////////////////////////////
-
-Table course_sections {
-  id int [pk]
-  course_id int [ref: > courses.id, note: 'Liên kết với khóa học']
-  title varchar [note: 'Tên chương']
-  description text [note: 'Mô tả chương']
-  order_index int [note: 'Thứ tự sắp xếp chương']
-  is_free boolean [note: 'Chương miễn phí xem trước']
-  created_at datetime
+// Bảng Course Details - Chi tiết bổ sung cho khóa học
+Table course_details {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  
+  // Nội dung chi tiết từ CoursePreview
+  about_content text // Giới thiệu khóa học
+  learning_outcomes json // ["Làm quen với cấu trúc đề thi TOEIC", ...]
+  skills_covered json // ["Listening", "Reading", "Speaking", ...]
+  requirements json // ["Kiến thức tiếng Anh cơ bản", ...]
+  achievements json // ["Đạt điểm TOEIC từ 600 trở lên", ...]
+  
+  // Thông tin bổ sung
+  certificate_info text // Thông tin chứng chỉ
+  last_updated date
+  language varchar(50) [default: 'Vietnamese']
+  target_audience text // Đối tượng mục tiêu
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// BẢNG BÀI HỌC TRONG CHƯƠNG
-//////////////////////////////////////////////////////////
-
-Table course_lessons {
-  id int [pk]
-  section_id int [ref: > course_sections.id, note: 'Liên kết với chương']
-  title varchar [note: 'Tên bài học']
-  description text [note: 'Mô tả ngắn bài học']
-  lesson_type varchar [note: 'Loại bài học: video, reading, quiz']
-  video_url varchar [note: 'Link video (nếu là loại video)']
-  video_duration int [note: 'Thời lượng video (giây)']
-  video_thumbnail varchar [note: 'Ảnh thumbnail video']
-  content_text text [note: 'Nội dung dạng văn bản']
-  content_html text [note: 'Nội dung dạng HTML']
-  order_index int [note: 'Thứ tự trong chương']
-  is_free boolean [note: 'Bài học miễn phí xem trước']
-  created_at datetime
-  updated_at datetime
+// Bảng Modules - Chương/Phần của khóa học
+Table modules {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  title varchar(200) [not null]
+  description text
+  sort_order int [not null]
+  total_lectures int [default: 0] // Số bài giảng trong module
+  total_duration varchar(50) // "30min", "1hr 15min"
+  is_active boolean [default: true]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// BẢNG LỚP HỌC TRỰC TUYẾN (CHO LIVE/HYBRID)
-//////////////////////////////////////////////////////////
-
-Table classes {
-  id int [pk]
-  course_id int [ref: > courses.id, note: 'Thuộc khóa học nào']
-  name varchar [note: 'Tên lớp']
-  instructor_id int [note: 'Giảng viên phụ trách lớp']
-  start_date date [note: 'Ngày khai giảng']
-  end_date date [note: 'Ngày kết thúc']
-  max_students int [note: 'Giới hạn học viên']
-  status varchar [note: 'Trạng thái: active, completed, canceled']
-  created_at datetime
-  updated_at datetime
+// Bảng Lessons - Bài học trong module
+Table lessons {
+  id int [pk, increment]
+  module_id int [ref: > modules.id]
+  course_id int [ref: > courses.id]
+  title varchar(200) [not null]
+  description text
+  content text // Nội dung bài học
+  video_url varchar(255) // Link video bài giảng
+  video_duration varchar(20) // "10:00"
+  file_attachment varchar(255) // File đính kèm (PDF, PPT)
+  sort_order int [not null]
+  
+  // Loại bài học
+  lesson_type enum('video', 'document', 'quiz', 'assignment', 'live') [default: 'video']
+  is_free boolean [default: false] // Bài học miễn phí
+  is_active boolean [default: true]
+  
+  // Thống kê
+  view_count int [default: 0]
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// DANH SÁCH HỌC VIÊN TRONG LỚP LIVE
-//////////////////////////////////////////////////////////
-
-Table class_students {
-  id int [pk]
-  class_id int [ref: > classes.id, note: 'Liên kết với lớp học']
-  user_id int [note: 'Học viên']
-  enrolled_at datetime [note: 'Ngày đăng ký vào lớp']
-  status varchar [note: 'Trạng thái: enrolled, dropped, completed']
+// Bảng Course Enrollments - Đăng ký khóa học
+Table course_enrollments {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  course_id int [ref: > courses.id]
+  
+  // Trạng thái đăng ký
+  status enum('active', 'completed', 'cancelled', 'expired') [default: 'active']
+  enrolled_at timestamp [default: `now()`]
+  completed_at timestamp
+  expires_at timestamp // Thời hạn khóa học
+  
+  // Tiến độ học
+  progress_percent decimal(5,2) [default: 0] // 0-100%
+  last_accessed_lesson_id int [ref: > lessons.id]
+  last_accessed_at timestamp
+  
+  // Thanh toán
+  payment_amount decimal(10,2)
+  payment_method varchar(50)
+  payment_status enum('pending', 'paid', 'failed', 'refunded') [default: 'pending']
+  transaction_id varchar(100)
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// LỊCH HỌC CỦA LỚP (TỪNG BUỔI LIVE)
-//////////////////////////////////////////////////////////
-
-Table class_sessions {
-  id int [pk]
-  class_id int [ref: > classes.id, note: 'Liên kết với lớp học']
-  session_title varchar [note: 'Tên buổi học']
-  start_time datetime [note: 'Thời gian bắt đầu']
-  end_time datetime [note: 'Thời gian kết thúc']
-  meeting_link varchar [note: 'Link phòng học trực tuyến']
-  meeting_id varchar [note: 'ID phòng học']
-  meeting_password varchar [note: 'Mật khẩu phòng học']
-  recording_url varchar [note: 'Link ghi hình buổi học']
-  created_at datetime
+// Bảng Lesson Progress - Tiến độ học từng bài
+Table lesson_progress {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  lesson_id int [ref: > lessons.id]
+  course_id int [ref: > courses.id]
+  
+  // Trạng thái học
+  status enum('not_started', 'in_progress', 'completed') [default: 'not_started']
+  watched_duration int [default: 0] // Thời gian đã xem (giây)
+  total_duration int [default: 0] // Tổng thời gian bài học (giây)
+  completion_percent decimal(5,2) [default: 0] // 0-100%
+  
+  // Thời gian
+  started_at timestamp
+  completed_at timestamp
+  last_accessed_at timestamp [default: `now()`]
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
 }
 
-//////////////////////////////////////////////////////////
-// ĐIỂM DANH TRONG BUỔI LIVE
-//////////////////////////////////////////////////////////
+// Bảng Course Reviews - Đánh giá khóa học (Filter: Review)
+Table course_reviews {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  course_id int [ref: > courses.id]
+  
+  // Đánh giá
+  rating int [not null] // 1-5 sao
+  title varchar(200)
+  content text
+  is_verified boolean [default: false] // Đã mua khóa học
+  
+  // Trạng thái
+  status enum('pending', 'approved', 'rejected') [default: 'pending']
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
 
-Table attendance {
-  id int [pk]
-  session_id int [ref: > class_sessions.id, note: 'Liên kết với buổi học']
-  user_id int [note: 'Học viên']
-  join_time datetime [note: 'Thời điểm học viên vào']
-  leave_time datetime [note: 'Thời điểm rời đi']
-  status varchar [note: 'Trạng thái: present, absent, late']
+// Bảng Course Discussions - Thảo luận khóa học
+Table course_discussions {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  user_id int [ref: > users.id]
+  parent_id int [ref: > course_discussions.id] // Cho reply
+  
+  // Nội dung
+  title varchar(200)
+  content text [not null]
+  
+  // Thống kê
+  likes_count int [default: 0]
+  replies_count int [default: 0]
+  
+  // Trạng thái
+  status enum('active', 'hidden', 'deleted') [default: 'active']
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Bảng Course Wishlist - Danh sách yêu thích
+Table course_wishlist {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  course_id int [ref: > courses.id]
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Coupons - Mã giảm giá
+Table coupons {
+  id int [pk, increment]
+  code varchar(50) [unique, not null]
+  name varchar(100) [not null]
+  description text
+  
+  // Loại giảm giá
+  discount_type enum('percentage', 'fixed_amount') [not null]
+  discount_value decimal(10,2) [not null] // Phần trăm hoặc số tiền
+  minimum_amount decimal(10,2) [default: 0] // Giá trị đơn hàng tối thiểu
+  
+  // Giới hạn sử dụng
+  max_uses int [default: null] // Số lần sử dụng tối đa
+  used_count int [default: 0] // Số lần đã sử dụng
+  max_uses_per_user int [default: 1] // Số lần sử dụng tối đa mỗi user
+  
+  // Thời gian
+  valid_from timestamp [not null]
+  valid_until timestamp [not null]
+  is_active boolean [default: true]
+  
+  // Áp dụng cho
+  applicable_courses json // Danh sách course_id có thể áp dụng
+  applicable_categories json // Danh sách category_id có thể áp dụng
+  
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Bảng Course Coupons - Áp dụng coupon cho khóa học
+Table course_coupons {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  coupon_id int [ref: > coupons.id]
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Certificates - Chứng chỉ hoàn thành
+Table course_certificates {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  course_id int [ref: > courses.id]
+  enrollment_id int [ref: > course_enrollments.id]
+  
+  // Thông tin chứng chỉ
+  certificate_number varchar(100) [unique]
+  issued_date timestamp [default: `now()`]
+  certificate_url varchar(255) // Link download chứng chỉ
+  certificate_template varchar(100) // Template chứng chỉ sử dụng
+  
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Analytics - Thống kê khóa học
+Table course_analytics {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  date date [not null]
+  
+  // Thống kê ngày
+  views int [default: 0] // Lượt xem
+  enrollments int [default: 0] // Số đăng ký
+  completions int [default: 0] // Số hoàn thành
+  revenue decimal(10,2) [default: 0] // Doanh thu
+  
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng User Course History - Lịch sử tương tác với khóa học
+Table user_course_history {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  course_id int [ref: > courses.id]
+  action enum('view', 'wishlist', 'enroll', 'complete', 'review') [not null]
+  action_data json // Dữ liệu bổ sung cho action
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Tags - Tags cho khóa học
+Table course_tags {
+  id int [pk, increment]
+  name varchar(50) [not null]
+  color varchar(7)
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Tag Relations - Quan hệ nhiều-nhiều giữa course và tags
+Table course_tag_relations {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  tag_id int [ref: > course_tags.id]
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Prerequisites - Điều kiện tiên quyết
+Table course_prerequisites {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  prerequisite_course_id int [ref: > courses.id]
+  prerequisite_type enum('course', 'level', 'skill') [default: 'course']
+  created_at timestamp [default: `now()`]
+}
+
+// Bảng Course Related Courses - Khóa học liên quan
+Table course_related_courses {
+  id int [pk, increment]
+  course_id int [ref: > courses.id]
+  related_course_id int [ref: > courses.id]
+  relation_type enum('similar', 'next_level', 'prerequisite') [default: 'similar']
+  created_at timestamp [default: `now()`]
 }

@@ -24,8 +24,8 @@ body {
 
 .course-page {
   width: 100%;
-  max-width: 1200px;
-  margin: 32px 0;
+  max-width: 1100px;
+  margin: 80px 0;
   background: var(--main-bg);
   border-radius: var(--main-radius);
   box-shadow: none;
@@ -486,3 +486,5 @@ body {
     gap: 4px;
   }
 }
+
+

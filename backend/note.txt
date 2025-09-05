@@ -125,5 +125,3 @@ test postman các api , tự code lại thì càng tốt
 
 code lại phần navigatioin bên web, code fake dữ liệu trang Home, tìm figma trang flashcard, code giao diện flash card, code logic , ghép api cho flashcard
 
-
-

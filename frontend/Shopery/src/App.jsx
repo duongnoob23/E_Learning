@@ -11,31 +11,29 @@ import "./assets/styles/global.css"; // CSS tùy chỉnh
 import "./assets/styles/reset.css";
 import "./assets/styles/global.css";
 import "./App.css";
-import Test from "./Client/pages/Auth/Test/Test";
 import CoursePreview from "./Client/pages/Course/CoursePreview/CoursePreview";
 
 function App() {
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     <div className="App">
-    //       <AppRoutes />
-    //     </div>
-    //   </Router>
-    //   <ToastContainer
-    //     position="top-right"
-    //     autoClose={3000}
-    //     hideProgressBar={false}
-    //     newestOnTop
-    //     closeOnClick
-    //     rtl={false}
-    //     pauseOnFocusLoss
-    //     draggable
-    //     pauseOnHover
-    //     theme="light"
-    //   />
-    // </Provider>
-    <CoursePreview />
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <AppRoutes />
+        </div>
+      </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </Provider>
   );
 }
 

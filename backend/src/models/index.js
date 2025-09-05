@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/database");
-
+const EmailOtp = require("./EmailOtp")(sequelize, Sequelize.DataTypes);
 const User = require("./User")(sequelize, Sequelize.DataTypes);
 const Role = require("./Role")(sequelize, Sequelize.DataTypes);
 const UserRole = require("./UserRole")(sequelize, Sequelize.DataTypes);
@@ -83,5 +83,6 @@ module.exports = {
   ExerciseType,
   Exercise,
   ExerciseQuestion,
-  ExerciseResult
+  ExerciseResult,
+  EmailOtp
 };

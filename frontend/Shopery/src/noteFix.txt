@@ -1,5 +1,183 @@
 
 
+// {
+//     "workbench.iconTheme": "material-icon-theme",
+//     "workbench.colorTheme": "Theme Darker",
+//     "editor.formatOnSave": true,
+//     "workbench.settings.useSplitJSON": true,
+//     "[javascript]": {
+//         "editor.defaultFormatter": "esbenp.prettier-vscode"
+//     },
+//     "[javascriptreact]": {
+//         "editor.defaultFormatter": "esbenp.prettier-vscode"
+//     },
+//     "github.copilot.enable": {
+//         "*": false,
+//         "plaintext": false,
+//         "markdown": false,
+//         "scminput": false
+//     },
+//     "emmet.includeLanguages": {
+//         "javascript": "javascriptreact",
+//         "typescript": "typescriptreact"
+//     },
+//     "emmet.syntaxProfiles": {
+//         "javascript": "jsx",
+//         "typescript": "tsx"
+//     },
+//     "emmet.triggerExpansionOnTab": true,
+//     "emmet.showSuggestionsAsSnippets": true,
+//     "emmet.showExpandedAbbreviation": "always",
+//     "emmet.showAbbreviationSuggestions": true,
+//     "emmet.useInlineCompletions": true,
+//     "chat.instructionsFilesLocations": {
+//         ".github/instructions": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-collections-pre-request.instructions.md": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-folder-post-response.instructions.md": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+//         "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true
+//     },
+//     "vscodeGoogleTranslate.preferredLanguage": "English",
+//     "cursor.cpp.disabledLanguages": [
+//         "plaintext",
+//         "markdown",
+//         "scminput"
+//     ],
+//     "augment.completions.enableQuickSuggestions": false,
+//     "augment.nextEdit.enableBackgroundSuggestions": false,
+//     "editor.inlineSuggest.enabled": false,
+//     "editor.inlineSuggest.syntaxHighlightingEnabled": false,
+//     "editor.inlineSuggest.edits.allowCodeShifting": "never",
+//     "editor.inlineSuggest.edits.renderSideBySide": "never",
+//     "editor.suggest.showInlineDetails": false,
+//     "json.schemas": [
+
+//     ],
+//     "editor.suggest.snippetsPreventQuickSuggestions": true,
+//     "augment.nextEdit.highlightSuggestionsInTheEditor": true
+// }
+
+// {
+//     // ===== Giữ lại gợi ý cơ bản (IntelliSense) =====
+//     "editor.quickSuggestions": {
+//       "other": true,      // bật gợi ý code cơ bản
+//       "comments": false,  // không gợi ý trong comment
+//       "strings": false    // không gợi ý trong string
+//     },
+//     "editor.suggestOnTriggerCharacters": true, // gợi ý khi gõ "."
+//     "editor.parameterHints.enabled": true,     // gợi ý tham số hàm
+//     "editor.hover.enabled": true,              // giữ tooltip khi hover
+//     "javascript.suggest.autoImports": true,    // auto import JS
+//     "typescript.suggest.autoImports": true,    // auto import TS
+
+//     // ===== Tắt gợi ý nâng cao (AI / inline) =====
+//     "editor.inlineSuggest.enabled": false,     // tắt inline AI gợi ý nguyên dòng
+//     "github.copilot.enable": {                 // nếu bạn có Copilot
+//       "*": false,
+//       "plaintext": false,
+//       "markdown": false,
+//       "scminput": false
+//     },
+//     "cursor.enableTabAutocomplete": false      // nếu dùng Cursor Editor
+//   }
+
+//   {
+//     "editor.formatOnSave": true,
+//     "editor.defaultFormatter": "esbenp.prettier-vscode",
+//     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+//     "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+//     "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+//     "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+//     "editor.codeActionsOnSave": {
+//       "source.organizeImports": "explicit"
+//     },
+//     "prettier.useEditorConfig": true
+//   }
+
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Theme Darker",
+  "workbench.settings.useSplitJSON": true,
+
+  // ==== Format với Prettier ====
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "prettier.useEditorConfig": true,
+
+  // ==== IntelliSense cơ bản ====
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.parameterHints.enabled": true,
+  "editor.hover.enabled": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+
+  // ==== Tắt AI / inline suggest ====
+  "editor.inlineSuggest.enabled": false,
+  "editor.inlineSuggest.syntaxHighlightingEnabled": false,
+  "editor.inlineSuggest.edits.allowCodeShifting": "never",
+  "editor.inlineSuggest.edits.renderSideBySide": "never",
+  "editor.suggest.showInlineDetails": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": true,
+
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
+  "cursor.enableTabAutocomplete": false,
+
+  // ==== Emmet ====
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "typescript": "tsx"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.useInlineCompletions": true,
+
+  // ==== Misc ====
+  "json.schemas": [],
+  "augment.completions.enableQuickSuggestions": false,
+  "augment.nextEdit.enableBackgroundSuggestions": false,
+  "augment.nextEdit.highlightSuggestionsInTheEditor": true,
+  "vscodeGoogleTranslate.preferredLanguage": "English",
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-collections-pre-request.instructions.md": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-folder-post-response.instructions.md": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+    "C:\\Users\\Nauh\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true
+  },
+  "workbench.settings.applyToAllProfiles": [
+    
+  ]
+}
+
+
 ____________________________Lỗi Crash do lưu data trong error Redux___________________
 
 
@@ -42,4 +220,123 @@ Best practice: thống nhất 1 kiểu (hoặc object, hoặc string) trong slic
 
 
 
-____________________________Lỗi ___________________
+
+____________________________Lỗi hết lượt dùng thử Cursol ##################  ___________________
+
+B1 
+irm https://aizaozao.com/accelerate.php/https://raw.githubusercontent.com/yuaotian/go-cursor-help/refs/heads/master/scripts/run/cursor_win_id_modifier.ps1 | iex
+B2
+1
+B3
+y
+B4
+ ipconfig /flushdns
+
+
+cho Grok đọc link này và thực hiện: https://github.com/yuaotian/go-cursor-help
+Các bước cần thực hiện
+Bước 1: Mở Cursor một lần để tạo tệp cấu hình
+Tập lệnh trước đó báo lỗi không tìm thấy tệp storage.json trong C:\Users\<Tên_Người_Dùng>\AppData\Roaming\Cursor\User\globalStorage\. Điều này có thể do Cursor chưa tạo các tệp cấu hình cần thiết sau khi cài đặt lại.
+
+Khởi động Cursor:
+
+Mở ứng dụng Cursor vừa cài đặt.
+Nếu được yêu cầu đăng nhập, bạn có thể đăng nhập bằng tài khoản tạm thời hoặc bỏ qua (nếu có thể).
+Mục đích là để Cursor tạo các tệp cấu hình cần thiết (như storage.json).
+Đóng Cursor:
+Sau khi mở Cursor, đóng ứng dụng ngay để tránh tạo dữ liệu dùng thử mới.
+Kiểm tra tệp cấu hình (tùy chọn, để xác nhận):
+
+Mở File Explorer và đi đến: C:\Users\<Tên_Người_Dùng>\AppData\Roaming\Cursor\User\globalStorage\.
+Kiểm tra xem tệp storage.json có tồn tại không. Nếu có, bạn đã sẵn sàng để chạy tập lệnh.
+
+Bước 2: Chạy lại tập lệnh với tùy chọn 2
+Vì lỗi trước cho thấy thiếu tệp cấu hình và Cursor, bạn nên chọn tùy chọn 2 (Đặt lại môi trường + sửa đổi mã máy) để xóa mọi dữ liệu còn sót lại và sửa đổi mã máy.
+Mở PowerShell với quyền quản trị viên:
+Nhấn Win + X, chọn Windows PowerShell (Administrator).
+Hoặc nhấn Win + R, gõ powershell, nhấn Ctrl + Shift + Enter.
+Nếu PowerShell yêu cầu quyền UAC, nhấn Yes để tiếp tục.
+Chạy tập lệnh:
+
+Trong PowerShell, sao chép và dán lệnh sau, sau đó nhấn Enter:
+powershellirm https://aizaozao.com/accelerate.php/https://raw.githubusercontent.com/yuaotian/go-cursor-help/refs/heads/master/scripts/run/cursor_win_id_modifier.ps1 | iex
+Chọn tùy chọn 2:
+Khi menu hiện ra với hai lựa chọn:
+1: Chỉ sửa đổi mã máy.
+2: Đặt lại môi trường + sửa đổi mã máy.
+Gõ 2 và nhấn Enter.
+Lý do: Tùy chọn 2 sẽ xóa thư mục Cursor (như %appdata%\Cursor) và sửa đổi mã máy, đảm bảo loại bỏ mọi dữ liệu dùng thử cũ.
+Xác nhận tiếp tục:
+Tập lệnh sẽ hiển thị quy trình (xóa thư mục, sao lưu, sửa đổi mã máy, v.v.) và yêu cầu xác nhận.
+Gõ y hoặc yes và nhấn Enter khi được hỏi: "是否继续执行？(输入 y 或 yes 继续，其他任意键退出):".
+Lưu ý: Tùy chọn 2 sẽ xóa cấu hình Cursor, nên nếu bạn có dữ liệu quan trọng (như tùy chỉnh giao diện, phím tắt), sao lưu thư mục %appdata%\Cursor trước.
+Chờ hoàn tất:
+Tập lệnh sẽ:
+Xóa thư mục Cursor (như %appdata%\Cursor).
+Sao lưu cấu hình (nếu còn).
+Sửa đổi mã máy trong registry.
+Tiêm mã JavaScript phá khóa để bypass giới hạn dùng thử.
+
+Chờ thông báo hoàn tất (thường có ký hiệu ✅ và thông báo như "操作完成" - Hoàn tất thao tác).
+
+Bước 3: Làm mới bộ đệm DNS
+Để đảm bảo xóa mọi thông tin mạng liên quan đến dùng thử cũ:
+
+Trong PowerShell quản trị viên, gõ:
+powershellipconfig /flushdns
+
+Nhấn Enter và kiểm tra thông báo xác nhận: "Successfully flushed the DNS Resolver Cache".
+
+Bước 4: Xóa tài khoản cũ và đăng ký tài khoản mới
+
+Xóa tài khoản cũ:
+
+Truy cập https://www.cursor.com/ và đăng nhập vào tài khoản cũ (nếu còn).
+Vào Hình đại diện -> Cài đặt -> Nâng cao (góc dưới bên trái) -> Xóa tài khoản.
+Nếu gặp lỗi khi xóa tài khoản:
+
+Xóa bộ nhớ đệm trình duyệt (trong Chrome: Cài đặt -> Quyền riêng tư và bảo mật -> Xóa dữ liệu duyệt web).
+Thử đổi trình duyệt (Edge, Firefox, Chrome)
+
+Đăng ký tài khoản mới:
+
+Sử dụng email mới (ví dụ: Gmail) để đăng ký tài khoản trên https://www.cursor.com/.
+Đảm bảo kết nối mạng ổn định, ưu tiên các khu vực có độ trễ thấp (Nhật Bản, Singapore, Mỹ, Hồng Kông). Nếu cần, sử dụng VPN.
+
+Bước 5: Kiểm tra Cursor
+
+Mở Cursor và đăng nhập bằng tài khoản mới.
+Kiểm tra xem lỗi "Too many free trial accounts used on this machine" có còn xuất hiện không.
+Nếu thành công, bạn sẽ có thể sử dụng bản dùng thử miễn phí bình thường.
+
+Bước 6: Tắt tự động cập nhật (Tùy chọn)
+
+Trong Cursor, vào Cài đặt và tắt tự động cập nhật để ngăn ứng dụng khôi phục giới hạn dùng thử sau khi cập nhật.
+
+Nếu gặp sự cố
+Tập lệnh báo lỗi tương tự (không tìm thấy Cursor hoặc tệp cấu hình):
+Đảm bảo bạn đã mở Cursor ít nhất một lần sau khi cài đặt để tạo tệp storage.json.
+Kiểm tra thư mục C:\Users\<Tên_Người_Dùng>\AppData\Roaming\Cursor\User\globalStorage\. Nếu không có, gỡ cài đặt và cài đặt lại Cursor.
+Chạy lại tập lệnh và chọn tùy chọn 2.
+Lỗi mạng:
+Đảm bảo kết nối internet ổn định. Nếu lỗi, thử dùng VPN với các nút ở Nhật Bản, Singapore, Mỹ, hoặc Hồng Kông.
+Kiểm tra xem lệnh irm có tải được tập lệnh không. Nếu không, thử lại sau vài phút.
+PowerShell không hoạt động:
+Cài đặt PowerShell 7:
+powershellwinget install --id Microsoft.PowerShell --source winget
+Hoặc tải thủ công từ Microsoft: PowerShell-7.4.6-win-x64.msi (64-bit) hoặc PowerShell-7.4.6-win-x86.msi (32-bit).
+
+Vẫn thấy lỗi sau khi chạy tập lệnh:
+
+Thử chạy lại tập lệnh với tùy chọn 2 (nếu chưa chọn).
+Xóa bộ nhớ đệm trình duyệt trước khi đăng ký tài khoản mới.
+Nếu vẫn không được, cung cấp thông báo lỗi cụ thể để tôi hỗ trợ thêm.
+
+Tóm tắt các bước
+Mở Cursor một lần để tạo tệp cấu hình, sau đó đóng lại.
+Chạy lại lệnh trong PowerShell quản trị viên:
+powershellirm https://aizaozao.com/accelerate.php/https://raw.githubusercontent.com/yuaotian/go-cursor-help/refs/heads/master/scripts/run/cursor_win_id_modifier.ps1 | iex
+Chọn tùy chọn 2, xác nhận bằng y hoặc yes.
+Làm mới DNS với ipconfig /flushdns.
+Xóa tài khoản cũ, đăng ký tài khoản mới, và kiểm tra Cursor.
+Tắt tự động cập nhật trong Cursor (tùy chọn).

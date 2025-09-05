@@ -104,10 +104,19 @@ const ClientRoutes = () => {
         }
       />
 
-      <Route path="/course" />
+      <Route
+        path="/course"
+        element={
+          <PrivateRoute>
+            <ClientLayout>
+              <Course />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
 
       <Route
-        path="/courses/:id"
+        path="/course/1"
         element={
           <PrivateRoute>
             <ClientLayout>
@@ -116,6 +125,7 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
+
       <Route
         path="/courses/:id/learn"
         element={
