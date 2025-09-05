@@ -16,7 +16,7 @@ exports.login = async (email, password) => {
       return {
         EM: "Email không tồn tại",
         EC: "2",
-        DT: null
+        DT: null,
       };
     }
 
@@ -25,7 +25,7 @@ exports.login = async (email, password) => {
       return {
         EM: "Mật khẩu không đúng",
         EC: "2",
-        DT: null
+        DT: null,
       };
     }
 
@@ -42,15 +42,15 @@ exports.login = async (email, password) => {
       EC: "0",
       DT: {
         token,
-        user: userWithoutPass
-      }
+        user: userWithoutPass,
+      },
     };
   } catch (error) {
     console.error("Login service error:", error);
     return {
       EM: "Lỗi hệ thống, vui lòng thử lại sau",
       EC: "-2", // lỗi hệ thống
-      DT: null
+      DT: null,
     };
   }
 };
@@ -62,7 +62,7 @@ exports.forgetPassword = async (email) => {
       return {
         EM: "Email không tồn tại",
         EC: "2", // lỗi nghiệp vụ
-        DT: null
+        DT: null,
       };
     }
 
@@ -75,14 +75,14 @@ exports.forgetPassword = async (email) => {
     return {
       EM: "Vui lòng kiểm tra email để lấy OTP.",
       EC: "0", // thành công
-      DT: { otp } // nếu bạn muốn ẩn OTP khi trả về FE thì bỏ đi
+      DT: { otp }, // nếu bạn muốn ẩn OTP khi trả về FE thì bỏ đi
     };
   } catch (error) {
     console.error("Lỗi trong forgetPassword service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình xử lý quên mật khẩu",
       EC: "-2", // lỗi hệ thống
-      DT: null
+      DT: null,
     };
   }
 };
@@ -95,7 +95,7 @@ exports.changePassword = async (email, newPassword) => {
       return {
         EM: "Email không tồn tại",
         EC: "2", // lỗi nghiệp vụ
-        DT: null
+        DT: null,
       };
     }
 
@@ -105,28 +105,35 @@ exports.changePassword = async (email, newPassword) => {
     return {
       EM: "Đổi mật khẩu thành công.",
       EC: "0", // success
-      DT: null
+      DT: null,
     };
   } catch (error) {
     console.error("Lỗi trong changePassword service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình đổi mật khẩu",
       EC: "-2", // lỗi hệ thống
-      DT: null
+      DT: null,
     };
   }
 };
 
 // module Đăng kí
 // Đăng ký
-exports.register = async (username, email, password, fullName, phoneNumber, avatarUrl) => {
+exports.register = async (
+  username,
+  email,
+  password,
+  fullName,
+  phoneNumber,
+  avatarUrl
+) => {
   try {
     const existingEmail = await User.findByEmail(email);
     if (existingEmail) {
       return {
         EM: "Email đã tồn tại",
         EC: "2", // lỗi nghiệp vụ
-        DT: null
+        DT: null,
       };
     }
 
@@ -135,7 +142,7 @@ exports.register = async (username, email, password, fullName, phoneNumber, avat
       return {
         EM: "Username đã tồn tại",
         EC: "2",
-        DT: null
+        DT: null,
       };
     }
 
@@ -149,7 +156,7 @@ exports.register = async (username, email, password, fullName, phoneNumber, avat
       full_name: fullName || null,
       phone_number: phoneNumber || null,
       avatar_url: avatarUrl || null,
-      status: "unverified"
+      status: "unverified",
     });
 
     const otp = generateOtp();
@@ -160,14 +167,14 @@ exports.register = async (username, email, password, fullName, phoneNumber, avat
     return {
       EM: "Đăng ký thành công, vui lòng kiểm tra email để xác thực OTP.",
       EC: "0", // success
-      DT: { otp } // có thể bỏ `otp` nếu không muốn trả ra FE
+      DT: { otp }, // có thể bỏ `otp` nếu không muốn trả ra FE
     };
   } catch (error) {
     console.error("Lỗi trong register service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình đăng ký",
       EC: "-2", // lỗi hệ thống
-      DT: null
+      DT: null,
     };
   }
 };
@@ -179,15 +186,15 @@ exports.verifyOtp = async (email, otp, type) => {
       where: {
         email,
         otp,
-        expires_at: { [Op.gt]: new Date() }
-      }
+        expires_at: { [Op.gt]: new Date() },
+      },
     });
 
     if (!emailOtp) {
       return {
         EM: "Mã OTP không hợp lệ hoặc đã hết hạn",
         EC: "2", // lỗi nghiệp vụ
-        DT: null
+        DT: null,
       };
     }
 
@@ -205,14 +212,14 @@ exports.verifyOtp = async (email, otp, type) => {
     return {
       EM: "Xác thực thành công, bạn đã đăng ký!",
       EC: "0", // success
-      DT: null
+      DT: null,
     };
   } catch (error) {
     console.error("Lỗi trong verifyOtp service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình xác thực OTP",
       EC: "-2", // lỗi hệ thống
-      DT: null
+      DT: null,
     };
   }
 };
