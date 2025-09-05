@@ -77,13 +77,19 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await authApi.login(credentials);
       const { EM, EC, DT } = normalizeAuthResponse(res);
+      console.log("🚀 ~ DT:", DT);
+      console.log("🚀 ~ EM:", EM);
+      console.log("🚀 ~ EC:", EC);
 
       if (EC !== "0" || !DT) {
         return rejectWithValue({ EM, EC, DT });
       }
 
-      const { access_token, refresh_token, user } = DT || {};
-      if (!access_token || !refresh_token || !user) {
+      const { token, user } = DT || {};
+      console.log("🚀 ~ user:", user);
+      console.log("🚀 ~ access_token:", token);
+
+      if (!token || !user) {
         return rejectWithValue({
           EM: "Thiếu access_token, refresh_token hoặc user",
           EC: "-2",
@@ -91,7 +97,7 @@ export const loginUser = createAsyncThunk(
         });
       }
 
-      tokenHelper.setTokens(access_token, refresh_token);
+      tokenHelper.setTokens(token);
       tokenHelper.setUserInfo(user);
 
       return { EM, EC, DT };
