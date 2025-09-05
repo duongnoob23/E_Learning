@@ -153,7 +153,7 @@ exports.register = async (username, email, password, fullName, phoneNumber, avat
     });
 
     const otp = generateOtp();
-    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 phút
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 10 phút
     await EmailOtp.createOtp({ email, otp, expires_at: expiresAt });
     await sendOtpEmail(email, otp);
 
@@ -179,7 +179,7 @@ exports.verifyOtp = async (email, otp, type) => {
       where: {
         email,
         otp,
-        expires_at: { [Op.gt]: new Date() }
+        expires_at: new Date(Date.now() + 24 *60 * 60 * 1000),
       }
     });
 
