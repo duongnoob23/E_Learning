@@ -12,6 +12,8 @@ import Footer from "../components/layout/Footer/Footer";
 import Home from "../pages/Home/Home";
 import Flashcard from "../pages/Flashcard/Flashcard";
 import Blog from "../pages/Blog/Blog";
+import Instructor from "../pages/Instructor/Instructor";
+import InstructorDetail from "../pages/Instructor/InstructorDetail";
 
 // Auth Pages
 import Login from "../../Client/pages/Auth/Login/Login";
@@ -101,6 +103,26 @@ const ClientRoutes = () => {
               <Blog />
             </ClientLayout>
           </PrivateRoute>
+        }
+      />
+
+      {/* Instructor Route */}
+      <Route
+        path="/instructor"
+        element={
+          <ClientLayout>
+            <Instructor />
+          </ClientLayout>
+        }
+      />
+
+      {/* Instructor Detail Route */}
+      <Route
+        path="/instructor/:id"
+        element={
+          <ClientLayout>
+            <InstructorDetail />
+          </ClientLayout>
         }
       />
 
