@@ -1,0 +1,912 @@
+-- =============================================
+-- TẠO DATABASE VÀ SỬ DỤNG
+-- =============================================
+CREATE DATABASE IF NOT EXISTS e_learnning2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE e_learnning2;
+
+-- =============================================
+-- XÓA TOÀN BỘ BẢNG CŨ (THEO THỨ TỰ KHÓA NGOẠI)
+-- =============================================
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS learning_achievements;
+DROP TABLE IF EXISTS study_notifications;
+DROP TABLE IF EXISTS study_settings;
+DROP TABLE IF EXISTS study_modes;
+DROP TABLE IF EXISTS import_details;
+DROP TABLE IF EXISTS batch_imports;
+DROP TABLE IF EXISTS learning_statistics;
+DROP TABLE IF EXISTS word_study_history;
+DROP TABLE IF EXISTS session_details;
+DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS favorite_topics;
+DROP TABLE IF EXISTS word_learning_progress;
+DROP TABLE IF EXISTS user_words;
+DROP TABLE IF EXISTS words;
+DROP TABLE IF EXISTS topics;
+DROP TABLE IF EXISTS password_reset_tokens;
+DROP TABLE IF EXISTS login_history;
+DROP TABLE IF EXISTS email_verifications;
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS otp_codes;
+DROP TABLE IF EXISTS role_permissions;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS users;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- =============================================
+-- TẠO BẢNG MỚI (CẤU TRÚC HOÀN CHỈNH VỚI ID LÀ BIGINT UNSIGNED)
+-- =============================================
+
+-- BẢNG USERS
+CREATE TABLE users (
+    user_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID người dùng',
+    username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên đăng nhập',
+    password_hash VARCHAR(255) NOT NULL COMMENT 'Mật khẩu đã mã hóa',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email duy nhất',
+    full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
+    phone_number VARCHAR(20) COMMENT 'Số điện thoại',
+    avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
+    status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active, inactive, banned, pending_verification',
+    email_verified BOOLEAN DEFAULT FALSE COMMENT 'Email đã xác thực chưa',
+    phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Số điện thoại đã xác thực chưa',
+    last_login DATETIME COMMENT 'Lần đăng nhập cuối',
+    failed_login_attempts INT DEFAULT 0 COMMENT 'Số lần đăng nhập thất bại',
+    locked_until DATETIME COMMENT 'Thời gian khóa tài khoản',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
+) ENGINE=InnoDB;
+
+-- BẢNG ROLES
+CREATE TABLE roles (
+    role_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID vai trò',
+    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Student, Teacher, Admin...',
+    description TEXT COMMENT 'Mô tả quyền hạn của vai trò',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Vai trò có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG USER_ROLES
+CREATE TABLE user_roles (
+    user_id BIGINT UNSIGNED,
+    role_id BIGINT UNSIGNED,
+    assigned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm gán vai trò',
+    assigned_by BIGINT UNSIGNED COMMENT 'Người gán vai trò',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Vai trò có đang hoạt động không',
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (assigned_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG PERMISSIONS
+CREATE TABLE permissions (
+    permission_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID quyền',
+    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: /user/create, /user/read...',
+    description TEXT COMMENT 'Mô tả hành động',
+    resource VARCHAR(50) COMMENT 'Tài nguyên: user, role, topic, word...',
+    action VARCHAR(20) COMMENT 'Hành động: create, read, update, delete',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Quyền có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG ROLE_PERMISSIONS
+CREATE TABLE role_permissions (
+    role_id BIGINT UNSIGNED,
+    permission_id BIGINT UNSIGNED,
+    granted_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm cấp quyền',
+    granted_by BIGINT UNSIGNED COMMENT 'Người cấp quyền',
+    PRIMARY KEY (role_id, permission_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES permissions(permission_id) ON DELETE CASCADE,
+    FOREIGN KEY (granted_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG OTP_CODES
+CREATE TABLE otp_codes (
+    otp_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID OTP',
+    user_id BIGINT UNSIGNED COMMENT 'Người dùng',
+    email VARCHAR(100) COMMENT 'Email gửi OTP',
+    phone_number VARCHAR(20) COMMENT 'Số điện thoại gửi OTP',
+    otp_code VARCHAR(6) NOT NULL COMMENT 'Mã OTP 6 số',
+    otp_type ENUM('email_verification', 'password_reset', 'login_2fa', 'phone_verification') NOT NULL COMMENT 'Loại OTP',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã sử dụng chưa',
+    attempts INT DEFAULT 0 COMMENT 'Số lần thử nhập OTP',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG REFRESH_TOKENS
+CREATE TABLE refresh_tokens (
+    token_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID token',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    token_hash VARCHAR(255) NOT NULL COMMENT 'Hash của refresh token',
+    device_info TEXT COMMENT 'Thông tin thiết bị',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    is_revoked BOOLEAN DEFAULT FALSE COMMENT 'Đã thu hồi chưa',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG EMAIL_VERIFICATIONS
+CREATE TABLE email_verifications (
+    verification_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID xác thực',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    email VARCHAR(100) NOT NULL COMMENT 'Email cần xác thực',
+    verification_token VARCHAR(255) NOT NULL COMMENT 'Token xác thực',
+    is_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực chưa',
+    verified_at DATETIME COMMENT 'Thời gian xác thực',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG LOGIN_HISTORY
+CREATE TABLE login_history (
+    login_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID lịch sử',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    login_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian đăng nhập',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    login_status ENUM('success', 'failed', 'blocked', '2fa_required') NOT NULL COMMENT 'Trạng thái đăng nhập',
+    failure_reason VARCHAR(255) COMMENT 'Lý do thất bại',
+    session_duration INT COMMENT 'Thời gian session (giây)',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG PASSWORD_RESET_TOKENS
+CREATE TABLE password_reset_tokens (
+    reset_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID reset',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    reset_token VARCHAR(255) NOT NULL COMMENT 'Token reset password',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã sử dụng chưa',
+    expires_at DATETIME NOT NULL COMMENT 'Thời gian hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG TOPICS
+CREATE TABLE topics (
+    topic_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID chủ đề',
+    topic_name VARCHAR(255) NOT NULL COMMENT 'Tên chủ đề từ vựng',
+    description TEXT COMMENT 'Mô tả nội dung chủ đề',
+    image_url VARCHAR(255) COMMENT 'Ảnh đại diện cho chủ đề',
+    logo_url VARCHAR(255) COMMENT 'Logo website (cho topic hệ thống)',
+    topic_type ENUM('system', 'user_created') NOT NULL COMMENT 'Loại topic: hệ thống hoặc user tạo',
+    created_by BIGINT UNSIGNED COMMENT 'ID người tạo, NULL nếu là topic hệ thống',
+    is_public BOOLEAN DEFAULT TRUE COMMENT 'Topic có công khai không (cho user topic)',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Topic có đang hoạt động không',
+    word_count INT DEFAULT 0 COMMENT 'Số lượng từ trong topic',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo chủ đề',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG WORDS
+CREATE TABLE words (
+    word_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID từ vựng',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Thuộc chủ đề nào',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ: noun, verb, adjective...',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm (IPA)',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Câu ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Dịch câu ví dụ',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa cho từ',
+    notes TEXT COMMENT 'Ghi chú cho từ',
+    word_type ENUM('system', 'user_created') NOT NULL COMMENT 'Loại từ: hệ thống hoặc user tạo',
+    created_by BIGINT UNSIGNED COMMENT 'ID người tạo, NULL nếu là từ hệ thống',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Từ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo từ',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG USER_WORDS
+CREATE TABLE user_words (
+    user_word_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID từ vựng cá nhân',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người sở hữu từ',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Thuộc chủ đề nào',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Câu ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Dịch câu ví dụ',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa',
+    notes TEXT COMMENT 'Ghi chú cá nhân',
+    from_system_word_id BIGINT UNSIGNED COMMENT 'Nếu copy từ hệ thống thì lưu ID gốc',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Từ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo từ',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG WORD_LEARNING_PROGRESS
+CREATE TABLE word_learning_progress (
+    progress_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID tiến độ',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
+    word_id BIGINT UNSIGNED COMMENT 'ID từ hệ thống (nếu học từ hệ thống)',
+    user_word_id BIGINT UNSIGNED COMMENT 'ID từ cá nhân (nếu học từ cá nhân)',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề đang học',
+    learning_status ENUM('not_started', 'learning', 'mastered', 'review') DEFAULT 'not_started' COMMENT 'Trạng thái học',
+    mastery_level INT DEFAULT 0 COMMENT 'Mức độ thuộc từ (0-5)',
+    is_marked_as_learned BOOLEAN DEFAULT FALSE COMMENT 'Đã đánh dấu học xong chưa (dấu sao)',
+    marked_at DATETIME COMMENT 'Thời gian đánh dấu học xong',
+    last_reviewed_at DATETIME COMMENT 'Lần ôn tập cuối',
+    review_count INT DEFAULT 0 COMMENT 'Số lần ôn tập',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu trả lời đúng',
+    total_attempts INT DEFAULT 0 COMMENT 'Tổng số lần thử',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày bắt đầu học',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG FAVORITE_TOPICS
+CREATE TABLE favorite_topics (
+    favorite_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID yêu thích',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề yêu thích',
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày thêm vào yêu thích',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic (user_id, topic_id)
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_SESSIONS
+CREATE TABLE study_sessions (
+    session_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID phiên học',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề đang học',
+    session_type ENUM('flashcard', 'list_view', 'quiz', 'review') NOT NULL COMMENT 'Loại phiên học',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian bắt đầu',
+    ended_at DATETIME COMMENT 'Thời gian kết thúc',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ trong phiên',
+    learned_words INT DEFAULT 0 COMMENT 'Số từ đã học xong',
+    session_duration INT COMMENT 'Thời gian phiên học (giây)',
+    is_completed BOOLEAN DEFAULT FALSE COMMENT 'Phiên học đã hoàn thành chưa',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG SESSION_DETAILS
+CREATE TABLE session_details (
+    detail_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID chi tiết',
+    session_id BIGINT UNSIGNED NOT NULL COMMENT 'Thuộc phiên học nào',
+    word_id BIGINT UNSIGNED COMMENT 'ID từ hệ thống',
+    user_word_id BIGINT UNSIGNED COMMENT 'ID từ cá nhân',
+    action_type ENUM('view', 'flip', 'mark_learned', 'unmark_learned', 'skip', 'correct', 'incorrect') NOT NULL COMMENT 'Hành động thực hiện',
+    action_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian thực hiện',
+    time_spent INT COMMENT 'Thời gian xem từ (giây)',
+    is_correct BOOLEAN COMMENT 'Trả lời đúng hay sai (cho quiz)',
+    notes TEXT COMMENT 'Ghi chú cho hành động',
+    FOREIGN KEY (session_id) REFERENCES study_sessions(session_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG WORD_STUDY_HISTORY
+CREATE TABLE word_study_history (
+    history_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID lịch sử',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
+    word_id BIGINT UNSIGNED COMMENT 'ID từ hệ thống',
+    user_word_id BIGINT UNSIGNED COMMENT 'ID từ cá nhân',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề học',
+    action_type ENUM('view', 'mark_learned', 'unmark_learned', 'review', 'start_learning') NOT NULL COMMENT 'Hành động',
+    action_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian thực hiện',
+    session_id BIGINT UNSIGNED COMMENT 'Thuộc phiên học nào',
+    mastery_level_before INT COMMENT 'Mức độ thuộc trước khi thực hiện',
+    mastery_level_after INT COMMENT 'Mức độ thuộc sau khi thực hiện',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES study_sessions(session_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG LEARNING_STATISTICS
+CREATE TABLE learning_statistics (
+    stat_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID thống kê',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    date DATE NOT NULL COMMENT 'Ngày thống kê',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ trong topic',
+    learned_words INT DEFAULT 0 COMMENT 'Số từ đã học xong',
+    study_time INT DEFAULT 0 COMMENT 'Thời gian học (phút)',
+    sessions_count INT DEFAULT 0 COMMENT 'Số phiên học',
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Tỷ lệ chính xác (%)',
+    words_marked_learned INT DEFAULT 0 COMMENT 'Số từ đánh dấu học xong trong ngày',
+    words_unmarked INT DEFAULT 0 COMMENT 'Số từ bỏ đánh dấu trong ngày',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo thống kê',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic_date (user_id, topic_id, date)
+) ENGINE=InnoDB;
+
+-- BẢNG BATCH_IMPORTS
+CREATE TABLE batch_imports (
+    import_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID import',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người import',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề import vào',
+    import_name VARCHAR(255) COMMENT 'Tên file import',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ import',
+    success_count INT DEFAULT 0 COMMENT 'Số từ import thành công',
+    error_count INT DEFAULT 0 COMMENT 'Số từ lỗi',
+    import_status ENUM('pending', 'processing', 'completed', 'failed') DEFAULT 'pending' COMMENT 'Trạng thái import',
+    error_log TEXT COMMENT 'Log lỗi nếu có',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian bắt đầu',
+    completed_at DATETIME COMMENT 'Thời gian hoàn thành',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- BẢNG IMPORT_DETAILS
+CREATE TABLE import_details (
+    detail_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID chi tiết',
+    import_id BIGINT UNSIGNED NOT NULL COMMENT 'Thuộc import nào',
+    row_num INT COMMENT 'Số thứ tự dòng trong file',
+    word VARCHAR(255) COMMENT 'Từ tiếng Anh',
+    meaning_vi TEXT COMMENT 'Nghĩa tiếng Việt',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    example_en TEXT COMMENT 'Ví dụ tiếng Anh',
+    example_vi TEXT COMMENT 'Ví dụ tiếng Việt',
+    notes TEXT COMMENT 'Ghi chú',
+    import_status ENUM('pending', 'success', 'error') DEFAULT 'pending' COMMENT 'Trạng thái import từng từ',
+    error_message TEXT COMMENT 'Thông báo lỗi nếu có',
+    created_word_id BIGINT UNSIGNED COMMENT 'ID từ được tạo thành công',
+    FOREIGN KEY (import_id) REFERENCES batch_imports(import_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_word_id) REFERENCES user_words(user_word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_MODES
+CREATE TABLE study_modes (
+    mode_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID chế độ học',
+    mode_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên chế độ: flashcard, list_view, review_only',
+    description TEXT COMMENT 'Mô tả chế độ học',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Chế độ có đang hoạt động không',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_SETTINGS
+CREATE TABLE study_settings (
+    setting_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID cài đặt',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    auto_mark_learned BOOLEAN DEFAULT FALSE COMMENT 'Tự động đánh dấu học xong sau N lần đúng',
+    auto_mark_threshold INT DEFAULT 3 COMMENT 'Số lần đúng để tự động đánh dấu học xong',
+    show_learned_words BOOLEAN DEFAULT FALSE COMMENT 'Hiển thị từ đã học trong danh sách',
+    review_interval INT DEFAULT 7 COMMENT 'Khoảng thời gian ôn tập (ngày)',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo cài đặt',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_topic_setting (user_id, topic_id)
+) ENGINE=InnoDB;
+
+-- BẢNG STUDY_NOTIFICATIONS
+CREATE TABLE study_notifications (
+    notification_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID thông báo',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người nhận',
+    topic_id BIGINT UNSIGNED COMMENT 'Chủ đề liên quan',
+    notification_type ENUM('review_reminder', 'achievement', 'streak_reminder', 'new_words') NOT NULL COMMENT 'Loại thông báo',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề thông báo',
+    message TEXT NOT NULL COMMENT 'Nội dung thông báo',
+    is_read BOOLEAN DEFAULT FALSE COMMENT 'Đã đọc chưa',
+    read_at DATETIME COMMENT 'Thời gian đọc',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian tạo',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- BẢNG LEARNING_ACHIEVEMENTS
+CREATE TABLE learning_achievements (
+    achievement_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'Khóa chính - ID thành tích',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    topic_id BIGINT UNSIGNED COMMENT 'Chủ đề',
+    achievement_type ENUM('first_word', 'word_streak', 'topic_completed', 'perfect_score', 'study_time') NOT NULL COMMENT 'Loại thành tích',
+    achievement_name VARCHAR(255) NOT NULL COMMENT 'Tên thành tích',
+    description TEXT COMMENT 'Mô tả thành tích',
+    value INT COMMENT 'Giá trị đạt được (số từ, thời gian, điểm...)',
+    earned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời gian đạt được',
+    is_notified BOOLEAN DEFAULT FALSE COMMENT 'Đã thông báo chưa',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+
+/////////////////////////////////////////////////////////////////////
+
+
+-- =============================================
+-- CẬP NHẬT BẢNG USERS TRONG DATABASE e_learnning2
+-- =============================================
+
+-- Chọn database e_learnning2
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+-- =============================================
+-- PHẦN 1: USERS, ROLES, PERMISSIONS
+-- =============================================
+
+-- Xóa dữ liệu cũ (theo thứ tự dependency)
+DELETE FROM role_permissions;
+DELETE FROM user_roles;
+DELETE FROM permissions;
+DELETE FROM roles;
+DELETE FROM users;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE users AUTO_INCREMENT = 1;
+ALTER TABLE roles AUTO_INCREMENT = 1;
+ALTER TABLE permissions AUTO_INCREMENT = 1;
+
+-- INSERT USERS (5 người dùng thực tế)
+INSERT INTO users (username, password_hash, email, full_name, phone_number, status, email_verified, phone_verified) VALUES
+('admin', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'admin@elearning.com', 'Nguyễn Văn Admin', '0901234567', 'active', TRUE, TRUE),
+('teacher_nguyen', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'nguyen.teacher@elearning.com', 'Trần Thị Nguyên', '0901234568', 'active', TRUE, TRUE),
+('student_an', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'an.student@elearning.com', 'Lê Văn An', '0901234569', 'active', TRUE, TRUE),
+('student_binh', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'binh.student@elearning.com', 'Phạm Thị Bình', '0901234570', 'active', TRUE, TRUE),
+('guest_user', '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'guest@elearning.com', 'Khách Tham Quan', '0901234571', 'active', TRUE, FALSE);
+
+-- INSERT ROLES (4 vai trò)
+INSERT INTO roles (role_name, description) VALUES
+('Admin', 'Quản trị viên hệ thống - toàn quyền'),
+('Teacher', 'Giáo viên - quản lý nội dung học tập'),
+('Student', 'Học sinh - học và làm bài tập'),
+('Guest', 'Khách - chỉ xem nội dung công khai');
+
+-- INSERT PERMISSIONS (30 quyền hạn)
+INSERT INTO permissions (permission_name, description, resource, action) VALUES
+-- User management
+('/user/create', 'Tạo tài khoản người dùng mới', 'user', 'create'),
+('/user/read', 'Xem thông tin người dùng', 'user', 'read'),
+('/user/update', 'Cập nhật thông tin người dùng', 'user', 'update'),
+('/user/delete', 'Xóa tài khoản người dùng', 'user', 'delete'),
+-- Role management
+('/role/create', 'Tạo vai trò mới', 'role', 'create'),
+('/role/read', 'Xem danh sách vai trò', 'role', 'read'),
+('/role/update', 'Cập nhật vai trò', 'role', 'update'),
+('/role/delete', 'Xóa vai trò', 'role', 'delete'),
+('/role/assign', 'Gán vai trò cho người dùng', 'role', 'assign'),
+-- Permission management
+('/permission/create', 'Tạo quyền hạn mới', 'permission', 'create'),
+('/permission/read', 'Xem danh sách quyền hạn', 'permission', 'read'),
+('/permission/update', 'Cập nhật quyền hạn', 'permission', 'update'),
+('/permission/delete', 'Xóa quyền hạn', 'permission', 'delete'),
+('/permission/assign', 'Gán quyền cho vai trò', 'permission', 'assign'),
+-- Topic management
+('/topic/create', 'Tạo chủ đề từ vựng mới', 'topic', 'create'),
+('/topic/read', 'Xem danh sách chủ đề', 'topic', 'read'),
+('/topic/update', 'Cập nhật chủ đề', 'topic', 'update'),
+('/topic/delete', 'Xóa chủ đề', 'topic', 'delete'),
+-- Word management
+('/word/create', 'Tạo từ vựng mới', 'word', 'create'),
+('/word/read', 'Xem từ vựng', 'word', 'read'),
+('/word/update', 'Cập nhật từ vựng', 'word', 'update'),
+('/word/delete', 'Xóa từ vựng', 'word', 'delete'),
+-- Flashcard learning
+('/flashcard/start', 'Bắt đầu học flashcard', 'flashcard', 'start'),
+('/flashcard/review', 'Ôn tập flashcard', 'flashcard', 'review'),
+('/flashcard/mark', 'Đánh dấu từ đã học', 'flashcard', 'mark'),
+-- Exercise
+('/exercise/create', 'Tạo bài tập mới', 'exercise', 'create'),
+('/exercise/read', 'Xem bài tập', 'exercise', 'read'),
+('/exercise/update', 'Cập nhật bài tập', 'exercise', 'update'),
+('/exercise/delete', 'Xóa bài tập', 'exercise', 'delete'),
+('/exercise/submit', 'Nộp bài làm', 'exercise', 'submit');
+
+-- Kiểm tra kết quả
+SELECT 'Phần 1 hoàn thành!' as message;
+SELECT COUNT(*) as total_users FROM users;
+SELECT COUNT(*) as total_roles FROM roles;
+SELECT COUNT(*) as total_permissions FROM permissions;
+
+///////////////////////////////////////////////////////////
+
+-- =============================================
+-- PHẦN 2: USER_ROLES, ROLE_PERMISSIONS
+-- =============================================
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+-- Xóa dữ liệu cũ
+DELETE FROM role_permissions;
+DELETE FROM user_roles;
+
+-- INSERT USER_ROLES (Gán vai trò cho người dùng)
+INSERT INTO user_roles (user_id, role_id, assigned_by) VALUES
+-- Admin có vai trò Admin
+(1, 1, 1),
+-- Teacher có vai trò Teacher
+(2, 2, 1),
+-- Student An có vai trò Student
+(3, 3, 1),
+-- Student Bình có vai trò Student
+(4, 3, 1),
+-- Guest có vai trò Guest
+(5, 4, 1);
+
+-- INSERT ROLE_PERMISSIONS (Gán quyền cho vai trò)
+-- Admin: toàn quyền (tất cả 30 quyền)
+INSERT INTO role_permissions (role_id, permission_id, granted_by)
+SELECT 1 as role_id, permission_id, 1 as granted_by FROM permissions;
+
+-- Teacher: quản lý topic, word, exercise (không quản lý user/role)
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+-- Topic management
+(2, 15, 1), (2, 16, 1), (2, 17, 1), (2, 18, 1),
+-- Word management
+(2, 19, 1), (2, 20, 1), (2, 21, 1), (2, 22, 1),
+-- Exercise management
+(2, 26, 1), (2, 27, 1), (2, 28, 1), (2, 29, 1);
+
+-- Student: đọc nội dung + học flashcard + nộp bài
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+-- Đọc topic và word
+(3, 16, 1), (3, 20, 1),
+-- Học flashcard
+(3, 23, 1), (3, 24, 1), (3, 25, 1),
+-- Xem và nộp bài tập
+(3, 27, 1), (3, 30, 1);
+
+-- Guest: chỉ đọc topic và word
+INSERT INTO role_permissions (role_id, permission_id, granted_by) VALUES
+(4, 16, 1), (4, 20, 1);
+
+-- Kiểm tra kết quả
+SELECT 'Phần 2 hoàn thành!' as message;
+SELECT COUNT(*) as total_user_roles FROM user_roles;
+SELECT COUNT(*) as total_role_permissions FROM role_permissions;
+
+///////////////////////////////////////////////////////////
+
+-- =============================================
+-- PHẦN 3: TOPICS, WORDS
+-- =============================================
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Xóa dữ liệu cũ (theo thứ tự dependency)
+DELETE FROM words;
+DELETE FROM topics;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE topics AUTO_INCREMENT = 1;
+ALTER TABLE words AUTO_INCREMENT = 1;
+
+-- INSERT TOPICS (6 chủ đề thực tế)
+INSERT INTO topics (topic_name, description, image_url, topic_type, created_by, word_count) VALUES
+('Từ vựng tiếng Anh văn phòng', 'Từ vựng thường dùng trong môi trường công sở, giao tiếp công việc', 'https://images.unsplash.com/photo-1497366216548-37526070297c', 'system', 2, 6),
+('Tiếng Anh giao tiếp cơ bản', 'Từ vựng và câu giao tiếp hàng ngày, tình huống thường gặp', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3', 'system', 2, 6),
+('900 từ TOEFL cơ bản', 'Từ vựng thường xuất hiện trong bài thi TOEFL, mức độ trung bình', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173', 'system', 1, 6),
+('900 từ IELTS cơ bản', 'Từ vựng thường gặp trong bài thi IELTS, mức độ trung bình', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570', 'system', 2, 6),
+('Từ vựng kinh doanh cá nhân', 'Từ vựng chuyên ngành kinh doanh, tài chính cá nhân', 'https://images.unsplash.com/photo-1554224155-6726b3ff858f', 'user_created', 3, 3),
+('Từ vựng du lịch', 'Từ vựng hữu ích khi đi du lịch, khám phá thế giới', 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', 'user_created', 4, 2);
+
+-- INSERT WORDS (24 từ vựng hệ thống)
+INSERT INTO words (topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, word_type, created_by) VALUES
+-- Topic 1: Văn phòng (6 từ)
+(1, 'absent', 'adjective', '/ˈæbsənt/', 'vắng mặt', 'Most employees were absent from the meeting.', 'Hầu hết nhân viên đều vắng mặt trong cuộc họp.', 'system', 2),
+(1, 'approve', 'verb', '/əˈpruːv/', 'chấp thuận, phê duyệt', 'The manager approved the budget for next quarter.', 'Quản lý đã phê duyệt ngân sách cho quý tới.', 'system', 2),
+(1, 'deadline', 'noun', '/ˈdedlaɪn/', 'hạn chót, thời hạn', 'We must meet the project deadline.', 'Chúng ta phải hoàn thành đúng hạn chót dự án.', 'system', 2),
+(1, 'meeting', 'noun', '/ˈmiːtɪŋ/', 'cuộc họp', 'The weekly team meeting is on Monday morning.', 'Cuộc họp nhóm hàng tuần vào sáng thứ Hai.', 'system', 2),
+(1, 'bonus', 'noun', '/ˈbəʊnəs/', 'tiền thưởng', 'Employees receive a bonus for excellent performance.', 'Nhân viên nhận thưởng khi có thành tích xuất sắc.', 'system', 2),
+(1, 'resign', 'verb', '/rɪˈzaɪn/', 'từ chức, nghỉ việc', 'He decided to resign from his current position.', 'Anh ấy quyết định từ chức khỏi vị trí hiện tại.', 'system', 2),
+
+-- Topic 2: Giao tiếp cơ bản (6 từ)
+(2, 'greet', 'verb', '/ɡriːt/', 'chào hỏi', 'They greeted each other warmly at the party.', 'Họ chào nhau một cách nồng nhiệt tại bữa tiệc.', 'system', 2),
+(2, 'introduce', 'verb', '/ˌɪntrəˈdjuːs/', 'giới thiệu', 'Let me introduce you to my colleague.', 'Để tôi giới thiệu bạn với đồng nghiệp của tôi.', 'system', 2),
+(2, 'polite', 'adjective', '/pəˈlaɪt/', 'lịch sự, nhã nhặn', 'It is polite to say thank you when someone helps you.', 'Lịch sự khi nói cảm ơn khi ai đó giúp đỡ bạn.', 'system', 2),
+(2, 'request', 'noun', '/rɪˈkwest/', 'yêu cầu, đề nghị', 'I sent a request for more information.', 'Tôi đã gửi yêu cầu để có thêm thông tin.', 'system', 2),
+(2, 'respond', 'verb', '/rɪˈspɒnd/', 'phản hồi, trả lời', 'Please respond to my email as soon as possible.', 'Vui lòng phản hồi email của tôi càng sớm càng tốt.', 'system', 2),
+(2, 'confirm', 'verb', '/kənˈfɜːm/', 'xác nhận', 'She confirmed the reservation for dinner.', 'Cô ấy xác nhận đặt bàn cho bữa tối.', 'system', 2),
+
+-- Topic 3: TOEFL (6 từ)
+(3, 'analyze', 'verb', '/ˈænəlaɪz/', 'phân tích', 'Students need to analyze the data carefully.', 'Học sinh cần phân tích dữ liệu một cách cẩn thận.', 'system', 1),
+(3, 'assume', 'verb', '/əˈsjuːm/', 'giả định, cho rằng', 'Do not assume the results without evidence.', 'Đừng giả định kết quả mà không có bằng chứng.', 'system', 1),
+(3, 'distinct', 'adjective', '/dɪˈstɪŋkt/', 'riêng biệt, khác biệt', 'These are two distinct concepts in science.', 'Đây là hai khái niệm riêng biệt trong khoa học.', 'system', 1),
+(3, 'estimate', 'verb', '/ˈestɪmeɪt/', 'ước tính, đánh giá', 'We estimate the cost will be around $1000.', 'Chúng tôi ước tính chi phí sẽ khoảng 1000 đô la.', 'system', 1),
+(3, 'interpret', 'verb', '/ɪnˈtɜːprɪt/', 'diễn giải, giải thích', 'Can you interpret this chart for me?', 'Bạn có thể diễn giải biểu đồ này cho tôi không?', 'system', 1),
+(3, 'predict', 'verb', '/prɪˈdɪkt/', 'dự đoán, tiên đoán', 'Scientists predict the weather will improve tomorrow.', 'Các nhà khoa học dự đoán thời tiết sẽ tốt hơn vào ngày mai.', 'system', 1),
+
+-- Topic 4: IELTS (6 từ)
+(4, 'coherent', 'adjective', '/kəʊˈhɪərənt/', 'mạch lạc, logic', 'Your essay should be coherent and well-structured.', 'Bài luận của bạn nên mạch lạc và có cấu trúc tốt.', 'system', 2),
+(4, 'derive', 'verb', '/dɪˈraɪv/', 'bắt nguồn, xuất phát', 'This word derives from Latin origin.', 'Từ này bắt nguồn từ tiếng Latin.', 'system', 2),
+(4, 'fluctuate', 'verb', '/ˈflʌktʃueɪt/', 'dao động, biến động', 'Stock prices fluctuate daily in the market.', 'Giá cổ phiếu dao động hàng ngày trên thị trường.', 'system', 2),
+(4, 'perspective', 'noun', '/pəˈspektɪv/', 'quan điểm, góc nhìn', 'From my perspective, this approach is better.', 'Từ quan điểm của tôi, cách tiếp cận này tốt hơn.', 'system', 2),
+(4, 'subsequent', 'adjective', '/ˈsʌbsɪkwənt/', 'tiếp theo, sau đó', 'Subsequent changes were made to improve the system.', 'Những thay đổi tiếp theo đã được thực hiện để cải thiện hệ thống.', 'system', 2),
+(4, 'viable', 'adjective', '/ˈvaɪəbl/', 'khả thi, có thể thực hiện', 'This is a viable solution to our problem.', 'Đây là một giải pháp khả thi cho vấn đề của chúng ta.', 'system', 2);
+
+-- Cập nhật số lượng từ trong topics
+UPDATE topics SET word_count = (
+    SELECT COUNT(*) FROM words WHERE words.topic_id = topics.topic_id
+) WHERE topic_type = 'system';
+
+-- Kiểm tra kết quả
+SELECT 'Phần 3 hoàn thành!' as message;
+SELECT COUNT(*) as total_topics FROM topics;
+SELECT COUNT(*) as total_words FROM words;
+
+///////////////////////////////////////////////////////////
+-- =============================================
+-- PHẦN 4: USER_WORDS, WORD_LEARNING_PROGRESS, FAVORITE_TOPICS
+-- =============================================
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+-- Xóa dữ liệu cũ (theo thứ tự dependency)
+DELETE FROM word_learning_progress;
+DELETE FROM favorite_topics;
+DELETE FROM user_words;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE user_words AUTO_INCREMENT = 1;
+ALTER TABLE word_learning_progress AUTO_INCREMENT = 1;
+ALTER TABLE favorite_topics AUTO_INCREMENT = 1;
+
+-- INSERT USER_WORDS (5 từ vựng cá nhân)
+INSERT INTO user_words (user_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, notes) VALUES
+-- User 3 (Student An) - Từ vựng kinh doanh
+(3, 5, 'revenue', 'noun', '/ˈrevənjuː/', 'doanh thu', 'The company revenue increased by 20% this year.', 'Doanh thu công ty tăng 20% trong năm nay.', 'Từ quan trọng trong kinh doanh'),
+(3, 5, 'profit', 'noun', '/ˈprɒfɪt/', 'lợi nhuận', 'We made a good profit this quarter.', 'Chúng ta có lợi nhuận tốt trong quý này.', 'Mục tiêu chính của doanh nghiệp'),
+(3, 5, 'strategy', 'noun', '/ˈstrætədʒi/', 'chiến lược', 'Our marketing strategy is working well.', 'Chiến lược marketing của chúng ta đang hoạt động tốt.', 'Kế hoạch dài hạn cho doanh nghiệp'),
+
+-- User 4 (Student Bình) - Từ vựng du lịch
+(4, 6, 'itinerary', 'noun', '/aɪˈtɪnərəri/', 'lịch trình', 'Check the itinerary before departure.', 'Kiểm tra lịch trình trước khi khởi hành.', 'Kế hoạch chi tiết cho chuyến đi'),
+(4, 6, 'souvenir', 'noun', '/ˌsuːvəˈnɪə/', 'quà lưu niệm', 'Buy a souvenir for your family.', 'Mua quà lưu niệm cho gia đình.', 'Kỷ niệm từ chuyến du lịch');
+
+-- INSERT FAVORITE_TOPICS (5 chủ đề yêu thích)
+INSERT INTO favorite_topics (user_id, topic_id) VALUES
+-- Student An yêu thích 3 chủ đề
+(3, 1), -- Văn phòng
+(3, 2), -- Giao tiếp cơ bản
+(3, 3), -- TOEFL
+-- Student Bình yêu thích 2 chủ đề
+(4, 4), -- IELTS
+(4, 1); -- Văn phòng
+
+-- INSERT WORD_LEARNING_PROGRESS (13 tiến độ học)
+INSERT INTO word_learning_progress (user_id, word_id, topic_id, learning_status, mastery_level, is_marked_as_learned, marked_at, review_count, correct_answers, total_attempts) VALUES
+-- Student An - Tiến độ học từ hệ thống
+(3, 1, 1, 'mastered', 5, TRUE, NOW() - INTERVAL 2 HOUR, 3, 5, 5), -- absent
+(3, 2, 1, 'learning', 3, FALSE, NULL, 2, 3, 5), -- approve
+(3, 3, 1, 'mastered', 5, TRUE, NOW() - INTERVAL 1 HOUR, 4, 6, 6), -- deadline
+(3, 7, 2, 'learning', 2, FALSE, NULL, 1, 2, 3), -- greet
+(3, 8, 2, 'not_started', 0, FALSE, NULL, 0, 0, 0), -- introduce
+
+-- Student Bình - Tiến độ học từ hệ thống
+(4, 19, 4, 'mastered', 5, TRUE, NOW() - INTERVAL 30 MINUTE, 3, 4, 4), -- coherent
+(4, 20, 4, 'learning', 3, FALSE, NULL, 2, 3, 4), -- derive
+(4, 21, 4, 'not_started', 0, FALSE, NULL, 0, 0, 0); -- fluctuate
+
+-- INSERT WORD_LEARNING_PROGRESS cho user words
+INSERT INTO word_learning_progress (user_id, user_word_id, topic_id, learning_status, mastery_level, is_marked_as_learned, marked_at, review_count, correct_answers, total_attempts) VALUES
+-- Student An - Tiến độ học từ cá nhân
+(3, 1, 5, 'mastered', 5, TRUE, NOW() - INTERVAL 1 HOUR, 2, 3, 3), -- revenue
+(3, 2, 5, 'learning', 2, FALSE, NULL, 1, 1, 2), -- profit
+(3, 3, 5, 'not_started', 0, FALSE, NULL, 0, 0, 0), -- strategy
+
+-- Student Bình - Tiến độ học từ cá nhân
+(4, 4, 6, 'mastered', 5, TRUE, NOW() - INTERVAL 45 MINUTE, 2, 2, 2), -- itinerary
+(4, 5, 6, 'learning', 1, FALSE, NULL, 1, 1, 2); -- souvenir
+
+-- Cập nhật số lượng từ trong topics user_created
+UPDATE topics SET word_count = (
+    SELECT COUNT(*) FROM user_words WHERE user_words.topic_id = topics.topic_id
+) WHERE topic_type = 'user_created';
+
+-- Kiểm tra kết quả
+SELECT 'Phần 4 hoàn thành!' as message;
+SELECT COUNT(*) as total_user_words FROM user_words;
+SELECT COUNT(*) as total_favorite_topics FROM favorite_topics;
+SELECT COUNT(*) as total_learning_progress FROM word_learning_progress;
+///////////////////////////////////////////////////////////
+-- =============================================
+-- PHẦN 5: STUDY_SESSIONS, SESSION_DETAILS, WORD_STUDY_HISTORY
+-- =============================================
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Xóa dữ liệu cũ (theo thứ tự dependency)
+DELETE FROM word_study_history;
+DELETE FROM session_details;
+DELETE FROM study_sessions;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE study_sessions AUTO_INCREMENT = 1;
+ALTER TABLE session_details AUTO_INCREMENT = 1;
+ALTER TABLE word_study_history AUTO_INCREMENT = 1;
+
+-- INSERT STUDY_SESSIONS (4 phiên học)
+INSERT INTO study_sessions (user_id, topic_id, session_type, started_at, ended_at, total_words, learned_words, session_duration, is_completed) VALUES
+-- Student An - Phiên học flashcard văn phòng (hoàn thành)
+(3, 1, 'flashcard', NOW() - INTERVAL 2 HOUR, NOW() - INTERVAL 1 HOUR, 6, 2, 3600, TRUE),
+-- Student An - Phiên học list view giao tiếp (hoàn thành)
+(3, 2, 'list_view', NOW() - INTERVAL 1 HOUR, NOW() - INTERVAL 30 MINUTE, 6, 0, 1800, TRUE),
+-- Student Bình - Phiên học flashcard IELTS (hoàn thành)
+(4, 4, 'flashcard', NOW() - INTERVAL 30 MINUTE, NOW() - INTERVAL 15 MINUTE, 6, 1, 900, TRUE),
+-- Student An - Phiên học flashcard từ cá nhân (đang học)
+(3, 5, 'flashcard', NOW() - INTERVAL 15 MINUTE, NULL, 3, 1, 900, FALSE);
+
+-- INSERT SESSION_DETAILS (15 chi tiết phiên học)
+INSERT INTO session_details (session_id, word_id, action_type, action_time, time_spent, is_correct) VALUES
+-- Session 1 - Student An học từ văn phòng
+(1, 1, 'view', NOW() - INTERVAL 2 HOUR, 30, NULL),
+(1, 1, 'flip', NOW() - INTERVAL 2 HOUR + INTERVAL 30 SECOND, 15, NULL),
+(1, 1, 'mark_learned', NOW() - INTERVAL 2 HOUR + INTERVAL 45 SECOND, 0, NULL),
+(1, 2, 'view', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE, 25, NULL),
+(1, 2, 'flip', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE + INTERVAL 25 SECOND, 20, NULL),
+(1, 2, 'skip', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE + INTERVAL 45 SECOND, 0, NULL),
+
+-- Session 2 - Student An xem danh sách giao tiếp
+(2, 7, 'view', NOW() - INTERVAL 1 HOUR, 45, NULL),
+(2, 8, 'view', NOW() - INTERVAL 1 HOUR + INTERVAL 1 MINUTE, 30, NULL),
+
+-- Session 3 - Student Bình học IELTS
+(3, 19, 'view', NOW() - INTERVAL 30 MINUTE, 20, NULL),
+(3, 19, 'flip', NOW() - INTERVAL 30 MINUTE + INTERVAL 20 SECOND, 15, NULL),
+(3, 19, 'mark_learned', NOW() - INTERVAL 30 MINUTE + INTERVAL 35 SECOND, 0, NULL);
+
+-- INSERT SESSION_DETAILS cho user words
+INSERT INTO session_details (session_id, user_word_id, action_type, action_time, time_spent, is_correct) VALUES
+-- Session 4 - Student An học từ cá nhân
+(4, 1, 'view', NOW() - INTERVAL 15 MINUTE, 25, NULL),
+(4, 1, 'flip', NOW() - INTERVAL 15 MINUTE + INTERVAL 25 SECOND, 20, NULL),
+(4, 1, 'mark_learned', NOW() - INTERVAL 15 MINUTE + INTERVAL 45 SECOND, 0, NULL),
+(4, 2, 'view', NOW() - INTERVAL 15 MINUTE + INTERVAL 1 MINUTE, 30, NULL);
+
+-- INSERT WORD_STUDY_HISTORY (7 lịch sử học từ)
+INSERT INTO word_study_history (user_id, word_id, topic_id, action_type, action_time, session_id, mastery_level_before, mastery_level_after) VALUES
+-- Student An - Lịch sử học từ hệ thống
+(3, 1, 1, 'start_learning', NOW() - INTERVAL 2 HOUR, 1, 0, 1),
+(3, 1, 1, 'mark_learned', NOW() - INTERVAL 2 HOUR + INTERVAL 45 SECOND, 1, 3, 5),
+(3, 2, 1, 'start_learning', NOW() - INTERVAL 2 HOUR + INTERVAL 1 MINUTE, 1, 0, 1),
+-- Student Bình - Lịch sử học từ hệ thống
+(4, 19, 4, 'start_learning', NOW() - INTERVAL 30 MINUTE, 3, 0, 1),
+(4, 19, 4, 'mark_learned', NOW() - INTERVAL 30 MINUTE + INTERVAL 35 SECOND, 3, 3, 5);
+
+-- INSERT WORD_STUDY_HISTORY cho user words
+INSERT INTO word_study_history (user_id, user_word_id, topic_id, action_type, action_time, session_id, mastery_level_before, mastery_level_after) VALUES
+-- Student An - Lịch sử học từ cá nhân
+(3, 1, 5, 'start_learning', NOW() - INTERVAL 15 MINUTE, 4, 0, 1),
+(3, 1, 5, 'mark_learned', NOW() - INTERVAL 15 MINUTE + INTERVAL 45 SECOND, 4, 3, 5);
+
+-- Kiểm tra kết quả
+SELECT 'Phần 5 hoàn thành!' as message;
+SELECT COUNT(*) as total_study_sessions FROM study_sessions;
+SELECT COUNT(*) as total_session_details FROM session_details;
+SELECT COUNT(*) as total_word_study_history FROM word_study_history;
+///////////////////////////////////////////////////////////
+-- =============================================
+-- PHẦN 6: LEARNING_STATISTICS, STUDY_SETTINGS, STUDY_NOTIFICATIONS, LEARNING_ACHIEVEMENTS
+-- =============================================
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Xóa dữ liệu cũ
+DELETE FROM learning_achievements;
+DELETE FROM study_notifications;
+DELETE FROM study_settings;
+DELETE FROM learning_statistics;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE learning_statistics AUTO_INCREMENT = 1;
+ALTER TABLE study_settings AUTO_INCREMENT = 1;
+ALTER TABLE study_notifications AUTO_INCREMENT = 1;
+ALTER TABLE learning_achievements AUTO_INCREMENT = 1;
+
+-- INSERT LEARNING_STATISTICS (4 thống kê học tập)
+INSERT INTO learning_statistics (user_id, topic_id, date, total_words, learned_words, study_time, sessions_count, accuracy_rate, words_marked_learned, words_unmarked) VALUES
+-- Student An - Thống kê văn phòng
+(3, 1, CURDATE(), 6, 2, 60, 1, 85.50, 2, 0),
+-- Student An - Thống kê giao tiếp
+(3, 2, CURDATE(), 6, 0, 30, 1, 0.00, 0, 0),
+-- Student Bình - Thống kê IELTS
+(4, 4, CURDATE(), 6, 1, 15, 1, 90.00, 1, 0),
+-- Student An - Thống kê từ cá nhân
+(3, 5, CURDATE(), 3, 1, 15, 1, 100.00, 1, 0);
+
+-- INSERT STUDY_SETTINGS (4 cài đặt học tập)
+INSERT INTO study_settings (user_id, topic_id, auto_mark_learned, auto_mark_threshold, show_learned_words, review_interval) VALUES
+-- Student An - Cài đặt văn phòng
+(3, 1, TRUE, 3, FALSE, 7),
+-- Student An - Cài đặt giao tiếp
+(3, 2, FALSE, 5, TRUE, 14),
+-- Student Bình - Cài đặt IELTS
+(4, 4, TRUE, 4, FALSE, 7),
+-- Student An - Cài đặt từ cá nhân
+(3, 5, TRUE, 2, FALSE, 3);
+
+-- INSERT STUDY_NOTIFICATIONS (3 thông báo)
+INSERT INTO study_notifications (user_id, topic_id, notification_type, title, message, is_read) VALUES
+-- Student An - Nhắc nhở ôn tập
+(3, 1, 'review_reminder', 'Nhắc nhở ôn tập', 'Bạn có 4 từ cần ôn tập trong chủ đề "Từ vựng tiếng Anh văn phòng"', FALSE),
+-- Student An - Thành tích
+(3, 2, 'achievement', 'Thành tích mới', 'Chúc mừng! Bạn đã bắt đầu học chủ đề "Tiếng Anh giao tiếp cơ bản"', FALSE),
+-- Student Bình - Duy trì chuỗi học
+(4, 4, 'streak_reminder', 'Duy trì chuỗi học', 'Bạn đã học liên tiếp 2 ngày. Hãy tiếp tục duy trì!', TRUE);
+
+-- INSERT LEARNING_ACHIEVEMENTS (4 thành tích)
+INSERT INTO learning_achievements (user_id, topic_id, achievement_type, achievement_name, description, value, earned_at) VALUES
+-- Student An - Thành tích đầu tiên
+(3, 1, 'first_word', 'Bước đầu tiên', 'Học từ đầu tiên trong chủ đề văn phòng', 1, NOW() - INTERVAL 2 HOUR),
+-- Student An - Chuỗi học tập
+(3, 1, 'word_streak', 'Chuỗi học tập', 'Học liên tiếp 2 từ đúng trong phiên học', 2, NOW() - INTERVAL 1 HOUR),
+-- Student Bình - Điểm hoàn hảo
+(4, 4, 'perfect_score', 'Hoàn hảo', 'Trả lời đúng 100% trong phiên học IELTS', 100, NOW() - INTERVAL 30 MINUTE),
+-- Student An - Hoàn thành chủ đề cá nhân
+(3, 5, 'topic_completed', 'Hoàn thành chủ đề', 'Học xong từ đầu tiên trong chủ đề cá nhân', 1, NOW() - INTERVAL 15 MINUTE);
+
+-- Kiểm tra kết quả
+SELECT 'Phần 6 hoàn thành!' as message;
+SELECT COUNT(*) as total_learning_statistics FROM learning_statistics;
+SELECT COUNT(*) as total_study_settings FROM study_settings;
+SELECT COUNT(*) as total_study_notifications FROM study_notifications;
+SELECT COUNT(*) as total_learning_achievements FROM learning_achievements;
+///////////////////////////////////////////////////////////
+-- =============================================
+-- PHẦN 7: BATCH_IMPORTS, IMPORT_DETAILS, STUDY_MODES
+-- =============================================
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+-- Xóa dữ liệu cũ
+DELETE FROM import_details;
+DELETE FROM batch_imports;
+DELETE FROM study_modes;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE batch_imports AUTO_INCREMENT = 1;
+ALTER TABLE import_details AUTO_INCREMENT = 1;
+ALTER TABLE study_modes AUTO_INCREMENT = 1;
+
+-- INSERT STUDY_MODES (4 chế độ học)
+INSERT INTO study_modes (mode_name, description) VALUES
+('flashcard', 'Học bằng thẻ flashcard hai mặt - hiệu quả cho ghi nhớ'),
+('list_view', 'Xem danh sách từ truyền thống - phù hợp cho ôn tập'),
+('quiz', 'Làm bài tập trắc nghiệm - kiểm tra kiến thức'),
+('review', 'Ôn tập từ đã học - củng cố kiến thức');
+
+-- INSERT BATCH_IMPORTS (2 lần import)
+INSERT INTO batch_imports (user_id, topic_id, import_name, total_words, success_count, error_count, import_status, started_at, completed_at) VALUES
+-- Student An import từ vựng kinh doanh
+(3, 5, 'business_vocabulary.xlsx', 10, 8, 2, 'completed', NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY + INTERVAL 5 MINUTE),
+-- Student Bình import từ vựng du lịch
+(4, 6, 'travel_words.csv', 5, 5, 0, 'completed', NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY + INTERVAL 2 MINUTE);
+
+-- INSERT IMPORT_DETAILS (7 chi tiết import)
+INSERT INTO import_details (import_id, row_num, word, meaning_vi, part_of_speech, import_status, created_word_id) VALUES
+-- Import 1 - Student An (business vocabulary)
+(1, 1, 'revenue', 'doanh thu', 'noun', 'success', 1),
+(1, 2, 'profit', 'lợi nhuận', 'noun', 'success', 2),
+(1, 3, 'strategy', 'chiến lược', 'noun', 'success', 3),
+(1, 4, 'invalid_word', '', '', 'error', NULL),
+(1, 5, 'another_invalid', '', '', 'error', NULL),
+
+-- Import 2 - Student Bình (travel words)
+(2, 1, 'itinerary', 'lịch trình', 'noun', 'success', 4),
+(2, 2, 'souvenir', 'quà lưu niệm', 'noun', 'success', 5);
+
+-- Kiểm tra kết quả
+SELECT 'Phần 7 hoàn thành!' as message;
+SELECT COUNT(*) as total_study_modes FROM study_modes;
+SELECT COUNT(*) as total_batch_imports FROM batch_imports;
+SELECT COUNT(*) as total_import_details FROM import_details;
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
