@@ -61,6 +61,11 @@ const Header = () => {
                 Blog
               </Link>
             </li>
+            <li className="header__nav-item">
+              <Link to="/instructor" className="header__nav-link">
+                Instructor
+              </Link>
+            </li>
             {/* <li className="header__nav-item">
               <Link to="/courses" className="header__nav-link">
                 Courses
