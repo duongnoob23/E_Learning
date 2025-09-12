@@ -1,0 +1,698 @@
+USE e_learnning2;
+
+-- Cho phép xóa khi có ràng buộc FK từ các bảng khác tới users
+SET SQL_SAFE_UPDATES = 0;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Xóa dữ liệu cũ (theo thứ tự phụ thuộc)
+DELETE FROM role_permissions;
+DELETE FROM user_roles;
+DELETE FROM permissions;
+DELETE FROM roles;
+DELETE FROM users;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE users AUTO_INCREMENT = 1;
+ALTER TABLE roles AUTO_INCREMENT = 1;
+ALTER TABLE permissions AUTO_INCREMENT = 1;
+
+-- Nạp USERS (dữ liệu thực tế, đủ trường)
+INSERT INTO users (username, password_hash, email, full_name, phone_number, avatar_url, status, email_verified, phone_verified, last_login, failed_login_attempts, locked_until, created_at, updated_at)
+VALUES
+('admin',         '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'admin@elearn.vn',      'Nguyễn Văn An',     '0903123456', 'https://i.pravatar.cc/150?img=1', 'active', TRUE,  TRUE,  NOW() - INTERVAL 1 DAY, 0, NULL, NOW() - INTERVAL 120 DAY, NOW() - INTERVAL 1 DAY),
+('ngoc.tran',     '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'ngoc.tran@elearn.vn',  'Trần Thu Ngọc',     '0904456789', 'https://i.pravatar.cc/150?img=2', 'active', TRUE,  TRUE,  NOW() - INTERVAL 2 DAY, 0, NULL, NOW() - INTERVAL 200 DAY, NOW() - INTERVAL 2 DAY),
+('quang.pham',    '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'quang.pham@elearn.vn', 'Phạm Minh Quang',   '0912345678', 'https://i.pravatar.cc/150?img=3', 'active', TRUE,  TRUE,  NOW() - INTERVAL 3 DAY, 1, NULL, NOW() - INTERVAL 90 DAY,  NOW() - INTERVAL 3 DAY),
+('thu.ha',        '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'thu.ha@elearn.vn',     'Đỗ Thu Hà',         '0934567890', 'https://i.pravatar.cc/150?img=4', 'active', TRUE,  TRUE,  NOW() - INTERVAL 5 DAY, 0, NULL, NOW() - INTERVAL 60 DAY,  NOW() - INTERVAL 5 DAY),
+('guest.viewer',  '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'guest@elearn.vn',      'Khách Xem Nội Dung','0909988776', 'https://i.pravatar.cc/150?img=5', 'active', FALSE, FALSE, NULL,                      0, NULL, NOW() - INTERVAL 30 DAY,  NOW()),
+('linh.nguyen',   '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'linh.nguyen@elearn.vn','Nguyễn Thảo Linh',  '0905678123', 'https://i.pravatar.cc/150?img=6', 'active', TRUE,  TRUE,  NOW() - INTERVAL 7 DAY,  0, NULL, NOW() - INTERVAL 75 DAY,  NOW() - INTERVAL 7 DAY),
+('tuan.le',       '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'tuan.le@elearn.vn',    'Lê Đức Tuấn',       '0912789456', 'https://i.pravatar.cc/150?img=7', 'active', TRUE,  TRUE,  NOW() - INTERVAL 4 DAY,  0, NULL, NOW() - INTERVAL 88 DAY,  NOW() - INTERVAL 4 DAY),
+('vy.tran',       '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'vy.tran@elearn.vn',    'Trần Hải Vy',       '0987654321', 'https://i.pravatar.cc/150?img=8', 'active', TRUE,  TRUE,  NOW() - INTERVAL 6 DAY,  0, NULL, NOW() - INTERVAL 110 DAY, NOW() - INTERVAL 6 DAY),
+('bao.vo',        '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'bao.vo@elearn.vn',     'Võ Hữu Bảo',        '0978123456', 'https://i.pravatar.cc/150?img=9', 'active', TRUE,  TRUE,  NOW() - INTERVAL 9 DAY,  0, NULL, NOW() - INTERVAL 135 DAY, NOW() - INTERVAL 9 DAY),
+('hanh.pham',     '$2b$10$O9h2iY2w4D7d7m7sWw1f6u9KqvWwX6mVY0zRz1n0c7r9b6v0cCw9S', 'hanh.pham@elearn.vn',  'Phạm Thu Hạnh',     '0965123789', 'https://i.pravatar.cc/150?img=10','active', TRUE,  TRUE,  NOW() - INTERVAL 8 DAY,  0, NULL, NOW() - INTERVAL 45 DAY,  NOW() - INTERVAL 8 DAY);
+
+-- ROLES
+INSERT INTO roles (role_name, description, is_active, created_at) VALUES
+('Admin','Quản trị hệ thống, toàn quyền',TRUE,NOW()),
+('Teacher','Giảng viên: quản lý chủ đề, từ vựng, khóa học',TRUE,NOW()),
+('Student','Học viên: học nội dung, đánh giá',TRUE,NOW()),
+('Guest','Khách: xem nội dung công khai',TRUE,NOW());
+
+-- PERMISSIONS (giữ đúng như bạn đã có)
+-- (giữ nguyên danh sách permission hiện tại trong db.v4 để không lệch ID)
+-- Nếu cần nạp lại, dùng danh sách bạn đang chạy ổn trong db.v4
+
+-- USER_ROLES (gán vai trò)
+INSERT INTO user_roles (user_id, role_id, assigned_at, assigned_by, is_active) VALUES
+(1,1,NOW(),1,TRUE),
+(2,2,NOW(),1,TRUE),
+(3,3,NOW(),1,TRUE),
+(4,3,NOW(),1,TRUE),
+(5,4,NOW(),1,TRUE),
+(6,3,NOW(),1,TRUE),
+(7,3,NOW(),1,TRUE),
+(8,3,NOW(),1,TRUE),
+(9,3,NOW(),1,TRUE),
+(10,3,NOW(),1,TRUE);
+
+-- ROLE_PERMISSIONS
+-- Admin full
+INSERT INTO role_permissions (role_id, permission_id, granted_at, granted_by)
+SELECT 1, permission_id, NOW(), 1 FROM permissions;
+
+-- Teacher: CRUD topic/word/course + instructor
+INSERT INTO role_permissions (role_id, permission_id, granted_at, granted_by)
+SELECT 2, p.permission_id, NOW(), 1
+FROM permissions p
+WHERE (p.resource IN ('topic','word','course') AND p.action IN ('create','read','update','delete'))
+   OR (p.resource='instructor' AND p.action IN ('read','manage'));
+
+-- Student
+INSERT INTO role_permissions (role_id, permission_id, granted_at, granted_by)
+SELECT 3, p.permission_id, NOW(), 1
+FROM permissions p
+WHERE ( (p.resource IN ('topic','word','course') AND p.action='read')
+     OR (p.resource IN ('enrollment','review','discussion') AND p.action='create')
+     OR (p.resource='auth' AND p.action IN ('refresh','logout'))
+     OR (p.resource='instructor' AND p.action='read') );
+
+-- Guest
+INSERT INTO role_permissions (role_id, permission_id, granted_at, granted_by)
+SELECT 4, p.permission_id, NOW(), 1
+FROM permissions p
+WHERE (p.resource IN ('topic','word','course') AND p.action='read')
+   OR (p.resource='instructor' AND p.action='read');
+
+-- Bật lại kiểm tra FK
+SET FOREIGN_KEY_CHECKS = 1;
+SET SQL_SAFE_UPDATES = 1;
+
+-- Kiểm tra nhanh
+SELECT 'PHAN 1 FIXED' AS message;
+SELECT COUNT(*) total_users FROM users;
+SELECT COUNT(*) total_user_roles FROM user_roles;
+SELECT COUNT(*) total_role_permissions FROM role_permissions;
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Dọn sạch theo thứ tự phụ thuộc
+DELETE FROM words;
+DELETE FROM topics;
+
+-- Reset AI
+ALTER TABLE topics AUTO_INCREMENT = 1;
+ALTER TABLE words AUTO_INCREMENT = 1;
+
+-- 8 topics (4 system + 4 user_created), đầy đủ trường
+INSERT INTO topics (topic_name, description, image_url, logo_url, topic_type, created_by, is_public, is_active, word_count, created_at, updated_at)
+VALUES
+('English for Office','Từ vựng văn phòng thực tế','https://cdn.example/img/office.jpg','', 'system', 2, TRUE, TRUE, 0, NOW()-INTERVAL 60 DAY, NOW()-INTERVAL 1 DAY),
+('Daily Communication','Từ/câu giao tiếp hằng ngày','https://cdn.example/img/comm.jpg','', 'system', 2, TRUE, TRUE, 0, NOW()-INTERVAL 60 DAY, NOW()-INTERVAL 1 DAY),
+('TOEFL Core Vocabulary','Từ vựng cốt lõi TOEFL','https://cdn.example/img/toefl.jpg','', 'system', 1, TRUE, TRUE, 0, NOW()-INTERVAL 60 DAY, NOW()-INTERVAL 1 DAY),
+('IELTS Academic Words','Từ học thuật IELTS','https://cdn.example/img/ielts.jpg','', 'system', 2, TRUE, TRUE, 0, NOW()-INTERVAL 60 DAY, NOW()-INTERVAL 1 DAY),
+('Business Basics','Từ vựng kinh doanh cá nhân','https://cdn.example/img/biz.jpg','', 'user_created', 3, FALSE, TRUE, 0, NOW()-INTERVAL 30 DAY, NOW()-INTERVAL 1 DAY),
+('Travel Essentials','Từ vựng du lịch cá nhân','https://cdn.example/img/travel.jpg','', 'user_created', 4, FALSE, TRUE, 0, NOW()-INTERVAL 30 DAY, NOW()-INTERVAL 1 DAY),
+('Health & Fitness','Từ vựng sức khỏe thể chất','https://cdn.example/img/health.jpg','', 'user_created', 6, FALSE, TRUE, 0, NOW()-INTERVAL 25 DAY, NOW()-INTERVAL 1 DAY),
+('Tech Buzzwords','Từ vựng công nghệ thịnh hành','https://cdn.example/img/tech.jpg','', 'user_created', 7, FALSE, TRUE, 0, NOW()-INTERVAL 25 DAY, NOW()-INTERVAL 1 DAY);
+
+-- 48 từ hệ thống (12 từ/1 topic hệ thống), điền đủ cột, không NULL
+INSERT INTO words (topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, notes, word_type, created_by, is_active, created_at, updated_at)
+VALUES
+-- Topic 1: English for Office (12)
+(1,'absent','adjective','/ˈæbsənt/','vắng mặt','He was absent from the meeting.','Anh ấy vắng mặt khỏi cuộc họp.','https://cdn.example/img/words/absent.jpg','', 'system',2,TRUE,NOW()-INTERVAL 50 DAY,NOW()-INTERVAL 1 DAY),
+(1,'approve','verb','/əˈpruːv/','chấp thuận','The board approved the plan.','Hội đồng đã chấp thuận kế hoạch.','https://cdn.example/img/words/approve.jpg','', 'system',2,TRUE,NOW()-INTERVAL 50 DAY,NOW()-INTERVAL 1 DAY),
+(1,'deadline','noun','/ˈdedlaɪn/','hạn chót','Don’t miss the deadline.','Đừng bỏ lỡ hạn chót.','https://cdn.example/img/words/deadline.jpg','', 'system',2,TRUE,NOW()-INTERVAL 50 DAY,NOW()-INTERVAL 1 DAY),
+(1,'meeting','noun','/ˈmiːtɪŋ/','cuộc họp','Weekly meeting is on Monday.','Họp hằng tuần vào thứ Hai.','https://cdn.example/img/words/meeting.jpg','', 'system',2,TRUE,NOW()-INTERVAL 50 DAY,NOW()-INTERVAL 1 DAY),
+(1,'bonus','noun','/ˈbəʊnəs/','tiền thưởng','She received a bonus.','Cô ấy nhận tiền thưởng.','https://cdn.example/img/words/bonus.jpg','', 'system',2,TRUE,NOW()-INTERVAL 49 DAY,NOW()-INTERVAL 1 DAY),
+(1,'resign','verb','/rɪˈzaɪn/','từ chức','He resigned last week.','Anh ấy từ chức tuần trước.','https://cdn.example/img/words/resign.jpg','', 'system',2,TRUE,NOW()-INTERVAL 49 DAY,NOW()-INTERVAL 1 DAY),
+(1,'proposal','noun','/prəˈpəʊzəl/','đề xuất','Submit the proposal.','Nộp đề xuất.','https://cdn.example/img/words/proposal.jpg','', 'system',2,TRUE,NOW()-INTERVAL 49 DAY,NOW()-INTERVAL 1 DAY),
+(1,'negotiate','verb','/nɪˈɡəʊʃieɪt/','đàm phán','Negotiate the contract.','Đàm phán hợp đồng.','https://cdn.example/img/words/negotiate.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(1,'agenda','noun','/əˈdʒendə/','chương trình họp','Set the agenda.','Lên chương trình họp.','https://cdn.example/img/words/agenda.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(1,'policy','noun','/ˈpɒləsi/','chính sách','Company policy.','Chính sách công ty.','https://cdn.example/img/words/policy.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(1,'feedback','noun','/ˈfiːdbæk/','phản hồi','Give feedback.','Đưa phản hồi.','https://cdn.example/img/words/feedback.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+(1,'overtime','noun','/ˈəʊvətaɪm/','làm thêm giờ','Work overtime.','Làm thêm giờ.','https://cdn.example/img/words/overtime.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+
+-- Topic 2: Daily Communication (12)
+(2,'greet','verb','/ɡriːt/','chào hỏi','Greet politely.','Chào hỏi lịch sự.','https://cdn.example/img/words/greet.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(2,'introduce','verb','/ˌɪntrəˈdjuːs/','giới thiệu','Introduce yourself.','Giới thiệu bản thân.','https://cdn.example/img/words/introduce.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(2,'polite','adjective','/pəˈlaɪt/','lịch sự','Be polite.','Hãy lịch sự.','https://cdn.example/img/words/polite.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(2,'request','noun','/rɪˈkwest/','yêu cầu','Make a request.','Đưa ra yêu cầu.','https://cdn.example/img/words/request.jpg','', 'system',2,TRUE,NOW()-INTERVAL 48 DAY,NOW()-INTERVAL 1 DAY),
+(2,'respond','verb','/rɪˈspɒnd/','phản hồi','Respond quickly.','Phản hồi nhanh.','https://cdn.example/img/words/respond.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+(2,'confirm','verb','/kənˈfɜːm/','xác nhận','Confirm attendance.','Xác nhận tham dự.','https://cdn.example/img/words/confirm.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+(2,'apologize','verb','/əˈpɒlədʒaɪz/','xin lỗi','Apologize for delay.','Xin lỗi vì chậm trễ.','https://cdn.example/img/words/apologize.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+(2,'suggest','verb','/səˈdʒest/','gợi ý','Suggest an idea.','Gợi ý một ý tưởng.','https://cdn.example/img/words/suggest.jpg','', 'system',2,TRUE,NOW()-INTERVAL 47 DAY,NOW()-INTERVAL 1 DAY),
+(2,'compliment','noun','/ˈkɒmplɪmənt/','lời khen','Give a compliment.','Đưa lời khen.','https://cdn.example/img/words/compliment.jpg','', 'system',2,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(2,'decline','verb','/dɪˈklaɪn/','từ chối','Decline politely.','Từ chối lịch sự.','https://cdn.example/img/words/decline.jpg','', 'system',2,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(2,'interrupt','verb','/ˌɪntəˈrʌpt/','ngắt lời','Do not interrupt.','Đừng ngắt lời.','https://cdn.example/img/words/interrupt.jpg','', 'system',2,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(2,'clarify','verb','/ˈklærɪfaɪ/','làm rõ','Clarify meaning.','Làm rõ ý.','https://cdn.example/img/words/clarify.jpg','', 'system',2,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+
+-- Topic 3: TOEFL (12)
+(3,'analyze','verb','/ˈænəlaɪz/','phân tích','Analyze carefully.','Phân tích kỹ.','https://cdn.example/img/words/analyze.jpg','', 'system',1,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(3,'assume','verb','/əˈsjuːm/','giả định','Do not assume.','Đừng giả định.','https://cdn.example/img/words/assume.jpg','', 'system',1,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(3,'distinct','adjective','/dɪˈstɪŋkt/','riêng biệt','Two distinct parts.','Hai phần riêng.','https://cdn.example/img/words/distinct.jpg','', 'system',1,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(3,'estimate','verb','/ˈestɪmeɪt/','ước tính','Estimate cost.','Ước tính chi phí.','https://cdn.example/img/words/estimate.jpg','', 'system',1,TRUE,NOW()-INTERVAL 46 DAY,NOW()-INTERVAL 1 DAY),
+(3,'interpret','verb','/ɪnˈtɜːprɪt/','diễn giải','Interpret data.','Diễn giải dữ liệu.','https://cdn.example/img/words/interpret.jpg','', 'system',1,TRUE,NOW()-INTERVAL 45 DAY,NOW()-INTERVAL 1 DAY),
+(3,'predict','verb','/prɪˈdɪkt/','dự đoán','Predict trend.','Dự đoán xu hướng.','https://cdn.example/img/words/predict.jpg','', 'system',1,TRUE,NOW()-INTERVAL 45 DAY,NOW()-INTERVAL 1 DAY),
+(3,'derive','verb','/dɪˈraɪv/','rút ra','Derive result.','Rút ra kết quả.','https://cdn.example/img/words/derive.jpg','', 'system',1,TRUE,NOW()-INTERVAL 45 DAY,NOW()-INTERVAL 1 DAY),
+(3,'indicate','verb','/ˈɪndɪkeɪt/','chỉ ra','Indicate cause.','Chỉ ra nguyên nhân.','https://cdn.example/img/words/indicate.jpg','', 'system',1,TRUE,NOW()-INTERVAL 45 DAY,NOW()-INTERVAL 1 DAY),
+(3,'evaluate','verb','/ɪˈvæljueɪt/','đánh giá','Evaluate properly.','Đánh giá đúng.','https://cdn.example/img/words/evaluate.jpg','', 'system',1,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+(3,'justify','verb','/ˈdʒʌstɪfaɪ/','biện minh','Justify choice.','Biện minh lựa chọn.','https://cdn.example/img/words/justify.jpg','', 'system',1,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+(3,'relevant','adjective','/ˈreləvənt/','liên quan','Relevant data.','Dữ liệu liên quan.','https://cdn.example/img/words/relevant.jpg','', 'system',1,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+(3,'significant','adjective','/sɪɡˈnɪfɪkənt/','đáng kể','Significant change.','Thay đổi đáng kể.','https://cdn.example/img/words/significant.jpg','', 'system',1,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+
+-- Topic 4: IELTS (12)
+(4,'coherent','adjective','/kəʊˈhɪərənt/','mạch lạc','Coherent essay.','Bài luận mạch lạc.','https://cdn.example/img/words/coherent.jpg','', 'system',2,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+(4,'fluctuate','verb','/ˈflʌktʃueɪt/','dao động','Numbers fluctuate.','Số liệu dao động.','https://cdn.example/img/words/fluctuate.jpg','', 'system',2,TRUE,NOW()-INTERVAL 44 DAY,NOW()-INTERVAL 1 DAY),
+(4,'perspective','noun','/pəˈspektɪv/','quan điểm','From my perspective.','Từ quan điểm của tôi.','https://cdn.example/img/words/perspective.jpg','', 'system',2,TRUE,NOW()-INTERVAL 43 DAY,NOW()-INTERVAL 1 DAY),
+(4,'subsequent','adjective','/ˈsʌbsɪkwənt/','tiếp theo','Subsequent steps.','Các bước tiếp theo.','https://cdn.example/img/words/subsequent.jpg','', 'system',2,TRUE,NOW()-INTERVAL 43 DAY,NOW()-INTERVAL 1 DAY),
+(4,'viable','adjective','/ˈvaɪəbl/','khả thi','Viable solution.','Giải pháp khả thi.','https://cdn.example/img/words/viable.jpg','', 'system',2,TRUE,NOW()-INTERVAL 43 DAY,NOW()-INTERVAL 1 DAY),
+(4,'sustainable','adjective','/səˈsteɪnəbl/','bền vững','Sustainable plan.','Kế hoạch bền vững.','https://cdn.example/img/words/sustainable.jpg','', 'system',2,TRUE,NOW()-INTERVAL 43 DAY,NOW()-INTERVAL 1 DAY),
+(4,'contrast','verb','/ˈkɒntrɑːst/','đối chiếu','Contrast ideas.','Đối chiếu ý.','https://cdn.example/img/words/contrast.jpg','', 'system',2,TRUE,NOW()-INTERVAL 42 DAY,NOW()-INTERVAL 1 DAY),
+(4,'imply','verb','/ɪmˈplaɪ/','ngụ ý','It implies that...','Nó ngụ ý rằng...','https://cdn.example/img/words/imply.jpg','', 'system',2,TRUE,NOW()-INTERVAL 42 DAY,NOW()-INTERVAL 1 DAY),
+(4,'accurate','adjective','/ˈækjərət/','chính xác','Accurate data.','Dữ liệu chính xác.','https://cdn.example/img/words/accurate.jpg','', 'system',2,TRUE,NOW()-INTERVAL 42 DAY,NOW()-INTERVAL 1 DAY),
+(4,'concise','adjective','/kənˈsaɪs/','ngắn gọn','Concise writing.','Viết ngắn gọn.','https://cdn.example/img/words/concise.jpg','', 'system',2,TRUE,NOW()-INTERVAL 42 DAY,NOW()-INTERVAL 1 DAY),
+(4,'objective','adjective','/əbˈdʒektɪv/','khách quan','Objective tone.','Giọng văn khách quan.','https://cdn.example/img/words/objective.jpg','', 'system',2,TRUE,NOW()-INTERVAL 41 DAY,NOW()-INTERVAL 1 DAY),
+(4,'cohesive','adjective','/kəʊˈhiːsɪv/','liên kết','Cohesive paragraphs.','Đoạn văn liên kết.','https://cdn.example/img/words/cohesive.jpg','', 'system',2,TRUE,NOW()-INTERVAL 41 DAY,NOW()-INTERVAL 1 DAY);
+
+-- Cập nhật word_count cho system topics
+UPDATE topics t
+SET t.word_count = (SELECT COUNT(*) FROM words w WHERE w.topic_id = t.topic_id)
+WHERE t.topic_type = 'system';
+
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT 'B2.1 Topics & Words OK' AS message;
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Dọn sạch theo thứ tự phụ thuộc
+DELETE FROM user_word_status;
+DELETE FROM favorite_topics;
+DELETE FROM user_words;
+
+-- Reset AI
+ALTER TABLE user_words AUTO_INCREMENT = 1;
+ALTER TABLE user_word_status AUTO_INCREMENT = 1;
+ALTER TABLE favorite_topics AUTO_INCREMENT = 1;
+
+-- 12 user words (4 user topics x 3 từ), from_system_word_id = NULL (không dùng chuỗi rỗng)
+INSERT INTO user_words
+(user_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, notes, from_system_word_id, is_active, created_at, updated_at)
+VALUES
+(3,5,'revenue','noun','/ˈrevənjuː/','doanh thu','Revenue rose 18%.','Doanh thu tăng 18%.','https://cdn.example/img/uw/revenue.jpg','KPI tài chính',NULL,TRUE,NOW()-INTERVAL 20 DAY,NOW()-INTERVAL 1 DAY),
+(3,5,'profit','noun','/ˈprɒfɪt/','lợi nhuận','Profit improved.','Lợi nhuận cải thiện.','https://cdn.example/img/uw/profit.jpg','BCTC',NULL,TRUE,NOW()-INTERVAL 20 DAY,NOW()-INTERVAL 1 DAY),
+(3,5,'strategy','noun','/ˈstrætədʒi/','chiến lược','Growth strategy.','Chiến lược tăng trưởng.','https://cdn.example/img/uw/strategy.jpg','2025 Plan',NULL,TRUE,NOW()-INTERVAL 20 DAY,NOW()-INTERVAL 1 DAY),
+
+(4,6,'itinerary','noun','/aɪˈtɪnərəri/','lịch trình','Plan your itinerary.','Lập lịch trình.','https://cdn.example/img/uw/itinerary.jpg','Tour EU',NULL,TRUE,NOW()-INTERVAL 18 DAY,NOW()-INTERVAL 1 DAY),
+(4,6,'souvenir','noun','/ˌsuːvəˈnɪə/','quà lưu niệm','Buy a souvenir.','Mua quà lưu niệm.','https://cdn.example/img/uw/souvenir.jpg','Quà tặng',NULL,TRUE,NOW()-INTERVAL 18 DAY,NOW()-INTERVAL 1 DAY),
+(4,6,'embassy','noun','/ˈembəsi/','đại sứ quán','Go to the embassy.','Đến đại sứ quán.','https://cdn.example/img/uw/embassy.jpg','Visa',NULL,TRUE,NOW()-INTERVAL 18 DAY,NOW()-INTERVAL 1 DAY),
+
+(6,7,'cardio','noun','/ˈkɑːdioʊ/','tim mạch','Cardio exercises.','Bài tập cardio.','https://cdn.example/img/uw/cardio.jpg','Routine',NULL,TRUE,NOW()-INTERVAL 15 DAY,NOW()-INTERVAL 1 DAY),
+(6,7,'protein','noun','/ˈproʊtiːn/','đạm','Protein intake.','Nạp đạm.','https://cdn.example/img/uw/protein.jpg','Diet',NULL,TRUE,NOW()-INTERVAL 15 DAY,NOW()-INTERVAL 1 DAY),
+(6,7,'hydration','noun','/haɪˈdreɪʃn/','cấp nước','Stay hydrated.','Giữ đủ nước.','https://cdn.example/img/uw/hydration.jpg','2L/day',NULL,TRUE,NOW()-INTERVAL 15 DAY,NOW()-INTERVAL 1 DAY),
+
+(7,8,'algorithm','noun','/ˈælɡərɪðəm/','thuật toán','Efficient algorithm.','Thuật toán hiệu quả.','https://cdn.example/img/uw/algorithm.jpg','Tech',NULL,TRUE,NOW()-INTERVAL 12 DAY,NOW()-INTERVAL 1 DAY),
+(7,8,'scalability','noun','/ˌskeɪləˈbɪləti/','khả năng mở rộng','Ensure scalability.','Đảm bảo mở rộng.','https://cdn.example/img/uw/scalability.jpg','Cloud',NULL,TRUE,NOW()-INTERVAL 12 DAY,NOW()-INTERVAL 1 DAY),
+(7,8,'latency','noun','/ˈleɪtənsi/','độ trễ','Low latency.','Độ trễ thấp.','https://cdn.example/img/uw/latency.jpg','Perf',NULL,TRUE,NOW()-INTERVAL 12 DAY,NOW()-INTERVAL 1 DAY);
+
+-- Trạng thái học (tham chiếu tới ID user_words mới tạo: 1..12)
+-- revenue(id=1), itinerary(id=4), cardio(id=7), algorithm(id=10)
+INSERT INTO user_word_status (user_id, topic_id, word_id, user_word_id, is_learned, marked_at, created_at, updated_at)
+VALUES
+(3,1,1,NULL,TRUE,NOW()-INTERVAL 10 DAY,NOW()-INTERVAL 10 DAY,NOW()-INTERVAL 1 DAY),
+(3,1,3,NULL,TRUE,NOW()-INTERVAL 9 DAY,NOW()-INTERVAL 9 DAY,NOW()-INTERVAL 1 DAY),
+(3,2,13,NULL,FALSE,NOW()-INTERVAL 8 DAY,NOW()-INTERVAL 8 DAY,NOW()-INTERVAL 1 DAY),
+(3,5,NULL,1,TRUE,NOW()-INTERVAL 7 DAY,NOW()-INTERVAL 7 DAY,NOW()-INTERVAL 1 DAY),
+(4,4,37,NULL,TRUE,NOW()-INTERVAL 6 DAY,NOW()-INTERVAL 6 DAY,NOW()-INTERVAL 1 DAY),
+(4,6,NULL,4,TRUE,NOW()-INTERVAL 5 DAY,NOW()-INTERVAL 5 DAY,NOW()-INTERVAL 1 DAY),
+(6,7,NULL,7,FALSE,NOW()-INTERVAL 4 DAY,NOW()-INTERVAL 4 DAY,NOW()-INTERVAL 1 DAY),
+(7,8,NULL,10,TRUE,NOW()-INTERVAL 3 DAY,NOW()-INTERVAL 3 DAY,NOW()-INTERVAL 1 DAY);
+
+-- Chủ đề yêu thích (đủ timestamp)
+INSERT INTO favorite_topics (user_id, topic_id, added_at)
+VALUES
+(3,1,NOW()-INTERVAL 20 DAY),(3,2,NOW()-INTERVAL 19 DAY),(3,3,NOW()-INTERVAL 18 DAY),
+(4,4,NOW()-INTERVAL 21 DAY),(4,1,NOW()-INTERVAL 17 DAY),
+(6,7,NOW()-INTERVAL 14 DAY),(7,8,NOW()-INTERVAL 13 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT 'B2.2 FIXED OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM import_details;
+DELETE FROM batch_imports;
+
+ALTER TABLE batch_imports AUTO_INCREMENT = 1;
+ALTER TABLE import_details AUTO_INCREMENT = 1;
+
+-- 3 phiên import (đủ thời gian)
+INSERT INTO batch_imports
+(user_id, topic_id, import_name, total_words, success_count, error_count, import_status, error_log, started_at, completed_at)
+VALUES
+(3,5,'biz_vocab.xlsx',10,8,2,'completed','',NOW()-INTERVAL 28 DAY,DATE_ADD(NOW()-INTERVAL 28 DAY, INTERVAL 6 MINUTE)),
+(4,6,'travel_words.csv',6,6,0,'completed','',NOW()-INTERVAL 27 DAY,DATE_ADD(NOW()-INTERVAL 27 DAY, INTERVAL 3 MINUTE)),
+(7,8,'tech_terms.csv',8,7,1,'completed','',NOW()-INTERVAL 26 DAY,DATE_ADD(NOW()-INTERVAL 26 DAY, INTERVAL 4 MINUTE));
+
+-- Map created_word_id đúng theo ID user_words mới (1..12)
+-- 1..3 = revenue/profit/strategy; 4..6 = itinerary/souvenir/embassy; 10 = algorithm; 12 = latency
+INSERT INTO import_details
+(import_id, row_num, word, meaning_vi, part_of_speech, pronunciation, example_en, example_vi, notes, import_status, error_message, created_word_id)
+VALUES
+(1,1,'revenue','doanh thu','noun','/ˈrevənjuː/','Revenue rose.','Doanh thu tăng.','OK','success','',1),
+(1,2,'profit','lợi nhuận','noun','/ˈprɒfɪt/','Profit grew.','Lợi nhuận tăng.','OK','success','',2),
+(1,3,'strategy','chiến lược','noun','/ˈstrætədʒi/','Strategy update.','Cập nhật chiến lược.','OK','success','',3),
+(1,4,'invalid','','','','','','Thiếu nghĩa','error','Thiếu nghĩa',NULL),
+(1,5,'another','','','','','','Thiếu từ loại','error','Thiếu từ loại',NULL),
+
+(2,1,'itinerary','lịch trình','noun','/aɪˈtɪnərəri/','Plan itinerary.','Lập lịch trình.','OK','success','',4),
+(2,2,'souvenir','quà lưu niệm','noun','/ˌsuːvəˈnɪə/','Buy souvenir.','Mua quà lưu niệm.','OK','success','',5),
+
+(3,1,'algorithm','thuật toán','noun','/ˈælɡərɪðəm/','Efficient algorithm.','Thuật toán hiệu quả.','OK','success','',10),
+(3,2,'latency','độ trễ','noun','/ˈleɪtənsi/','Low latency.','Độ trễ thấp.','OK','success','',12),
+(3,3,'timeout','','','','','','Thiếu nghĩa','error','Thiếu nghĩa',NULL);
+
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT 'B2.3 FIXED OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM lessons;
+DELETE FROM modules;
+
+ALTER TABLE modules AUTO_INCREMENT = 1;
+ALTER TABLE lessons AUTO_INCREMENT = 1;
+
+-- 3 module/course
+INSERT INTO modules (course_id, title, description, sort_order, total_lectures, total_duration, is_active, created_at, updated_at)
+VALUES
+(1,'Task 1: Charts & Graphs','Biểu đồ & số liệu',1,3,'3hr 45min',TRUE,NOW()-INTERVAL 28 DAY,NOW()-INTERVAL 1 DAY),
+(1,'Task 2: Argument Essays','Bài luận lập luận',2,4,'5hr 10min',TRUE,NOW()-INTERVAL 27 DAY,NOW()-INTERVAL 1 DAY),
+(1,'Review & Mock Tests','Ôn tập & đề mẫu',3,5,'4hr 15min',TRUE,NOW()-INTERVAL 26 DAY,NOW()-INTERVAL 1 DAY),
+
+(2,'Listening Tactics','Chiến thuật nghe',1,4,'3hr 20min',TRUE,NOW()-INTERVAL 33 DAY,NOW()-INTERVAL 1 DAY),
+(2,'Reading Essentials','Đọc hiểu trọng tâm',2,4,'3hr 40min',TRUE,NOW()-INTERVAL 32 DAY,NOW()-INTERVAL 1 DAY),
+(2,'Full Tests & Review','Đề + chữa bài',3,4,'3hr 00min',TRUE,NOW()-INTERVAL 31 DAY,NOW()-INTERVAL 1 DAY),
+
+(3,'Pronunciation Basics','Âm & trọng âm',1,3,'2hr 45min',TRUE,NOW()-INTERVAL 18 DAY,NOW()-INTERVAL 1 DAY),
+(3,'Daily Conversations','Mẫu câu tình huống',2,3,'3hr 00min',TRUE,NOW()-INTERVAL 17 DAY,NOW()-INTERVAL 1 DAY),
+(3,'Role-play Practice','Hội thoại đóng vai',3,4,'2hr 45min',TRUE,NOW()-INTERVAL 16 DAY,NOW()-INTERVAL 1 DAY),
+
+(4,'Meeting Foundations','Cấu trúc cuộc họp',1,3,'2hr 55min',TRUE,NOW()-INTERVAL 22 DAY,NOW()-INTERVAL 1 DAY),
+(4,'Presenting Ideas','Trình bày ý tưởng',2,3,'3hr 10min',TRUE,NOW()-INTERVAL 21 DAY,NOW()-INTERVAL 1 DAY),
+(4,'Handling Q&A','Xử lý hỏi đáp',3,3,'3hr 20min',TRUE,NOW()-INTERVAL 20 DAY,NOW()-INTERVAL 1 DAY);
+
+-- 6 bài/module (đủ tổng 12 bài cho 2 course đầu, 10 cho course 3, 12 cho course 4)
+-- Ví dụ cho Course 2 (để dùng cho completed): lessons id sẽ liên tục; ta sinh đủ 12 bài
+INSERT INTO lessons
+(module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count, created_at, updated_at)
+VALUES
+(4,2,'Listening Part 1','Mẹo Part 1','Nội dung','https://videos.cdn.example/t2-1.mp4','15:20','',1,'video',TRUE,TRUE,1400,NOW()-INTERVAL 33 DAY,NOW()-INTERVAL 1 DAY),
+(4,2,'Listening Part 2','Bẫy Part 2','Nội dung','https://videos.cdn.example/t2-2.mp4','18:10','',2,'video',FALSE,TRUE,1320,NOW()-INTERVAL 33 DAY,NOW()-INTERVAL 1 DAY),
+(4,2,'Listening Part 3','Hội thoại','Nội dung','https://videos.cdn.example/t2-3.mp4','19:30','',3,'video',FALSE,TRUE,1250,NOW()-INTERVAL 33 DAY,NOW()-INTERVAL 1 DAY),
+(4,2,'Listening Part 4','Bài nói','Nội dung','https://videos.cdn.example/t2-4.mp4','16:30','',4,'video',FALSE,TRUE,1180,NOW()-INTERVAL 33 DAY,NOW()-INTERVAL 1 DAY),
+
+(5,2,'Grammar Essentials','Ngữ pháp','Nội dung','https://videos.cdn.example/t2-5.mp4','16:00','',1,'video',FALSE,TRUE,1110,NOW()-INTERVAL 32 DAY,NOW()-INTERVAL 1 DAY),
+(5,2,'Reading Speed','Tốc độ đọc','Nội dung','https://videos.cdn.example/t2-6.mp4','17:30','',2,'video',FALSE,TRUE,1050,NOW()-INTERVAL 32 DAY,NOW()-INTERVAL 1 DAY),
+(5,2,'Question Types','Dạng câu hỏi','Nội dung','https://videos.cdn.example/t2-7.mp4','19:10','',3,'video',FALSE,TRUE,980,NOW()-INTERVAL 32 DAY,NOW()-INTERVAL 1 DAY),
+(5,2,'Paraphrasing','Diễn đạt lại','Nội dung','https://videos.cdn.example/t2-8.mp4','15:40','',4,'video',FALSE,TRUE,940,NOW()-INTERVAL 32 DAY,NOW()-INTERVAL 1 DAY),
+
+(6,2,'Full Test 1 Review','Chữa đề 1','Nội dung','https://videos.cdn.example/t2-9.mp4','20:40','',1,'video',FALSE,TRUE,920,NOW()-INTERVAL 31 DAY,NOW()-INTERVAL 1 DAY),
+(6,2,'Full Test 2 Review','Chữa đề 2','Nội dung','https://videos.cdn.example/t2-10.mp4','21:00','',2,'video',FALSE,TRUE,900,NOW()-INTERVAL 31 DAY,NOW()-INTERVAL 1 DAY),
+(6,2,'Full Test 3 Review','Chữa đề 3','Nội dung','https://videos.cdn.example/t2-11.mp4','20:20','',3,'video',FALSE,TRUE,880,NOW()-INTERVAL 31 DAY,NOW()-INTERVAL 1 DAY),
+(6,2,'Final Tips','Mẹo tổng kết','Nội dung','https://videos.cdn.example/t2-12.mp4','18:00','',4,'video',FALSE,TRUE,860,NOW()-INTERVAL 31 DAY,NOW()-INTERVAL 1 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.3 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM lesson_progress;
+DELETE FROM course_enrollments;
+
+ALTER TABLE course_enrollments AUTO_INCREMENT = 1;
+ALTER TABLE lesson_progress AUTO_INCREMENT = 1;
+
+-- Enrollments
+INSERT INTO course_enrollments
+(user_id, course_id, status, enrolled_at, completed_at, expires_at,
+ progress_percent, last_accessed_lesson_id, last_accessed_at,
+ payment_amount, payment_method, payment_status, transaction_id, created_at, updated_at)
+VALUES
+(3, 2, 'completed', NOW()-INTERVAL 34 DAY, NOW()-INTERVAL 5 DAY, NULL, 100.00, 12, NOW()-INTERVAL 5 DAY, 699000, 'vnpay', 'paid', 'TXN-TC-0002', NOW()-INTERVAL 34 DAY, NOW()-INTERVAL 5 DAY),
+(3, 1, 'active',    NOW()-INTERVAL 14 DAY, NULL,             NOW()+INTERVAL 30 DAY, 45.00,  5, NOW()-INTERVAL 1 DAY, 799000, 'momo', 'paid', 'TXN-IW-0001', NOW()-INTERVAL 14 DAY, NOW()-INTERVAL 1 DAY),
+(4, 3, 'active',    NOW()-INTERVAL  9 DAY, NULL,             NOW()+INTERVAL 40 DAY, 25.00,  2, NOW()-INTERVAL 2 DAY, 0.00,   'free', 'paid', 'FREE-EC-0003', NOW()-INTERVAL 9 DAY, NOW()-INTERVAL 2 DAY),
+(4, 4, 'active',    NOW()-INTERVAL 12 DAY, NULL,             NOW()+INTERVAL 25 DAY, 10.00,  1, NOW()-INTERVAL 1 DAY, 899000, 'credit','paid','TXN-BM-0004', NOW()-INTERVAL 12 DAY, NOW()-INTERVAL 1 DAY);
+
+-- Lesson progress cho enrollment completed (user 3, course 2): 12/12 completed
+-- lessons của course 2 tương ứng các hàng vừa insert ở C2.3, có sort_order 1..4 trong mỗi module 4..6
+INSERT INTO lesson_progress
+(user_id, lesson_id, course_id, status, watched_duration, total_duration, completion_percent,
+ started_at, completed_at, last_accessed_at, created_at, updated_at)
+VALUES
+(3, 1, 2, 'completed', 920, 920, 100.00, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY),
+(3, 2, 2, 'completed',1100,1100,100.00, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY),
+(3, 3, 2, 'completed',1160,1160,100.00, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY),
+(3, 4, 2, 'completed', 990, 990,100.00, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY, NOW()-INTERVAL 33 DAY),
+
+(3, 5, 2, 'completed', 960, 960,100.00, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY),
+(3, 6, 2, 'completed',1050,1050,100.00, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY),
+(3, 7, 2, 'completed',1150,1150,100.00, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY),
+(3, 8, 2, 'completed', 940, 940,100.00, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY, NOW()-INTERVAL 32 DAY),
+
+(3, 9, 2, 'completed',1240,1240,100.00, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY),
+(3,10, 2, 'completed',1260,1260,100.00, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY),
+(3,11, 2, 'completed',1220,1220,100.00, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY, NOW()-INTERVAL 31 DAY),
+(3,12, 2, 'completed',1080,1080,100.00, NOW()-INTERVAL  6 DAY, NOW()-INTERVAL  6 DAY, NOW()-INTERVAL  6 DAY, NOW()-INTERVAL  6 DAY, NOW()-INTERVAL  6 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.4 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_discussions;
+DELETE FROM course_reviews;
+DELETE FROM course_wishlist;
+
+ALTER TABLE course_reviews AUTO_INCREMENT = 1;
+ALTER TABLE course_discussions AUTO_INCREMENT = 1;
+ALTER TABLE course_wishlist AUTO_INCREMENT = 1;
+
+-- Reviews: chỉ người đã enroll
+INSERT INTO course_reviews
+(user_id, course_id, rating, title, content, is_verified, status, created_at, updated_at)
+VALUES
+(3, 2, 5, 'Chiến thuật rất thực tế', 'Đạt 705 sau 7 tuần, bám đề thi.', TRUE, 'approved', NOW()-INTERVAL 4 DAY, NOW()-INTERVAL 4 DAY),
+(4, 3, 4, 'Phù hợp người mới', 'Bài giảng rõ ràng, role-play hữu ích.', TRUE, 'approved', NOW()-INTERVAL 6 DAY, NOW()-INTERVAL 6 DAY);
+
+-- Discussions (thread + reply)
+INSERT INTO course_discussions
+(course_id, user_id, parent_id, title, content, likes_count, replies_count, status, created_at, updated_at)
+VALUES
+(1, 3, NULL, 'Hỏi mở bài Task 2', 'Có cấu trúc mở bài nhanh mà đủ ý không ạ?', 5, 1, 'active', NOW()-INTERVAL 2 DAY, NOW()-INTERVAL 2 DAY),
+(1, 2, 1,    NULL, 'Dùng paraphrase + thesis ngắn gọn là ổn nhé.', 8, 0, 'active', NOW()-INTERVAL 2 DAY + INTERVAL 3 HOUR, NOW()-INTERVAL 2 DAY + INTERVAL 3 HOUR);
+
+-- Wishlist
+INSERT INTO course_wishlist (user_id, course_id, created_at)
+VALUES
+(3, 4, NOW()-INTERVAL 3 DAY),
+(4, 1, NOW()-INTERVAL 8 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.5 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_certificates;
+DELETE FROM course_coupons;
+DELETE FROM coupons;
+
+ALTER TABLE coupons AUTO_INCREMENT = 1;
+ALTER TABLE course_coupons AUTO_INCREMENT = 1;
+ALTER TABLE course_certificates AUTO_INCREMENT = 1;
+
+INSERT INTO coupons
+(code, name, description, discount_type, discount_value, minimum_amount, max_uses, used_count, max_uses_per_user, valid_from, valid_until, is_active, applicable_courses, applicable_categories, created_at, updated_at)
+VALUES
+('SAVE10', 'Giảm 10%', 'Giảm 10% cho khóa bất kỳ', 'percentage', 10.00, 300000, 1000, 120, 2, NOW()-INTERVAL 10 DAY, NOW()+INTERVAL 60 DAY, TRUE, '[]', '[]', NOW()-INTERVAL 10 DAY, NOW()-INTERVAL 1 DAY),
+('NEW50K', 'Giảm 50.000đ', 'Áp dụng khóa > 300.000đ', 'fixed_amount', 50000.00, 300000, 2000, 85, 1, NOW()-INTERVAL 5 DAY, NOW()+INTERVAL 90 DAY, TRUE, '[]', '["IELTS","TOEIC 2 kỹ năng"]', NOW()-INTERVAL 5 DAY, NOW()-INTERVAL 1 DAY);
+
+INSERT INTO course_coupons (course_id, coupon_id, created_at)
+VALUES
+(1, 1, NOW()-INTERVAL 8 DAY),
+(2, 1, NOW()-INTERVAL 8 DAY),
+(2, 2, NOW()-INTERVAL 8 DAY),
+(4, 2, NOW()-INTERVAL 8 DAY);
+
+-- Certificate cho enrollment completed: course_enrollments id=1 (user 3, course 2)
+INSERT INTO course_certificates
+(user_id, course_id, enrollment_id, certificate_number, issued_date, certificate_url, certificate_template, created_at)
+VALUES
+(3, 2, 1, 'CERT-TOEIC650-0002', NOW()-INTERVAL 4 DAY, 'https://cdn.example/cert/TOEIC650-0002.pdf', 'TOEIC-CLASSIC', NOW()-INTERVAL 4 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.6 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_tag_relations;
+DELETE FROM course_tags;
+
+ALTER TABLE course_tags AUTO_INCREMENT = 1;
+ALTER TABLE course_tag_relations AUTO_INCREMENT = 1;
+
+INSERT INTO course_tags (name, color, created_at)
+VALUES
+('Writing', '#6366F1', NOW()-INTERVAL 12 DAY),
+('Listening', '#06B6D4', NOW()-INTERVAL 20 DAY),
+('Reading', '#10B981', NOW()-INTERVAL 20 DAY),
+('Communication', '#F59E0B', NOW()-INTERVAL 8 DAY),
+('Business', '#EF4444', NOW()-INTERVAL 15 DAY);
+
+INSERT INTO course_tag_relations (course_id, tag_id, created_at)
+VALUES
+(1,1,NOW()-INTERVAL 12 DAY),
+(2,2,NOW()-INTERVAL 20 DAY),
+(2,3,NOW()-INTERVAL 20 DAY),
+(3,4,NOW()-INTERVAL  8 DAY),
+(4,5,NOW()-INTERVAL 15 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.7 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_discussions;
+DELETE FROM course_reviews;
+DELETE FROM course_wishlist;
+
+ALTER TABLE course_reviews AUTO_INCREMENT = 1;
+ALTER TABLE course_discussions AUTO_INCREMENT = 1;
+ALTER TABLE course_wishlist AUTO_INCREMENT = 1;
+
+-- Reviews: chỉ người đã enroll
+INSERT INTO course_reviews
+(user_id, course_id, rating, title, content, is_verified, status, created_at, updated_at)
+VALUES
+(3, 2, 5, 'Chiến thuật rất thực tế', 'Đạt 705 sau 7 tuần, bám đề thi.', TRUE, 'approved', NOW()-INTERVAL 4 DAY, NOW()-INTERVAL 4 DAY),
+(4, 3, 4, 'Phù hợp người mới', 'Bài giảng rõ ràng, role-play hữu ích.', TRUE, 'approved', NOW()-INTERVAL 6 DAY, NOW()-INTERVAL 6 DAY);
+
+-- Discussions (thread + reply)
+INSERT INTO course_discussions
+(course_id, user_id, parent_id, title, content, likes_count, replies_count, status, created_at, updated_at)
+VALUES
+(1, 3, NULL, 'Hỏi mở bài Task 2', 'Có cấu trúc mở bài nhanh mà đủ ý không ạ?', 5, 1, 'active', NOW()-INTERVAL 2 DAY, NOW()-INTERVAL 2 DAY),
+(1, 2, 1,    NULL, 'Dùng paraphrase + thesis ngắn gọn là ổn nhé.', 8, 0, 'active', NOW()-INTERVAL 2 DAY + INTERVAL 3 HOUR, NOW()-INTERVAL 2 DAY + INTERVAL 3 HOUR);
+
+-- Wishlist
+INSERT INTO course_wishlist (user_id, course_id, created_at)
+VALUES
+(3, 4, NOW()-INTERVAL 3 DAY),
+(4, 1, NOW()-INTERVAL 8 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.5 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_certificates;
+DELETE FROM course_coupons;
+DELETE FROM coupons;
+
+ALTER TABLE coupons AUTO_INCREMENT = 1;
+ALTER TABLE course_coupons AUTO_INCREMENT = 1;
+ALTER TABLE course_certificates AUTO_INCREMENT = 1;
+
+INSERT INTO coupons
+(code, name, description, discount_type, discount_value, minimum_amount, max_uses, used_count, max_uses_per_user, valid_from, valid_until, is_active, applicable_courses, applicable_categories, created_at, updated_at)
+VALUES
+('SAVE10', 'Giảm 10%', 'Giảm 10% cho khóa bất kỳ', 'percentage', 10.00, 300000, 1000, 120, 2, NOW()-INTERVAL 10 DAY, NOW()+INTERVAL 60 DAY, TRUE, '[]', '[]', NOW()-INTERVAL 10 DAY, NOW()-INTERVAL 1 DAY),
+('NEW50K', 'Giảm 50.000đ', 'Áp dụng khóa > 300.000đ', 'fixed_amount', 50000.00, 300000, 2000, 85, 1, NOW()-INTERVAL 5 DAY, NOW()+INTERVAL 90 DAY, TRUE, '[]', '["IELTS","TOEIC 2 kỹ năng"]', NOW()-INTERVAL 5 DAY, NOW()-INTERVAL 1 DAY);
+
+INSERT INTO course_coupons (course_id, coupon_id, created_at)
+VALUES
+(1, 1, NOW()-INTERVAL 8 DAY),
+(2, 1, NOW()-INTERVAL 8 DAY),
+(2, 2, NOW()-INTERVAL 8 DAY),
+(4, 2, NOW()-INTERVAL 8 DAY);
+
+-- Certificate cho enrollment completed: course_enrollments id=1 (user 3, course 2)
+INSERT INTO course_certificates
+(user_id, course_id, enrollment_id, certificate_number, issued_date, certificate_url, certificate_template, created_at)
+VALUES
+(3, 2, 1, 'CERT-TOEIC650-0002', NOW()-INTERVAL 4 DAY, 'https://cdn.example/cert/TOEIC650-0002.pdf', 'TOEIC-CLASSIC', NOW()-INTERVAL 4 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.6 OK' AS message;
+
+
+
+
+
+
+
+
+
+
+USE e_learnning2;
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM course_tag_relations;
+DELETE FROM course_tags;
+
+ALTER TABLE course_tags AUTO_INCREMENT = 1;
+ALTER TABLE course_tag_relations AUTO_INCREMENT = 1;
+
+INSERT INTO course_tags (name, color, created_at)
+VALUES
+('Writing', '#6366F1', NOW()-INTERVAL 12 DAY),
+('Listening', '#06B6D4', NOW()-INTERVAL 20 DAY),
+('Reading', '#10B981', NOW()-INTERVAL 20 DAY),
+('Communication', '#F59E0B', NOW()-INTERVAL 8 DAY),
+('Business', '#EF4444', NOW()-INTERVAL 15 DAY);
+
+INSERT INTO course_tag_relations (course_id, tag_id, created_at)
+VALUES
+(1,1,NOW()-INTERVAL 12 DAY),
+(2,2,NOW()-INTERVAL 20 DAY),
+(2,3,NOW()-INTERVAL 20 DAY),
+(3,4,NOW()-INTERVAL  8 DAY),
+(4,5,NOW()-INTERVAL 15 DAY);
+
+SET SQL_SAFE_UPDATES = 1;
+SELECT 'C2.7 OK' AS message;
+
