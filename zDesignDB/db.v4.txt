@@ -9,7 +9,7 @@ USE e_learnning2;
 -- =============================================
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Bỏ các bảng họcônnhắc nhởthống kê (nếu còn)
+-- Bỏ các bảng học/ôn/nhắc nhở/thống kê (nếu còn)
 DROP TABLE IF EXISTS learning_achievements;
 DROP TABLE IF EXISTS study_notifications;
 DROP TABLE IF EXISTS study_settings;
@@ -74,7 +74,7 @@ CREATE TABLE users (
     full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
     phone_number VARCHAR(20) COMMENT 'Số điện thoại',
     avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
-    status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: activeinactivebannedpending_verification',
+    status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active/inactive/banned/pending_verification',
     email_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực email',
     phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực số điện thoại',
     last_login DATETIME COMMENT 'Lần đăng nhập cuối',
@@ -87,7 +87,7 @@ CREATE TABLE users (
 -- ROLES: Danh mục vai trò
 CREATE TABLE roles (
     role_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID vai trò',
-    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: AdminTeacherStudentGuest',
+    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Admin/Teacher/Student/Guest',
     description TEXT COMMENT 'Mô tả vai trò',
     is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -96,10 +96,10 @@ CREATE TABLE roles (
 -- PERMISSIONS: Danh mục quyền
 CREATE TABLE permissions (
     permission_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID quyền',
-    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: usercreate ...',
+    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: /user/create ...',
     description TEXT COMMENT 'Mô tả hành động',
-    resource VARCHAR(50) COMMENT 'Tài nguyên: userroletopicwordcourse...',
-    action VARCHAR(20) COMMENT 'Hành động: createreadupdatedelete',
+    resource VARCHAR(50) COMMENT 'Tài nguyên: user/role/topic/word/course...',
+    action VARCHAR(20) COMMENT 'Hành động: create/read/update/delete',
     is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -130,10 +130,10 @@ CREATE TABLE role_permissions (
 ) ENGINE=InnoDB;
 
 -- =============================================
--- KHỐI BẢO MẬTXÁC THỰC
+-- KHỐI BẢO MẬT/XÁC THỰC
 -- =============================================
 
--- OTP_CODES: Mã OTP cho xác thựcđổi mật khẩu2FA
+-- OTP_CODES: Mã OTP cho xác thực/đổi mật khẩu/2FA
 CREATE TABLE otp_codes (
     otp_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID OTP',
     user_id BIGINT UNSIGNED COMMENT 'Người dùng',
@@ -263,7 +263,7 @@ CREATE TABLE user_words (
     FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
--- USER_WORD_STATUS: Trạng thái học (đã thuộcchưa thuộc) per-user-per-word
+-- USER_WORD_STATUS: Trạng thái học (đã thuộc/chưa thuộc) per-user-per-word
 CREATE TABLE user_word_status (
     status_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID trạng thái',
     user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
@@ -331,12 +331,12 @@ CREATE TABLE import_details (
     FOREIGN KEY (created_word_id) REFERENCES user_words(user_word_id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
--- STUDY_MODES (tùy chọn): Định nghĩa chế độ học (để bậttắtA-B test nếu cần)
+-- STUDY_MODES (tùy chọn): Định nghĩa chế độ học (để bật/tắt/A-B test nếu cần)
 CREATE TABLE study_modes (
     mode_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chế độ học',
-    mode_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên chế độ: flashcardlist_view',
+    mode_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên chế độ: flashcard/list_view',
     description TEXT COMMENT 'Mô tả',
-    is_active BOOLEAN DEFAULT TRUE COMMENT 'Bậttắt',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Bật/tắt',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -362,7 +362,7 @@ CREATE TABLE categories (
 -- LEVELS: Trình độ khóa học
 CREATE TABLE levels (
     level_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID level',
-    name VARCHAR(50) NOT NULL COMMENT 'Tên level (BeginnerIntermediateExpert)',
+    name VARCHAR(50) NOT NULL COMMENT 'Tên level (Beginner/Intermediate/Expert)',
     slug VARCHAR(50) NOT NULL UNIQUE COMMENT 'Slug',
     description TEXT COMMENT 'Mô tả',
     color VARCHAR(7) COMMENT 'Màu sắc',
@@ -445,7 +445,7 @@ CREATE TABLE course_details (
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- MODULES: ChươngPhần trong course
+-- MODULES: Chương/Phần trong course
 CREATE TABLE modules (
     module_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID module',
     course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
@@ -581,7 +581,7 @@ CREATE TABLE coupons (
     minimum_amount DECIMAL(10,2) DEFAULT 0 COMMENT 'Đơn tối thiểu',
     max_uses INT DEFAULT NULL COMMENT 'Số lần tối đa',
     used_count INT DEFAULT 0 COMMENT 'Đã dùng',
-    max_uses_per_user INT DEFAULT 1 COMMENT 'Tối đauser',
+    max_uses_per_user INT DEFAULT 1 COMMENT 'Tối đa/user',
     valid_from DATETIME NOT NULL COMMENT 'Hiệu lực từ',
     valid_until DATETIME NOT NULL COMMENT 'Hiệu lực đến',
     is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
@@ -688,55 +688,55 @@ VALUES
 ('Guest',   'Khách: xem nội dung công khai', TRUE);
 
 -- =============================================
--- PERMISSIONS: Quyền theo tài nguyênhành động
--- Gồm nhóm: userrolepermission, topicword, course, enrollmentreview
+-- PERMISSIONS: Quyền theo tài nguyên/hành động
+-- Gồm nhóm: user/role/permission, topic/word, course, enrollment/review
 -- =============================================
 
 -- User management
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('usercreate',      'Tạo người dùng',                     'user',        'create', TRUE),
-('userread',        'Xem danh sáchchi tiết người dùng',  'user',        'read',   TRUE),
-('userupdate',      'Cập nhật người dùng',                'user',        'update', TRUE),
-('userdelete',      'Xóa người dùng',                     'user',        'delete', TRUE);
+('/user/create',      'Tạo người dùng',                     'user',        'create', TRUE),
+('/user/read',        'Xem danh sách/chi tiết người dùng',  'user',        'read',   TRUE),
+('/user/update',      'Cập nhật người dùng',                'user',        'update', TRUE),
+('/user/delete',      'Xóa người dùng',                     'user',        'delete', TRUE);
 
 -- Role management
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('rolecreate',      'Tạo vai trò',                        'role',        'create', TRUE),
-('roleread',        'Xem vai trò',                        'role',        'read',   TRUE),
-('roleupdate',      'Cập nhật vai trò',                   'role',        'update', TRUE),
-('roledelete',      'Xóa vai trò',                        'role',        'delete', TRUE),
-('roleassign',      'Gán vai trò cho người dùng',         'role',        'assign', TRUE);
+('/role/create',      'Tạo vai trò',                        'role',        'create', TRUE),
+('/role/read',        'Xem vai trò',                        'role',        'read',   TRUE),
+('/role/update',      'Cập nhật vai trò',                   'role',        'update', TRUE),
+('/role/delete',      'Xóa vai trò',                        'role',        'delete', TRUE),
+('/role/assign',      'Gán vai trò cho người dùng',         'role',        'assign', TRUE);
 
 -- Permission management
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('permissioncreate','Tạo quyền',                          'permission',  'create', TRUE),
-('permissionread',  'Xem quyền',                          'permission',  'read',   TRUE),
-('permissionupdate','Cập nhật quyền',                     'permission',  'update', TRUE),
-('permissiondelete','Xóa quyền',                          'permission',  'delete', TRUE),
-('permissionassign','Gán quyền cho vai trò',              'permission',  'assign', TRUE);
+('/permission/create','Tạo quyền',                          'permission',  'create', TRUE),
+('/permission/read',  'Xem quyền',                          'permission',  'read',   TRUE),
+('/permission/update','Cập nhật quyền',                     'permission',  'update', TRUE),
+('/permission/delete','Xóa quyền',                          'permission',  'delete', TRUE),
+('/permission/assign','Gán quyền cho vai trò',              'permission',  'assign', TRUE);
 
 -- Topic management
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('topiccreate',     'Tạo chủ đề',                         'topic',       'create', TRUE),
-('topicread',       'Xem chủ đề',                         'topic',       'read',   TRUE),
-('topicupdate',     'Cập nhật chủ đề',                    'topic',       'update', TRUE),
-('topicdelete',     'Xóa chủ đề',                         'topic',       'delete', TRUE);
+('/topic/create',     'Tạo chủ đề',                         'topic',       'create', TRUE),
+('/topic/read',       'Xem chủ đề',                         'topic',       'read',   TRUE),
+('/topic/update',     'Cập nhật chủ đề',                    'topic',       'update', TRUE),
+('/topic/delete',     'Xóa chủ đề',                         'topic',       'delete', TRUE);
 
 -- Word management
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('wordcreate',      'Tạo từ vựng',                        'word',        'create', TRUE),
-('wordread',        'Xem từ vựng',                        'word',        'read',   TRUE),
-('wordupdate',      'Cập nhật từ vựng',                   'word',        'update', TRUE),
-('worddelete',      'Xóa từ vựng',                        'word',        'delete', TRUE);
+('/word/create',      'Tạo từ vựng',                        'word',        'create', TRUE),
+('/word/read',        'Xem từ vựng',                        'word',        'read',   TRUE),
+('/word/update',      'Cập nhật từ vựng',                   'word',        'update', TRUE),
+('/word/delete',      'Xóa từ vựng',                        'word',        'delete', TRUE);
 
 -- Course management (cơ bản)
 INSERT INTO permissions (permission_name, description, resource, action, is_active) VALUES
-('coursecreate',    'Tạo khóa học',                       'course',      'create', TRUE),
-('courseread',      'Xem khóa học',                       'course',      'read',   TRUE),
-('courseupdate',    'Cập nhật khóa học',                  'course',      'update', TRUE),
-('coursedelete',    'Xóa khóa học',                       'course',      'delete', TRUE),
-('courseenroll',    'Đăng ký khóa học',                   'enrollment',  'create', TRUE),
-('coursereview',    'Đánh giá khóa học',                  'review',      'create', TRUE);
+('/course/create',    'Tạo khóa học',                       'course',      'create', TRUE),
+('/course/read',      'Xem khóa học',                       'course',      'read',   TRUE),
+('/course/update',    'Cập nhật khóa học',                  'course',      'update', TRUE),
+('/course/delete',    'Xóa khóa học',                       'course',      'delete', TRUE),
+('/course/enroll',    'Đăng ký khóa học',                   'enrollment',  'create', TRUE),
+('/course/review',    'Đánh giá khóa học',                  'review',      'create', TRUE);
 
 -- =============================================
 -- USER_ROLES: Gán vai trò cho user
@@ -754,9 +754,9 @@ VALUES
 -- =============================================
 -- ROLE_PERMISSIONS: Cấp quyền theo vai trò
 -- Admin: toàn quyền
--- Teacher: topicword CRUD, course CRUD (không quyền trên userrolepermission)
--- Student: đọc topicwordcourse, enroll + review
--- Guest: chỉ đọc topicwordcourse
+-- Teacher: topic/word CRUD, course CRUD (không quyền trên user/role/permission)
+-- Student: đọc topic/word/course, enroll + review
+-- Guest: chỉ đọc topic/word/course
 -- =============================================
 
 -- Admin: full
@@ -787,7 +787,7 @@ WHERE (p.resource IN ('topic','word','course') AND p.action = 'read');
 SET SQL_SAFE_UPDATES = 1;
 
 -- Kiểm tra
-SELECT 'Insert tài khoảnrolepermission hoàn tất' AS message;
+SELECT 'Insert tài khoản/role/permission hoàn tất' AS message;
 SELECT COUNT(*) AS total_users FROM users;
 SELECT COUNT(*) AS total_roles FROM roles;
 SELECT COUNT(*) AS total_permissions FROM permissions;
@@ -809,47 +809,47 @@ ALTER TABLE words AUTO_INCREMENT = 1;
 -- TOPICS (4 chủ đề hệ thống + 2 chủ đề user)
 INSERT INTO topics (topic_name, description, image_url, logo_url, topic_type, created_by, is_public, is_active, word_count)
 VALUES
-('English for Office', 'Từ vựng dùng trong môi trường công sở, văn phòng', 'https:images.unsplash.comphoto-1497366216548-37526070297c', NULL, 'system', 2, TRUE, TRUE, 0),
-('Daily Communication', 'Câu và từ vựng giao tiếp hằng ngày', 'https:images.unsplash.comphoto-1516321318423-f06f85e504b3', NULL, 'system', 2, TRUE, TRUE, 0),
-('TOEFL Core Vocabulary', 'Nhóm từ cơ bản xuất hiện trong kỳ thi TOEFL', 'https:images.unsplash.comphoto-1434030216411-0b793f4b4173', NULL, 'system', 1, TRUE, TRUE, 0),
-('IELTS Academic Words', 'Từ vựng quan trọng trong IELTS Academic', 'https:images.unsplash.comphoto-1481627834876-b7833e8f5570', NULL, 'system', 2, TRUE, TRUE, 0),
-('Business Vocabulary (Personal)', 'Từ vựng kinh doanh do người dùng tự tạo', 'https:images.unsplash.comphoto-1554224155-6726b3ff858f', NULL, 'user_created', 3, FALSE, TRUE, 0),
-('Travel Essentials (Personal)', 'Từ vựng du lịch cá nhân', 'https:images.unsplash.comphoto-1488646953014-85cb44e25828', NULL, 'user_created', 4, FALSE, TRUE, 0);
+('English for Office', 'Từ vựng dùng trong môi trường công sở, văn phòng', 'https://images.unsplash.com/photo-1497366216548-37526070297c', NULL, 'system', 2, TRUE, TRUE, 0),
+('Daily Communication', 'Câu và từ vựng giao tiếp hằng ngày', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3', NULL, 'system', 2, TRUE, TRUE, 0),
+('TOEFL Core Vocabulary', 'Nhóm từ cơ bản xuất hiện trong kỳ thi TOEFL', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173', NULL, 'system', 1, TRUE, TRUE, 0),
+('IELTS Academic Words', 'Từ vựng quan trọng trong IELTS Academic', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570', NULL, 'system', 2, TRUE, TRUE, 0),
+('Business Vocabulary (Personal)', 'Từ vựng kinh doanh do người dùng tự tạo', 'https://images.unsplash.com/photo-1554224155-6726b3ff858f', NULL, 'user_created', 3, FALSE, TRUE, 0),
+('Travel Essentials (Personal)', 'Từ vựng du lịch cá nhân', 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', NULL, 'user_created', 4, FALSE, TRUE, 0);
 
 -- WORDS (24 từ hệ thống, phân theo 4 topic hệ thống)
 INSERT INTO words (topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, notes, word_type, created_by)
 VALUES
 -- Topic 1: English for Office
-(1, 'absent', 'adjective', 'ˈæbsənt', 'vắng mặt', 'Most employees were absent from the meeting.', 'Nhiều nhân viên vắng mặt trong cuộc họp.', NULL, NULL, 'system', 2),
-(1, 'approve', 'verb', 'əˈpruːv', 'chấp thuận', 'The manager approved the Q3 budget.', 'Quản lý đã phê duyệt ngân sách quý 3.', NULL, NULL, 'system', 2),
-(1, 'deadline', 'noun', 'ˈdedlaɪn', 'hạn chót', 'We must meet the project deadline.', 'Chúng ta phải hoàn thành đúng hạn.', NULL, NULL, 'system', 2),
-(1, 'meeting', 'noun', 'ˈmiːtɪŋ', 'cuộc họp', 'The weekly meeting is Monday morning.', 'Cuộc họp hàng tuần vào sáng thứ Hai.', NULL, NULL, 'system', 2),
-(1, 'bonus', 'noun', 'ˈbəʊnəs', 'tiền thưởng', 'Employees receive a bonus for high performance.', 'Nhân viên nhận thưởng khi hiệu suất tốt.', NULL, NULL, 'system', 2),
-(1, 'resign', 'verb', 'rɪˈzaɪn', 'từ chức', 'He decided to resign from his position.', 'Anh ấy quyết định từ chức.', NULL, NULL, 'system', 2),
+(1, 'absent', 'adjective', '/ˈæbsənt/', 'vắng mặt', 'Most employees were absent from the meeting.', 'Nhiều nhân viên vắng mặt trong cuộc họp.', NULL, NULL, 'system', 2),
+(1, 'approve', 'verb', '/əˈpruːv/', 'chấp thuận', 'The manager approved the Q3 budget.', 'Quản lý đã phê duyệt ngân sách quý 3.', NULL, NULL, 'system', 2),
+(1, 'deadline', 'noun', '/ˈdedlaɪn/', 'hạn chót', 'We must meet the project deadline.', 'Chúng ta phải hoàn thành đúng hạn.', NULL, NULL, 'system', 2),
+(1, 'meeting', 'noun', '/ˈmiːtɪŋ/', 'cuộc họp', 'The weekly meeting is Monday morning.', 'Cuộc họp hàng tuần vào sáng thứ Hai.', NULL, NULL, 'system', 2),
+(1, 'bonus', 'noun', '/ˈbəʊnəs/', 'tiền thưởng', 'Employees receive a bonus for high performance.', 'Nhân viên nhận thưởng khi hiệu suất tốt.', NULL, NULL, 'system', 2),
+(1, 'resign', 'verb', '/rɪˈzaɪn/', 'từ chức', 'He decided to resign from his position.', 'Anh ấy quyết định từ chức.', NULL, NULL, 'system', 2),
 
 -- Topic 2: Daily Communication
-(2, 'greet', 'verb', 'ɡriːt', 'chào hỏi', 'They greeted each other warmly.', 'Họ chào nhau nồng nhiệt.', NULL, NULL, 'system', 2),
-(2, 'introduce', 'verb', 'ˌɪntrəˈdjuːs', 'giới thiệu', 'Let me introduce you to my colleague.', 'Để tôi giới thiệu bạn với đồng nghiệp.', NULL, NULL, 'system', 2),
-(2, 'polite', 'adjective', 'pəˈlaɪt', 'lịch sự', 'It is polite to say thank you.', 'Lịch sự khi nói cảm ơn.', NULL, NULL, 'system', 2),
-(2, 'request', 'noun', 'rɪˈkwest', 'yêu cầu', 'I sent a request for more information.', 'Tôi đã gửi yêu cầu thông tin.', NULL, NULL, 'system', 2),
-(2, 'respond', 'verb', 'rɪˈspɒnd', 'phản hồi', 'Please respond to my email.', 'Vui lòng phản hồi email của tôi.', NULL, NULL, 'system', 2),
-(2, 'confirm', 'verb', 'kənˈfɜːm', 'xác nhận', 'She confirmed the reservation.', 'Cô ấy xác nhận đặt chỗ.', NULL, NULL, 'system', 2),
+(2, 'greet', 'verb', '/ɡriːt/', 'chào hỏi', 'They greeted each other warmly.', 'Họ chào nhau nồng nhiệt.', NULL, NULL, 'system', 2),
+(2, 'introduce', 'verb', '/ˌɪntrəˈdjuːs/', 'giới thiệu', 'Let me introduce you to my colleague.', 'Để tôi giới thiệu bạn với đồng nghiệp.', NULL, NULL, 'system', 2),
+(2, 'polite', 'adjective', '/pəˈlaɪt/', 'lịch sự', 'It is polite to say thank you.', 'Lịch sự khi nói cảm ơn.', NULL, NULL, 'system', 2),
+(2, 'request', 'noun', '/rɪˈkwest/', 'yêu cầu', 'I sent a request for more information.', 'Tôi đã gửi yêu cầu thông tin.', NULL, NULL, 'system', 2),
+(2, 'respond', 'verb', '/rɪˈspɒnd/', 'phản hồi', 'Please respond to my email.', 'Vui lòng phản hồi email của tôi.', NULL, NULL, 'system', 2),
+(2, 'confirm', 'verb', '/kənˈfɜːm/', 'xác nhận', 'She confirmed the reservation.', 'Cô ấy xác nhận đặt chỗ.', NULL, NULL, 'system', 2),
 
 -- Topic 3: TOEFL Core
-(3, 'analyze', 'verb', 'ˈænəlaɪz', 'phân tích', 'Analyze the data carefully.', 'Phân tích dữ liệu cẩn thận.', NULL, NULL, 'system', 1),
-(3, 'assume', 'verb', 'əˈsjuːm', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', NULL, NULL, 'system', 1),
-(3, 'distinct', 'adjective', 'dɪˈstɪŋkt', 'riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', NULL, NULL, 'system', 1),
-(3, 'estimate', 'verb', 'ˈestɪmeɪt', 'ước tính', 'We estimate the cost precisely.', 'Chúng tôi ước tính chi phí chính xác.', NULL, NULL, 'system', 1),
-(3, 'interpret', 'verb', 'ɪnˈtɜːprɪt', 'diễn giải', 'Interpret the chart.', 'Diễn giải biểu đồ.', NULL, NULL, 'system', 1),
-(3, 'predict', 'verb', 'prɪˈdɪkt', 'dự đoán', 'Predict the trend.', 'Dự đoán xu hướng.', NULL, NULL, 'system', 1),
+(3, 'analyze', 'verb', '/ˈænəlaɪz/', 'phân tích', 'Analyze the data carefully.', 'Phân tích dữ liệu cẩn thận.', NULL, NULL, 'system', 1),
+(3, 'assume', 'verb', '/əˈsjuːm/', 'giả định', 'Do not assume the results.', 'Đừng giả định kết quả.', NULL, NULL, 'system', 1),
+(3, 'distinct', 'adjective', '/dɪˈstɪŋkt/', 'riêng biệt', 'Two distinct ideas.', 'Hai ý tưởng riêng biệt.', NULL, NULL, 'system', 1),
+(3, 'estimate', 'verb', '/ˈestɪmeɪt/', 'ước tính', 'We estimate the cost precisely.', 'Chúng tôi ước tính chi phí chính xác.', NULL, NULL, 'system', 1),
+(3, 'interpret', 'verb', '/ɪnˈtɜːprɪt/', 'diễn giải', 'Interpret the chart.', 'Diễn giải biểu đồ.', NULL, NULL, 'system', 1),
+(3, 'predict', 'verb', '/prɪˈdɪkt/', 'dự đoán', 'Predict the trend.', 'Dự đoán xu hướng.', NULL, NULL, 'system', 1),
 
 -- Topic 4: IELTS Academic
-(4, 'coherent', 'adjective', 'kəʊˈhɪərənt', 'mạch lạc', 'Write a coherent essay.', 'Viết bài luận mạch lạc.', NULL, NULL, 'system', 2),
-(4, 'derive', 'verb', 'dɪˈraɪv', 'bắt nguồn', 'This word derives from Latin.', 'Từ này bắt nguồn từ Latin.', NULL, NULL, 'system', 2),
-(4, 'fluctuate', 'verb', 'ˈflʌktʃueɪt', 'dao động', 'Prices fluctuate daily.', 'Giá dao động hàng ngày.', NULL, NULL, 'system', 2),
-(4, 'perspective', 'noun', 'pəˈspektɪv', 'quan điểm', 'From my perspective...', 'Từ quan điểm của tôi...', NULL, NULL, 'system', 2),
-(4, 'subsequent', 'adjective', 'ˈsʌbsɪkwənt', 'tiếp theo', 'Subsequent changes occurred.', 'Những thay đổi tiếp theo đã xảy ra.', NULL, NULL, 'system', 2),
-(4, 'viable', 'adjective', 'ˈvaɪəbl', 'khả thi', 'A viable solution.', 'Giải pháp khả thi.', NULL, NULL, 'system', 2);
+(4, 'coherent', 'adjective', '/kəʊˈhɪərənt/', 'mạch lạc', 'Write a coherent essay.', 'Viết bài luận mạch lạc.', NULL, NULL, 'system', 2),
+(4, 'derive', 'verb', '/dɪˈraɪv/', 'bắt nguồn', 'This word derives from Latin.', 'Từ này bắt nguồn từ Latin.', NULL, NULL, 'system', 2),
+(4, 'fluctuate', 'verb', '/ˈflʌktʃueɪt/', 'dao động', 'Prices fluctuate daily.', 'Giá dao động hàng ngày.', NULL, NULL, 'system', 2),
+(4, 'perspective', 'noun', '/pəˈspektɪv/', 'quan điểm', 'From my perspective...', 'Từ quan điểm của tôi...', NULL, NULL, 'system', 2),
+(4, 'subsequent', 'adjective', '/ˈsʌbsɪkwənt/', 'tiếp theo', 'Subsequent changes occurred.', 'Những thay đổi tiếp theo đã xảy ra.', NULL, NULL, 'system', 2),
+(4, 'viable', 'adjective', '/ˈvaɪəbl/', 'khả thi', 'A viable solution.', 'Giải pháp khả thi.', NULL, NULL, 'system', 2);
 
 -- Cập nhật word_count cho system topics
 UPDATE topics SET word_count = (SELECT COUNT(*) FROM words WHERE words.topic_id = topics.topic_id) WHERE topic_type = 'system';
@@ -878,13 +878,13 @@ ALTER TABLE favorite_topics AUTO_INCREMENT = 1;
 INSERT INTO user_words (user_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, notes, from_system_word_id)
 VALUES
 -- User 3 (quang.pham) - Business (topic_id=5)
-(3, 5, 'revenue', 'noun', 'ˈrevənjuː', 'doanh thu', 'Company revenue increased by 18%.', 'Doanh thu công ty tăng 18%.', NULL, 'Từ quan trọng trong báo cáo', NULL),
-(3, 5, 'profit', 'noun', 'ˈprɒfɪt', 'lợi nhuận', 'We made a good profit this quarter.', 'Chúng ta có lợi nhuận tốt quý này.', NULL, 'Chỉ số chính', NULL),
-(3, 5, 'strategy', 'noun', 'ˈstrætədʒi', 'chiến lược', 'Our strategy focuses on growth.', 'Chiến lược tập trung tăng trưởng.', NULL, 'Kế hoạch 2025', NULL),
+(3, 5, 'revenue', 'noun', '/ˈrevənjuː/', 'doanh thu', 'Company revenue increased by 18%.', 'Doanh thu công ty tăng 18%.', NULL, 'Từ quan trọng trong báo cáo', NULL),
+(3, 5, 'profit', 'noun', '/ˈprɒfɪt/', 'lợi nhuận', 'We made a good profit this quarter.', 'Chúng ta có lợi nhuận tốt quý này.', NULL, 'Chỉ số chính', NULL),
+(3, 5, 'strategy', 'noun', '/ˈstrætədʒi/', 'chiến lược', 'Our strategy focuses on growth.', 'Chiến lược tập trung tăng trưởng.', NULL, 'Kế hoạch 2025', NULL),
 
 -- User 4 (thu.ha) - Travel (topic_id=6)
-(4, 6, 'itinerary', 'noun', 'aɪˈtɪnərəri', 'lịch trình', 'Check the itinerary before departure.', 'Kiểm tra lịch trình trước khi khởi hành.', NULL, 'Tour châu Âu', NULL),
-(4, 6, 'souvenir', 'noun', 'ˌsuːvəˈnɪə', 'quà lưu niệm', 'Buy a souvenir for your family.', 'Mua quà lưu niệm cho gia đình.', NULL, 'Gợi ý mua sắm', NULL);
+(4, 6, 'itinerary', 'noun', '/aɪˈtɪnərəri/', 'lịch trình', 'Check the itinerary before departure.', 'Kiểm tra lịch trình trước khi khởi hành.', NULL, 'Tour châu Âu', NULL),
+(4, 6, 'souvenir', 'noun', '/ˌsuːvəˈnɪə/', 'quà lưu niệm', 'Buy a souvenir for your family.', 'Mua quà lưu niệm cho gia đình.', NULL, 'Gợi ý mua sắm', NULL);
 
 -- USER_WORD_STATUS (đánh dấu đã thuộc)
 -- Quy ước: nếu không có bản ghi -> mặc định CHƯA THUỘC
@@ -911,7 +911,7 @@ UPDATE topics SET word_count = (SELECT COUNT(*) FROM user_words WHERE user_words
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'Phần B: UserWordsStatusFavorites - OK' AS message;
+SELECT 'Phần B: UserWords/Status/Favorites - OK' AS message;
 SELECT COUNT(*) AS total_user_words FROM user_words;
 SELECT COUNT(*) AS total_status FROM user_word_status;
 SELECT COUNT(*) AS total_favorites FROM favorite_topics;
@@ -938,15 +938,15 @@ VALUES
 INSERT INTO import_details (import_id, row_num, word, meaning_vi, part_of_speech, pronunciation, example_en, example_vi, notes, import_status, error_message, created_word_id)
 VALUES
 -- Import 1 (user 3)
-(1, 1, 'revenue',  'doanh thu', 'noun', 'ˈrevənjuː', 'Revenue grew rapidly.', 'Doanh thu tăng nhanh.', 'Từ tài chính', 'success', NULL, 1),
-(1, 2, 'profit',   'lợi nhuận','noun', 'ˈprɒfɪt',  'Profit reached new high.', 'Lợi nhuận đạt mức cao mới.', NULL, 'success', NULL, 2),
-(1, 3, 'strategy', 'chiến lược','noun', 'ˈstrætədʒi','Strategy was revised.', 'Chiến lược được điều chỉnh.', NULL, 'success', NULL, 3),
+(1, 1, 'revenue',  'doanh thu', 'noun', '/ˈrevənjuː/', 'Revenue grew rapidly.', 'Doanh thu tăng nhanh.', 'Từ tài chính', 'success', NULL, 1),
+(1, 2, 'profit',   'lợi nhuận','noun', '/ˈprɒfɪt/',  'Profit reached new high.', 'Lợi nhuận đạt mức cao mới.', NULL, 'success', NULL, 2),
+(1, 3, 'strategy', 'chiến lược','noun', '/ˈstrætədʒi/','Strategy was revised.', 'Chiến lược được điều chỉnh.', NULL, 'success', NULL, 3),
 (1, 4, 'invalid',  '',          '',     NULL,         NULL,                   NULL, 'Dòng dữ liệu không hợp lệ', 'error', 'Thiếu nghĩa', NULL),
 (1, 5, 'another',  '',          '',     NULL,         NULL,                   NULL, 'Thiếu thông tin',           'error', 'Thiếu nghĩa', NULL),
 
 -- Import 2 (user 4)
-(2, 1, 'itinerary','lịch trình','noun','aɪˈtɪnərəri','Plan your itinerary.','Lập kế hoạch lịch trình.', NULL, 'success', NULL, 4),
-(2, 2, 'souvenir', 'quà lưu niệm','noun','ˌsuːvəˈnɪə','Buy a souvenir.','Mua quà lưu niệm.', NULL, 'success', NULL, 5);
+(2, 1, 'itinerary','lịch trình','noun','/aɪˈtɪnərəri/','Plan your itinerary.','Lập kế hoạch lịch trình.', NULL, 'success', NULL, 4),
+(2, 2, 'souvenir', 'quà lưu niệm','noun','/ˌsuːvəˈnɪə/','Buy a souvenir.','Mua quà lưu niệm.', NULL, 'success', NULL, 5);
 
 SET SQL_SAFE_UPDATES = 1;
 
@@ -975,15 +975,15 @@ ALTER TABLE password_reset_tokens AUTO_INCREMENT = 1;
 -- REFRESH_TOKENS
 INSERT INTO refresh_tokens (user_id, token_hash, device_info, ip_address, user_agent, is_revoked, expires_at)
 VALUES
-(3, '$2b$10$hashed_refresh_token_an',   '{"browser":"Chrome","os":"Windows 11","device":"Desktop"}', '203.205.1.10', 'Mozilla5.0 (Windows NT 10.0; Win64; x64)...', FALSE, NOW() + INTERVAL 10 DAY),
-(4, '$2b$10$hashed_refresh_token_ha',   '{"browser":"Safari","os":"macOS","device":"MacBook"}',      '203.205.1.11', 'Mozilla5.0 (Macintosh; Intel Mac OS X)...', FALSE, NOW() + INTERVAL 10 DAY);
+(3, '$2b$10$hashed_refresh_token_an',   '{"browser":"Chrome","os":"Windows 11","device":"Desktop"}', '203.205.1.10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...', FALSE, NOW() + INTERVAL 10 DAY),
+(4, '$2b$10$hashed_refresh_token_ha',   '{"browser":"Safari","os":"macOS","device":"MacBook"}',      '203.205.1.11', 'Mozilla/5.0 (Macintosh; Intel Mac OS X)...', FALSE, NOW() + INTERVAL 10 DAY);
 
 -- LOGIN_HISTORY
 INSERT INTO login_history (user_id, login_time, ip_address, user_agent, login_status, failure_reason, session_duration)
 VALUES
-(3, NOW() - INTERVAL 2 DAY, '203.205.1.10', 'Mozilla5.0 (Windows NT 10.0; Win64; x64)...', 'success', NULL, 5400),
-(4, NOW() - INTERVAL 1 DAY, '203.205.1.11', 'Mozilla5.0 (Macintosh; Intel Mac OS X)...',   'success', NULL, 3600),
-(3, NOW() - INTERVAL 5 DAY, '203.205.1.10', 'Mozilla5.0 (Windows NT 10.0; Win64; x64)...', 'failed',  'wrong_password', NULL);
+(3, NOW() - INTERVAL 2 DAY, '203.205.1.10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...', 'success', NULL, 5400),
+(4, NOW() - INTERVAL 1 DAY, '203.205.1.11', 'Mozilla/5.0 (Macintosh; Intel Mac OS X)...',   'success', NULL, 3600),
+(3, NOW() - INTERVAL 5 DAY, '203.205.1.10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...', 'failed',  'wrong_password', NULL);
 
 -- EMAIL_VERIFICATIONS
 INSERT INTO email_verifications (user_id, email, verification_token, is_verified, verified_at, expires_at)
@@ -1030,10 +1030,10 @@ ALTER TABLE instructors AUTO_INCREMENT = 1;
 -- Categories (4 realistic)
 INSERT INTO categories (name, slug, description, icon, color, image, sort_order, is_active)
 VALUES
-('IELTS', 'ielts', 'Khóa học luyện thi IELTS AcademicGeneral', 'fa-certificate', '#3B82F6', 'https:images.unsplash.comphoto-1496307042754-b4aa456c4a2d', 1, TRUE),
-('TOEIC 2 kỹ năng', 'toeic-2-ky-nang', 'Khóa luyện thi TOEIC Listening & Reading', 'fa-headphones', '#10B981', 'https:images.unsplash.comphoto-1513258496099-48168024aec0', 2, TRUE),
-('Tiếng Anh giao tiếp', 'english-communication', 'Khóa học giao tiếp cơ bản đến nâng cao', 'fa-comments', '#F59E0B', 'https:images.unsplash.comphoto-1498050108023-c5249f4df085', 3, TRUE),
-('Business English', 'business-english', 'Tiếng Anh thương mại trong môi trường doanh nghiệp', 'fa-briefcase', '#EF4444', 'https:images.unsplash.comphoto-1557426272-fc759fdf7a8d', 4, TRUE);
+('IELTS', 'ielts', 'Khóa học luyện thi IELTS Academic/General', 'fa-certificate', '#3B82F6', 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d', 1, TRUE),
+('TOEIC 2 kỹ năng', 'toeic-2-ky-nang', 'Khóa luyện thi TOEIC Listening & Reading', 'fa-headphones', '#10B981', 'https://images.unsplash.com/photo-1513258496099-48168024aec0', 2, TRUE),
+('Tiếng Anh giao tiếp', 'english-communication', 'Khóa học giao tiếp cơ bản đến nâng cao', 'fa-comments', '#F59E0B', 'https://images.unsplash.com/photo-1498050108023-c5249f4df085', 3, TRUE),
+('Business English', 'business-english', 'Tiếng Anh thương mại trong môi trường doanh nghiệp', 'fa-briefcase', '#EF4444', 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d', 4, TRUE);
 
 -- Levels (3 realistic)
 INSERT INTO levels (name, slug, description, color, sort_order, is_active)
@@ -1046,16 +1046,16 @@ VALUES
 -- user_id 2 là giảng viên nội bộ (đã tồn tại trong users)
 INSERT INTO instructors (user_id, name, avatar, bio, experience_years, specializations, education, achievements, social_links, is_featured, is_verified, is_active)
 VALUES
-(2, 'Trần Thu Ngọc', 'https:images.unsplash.comphoto-1544005313-94ddf0286df2',
- 'Giảng viên 7+ năm luyện thi IELTSTOEIC. Tập trung Writing & Reading.',
- 7, 'IELTS Writing, TOEIC Reading', 'MA Applied Linguistics', '>1,500 học viên đạt mục tiêu', '{"facebook":"https:fb.comngoc.tran","youtube":"https:youtube.com@ngocielts"}', TRUE, TRUE, TRUE),
-(NULL, 'John Nguyen', 'https:images.unsplash.comphoto-1508214751196-bcfd4ca60f91',
+(2, 'Trần Thu Ngọc', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2',
+ 'Giảng viên 7+ năm luyện thi IELTS/TOEIC. Tập trung Writing & Reading.',
+ 7, 'IELTS Writing, TOEIC Reading', 'MA Applied Linguistics', '>1,500 học viên đạt mục tiêu', '{"facebook":"https://fb.com/ngoc.tran","youtube":"https://youtube.com/@ngocielts"}', TRUE, TRUE, TRUE),
+(NULL, 'John Nguyen', 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91',
  'Business English & Communication Coach, 10+ năm kinh nghiệm.',
- 10, 'Business English, Communication', 'MBA, University of Melbourne', 'Tư vấn đào tạo cho 30+ doanh nghiệp', '{"linkedin":"https:linkedin.cominjohn-nguyen"}', FALSE, TRUE, TRUE);
+ 10, 'Business English, Communication', 'MBA, University of Melbourne', 'Tư vấn đào tạo cho 30+ doanh nghiệp', '{"linkedin":"https://linkedin.com/in/john-nguyen"}', FALSE, TRUE, TRUE);
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'E: categorieslevelsinstructors OK' AS message;
+SELECT 'E: categories/levels/instructors OK' AS message;
 
 
 USE e_learnning2;
@@ -1083,8 +1083,8 @@ VALUES
  'Nâng kỹ năng Writing Task 1 & 2 qua phương pháp thực chiến.',
  'Khóa học tập trung chiến lược, lập dàn ý, triển khai luận điểm và quản lý thời gian cho IELTS Writing Academic.',
  1, 2, 1,
- 'https:images.unsplash.comphoto-1522071820081-009f0129c71c',
- 'https:videos.cdn.exampleielts-writing-preview.mp4', '09:15', 0.00,
+ 'https://images.unsplash.com/photo-1522071820081-009f0129c71c',
+ 'https://videos.cdn.example/ielts-writing-preview.mp4', '09:15', 0.00,
  10, '12hr 30min', 1250, 4.7, 320, 799000, 999000, 20, FALSE, TRUE, TRUE,
  'published', NOW() - INTERVAL 20 DAY, 'IELTS Writing Mastery', 'IELTS Academic Writing Mastery - phương pháp thực chiến'),
 
@@ -1092,8 +1092,8 @@ VALUES
  'Lộ trình đạt 650+ với chiến thuật giải nhanh & bẫy thường gặp.',
  'Ôn tập trọng tâm phần Listening & Reading với bộ đề bám sát format, mẹo tốc độ và quản lý thời gian.',
  2, 2, 2,
- 'https:images.unsplash.comphoto-1513258496099-48168024aec0',
- 'https:videos.cdn.exampletoeic-650-preview.mp4', '07:45', 0.00,
+ 'https://images.unsplash.com/photo-1513258496099-48168024aec0',
+ 'https://videos.cdn.example/toeic-650-preview.mp4', '07:45', 0.00,
  9, '10hr 40min', 2140, 4.6, 410, 699000, 899000, 22, FALSE, FALSE, TRUE,
  'published', NOW() - INTERVAL 30 DAY, 'TOEIC 650+', 'TOEIC Listening & Reading 650+'),
 
@@ -1101,8 +1101,8 @@ VALUES
  'Nền tảng giao tiếp: phát âm, mẫu câu, phản xạ tình huống.',
  'Hệ thống lại phát âm cơ bản, mẫu câu giao tiếp, từ vựng chủ điểm và luyện phản xạ hội thoại.',
  3, 1, 1,
- 'https:images.unsplash.comphoto-1529336953121-a0ce61a0a6f6',
- 'https:videos.cdn.examplecomm-fund-preview.mp4', '06:20', 0.00,
+ 'https://images.unsplash.com/photo-1529336953121-a0ce61a0a6f6',
+ 'https://videos.cdn.example/comm-fund-preview.mp4', '06:20', 0.00,
  8, '8hr 10min', 980, 4.5, 210, 0.00, NULL, 0, TRUE, FALSE, TRUE,
  'published', NOW() - INTERVAL 10 DAY, 'Communication Fundamentals', 'Khóa giao tiếp nền tảng'),
 
@@ -1110,8 +1110,8 @@ VALUES
  'Tự tin điều phối họp: ngôn ngữ, cấu trúc, xử lý tình huống.',
  'Tập trung vào ngôn ngữ cuộc họp: mở đầu, trình bày, hỏi đáp, phản biện, chốt vấn đề và tổng kết.',
  4, 3, 2,
- 'https:images.unsplash.comphoto-1551836022-d5d88e9218df',
- 'https:videos.cdn.examplebiz-meetings-preview.mp4', '05:50', 0.00,
+ 'https://images.unsplash.com/photo-1551836022-d5d88e9218df',
+ 'https://videos.cdn.example/biz-meetings-preview.mp4', '05:50', 0.00,
  9, '9hr 25min', 560, 4.8, 150, 899000, 1199000, 25, FALSE, FALSE, TRUE,
  'published', NOW() - INTERVAL 15 DAY, 'Business English Meetings', 'Tiếng Anh thương mại trong cuộc họp');
 
@@ -1129,7 +1129,7 @@ VALUES
  CURDATE() - INTERVAL 12 DAY, 'Vietnamese', 'Sinh viên cần Writing 6.5+'),
 (2,
  'Hệ thống chiến thuật TOEIC L&R, làm chủ kỹ năng nghe & đọc nhanh.',
- '["Nhận diện bẫy nghe","Quản lý thời gian","Chiến thuật đọc lướtskimming"]',
+ '["Nhận diện bẫy nghe","Quản lý thời gian","Chiến thuật đọc lướt/skimming"]',
  '["Listening","Reading","Speed Techniques"]',
  '["Kiến thức tiếng Anh cơ bản","Từ vựng nền"]',
  '["Đạt 650+ sau 6-8 tuần ôn","Tăng tốc độ làm bài 30%"]',
@@ -1140,7 +1140,7 @@ VALUES
  '["Phát âm cơ bản","Mẫu câu giao tiếp","Phản xạ nghe-nói"]',
  '["Pronunciation","Conversation","Listening"]',
  '["Không yêu cầu đầu vào","Tinh thần luyện tập đều đặn"]',
- '["Tự tin chào hỏigiới thiệubắt chuyện","Phát âm rõ, dễ nghe"]',
+ '["Tự tin chào hỏi/giới thiệu/bắt chuyện","Phát âm rõ, dễ nghe"]',
  'Chứng nhận hoàn thành (free course)',
  CURDATE() - INTERVAL 5 DAY, 'Vietnamese', 'Người mới bắt đầu học giao tiếp'),
 (4,
@@ -1154,7 +1154,7 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'F: coursesdetails OK' AS message;
+SELECT 'F: courses/details OK' AS message;
 
 
 USE e_learnning2;
@@ -1195,66 +1195,66 @@ VALUES
 -- Course 1: modules 1..3 → lessons 1..10
 INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
 VALUES
-(1,1,'Overview of Task 1','Giới thiệu Task 1','Nội dung','https:videos.cdn.example1-1.mp4','12:30',NULL,1,'video',TRUE,TRUE,1200),
-(1,1,'Describing Trends','Miêu tả xu hướng','Nội dung','https:videos.cdn.example1-2.mp4','18:20',NULL,2,'video',FALSE,TRUE,980),
-(1,1,'Data Comparison','So sánh số liệu','Nội dung','https:videos.cdn.example1-3.mp4','14:10',NULL,3,'video',FALSE,TRUE,870),
+(1,1,'Overview of Task 1','Giới thiệu Task 1','Nội dung','https://videos.cdn.example/1-1.mp4','12:30',NULL,1,'video',TRUE,TRUE,1200),
+(1,1,'Describing Trends','Miêu tả xu hướng','Nội dung','https://videos.cdn.example/1-2.mp4','18:20',NULL,2,'video',FALSE,TRUE,980),
+(1,1,'Data Comparison','So sánh số liệu','Nội dung','https://videos.cdn.example/1-3.mp4','14:10',NULL,3,'video',FALSE,TRUE,870),
 
-(2,1,'Essay Types','Phân loại bài luận','Nội dung','https:videos.cdn.example1-4.mp4','16:50',NULL,1,'video',FALSE,TRUE,900),
-(2,1,'Planning & Outlining','Lập dàn ý nhanh','Nội dung','https:videos.cdn.example1-5.mp4','22:15',NULL,2,'video',FALSE,TRUE,860),
-(2,1,'Argument Development','Phát triển luận điểm','Nội dung','https:videos.cdn.example1-6.mp4','24:30',NULL,3,'video',FALSE,TRUE,840),
-(2,1,'Sample Analysis','Phân tích bài mẫu','Nội dung','https:videos.cdn.example1-7.mp4','26:35',NULL,4,'video',FALSE,TRUE,820),
+(2,1,'Essay Types','Phân loại bài luận','Nội dung','https://videos.cdn.example/1-4.mp4','16:50',NULL,1,'video',FALSE,TRUE,900),
+(2,1,'Planning & Outlining','Lập dàn ý nhanh','Nội dung','https://videos.cdn.example/1-5.mp4','22:15',NULL,2,'video',FALSE,TRUE,860),
+(2,1,'Argument Development','Phát triển luận điểm','Nội dung','https://videos.cdn.example/1-6.mp4','24:30',NULL,3,'video',FALSE,TRUE,840),
+(2,1,'Sample Analysis','Phân tích bài mẫu','Nội dung','https://videos.cdn.example/1-7.mp4','26:35',NULL,4,'video',FALSE,TRUE,820),
 
-(3,1,'Band Descriptors','Tiêu chí chấm điểm','Nội dung','https:videos.cdn.example1-8.mp4','19:40',NULL,1,'video',FALSE,TRUE,800),
-(3,1,'Common Mistakes','Lỗi thường gặp','Nội dung','https:videos.cdn.example1-9.mp4','17:55',NULL,2,'video',FALSE,TRUE,770),
-(3,1,'Mock Test Review','Chữa bài test','Nội dung','https:videos.cdn.example1-10.mp4','18:30',NULL,3,'video',FALSE,TRUE,750);
+(3,1,'Band Descriptors','Tiêu chí chấm điểm','Nội dung','https://videos.cdn.example/1-8.mp4','19:40',NULL,1,'video',FALSE,TRUE,800),
+(3,1,'Common Mistakes','Lỗi thường gặp','Nội dung','https://videos.cdn.example/1-9.mp4','17:55',NULL,2,'video',FALSE,TRUE,770),
+(3,1,'Mock Test Review','Chữa bài test','Nội dung','https://videos.cdn.example/1-10.mp4','18:30',NULL,3,'video',FALSE,TRUE,750);
 
 -- Course 2: modules 4..6 → lessons 11..19
 INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
 VALUES
-(4,2,'Listening Part 1-2','Mẹo & bẫy thường gặp','Nội dung','https:videos.cdn.example2-1.mp4','15:20',NULL,1,'video',TRUE,TRUE,1400),
-(4,2,'Listening Part 3','Chiến thuật hội thoại','Nội dung','https:videos.cdn.example2-2.mp4','20:00',NULL,2,'video',FALSE,TRUE,1200),
-(4,2,'Listening Part 4','Thông báo & bài nói','Nội dung','https:videos.cdn.example2-3.mp4','18:00',NULL,3,'video',FALSE,TRUE,1100),
+(4,2,'Listening Part 1-2','Mẹo & bẫy thường gặp','Nội dung','https://videos.cdn.example/2-1.mp4','15:20',NULL,1,'video',TRUE,TRUE,1400),
+(4,2,'Listening Part 3','Chiến thuật hội thoại','Nội dung','https://videos.cdn.example/2-2.mp4','20:00',NULL,2,'video',FALSE,TRUE,1200),
+(4,2,'Listening Part 4','Thông báo & bài nói','Nội dung','https://videos.cdn.example/2-3.mp4','18:00',NULL,3,'video',FALSE,TRUE,1100),
 
-(5,2,'Grammar Essentials','Ngữ pháp trọng tâm','Nội dung','https:videos.cdn.example2-4.mp4','16:00',NULL,1,'video',FALSE,TRUE,1000),
-(5,2,'Reading Speed','Tốc độ đọc & skimming','Nội dung','https:videos.cdn.example2-5.mp4','17:30',NULL,2,'video',FALSE,TRUE,980),
-(5,2,'Question Types','Dạng câu hỏi thường gặp','Nội dung','https:videos.cdn.example2-6.mp4','19:10',NULL,3,'video',FALSE,TRUE,960),
+(5,2,'Grammar Essentials','Ngữ pháp trọng tâm','Nội dung','https://videos.cdn.example/2-4.mp4','16:00',NULL,1,'video',FALSE,TRUE,1000),
+(5,2,'Reading Speed','Tốc độ đọc & skimming','Nội dung','https://videos.cdn.example/2-5.mp4','17:30',NULL,2,'video',FALSE,TRUE,980),
+(5,2,'Question Types','Dạng câu hỏi thường gặp','Nội dung','https://videos.cdn.example/2-6.mp4','19:10',NULL,3,'video',FALSE,TRUE,960),
 
-(6,2,'Full Test 1 Review','Chữa đề tổng hợp 1','Nội dung','https:videos.cdn.example2-7.mp4','20:40',NULL,1,'video',FALSE,TRUE,940),
-(6,2,'Full Test 2 Review','Chữa đề tổng hợp 2','Nội dung','https:videos.cdn.example2-8.mp4','21:00',NULL,2,'video',FALSE,TRUE,920),
-(6,2,'Final Tips','Tổng kết & mẹo cuối','Nội dung','https:videos.cdn.example2-9.mp4','18:00',NULL,3,'video',FALSE,TRUE,900);
+(6,2,'Full Test 1 Review','Chữa đề tổng hợp 1','Nội dung','https://videos.cdn.example/2-7.mp4','20:40',NULL,1,'video',FALSE,TRUE,940),
+(6,2,'Full Test 2 Review','Chữa đề tổng hợp 2','Nội dung','https://videos.cdn.example/2-8.mp4','21:00',NULL,2,'video',FALSE,TRUE,920),
+(6,2,'Final Tips','Tổng kết & mẹo cuối','Nội dung','https://videos.cdn.example/2-9.mp4','18:00',NULL,3,'video',FALSE,TRUE,900);
 
 -- Course 3: modules 7..9 → lessons 20..27
 INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
 VALUES
-(7,3,'Sounds & Stress','Âm sắc & trọng âm','Nội dung','https:videos.cdn.example3-1.mp4','12:00',NULL,1,'video',TRUE,TRUE,800),
-(7,3,'Word Linking','Nối âm đơn giản','Nội dung','https:videos.cdn.example3-2.mp4','14:30',NULL,2,'video',TRUE,TRUE,760),
-(7,3,'Common Pronunciation Errors','Lỗi phát âm','Nội dung','https:videos.cdn.example3-3.mp4','15:10',NULL,3,'video',TRUE,TRUE,740),
+(7,3,'Sounds & Stress','Âm sắc & trọng âm','Nội dung','https://videos.cdn.example/3-1.mp4','12:00',NULL,1,'video',TRUE,TRUE,800),
+(7,3,'Word Linking','Nối âm đơn giản','Nội dung','https://videos.cdn.example/3-2.mp4','14:30',NULL,2,'video',TRUE,TRUE,760),
+(7,3,'Common Pronunciation Errors','Lỗi phát âm','Nội dung','https://videos.cdn.example/3-3.mp4','15:10',NULL,3,'video',TRUE,TRUE,740),
 
-(8,3,'Greetings & Small Talk','Chào hỏi & bắt chuyện','Nội dung','https:videos.cdn.example3-4.mp4','13:40',NULL,1,'video',TRUE,TRUE,720),
-(8,3,'Describing People & Places','Miêu tả người & nơi chốn','Nội dung','https:videos.cdn.example3-5.mp4','16:00',NULL,2,'video',TRUE,TRUE,700),
-(8,3,'Making Requests','Đưa ra đề nghị','Nội dung','https:videos.cdn.example3-6.mp4','14:20',NULL,3,'video',TRUE,TRUE,680),
+(8,3,'Greetings & Small Talk','Chào hỏi & bắt chuyện','Nội dung','https://videos.cdn.example/3-4.mp4','13:40',NULL,1,'video',TRUE,TRUE,720),
+(8,3,'Describing People & Places','Miêu tả người & nơi chốn','Nội dung','https://videos.cdn.example/3-5.mp4','16:00',NULL,2,'video',TRUE,TRUE,700),
+(8,3,'Making Requests','Đưa ra đề nghị','Nội dung','https://videos.cdn.example/3-6.mp4','14:20',NULL,3,'video',TRUE,TRUE,680),
 
-(9,3,'Role-play: At a Cafe','Tình huống quán cà phê','Nội dung','https:videos.cdn.example3-7.mp4','16:30',NULL,1,'video',TRUE,TRUE,660),
-(9,3,'Role-play: At the Office','Tình huống công sở','Nội dung','https:videos.cdn.example3-8.mp4','15:20',NULL,2,'video',TRUE,TRUE,640);
+(9,3,'Role-play: At a Cafe','Tình huống quán cà phê','Nội dung','https://videos.cdn.example/3-7.mp4','16:30',NULL,1,'video',TRUE,TRUE,660),
+(9,3,'Role-play: At the Office','Tình huống công sở','Nội dung','https://videos.cdn.example/3-8.mp4','15:20',NULL,2,'video',TRUE,TRUE,640);
 
 -- Course 4: modules 10..12 → lessons 28..36
 INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
 VALUES
-(10,4,'Opening a Meeting','Mở đầu cuộc họp','Nội dung','https:videos.cdn.example4-1.mp4','13:40',NULL,1,'video',FALSE,TRUE,600),
-(10,4,'Setting the Agenda','Đặt chương trình họp','Nội dung','https:videos.cdn.example4-2.mp4','15:10',NULL,2,'video',FALSE,TRUE,580),
-(10,4,'Assigning Roles','Phân vai trò','Nội dung','https:videos.cdn.example4-3.mp4','14:00',NULL,3,'video',FALSE,TRUE,560),
+(10,4,'Opening a Meeting','Mở đầu cuộc họp','Nội dung','https://videos.cdn.example/4-1.mp4','13:40',NULL,1,'video',FALSE,TRUE,600),
+(10,4,'Setting the Agenda','Đặt chương trình họp','Nội dung','https://videos.cdn.example/4-2.mp4','15:10',NULL,2,'video',FALSE,TRUE,580),
+(10,4,'Assigning Roles','Phân vai trò','Nội dung','https://videos.cdn.example/4-3.mp4','14:00',NULL,3,'video',FALSE,TRUE,560),
 
-(11,4,'Presenting Ideas Clearly','Trình bày rõ ràng','Nội dung','https:videos.cdn.example4-4.mp4','16:00',NULL,1,'video',FALSE,TRUE,540),
-(11,4,'Handling Objections','Xử lý phản biện','Nội dung','https:videos.cdn.example4-5.mp4','17:20',NULL,2,'video',FALSE,TRUE,520),
-(11,4,'Summarizing Points','Tổng kết ý chính','Nội dung','https:videos.cdn.example4-6.mp4','15:30',NULL,3,'video',FALSE,TRUE,500),
+(11,4,'Presenting Ideas Clearly','Trình bày rõ ràng','Nội dung','https://videos.cdn.example/4-4.mp4','16:00',NULL,1,'video',FALSE,TRUE,540),
+(11,4,'Handling Objections','Xử lý phản biện','Nội dung','https://videos.cdn.example/4-5.mp4','17:20',NULL,2,'video',FALSE,TRUE,520),
+(11,4,'Summarizing Points','Tổng kết ý chính','Nội dung','https://videos.cdn.example/4-6.mp4','15:30',NULL,3,'video',FALSE,TRUE,500),
 
-(12,4,'Q&A Techniques','Kỹ thuật hỏi đáp','Nội dung','https:videos.cdn.example4-7.mp4','14:40',NULL,1,'video',FALSE,TRUE,480),
-(12,4,'Difficult Questions','Câu hỏi khó','Nội dung','https:videos.cdn.example4-8.mp4','16:10',NULL,2,'video',FALSE,TRUE,470),
-(12,4,'Action Items & Follow-up','Phân công & theo dõi','Nội dung','https:videos.cdn.example4-9.mp4','15:50',NULL,3,'video',FALSE,TRUE,460);
+(12,4,'Q&A Techniques','Kỹ thuật hỏi đáp','Nội dung','https://videos.cdn.example/4-7.mp4','14:40',NULL,1,'video',FALSE,TRUE,480),
+(12,4,'Difficult Questions','Câu hỏi khó','Nội dung','https://videos.cdn.example/4-8.mp4','16:10',NULL,2,'video',FALSE,TRUE,470),
+(12,4,'Action Items & Follow-up','Phân công & theo dõi','Nội dung','https://videos.cdn.example/4-9.mp4','15:50',NULL,3,'video',FALSE,TRUE,460);
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'G: moduleslessons OK' AS message;
+SELECT 'G: modules/lessons OK' AS message;
 
 
 USE e_learnning2;
@@ -1302,7 +1302,7 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'H: enrollmentsprogress OK' AS message;
+SELECT 'H: enrollments/progress OK' AS message;
 
 
 
@@ -1351,7 +1351,7 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'H: enrollmentsprogress OK' AS message;
+SELECT 'H: enrollments/progress OK' AS message;
 
 
 USE e_learnning2;
@@ -1387,7 +1387,7 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'I: reviewsdiscussionswishlist OK' AS message;
+SELECT 'I: reviews/discussions/wishlist OK' AS message;
 
 
 
@@ -1425,11 +1425,11 @@ VALUES
 INSERT INTO course_certificates
 (user_id, course_id, enrollment_id, certificate_number, issued_date, certificate_url, certificate_template, created_at)
 VALUES
-(3, 2, 2, 'CERT-TOEIC650-0002', NOW() - INTERVAL 4 DAY, 'https:cdn.examplecertTOEIC650-0002.pdf', 'TOEIC-CLASSIC', NOW() - INTERVAL 4 DAY);
+(3, 2, 2, 'CERT-TOEIC650-0002', NOW() - INTERVAL 4 DAY, 'https://cdn.example/cert/TOEIC650-0002.pdf', 'TOEIC-CLASSIC', NOW() - INTERVAL 4 DAY);
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'J: couponsmappingcertificates OK' AS message;
+SELECT 'J: coupons/mapping/certificates OK' AS message;
 
 
 USE e_learnning2;
@@ -1464,5 +1464,5 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'K: tagsrelations OK' AS message;
+SELECT 'K: tags/relations OK' AS message;
 
