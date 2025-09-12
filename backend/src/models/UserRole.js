@@ -1,16 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-<<<<<<< HEAD
-  const UserRole = sequelize.define("UserRole", {
-    user_id: { type: DataTypes.INTEGER, primaryKey: true },
-    role_id: { type: DataTypes.INTEGER, primaryKey: true },
-    assigned_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
-  }, {
-    tableName: "user_roles",
-    timestamps: true,
-    createdAt: 'assigned_at',
-    updatedAt: false
-  });
-=======
   const UserRole = sequelize.define(
     "UserRole",
     {
@@ -22,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "user_roles", timestamps: false }
   );
->>>>>>> main
   return UserRole;
 };
 

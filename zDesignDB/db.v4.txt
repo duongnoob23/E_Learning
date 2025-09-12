@@ -643,11 +643,6 @@ CREATE TABLE course_tag_relations (
 SELECT 'Schema e_learnning2 (Vocabulary + User + Security + Course) đã được tạo.' AS message;
 
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
 
 -- =============================================
 -- PHẦN: QUẢN LÝ TÀI KHOẢN (USERS, ROLES, PERMISSIONS)
@@ -799,11 +794,6 @@ SELECT COUNT(*) AS total_permissions FROM permissions;
 SELECT COUNT(*) AS total_user_roles FROM user_roles;
 SELECT COUNT(*) AS total_role_permissions FROM role_permissions;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;

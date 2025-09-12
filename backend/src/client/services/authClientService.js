@@ -56,6 +56,7 @@ exports.login = async (email, password) => {
   }
 };
 
+// Quên mật khẩu
 exports.forgetPassword = async (email) => {
   try {
     const user = await User.findByEmail(email);
@@ -93,8 +94,8 @@ exports.forgetPassword = async (email) => {
   }
 };
 
-// Thay đổi mật khẩu
-exports.changePassword = async (email, newPassword) => {
+// reset mật khẩu
+exports.resetPassword = async (email, newPassword) => {
   try {
     const user = await User.findByEmail(email);
     if (!user) {
@@ -129,11 +130,12 @@ exports.register = async (
   username,
   email,
   password,
-  fullName,
+  fullName, 
   phoneNumber,
   avatarUrl
 ) => {
   try {
+    // Check email
     const existingEmail = await User.findByEmail(email);
     if (existingEmail) {
       return {
@@ -143,6 +145,7 @@ exports.register = async (
       };
     }
 
+    // Check username
     const existingUsername = await User.findByUsername(username);
     if (existingUsername) {
       return {
@@ -152,10 +155,11 @@ exports.register = async (
       };
     }
 
+    // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Tạo user với trạng thái "unverified"
-    await User.createUser({
+    // Tạo user mới
+    const newUser = await User.createUser({
       username,
       email,
       password_hash: passwordHash,
@@ -165,20 +169,24 @@ exports.register = async (
       status: "unverified",
     });
 
+    // Tạo OTP xác thực email
     const otp = generateOtp();
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 1 ngày
-    await EmailVerification.createVerification({ 
+
+    await EmailVerification.createVerification({
       user_id: newUser.user_id,
-      email, 
-      verification_token: otp, 
-      expires_at: expiresAt 
+      email,
+      verification_token: otp,
+      expires_at: expiresAt,
     });
+
+    // Gửi OTP qua email
     await sendOtpEmail(email, otp);
 
     return {
       EM: "Đăng ký thành công, vui lòng kiểm tra email để xác thực OTP.",
       EC: "0", // success
-      DT: { otp }, // có thể bỏ `otp` nếu không muốn trả ra FE
+      DT: null, // Không trả OTP ra ngoài
     };
   } catch (error) {
     console.error("Lỗi trong register service:", error);
@@ -223,6 +231,32 @@ exports.verifyOtp = async (email, otp, type) => {
     console.error("Lỗi trong verifyOtp service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình xác thực OTP",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// Refesh token
+exports.refreshToken = async (refreshToken) => {
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+    const user = await User.findByEmail(decoded.email);
+    const token = jwt.sign(
+      { userId: user.user_id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    return {
+      EM: "Làm mới token thành công",
+      EC: "0",
+      DT: { token },
+    };
+  } catch (error) {
+    console.error("Lỗi trong refreshToken service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình làm mới token",
       EC: "-2",
       DT: null,
     };
