@@ -173,18 +173,15 @@ exports.findAllWithFilters = async (filters) => {
       include: [
         {
           model: Category,
-          as: 'category',
-          attributes: ['id', 'name']
+          attributes: ['category_id', 'name']
         },
         {
           model: Instructor,
-          as: 'instructor',
-          attributes: ['id', 'name']
+          attributes: ['instructor_id', 'name']
         },
         {
           model: Level,
-          as: 'level',
-          attributes: ['id', 'name']
+          attributes: ['level_id', 'name']
         }
       ]
     });

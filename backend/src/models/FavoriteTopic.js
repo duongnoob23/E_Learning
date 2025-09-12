@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     added_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
   }, {
     tableName: "favorite_topics",
-    timestamps: false
+    timestamps: true,
+    createdAt: 'added_at',
+    updatedAt: false
   });
   return FavoriteTopic;
 };

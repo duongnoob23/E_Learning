@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     assigned_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
   }, {
     tableName: "user_roles",
-    timestamps: false
+    timestamps: true,
+    createdAt: 'assigned_at',
+    updatedAt: false
   });
   return UserRole;
 };

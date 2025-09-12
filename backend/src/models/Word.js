@@ -1,17 +1,30 @@
 module.exports = (sequelize, DataTypes) => {
   const Word = sequelize.define("Word", {
-    word_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    topic_id: { type: DataTypes.INTEGER },
-    word: { type: DataTypes.STRING },
+    word_id: { 
+      type: DataTypes.BIGINT.UNSIGNED, 
+      primaryKey: true,
+      autoIncrement: true
+    },
+    topic_id: { type: DataTypes.BIGINT.UNSIGNED, allowNull: false },
+    word: { type: DataTypes.STRING(255), allowNull: false },
     part_of_speech: { type: DataTypes.STRING(50) },
-    pronunciation: { type: DataTypes.STRING },
+    pronunciation: { type: DataTypes.STRING(255) },
     meaning_vi: { type: DataTypes.TEXT },
     example_en: { type: DataTypes.TEXT },
     example_vi: { type: DataTypes.TEXT },
-    image_url: { type: DataTypes.STRING }
+    image_url: { type: DataTypes.STRING(255) },
+    notes: { type: DataTypes.TEXT },
+    word_type: {
+      type: DataTypes.ENUM('system', 'user_created'),
+      defaultValue: 'system'
+    },
+    created_by: { type: DataTypes.BIGINT.UNSIGNED },
+    is_active: { type: DataTypes.BOOLEAN, defaultValue: true }
   }, {
     tableName: "words",
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
 
   // Hàm tiện ích

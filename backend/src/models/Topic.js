@@ -1,26 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
   const Topic = sequelize.define("Topic", {
-    topic_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    topic_name: { type: DataTypes.STRING, allowNull: true },
+    topic_id: { 
+      type: DataTypes.BIGINT.UNSIGNED, 
+      primaryKey: true,
+      autoIncrement: true
+    },
+    topic_name: { type: DataTypes.STRING(255), allowNull: false },
     description: { type: DataTypes.TEXT },
-    image_url: { type: DataTypes.STRING },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    created_by: { type: DataTypes.INTEGER },
-    is_completed: { type: DataTypes.BOOLEAN, defaultValue: false }
+    image_url: { type: DataTypes.STRING(255) },
+    logo_url: { type: DataTypes.STRING(255) },
+    topic_type: { 
+      type: DataTypes.ENUM('system', 'user_created'), 
+      defaultValue: 'user_created' 
+    },
+    created_by: { type: DataTypes.BIGINT.UNSIGNED },
+    is_public: { type: DataTypes.BOOLEAN, defaultValue: true },
+    is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
+    word_count: { type: DataTypes.INTEGER, defaultValue: 0 }
   }, {
     tableName: "topics",
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
-
-  // Hàm tiện ích
-  Topic.findById = async (topic_id) => Topic.findOne({ where: { topic_id } });
-  Topic.findByName = async (topic_name) => Topic.findOne({ where: { topic_name } });
-  Topic.createTopic = async (data) => Topic.create(data);
-  Topic.updateTopic = async (topic_id, data) => Topic.update(data, { where: { topic_id } });
-  Topic.deleteTopic = async (topic_id) => Topic.destroy({ where: { topic_id } });
-  Topic.getAll = async () => Topic.findAll();
-  Topic.countTopics = async () => Topic.count();
-  Topic.findByCreator = async (created_by) => Topic.findAll({ where: { created_by } });
-
   return Topic;
 };  
