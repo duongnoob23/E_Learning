@@ -1,4 +1,3 @@
-s;
 module.exports = (sequelize, DataTypes) => {
   const Coupon = sequelize.define(
     "Coupon",

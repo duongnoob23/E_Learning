@@ -132,6 +132,7 @@ Instructor.belongsTo(User, { foreignKey: "user_id" });
 // Export
 module.exports = {
   sequelize,
+  // User & Authentication models
   User,
   Role,
   Permission,

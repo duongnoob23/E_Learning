@@ -1,11 +1,16 @@
 const authClientService = require("../services/authClientService");
-
+const { validationResult } = require("express-validator");
 // [POST] client đăng nhập
 exports.login = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() }); 
+    }
+
     const { email, password } = req.body;
     const token = await authClientService.login(email, password);
-    res.json( token );
+    res.json(token);
   } catch (error) {
     next(error);
   }
@@ -14,6 +19,11 @@ exports.login = async (req, res, next) => {
 // [POST] client đăng ký
 exports.register = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() }); 
+    }
+
     const {
       username,
       email,
@@ -27,9 +37,9 @@ exports.register = async (req, res, next) => {
       username,
       email,
       password,
-      fullName || null,     
-      phoneNumber || null,  
-      avatarUrl || null     
+      fullName || null,
+      phoneNumber || null,
+      avatarUrl || null
     );
 
     res.json(token);
@@ -61,6 +71,26 @@ exports.forgetPassword = async (req, res, next) => {
   }
 };
 
+// [POST] client làm mới token
+exports.refreshToken = async (req, res, next) => {
+  try {
+    const response = await authClientService.refreshToken(refreshToken);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [POST] change password
+exports.resetPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const response = await authClientService.resetPassword(email);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 

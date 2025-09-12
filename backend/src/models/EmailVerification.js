@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   const EmailVerification = sequelize.define(
     "EmailVerification",
@@ -21,5 +22,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "email_verifications", timestamps: false }
   );
+  EmailVerification.createVerification = async (data) =>
+    EmailVerification.create(data);
+  EmailVerification.findValidVerification = async (email, verification_token) =>
+    EmailVerification.findOne({
+      where: {
+        email,
+        verification_token,
+        is_verified: false,
+        expires_at: { [Op.gt]: new Date() },
+      },
+    });
+  EmailVerification.markAsVerified = async (verification_id) =>
+    EmailVerification.update(
+      { is_verified: true, verified_at: new Date() },
+      { where: { verification_id } }
+    );
+
   return EmailVerification;
 };

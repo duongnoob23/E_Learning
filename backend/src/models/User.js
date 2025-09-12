@@ -36,6 +36,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "users", timestamps: false }
   );
+  User.findById = async (user_id) => User.findOne({ where: { user_id } });
+  User.findByEmail = async (email) => User.findOne({ where: { email } });
+  User.findByUsername = async (username) => User.findOne({ where: { username } });
+  User.createUser = async (data) => User.create(data);
+  User.updateUser = async (user_id, data) => User.update(data, { where: { user_id } });
+  User.deleteUser = async (user_id) => User.destroy({ where: { user_id } });
+  User.getAll = async () => User.findAll();
+  User.countUsers = async () => User.count();
   return User;
 };
 
