@@ -17,12 +17,4 @@ router.get("/levels", controller.getCoursebyLevel);
 
 router.get("/instructors", controller.getCourseByInstructor);
 
-router.get("/", controller.getCourse);
-
-router.get("/:course_id", controller.getCourseById );
-
-router.get("/:course_id/curriculum", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-
 module.exports = router;
