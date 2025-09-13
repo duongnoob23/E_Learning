@@ -49,7 +49,6 @@ exports.findByTitle = async (title) => {
   }
 };
 
-
 // Lấy danh sách khóa học theo id
 exports.findbyId = async (id) => {
   try {
@@ -209,39 +208,74 @@ exports.findAllWithFilters = async (filters) => {
   }
 };
 
-// Lấy filter options (categories, instructors, levels)
-// exports.getFilterOptions = async () => {
-//   try {
-//     const [categories, instructors, levels] = await Promise.all([
-//       Category.findAll({
-//         attributes: ['id', 'name'],
-//         where: { is_active: true }
-//       }),
-//       Instructor.findAll({
-//         attributes: ['id', 'name'],
-//         where: { is_active: true }
-//       }),
-//       Level.findAll({
-//         attributes: ['id', 'name'],
-//         where: { is_active: true }
-//       })
-//     ]);
+// Lấy danh sách khóa học theo category
+exports.findByCategory = async (category_id) => {
+  try {
+    const courses = await Course.findAll({
+      where: {
+        category_id: category_id
+      }
+    });
 
-//     return {
-//       EM: "Lấy filter options thành công",
-//       EC: "0",
-//       DT: {
-//         categories,
-//         instructors,
-//         levels
-//       }
-//     };
-//   } catch (error) {
-//     console.error("Lỗi trong getFilterOptions service:", error);
-//     return {
-//       EM: "Có lỗi xảy ra khi lấy filter options",
-//       EC: "-2",
-//       DT: null
-//     };
-//   }
-// };
+    return {
+      EM: "Truy vấn thành công",
+      EC: "0",
+      DT: courses
+    };
+  } catch (error) {
+    console.error("Lỗi trong findByCategory service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình truy vấn",
+      EC: "-2",
+      DT: null
+    };
+  }
+};
+
+// Lấy danh sách khóa học theo level
+exports.findByLevel = async (level_id) => {
+  try { 
+    const courses = await Course.findAll({
+      where: {
+        level_id: level_id
+      }
+    });
+
+    return {
+      EM: "Truy vấn thành công",
+      EC: "0",
+      DT: courses
+    };
+  } catch (error) {
+    console.error("Lỗi trong findByLevel service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình truy vấn",
+      EC: "-2",
+      DT: null
+    };
+  }
+};
+
+// Lấy danh sách khóa học theo instructor
+exports.findByInstructor = async (instructor_id) => {
+  try {
+    const courses = await Course.findAll({
+      where: {
+        instructor_id: instructor_id
+      }
+    });
+
+    return {
+      EM: "Truy vấn thành công",
+      EC: "0",
+      DT: courses
+    };
+  } catch (error) {
+    console.error("Lỗi trong findByInstructor service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình truy vấn",
+      EC: "-2",
+      DT: null
+    };
+  }
+};

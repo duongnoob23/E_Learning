@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { loginUser } from "../../../../redux/slices/authSlice";
 import OTP from "../../../components/Auth/OTP/OTP";
-import { toast } from "react-toastify";
 import "./Login.css";
 
 const Login = () => {
@@ -85,6 +85,8 @@ const Login = () => {
             password: formData.password,
           })
         ).unwrap();
+        console.log("🚀 ~ handleSubmit ~ result:", result);
+
         if (+result?.EC === 0) {
           navigate("/");
           toast.success(result?.EM || "Đăng nhập thành công");
@@ -146,9 +148,7 @@ const Login = () => {
                 {/* Toggle buttons */}
                 {isLoginMode == true && (
                   <div className="auth-page__toggle">
-                    <div
-                      className={`auth-page__toggle-slider auth-page__toggle-slider--register`}
-                    ></div>
+                    <div className={`auth-page__toggle-slider `}></div>
                     <button
                       className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
                       onClick={() => navigate("/login")}
@@ -157,7 +157,7 @@ const Login = () => {
                       Đăng nhập
                     </button>
                     <button
-                      className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
+                      className={`auth-page__toggle-btn `}
                       onClick={() => navigate("/register")}
                       type="button"
                     >

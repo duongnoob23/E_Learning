@@ -1,6 +1,4 @@
 const Course = require("../services/courseClientService");
-
-
 // [GET] Lấy danh sách khóa học với filter và sort
 exports.getCourse = async (req, res, next) => {
   try {
@@ -42,20 +40,43 @@ exports.getCourse = async (req, res, next) => {
 // [GET] Lấy danh sách khóa học theo id
 exports.getCourseById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const course = await Course.findbyId(id);
+    const { course_id  } = req.params;
+    const course = await Course.findbyId(course_id );
     res.json(course);
   } catch (error) {
     next(error);
   }
 };
 
-// [GET] Lấy filter options
-// exports.getFilterOptions = async (req, res, next) => {
-//   try {
-//     const result = await Course.getFilterOptions();
-//     res.json(result);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+// [GET] Lấy danh sách khóa học theo category
+exports.getCourseByCategory = async (req, res, next) => {
+  try {
+    const { category_id } = req.query;
+    const courses = await Course.findByCategory(category_id);
+    res.json(courses);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy danh sách khóa học theo level
+exports.getCoursebyLevel = async (req, res, next) => {
+  try {
+    const { level_id } = req.query;
+    const courses = await Course.findByLevel(level_id);
+    res.json(courses);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy danh sách khóa học theo instructor
+exports.getCourseByInstructor = async (req, res, next) => {
+  try {
+    const { instructor_id } = req.query;
+    const courses = await Course.findByInstructor(instructor_id);
+    res.json(courses);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -24,8 +24,7 @@ router.post("/user/:topic_id", controller.postWordToUser);
 // Sửa từ cá nhân
 router.patch("/user/editword/:user_word_id", controller.patchWordToUser);
 // Xóa từ cá nhân
-router.patch("/user/deteteword/:user_word_id", controller.deleteWordToUser
-);
+router.patch("/user/deteteword/:user_word_id", controller.deleteWordToUser);
 
 // Trạng thái học theo topic (dựa vào user_word_status)
 router.get("/status", (req, res) =>
