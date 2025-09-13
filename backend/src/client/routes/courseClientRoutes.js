@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const controller = require("../controllers/courseClientController");
 /**
  * Courses – client
  * - GET  /categories                (danh mục)
@@ -11,22 +11,16 @@ const router = express.Router();
  * - GET  /:course_id/curriculum     (modules + lessons)
  */
 
-router.get("/categories", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-router.get("/levels", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-router.get("/instructors", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+router.get("/categories", controller.getCourseByCategory);
 
-router.get("/", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-router.get("/:course_id", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+router.get("/levels", controller.getCoursebyLevel);
+
+router.get("/instructors", controller.getCourseByInstructor);
+
+router.get("/", controller.getCourse);
+
+router.get("/:course_id", controller.getCourseById );
+
 router.get("/:course_id/curriculum", (req, res) =>
   res.status(501).json({ message: "Not implemented" })
 );

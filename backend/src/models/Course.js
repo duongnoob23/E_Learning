@@ -82,5 +82,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "courses", timestamps: false }
   );
+  Course.findByCategory = async (category_id) => {
+    return Course.findAll({ where: { category_id } });
+  };
+  Course.findByTitle = async (title) => {
+    return Course.findAll({ where: { title } });
+  };
+  Course.findbyId = async (course_id) => {
+    return Course.findOne({ where: { course_id } });
+  };
+  Course.findAllWithFilters = async (filters) => {
+    return Course.findAndCountAll(filters);
+  };
+  Course.getFilterOptions = async () => {
+    return Course.findAndCountAll(filters);
+  };
   return Course;
 };
