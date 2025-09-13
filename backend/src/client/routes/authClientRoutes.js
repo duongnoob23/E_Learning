@@ -25,8 +25,7 @@ router.post("/refresh-token", controller.refreshToken);
 
 // Đăng xuất
 router.post("/logout", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+  res.status(501).json({ message: "Not implemented" }));
 
 // Xác thực email (từ email_verifications)
 router.post("/verify-email", controller.verifyOtp);
@@ -35,7 +34,7 @@ router.post("/verify-email", controller.verifyOtp);
 router.post("/forgot-password", controller.forgetPassword);
 
 // Đặt lại mật khẩu (xác thực reset_token)
-router.post("/reset-password", controller.resetPassword
+router.patch("/reset-password", controller.resetPassword
 );
 
 module.exports = router;

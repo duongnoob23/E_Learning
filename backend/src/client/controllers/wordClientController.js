@@ -1,32 +1,116 @@
 const wordClientService = require("../services/wordClientService");
 
 
-// [GET] Lấy danh sách từ vựng
-exports.getWord = async (req, res, next) => {
+
+// [GET] Words hệ thống theo topic + tìm kiếm
+exports.getWordsByTopic = async (req, res, next) => {
   try {
-    const response = await wordClientService.getWord();
-    res.json(response);
+    const { topicId, page, limit } = req.query;
+    const result = await wordClientService.getWordsByTopic({
+      topicId,
+      page,
+      limit,
+    });
+    res.json(result);
   } catch (error) {
     next(error);
   }
 };
 
-// [GET] Lấy danh sách chủ đề
-exports.getTopic = async (req, res, next) => {
+// [GET] User words theo cas nhan
+exports.getWordsbyUser = async (req, res, next) => {
+  try{
+    const topicId = req.params.topicId;
+    const { page, limit } = req.query;
+    const result = await wordClientService.getWordsbyUser({
+      topicId,
+      page,
+      limit,
+    });
+    res.json(result);
+  }catch(error){
+    next(error);
+  }
+
+};
+
+// [POST] Thêm từ cá nhân
+exports.postWordToUser = async (req, res, next) => {
   try {
-    const response = await wordClientService.getTopic();
-    res.json(response);
+    const { 
+    word, 
+    partOfSpeech, 
+    pronunciation, 
+    meaningVi, 
+    exampleEn, 
+    exampleVi, 
+    imageUrl, 
+    fromSystemWordId,
+    userId,
+    topicId
+  } = req.body;
+
+  const result = await wordClientService.postWordToUser({
+    user_id: userId,
+    topic_id: topicId,
+    word,
+    part_of_speech: partOfSpeech,
+    pronunciation,
+    meaning_vi: meaningVi,
+    example_en: exampleEn,
+    example_vi: exampleVi,
+    image_url: imageUrl || null,
+    from_system_word_id: fromSystemWordId,
+  });
+
+    res.json(result);
   } catch (error) {
     next(error);
   }
 };
 
-// [GET] Lấy danh sách từ vựng theo chủ đề
-exports.getWordByTopic = async (req, res, next) => {
+// [PATCH] sủa từ vựng cá nhân
+exports.patchWordToUser = async (req, res, next) => {
   try {
-    const response = await wordClientService.getWordByTopic(req.params.topic_id);
-    res.json(response);
+    const userWordId = req.params.user_word_id;
+    const { 
+      word, 
+      partOfSpeech, 
+      pronunciation, 
+      meaningVi, 
+      exampleEn, 
+      exampleVi, 
+      imageUrl, 
+      fromSystemWordId,
+    } = req.body;
+
+    const result = await wordClientService.patchWordToUser({
+      user_word_id: userWordId,
+      word,
+      part_of_speech: partOfSpeech,
+      pronunciation,
+      meaning_vi: meaningVi,
+      example_en: exampleEn,
+      example_vi: exampleVi,
+      image_url: imageUrl || null,
+      from_system_word_id: fromSystemWordId,
+    });
+
+    res.json(result);
   } catch (error) {
     next(error);
   }
 };
+
+// [PATCH] xóa từ vựng cá nhân
+exports.deleteWordToUser = async (req, res, next) => {
+  try {
+    const userWordId = req.params.user_word_id;
+    const result = await wordClientService.deleteWordToUser(userWordId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+

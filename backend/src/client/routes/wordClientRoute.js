@@ -16,24 +16,15 @@ const controller = require("../controllers/wordClientController");
  */
 
 // Words hệ thống theo topic + tìm kiếm
-router.get("/system", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-// User words theo topic + tìm kiếm
-router.get("/user", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+router.get("/system", controller.getWordsByTopic);
+// User words theo cas nhan
+router.get("/user/:topic_id", controller.getWordsbyUser);
 // Thêm từ cá nhân
-router.post("/user", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+router.post("/user/:topic_id", controller.postWordToUser);
 // Sửa từ cá nhân
-router.put("/user/:user_word_id", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+router.patch("/user/editword/:user_word_id", controller.patchWordToUser);
 // Xóa từ cá nhân
-router.delete("/user/:user_word_id", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
+router.patch("/user/deteteword/:user_word_id", controller.deleteWordToUser
 );
 
 // Trạng thái học theo topic (dựa vào user_word_status)
