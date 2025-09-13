@@ -78,7 +78,9 @@ const Header = () => {
         <div className="header__auth">
           {isAuthenticated ? (
             <div className="header__user-menu">
-              <span className="header__user-name">Hi, {user?.username}</span>
+              <Link to="/profile" className="header__profile-link">
+                <span className="header__user-name">Hi, {user?.username}</span>
+              </Link>
               <button className="header__logout-btn" onClick={handleLogout}>
                 Logout
               </button>
