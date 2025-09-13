@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./Register.css";
-import OtpModal from "../../../../Client/components/Auth/OTPModal/OtpModal";
+import { registerUser } from "../../../../redux/slices/authSlice";
+import { authApi } from "../../../api/Auth/authApi";
 import OTP from "../../../components/Auth/OTP/OTP";
+import "./Register.css";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -35,6 +36,27 @@ const Register = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const verifyEmailMutation = useMutation({
+    mutationFn: authApi.verifyEmail,
+    onSuccess: (data) => {
+      console.log("✅ Verify email success:", data);
+      const { EM, EC } = data;
+      if (EC === "0") {
+        setShowOtpModal(false);
+        toast.success(EM || "Xác thực email thành công!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      } else {
+        setOtpError(EM || "Mã OTP không đúng hoặc đã hết hạn");
+      }
+    },
+    onError: (error) => {
+      console.error("❌ Verify email error:", error);
+      setOtpError("Có lỗi khi xác thực OTP. Vui lòng thử lại.");
+    },
+  });
 
   // Lấy state từ Redux
   const {
@@ -130,37 +152,79 @@ const Register = () => {
     }
   };
 
+  // const handleOtpSubmit = async ({ message, code }) => {
+  //   console.log("🚀 OTP nhận được từ OTP.jsx:", message, code);
+
+  //   if (message === "RESEND") {
+  //     // gọi API gửi lại OTP
+  //     console.log("🚀 Người dùng bấm Gửi lại OTP");
+  //     return;
+  //   }
+
+  //   setIsOtpLoading(true);
+  //   setOtpError("");
+
+  //   // ✅ gọi API verify OTP
+  //   try {
+  //     // ví dụ gọi verifyOtpApi
+  //     // const res = await verifyOtpApi(registerEmail, otp);
+
+  //     if (message === "SEND") {
+  //       // demo kiểm tra OTP
+  //       console.log("✅ OTP đúng, đóng modal");
+  //       setShowOtpModal(false);
+  //     } else {
+  //       setOtpError("Mã OTP không đúng hoặc đã hết hạn");
+  //     }
+  //   } catch (err) {
+  //     setOtpError("Có lỗi khi xác thực OTP");
+  //   }
+
+  //   setIsOtpLoading(false);
+  // };
   const handleOtpSubmit = async ({ message, code }) => {
     console.log("🚀 OTP nhận được từ OTP.jsx:", message, code);
 
     if (message === "RESEND") {
-      // gọi API gửi lại OTP
+      // TODO: Gọi API gửi lại OTP nếu cần
       console.log("🚀 Người dùng bấm Gửi lại OTP");
+      toast.info("Chức năng gửi lại OTP sẽ được phát triển");
       return;
     }
 
-    setIsOtpLoading(true);
-    setOtpError("");
+    if (message === "SEND") {
+      setIsLoading(true);
+      setErrors("");
+      try {
+        // ✅ Gọi API verify email bằng TanStack Query
+        console.log("debug useVerifyEmail");
+        const result = await verifyEmailMutation.mutateAsync({
+          email: formData.email,
+          otp: code,
+        });
+        console.log(result);
+        // Kiểm tra kết quả
+        if (result?.EC === "0") {
+          // Xác thực thành công
+          setShowOtpModal(false);
+          toast.success(result?.EM || "Xác thực email thành công!");
 
-    // ✅ gọi API verify OTP
-    try {
-      // ví dụ gọi verifyOtpApi
-      // const res = await verifyOtpApi(registerEmail, otp);
-
-      if (message === "SEND") {
-        // demo kiểm tra OTP
-        console.log("✅ OTP đúng, đóng modal");
-        setShowOtpModal(false);
-      } else {
-        setOtpError("Mã OTP không đúng hoặc đã hết hạn");
+          // Chuyển về trang login
+          setTimeout(() => {
+            navigate("/login");
+          }, 1500);
+        } else {
+          // Xác thực thất bại
+          toast.error(result?.EM || "Mã OTP không đúng hoặc đã hết hạn");
+        }
+      } catch (error) {
+        console.error("Verify email error:", error);
+        setErrors("Có lỗi khi xác thực OTP. Vui lòng thử lại.");
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err) {
-      setOtpError("Có lỗi khi xác thực OTP");
     }
-
-    setIsOtpLoading(false);
   };
-
   return (
     <div>
       <div className="auth-page">
@@ -174,16 +238,18 @@ const Register = () => {
 
                 {/* Toggle buttons */}
                 <div className="auth-page__toggle">
-                  <div className={`auth-page__toggle-slider `}></div>
+                  <div
+                    className={`auth-page__toggle-slider auth-page__toggle-slider--register`}
+                  ></div>
                   <button
-                    className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
+                    className={`auth-page__toggle-btn `}
                     onClick={() => navigate("/login")}
                     type="button"
                   >
                     Đăng nhập
                   </button>
                   <button
-                    className={`auth-page__toggle-btn`}
+                    className={`auth-page__toggle-btn auth-page__toggle-btn--active`}
                     onClick={() => navigate("/register")}
                     type="button"
                   >
