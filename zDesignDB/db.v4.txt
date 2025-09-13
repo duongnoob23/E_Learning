@@ -860,11 +860,6 @@ SELECT 'Phần A: Topics & Words - OK' AS message;
 SELECT COUNT(*) AS total_topics FROM topics;
 SELECT COUNT(*) AS total_words FROM words;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -921,11 +916,8 @@ SELECT COUNT(*) AS total_user_words FROM user_words;
 SELECT COUNT(*) AS total_status FROM user_word_status;
 SELECT COUNT(*) AS total_favorites FROM favorite_topics;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -964,11 +956,8 @@ SELECT 'Phần C: Imports - OK' AS message;
 SELECT COUNT(*) AS total_imports FROM batch_imports;
 SELECT COUNT(*) AS total_import_details FROM import_details;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1028,11 +1017,8 @@ SELECT COUNT(*) AS total_otp_codes FROM otp_codes;
 SELECT COUNT(*) AS total_password_reset_tokens FROM password_reset_tokens;
 
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1077,11 +1063,8 @@ SET SQL_SAFE_UPDATES = 1;
 
 SELECT 'E: categories/levels/instructors OK' AS message;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1181,50 +1164,92 @@ SET SQL_SAFE_UPDATES = 1;
 
 SELECT 'F: courses/details OK' AS message;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
 
--- Clear old
+-- Clear old data
 DELETE FROM lessons;
 DELETE FROM modules;
 
--- Reset AI
+-- Reset AUTO_INCREMENT
 ALTER TABLE modules AUTO_INCREMENT = 1;
 ALTER TABLE lessons AUTO_INCREMENT = 1;
 
--- Modules (3 per course)
-INSERT INTO modules (course_id, title, description, sort_order, total_lectures, total_duration, is_active)
+-- Đảm bảo courses đã được insert trước
+-- Kiểm tra xem courses có tồn tại không
+SELECT COUNT(*) as course_count FROM courses WHERE course_id IN (1,2,3,4);
+
+-- Nếu courses chưa có, insert lại courses trước
+INSERT IGNORE INTO courses
+(title, slug, short_description, description, category_id, level_id, instructor_id, image, video_preview, video_duration, video_progress,
+ total_lessons, total_duration, total_students, rating, rating_count, price, old_price, discount_percent, is_free, is_best_seller, is_featured,
+ status, published_at, meta_title, meta_description)
 VALUES
--- Course 1 (modules 1..3)
-(1, 'Task 1: Charts & Graphs', 'Phân tích số liệu & miêu tả biểu đồ', 1, 3, '3hr 45min', TRUE),
-(1, 'Task 2: Argument Essays', 'Lập luận & phát triển ý', 2, 4, '5hr 10min', TRUE),
-(1, 'Review & Mock Tests', 'Ôn tập & bài mẫu', 3, 3, '3hr 35min', TRUE),
+('IELTS Academic Writing Mastery', 'ielts-academic-writing-mastery',
+ 'Nâng kỹ năng Writing Task 1 & 2 qua phương pháp thực chiến.',
+ 'Khóa học tập trung chiến lược, lập dàn ý, triển khai luận điểm và quản lý thời gian cho IELTS Writing Academic.',
+ 1, 2, 1,
+ 'https://images.unsplash.com/photo-1522071820081-009f0129c71c',
+ 'https://videos.cdn.example/ielts-writing-preview.mp4', '09:15', 0.00,
+ 10, '12hr 30min', 1250, 4.7, 320, 799000, 999000, 20, FALSE, TRUE, TRUE,
+ 'published', NOW() - INTERVAL 20 DAY, 'IELTS Writing Mastery', 'IELTS Academic Writing Mastery - phương pháp thực chiến'),
 
--- Course 2 (modules 4..6)
-(2, 'Listening Tactics', 'Chiến thuật nghe theo Part 1-4', 1, 3, '3hr 20min', TRUE),
-(2, 'Reading Essentials', 'Tăng tốc đọc hiểu Part 5-7', 2, 3, '3hr 40min', TRUE),
-(2, 'Full Tests & Review', 'Đề tổng hợp + chữa bài', 3, 3, '3hr 40min', TRUE),
+('TOEIC 650+ Listening & Reading', 'toeic-650-listening-reading',
+ 'Lộ trình đạt 650+ với chiến thuật giải nhanh & bẫy thường gặp.',
+ 'Ôn tập trọng tâm phần Listening & Reading với bộ đề bám sát format, mẹo tốc độ và quản lý thời gian.',
+ 2, 2, 2,
+ 'https://images.unsplash.com/photo-1513258496099-48168024aec0',
+ 'https://videos.cdn.example/toeic-650-preview.mp4', '07:45', 0.00,
+ 9, '10hr 40min', 2140, 4.6, 410, 699000, 899000, 22, FALSE, FALSE, TRUE,
+ 'published', NOW() - INTERVAL 30 DAY, 'TOEIC 650+', 'TOEIC Listening & Reading 650+'),
 
--- Course 3 (modules 7..9)
-(3, 'Pronunciation Basics', 'Âm & trọng âm cơ bản', 1, 3, '2hr 45min', TRUE),
-(3, 'Daily Conversations', 'Mẫu câu & tình huống thường gặp', 2, 3, '3hr 00min', TRUE),
-(3, 'Role-play Practice', 'Thực hành hội thoại', 3, 2, '2hr 25min', TRUE),
+('English Communication Fundamentals', 'english-communication-fundamentals',
+ 'Nền tảng giao tiếp: phát âm, mẫu câu, phản xạ tình huống.',
+ 'Hệ thống lại phát âm cơ bản, mẫu câu giao tiếp, từ vựng chủ điểm và luyện phản xạ hội thoại.',
+ 3, 1, 1,
+ 'https://images.unsplash.com/photo-1529336953121-a0ce61a0a6f6',
+ 'https://videos.cdn.example/comm-fund-preview.mp4', '06:20', 0.00,
+ 8, '8hr 10min', 980, 4.5, 210, 0.00, NULL, 0, TRUE, FALSE, TRUE,
+ 'published', NOW() - INTERVAL 10 DAY, 'Communication Fundamentals', 'Khóa giao tiếp nền tảng'),
 
--- Course 4 (modules 10..12)
-(4, 'Meeting Foundations', 'Cấu trúc & ngôn ngữ mở đầu', 1, 3, '2hr 55min', TRUE),
-(4, 'Presenting Ideas', 'Trình bày & phản biện', 2, 3, '3hr 10min', TRUE),
-(4, 'Handling Q&A', 'Xử lý câu hỏi khó', 3, 3, '3hr 20min', TRUE);
+('Business English for Meetings', 'business-english-for-meetings',
+ 'Tự tin điều phối họp: ngôn ngữ, cấu trúc, xử lý tình huống.',
+ 'Tập trung vào ngôn ngữ cuộc họp: mở đầu, trình bày, hỏi đáp, phản biện, chốt vấn đề và tổng kết.',
+ 4, 3, 2,
+ 'https://images.unsplash.com/photo-1551836022-d5d88e9218df',
+ 'https://videos.cdn.example/biz-meetings-preview.mp4', '05:50', 0.00,
+ 9, '9hr 25min', 560, 4.8, 150, 899000, 1199000, 25, FALSE, FALSE, TRUE,
+ 'published', NOW() - INTERVAL 15 DAY, 'Business English Meetings', 'Tiếng Anh thương mại trong cuộc họp');
 
--- Lessons (ensure sort_order within each module)
--- Course 1: modules 1..3 → lessons 1..10
+-- Insert modules (sửa lại để đảm bảo course_id tồn tại)
+INSERT INTO modules (course_id, title, description, sort_order, total_lectures, total_duration, is_active, created_at, updated_at)
+VALUES
+-- Course 1 (IELTS Writing)
+(1, 'Task 1: Charts & Graphs', 'Phân tích số liệu & miêu tả biểu đồ', 1, 3, '3hr 45min', TRUE, NOW() - INTERVAL 28 DAY, NOW() - INTERVAL 1 DAY),
+(1, 'Task 2: Argument Essays', 'Lập luận & phát triển ý', 2, 4, '5hr 10min', TRUE, NOW() - INTERVAL 27 DAY, NOW() - INTERVAL 1 DAY),
+(1, 'Review & Mock Tests', 'Ôn tập & bài mẫu', 3, 3, '3hr 35min', TRUE, NOW() - INTERVAL 26 DAY, NOW() - INTERVAL 1 DAY),
+
+-- Course 2 (TOEIC)
+(2, 'Listening Tactics', 'Chiến thuật nghe theo Part 1-4', 1, 3, '3hr 20min', TRUE, NOW() - INTERVAL 33 DAY, NOW() - INTERVAL 1 DAY),
+(2, 'Reading Essentials', 'Tăng tốc đọc hiểu Part 5-7', 2, 3, '3hr 40min', TRUE, NOW() - INTERVAL 32 DAY, NOW() - INTERVAL 1 DAY),
+(2, 'Full Tests & Review', 'Đề tổng hợp + chữa bài', 3, 3, '3hr 40min', TRUE, NOW() - INTERVAL 31 DAY, NOW() - INTERVAL 1 DAY),
+
+-- Course 3 (Communication)
+(3, 'Pronunciation Basics', 'Âm & trọng âm cơ bản', 1, 3, '2hr 45min', TRUE, NOW() - INTERVAL 18 DAY, NOW() - INTERVAL 1 DAY),
+(3, 'Daily Conversations', 'Mẫu câu & tình huống thường gặp', 2, 3, '3hr 00min', TRUE, NOW() - INTERVAL 17 DAY, NOW() - INTERVAL 1 DAY),
+(3, 'Role-play Practice', 'Thực hành hội thoại', 3, 2, '2hr 25min', TRUE, NOW() - INTERVAL 16 DAY, NOW() - INTERVAL 1 DAY),
+
+-- Course 4 (Business English)
+(4, 'Meeting Foundations', 'Cấu trúc & ngôn ngữ mở đầu', 1, 3, '2hr 55min', TRUE, NOW() - INTERVAL 22 DAY, NOW() - INTERVAL 1 DAY),
+(4, 'Presenting Ideas', 'Trình bày & phản biện', 2, 3, '3hr 10min', TRUE, NOW() - INTERVAL 21 DAY, NOW() - INTERVAL 1 DAY),
+(4, 'Handling Q&A', 'Xử lý câu hỏi khó', 3, 3, '3hr 20min', TRUE, NOW() - INTERVAL 20 DAY, NOW() - INTERVAL 1 DAY);
+
+-- Insert lessons
 INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
 VALUES
+-- Course 1: modules 1..3 → lessons 1..10
 (1,1,'Overview of Task 1','Giới thiệu Task 1','Nội dung','https://videos.cdn.example/1-1.mp4','12:30',NULL,1,'video',TRUE,TRUE,1200),
 (1,1,'Describing Trends','Miêu tả xu hướng','Nội dung','https://videos.cdn.example/1-2.mp4','18:20',NULL,2,'video',FALSE,TRUE,980),
 (1,1,'Data Comparison','So sánh số liệu','Nội dung','https://videos.cdn.example/1-3.mp4','14:10',NULL,3,'video',FALSE,TRUE,870),
@@ -1236,11 +1261,9 @@ VALUES
 
 (3,1,'Band Descriptors','Tiêu chí chấm điểm','Nội dung','https://videos.cdn.example/1-8.mp4','19:40',NULL,1,'video',FALSE,TRUE,800),
 (3,1,'Common Mistakes','Lỗi thường gặp','Nội dung','https://videos.cdn.example/1-9.mp4','17:55',NULL,2,'video',FALSE,TRUE,770),
-(3,1,'Mock Test Review','Chữa bài test','Nội dung','https://videos.cdn.example/1-10.mp4','18:30',NULL,3,'video',FALSE,TRUE,750);
+(3,1,'Mock Test Review','Chữa bài test','Nội dung','https://videos.cdn.example/1-10.mp4','18:30',NULL,3,'video',FALSE,TRUE,750),
 
 -- Course 2: modules 4..6 → lessons 11..19
-INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
-VALUES
 (4,2,'Listening Part 1-2','Mẹo & bẫy thường gặp','Nội dung','https://videos.cdn.example/2-1.mp4','15:20',NULL,1,'video',TRUE,TRUE,1400),
 (4,2,'Listening Part 3','Chiến thuật hội thoại','Nội dung','https://videos.cdn.example/2-2.mp4','20:00',NULL,2,'video',FALSE,TRUE,1200),
 (4,2,'Listening Part 4','Thông báo & bài nói','Nội dung','https://videos.cdn.example/2-3.mp4','18:00',NULL,3,'video',FALSE,TRUE,1100),
@@ -1251,11 +1274,9 @@ VALUES
 
 (6,2,'Full Test 1 Review','Chữa đề tổng hợp 1','Nội dung','https://videos.cdn.example/2-7.mp4','20:40',NULL,1,'video',FALSE,TRUE,940),
 (6,2,'Full Test 2 Review','Chữa đề tổng hợp 2','Nội dung','https://videos.cdn.example/2-8.mp4','21:00',NULL,2,'video',FALSE,TRUE,920),
-(6,2,'Final Tips','Tổng kết & mẹo cuối','Nội dung','https://videos.cdn.example/2-9.mp4','18:00',NULL,3,'video',FALSE,TRUE,900);
+(6,2,'Final Tips','Tổng kết & mẹo cuối','Nội dung','https://videos.cdn.example/2-9.mp4','18:00',NULL,3,'video',FALSE,TRUE,900),
 
 -- Course 3: modules 7..9 → lessons 20..27
-INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
-VALUES
 (7,3,'Sounds & Stress','Âm sắc & trọng âm','Nội dung','https://videos.cdn.example/3-1.mp4','12:00',NULL,1,'video',TRUE,TRUE,800),
 (7,3,'Word Linking','Nối âm đơn giản','Nội dung','https://videos.cdn.example/3-2.mp4','14:30',NULL,2,'video',TRUE,TRUE,760),
 (7,3,'Common Pronunciation Errors','Lỗi phát âm','Nội dung','https://videos.cdn.example/3-3.mp4','15:10',NULL,3,'video',TRUE,TRUE,740),
@@ -1265,11 +1286,9 @@ VALUES
 (8,3,'Making Requests','Đưa ra đề nghị','Nội dung','https://videos.cdn.example/3-6.mp4','14:20',NULL,3,'video',TRUE,TRUE,680),
 
 (9,3,'Role-play: At a Cafe','Tình huống quán cà phê','Nội dung','https://videos.cdn.example/3-7.mp4','16:30',NULL,1,'video',TRUE,TRUE,660),
-(9,3,'Role-play: At the Office','Tình huống công sở','Nội dung','https://videos.cdn.example/3-8.mp4','15:20',NULL,2,'video',TRUE,TRUE,640);
+(9,3,'Role-play: At the Office','Tình huống công sở','Nội dung','https://videos.cdn.example/3-8.mp4','15:20',NULL,2,'video',TRUE,TRUE,640),
 
 -- Course 4: modules 10..12 → lessons 28..36
-INSERT INTO lessons (module_id, course_id, title, description, content, video_url, video_duration, file_attachment, sort_order, lesson_type, is_free, is_active, view_count)
-VALUES
 (10,4,'Opening a Meeting','Mở đầu cuộc họp','Nội dung','https://videos.cdn.example/4-1.mp4','13:40',NULL,1,'video',FALSE,TRUE,600),
 (10,4,'Setting the Agenda','Đặt chương trình họp','Nội dung','https://videos.cdn.example/4-2.mp4','15:10',NULL,2,'video',FALSE,TRUE,580),
 (10,4,'Assigning Roles','Phân vai trò','Nội dung','https://videos.cdn.example/4-3.mp4','14:00',NULL,3,'video',FALSE,TRUE,560),
@@ -1284,13 +1303,10 @@ VALUES
 
 SET SQL_SAFE_UPDATES = 1;
 
-SELECT 'G: modules/lessons OK' AS message;
+SELECT 'Modules and lessons inserted successfully' AS message;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1340,11 +1356,8 @@ SET SQL_SAFE_UPDATES = 1;
 SELECT 'H: enrollments/progress OK' AS message;
 
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1393,11 +1406,8 @@ SET SQL_SAFE_UPDATES = 1;
 
 SELECT 'H: enrollments/progress OK' AS message;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
+
+
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;
@@ -1434,11 +1444,6 @@ SET SQL_SAFE_UPDATES = 1;
 
 SELECT 'I: reviews/discussions/wishlist OK' AS message;
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
 
 
 USE e_learnning2;
@@ -1481,11 +1486,6 @@ SET SQL_SAFE_UPDATES = 1;
 
 SELECT 'J: coupons/mapping/certificates OK' AS message;
 
-<<<<<<< HEAD
-///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> main
 
 USE e_learnning2;
 SET SQL_SAFE_UPDATES = 0;

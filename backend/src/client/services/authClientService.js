@@ -71,11 +71,11 @@ exports.forgetPassword = async (email) => {
     const otp = generateOtp();
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 phút
 
-    await EmailVerification.createVerification({ 
+    await EmailVerification.createVerification({
       user_id: user.user_id,
-      email, 
-      verification_token: otp, 
-      expires_at: expiresAt 
+      email,
+      verification_token: otp,
+      expires_at: expiresAt,
     });
     await sendOtpEmail(email, otp);
 
@@ -130,7 +130,7 @@ exports.register = async (
   username,
   email,
   password,
-  fullName, 
+  fullName,
   phoneNumber,
   avatarUrl
 ) => {
@@ -200,8 +200,14 @@ exports.register = async (
 
 // Xác thực OTP
 exports.verifyOtp = async (email, otp, type) => {
+  console.log("🚀 ~ emailVerification:");
+
   try {
-    const emailVerification = await EmailVerification.findValidVerification(email, otp);
+    console.log("run2");
+    const emailVerification = await EmailVerification.findValidVerification(
+      email,
+      otp
+    );
 
     if (!emailVerification) {
       return {
