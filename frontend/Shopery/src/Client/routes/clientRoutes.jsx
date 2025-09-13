@@ -23,6 +23,12 @@ import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
 import Profile from "../pages/Profile/Profile";
 
+// Exam Pages
+import ExamList from "../pages/Exam/ExamList/ExamList";
+import ExamDetail from "../pages/Exam/ExamDetail/ExamDetail";
+import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
+import ExamResult from "../pages/Exam/ExamResult/ExamResult";
+
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
     //
@@ -171,6 +177,61 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
+
+      {/* Exam Routes */}
+      <Route
+        path="/exam"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <ExamList />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/exam/:id"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <ExamDetail />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/exam/:id/detail"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <ExamDetail />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/exam/:id/take"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ExamTaking />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/exam/:id/result"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <ExamResult />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
 
       {/* Catch all - Redirect to Home */}
       <Route path="*" element={<Navigate to="/" replace />} />
