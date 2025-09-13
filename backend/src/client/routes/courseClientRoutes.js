@@ -17,4 +17,8 @@ router.get("/levels", controller.getCoursebyLevel);
 
 router.get("/instructors", controller.getCourseByInstructor);
 
+router.get("/instructors2", controller.getCourseByInstructor);
+router.get("/instructors3", controller.getCourseByInstructor);
+router.get("/instructors4", controller.getCourseByInstructor);
+
 module.exports = router;
