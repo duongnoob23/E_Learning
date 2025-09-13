@@ -21,6 +21,7 @@ import Register from "../../Client/pages/Auth/Register/Register";
 import Course from "../pages/Course/Course";
 import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
+import Profile from "../pages/Profile/Profile";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
@@ -154,6 +155,18 @@ const ClientRoutes = () => {
           <PrivateRoute>
             <ClientLayout>
               <CourseDetail />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      {/* Profile Route */}
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Profile />
             </ClientLayout>
           </PrivateRoute>
         }
