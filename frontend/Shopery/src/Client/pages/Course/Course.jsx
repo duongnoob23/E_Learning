@@ -1,265 +1,17 @@
-import { useState, useMemo } from "react";
-import "./Course.css";
-import { Navigate } from "react-router-dom";
+// frontend/Shopery/src/Client/pages/Course/Course.jsx
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CoursePreview from "./CoursePreview/CoursePreview";
+import { mapCourseData } from "../../../utils/dataMapper";
+import {
+  useCategories,
+  useCourses,
+  useInstructors,
+  useLevels,
+} from "../../services/Course/courseQueries";
+import "./Course.css";
+
 // Màu xanh chủ đạo
 const PRIMARY_COLOR = "#1ec28b";
-
-// Dữ liệu khóa học đa dạng
-const courseData = [
-  {
-    id: 1,
-    title: "TOEIC 2 Kỹ Năng - Listening & Reading",
-    instructor: "Lâm Tiến Dưỡng",
-    desc: "Khóa học luyện thi TOEIC 2 kỹ năng, phù hợp cho người mới bắt đầu.",
-    rating: 4.8,
-    reviews: 1342,
-    price: 0,
-    oldPrice: 29.0,
-    bestSeller: true,
-    discount: 100,
-    image:
-      "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80",
-    category: "Toeic 2 kĩ năng",
-    level: "Beginner",
-    duration: "4 Tuần",
-    students: 320,
-    isFree: true,
-  },
-  {
-    id: 2,
-    title: "TOEIC 4 Kỹ Năng - Full Skills",
-    instructor: "Vũ Danh Phong",
-    desc: "Chinh phục TOEIC 4 kỹ năng với lộ trình bài bản, tài liệu chuẩn quốc tế.",
-    rating: 4.6,
-    reviews: 980,
-    price: 19.99,
-    oldPrice: 39.99,
-    bestSeller: false,
-    discount: 50,
-    image:
-      "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
-    category: "Toeic 4 kĩ năng",
-    level: "Intermediate",
-    duration: "6 Tuần",
-    students: 210,
-    isFree: false,
-  },
-  {
-    id: 3,
-    title: "IELTS Speaking Master",
-    instructor: "Vũ Công Duy",
-    desc: "Nâng cao kỹ năng Speaking IELTS với giáo viên bản ngữ, feedback chi tiết.",
-    rating: 4.9,
-    reviews: 2100,
-    price: 29.99,
-    oldPrice: 49.99,
-    bestSeller: true,
-    discount: 40,
-    image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
-    category: "IELTS",
-    level: "Expert",
-    duration: "8 Tuần",
-    students: 500,
-    isFree: false,
-  },
-  {
-    id: 4,
-    title: "Tiếng Anh Giao Tiếp Cơ Bản",
-    instructor: "Vũ Hoài Thư",
-    desc: "Học tiếng Anh giao tiếp từ con số 0, thực hành qua tình huống thực tế.",
-    rating: 4.3,
-    reviews: 800,
-    price: 0,
-    oldPrice: 25.0,
-    bestSeller: false,
-    discount: 100,
-    image:
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
-    category: "Tiếng anh cơ bản",
-    level: "Beginner",
-    duration: "3 Tuần",
-    students: 150,
-    isFree: true,
-  },
-  {
-    id: 5,
-    title: "IELTS Writing Intensive",
-    instructor: "Lâm Tiến Dưỡng",
-    desc: "Chuyên sâu kỹ năng viết IELTS, sửa bài chi tiết từng câu.",
-    rating: 4.7,
-    reviews: 1120,
-    price: 24.99,
-    oldPrice: 39.99,
-    bestSeller: false,
-    discount: 38,
-    image:
-      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-    category: "IELTS",
-    level: "Intermediate",
-    duration: "5 Tuần",
-    students: 200,
-    isFree: false,
-  },
-  {
-    id: 6,
-    title: "TOEIC Listening Practice",
-    instructor: "Vũ Danh Phong",
-    desc: "Luyện nghe TOEIC với đề thi thật, cập nhật liên tục.",
-    rating: 4.2,
-    reviews: 670,
-    price: 9.99,
-    oldPrice: 19.99,
-    bestSeller: false,
-    discount: 50,
-    image:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
-    category: "Toeic 2 kĩ năng",
-    level: "Beginner",
-    duration: "2 Tuần",
-    students: 110,
-    isFree: false,
-  },
-  {
-    id: 7,
-    title: "Tiếng Anh Cho Người Mất Gốc",
-    instructor: "Vũ Công Duy",
-    desc: "Khóa học dành cho người mất gốc, xây nền tảng vững chắc.",
-    rating: 4.5,
-    reviews: 900,
-    price: 0,
-    oldPrice: 20.0,
-    bestSeller: false,
-    discount: 100,
-    image:
-      "https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=400&q=80",
-    category: "Tiếng anh cơ bản",
-    level: "Beginner",
-    duration: "4 Tuần",
-    students: 180,
-    isFree: true,
-  },
-  {
-    id: 8,
-    title: "IELTS Reading Tips & Tricks",
-    instructor: "Vũ Hoài Thư",
-    desc: "Bí quyết làm bài Reading IELTS nhanh, chính xác, tiết kiệm thời gian.",
-    rating: 4.4,
-    reviews: 650,
-    price: 14.99,
-    oldPrice: 29.99,
-    bestSeller: false,
-    discount: 50,
-    image:
-      "https://images.unsplash.com/photo-1465101178521-c1a9136a3fd9?auto=format&fit=crop&w=400&q=80",
-    category: "IELTS",
-    level: "Intermediate",
-    duration: "3 Tuần",
-    students: 120,
-    isFree: false,
-  },
-  {
-    id: 9,
-    title: "TOEIC Speaking & Writing",
-    instructor: "Lâm Tiến Dưỡng",
-    desc: "Luyện nói và viết TOEIC, tăng điểm nhanh chóng.",
-    rating: 4.6,
-    reviews: 780,
-    price: 19.99,
-    oldPrice: 34.99,
-    bestSeller: false,
-    discount: 43,
-    image:
-      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-    category: "Toeic 4 kĩ năng",
-    level: "Expert",
-    duration: "6 Tuần",
-    students: 210,
-    isFree: false,
-  },
-  {
-    id: 10,
-    title: "Tiếng Anh Phỏng Vấn Xin Việc",
-    instructor: "Vũ Danh Phong",
-    desc: "Chuẩn bị phỏng vấn xin việc bằng tiếng Anh, luyện tập thực tế.",
-    rating: 4.1,
-    reviews: 400,
-    price: 7.99,
-    oldPrice: 15.99,
-    bestSeller: false,
-    discount: 50,
-    image:
-      "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
-    category: "Tiếng anh cơ bản",
-    level: "Intermediate",
-    duration: "2 Tuần",
-    students: 90,
-    isFree: false,
-  },
-  {
-    id: 11,
-    title: "IELTS Listening Advanced",
-    instructor: "Vũ Công Duy",
-    desc: "Luyện nghe IELTS nâng cao, cập nhật đề mới nhất.",
-    rating: 4.8,
-    reviews: 1100,
-    price: 27.99,
-    oldPrice: 39.99,
-    bestSeller: true,
-    discount: 30,
-    image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
-    category: "IELTS",
-    level: "Expert",
-    duration: "7 Tuần",
-    students: 300,
-    isFree: false,
-  },
-  {
-    id: 12,
-    title: "TOEIC Grammar Foundation",
-    instructor: "Vũ Hoài Thư",
-    desc: "Nắm vững ngữ pháp TOEIC, luyện tập qua bài tập thực tế.",
-    rating: 4.0,
-    reviews: 350,
-    price: 0,
-    oldPrice: 15.0,
-    bestSeller: false,
-    discount: 100,
-    image:
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
-    category: "Toeic 2 kĩ năng",
-    level: "Beginner",
-    duration: "3 Tuần",
-    students: 80,
-    isFree: true,
-  },
-];
-
-// Lấy danh sách động cho filter
-function getFilterOptions(courses) {
-  const categories = {};
-  const instructors = {};
-  const levels = {};
-  courses.forEach((c) => {
-    categories[c.category] = (categories[c.category] || 0) + 1;
-    instructors[c.instructor] = (instructors[c.instructor] || 0) + 1;
-    levels[c.level] = (levels[c.level] || 0) + 1;
-  });
-  return {
-    categories: Object.entries(categories).map(([name, count]) => ({
-      name,
-      count,
-    })),
-    instructors: Object.entries(instructors).map(([name, count]) => ({
-      name,
-      count,
-    })),
-    levels: Object.entries(levels).map(([name, count]) => ({ name, count })),
-  };
-}
 
 const reviewOptions = [5, 4, 3, 2, 1];
 
@@ -273,40 +25,52 @@ function Course() {
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [selectedReview, setSelectedReview] = useState([]);
   const [showReview, setShowReview] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("newest");
 
   const navigate = useNavigate();
-  // Lọc dữ liệu động
-  const filteredCourses = useMemo(() => {
-    return courseData.filter((course) => {
-      // Search
-      if (search && !course.title.toLowerCase().includes(search.toLowerCase()))
-        return false;
-      // Category
-      if (
-        selectedCategories.length &&
-        !selectedCategories.includes(course.category)
-      )
-        return false;
-      // Instructor
-      if (
-        selectedInstructors.length &&
-        !selectedInstructors.includes(course.instructor)
-      )
-        return false;
-      // Level
-      if (selectedLevels.length && !selectedLevels.includes(course.level))
-        return false;
-      // Price
-      if (selectedPrice === "free" && !course.isFree) return false;
-      if (selectedPrice === "paid" && course.isFree) return false;
-      // Review
-      if (
-        selectedReview.length &&
-        !selectedReview.includes(Math.round(course.rating))
-      )
-        return false;
-      return true;
-    });
+
+  // Build filters object for API
+  const filters = useMemo(() => {
+    const apiFilters = {
+      page: currentPage,
+      limit: 12,
+      sort_by: sortBy,
+    };
+
+    // Search
+    if (search.trim()) {
+      apiFilters.title = search.trim();
+    }
+
+    // Categories
+    if (selectedCategories.length > 0) {
+      apiFilters.category = selectedCategories.join(",");
+    }
+
+    // Instructors
+    if (selectedInstructors.length > 0) {
+      apiFilters.instructor = selectedInstructors.join(",");
+    }
+
+    // Levels
+    if (selectedLevels.length > 0) {
+      apiFilters.level = selectedLevels.join(",");
+    }
+
+    // Price
+    if (selectedPrice === "free") {
+      apiFilters.price_type = "free";
+    } else if (selectedPrice === "paid") {
+      apiFilters.price_type = "paid";
+    }
+
+    // Rating
+    if (selectedReview.length > 0) {
+      apiFilters.rating = Math.min(...selectedReview);
+    }
+
+    return apiFilters;
   }, [
     search,
     selectedCategories,
@@ -314,10 +78,104 @@ function Course() {
     selectedLevels,
     selectedPrice,
     selectedReview,
+    currentPage,
+    sortBy,
   ]);
 
-  // Lấy options filter động theo dữ liệu đã lọc
-  const filterOptions = useMemo(() => getFilterOptions(courseData), []);
+  // Gọi các API trực tiếp
+  const {
+    data: coursesData,
+    isLoading: coursesLoading,
+    error: coursesError,
+    refetch: refetchCourses,
+    isFetching: coursesFetching,
+  } = useCourses(filters);
+
+  const { data: categoriesData, isLoading: categoriesLoading } =
+    useCategories();
+
+  const { data: instructorsData, isLoading: instructorsLoading } =
+    useInstructors();
+
+  const { data: levelsData, isLoading: levelsLoading } = useLevels();
+
+  // Map dữ liệu từ API
+  const courses = useMemo(() => {
+    if (!coursesData?.DT?.courses) return [];
+    return coursesData.DT.courses.map(mapCourseData);
+  }, [coursesData]);
+
+  const pagination = useMemo(() => {
+    return (
+      coursesData?.DT?.pagination || {
+        current_page: 1,
+        total_pages: 1,
+        total_items: 0,
+        items_per_page: 12,
+      }
+    );
+  }, [coursesData]);
+
+  // Map filter options từ API
+  const filterOptions = useMemo(() => {
+    const categories = categoriesData?.DT?.categories || [];
+    const instructors = instructorsData?.DT?.instructors || [];
+    const levels = levelsData?.DT?.levels || [];
+
+    return {
+      categories: categories.map((cat) => ({ name: cat.name, count: 0 })),
+      instructors: instructors.map((inst) => ({ name: inst.name, count: 0 })),
+      levels: levels.map((level) => ({ name: level.name, count: 0 })),
+    };
+  }, [categoriesData, instructorsData, levelsData]);
+
+  // Debug logs
+  useEffect(() => {
+    console.log("=== COURSE DEBUG ===");
+    console.log("Filters:", filters);
+    console.log("Courses Loading:", coursesLoading);
+    console.log("Courses Fetching:", coursesFetching);
+    console.log("Courses Error:", coursesError);
+    console.log("Courses Data:", coursesData);
+    console.log("Courses:", courses);
+    console.log("Categories Data:", categoriesData);
+    console.log("Instructors Data:", instructorsData);
+    console.log("Levels Data:", levelsData);
+    console.log("===================");
+  }, [
+    filters,
+    coursesLoading,
+    coursesFetching,
+    coursesError,
+    coursesData,
+    courses,
+    categoriesData,
+    instructorsData,
+    levelsData,
+  ]);
+
+  // Debounce search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (search !== "") {
+        setCurrentPage(1);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [
+    selectedCategories,
+    selectedInstructors,
+    selectedLevels,
+    selectedPrice,
+    selectedReview,
+    sortBy,
+  ]);
 
   // Xử lý chọn filter
   const handleCheckbox = (value, arr, setArr) => {
@@ -331,6 +189,165 @@ function Course() {
       prev.includes(star) ? prev.filter((v) => v !== star) : [...prev, star]
     );
   };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSortChange = (newSortBy) => {
+    setSortBy(newSortBy);
+  };
+
+  const clearAllFilters = () => {
+    setSearch("");
+    setSelectedCategories([]);
+    setSelectedInstructors([]);
+    setSelectedLevels([]);
+    setSelectedPrice("all");
+    setSelectedReview([]);
+    setCurrentPage(1);
+    setSortBy("newest");
+  };
+
+  // Loading state
+  if (coursesLoading) {
+    return (
+      <div className="course-container">
+        <div className="course-page">
+          <div className="course-header">
+            <h2>Toàn bộ khóa học</h2>
+            <div className="course-search">
+              <input
+                type="text"
+                placeholder="Search course name..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                disabled
+              />
+              <i className="fa fa-search icon-search"></i>
+            </div>
+            <div className="course-view-toggle">
+              <button
+                className={view === "list" ? "active" : ""}
+                onClick={() => setView("list")}
+                aria-label="List view"
+              >
+                <i className="fa fa-list"></i>
+              </button>
+              <button
+                className={view === "grid" ? "active" : ""}
+                onClick={() => setView("grid")}
+                aria-label="Grid view"
+              >
+                <i className="fa fa-th-large"></i>
+              </button>
+            </div>
+          </div>
+          <div className="course-main">
+            <aside className="course-filter">
+              <div className="filter-group">
+                <h4>Thể loại</h4>
+                <div className="loading-skeleton">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="skeleton-item"></div>
+                  ))}
+                </div>
+              </div>
+              <div className="filter-group">
+                <h4>Instructor</h4>
+                <div className="loading-skeleton">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={i} className="skeleton-item"></div>
+                  ))}
+                </div>
+              </div>
+              <div className="filter-group filter-group-price">
+                <h4>Giá</h4>
+                <div className="loading-skeleton">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={i} className="skeleton-item"></div>
+                  ))}
+                </div>
+              </div>
+            </aside>
+            <section className={`course-list ${view}`}>
+              <div className="loading-courses">
+                <div className="loading-spinner">
+                  <i className="fa fa-spinner fa-spin"></i>
+                </div>
+                <p>Đang tải khóa học...</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (coursesError) {
+    return (
+      <div className="course-container">
+        <div className="course-page">
+          <div className="course-header">
+            <h2>Toàn bộ khóa học</h2>
+            <div className="course-search">
+              <input
+                type="text"
+                placeholder="Search course name..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <i className="fa fa-search icon-search"></i>
+            </div>
+            <div className="course-view-toggle">
+              <button
+                className={view === "list" ? "active" : ""}
+                onClick={() => setView("list")}
+                aria-label="List view"
+              >
+                <i className="fa fa-list"></i>
+              </button>
+              <button
+                className={view === "grid" ? "active" : ""}
+                onClick={() => setView("grid")}
+                aria-label="Grid view"
+              >
+                <i className="fa fa-th-large"></i>
+              </button>
+            </div>
+          </div>
+          <div className="course-main">
+            <aside className="course-filter">
+              <div className="filter-group">
+                <h4>Thể loại</h4>
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle"></i>
+                  <p>Không thể tải dữ liệu filter</p>
+                </div>
+              </div>
+            </aside>
+            <section className={`course-list ${view}`}>
+              <div className="error-courses">
+                <div className="error-icon">
+                  <i className="fa fa-exclamation-circle"></i>
+                </div>
+                <h3>Có lỗi xảy ra khi tải khóa học</h3>
+                <p>
+                  Vui lòng thử lại sau hoặc liên hệ hỗ trợ nếu vấn đề vẫn tiếp
+                  tục.
+                </p>
+                <button onClick={() => refetchCourses()} className="btn-retry">
+                  <i className="fa fa-refresh"></i> Thử lại
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="course-container">
@@ -363,50 +380,93 @@ function Course() {
             </button>
           </div>
         </div>
+
+        {/* Sort and Filter Controls */}
+        <div className="course-controls">
+          <div className="course-sort">
+            <label htmlFor="sort-select">Sắp xếp theo:</label>
+            <select
+              id="sort-select"
+              value={sortBy}
+              onChange={(e) => handleSortChange(e.target.value)}
+              className="sort-select"
+            >
+              <option value="newest">Mới nhất</option>
+              <option value="popular">Phổ biến</option>
+              <option value="price_asc">Giá tăng dần</option>
+              <option value="price_desc">Giá giảm dần</option>
+              <option value="rating">Đánh giá cao</option>
+            </select>
+          </div>
+          <div className="course-results">
+            <span>
+              Hiển thị {courses.length} trong {pagination.total_items} khóa học
+            </span>
+            {coursesFetching && (
+              <span className="loading-indicator">
+                <i className="fa fa-spinner fa-spin"></i> Đang tải...
+              </span>
+            )}
+          </div>
+          <button onClick={clearAllFilters} className="btn-clear-filters">
+            <i className="fa fa-times"></i> Xóa bộ lọc
+          </button>
+        </div>
+
         <div className="course-main">
           <aside className="course-filter">
             <div className="filter-group">
               <h4>Thể loại</h4>
-              {filterOptions.categories.map((c) => (
-                <label key={c.name} className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={selectedCategories.includes(c.name)}
-                    onChange={() =>
-                      handleCheckbox(
-                        c.name,
-                        selectedCategories,
-                        setSelectedCategories
-                      )
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  {c.name}
-                  <span className="filter-count">{c.count}</span>
-                </label>
-              ))}
+              {filterOptions.categories.length === 0 ? (
+                <div className="no-options">Không có dữ liệu</div>
+              ) : (
+                filterOptions.categories.map((c) => (
+                  <label key={c.name} className="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectedCategories.includes(c.name)}
+                      onChange={() =>
+                        handleCheckbox(
+                          c.name,
+                          selectedCategories,
+                          setSelectedCategories
+                        )
+                      }
+                    />
+                    <span className="checkmark"></span>
+                    {c.name}
+                    <span className="filter-count">{c.count}</span>
+                  </label>
+                ))
+              )}
             </div>
+
             <div className="filter-group">
               <h4>Instructor</h4>
-              {filterOptions.instructors.map((i) => (
-                <label key={i.name} className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={selectedInstructors.includes(i.name)}
-                    onChange={() =>
-                      handleCheckbox(
-                        i.name,
-                        selectedInstructors,
-                        setSelectedInstructors
-                      )
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  {i.name}
-                  <span className="filter-count">{i.count}</span>
-                </label>
-              ))}
+              {filterOptions.instructors.length === 0 ? (
+                <div className="no-options">Không có dữ liệu</div>
+              ) : (
+                filterOptions.instructors.map((i) => (
+                  <label key={i.name} className="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectedInstructors.includes(i.name)}
+                      onChange={() =>
+                        handleCheckbox(
+                          i.name,
+                          selectedInstructors,
+                          setSelectedInstructors
+                        )
+                      }
+                    />
+                    <span className="checkmark"></span>
+                    {i.name}
+                    <span className="filter-count">{i.count}</span>
+                  </label>
+                ))
+              )}
             </div>
+
             <div className="filter-group filter-group-price">
               <h4>Giá</h4>
               <label className="custom-radio">
@@ -418,7 +478,9 @@ function Course() {
                 />
                 <span className="radiomark"></span>
                 Tất cả
-                <span className="filter-count">{courseData.length}</span>
+                <span className="filter-count">
+                  {pagination.total_items || 0}
+                </span>
               </label>
               <label className="custom-radio">
                 <input
@@ -430,7 +492,7 @@ function Course() {
                 <span className="radiomark"></span>
                 Miễn phí
                 <span className="filter-count">
-                  {courseData.filter((c) => c.isFree).length}
+                  {courses.filter((c) => c.isFree).length}
                 </span>
               </label>
               <label className="custom-radio">
@@ -443,7 +505,7 @@ function Course() {
                 <span className="radiomark"></span>
                 Trả phí
                 <span className="filter-count">
-                  {courseData.filter((c) => !c.isFree).length}
+                  {courses.filter((c) => !c.isFree).length}
                 </span>
               </label>
               <button
@@ -453,61 +515,84 @@ function Course() {
                 Xem Thêm <i className="fa fa-angle-double-right"></i>
               </button>
             </div>
-            <div className="filter-group">
-              <h4>Review</h4>
-              {reviewOptions.map((star) => (
-                <label
-                  key={star}
-                  className={`custom-checkbox star-checkbox ${
-                    selectedReview.includes(star) ? "checked" : ""
-                  }`}
-                  onClick={() => handleReview(star)}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedReview.includes(star)}
-                    readOnly
-                  />
-                  <span className="checkmark"></span>
-                  {[...Array(star)].map((_, i) => (
-                    <i
-                      key={i}
-                      className="fa fa-star"
-                      style={{ color: PRIMARY_COLOR, marginRight: 2 }}
-                    ></i>
-                  ))}
-                  <span className="filter-count">
-                    {
-                      courseData.filter((c) => Math.round(c.rating) === star)
-                        .length
-                    }
-                  </span>
-                </label>
-              ))}
-            </div>
+
+            {showReview && (
+              <div className="filter-group">
+                <h4>Review</h4>
+                {reviewOptions.map((star) => (
+                  <label
+                    key={star}
+                    className={`custom-checkbox star-checkbox ${
+                      selectedReview.includes(star) ? "checked" : ""
+                    }`}
+                    onClick={() => handleReview(star)}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedReview.includes(star)}
+                      readOnly
+                    />
+                    <span className="checkmark"></span>
+                    {[...Array(star)].map((_, i) => (
+                      <i
+                        key={i}
+                        className="fa fa-star"
+                        style={{ color: PRIMARY_COLOR, marginRight: 2 }}
+                      ></i>
+                    ))}
+                    <span className="filter-count">
+                      {
+                        courses.filter((c) => Math.round(c.rating) === star)
+                          .length
+                      }
+                    </span>
+                  </label>
+                ))}
+              </div>
+            )}
+
             <div className="filter-group">
               <h4>Level</h4>
-              {filterOptions.levels.map((l) => (
-                <label key={l.name} className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={selectedLevels.includes(l.name)}
-                    onChange={() =>
-                      handleCheckbox(l.name, selectedLevels, setSelectedLevels)
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  {l.name}
-                  <span className="filter-count">{l.count}</span>
-                </label>
-              ))}
+              {filterOptions.levels.length === 0 ? (
+                <div className="no-options">Không có dữ liệu</div>
+              ) : (
+                filterOptions.levels.map((l) => (
+                  <label key={l.name} className="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectedLevels.includes(l.name)}
+                      onChange={() =>
+                        handleCheckbox(
+                          l.name,
+                          selectedLevels,
+                          setSelectedLevels
+                        )
+                      }
+                    />
+                    <span className="checkmark"></span>
+                    {l.name}
+                    <span className="filter-count">{l.count}</span>
+                  </label>
+                ))
+              )}
             </div>
           </aside>
+
           <section className={`course-list ${view}`}>
-            {filteredCourses.length === 0 && (
-              <div className="no-course">Không tìm thấy khóa học phù hợp.</div>
+            {courses.length === 0 && !coursesLoading && (
+              <div className="no-course">
+                <div className="no-course-icon">
+                  <i className="fa fa-search"></i>
+                </div>
+                <h3>Không tìm thấy khóa học phù hợp</h3>
+                <p>Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+                <button onClick={clearAllFilters} className="btn-clear-filters">
+                  <i className="fa fa-refresh"></i> Xóa bộ lọc
+                </button>
+              </div>
             )}
-            {filteredCourses.map((course) => (
+
+            {courses.map((course) => (
               <div className="course-card" key={course.id}>
                 <div className="course-card-img">
                   <img src={course.image} alt={course.title} />
@@ -520,6 +605,7 @@ function Course() {
                         {course.discount}% OFF
                       </span>
                     )}
+                    {course.isFree && <span className="tag free">Free</span>}
                   </div>
                 </div>
                 <div className="course-card-content">
@@ -573,14 +659,16 @@ function Course() {
                         <span className="price">
                           ${course.price.toFixed(2)}
                         </span>
-                        <span className="old-price">
-                          ${course.oldPrice.toFixed(2)}
-                        </span>
+                        {course.oldPrice > course.price && (
+                          <span className="old-price">
+                            ${course.oldPrice.toFixed(2)}
+                          </span>
+                        )}
                       </>
                     )}
                   </div>
                   <button
-                    onClick={() => navigate("/course/1")}
+                    onClick={() => navigate(`/course/${course.id}`)}
                     className="btn-view-more"
                   >
                     View More <i className="fa fa-arrow-right"></i>
@@ -590,10 +678,72 @@ function Course() {
             ))}
           </section>
         </div>
-        <div className="course-pagination">
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
+
+        {/* Pagination */}
+        {pagination.total_pages > 1 && (
+          <div className="course-pagination">
+            <button
+              className="pagination-btn"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <i className="fa fa-chevron-left"></i> Trước
+            </button>
+
+            <div className="pagination-numbers">
+              {Array.from(
+                { length: Math.min(5, pagination.total_pages) },
+                (_, i) => {
+                  let pageNumber;
+                  if (pagination.total_pages <= 5) {
+                    pageNumber = i + 1;
+                  } else if (currentPage <= 3) {
+                    pageNumber = i + 1;
+                  } else if (currentPage >= pagination.total_pages - 2) {
+                    pageNumber = pagination.total_pages - 4 + i;
+                  } else {
+                    pageNumber = currentPage - 2 + i;
+                  }
+
+                  return (
+                    <button
+                      key={pageNumber}
+                      className={pageNumber === currentPage ? "active" : ""}
+                      onClick={() => handlePageChange(pageNumber)}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                }
+              )}
+            </div>
+
+            <button
+              className="pagination-btn"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === pagination.total_pages}
+            >
+              Sau <i className="fa fa-chevron-right"></i>
+            </button>
+          </div>
+        )}
+
+        {/* Course Stats */}
+        <div className="course-stats">
+          <div className="stat-item">
+            <i className="fa fa-book"></i>
+            <span>Tổng khóa học: {pagination.total_items}</span>
+          </div>
+          <div className="stat-item">
+            <i className="fa fa-users"></i>
+            <span>Đang hiển thị: {courses.length}</span>
+          </div>
+          <div className="stat-item">
+            <i className="fa fa-clock"></i>
+            <span>
+              Trang: {currentPage}/{pagination.total_pages}
+            </span>
+          </div>
         </div>
       </div>
     </div>

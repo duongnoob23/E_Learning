@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { queryKeys } from "../../lib/queryKeys";
-import { authApi } from "./authApi";
+import { queryKeys } from "../../../lib/queryKeys";
+import { authApi } from "../../api/Auth/authApi";
 
 // Query để kiểm tra trạng thái verify email
 export const useVerifyEmailStatus = (email, enabled = false) => {

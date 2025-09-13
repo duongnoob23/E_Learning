@@ -45,7 +45,7 @@ exports.register = async (req, res, next) => {
 // [POST] client xác thực OTP
 exports.verifyOtp = async (req, res, next) => {
   try {
-    const type = req.params.type;
+    const type = req.params.type
     const { email, otp } = req.body;
     console.log("run1");
 

@@ -17,6 +17,7 @@ export const queryKeys = {
     detail: (id) => [...queryKeys.course.details(), id],
     categories: () => [...queryKeys.course.all, "categories"],
     instructors: () => [...queryKeys.course.all, "instructors"],
+    levels: () => [...queryKeys.course.all, "levels"],
   },
 
   // User keys
