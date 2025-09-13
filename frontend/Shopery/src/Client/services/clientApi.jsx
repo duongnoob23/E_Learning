@@ -83,12 +83,16 @@ export const clientApi = {
   },
 
   // User Profile APIs
-  changePassword: async (passwordData) => {
-    return await axiosInstance.put("/user/change-password", passwordData);
+  getUserProfile: async () => {
+    return await axiosInstance.get("/user/profile");
   },
 
-  updateProfile: async (userData) => {
+  updateUserProfile: async (userData) => {
     return await axiosInstance.put("/user/profile", userData);
+  },
+
+  changePassword: async (passwordData) => {
+    return await axiosInstance.put("/user/change-password", passwordData);
   },
 
   uploadAvatar: async (formData) => {
@@ -97,6 +101,10 @@ export const clientApi = {
         "Content-Type": "multipart/form-data",
       },
     });
+  },
+
+  getUserStats: async () => {
+    return await axiosInstance.get("/user/stats");
   },
 
   getLearningProgress: async () => {

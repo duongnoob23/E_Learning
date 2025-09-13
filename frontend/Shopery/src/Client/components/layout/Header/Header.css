@@ -155,10 +155,30 @@
   gap: 12px;
 }
 
+.header__profile-link {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.header__profile-link:hover {
+  transform: translateY(-1px);
+}
+
 .header__user-name {
   color: white;
   font-weight: 500;
   font-size: 14px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.header__profile-link:hover .header__user-name {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .header__logout-btn {
