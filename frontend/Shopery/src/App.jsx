@@ -11,8 +11,9 @@ import { store } from "./redux/store";
 import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
+import Login from "./Client/pages/Auth/Login/Login";
+import AppRoutes from "./routes/routes";
 import Flashcard from "./Client/pages/Flashcard/Flashcard";
-
 function App() {
   return (
     <Provider store={store}>
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <div className="App">
             {/* <AppRoutes /> */}
+            {/* <Login /> */}
             <Flashcard />
           </div>
         </Router>
