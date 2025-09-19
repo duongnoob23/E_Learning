@@ -1,17 +1,17 @@
 // Client/routes/clientRoutes.jsx (cập nhật)
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../../routes/PrivateRoute";
 import PublicRoute from "../../routes/PublicRoute";
 
 // Layout
-import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
+import Header from "../components/layout/Header/Header";
 
 // Pages
-import Home from "../pages/Home/Home";
-import Flashcard from "../pages/Flashcard/Flashcard";
 import Blog from "../pages/Blog/Blog";
+import Flashcard from "../pages/Flashcard/Flashcard";
+import Home from "../pages/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import InstructorDetail from "../pages/Instructor/InstructorDetail";
 
@@ -19,15 +19,15 @@ import InstructorDetail from "../pages/Instructor/InstructorDetail";
 import Login from "../../Client/pages/Auth/Login/Login";
 import Register from "../../Client/pages/Auth/Register/Register";
 import Course from "../pages/Course/Course";
-import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
+import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
 import Profile from "../pages/ProfileV2/index";
 
 // Exam Pages
-import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamDetail from "../pages/Exam/ExamDetail/ExamDetail";
-import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
+import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamResult from "../pages/Exam/ExamResult/ExamResult";
+import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
@@ -93,11 +93,11 @@ const ClientRoutes = () => {
       <Route
         path="/flashcard/topic/:topicId"
         element={
-          <PrivateRoute requiredRole="client">
-            <ClientLayout>
-              <Flashcard />
-            </ClientLayout>
-          </PrivateRoute>
+          // <PrivateRoute requiredRole="client">
+          <ClientLayout>
+            <Flashcard />
+          </ClientLayout>
+          // </PrivateRoute>
         }
       />
 
@@ -231,7 +231,6 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
-
 
       {/* Catch all - Redirect to Home */}
       <Route path="*" element={<Navigate to="/" replace />} />

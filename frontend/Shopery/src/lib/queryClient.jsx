@@ -9,7 +9,7 @@ export const queryClient = new QueryClient({
       // Thời gian cache trong bộ nhớ: 10 phút
       gcTime: 10 * 60 * 1000,
       // Retry 3 lần khi lỗi
-      retry: 3,
+      retry: 5,
       // Không refetch khi window focus
       refetchOnWindowFocus: false,
       // Không refetch khi reconnect

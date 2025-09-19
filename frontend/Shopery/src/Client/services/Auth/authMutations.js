@@ -1,14 +1,66 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { queryKeys } from "../../../lib/queryKeys";
-import { authApi } from "../../api/Auth/authApi";
+import { authApi, authApi1 } from "../../api/Auth/authApi";
 
 // Mutation để verify email
+export const useLogin = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: authApi1.login,
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data.data;
+      if (+EC === 0) {
+        // Lưu token vào localStorage
+        if (DT?.access_token) {
+          localStorage.setItem("access_token", DT.access_token);
+        }
+        if (DT?.refresh_token) {
+          localStorage.setItem("refresh_token", DT.refresh_token);
+        }
+
+        // Lưu thông tin user
+        if (DT?.user) {
+          localStorage.setItem("user", JSON.stringify(DT.user));
+        }
+
+        toast.success(EM || "Đăng nhập thành công");
+
+        // Invalidate queries để refetch data mới
+        queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
+      } else {
+        toast.error(EM || "Đăng nhập thất bại");
+      }
+    },
+    onError: (error) => {
+      console.error("Login error:", error);
+      toast.error("Có lỗi xảy ra khi đăng nhập");
+    },
+  });
+};
+
+export const useRegister = () => {
+  console.log("run useRegister");
+  return useMutation({
+    mutationFn: authApi1.register,
+    onSuccess: (data) => {
+      console.log(data.data);
+      const { EM, EC, DT } = data.data;
+      if (+EC === 0) {
+        toast.success(EM || "Đăng ký thành công");
+      } else {
+        toast.error(EM || "Đăng ký thất bại");
+      }
+    },
+  });
+};
+
 export const useVerifyEmail = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: authApi.verifyEmail,
+    mutationFn: authApi1.verifyEmail,
     onSuccess: (data) => {
       const { EM, EC } = data;
       if (EC === "0") {

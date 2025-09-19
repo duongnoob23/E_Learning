@@ -1,5 +1,5 @@
 // Auth Slice - Quản lý trạng thái đăng nhập (Dùng chung)
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "../../common/services/Auth/authApi";
 import {
   normalizeAuthResponse,
@@ -113,7 +113,7 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await authApi.register(userData);
       const { EM, EC, DT } = normalizeAuthResponse(response);
-
+      console.log(EM, EC, DT);
       if (EC !== "0" || !DT) {
         return rejectWithValue({ EM, EC, DT });
       }
