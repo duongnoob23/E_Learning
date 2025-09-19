@@ -22,7 +22,13 @@ const tabs = [
 ];
 
 const ProfilePageV2 = () => {
-  const { user } = useSelector((state) => state.auth);
+    const [user, setUser] = React.useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user"));
+    } catch (e) {
+      return null;
+    }
+  });
 
   const [activeKey, setActiveKey] = React.useState("profile");
 

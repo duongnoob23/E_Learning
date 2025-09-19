@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { profileApi } from "./profileApi";
+import { profileApi } from "../../api/Profile/profileApi";
 
 export const useUpdateProfile = () =>
   useMutation({
     mutationFn: profileApi.updateProfile,
     onSuccess: (data) => {
-      const { EM, EC } = data || {};
-      if (EC === "0") toast.success(EM || "Profile updated");
+      const { EM, EC, DT } = data.data;
+      if (+EC === 0) toast.success(EM || "Profile updated");
       else toast.error(EM || "Update failed");
     },
     onError: () => toast.error("Request failed"),

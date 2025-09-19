@@ -12,7 +12,7 @@ exports.getProfile = async (req, res, next) => {
   }
 };
 
-// [PUT] Cập nhật thông tin profile
+// [PATCH] Cập nhật thông tin profile
 exports.updateProfile = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -21,14 +21,14 @@ exports.updateProfile = async (req, res, next) => {
     }
 
     const userId = req.user.userId;
-    const { full_name, phone_number } = req.body;
+    const { username,full_name, phone_number } = req.body;
 
     // Nếu có upload file qua multer
     const avatar_url = req.file ? req.file.path : req.body.avatar_url;
 
     const updatedProfile = await profileClientService.updateUserProfile(
       userId,
-      { full_name, phone_number, avatar_url }
+      { username,full_name, phone_number, avatar_url }
     );
     
     res.json(updatedProfile);

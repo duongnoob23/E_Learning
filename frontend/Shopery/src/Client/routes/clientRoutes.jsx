@@ -170,11 +170,11 @@ const ClientRoutes = () => {
       <Route
         path="/profile"
         element={
-          <PrivateRoute requiredRole="client">
+          // <PrivateRoute requiredRole="client">
             <ClientLayout>
               <Profile />
             </ClientLayout>
-          </PrivateRoute>
+          // </PrivateRoute>
         }
       />
 
