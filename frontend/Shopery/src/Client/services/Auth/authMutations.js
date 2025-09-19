@@ -1,20 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { queryKeys } from "../../../lib/queryKeys";
+import { useAuthStore } from "../../../stores/authStore";
 import { authApi, authApi1 } from "../../api/Auth/authApi";
 
 // Mutation để verify email
 export const useLogin = () => {
   const queryClient = useQueryClient();
-
+  const { setCredentials, setError } = useAuthStore();
   return useMutation({
     mutationFn: authApi1.login,
     onSuccess: (data) => {
       const { EM, EC, DT } = data.data;
+      console.log(EC);
       if (+EC === 0) {
         // Lưu token vào localStorage
-        if (DT?.access_token) {
-          localStorage.setItem("access_token", DT.access_token);
+        if (DT?.token) {
+          localStorage.setItem("access_token", DT.token);
         }
         if (DT?.refresh_token) {
           localStorage.setItem("refresh_token", DT.refresh_token);
@@ -25,17 +27,25 @@ export const useLogin = () => {
           localStorage.setItem("user", JSON.stringify(DT.user));
         }
 
+        setCredentials({
+          token: DT.token,
+          refreshToken: DT.refresh_token,
+          user: DT.user,
+        });
+
         toast.success(EM || "Đăng nhập thành công");
 
         // Invalidate queries để refetch data mới
         queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
       } else {
         toast.error(EM || "Đăng nhập thất bại");
+        setError(EM || "Đăng nhập thất bại");
       }
     },
     onError: (error) => {
       console.error("Login error:", error);
       toast.error("Có lỗi xảy ra khi đăng nhập");
+      setError(EM || "Đăng nhập thất bại");
     },
   });
 };
