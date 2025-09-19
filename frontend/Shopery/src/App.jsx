@@ -7,11 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "./assets/styles/global.css"; // CSS tùy chỉnh
 import { QueryProvider } from "./providers/QueryProvider";
 import { store } from "./redux/store";
-import AppRoutes from "./routes/routes";
 // Import global styles
 import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
+import Flashcard from "./Client/pages/Flashcard/Flashcard";
 
 function App() {
   return (
@@ -19,7 +19,8 @@ function App() {
       <QueryProvider>
         <Router>
           <div className="App">
-            <AppRoutes />
+            {/* <AppRoutes /> */}
+            <Flashcard />
           </div>
         </Router>
       </QueryProvider>

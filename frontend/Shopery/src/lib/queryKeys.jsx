@@ -1,30 +1,39 @@
-// Định nghĩa query keys để tránh duplicate và dễ maintain
+// queryKeys.ts
 export const queryKeys = {
   // Auth keys
   auth: {
-    all: ["auth"],
-    user: () => [...queryKeys.auth.all, "user"],
-    verifyEmail: (email) => [...queryKeys.auth.all, "verifyEmail", email],
-    forgotPassword: (email) => [...queryKeys.auth.all, "forgotPassword", email],
+    user: () => ["auth", "user"],
+    login: (credentials) => ["auth", "login", credentials],
+    register: (userData) => ["auth", "register", userData],
+    verifyEmail: (email, otp) => ["auth", "verifyEmail", email, otp],
+    forgotPassword: (email) => ["auth", "forgotPassword", email],
+    resetPassword: (email, newPassword) => [
+      "auth",
+      "resetPassword",
+      email,
+      newPassword,
+    ],
+    refreshToken: (refreshToken) => ["auth", "refreshToken", refreshToken],
+    logout: () => ["auth", "logout"],
   },
 
   // Course keys
   course: {
     all: ["course"],
-    lists: () => [...queryKeys.course.all, "list"],
-    list: (filters) => [...queryKeys.course.lists(), { filters }],
-    details: () => [...queryKeys.course.all, "detail"],
-    detail: (id) => [...queryKeys.course.details(), id],
-    categories: () => [...queryKeys.course.all, "categories"],
-    instructors: () => [...queryKeys.course.all, "instructors"],
-    levels: () => [...queryKeys.course.all, "levels"],
+    lists: ["course", "list"],
+    list: (filters) => ["course", "list", { filters }],
+    details: ["course", "detail"],
+    detail: (id) => ["course", "detail", id],
+    categories: ["course", "categories"],
+    instructors: ["course", "instructors"],
+    levels: ["course", "levels"],
   },
 
   // User keys
   user: {
     all: ["user"],
-    profile: () => [...queryKeys.user.all, "profile"],
-    enrollments: () => [...queryKeys.user.all, "enrollments"],
-    wishlist: () => [...queryKeys.user.all, "wishlist"],
+    profile: ["user", "profile"],
+    enrollments: ["user", "enrollments"],
+    wishlist: ["user", "wishlist"],
   },
 };

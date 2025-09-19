@@ -1,5 +1,23 @@
 import axiosInstance from "../../../lib/axiosInstance";
 
+export const authApi1 = {
+  login: async (credentials) => {
+    return await axiosInstance.post("/auth/login", credentials);
+  },
+
+  register: async (userData) => {
+    return await axiosInstance.post("/auth/register", userData);
+  },
+
+  verifyEmail: async ({ email, otp }) => {
+    const res = await axiosInstance.post("/auth/verify-email", {
+      email,
+      otp,
+    });
+    return res.data;
+  },
+};
+
 export const authApi = {
   // Login - giữ nguyên Redux
   login: async (credentials) => {

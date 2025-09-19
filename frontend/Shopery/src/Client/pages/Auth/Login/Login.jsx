@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { loginUser } from "../../../../redux/slices/authSlice";
 import OTP from "../../../components/Auth/OTP/OTP";
+import { useLogin } from "../../../services/Auth/authMutations";
 import "./Login.css";
-
 const Login = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -67,6 +66,8 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const loginMutation = useLogin();
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
     console.log("0");
@@ -78,18 +79,12 @@ const Login = () => {
     console.log("1");
     try {
       if (isLoginMode) {
-        // gọi api đăng nhập
-        const result = await dispatch(
-          loginUser({
-            email: formData.email,
-            password: formData.password,
-          })
-        ).unwrap();
-        console.log("🚀 ~ handleSubmit ~ result:", result);
-
-        if (+result?.EC === 0) {
+        const result = await loginMutation.mutateAsync({
+          email: formData.email,
+          password: formData.password,
+        });
+        if (result.data?.EC === "0") {
           navigate("/");
-          toast.success(result?.EM || "Đăng nhập thành công");
         }
       } else if (!isLoginMode) {
         // gọi api lấy lại mật khẩu;

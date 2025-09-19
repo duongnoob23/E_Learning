@@ -1,4 +1,20 @@
+đọc hiểu tanstack query https://chatgpt.com/share/68c665f8-f838-800a-a26f-01eace24b14a
+
+Server state: TanStack Query
+Client state: Zustand (UI state)
+Form: React Hook Form + Zod
+UI: TailwindCSS + Radix UI
+Routing: React Router (SPA) hoặc Next.js Router (SSR/SSG)
+Auth: NextAuth.js / Firebase / Auth0
+i18n: react-i18next
+Chart: Recharts hoặc Chart.js
+Build: Vite
+
+
+
 CÁC NỘI DUNG ĐÃ HỎI CHAT ĐỂ CẢI THIỆN DỰ ÁN HƠN 
+
+
 
 những câu hỏi sau của tôi bạn chỉ cần phân tích chứ không cần phải sửa code, nào tôi bảo bắt đầu sửa thì mới bắt đầu mọi việc nhé
 đầu tiền là phần accessToken, RefreshToken, JWT  để làm gì vậy

@@ -1,11 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { registerUser } from "../../../../redux/slices/authSlice";
-import { authApi } from "../../../api/Auth/authApi";
 import OTP from "../../../components/Auth/OTP/OTP";
+import {
+  useRegister,
+  useVerifyEmail,
+} from "../../../services/Auth/authMutations";
 import "./Register.css";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,27 +37,6 @@ const Register = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const verifyEmailMutation = useMutation({
-    mutationFn: authApi.verifyEmail,
-    onSuccess: (data) => {
-      console.log("✅ Verify email success:", data);
-      const { EM, EC } = data;
-      if (EC === "0") {
-        setShowOtpModal(false);
-        toast.success(EM || "Xác thực email thành công!");
-        setTimeout(() => {
-          navigate("/login");
-        }, 1500);
-      } else {
-        setOtpError(EM || "Mã OTP không đúng hoặc đã hết hạn");
-      }
-    },
-    onError: (error) => {
-      console.error("❌ Verify email error:", error);
-      setOtpError("Có lỗi khi xác thực OTP. Vui lòng thử lại.");
-    },
-  });
 
   // Lấy state từ Redux
   const {
@@ -120,9 +100,10 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const registerMutation = useRegister();
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
-    setShowOtpModal(true);
 
     if (!validateForm()) {
       return;
@@ -131,57 +112,27 @@ const Register = () => {
     setErrors({});
 
     try {
-      const res = await dispatch(
-        registerUser({
-          email: formData.email,
-          password: formData.password,
-          username: formData.username,
-          confirmPassword: formData.confirmPassword,
-        })
-      ).unwrap();
-      // gửi otp api về
-      if (+res?.EC === 0) {
-        navigate("/login");
-        toast.success(res?.EM || "Đăng ký thành công");
+      const result = await registerMutation.mutateAsync({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      });
+      console.log(">>>", result);
+      if (+result.data.EC === 0) {
+        toast.success(result?.EM || "Đăng ký thành công");
         setShowOtpModal(true);
       }
     } catch (error) {
+      console.log(error.message);
       toast.error(error?.EM || "Đăng kí tài khoản thất bại");
     } finally {
       setIsLoading(false);
     }
   };
 
-  // const handleOtpSubmit = async ({ message, code }) => {
-  //   console.log("🚀 OTP nhận được từ OTP.jsx:", message, code);
+  const verifyEmailMutation = useVerifyEmail();
 
-  //   if (message === "RESEND") {
-  //     // gọi API gửi lại OTP
-  //     console.log("🚀 Người dùng bấm Gửi lại OTP");
-  //     return;
-  //   }
-
-  //   setIsOtpLoading(true);
-  //   setOtpError("");
-
-  //   // ✅ gọi API verify OTP
-  //   try {
-  //     // ví dụ gọi verifyOtpApi
-  //     // const res = await verifyOtpApi(registerEmail, otp);
-
-  //     if (message === "SEND") {
-  //       // demo kiểm tra OTP
-  //       console.log("✅ OTP đúng, đóng modal");
-  //       setShowOtpModal(false);
-  //     } else {
-  //       setOtpError("Mã OTP không đúng hoặc đã hết hạn");
-  //     }
-  //   } catch (err) {
-  //     setOtpError("Có lỗi khi xác thực OTP");
-  //   }
-
-  //   setIsOtpLoading(false);
-  // };
   const handleOtpSubmit = async ({ message, code }) => {
     console.log("🚀 OTP nhận được từ OTP.jsx:", message, code);
 
@@ -197,22 +148,15 @@ const Register = () => {
       setErrors("");
       try {
         // ✅ Gọi API verify email bằng TanStack Query
-        console.log("debug useVerifyEmail");
         const result = await verifyEmailMutation.mutateAsync({
           email: formData.email,
           otp: code,
         });
         console.log(result);
-        // Kiểm tra kết quả
-        if (result?.EC === "0") {
-          // Xác thực thành công
-          setShowOtpModal(false);
-          toast.success(result?.EM || "Xác thực email thành công!");
 
-          // Chuyển về trang login
-          setTimeout(() => {
-            navigate("/login");
-          }, 1500);
+        if (result.data.EC === "0") {
+          toast.success(result.EM || "Xác nhận OTP thành công");
+          setShowOtpModal(false);
         } else {
           // Xác thực thất bại
           toast.error(result?.EM || "Mã OTP không đúng hoặc đã hết hạn");
