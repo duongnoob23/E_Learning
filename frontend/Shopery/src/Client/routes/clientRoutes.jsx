@@ -33,7 +33,9 @@ const ClientLayout = ({ children }) => (
   <div className="client-layout">
     //
     <Header />
-    <main className="client-main">{children}</main>
+    <main className="client-main" style={{ padding: 0 }}>
+      {children}
+    </main>
     <Footer />
   </div>
 );

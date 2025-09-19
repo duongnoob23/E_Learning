@@ -11,7 +11,7 @@ import { store } from "./redux/store";
 import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
-import Flashcard from "./Client/pages/Flashcard/Flashcard";
+import AppRoutes from "./routes/routes.jsx";
 
 function App() {
   return (
@@ -19,8 +19,7 @@ function App() {
       <QueryProvider>
         <Router>
           <div className="App">
-            {/* <AppRoutes /> */}
-            <Flashcard />
+            <AppRoutes />
           </div>
         </Router>
       </QueryProvider>

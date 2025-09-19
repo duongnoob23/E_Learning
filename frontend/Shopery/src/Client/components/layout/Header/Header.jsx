@@ -1,18 +1,16 @@
 // Client Header Component
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../../../redux/slices/authSlice";
+import { useAuthStore } from "../../../../stores/authStore";
 import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { clearCredentials, isAuthenticated, user } = useAuthStore();
   const handleLogout = async () => {
-    await dispatch(logoutUser());
+    clearCredentials();
+
     navigate("/login");
   };
 
