@@ -45,7 +45,7 @@ exports.updateUserProfile = async (userId, updateData) => {
     }
 
     // Chỉ cho phép cập nhật một số trường nhất định
-    const allowedFields = ['full_name', 'phone_number', 'avatar_url'];
+    const allowedFields = ['username', 'full_name', 'phone_number', 'avatar_url'];
     const updateFields = {};
     
     for (const field of allowedFields) {

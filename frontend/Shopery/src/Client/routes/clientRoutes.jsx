@@ -21,7 +21,7 @@ import Register from "../../Client/pages/Auth/Register/Register";
 import Course from "../pages/Course/Course";
 import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
-import Profile from "../pages/Profile/Profile";
+import Profile from "../pages/ProfileV2/index";
 
 // Exam Pages
 import ExamList from "../pages/Exam/ExamList/ExamList";

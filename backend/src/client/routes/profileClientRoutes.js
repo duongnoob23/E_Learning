@@ -60,9 +60,9 @@ const changePasswordValidation = [
 
 // Routes
 router.get("/profile", authMiddleware, profileClientController.getProfile);
-router.put("/profile", authMiddleware, updateProfileValidation, profileClientController.updateProfile);
+router.patch("/profile", authMiddleware, updateProfileValidation,upload.single('avatar'), profileClientController.updateProfile);
 router.get("/stats", authMiddleware, profileClientController.getUserStats);
-router.put("/change-password", authMiddleware, changePasswordValidation, profileClientController.changePassword);
+router.patch("/change-password", authMiddleware, changePasswordValidation, profileClientController.changePassword);
 router.post("/upload-avatar", authMiddleware, upload.single('avatar'), profileClientController.uploadAvatar);
 
 module.exports = router;
