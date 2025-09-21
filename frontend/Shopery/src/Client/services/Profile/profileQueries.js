@@ -4,9 +4,10 @@ import { profileApi } from "../../api/Profile/profileApi";
 
 export const useGetProfile = () => {
   return useQuery({
-    queryKey: queryKeys.profile.me(),
+    queryKey: queryKeys.user.profile,
     queryFn: profileApi.getMe,
-    staleTime: 5 * 60 * 1000, // 5 phút
   });
 };
+
+
 

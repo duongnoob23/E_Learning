@@ -5,7 +5,7 @@ const ProfileHeader = ({ user }) => {
     <div className="profilev2-header">
       <div className="profilev2-avatar">
         {user?.avatar_url ? (
-          <img src={user.avatar_url} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <img src={`http://localhost:5000${user.avatar_url}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
           (user?.full_name?.[0] || user?.username?.[0] || "U").toUpperCase()
         )}

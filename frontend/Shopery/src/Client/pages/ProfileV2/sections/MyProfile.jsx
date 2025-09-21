@@ -1,22 +1,76 @@
 import React from "react";
+import "./MyProfile.css";
+
+// base URL backend, tuỳ theo server bạn đang chạy
+const BASE_URL = "http://localhost:5000";
 
 const MyProfile = ({ user }) => {
+  console.log("user:", user);
+
+  // xử lý avatar_url
+  const avatarSrc = user?.avatar_url
+    ? user.avatar_url.startsWith("http")
+      ? user.avatar_url
+      : BASE_URL + user.avatar_url
+    : "/default-avatar.png";
+
   return (
-    <div>
-      <h3 style={{ marginTop: 0 }}>My Profile</h3>
+    <div className="profile-container">
+      <h3 className="profile-title">My Profile</h3>
+
+      {/* Avatar + Basic Info */}
+      <div className="profile-header">
+        <img src={avatarSrc} alt="avatar" className="profile-avatar" />
+        <div className="profile-basic">
+          <h4>{user?.username}</h4>
+          <p>{user?.email}</p>
+          <span
+            className={`status-badge ${
+              user?.status === "verified" ? "verified" : "unverified"
+            }`}
+          >
+            {user?.status}
+          </span>
+        </div>
+      </div>
+
+      {/* Detailed Info */}
       <div className="section-card">
-        <div style={{ fontWeight: 600, marginBottom: 8 }}>Basic information</div>
-        <div className="form-row">
+        <div className="section-title">Basic Information</div>
+
+        <div className="info-row">
           <label>Full name</label>
-          <input defaultValue={user?.full_name || ""} placeholder="Enter your full name" />
+          <span>{user?.full_name || "Not provided"}</span>
         </div>
-        <div className="form-row">
+
+        <div className="info-row">
           <label>Phone number</label>
-          <input defaultValue={user?.phone_number || ""} placeholder="Enter your phone" />
+          <span>{user?.phone_number || "Not provided"}</span>
         </div>
-        <div className="actions">
-          <button className="btn-secondary">Cancel</button>
-          <button className="btn-primary">Save Changes</button>
+
+        <div className="info-row">
+          <label>Email verified</label>
+          <span>{user?.email_verified ? "Yes ✅" : "No ❌"}</span>
+        </div>
+
+        <div className="info-row">
+          <label>Phone verified</label>
+          <span>{user?.phone_verified ? "Yes ✅" : "No ❌"}</span>
+        </div>
+
+        <div className="info-row">
+          <label>Last login</label>
+          <span>{user?.last_login || "Never"}</span>
+        </div>
+
+        <div className="info-row">
+          <label>Created at</label>
+          <span>{new Date(user?.created_at).toLocaleString()}</span>
+        </div>
+
+        <div className="info-row">
+          <label>Updated at</label>
+          <span>{new Date(user?.updated_at).toLocaleString()}</span>
         </div>
       </div>
     </div>
@@ -24,5 +78,3 @@ const MyProfile = ({ user }) => {
 };
 
 export default MyProfile;
-
-

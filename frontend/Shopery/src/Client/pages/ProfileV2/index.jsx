@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import {useGetProfile} from "../../services/Profile/profileQueries";
 import "./profile.css";
 
 // Components
@@ -8,10 +9,10 @@ import ProfileHeader from "./components/ProfileHeader";
 
 // Sections
 import MyProfile from "./sections/MyProfile";
-import Security from "./sections/Security";
+import Security from "./sections/Security/Security";
 import Privacy from "./sections/Privacy";
-import Notification from "./sections/Notification";
-import EditProfile from "./sections/EditProfile";
+import Notification from "./sections/Notification/Notification";
+import EditProfile from "./sections/EditProfile/EditProfile";
 
 const tabs = [
   { key: "profile", label: "My Profile", component: MyProfile },
@@ -22,20 +23,21 @@ const tabs = [
 ];
 
 const ProfilePageV2 = () => {
-    const [user, setUser] = React.useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("user"));
-    } catch (e) {
-      return null;
+    const getProfile = useGetProfile(); // TanStack Query hook
+    const [user, setUser] = useState(null);
+
+    const [activeKey, setActiveKey] = React.useState("profile");
+    useEffect(() => {
+    if (getProfile.isSuccess) {
+      // Lấy DT (data thực tế của user) từ response
+      setUser(getProfile.data?.DT ?? null);
     }
-  });
+  }, [getProfile.isSuccess, getProfile.data])
 
-  const [activeKey, setActiveKey] = React.useState("profile");
-
-  const ActiveSection = useMemo(() => {
-    const found = tabs.find((t) => t.key === activeKey);
-    return found ? found.component : Security;
-  }, [activeKey]);
+    const ActiveSection = useMemo(() => {
+        const found = tabs.find((t) => t.key === activeKey);
+        return found ? found.component : Security;
+      }, [activeKey]);
 
   return (
     <div className="profilev2-container">

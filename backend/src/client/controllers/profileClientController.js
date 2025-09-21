@@ -1,3 +1,4 @@
+const { sendOtpEmail } = require("../../utils/sendEmail");
 const profileClientService = require("../services/profileClientService");
 const { validationResult } = require("express-validator");
 
@@ -15,27 +16,32 @@ exports.getProfile = async (req, res, next) => {
 // [PATCH] Cập nhật thông tin profile
 exports.updateProfile = async (req, res, next) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
     const userId = req.user.userId;
-    const { username,full_name, phone_number } = req.body;
 
-    // Nếu có upload file qua multer
-    const avatar_url = req.file ? req.file.path : req.body.avatar_url;
+    // Lấy data client gửi
+    const updateData = { ...req.body };
+
+    // Nếu có file upload thì override avatar_url
+    if (req.file) {
+      console.log("Original file path:", req.file.path);
+      console.log("File filename:", req.file.filename);
+      // Tạo URL đơn giản
+      const avatarUrl = `/uploads/avatars/${req.file.filename}`;
+      console.log("Generated avatar URL:", avatarUrl);
+      updateData.avatar_url = avatarUrl;
+    }
 
     const updatedProfile = await profileClientService.updateUserProfile(
       userId,
-      { username,full_name, phone_number, avatar_url }
+      updateData
     );
-    
+
     res.json(updatedProfile);
   } catch (error) {
     next(error);
   }
 };
+
 
 // [GET] Lấy thống kê của user
 exports.getUserStats = async (req, res, next) => {
@@ -91,6 +97,55 @@ exports.uploadAvatar = async (req, res, next) => {
     );
     
     res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [PATCH] Đổi email
+exports.changeEmail = async (req, res, next) => {
+  try {
+    // Kiểm tra validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        EM: "Dữ liệu không hợp lệ",
+        EC: "1",
+        DT: errors.array()
+      });
+    }
+
+    const userId = req.user.userId;
+    const { newEmail, currentPassword } = req.body;
+
+    const result = await profileClientService.changeEmail(
+      userId,
+      newEmail,
+      currentPassword
+    );
+
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [POST] Xác thực OTP đổi email
+exports.verifyOtp = async (req, res, next) => {
+  try {
+    // Kiểm tra validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        EM: "Dữ liệu không hợp lệ",
+        EC: "1",
+        DT: errors.array()
+      });
+    }
+
+    const { email, otp } = req.body;
+    const response = await profileClientService.verifyOtp(email, otp);
+    res.json(response);
   } catch (error) {
     next(error);
   }
