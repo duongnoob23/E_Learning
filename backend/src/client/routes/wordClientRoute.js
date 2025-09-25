@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authMiddleware = require("../../middleware/authMiddleware");
 
 const controller = require("../controllers/wordClientController");
 
@@ -13,6 +14,8 @@ const controller = require("../controllers/wordClientController");
  * - GET   /status?topic_id=         (lấy trạng thái học theo topic: learned/unlearned)
  * - POST  /status/mark              (đánh dấu đã thuộc)
  * - POST  /status/unmark            (bỏ đánh dấu)
+ * - GET   /topics/explore           (lấy topics cho phần khám phá)
+ * - GET   /topics/user              (lấy topics của user - List từ của tôi)
  */
 
 // Words hệ thống theo topic + tìm kiếm
@@ -38,5 +41,26 @@ router.post("/status/mark", (req, res) =>
 router.post("/status/unmark", (req, res) =>
   res.status(501).json({ message: "Not implemented" })
 );
+
+// Topics cho phần khám phá
+router.get("/topics/explore", controller.getExploreTopics);
+
+// Topics của user (List từ của tôi) - cần authentication
+router.get("/topics/user", authMiddleware, controller.getUserTopics);
+
+// Tạo topic mới - cần authentication
+router.post("/topics", authMiddleware, controller.createTopic);
+
+// Cập nhật topic - cần authentication
+router.put("/topics/:topicId", authMiddleware, controller.updateTopic);
+
+// Xóa topic - cần authentication
+router.delete("/topics/:topicId", authMiddleware, controller.deleteTopic);
+
+// Thêm từ vào topic - cần authentication
+router.post("/topics/:topicId/words", authMiddleware, controller.addWordToTopic);
+
+// Lấy words theo topic_id
+router.get("/topics/:topicId/words", controller.getWordsByTopicId);
 
 module.exports = router;

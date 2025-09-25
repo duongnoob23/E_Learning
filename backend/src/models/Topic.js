@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  const { Op } = require('sequelize');
   const Topic = sequelize.define(
     "Topic",
     {
@@ -36,6 +37,43 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "topics", timestamps: false }
   );
+
+  // Thêm các method tiện ích
+  Topic.findById = async (topic_id) => Topic.findOne({ where: { topic_id } });
+  Topic.findByName = async (topic_name) => Topic.findOne({ where: { topic_name } });
+  Topic.createTopic = async (data) => Topic.create(data);
+  Topic.updateTopic = async (topic_id, data) => Topic.update(data, { where: { topic_id } });
+  Topic.deleteTopic = async (topic_id) => Topic.destroy({ where: { topic_id } });
+  Topic.getAll = async () => Topic.findAll();
+  Topic.countTopics = async () => Topic.count();
+  Topic.findByCreator = async (created_by) => Topic.findAll({ where: { created_by } });
+  Topic.findPublicTopics = async (filters = {}) => {
+    const { page = 1, limit = 10, search = '', topic_type = 'system' } = filters;
+    const offset = (page - 1) * limit;
+    
+    const whereConditions = {
+      is_public: true,
+      is_active: true,
+      topic_type: topic_type
+    };
+    
+    if (search) {
+      whereConditions[Op.or] = [
+        { topic_name: { [Op.like]: `%${search}%` } },
+        { description: { [Op.like]: `%${search}%` } }
+      ];
+    }
+    
+    const { count, rows } = await Topic.findAndCountAll({
+      where: whereConditions,
+      limit: limit,
+      offset: offset,
+      order: [['created_at', 'DESC']]
+    });
+    
+    return { count, rows };
+  };
+
   return Topic;
 };
 

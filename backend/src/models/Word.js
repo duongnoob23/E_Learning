@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  const { Op } = require('sequelize');
   const Word = sequelize.define(
     "Word",
     {
@@ -42,6 +43,36 @@ module.exports = (sequelize, DataTypes) => {
   Word.countWords = async () => Word.count();
   Word.findByWord = async (word) => Word.findOne({where : { word }});
   Word.searchWord = async (word) => Word.findAll({where : { word: { [Op.like]: `%${word}%` } }});
+  
+  // Lấy words theo topic với pagination và search
+  Word.findByTopicWithPagination = async (filters = {}) => {
+    const { topic_id, page = 1, limit = 20, search = '' } = filters;
+    const offset = (page - 1) * limit;
+    
+    const whereConditions = {
+      topic_id: topic_id,
+      is_active: true
+    };
+    
+    if (search) {
+      whereConditions[Op.or] = [
+        { word: { [Op.like]: `%${search}%` } },
+        { meaning_vi: { [Op.like]: `%${search}%` } },
+        { example_en: { [Op.like]: `%${search}%` } },
+        { example_vi: { [Op.like]: `%${search}%` } }
+      ];
+    }
+    
+    const { count, rows } = await Word.findAndCountAll({
+      where: whereConditions,
+      limit: parseInt(limit),
+      offset: offset,
+      order: [['word', 'ASC']]
+    });
+    
+    return { count, rows };
+  };
+  
   return Word;
 };
 
