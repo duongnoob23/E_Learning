@@ -1,83 +1,35 @@
 // Client/components/Flashcard/FlashcardDetail/FlashcardDetail.jsx (cập nhật)
 import React, { useState } from "react";
+import { useWordsByTopic } from "../../../hooks/Flashcard/useFlashcardQueries";
 import "./FlashcardDetail.css";
 
-const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
+const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showDefinition, setShowDefinition] = useState(false);
   const [studyMode, setStudyMode] = useState("list"); // "list" hoặc "flashcard"
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showAddWordModal, setShowAddWordModal] = useState(false);
+  const [showBulkAddModal, setShowBulkAddModal] = useState(false);
 
-  // Dữ liệu fake cho words
-  const fakeWords = [
-    {
-      id: 1,
-      word: "absent",
-      type: "adjective",
-      pronunciation: "/'æbsənt/",
-      definition: "vắng mặt (vì đau ốm,...)",
-      example: {
-        en: "Most students were absent from school at least once",
-        vi: "Hầu hết sinh viên đã vắng mặt ít nhất một lần",
-      },
-      image:
-        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    },
-    {
-      id: 2,
-      word: "accept",
-      type: "verb",
-      pronunciation: "/ǝk'sept/",
-      definition: "nhận, chấp nhận",
-      example: {
-        en: "We accept payment by Visa Electron, Visa, Switch, Maestro, Mastercard, JCB, Solo, check or cash.",
-        vi: "Chúng tôi chấp nhận thanh toán bằng thẻ Visa Electron, Visa, Switch, Maestro, Mastercard, JCB, Solo, séc hoặc tiền mặt.",
-      },
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    },
-    {
-      id: 3,
-      word: "accomplish",
-      type: "verb",
-      pronunciation: "/ǝ'kʌmplɪʃ/",
-      definition: "hoàn thành, đạt được",
-      example: {
-        en: "She accomplished all her goals for the year.",
-        vi: "Cô ấy đã hoàn thành tất cả mục tiêu trong năm.",
-      },
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    },
-    {
-      id: 4,
-      word: "accurate",
-      type: "adjective",
-      pronunciation: "/'ækjərət/",
-      definition: "chính xác, đúng đắn",
-      example: {
-        en: "The weather forecast was very accurate.",
-        vi: "Dự báo thời tiết rất chính xác.",
-      },
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    },
-    {
-      id: 5,
-      word: "achieve",
-      type: "verb",
-      pronunciation: "/ǝ'tʃiːv/",
-      definition: "đạt được, thành công",
-      example: {
-        en: "He achieved his dream of becoming a doctor.",
-        vi: "Anh ấy đã đạt được ước mơ trở thành bác sĩ.",
-      },
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    },
-  ];
+  // Debug logs
+  console.log('=== FLASHCARD DETAIL DEBUG ===');
+  console.log('showActionButtons:', showActionButtons);
+  console.log('topic:', topic);
+  console.log('=============================');
 
-  // Sử dụng words từ topic hoặc fake words
-  const words = topic.words && topic.words.length > 0 ? topic.words : fakeWords;
+
+  // API call để lấy words theo topic_id
+  const { 
+    data: wordsData, 
+    isLoading: wordsLoading, 
+    error: wordsError 
+  } = useWordsByTopic(topic.id, { 
+    page: 1, 
+    limit: 100 // Lấy tối đa 100 words
+  });
+
+  // Extract words từ API response
+  const words = wordsData?.DT?.words || [];
   const currentWord = words[currentWordIndex];
 
   const handleNext = () => {
@@ -104,6 +56,89 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
     setShowDefinition(false);
   };
 
+  // Xử lý xem ngẫu nhiên
+  const handleRandomView = () => {
+    if (words.length > 0) {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      setCurrentWordIndex(randomIndex);
+      setShowDefinition(false);
+    }
+  };
+
+  // Xử lý dừng học list từ
+  const handleStopStudying = () => {
+    if (window.confirm("Bạn có chắc chắn muốn dừng học list từ này?")) {
+      onBack(); // Quay lại trang chủ flashcard
+    }
+  };
+
+  // Xử lý chỉnh sửa topic
+  const handleEditTopic = () => {
+    setShowEditModal(true);
+  };
+
+  // Xử lý thêm từ mới
+  const handleAddWord = () => {
+    setShowAddWordModal(true);
+  };
+
+  // Xử lý tạo hàng loạt
+  const handleBulkAdd = () => {
+    setShowBulkAddModal(true);
+  };
+
+  // Loading state
+  if (wordsLoading) {
+    return (
+      <div className="flashcard-detail">
+        <div className="detail-header">
+          <button className="back-btn" onClick={onBack}>
+            ← Quay lại
+          </button>
+          <h1 className="detail-title">Flashcards: {topic.title}</h1>
+        </div>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Đang tải danh sách từ vựng...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (wordsError) {
+    return (
+      <div className="flashcard-detail">
+        <div className="detail-header">
+          <button className="back-btn" onClick={onBack}>
+            ← Quay lại
+          </button>
+          <h1 className="detail-title">Flashcards: {topic.title}</h1>
+        </div>
+        <div className="error-container">
+          <p>Có lỗi xảy ra khi tải danh sách từ vựng. Vui lòng thử lại sau.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (words.length === 0) {
+    return (
+      <div className="flashcard-detail">
+        <div className="detail-header">
+          <button className="back-btn" onClick={onBack}>
+            ← Quay lại
+          </button>
+          <h1 className="detail-title">Flashcards: {topic.title}</h1>
+        </div>
+        <div className="empty-container">
+          <p>Chủ đề này chưa có từ vựng nào.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flashcard-detail">
       {/* Header */}
@@ -113,6 +148,24 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
         </button>
         <h1 className="detail-title">Flashcards: {topic.title}</h1>
       </div>
+
+
+
+      {/* Action Buttons - Chỉ hiển thị cho topics từ "List từ của tôi" */}
+      {showActionButtons && (
+        <div className="action-buttons-container">
+          <button className="action-btn edit-btn" onClick={handleEditTopic}>
+            Chỉnh sửa
+          </button>
+          <button className="action-btn add-word-btn" onClick={handleAddWord}>
+            Thêm từ mới
+          </button>
+          <button className="action-btn bulk-add-btn" onClick={handleBulkAdd}>
+            Tạo hàng loạt
+          </button>
+        </div>
+      )}
+      
 
       {/* Study Mode Toggle */}
       <div className="study-mode-toggle">
@@ -136,11 +189,16 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
           Luyện tập flashcards
         </button> */}
         <div className="action-links">
-          <button className="action-link">
+          <button 
+            className="action-link" 
+            onClick={handleRandomView}
+            disabled={words.length === 0}
+            title={words.length === 0 ? "Chưa có từ vựng để xem ngẫu nhiên" : "Xem từ vựng ngẫu nhiên"}
+          >
             <span className="link-icon">↻</span>
             Xem ngẫu nhiên
           </button>
-          <button className="action-link stop-btn">
+          <button className="action-link stop-btn" onClick={handleStopStudying}>
             <span className="link-icon">✕</span>
             Dừng học list từ này
           </button>
@@ -162,20 +220,20 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
                   <div className="word-list-text">
                     <div className="word-list-header">
                       <h3 className="word-list-word">{word.word}</h3>
-                      <span className="word-list-type">({word.type})</span>
+                      <span className="word-list-type">({word.partOfSpeech})</span>
                       <span className="word-list-pronunciation">
                         {word.pronunciation}
                       </span>
                     </div>
-                    <p className="word-list-definition">{word.definition}</p>
+                    <p className="word-list-definition">{word.meaningVi}</p>
                     <div className="word-list-example">
-                      <p className="example-en">{word.example.en}</p>
-                      <p className="example-vi">{word.example.vi}</p>
+                      <p className="example-en">{word.exampleEn}</p>
+                      <p className="example-vi">{word.exampleVi}</p>
                     </div>
                   </div>
-                  {word.image && (
+                  {word.imageUrl && (
                     <div className="word-list-image">
-                      <img src={word.image} alt={word.word} />
+                      <img src={word.imageUrl} alt={word.word} />
                     </div>
                   )}
                 </div>
@@ -198,7 +256,7 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
               <div className="flashcard-front">
                 <div className="word-section">
                   <h2 className="word">{currentWord.word}</h2>
-                  <span className="word-type">({currentWord.type})</span>
+                  <span className="word-type">({currentWord.partOfSpeech})</span>
                 </div>
                 <div className="pronunciation-section">
                   <span className="pronunciation">
@@ -212,21 +270,21 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
               {/* Back */}
               <div className="flashcard-back">
                 <h3 className="definition-title">Định nghĩa:</h3>
-                <p className="definition">{currentWord.definition}</p>
+                <p className="definition">{currentWord.meaningVi}</p>
 
                 <h4 className="example-title">Ví dụ:</h4>
                 <div className="example">
-                  <p className="example-en">{currentWord.example.en}</p>
-                  <p className="example-vi">{currentWord.example.vi}</p>
+                  <p className="example-en">{currentWord.exampleEn}</p>
+                  <p className="example-vi">{currentWord.exampleVi}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Word Image */}
-          {currentWord.image && (
+          {currentWord.imageUrl && (
             <div className="word-image">
-              <img src={currentWord.image} alt={currentWord.word} />
+              <img src={currentWord.imageUrl} alt={currentWord.word} />
             </div>
           )}
 
@@ -257,6 +315,72 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
           <div className="word-actions">
             <button className="word-action-btn">Đánh dấu đã học</button>
             <button className="word-action-btn">Thêm vào yêu thích</button>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Topic Modal */}
+      {showEditModal && (
+        <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Chỉnh sửa chủ đề</h2>
+              <button className="modal-close" onClick={() => setShowEditModal(false)}>
+                ×
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Chức năng chỉnh sửa chủ đề đang được phát triển...</p>
+              <div className="modal-actions">
+                <button className="btn-secondary" onClick={() => setShowEditModal(false)}>
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Word Modal */}
+      {showAddWordModal && (
+        <div className="modal-overlay" onClick={() => setShowAddWordModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Thêm từ mới</h2>
+              <button className="modal-close" onClick={() => setShowAddWordModal(false)}>
+                ×
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Chức năng thêm từ mới đang được phát triển...</p>
+              <div className="modal-actions">
+                <button className="btn-secondary" onClick={() => setShowAddWordModal(false)}>
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Add Modal */}
+      {showBulkAddModal && (
+        <div className="modal-overlay" onClick={() => setShowBulkAddModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Tạo hàng loạt</h2>
+              <button className="modal-close" onClick={() => setShowBulkAddModal(false)}>
+                ×
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Chức năng tạo hàng loạt đang được phát triển...</p>
+              <div className="modal-actions">
+                <button className="btn-secondary" onClick={() => setShowBulkAddModal(false)}>
+                  Đóng
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

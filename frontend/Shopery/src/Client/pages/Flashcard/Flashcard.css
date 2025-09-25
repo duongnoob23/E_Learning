@@ -1,18 +1,18 @@
-/* Client/pages/Flashcard/Flashcard.css */
 .flashcard-page {
   min-height: 100vh;
   background: #f9fafb;
   padding: 24px 0;
+  padding-top: 100px; /* Thêm padding-top để tránh bị che bởi header */
 }
 
 .flashcard-container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .flashcard-header {
-  margin-bottom: 32px;
+  margin-bottom: 20px; /* Giảm từ 32px xuống 20px */
 }
 
 .flashcard-header h1 {
@@ -45,13 +45,12 @@
   left: 4px;
 }
 
-/* Info Banner */
 .info-banner {
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   border-radius: 8px;
   padding: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 20px; /* Giảm từ 32px xuống 20px */
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -79,16 +78,24 @@
   line-height: 1.5;
 }
 
-/* Sections */
+
 .topics-section {
-  margin-bottom: 40px;
+  margin-bottom: 24px; /* Giảm từ 40px xuống 24px */
 }
 
 .topics-section h3 {
   font-size: 20px;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0; /* Giảm từ 16px xuống 12px */
+}
+
+
+
+
+.btn-icon {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .empty-learning {
@@ -103,15 +110,78 @@
   margin-bottom: 24px;
 }
 
-/* Topics Grid - 4 cột */
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-learning h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.empty-learning p {
+  margin: 0 0 24px 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.create-first-topic-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.create-first-topic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Search Container */
+.search-container {
+  margin-bottom: 16px; /* Giảm từ 24px xuống 16px */
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 .topics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 32px;
 }
 
-/* Loading & Error */
+/* Đảm bảo 4 cột trên màn hình rất rộng */
+@media (min-width: 1600px) {
+  .topics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .loading-container,
 .error-container {
   display: flex;
@@ -150,7 +220,6 @@
   color: #ef4444;
 }
 
-/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -182,8 +251,7 @@
   border-color: #3b82f6;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .topics-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -216,4 +284,14 @@
   .info-banner p {
     font-size: 13px;
   }
+
+  
+  .empty-learning {
+    padding: 32px 16px;
+  }
+  
+  .empty-icon {
+    font-size: 40px;
+  }
+
 }

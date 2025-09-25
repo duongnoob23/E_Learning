@@ -1,240 +1,216 @@
 // Client/components/Flashcard/AddWordModal/AddWordModal.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddWordModal.css";
 
-const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
+const AddWordModal = ({ 
+  isOpen, 
+  onClose, 
+  topic, 
+  onSave 
+}) => {
   const [formData, setFormData] = useState({
     word: "",
-    type: "noun",
+    partOfSpeech: "",
     pronunciation: "",
-    definition: "",
+    meaningVi: "",
     exampleEn: "",
     exampleVi: "",
-    image: null,
+    notes: ""
   });
-  const [errors, setErrors] = useState({});
 
-  const wordTypes = [
-    { value: "noun", label: "Danh từ" },
-    { value: "verb", label: "Động từ" },
-    { value: "adjective", label: "Tính từ" },
-    { value: "adverb", label: "Trạng từ" },
-    { value: "pronoun", label: "Đại từ" },
-    { value: "preposition", label: "Giới từ" },
-    { value: "conjunction", label: "Liên từ" },
-    { value: "interjection", label: "Thán từ" },
-  ];
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        word: "",
+        partOfSpeech: "",
+        pronunciation: "",
+        meaningVi: "",
+        exampleEn: "",
+        exampleVi: "",
+        notes: ""
+      });
+      setError(""); // Clear error when modal opens
+    }
+  }, [isOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        image: file,
-      }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.word.trim()) {
-      newErrors.word = "Từ không được để trống";
-    }
-
-    if (!formData.pronunciation.trim()) {
-      newErrors.pronunciation = "Phiên âm không được để trống";
-    }
-
-    if (!formData.definition.trim()) {
-      newErrors.definition = "Định nghĩa không được để trống";
-    }
-
-    if (!formData.exampleEn.trim()) {
-      newErrors.exampleEn = "Ví dụ tiếng Anh không được để trống";
-    }
-
-    if (!formData.exampleVi.trim()) {
-      newErrors.exampleVi = "Ví dụ tiếng Việt không được để trống";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
+    if (!formData.word.trim() || !formData.meaningVi.trim()) {
+      setError("Vui lòng nhập từ và nghĩa tiếng Việt");
+      return;
+    }
 
-    if (validateForm()) {
-      const wordData = {
+    setIsLoading(true);
+    setError("");
+    try {
+      await onSave({
         ...formData,
-        topicId,
-        example: {
-          en: formData.exampleEn,
-          vi: formData.exampleVi,
-        },
-      };
-
-      onSubmit(wordData);
-      setFormData({
-        word: "",
-        type: "noun",
-        pronunciation: "",
-        definition: "",
-        exampleEn: "",
-        exampleVi: "",
-        image: null,
+        topicId: topic.id
       });
       onClose();
+    } catch (error) {
+      console.error("Error saving word:", error);
+      
+      // Extract detailed error message
+      let errorMessage = "Có lỗi xảy ra khi lưu từ mới";
+      
+      if (error?.response?.data?.EM) {
+        errorMessage = error.response.data.EM;
+      } else if (error?.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div
-        className="modal-content add-word-modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="modal-header">
-          <h2>Thêm từ mới</h2>
-          <button className="modal-close" onClick={onClose}>
-            ×
-          </button>
+    <div className="add-word-modal-overlay">
+      <div className="add-word-modal">
+        <div className="add-word-modal-header">
+          <h2>Thêm từ mới vào "{topic?.title || 'Topic'}"</h2>
+          <button className="close-btn" onClick={onClose}>×</button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSave} className="add-word-form">
+          {error && (
+            <div className="error-message">
+              <span className="error-icon">⚠️</span>
+              {error}
+            </div>
+          )}
+          
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="word">Từ *</label>
+              <label htmlFor="word">Từ tiếng Anh *</label>
               <input
                 type="text"
                 id="word"
                 name="word"
                 value={formData.word}
                 onChange={handleInputChange}
-                placeholder="Nhập từ"
-                className={errors.word ? "error" : ""}
+                placeholder="Nhập từ tiếng Anh..."
+                required
               />
-              {errors.word && <span className="error-text">{errors.word}</span>}
             </div>
 
             <div className="form-group">
-              <label htmlFor="type">Loại từ *</label>
+              <label htmlFor="partOfSpeech">Từ loại</label>
               <select
-                id="type"
-                name="type"
-                value={formData.type}
+                id="partOfSpeech"
+                name="partOfSpeech"
+                value={formData.partOfSpeech}
                 onChange={handleInputChange}
               >
-                {wordTypes.map((type) => (
-                  <option key={type.value} value={type.value}>
-                    {type.label}
-                  </option>
-                ))}
+                <option value="">Chọn từ loại</option>
+                <option value="noun">Danh từ (n)</option>
+                <option value="verb">Động từ (v)</option>
+                <option value="adjective">Tính từ (adj)</option>
+                <option value="adverb">Trạng từ (adv)</option>
+                <option value="preposition">Giới từ (prep)</option>
+                <option value="conjunction">Liên từ (conj)</option>
+                <option value="interjection">Thán từ (interj)</option>
               </select>
             </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="pronunciation">Phiên âm *</label>
+            <label htmlFor="pronunciation">Phiên âm</label>
             <input
               type="text"
               id="pronunciation"
               name="pronunciation"
               value={formData.pronunciation}
               onChange={handleInputChange}
-              placeholder="Nhập phiên âm"
-              className={errors.pronunciation ? "error" : ""}
+              placeholder="Ví dụ: /ˈhæpi/ (happy)"
             />
-            {errors.pronunciation && (
-              <span className="error-text">{errors.pronunciation}</span>
-            )}
           </div>
 
           <div className="form-group">
-            <label htmlFor="definition">Định nghĩa *</label>
+            <label htmlFor="meaningVi">Nghĩa tiếng Việt *</label>
             <textarea
-              id="definition"
-              name="definition"
-              value={formData.definition}
+              id="meaningVi"
+              name="meaningVi"
+              value={formData.meaningVi}
               onChange={handleInputChange}
-              placeholder="Nhập định nghĩa"
+              placeholder="Nhập nghĩa tiếng Việt..."
               rows="3"
-              className={errors.definition ? "error" : ""}
+              required
             />
-            {errors.definition && (
-              <span className="error-text">{errors.definition}</span>
-            )}
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="exampleEn">Ví dụ tiếng Anh *</label>
+              <label htmlFor="exampleEn">Ví dụ tiếng Anh</label>
               <textarea
                 id="exampleEn"
                 name="exampleEn"
                 value={formData.exampleEn}
                 onChange={handleInputChange}
-                placeholder="Nhập ví dụ tiếng Anh"
-                rows="3"
-                className={errors.exampleEn ? "error" : ""}
+                placeholder="Ví dụ: I am happy today."
+                rows="2"
               />
-              {errors.exampleEn && (
-                <span className="error-text">{errors.exampleEn}</span>
-              )}
             </div>
 
             <div className="form-group">
-              <label htmlFor="exampleVi">Ví dụ tiếng Việt *</label>
+              <label htmlFor="exampleVi">Ví dụ tiếng Việt</label>
               <textarea
                 id="exampleVi"
                 name="exampleVi"
                 value={formData.exampleVi}
                 onChange={handleInputChange}
-                placeholder="Nhập ví dụ tiếng Việt"
-                rows="3"
-                className={errors.exampleVi ? "error" : ""}
+                placeholder="Ví dụ: Tôi hạnh phúc hôm nay."
+                rows="2"
               />
-              {errors.exampleVi && (
-                <span className="error-text">{errors.exampleVi}</span>
-              )}
             </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="image">Hình ảnh (tùy chọn)</label>
-            <input
-              type="file"
-              id="image"
-              name="image"
-              onChange={handleFileChange}
-              accept="image/*"
+            <label htmlFor="notes">Ghi chú</label>
+            <textarea
+              id="notes"
+              name="notes"
+              value={formData.notes}
+              onChange={handleInputChange}
+              placeholder="Ghi chú thêm về từ này..."
+              rows="2"
             />
           </div>
 
           <div className="modal-actions">
-            <button type="button" className="btn-secondary" onClick={onClose}>
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={onClose}
+              disabled={isLoading}
+            >
               Hủy
             </button>
-            <button type="submit" className="btn-primary">
-              Thêm từ
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isLoading}
+            >
+              {isLoading ? "Đang lưu..." : "Thêm từ"}
             </button>
           </div>
         </form>

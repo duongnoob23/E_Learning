@@ -3,7 +3,7 @@
     display: flex;
     gap: 0;
     border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 24px;
+    margin-bottom: 16px; /* Giảm từ 24px xuống 16px */
   }
   
   .flashcard-tab {
