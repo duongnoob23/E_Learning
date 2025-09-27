@@ -11,16 +11,17 @@ import { store } from "./redux/store";
 import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
-import AppRoutes from "./routes/routes.jsx";
+import Lesson from "./Client/pages/Lesson/Lesson.jsx";
 
 function App() {
   return (
     <Provider store={store}>
       <QueryProvider>
         <Router>
-          <div className="App">
+          {/* <div className="App">
             <AppRoutes />
-          </div>
+          </div> */}
+          <Lesson />
         </Router>
       </QueryProvider>
 

@@ -3,6 +3,11 @@ const { Op } = require("sequelize");
 const Category = require("../../models").Category;
 const Instructor = require("../../models").Instructor;
 const Level = require("../../models").Level;
+const Module = require("../../models").Module;
+const Lesson = require("../../models").Lesson;
+const CourseReview = require("../../models").CourseReview;
+const User = require("../../models").User;
+const CourseDiscussion = require("../../models").CourseDiscussion;
 
 // ==================== CATEGORIES ====================
 
@@ -322,6 +327,7 @@ exports.findAllWithFilters = async (filters) => {
 // Lấy curriculum (modules + lessons) của course
 exports.getCourseCurriculum = async (course_id) => {
   try {
+    console.log("run 22");
     // Kiểm tra course có tồn tại không
     const course = await Course.findByPk(course_id);
     if (!course) {
@@ -381,6 +387,211 @@ exports.getCourseCurriculum = async (course_id) => {
     console.error("Lỗi trong getCourseCurriculum service:", error);
     return {
       EM: "Có lỗi xảy ra khi lấy chương trình học",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// ==================== COURSE REVIEWS ====================
+
+// Lấy đánh giá khóa học
+exports.getCourseReviews = async (course_id, page = 1, limit = 10) => {
+  try {
+    // Kiểm tra course có tồn tại không
+    const course = await Course.findByPk(course_id);
+    if (!course) {
+      return {
+        EM: "Không tìm thấy khóa học",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    const offset = (page - 1) * limit;
+
+    const { count, rows } = await CourseReview.findAndCountAll({
+      where: {
+        course_id: course_id,
+        status: "approved",
+      },
+      order: [["created_at", "DESC"]],
+      limit: limit,
+      offset: offset,
+      include: [
+        {
+          model: User,
+          attributes: ["user_id", "full_name", "avatar_url"],
+        },
+      ],
+      attributes: [
+        "review_id",
+        "rating",
+        "title",
+        "content",
+        "is_verified",
+        "created_at",
+      ],
+    });
+
+    return {
+      EM: "Lấy đánh giá khóa học thành công",
+      EC: "0",
+      DT: {
+        reviews: rows,
+        pagination: {
+          current_page: page,
+          total_pages: Math.ceil(count / limit),
+          total_items: count,
+          items_per_page: limit,
+        },
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi trong getCourseReviews service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi lấy đánh giá khóa học",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// ==================== COURSE DISCUSSIONS ====================
+
+// Lấy thảo luận khóa học
+exports.getCourseDiscussions = async (course_id, page = 1, limit = 10) => {
+  try {
+    // Kiểm tra course có tồn tại không
+    const course = await Course.findByPk(course_id);
+    if (!course) {
+      return {
+        EM: "Không tìm thấy khóa học",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    const offset = (page - 1) * limit;
+
+    // Lấy discussions chính (parent_id = null)
+    const { count, rows } = await CourseDiscussion.findAndCountAll({
+      where: {
+        course_id: course_id,
+        parent_id: null,
+        status: "active",
+      },
+      order: [["created_at", "DESC"]],
+      limit: limit,
+      offset: offset,
+      include: [
+        {
+          model: User,
+          attributes: ["user_id", "full_name", "avatar_url"],
+        },
+        {
+          model: CourseDiscussion,
+          as: "replies",
+          where: {
+            status: "active",
+          },
+          required: false,
+          include: [
+            {
+              model: User,
+              attributes: ["user_id", "full_name", "avatar_url"],
+            },
+          ],
+          attributes: ["discussion_id", "content", "likes_count", "created_at"],
+        },
+      ],
+      attributes: [
+        "discussion_id",
+        "title",
+        "content",
+        "likes_count",
+        "replies_count",
+        "created_at",
+      ],
+    });
+
+    return {
+      EM: "Lấy thảo luận khóa học thành công",
+      EC: "0",
+      DT: {
+        discussions: rows,
+        pagination: {
+          current_page: page,
+          total_pages: Math.ceil(count / limit),
+          total_items: count,
+          items_per_page: limit,
+        },
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi trong getCourseDiscussions service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi lấy thảo luận khóa học",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// ==================== SUGGESTED COURSES ====================
+
+// Lấy khóa học gợi ý
+exports.getSuggestedCourses = async (limit = 6) => {
+  try {
+    const courses = await Course.findAll({
+      where: {
+        status: "published",
+        is_featured: true,
+      },
+      order: [
+        ["rating", "DESC"],
+        ["total_students", "DESC"],
+      ],
+      limit: limit,
+      include: [
+        {
+          model: Category,
+          attributes: ["category_id", "name"],
+        },
+        {
+          model: Instructor,
+          attributes: ["instructor_id", "name"],
+        },
+        {
+          model: Level,
+          attributes: ["level_id", "name"],
+        },
+      ],
+      attributes: [
+        "course_id",
+        "title",
+        "short_description",
+        "image",
+        "price",
+        "old_price",
+        "discount_percent",
+        "rating",
+        "rating_count",
+        "total_students",
+        "is_free",
+        "is_best_seller",
+      ],
+    });
+
+    return {
+      EM: "Lấy khóa học gợi ý thành công",
+      EC: "0",
+      DT: courses,
+    };
+  } catch (error) {
+    console.error("Lỗi trong getSuggestedCourses service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi lấy khóa học gợi ý",
       EC: "-2",
       DT: null,
     };

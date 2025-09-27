@@ -14,4 +14,10 @@ router.get("/:course_id", controller.getCourseById);
 
 router.get("/:course_id/curriculum", controller.getCourseCurriculum);
 
+router.get("/:course_id/reviews", controller.getCourseReviews);
+
+router.get("/:course_id/discussions", controller.getCourseDiscussions);
+
+router.get("/suggested", controller.getSuggestedCourses);
+
 module.exports = router;

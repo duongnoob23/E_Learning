@@ -68,7 +68,7 @@ exports.getCourse = async (req, res, next) => {
   }
 };
 
-// [GET] Lấy danh sách khóa học theo id
+/// [GET] Lấy danh sách khóa học theo id
 exports.getCourseById = async (req, res, next) => {
   try {
     const { course_id } = req.params;
@@ -82,8 +82,53 @@ exports.getCourseById = async (req, res, next) => {
 // [GET] Lấy curriculum (modules + lessons) của course
 exports.getCourseCurriculum = async (req, res, next) => {
   try {
+    console.log("run11 ");
     const { course_id } = req.params;
     const result = await Course.getCourseCurriculum(course_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy đánh giá khóa học
+exports.getCourseReviews = async (req, res, next) => {
+  try {
+    const { course_id } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const result = await Course.getCourseReviews(
+      course_id,
+      parseInt(page),
+      parseInt(limit)
+    );
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy thảo luận khóa học
+exports.getCourseDiscussions = async (req, res, next) => {
+  try {
+    const { course_id } = req.params;
+    console.log("🚀 ~ course_id:", course_id);
+    const { page = 1, limit = 10 } = req.query;
+    const result = await Course.getCourseDiscussions(
+      course_id,
+      parseInt(page),
+      parseInt(limit)
+    );
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy khóa học gợi ý
+exports.getSuggestedCourses = async (req, res, next) => {
+  try {
+    const { limit = 6 } = req.query;
+    const result = await Course.getSuggestedCourses(parseInt(limit));
     res.json(result);
   } catch (error) {
     next(error);
