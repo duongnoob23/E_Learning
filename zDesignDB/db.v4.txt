@@ -75,11 +75,6 @@ CREATE TABLE users (
     phone_number VARCHAR(20) COMMENT 'Số điện thoại',
     avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
     status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active/inactive/banned/pending_verification',
-    email_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực email',
-    phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực số điện thoại',
-    last_login DATETIME COMMENT 'Lần đăng nhập cuối',
-    failed_login_attempts INT DEFAULT 0 COMMENT 'Số lần đăng nhập sai',
-    locked_until DATETIME COMMENT 'Bị khóa đến',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
 ) ENGINE=InnoDB;

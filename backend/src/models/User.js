@@ -14,23 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       phone_number: { type: DataTypes.STRING(20), allowNull: true },
       avatar_url: { type: DataTypes.STRING(255), allowNull: true },
       status: { type: DataTypes.STRING(20), allowNull: true },
-      email_verified: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      phone_verified: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      last_login: { type: DataTypes.DATE, allowNull: true },
-      failed_login_attempts: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      locked_until: { type: DataTypes.DATE, allowNull: true },
       created_at: { type: DataTypes.DATE, allowNull: true },
       updated_at: { type: DataTypes.DATE, allowNull: true },
     },
@@ -38,9 +21,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.findById = async (user_id) => User.findOne({ where: { user_id } });
   User.findByEmail = async (email) => User.findOne({ where: { email } });
-  User.findByUsername = async (username) => User.findOne({ where: { username } });
+  User.findByUsername = async (username) =>
+    User.findOne({ where: { username } });
   User.createUser = async (data) => User.create(data);
-  User.updateUser = async (user_id, data) => User.update(data, { where: { user_id } });
+  User.updateUser = async (user_id, data) =>
+    User.update(data, { where: { user_id } });
   User.deleteUser = async (user_id) => User.destroy({ where: { user_id } });
   User.getAll = async () => User.findAll();
   User.countUsers = async () => User.count();

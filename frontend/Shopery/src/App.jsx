@@ -12,7 +12,6 @@ import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
 import AppRoutes from "./routes/routes.jsx";
-
 function App() {
   return (
     <Provider store={store}>
@@ -20,6 +19,7 @@ function App() {
         <Router>
           <div className="App">
             <AppRoutes />
+            {/* <Lesson /> */}
           </div>
         </Router>
       </QueryProvider>
