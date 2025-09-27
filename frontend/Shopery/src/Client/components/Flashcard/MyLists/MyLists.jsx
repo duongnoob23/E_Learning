@@ -1,18 +1,18 @@
 // Client/components/Flashcard/MyLists/MyLists.jsx
 import React, { useState } from "react";
-import EditTopicModal from "../EditTopicModal/EditTopicModal";
 import AddWordModal from "../AddWordModal/AddWordModal";
+import EditTopicModal from "../EditTopicModal/EditTopicModal";
 import "./MyLists.css";
 
-const MyLists = ({ 
-  topics, 
-  loading, 
-  error, 
-  onTopicClick, 
+const MyLists = ({
+  topics,
+  loading,
+  error,
+  onTopicClick,
   onCreateTopic,
   onUpdateTopic,
   onDeleteTopic,
-  onAddWord
+  onAddWord,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("newest");
@@ -21,9 +21,11 @@ const MyLists = ({
   const [selectedTopic, setSelectedTopic] = useState(null);
 
   // Filter topics based on search
-  const filteredTopics = topics.filter(topic => 
-    topic.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (topic.description && topic.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredTopics = topics.filter(
+    (topic) =>
+      topic.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (topic.description &&
+        topic.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   // Sort topics
@@ -66,11 +68,13 @@ const MyLists = ({
 
   const handleSaveWord = async (wordData) => {
     if (onAddWord && selectedTopic) {
-      console.log('MyLists handleSaveWord - selectedTopic:', selectedTopic);
+      console.log("MyLists handleSaveWord - selectedTopic:", selectedTopic);
       // Truyền selectedTopic lên parent component
       await onAddWord(wordData, selectedTopic);
     } else {
-      console.error('MyLists handleSaveWord - selectedTopic is null or onAddWord is not provided');
+      console.error(
+        "MyLists handleSaveWord - selectedTopic is null or onAddWord is not provided"
+      );
     }
   };
 
@@ -91,7 +95,10 @@ const MyLists = ({
         <div className="my-lists-error">
           <div className="error-icon">⚠️</div>
           <p>Có lỗi khi tải danh sách từ của bạn</p>
-          <button onClick={() => window.location.reload()} className="retry-btn">
+          <button
+            onClick={() => window.location.reload()}
+            className="retry-btn"
+          >
             Thử lại
           </button>
         </div>
@@ -104,7 +111,7 @@ const MyLists = ({
       {/* Header Section */}
       <div className="my-lists-header">
         <div className="header-content">
-          <h1>📚 Danh sách từ của tôi</h1>
+          <h2>📚 Danh sách từ của tôi</h2>
           <p>Quản lý và học từ vựng cá nhân của bạn</p>
         </div>
         <button className="create-new-btn" onClick={onCreateTopic}>
@@ -115,21 +122,21 @@ const MyLists = ({
 
       {/* Stats Overview */}
       <div className="stats-overview">
-        <div className="stat-card">
-          <div className="stat-number">{topics.length}</div>
-          <div className="stat-label">Danh sách</div>
+        <div className="stat-card-fix">
+          <div className="stat-number-fix">{topics.length}</div>
+          <div className="stat-label-fix">Danh sách</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-number">
+        <div className="stat-card-fix">
+          <div className="stat-number-fix">
             {topics.reduce((total, topic) => total + (topic.wordCount || 0), 0)}
           </div>
-          <div className="stat-label">Từ vựng</div>
+          <div className="stat-label-fix">Từ vựng</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-number">
-            {topics.filter(topic => topic.isActive).length}
+        <div className="stat-card-fix">
+          <div className="stat-number-fix">
+            {topics.filter((topic) => topic.isActive).length}
           </div>
-          <div className="stat-label">Đang hoạt động</div>
+          <div className="stat-label-fix">Đang hoạt động</div>
         </div>
       </div>
 
@@ -169,17 +176,23 @@ const MyLists = ({
         ) : (
           <div className="topics-grid">
             {sortedTopics.map((topic) => (
-              <div key={topic.id} className="topic-card" onClick={() => {
-                console.log("MyLists topic clicked:", topic);
-                console.log("MyLists topic ID:", topic?.id);
-                onTopicClick(topic);
-              }}>
+              <div
+                key={topic.id}
+                className="topic-card"
+                onClick={() => {
+                  console.log("MyLists topic clicked:", topic);
+                  console.log("MyLists topic ID:", topic?.id);
+                  onTopicClick(topic);
+                }}
+              >
                 <div className="topic-header">
                   <h3 className="topic-title">{topic.title}</h3>
                 </div>
-                
-                <p className="topic-description">{topic.description || 'Chưa có mô tả'}</p>
-                
+
+                <p className="topic-description">
+                  {topic.description || "Chưa có mô tả"}
+                </p>
+
                 <div className="topic-meta">
                   <div className="meta-item">
                     <span className="meta-icon">📖</span>
@@ -187,19 +200,23 @@ const MyLists = ({
                   </div>
                   <div className="meta-item">
                     <span className="meta-icon">🌐</span>
-                    <span className="meta-text">{topic.category === 'user_created' ? 'Cá nhân' : 'Hệ thống'}</span>
+                    <span className="meta-text">
+                      {topic.category === "user_created"
+                        ? "Cá nhân"
+                        : "Hệ thống"}
+                    </span>
                   </div>
                   <div className="meta-item">
                     <span className="meta-icon">📅</span>
                     <span className="meta-text">
-                      {new Date(topic.createdAt).toLocaleDateString('vi-VN')}
+                      {new Date(topic.createdAt).toLocaleDateString("vi-VN")}
                     </span>
                   </div>
                 </div>
 
                 <div className="topic-actions">
-                  <button 
-                    className="action-btn primary"
+                  <button
+                    className="action-btn2 primary"
                     onClick={(e) => {
                       e.stopPropagation();
                       onTopicClick(topic);
@@ -207,8 +224,8 @@ const MyLists = ({
                   >
                     Học ngay
                   </button>
-                  <button 
-                    className="action-btn secondary"
+                  <button
+                    className="action-btn2 secondary"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleEditTopic(topic);

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/authMiddleware");
+const upload = require("../../middleware/uploadMiddleware");
 
 const controller = require("../controllers/wordClientController");
 
@@ -57,8 +58,8 @@ router.put("/topics/:topicId", authMiddleware, controller.updateTopic);
 // Xóa topic - cần authentication
 router.delete("/topics/:topicId", authMiddleware, controller.deleteTopic);
 
-// Thêm từ vào topic - cần authentication
-router.post("/topics/:topicId/words", authMiddleware, controller.addWordToTopic);
+// Thêm từ vào topic - cần authentication (với upload ảnh)
+router.post("/topics/:topicId/words", authMiddleware, upload.single('image'), controller.addWordToTopic);
 
 // Lấy words theo topic_id
 router.get("/topics/:topicId/words", controller.getWordsByTopicId);

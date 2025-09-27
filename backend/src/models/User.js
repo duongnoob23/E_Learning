@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       phone_number: { type: DataTypes.STRING(20), allowNull: true },
       avatar_url: { type: DataTypes.STRING(255), allowNull: true },
       status: { type: DataTypes.STRING(20), allowNull: true },
+
       created_at: { type: DataTypes.DATE, allowNull: true },
       updated_at: { type: DataTypes.DATE, allowNull: true },
     },

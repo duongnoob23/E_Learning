@@ -1,11 +1,18 @@
 // Client/pages/Flashcard/Flashcard.jsx
 import React, { useState } from "react";
-import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTabs";
+import CreateTopicModal from "../../components/Flashcard/CreateTopicModal/CreateTopicModal";
 import FlashcardCard from "../../components/Flashcard/FlashcardCard/FlashcardCard";
 import FlashcardDetail from "../../components/Flashcard/FlashcardDetail/FlashcardDetail";
-import CreateTopicModal from "../../components/Flashcard/CreateTopicModal/CreateTopicModal";
+import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTabs";
 import MyLists from "../../components/Flashcard/MyLists/MyLists";
-import { useExploreTopics, useUserTopics, useCreateTopic, useDeleteTopic, useUpdateTopic, useAddWordToTopic } from "../../hooks/Flashcard/useFlashcardQueries";
+import {
+  useAddWordToTopic,
+  useCreateTopic,
+  useDeleteTopic,
+  useExploreTopics,
+  useUpdateTopic,
+  useUserTopics,
+} from "../../hooks/Flashcard/useFlashcardQueries";
 import "./Flashcard.css";
 
 const Flashcard = () => {
@@ -15,26 +22,27 @@ const Flashcard = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   // API calls
-  const { 
-    data: exploreTopicsData, 
-    isLoading: exploreLoading, 
-    error: exploreError 
-  } = useExploreTopics({ 
-    page: 1, 
-    limit: 12, 
+  const {
+    data: exploreTopicsData,
+    isLoading: exploreLoading,
+    error: exploreError,
+  } = useExploreTopics({
+    page: 1,
+    limit: 12,
     search: searchQuery,
-    topic_type: 'system'
+    topic_type: "system",
   });
 
-  const { 
-    data: userTopicsData, 
-    isLoading: userTopicsLoading, 
-    error: userTopicsError 
-  } = useUserTopics({ 
-    page: 1, 
-    limit: 12, 
-    search: searchQuery 
+  const {
+    data: userTopicsData,
+    isLoading: userTopicsLoading,
+    error: userTopicsError,
+  } = useUserTopics({
+    page: 1,
+    limit: 12,
+    search: searchQuery,
   });
+  console.log("🚀 ~ Flashcard ~ userTopicsData:", userTopicsData);
 
   const createTopicMutation = useCreateTopic();
   const updateTopicMutation = useUpdateTopic();
@@ -42,7 +50,6 @@ const Flashcard = () => {
   const addWordMutation = useAddWordToTopic();
 
   // Topics data từ API - sử dụng trực tiếp từ hook
-
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
@@ -55,7 +62,6 @@ const Flashcard = () => {
     setSelectedTopic(topic);
   };
 
-
   const handleBack = () => {
     setSelectedTopic(null);
   };
@@ -63,19 +69,19 @@ const Flashcard = () => {
   // Xử lý tạo topic mới
   const handleCreateTopic = async (topicData) => {
     try {
-      console.log('Creating topic with data:', topicData);
-      console.log('Current userTopicsData before create:', userTopicsData);
-      
+      console.log("Creating topic with data:", topicData);
+      console.log("Current userTopicsData before create:", userTopicsData);
+
       await createTopicMutation.mutateAsync({
         topic_name: topicData.title,
         description: topicData.description || "Chưa có mô tả",
         topic_type: "user_created",
         is_public: true,
         is_active: true,
-        word_count: 0
+        word_count: 0,
       });
-      
-      console.log('Topic created, closing modal');
+
+      console.log("Topic created, closing modal");
       setShowCreateModal(false);
     } catch (error) {
       console.error("Error creating topic:", error);
@@ -91,8 +97,8 @@ const Flashcard = () => {
         topicData: {
           topic_name: topicData.title,
           description: topicData.description,
-          is_public: topicData.isPublic
-        }
+          is_public: topicData.isPublic,
+        },
       });
     } catch (error) {
       console.error("Error updating topic:", error);
@@ -114,27 +120,17 @@ const Flashcard = () => {
     try {
       // Sử dụng topic từ MyLists nếu có, nếu không thì dùng selectedTopic
       const targetTopic = topicFromMyLists || selectedTopic;
-      
+
       if (!targetTopic || !targetTopic.id) {
         throw new Error("Không tìm thấy topic để thêm từ");
       }
-      
+
       console.log("Adding word:", wordData);
       console.log("Target topic:", targetTopic);
-      
+
       await addWordMutation.mutateAsync({
         topicId: targetTopic.id,
-        wordData: {
-          word: wordData.word,
-          part_of_speech: wordData.partOfSpeech,
-          pronunciation: wordData.pronunciation,
-          meaning_vi: wordData.meaningVi,
-          example_en: wordData.exampleEn,
-          example_vi: wordData.exampleVi,
-          image_url: wordData.imageUrl,
-          notes: wordData.notes,
-          word_type: 'user_created'
-        }
+        wordData: wordData,
       });
     } catch (error) {
       console.error("Error adding word:", error);
@@ -160,17 +156,18 @@ const Flashcard = () => {
   const hasError = exploreError || userTopicsError;
 
   // Debug logs
-  console.log('Current active tab:', activeTab);
-  console.log('Current topics:', currentTopics);
-  console.log('User topics data:', userTopicsData);
-  console.log('User topics loading:', userTopicsLoading);
-  console.log('User topics error:', userTopicsError);
+  console.log("Current active tab:", activeTab);
+  console.log("Current topics:", currentTopics);
+  console.log("User topics data:", userTopicsData);
+  console.log("User topics loading:", userTopicsLoading);
+  console.log("User topics error:", userTopicsError);
 
   if (selectedTopic) {
     // Kiểm tra xem topic có phải từ "List từ của tôi" không
     // Topics từ "List từ của tôi" sẽ có created_by hoặc topic_type = 'user_created'
-    const isFromMyLists = selectedTopic.created_by || selectedTopic.topic_type === 'user_created';
-    
+    const isFromMyLists =
+      selectedTopic.created_by || selectedTopic.topic_type === "user_created";
+
     return (
       <FlashcardDetail
         topic={selectedTopic}
@@ -241,7 +238,6 @@ const Flashcard = () => {
             highlights các bạn đã tạo trước đây) trong trang chi tiết
           </p>
         </div>
-
 
         {/* Content based on active tab */}
         {activeTab === "explore" && (

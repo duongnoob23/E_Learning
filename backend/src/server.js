@@ -22,6 +22,8 @@ app.use(helmet());
 app.use(cors());
 
 app.use(express.json());
+// Serve static files from uploads directory
+app.use('/uploads', express.static('uploads'));
 app.use(routes);
 
 //Logging middleware (chỉ trong development)

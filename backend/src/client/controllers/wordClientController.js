@@ -250,11 +250,16 @@ exports.addWordToTopic = async (req, res, next) => {
       meaning_vi, 
       example_en, 
       example_vi, 
-      image_url, 
       notes, 
       word_type 
     } = req.body;
     const userId = req.user?.userId;
+    
+    // Xử lý file upload
+    let image_url = null;
+    if (req.file) {
+      image_url = `/uploads/${req.file.filename}`;
+    }
     
     if (!userId) {
       return res.status(401).json({

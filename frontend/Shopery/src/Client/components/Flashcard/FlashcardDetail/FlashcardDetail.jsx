@@ -12,20 +12,19 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
   const [showBulkAddModal, setShowBulkAddModal] = useState(false);
 
   // Debug logs
-  console.log('=== FLASHCARD DETAIL DEBUG ===');
-  console.log('showActionButtons:', showActionButtons);
-  console.log('topic:', topic);
-  console.log('=============================');
-
+  console.log("=== FLASHCARD DETAIL DEBUG ===");
+  console.log("showActionButtons:", showActionButtons);
+  console.log("topic:", topic);
+  console.log("=============================");
 
   // API call để lấy words theo topic_id
-  const { 
-    data: wordsData, 
-    isLoading: wordsLoading, 
-    error: wordsError 
-  } = useWordsByTopic(topic.id, { 
-    page: 1, 
-    limit: 100 // Lấy tối đa 100 words
+  const {
+    data: wordsData,
+    isLoading: wordsLoading,
+    error: wordsError,
+  } = useWordsByTopic(topic.id, {
+    page: 1,
+    limit: 100, // Lấy tối đa 100 words
   });
 
   // Extract words từ API response
@@ -92,10 +91,9 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
     return (
       <div className="flashcard-detail">
         <div className="detail-header">
-          <button className="back-btn" onClick={onBack}>
-            ← Quay lại
-          </button>
+          <button className="back-btn" onClick={onBack}></button>
           <h1 className="detail-title">Flashcards: {topic.title}</h1>
+          <div></div>
         </div>
         <div className="loading-container">
           <div className="loading-spinner"></div>
@@ -111,7 +109,7 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
       <div className="flashcard-detail">
         <div className="detail-header">
           <button className="back-btn" onClick={onBack}>
-            ← Quay lại
+            ←
           </button>
           <h1 className="detail-title">Flashcards: {topic.title}</h1>
         </div>
@@ -128,7 +126,7 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
       <div className="flashcard-detail">
         <div className="detail-header">
           <button className="back-btn" onClick={onBack}>
-            ← Quay lại
+            ←
           </button>
           <h1 className="detail-title">Flashcards: {topic.title}</h1>
         </div>
@@ -144,12 +142,10 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
       {/* Header */}
       <div className="detail-header">
         <button className="back-btn" onClick={onBack}>
-          ← Quay lại
+          ←
         </button>
         <h1 className="detail-title">Flashcards: {topic.title}</h1>
       </div>
-
-
 
       {/* Action Buttons - Chỉ hiển thị cho topics từ "List từ của tôi" */}
       {showActionButtons && (
@@ -165,7 +161,6 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
           </button>
         </div>
       )}
-      
 
       {/* Study Mode Toggle */}
       <div className="study-mode-toggle">
@@ -189,11 +184,15 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
           Luyện tập flashcards
         </button> */}
         <div className="action-links">
-          <button 
-            className="action-link" 
+          <button
+            className="action-link"
             onClick={handleRandomView}
             disabled={words.length === 0}
-            title={words.length === 0 ? "Chưa có từ vựng để xem ngẫu nhiên" : "Xem từ vựng ngẫu nhiên"}
+            title={
+              words.length === 0
+                ? "Chưa có từ vựng để xem ngẫu nhiên"
+                : "Xem từ vựng ngẫu nhiên"
+            }
           >
             <span className="link-icon">↻</span>
             Xem ngẫu nhiên
@@ -220,7 +219,9 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
                   <div className="word-list-text">
                     <div className="word-list-header">
                       <h3 className="word-list-word">{word.word}</h3>
-                      <span className="word-list-type">({word.partOfSpeech})</span>
+                      <span className="word-list-type">
+                        ({word.partOfSpeech})
+                      </span>
                       <span className="word-list-pronunciation">
                         {word.pronunciation}
                       </span>
@@ -256,7 +257,9 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
               <div className="flashcard-front">
                 <div className="word-section">
                   <h2 className="word">{currentWord.word}</h2>
-                  <span className="word-type">({currentWord.partOfSpeech})</span>
+                  <span className="word-type">
+                    ({currentWord.partOfSpeech})
+                  </span>
                 </div>
                 <div className="pronunciation-section">
                   <span className="pronunciation">
@@ -325,14 +328,20 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Chỉnh sửa chủ đề</h2>
-              <button className="modal-close" onClick={() => setShowEditModal(false)}>
+              <button
+                className="modal-close"
+                onClick={() => setShowEditModal(false)}
+              >
                 ×
               </button>
             </div>
             <div className="modal-body">
               <p>Chức năng chỉnh sửa chủ đề đang được phát triển...</p>
               <div className="modal-actions">
-                <button className="btn-secondary" onClick={() => setShowEditModal(false)}>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setShowEditModal(false)}
+                >
                   Đóng
                 </button>
               </div>
@@ -343,18 +352,27 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
 
       {/* Add Word Modal */}
       {showAddWordModal && (
-        <div className="modal-overlay" onClick={() => setShowAddWordModal(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => setShowAddWordModal(false)}
+        >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Thêm từ mới</h2>
-              <button className="modal-close" onClick={() => setShowAddWordModal(false)}>
+              <button
+                className="modal-close"
+                onClick={() => setShowAddWordModal(false)}
+              >
                 ×
               </button>
             </div>
             <div className="modal-body">
               <p>Chức năng thêm từ mới đang được phát triển...</p>
               <div className="modal-actions">
-                <button className="btn-secondary" onClick={() => setShowAddWordModal(false)}>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setShowAddWordModal(false)}
+                >
                   Đóng
                 </button>
               </div>
@@ -365,18 +383,27 @@ const FlashcardDetail = ({ topic, onBack, showActionButtons = false }) => {
 
       {/* Bulk Add Modal */}
       {showBulkAddModal && (
-        <div className="modal-overlay" onClick={() => setShowBulkAddModal(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => setShowBulkAddModal(false)}
+        >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Tạo hàng loạt</h2>
-              <button className="modal-close" onClick={() => setShowBulkAddModal(false)}>
+              <button
+                className="modal-close"
+                onClick={() => setShowBulkAddModal(false)}
+              >
                 ×
               </button>
             </div>
             <div className="modal-body">
               <p>Chức năng tạo hàng loạt đang được phát triển...</p>
               <div className="modal-actions">
-                <button className="btn-secondary" onClick={() => setShowBulkAddModal(false)}>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setShowBulkAddModal(false)}
+                >
                   Đóng
                 </button>
               </div>
