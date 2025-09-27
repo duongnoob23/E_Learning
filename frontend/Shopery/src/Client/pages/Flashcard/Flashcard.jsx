@@ -124,17 +124,7 @@ const Flashcard = () => {
       
       await addWordMutation.mutateAsync({
         topicId: targetTopic.id,
-        wordData: {
-          word: wordData.word,
-          part_of_speech: wordData.partOfSpeech,
-          pronunciation: wordData.pronunciation,
-          meaning_vi: wordData.meaningVi,
-          example_en: wordData.exampleEn,
-          example_vi: wordData.exampleVi,
-          image_url: wordData.imageUrl,
-          notes: wordData.notes,
-          word_type: 'user_created'
-        }
+        wordData: wordData
       });
     } catch (error) {
       console.error("Error adding word:", error);

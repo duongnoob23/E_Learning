@@ -70,6 +70,17 @@ export const flashcardApi = {
 
   // Thêm từ vào topic
   addWordToTopic: async (topicId, wordData) => {
+    // Nếu wordData có formData (FormData object), sử dụng nó
+    if (wordData.formData) {
+      const response = await axiosInstance.post(`/word/topics/${topicId}/words`, wordData.formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      return response.data;
+    }
+    
+    // Nếu không có formData, gửi JSON bình thường
     const response = await axiosInstance.post(`/word/topics/${topicId}/words`, wordData);
     return response.data;
   }

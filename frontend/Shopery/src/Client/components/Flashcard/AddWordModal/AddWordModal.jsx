@@ -18,6 +18,8 @@ const AddWordModal = ({
     notes: ""
   });
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -32,6 +34,8 @@ const AddWordModal = ({
         exampleVi: "",
         notes: ""
       });
+      setSelectedImage(null);
+      setImagePreview(null);
       setError(""); // Clear error when modal opens
     }
   }, [isOpen]);
@@ -44,6 +48,38 @@ const AddWordModal = ({
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Kiểm tra kích thước file (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setError("Kích thước ảnh không được vượt quá 5MB");
+        return;
+      }
+      
+      // Kiểm tra loại file
+      if (!file.type.startsWith('image/')) {
+        setError("Chỉ cho phép upload file ảnh");
+        return;
+      }
+      
+      setSelectedImage(file);
+      setError("");
+      
+      // Tạo preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview(null);
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     if (!formData.word.trim() || !formData.meaningVi.trim()) {
@@ -54,9 +90,26 @@ const AddWordModal = ({
     setIsLoading(true);
     setError("");
     try {
+      // Tạo FormData để gửi file
+      const formDataToSend = new FormData();
+      formDataToSend.append('word', formData.word);
+      formDataToSend.append('part_of_speech', formData.partOfSpeech);
+      formDataToSend.append('pronunciation', formData.pronunciation);
+      formDataToSend.append('meaning_vi', formData.meaningVi);
+      formDataToSend.append('example_en', formData.exampleEn);
+      formDataToSend.append('example_vi', formData.exampleVi);
+      formDataToSend.append('notes', formData.notes);
+      formDataToSend.append('word_type', 'user_created');
+      
+      // Thêm ảnh nếu có
+      if (selectedImage) {
+        formDataToSend.append('image', selectedImage);
+      }
+
       await onSave({
         ...formData,
-        topicId: topic.id
+        topicId: topic.id,
+        formData: formDataToSend
       });
       onClose();
     } catch (error) {
@@ -194,6 +247,42 @@ const AddWordModal = ({
               placeholder="Ghi chú thêm về từ này..."
               rows="2"
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="image">Ảnh minh họa</label>
+            <div className="image-upload-container">
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="image-input"
+              />
+              <label htmlFor="image" className="image-upload-label">
+                <span className="upload-icon">📷</span>
+                <span className="upload-text">
+                  {selectedImage ? 'Thay đổi ảnh' : 'Chọn ảnh'}
+                </span>
+              </label>
+              
+              {imagePreview && (
+                <div className="image-preview">
+                  <img src={imagePreview} alt="Preview" />
+                  <button 
+                    type="button" 
+                    className="remove-image-btn"
+                    onClick={removeImage}
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+            </div>
+            <small className="upload-hint">
+              Chỉ chấp nhận file ảnh (JPG, PNG, GIF) tối đa 5MB
+            </small>
           </div>
 
           <div className="modal-actions">
