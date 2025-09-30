@@ -111,7 +111,7 @@ export const useUpdateTopic = () => {
   return useMutation({
     mutationFn: ({ topicId, topicData }) =>
       flashcardApi.updateTopic(topicId, topicData),
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       // Invalidate và refetch tất cả user topics queries
       queryClient.invalidateQueries({
         queryKey: flashcardKeys.userTopics,
@@ -187,7 +187,7 @@ export const useAddWordToTopic = () => {
   return useMutation({
     mutationFn: ({ topicId, wordData }) =>
       flashcardApi.addWordToTopic(topicId, wordData),
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       // Invalidate words query để refresh danh sách từ
       queryClient.invalidateQueries({
         queryKey: flashcardKeys.wordsByTopic(),

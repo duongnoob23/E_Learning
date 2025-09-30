@@ -409,10 +409,13 @@ exports.deleteTopic = async (filters) => {
       };
     }
 
-    // Xóa topic (soft delete - set is_active = false)
-    await Topic.updateTopic(topicId, {
-      is_active: false
+    // Xóa tất cả words thuộc topic trước
+    await Word.destroy({
+      where: { topic_id: topicId }
     });
+
+    // Xóa topic (hard delete - xóa thật khỏi database)
+    await Topic.deleteTopic(topicId);
 
     return {
       EM: "Xóa topic thành công",
