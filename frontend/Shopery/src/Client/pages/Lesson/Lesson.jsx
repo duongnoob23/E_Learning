@@ -285,26 +285,27 @@ export default function Lesson() {
                 })}
               </ul>
             </div>
-          </aside>
-        </div>
-
-        <div className="lesson__row lesson__row--bottom">
-          <div className="lesson__col lesson__col--main" />
-          <aside className="lesson__col lesson__col--side">
-            <div className="lesson__banner">
-              <div className="lesson__bannerTop">
-                <span className="lesson__bannerTag">WEBINAR</span>
-                <span className="lesson__bannerDate">August 24, 2020</span>
-              </div>
-              <h3 className="lesson__bannerTitle">One Day Learn a Photo.</h3>
-              <img
-                className="lesson__bannerImg"
-                alt="Sarah Molek"
-                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-              />
-              <button className="lesson__bannerCta" type="button">
-                Get it Now
-              </button>
+            <div className="lesson__row lesson__row--bottom">
+              <div className="lesson__col lesson__col--main" />
+              <aside className="lesson__col lesson__col--side">
+                <div className="lesson__banner">
+                  <div className="lesson__bannerTop">
+                    <span className="lesson__bannerTag">WEBINAR</span>
+                    <span className="lesson__bannerDate">August 24, 2020</span>
+                  </div>
+                  <h3 className="lesson__bannerTitle">
+                    One Day Learn a Photo.
+                  </h3>
+                  <img
+                    className="lesson__bannerImg"
+                    alt="Sarah Molek"
+                    src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+                  />
+                  <button className="lesson__bannerCta" type="button">
+                    Get it Now
+                  </button>
+                </div>
+              </aside>
             </div>
           </aside>
         </div>

@@ -7,8 +7,8 @@
   --muted: #6b7280;
   --muted-2: #9ca3af;
   --border: #e5e7eb;
-  --primary: #22c55e;
-  --primary-strong: #16a34a;
+  --primary: #3eb8ae;
+  --primary-strong: #4fd1c7;
   --chip-bg: #e8fff0;
 
   background: var(--bg);
@@ -19,7 +19,7 @@
 /* LAYOUT CỐT LÕI – KHÔNG DÙNG % ĐỂ TRÁNH CO NHÀO */
 .lesson__container {
   max-width: 1240px;
-  padding: 20px 16px 28px;
+  padding: 50px 16px 40px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -311,6 +311,7 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .lesson__playlistHead {
@@ -433,6 +434,7 @@
   align-items: stretch;
 }
 .lesson__banner {
+  width: 100%;
   background: #fff;
   border-radius: 14px;
   padding: 16px;
