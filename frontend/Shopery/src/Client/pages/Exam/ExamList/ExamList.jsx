@@ -2,121 +2,35 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ExamStats from "../ExamStats/ExamStats";
+import { useTests, useTags } from "../../../hooks/Exam/useExamQueries";
 import "./ExamList.css";
 
 const ExamList = () => {
-  const [exams, setExams] = useState([]);
-  const [filteredExams, setFilteredExams] = useState([]);
   const [selectedType, setSelectedType] = useState("all");
-  const [selectedTag, setSelectedTag] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [availableTags, setAvailableTags] = useState([]);
   const [activeTab, setActiveTab] = useState("tests"); // "tests" or "stats"
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // 6 items per page
 
-  // Fake data cho các bài thi
+  // API calls
+  const { data: testsData, isLoading: testsLoading, error: testsError } = useTests({
+    page: currentPage,
+    limit: itemsPerPage,
+    test_type: selectedType !== "all" ? selectedType : undefined,
+    search: searchTerm || undefined
+  });
+
+  const { data: tagsData, isLoading: tagsLoading } = useTags();
+
+  // Extract data from API responses
+  const exams = testsData?.DT?.tests || [];
+  const availableTags = tagsData?.DT || [];
+  const totalPages = testsData?.DT?.totalPages || 1;
+
+  // Reset to first page when filters change
   useEffect(() => {
-    const mockExams = [
-      {
-        id: 1,
-        title: "TOEIC Practice Test 001",
-        type: "toeic",
-        duration: 120,
-        sections: ["Listening", "Reading"],
-        difficulty: "Intermediate",
-        questions: 200,
-        description: "Complete TOEIC practice test with listening and reading sections",
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        tags: ["TOEIC", "Practice", "Vocabulary", "Grammar"],
-        isCompleted: false,
-        bestScore: null,
-        attempts: 0,
-      },
-      {
-        id: 2,
-        title: "IELTS Academic Practice Test 001",
-        type: "ielts",
-        duration: 165,
-        sections: ["Listening", "Reading", "Writing", "Speaking"],
-        difficulty: "Advanced",
-        questions: 80,
-        description: "Full IELTS Academic test covering all four skills",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        tags: ["IELTS", "Academic", "Grammar", "Writing"],
-        isCompleted: true,
-        bestScore: 7.5,
-        attempts: 3,
-      },
-      {
-        id: 3,
-        title: "TOEFL iBT Practice Test 001",
-        type: "toefl",
-        duration: 180,
-        sections: ["Reading", "Listening", "Speaking", "Writing"],
-        difficulty: "Advanced",
-        questions: 120,
-        description: "Complete TOEFL iBT practice test for university admission",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        tags: ["TOEFL", "iBT", "University", "Speaking"],
-        isCompleted: false,
-        bestScore: null,
-        attempts: 0,
-      },
-      {
-        id: 4,
-        title: "TOEIC Practice Test 002",
-        type: "toeic",
-        duration: 120,
-        sections: ["Listening", "Reading"],
-        difficulty: "Beginner",
-        questions: 200,
-        description: "Beginner-friendly TOEIC practice test",
-        image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        tags: ["TOEIC", "Beginner", "Practice", "Listening"],
-        isCompleted: true,
-        bestScore: 650,
-        attempts: 1,
-      },
-    ];
-
-    setExams(mockExams);
-    setFilteredExams(mockExams);
-    
-    // Extract unique tags
-    const allTags = [...new Set(mockExams.flatMap(exam => exam.tags))];
-    setAvailableTags(allTags);
-  }, []);
-
-  // Filter exams based on type, tag and search term
-  useEffect(() => {
-    let filtered = exams;
-
-    if (selectedType !== "all") {
-      filtered = filtered.filter(exam => exam.type === selectedType);
-    }
-
-    if (selectedTag !== "all") {
-      filtered = filtered.filter(exam => exam.tags.includes(selectedTag));
-    }
-
-    if (searchTerm) {
-      filtered = filtered.filter(exam =>
-        exam.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        exam.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        exam.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
-
-    setFilteredExams(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [exams, selectedType, selectedTag, searchTerm]);
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredExams.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentExams = filteredExams.slice(startIndex, endIndex);
+    setCurrentPage(1);
+  }, [selectedType, searchTerm]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -124,7 +38,7 @@ const ExamList = () => {
   };
 
   const getTypeColor = (type) => {
-    switch (type) {
+    switch (type?.toLowerCase()) {
       case "toeic": return "#ffffff";
       case "ielts": return "#059669";
       case "toefl": return "#DC2626";
@@ -202,149 +116,118 @@ const ExamList = () => {
             </div>
           </div>
 
-          <div className="exam-list__filters-row">
-            <div className="exam-list__type-filter">
-              <button
-                className={`filter-btn ${selectedType === "all" ? "active" : ""}`}
-                onClick={() => setSelectedType("all")}
-              >
-                All Tests
-              </button>
-              <button
-                className={`filter-btn ${selectedType === "toeic" ? "active" : ""}`}
-                onClick={() => setSelectedType("toeic")}
-              >
-                TOEIC
-              </button>
-              <button
-                className={`filter-btn ${selectedType === "ielts" ? "active" : ""}`}
-                onClick={() => setSelectedType("ielts")}
-              >
-                IELTS
-              </button>
-              <button
-                className={`filter-btn ${selectedType === "toefl" ? "active" : ""}`}
-                onClick={() => setSelectedType("toefl")}
-              >
-                TOEFL
-              </button>
-            </div>
-
-            <div className="exam-list__tag-filter">
-              <button
-                className={`filter-btn ${selectedTag === "all" ? "active" : ""}`}
-                onClick={() => setSelectedTag("all")}
-              >
-                All Tags
-              </button>
-              {availableTags.map(tag => (
-                <button
-                  key={tag}
-                  className={`filter-btn ${selectedTag === tag ? "active" : ""}`}
-                  onClick={() => setSelectedTag(tag)}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
+          <div className="exam-list__type-filter">
+            <button
+              className={`filter-btn ${selectedType === "all" ? "active" : ""}`}
+              onClick={() => setSelectedType("all")}
+            >
+              All Tests
+            </button>
+            <button
+              className={`filter-btn ${selectedType === "toeic" ? "active" : ""}`}
+              onClick={() => setSelectedType("toeic")}
+            >
+              TOEIC
+            </button>
+            <button
+              className={`filter-btn ${selectedType === "ielts" ? "active" : ""}`}
+              onClick={() => setSelectedType("ielts")}
+            >
+              IELTS
+            </button>
           </div>
         </div>
 
+        {/* Loading State */}
+        {testsLoading && (
+          <div className="exam-list__loading">
+            <div className="loading-spinner"></div>
+            <p>Đang tải danh sách bài kiểm tra...</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {testsError && (
+          <div className="exam-list__error">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+              <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <h3>Có lỗi xảy ra</h3>
+            <p>Không thể tải danh sách bài kiểm tra. Vui lòng thử lại sau.</p>
+          </div>
+        )}
+
         {/* Exam Grid */}
-        <div className="exam-list__grid">
-          {currentExams.map((exam) => (
-            <div key={exam.id} className="exam-card">
-              <div className="exam-card__image">
-                <img src={exam.image} alt={exam.title} />
-                <div className="exam-card__type" style={{ backgroundColor: getTypeColor(exam.type) }}>
-                  {exam.type.toUpperCase()}
-                </div>
-                {exam.isCompleted && (
-                  <div className="exam-card__completed">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+        {!testsLoading && !testsError && (
+          <div className="exam-list__grid">
+            {exams.map((exam) => (
+              <div key={exam.test_id} className="exam-card">
+                <div className="exam-card__content">
+                  <div className="exam-card__header">
+                    <h3 className="exam-card__title">{exam.title}</h3>
+                    <div className="exam-card__type" style={{ backgroundColor: getTypeColor(exam.test_type) }}>
+                      {exam.test_type?.toUpperCase()}
+                    </div>
                   </div>
-                )}
-              </div>
+                  <p className="exam-card__description">
+                    Bài kiểm tra {exam.test_type} với thời lượng {exam.duration} phút
+                  </p>
 
-              <div className="exam-card__content">
-                <h3 className="exam-card__title">{exam.title}</h3>
-                <p className="exam-card__description">{exam.description}</p>
+                  <div className="exam-card__info">
+                    <div className="info-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span>{formatDuration(exam.duration)}</span>
+                    </div>
+                    <div className="info-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0h6m-6 0l-2 12h10l-2-12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span>{exam.test_type}</span>
+                    </div>
+                  </div>
 
-                <div className="exam-card__info">
-                  <div className="info-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>{formatDuration(exam.duration)}</span>
-                  </div>
-                  <div className="info-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>{exam.questions} questions</span>
-                  </div>
-                  <div className="info-item">
-                    <span 
-                      className="difficulty-badge"
-                      style={{ backgroundColor: getDifficultyColor(exam.difficulty) }}
+                  {/* Tags */}
+                  {exam.tags && exam.tags.length > 0 && (
+                    <div className="exam-card__sections">
+                      {exam.tags.map((tag, index) => (
+                        <span key={index} className="section-tag">
+                          {tag.tag_name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="exam-card__actions">
+                    <Link 
+                      to={`/exam/${exam.test_id}/detail`} 
+                      className="exam-card__btn exam-card__btn--secondary"
                     >
-                      {exam.difficulty}
-                    </span>
+                      Xem chi tiết
+                    </Link>
                   </div>
-                </div>
-
-                <div className="exam-card__sections">
-                  {exam.sections.map((section, index) => (
-                    <span key={index} className="section-tag">
-                      {section}
-                    </span>
-                  ))}
-                </div>
-
-                {exam.isCompleted && exam.bestScore && (
-                  <div className="exam-card__score">
-                    <span className="score-label">Best Score:</span>
-                    <span className="score-value">{exam.bestScore}</span>
-                    <span className="attempts">({exam.attempts} attempts)</span>
-                  </div>
-                )}
-
-                <div className="exam-card__actions">
-                  <Link 
-                    to={`/exam/${exam.id}`} 
-                    className="exam-card__btn exam-card__btn--primary"
-                  >
-                    {exam.isCompleted ? "Retake Test" : "Start Test"}
-                  </Link>
-                  <Link 
-                    to={`/exam/${exam.id}/detail`} 
-                    className="exam-card__btn exam-card__btn--secondary"
-                  >
-                    View Details
-                  </Link>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
-        {currentExams.length === 0 && (
+        {!testsLoading && !testsError && exams.length === 0 && (
           <div className="exam-list__empty">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
               <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <h3>No tests found</h3>
-            <p>Try adjusting your search or filter criteria</p>
+            <h3>Không tìm thấy bài kiểm tra</h3>
+            <p>Thử điều chỉnh tiêu chí tìm kiếm hoặc bộ lọc của bạn</p>
           </div>
         )}
 
         {/* Pagination */}
-        {totalPages > 1 && (
+        {!testsLoading && !testsError && totalPages > 1 && (
           <div className="pagination">
             <div className="pagination__info">
-              Showing {startIndex + 1}-{Math.min(endIndex, filteredExams.length)} of {filteredExams.length} tests
+              Hiển thị {((currentPage - 1) * itemsPerPage) + 1}-{Math.min(currentPage * itemsPerPage, testsData?.DT?.total || 0)} trong {testsData?.DT?.total || 0} bài kiểm tra
             </div>
             <div className="pagination__controls">
               <button

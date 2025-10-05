@@ -1,253 +1,308 @@
-// Exam Detail Page - Chi tiết bài thi
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import "./ExamDetail.css";
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { 
+  useExamDetail, 
+  useUserExamHistory,
+  useStartPracticeSession,
+  useStartFullTestSession 
+} from '../../../hooks/Exam/useExamQueries';
+import './ExamDetail.css';
 
 const ExamDetail = () => {
-  const { id } = useParams();
+  const { id: testId } = useParams();
   const navigate = useNavigate();
-  const [exam, setExam] = useState(null);
-  const [sections, setSections] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('practice'); // 'practice' or 'fulltest'
+  const [selectedSections, setSelectedSections] = useState([]);
+  const [timeLimit, setTimeLimit] = useState('');
 
-  useEffect(() => {
-    // Mock data - trong thực tế sẽ gọi API
-    const mockExam = {
-      id: parseInt(id),
-      title: "TOEIC Practice Test 001",
-      type: "toeic",
-      duration: 120,
-      description: "Complete TOEIC practice test with listening and reading sections. This test is designed to help you prepare for the actual TOEIC exam by providing realistic questions and timing.",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      difficulty: "Intermediate",
-      questions: 200,
-      tags: ["TOEIC", "Practice", "Vocabulary"],
-      instructions: [
-        "You will have 120 minutes to complete this test",
-        "The test consists of 2 sections: Listening and Reading",
-        "Each section has multiple parts with different question types",
-        "You can navigate between questions freely",
-        "Your answers will be saved automatically",
-        "You can pause and resume the test at any time"
-      ],
-      requirements: [
-        "Stable internet connection",
-        "Audio device for listening section",
-        "Quiet environment for concentration",
-        "No external help or resources allowed"
-      ],
-      isCompleted: false,
-      bestScore: null,
-      attempts: 0,
-    };
+  // API calls
+  const { data: examData, isLoading, error } = useExamDetail(testId);
+  const { data: userHistoryData } = useUserExamHistory({ testId });
+  const startPracticeMutation = useStartPracticeSession();
+  const startFullTestMutation = useStartFullTestSession();
 
-    const mockSections = [
-      {
-        id: 1,
-        name: "Listening",
-        duration: 45,
-        questions: 100,
-        description: "Listen to conversations and talks, then answer questions",
-        parts: [
-          { name: "Part 1: Photos", questions: 6, description: "Look at photos and choose the best description" },
-          { name: "Part 2: Question-Response", questions: 25, description: "Listen to questions and choose the best response" },
-          { name: "Part 3: Conversations", questions: 39, description: "Listen to conversations and answer questions" },
-          { name: "Part 4: Talks", questions: 30, description: "Listen to talks and answer questions" }
-        ]
-      },
-      {
-        id: 2,
-        name: "Reading",
-        duration: 75,
-        questions: 100,
-        description: "Read passages and answer comprehension questions",
-        parts: [
-          { name: "Part 5: Incomplete Sentences", questions: 30, description: "Choose the best word or phrase to complete sentences" },
-          { name: "Part 6: Text Completion", questions: 16, description: "Complete texts by choosing the best words" },
-          { name: "Part 7: Reading Comprehension", questions: 54, description: "Read passages and answer questions" }
-        ]
-      }
-    ];
+  const exam = examData?.DT;
+  const sections = exam?.sections || [];
+  const userHistory = userHistoryData?.DT?.history || [];
 
-    setExam(mockExam);
-    setSections(mockSections);
-    setLoading(false);
-  }, [id]);
-
-  const getTypeColor = (type) => {
-    switch (type) {
-      case "toeic": return "#1F2937";
-      case "ielts": return "#059669";
-      case "toefl": return "#DC2626";
-      default: return "#6B7280";
-    }
-  };
-
-  const getDifficultyColor = (difficulty) => {
-    switch (difficulty) {
-      case "Beginner": return "#10B981";
-      case "Intermediate": return "#F59E0B";
-      case "Advanced": return "#EF4444";
-      default: return "#6B7280";
-    }
-  };
-
+  // Format duration helper
   const formatDuration = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
-    return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+    if (hours > 0) {
+      return `${hours}h ${mins}m`;
+    }
+    return `${mins}m`;
   };
 
-  const handleStartTest = () => {
-    navigate(`/exam/${id}/take`);
+  // Handle section selection
+  const handleSectionToggle = (sectionId) => {
+    setSelectedSections(prev => 
+      prev.includes(sectionId) 
+        ? prev.filter(id => id !== sectionId)
+        : [...prev, sectionId]
+    );
   };
 
-  if (loading) {
+  // Handle practice button
+  const handlePractice = async () => {
+    if (selectedSections.length === 0) {
+      alert('Vui lòng chọn ít nhất một phần thi');
+      return;
+    }
+
+    try {
+      const result = await startPracticeMutation.mutateAsync({
+        testId,
+        sectionIds: selectedSections,
+        timeLimit: timeLimit ? parseInt(timeLimit) : null
+      });
+
+      if (result.EC === '0') {
+        // Navigate to exam session page with selected sections as query param
+        const sectionQuery = selectedSections && selectedSections.length > 0
+          ? `?sectionIds=${selectedSections.join(',')}`
+          : '';
+        navigate(`/exam/${testId}/session/${result.DT.user_test_id}${sectionQuery}`);
+      }
+    } catch (error) {
+      console.error('Error starting practice:', error);
+    }
+  };
+
+  // Handle full test button
+  const handleFullTest = async () => {
+    try {
+      const result = await startFullTestMutation.mutateAsync({ testId });
+
+      if (result.EC === '0') {
+        // Navigate to exam session page
+        navigate(`/exam/${testId}/session/${result.DT.user_test_id}`);
+      }
+    } catch (error) {
+      console.error('Error starting full test:', error);
+    }
+  };
+
+  // Format date helper
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('vi-VN');
+  };
+
+  // Format time helper
+  const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+      return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  if (isLoading) {
     return (
-      <div className="exam-detail-loading">
+      <div className="exam-detail-container loading">
         <div className="loading-spinner"></div>
-        <p>Loading exam details...</p>
+        <p>Đang tải thông tin bài kiểm tra...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="exam-detail-container error">
+        <h3>Lỗi</h3>
+        <p>Không thể tải thông tin bài kiểm tra: {error.message}</p>
+        <button onClick={() => navigate('/exam')} className="back-button">
+          Quay lại
+        </button>
       </div>
     );
   }
 
   if (!exam) {
     return (
-      <div className="exam-detail-error">
-        <h2>Exam not found</h2>
-        <p>The exam you're looking for doesn't exist.</p>
-        <Link to="/exam" className="btn-primary">Back to Exams</Link>
+      <div className="exam-detail-container empty">
+        <h3>Không tìm thấy bài kiểm tra</h3>
+        <p>Bài kiểm tra bạn đang tìm kiếm không tồn tại.</p>
+        <button onClick={() => navigate('/exam')} className="back-button">
+          Quay lại
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="exam-detail">
-      <div className="exam-detail__container">
+    <div className="exam-detail-container">
         {/* Header */}
-        <div className="exam-detail__header">
-          <div className="exam-detail__image">
-            <img src={exam.image} alt={exam.title} />
-            <div className="exam-detail__type" style={{ backgroundColor: getTypeColor(exam.type) }}>
-              {exam.type.toUpperCase()}
+      <div className="exam-header">
+        <div className="exam-tags">
+          <span className="tag tag-type">{exam.test_type}</span>
+        </div>
+        <h1 className="exam-title">
+          {exam.title}
+        </h1>
+        
+        <div className="exam-summary">
+          <div className="summary-item">
+            <span className="icon">⏱️</span>
+            <span>Thời gian làm bài: {formatDuration(exam.total_duration || exam.duration)}</span>
+          </div>
+          <div className="summary-item">
+            <span className="icon">📝</span>
+            <span>{sections.length} phần thi</span>
+          </div>
+          <div className="summary-item">
+            <span className="icon">❓</span>
+            <span>{exam.questions_count || 'N/A'} câu hỏi</span>
+          </div>
             </div>
           </div>
           
-          <div className="exam-detail__info">
-            <h1 className="exam-detail__title">{exam.title}</h1>
-            <p className="exam-detail__description">{exam.description}</p>
-            
-            <div className="exam-detail__meta">
-              <div className="meta-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>{formatDuration(exam.duration)}</span>
+      {/* Test Results */}
+      <div className="test-results">
+        <h3>Kết quả làm bài của bạn:</h3>
+        {userHistory.length > 0 ? (
+          <div className="results-table">
+            <div className="table-header">
+              <div>Ngày làm</div>
+              <div>Kết quả</div>
+              <div>Thời gian làm bài</div>
+              <div>Trạng thái</div>
+            </div>
+            {userHistory.map((test) => (
+              <div key={test.user_test_id} className="table-row">
+                <div className="date-cell">
+                  <div>{formatDate(test.started_at)}</div>
               </div>
-              <div className="meta-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>{exam.questions} questions</span>
+                <div>{test.score ? `${test.score}/100` : 'Chưa có điểm'}</div>
+                <div>
+                  {test.finished_at && test.started_at 
+                    ? formatTime(Math.floor((new Date(test.finished_at) - new Date(test.started_at)) / 1000))
+                    : 'Đang làm'
+                  }
               </div>
-              <div className="meta-item">
-                <span 
-                  className="difficulty-badge"
-                  style={{ backgroundColor: getDifficultyColor(exam.difficulty) }}
-                >
-                  {exam.difficulty}
+                <div>
+                  <span className={`status-badge status-${test.status}`}>
+                    {test.status === 'completed' ? 'Hoàn thành' : 
+                     test.status === 'in_progress' ? 'Đang làm' : 'Bỏ dở'}
                 </span>
               </div>
             </div>
-
-            <div className="exam-detail__tags">
-              {exam.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
               ))}
             </div>
-
-            {exam.isCompleted && (
-              <div className="exam-detail__score">
-                <div className="score-item">
-                  <span className="score-label">Best Score:</span>
-                  <span className="score-value">{exam.bestScore}</span>
-                </div>
-                <div className="score-item">
-                  <span className="score-label">Attempts:</span>
-                  <span className="score-value">{exam.attempts}</span>
-                </div>
-              </div>
+        ) : (
+          <p className="no-results">Bạn chưa có kết quả làm bài nào cho đề thi này.</p>
             )}
           </div>
+
+      {/* Main Tabs */}
+      <div className="main-tabs">
+        <button 
+          className={`main-tab ${activeTab === 'practice' ? 'active' : ''}`}
+          onClick={() => setActiveTab('practice')}
+        >
+          Luyện tập
+        </button>
+        <button 
+          className={`main-tab ${activeTab === 'fulltest' ? 'active' : ''}`}
+          onClick={() => setActiveTab('fulltest')}
+        >
+          Làm full test
+        </button>
         </div>
 
-        {/* Sections */}
-        <div className="exam-detail__sections">
-          <h2 className="sections-title">Test Sections</h2>
-          <div className="sections-grid">
-            {sections.map((section) => (
-              <div key={section.id} className="section-card">
-                <div className="section-card__header">
-                  <h3 className="section-card__title">{section.name}</h3>
-                  <div className="section-card__meta">
-                    <span className="duration">{formatDuration(section.duration)}</span>
-                    <span className="questions">{section.questions} questions</span>
+      {/* Tab Content */}
+      {activeTab === 'practice' && (
+        <div className="tab-content">
+          {/* Pro Tips */}
+          <div className="pro-tips">
+            <div className="tips-icon">💡</div>
+            <div className="tips-content">
+              <strong>Pro tips:</strong> Hình thức luyện tập từng phần và chọn mức thời gian phù hợp sẽ giúp bạn tập trung vào giải đúng các câu hỏi thay vì phải chịu áp lực hoàn thành bài thi.
                   </div>
                 </div>
-                <p className="section-card__description">{section.description}</p>
-                
-                <div className="section-card__parts">
-                  {section.parts.map((part, index) => (
-                    <div key={index} className="part-item">
-                      <div className="part-info">
-                        <span className="part-name">{part.name}</span>
-                        <span className="part-questions">{part.questions} questions</span>
+
+          {/* Section Selection */}
+          <div className="section-selection">
+            <h3>Chọn phần thi bạn muốn làm</h3>
+            <div className="sections-list">
+              {sections.map((section, index) => (
+                <div key={section.section_id} className="section-item">
+                  <label className="section-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectedSections.includes(section.section_id)}
+                      onChange={() => handleSectionToggle(section.section_id)}
+                    />
+                    <span className="checkmark"></span>
+                    <div className="section-info">
+                      <div className="section-name">
+                        {section.section_name} ({formatDuration(section.duration)})
                       </div>
-                      <p className="part-description">{part.description}</p>
+                      </div>
+                  </label>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+
+          {/* Time Limit */}
+          <div className="time-limit">
+            <label>Giới hạn thời gian (Để trống để làm bài không giới hạn)</label>
+            <select value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)}>
+              <option value="">--- Chọn thời gian ---</option>
+              <option value="15">15 phút</option>
+              <option value="30">30 phút</option>
+              <option value="45">45 phút</option>
+              <option value="60">60 phút</option>
+            </select>
+          </div>
+
+          {/* Practice Button */}
+          <div className="practice-section">
+            <button 
+              className="practice-button"
+              onClick={handlePractice}
+              disabled={startPracticeMutation.isLoading}
+            >
+              {startPracticeMutation.isLoading ? 'Đang bắt đầu...' : 'LUYỆN TẬP'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'fulltest' && (
+        <div className="tab-content">
+          <div className="fulltest-info">
+            <h3>Làm full test</h3>
+            <p>Bạn sẽ làm tất cả {sections.length} phần thi với tổng thời gian {formatDuration(exam.total_duration || exam.duration)}.</p>
+            <div className="fulltest-sections">
+              {sections.map((section, index) => (
+                <div key={section.section_id} className="fulltest-section-item">
+                  <span className="section-order">{index + 1}.</span>
+                  <span className="section-name">{section.section_name}</span>
+                  <span className="section-duration">({formatDuration(section.duration)})</span>
+            </div>
+                ))}
           </div>
         </div>
 
-        {/* Instructions */}
-        <div className="exam-detail__instructions">
-          <h2 className="instructions-title">Instructions</h2>
-          <div className="instructions-grid">
-            <div className="instruction-section">
-              <h3>Test Guidelines</h3>
-              <ul>
-                {exam.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="instruction-section">
-              <h3>Requirements</h3>
-              <ul>
-                {exam.requirements.map((requirement, index) => (
-                  <li key={index}>{requirement}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div className="exam-detail__actions">
+          {/* Full Test Button */}
+          <div className="practice-section">
           <button 
-            className="btn-primary btn-large"
-            onClick={handleStartTest}
+              className="practice-button"
+              onClick={handleFullTest}
+              disabled={startFullTestMutation.isLoading}
           >
-            {exam.isCompleted ? "Retake Test" : "Start Test"}
+              {startFullTestMutation.isLoading ? 'Đang bắt đầu...' : 'LÀM FULL TEST'}
           </button>
-          <Link to="/exam" className="btn-secondary btn-large">
-            Back to Exams
-          </Link>
         </div>
       </div>
+      )}
     </div>
   );
 };

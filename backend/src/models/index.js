@@ -43,6 +43,21 @@ const CourseCertificate = require("./CourseCertificate")(sequelize, DataTypes);
 const CourseTag = require("./CourseTag")(sequelize, DataTypes);
 const CourseTagRelation = require("./CourseTagRelation")(sequelize, DataTypes);
 
+// Exam models
+const Test = require("./Test")(sequelize, DataTypes);
+const Tag = require("./Tag")(sequelize, DataTypes);
+const TestTag = require("./TestTag")(sequelize, DataTypes);
+const TestSection = require("./TestSection")(sequelize, DataTypes);
+const UserTest = require("./UserTest")(sequelize, DataTypes);
+
+// Question models
+const Question = require("./Question")(sequelize, DataTypes);
+const QuestionAnswer = require("./QuestionAnswer")(sequelize, DataTypes);
+const QuestionChoice = require("./QuestionChoice")(sequelize, DataTypes);
+const UserTestAnswer = require("./UserTestAnswer")(sequelize, DataTypes);
+const WritingAttempt = require("./WritingAttempt")(sequelize, DataTypes);
+const SpeakingAttempt = require("./SpeakingAttempt")(sequelize, DataTypes);
+
 // Associations
 
 // Accounts
@@ -129,6 +144,58 @@ CourseTagRelation.belongsTo(CourseTag, { foreignKey: "tag_id" });
 
 Instructor.belongsTo(User, { foreignKey: "user_id" });
 
+// Exam associations
+Test.belongsTo(Course, { foreignKey: "course_id" });
+Test.belongsToMany(Tag, {
+  through: TestTag,
+  foreignKey: "test_id",
+  otherKey: "tag_id",
+  as: "tags",
+});
+Tag.belongsToMany(Test, {
+  through: TestTag,
+  foreignKey: "tag_id",
+  otherKey: "test_id",
+  as: "tests",
+});
+
+// Test Section associations
+TestSection.belongsTo(Test, { foreignKey: "test_id", as: "test" });
+Test.hasMany(TestSection, { foreignKey: "test_id", as: "sections" });
+
+// User Test associations
+UserTest.belongsTo(User, { foreignKey: "user_id", as: "user" });
+UserTest.belongsTo(Test, { foreignKey: "test_id", as: "test" });
+User.hasMany(UserTest, { foreignKey: "user_id", as: "userTests" });
+Test.hasMany(UserTest, { foreignKey: "test_id", as: "userTests" });
+
+// Question associations
+Question.belongsTo(TestSection, { foreignKey: "section_id", as: "section" });
+TestSection.hasMany(Question, { foreignKey: "section_id", as: "questions" });
+
+// Question Answer associations
+QuestionAnswer.belongsTo(Question, { foreignKey: "question_id", as: "question" });
+Question.hasOne(QuestionAnswer, { foreignKey: "question_id", as: "answer" });
+
+// Question Choice associations
+QuestionChoice.belongsTo(Question, { foreignKey: "question_id", as: "question" });
+Question.hasMany(QuestionChoice, { foreignKey: "question_id", as: "choices" });
+
+// User Test Answer associations
+UserTestAnswer.belongsTo(UserTest, { foreignKey: "user_test_id", as: "userTest" });
+UserTestAnswer.belongsTo(Question, { foreignKey: "question_id", as: "question" });
+UserTestAnswer.belongsTo(QuestionChoice, { foreignKey: "choice_id", as: "choice" });
+UserTest.hasMany(UserTestAnswer, { foreignKey: "user_test_id", as: "answers" });
+Question.hasMany(UserTestAnswer, { foreignKey: "question_id", as: "userAnswers" });
+
+// Writing Attempt associations
+WritingAttempt.belongsTo(UserTestAnswer, { foreignKey: "answer_id", as: "answer" });
+UserTestAnswer.hasOne(WritingAttempt, { foreignKey: "answer_id", as: "writingAttempt" });
+
+// Speaking Attempt associations
+SpeakingAttempt.belongsTo(UserTestAnswer, { foreignKey: "answer_id", as: "answer" });
+UserTestAnswer.hasOne(SpeakingAttempt, { foreignKey: "answer_id", as: "speakingAttempt" });
+
 // Export
 module.exports = {
   sequelize,
@@ -168,4 +235,17 @@ module.exports = {
   CourseCertificate,
   CourseTag,
   CourseTagRelation,
+  // Exam models
+  Test,
+  Tag,
+  TestTag,
+  TestSection,
+  UserTest,
+  // Question models
+  Question,
+  QuestionAnswer,
+  QuestionChoice,
+  UserTestAnswer,
+  WritingAttempt,
+  SpeakingAttempt,
 };

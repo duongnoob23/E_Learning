@@ -10,6 +10,8 @@ const enrollmentRoutes = require("../client/routes/enrollmentClientRoutes");
 const reviewRoutes = require("../client/routes/reviewDiscussionRoutes");
 const wishlistRoutes = require("../client/routes/wishlistClientRoutes");
 const profileRoutes = require("../client/routes/profileClientRoutes");
+const examRoutes = require("../client/routes/examClientRoutes");
+const examSessionRoutes = require("../client/routes/examSessionRoutes");
 
 router.use("/auth", authClient);
 router.use("/word", wordRoutes);
@@ -20,5 +22,7 @@ router.use("/enrollment", enrollmentRoutes);
 router.use("/review", reviewRoutes);
 router.use("/wishlist", wishlistRoutes);
 router.use("/user", profileRoutes);
+router.use("/exam", examRoutes);
+router.use("/exam-session", examSessionRoutes);
 
 module.exports = router;

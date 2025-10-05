@@ -83,19 +83,20 @@
 /* Filters */
 .exam-list__filters {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .exam-list__search {
-  display: flex;
-  justify-content: center;
+  flex: 1;
+  max-width: 400px;
 }
 
 .search-input {
@@ -130,19 +131,12 @@
   box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
 }
 
-.exam-list__filters-row {
+.exam-list__type-filter {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.exam-list__type-filter,
-.exam-list__tag-filter {
-  display: flex;
-  justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+
 
 .filter-btn {
   padding: 0.75rem 1.5rem;
@@ -174,7 +168,8 @@
 .exam-list__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .exam-card {
@@ -209,9 +204,6 @@
 }
 
 .exam-card__type {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   color: #181818;
@@ -219,6 +211,7 @@
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 .exam-card__completed {
@@ -240,12 +233,20 @@
   padding: 1.5rem;
 }
 
+.exam-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
 .exam-card__title {
   font-size: 1.25rem;
   font-weight: 700;
   color: #181818;
-  margin-bottom: 0.75rem;
   line-height: 1.4;
+  flex: 1;
+  margin-right: 1rem;
 }
 
 .exam-card__description {
@@ -399,13 +400,72 @@
   opacity: 0.8;
 }
 
+/* Loading State */
+.exam-list__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.exam-list__loading p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Error State */
+.exam-list__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.exam-list__error svg {
+  color: #ef4444;
+  margin-bottom: 1rem;
+}
+
+.exam-list__error h3 {
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.exam-list__error p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+}
+
 /* Pagination */
 .pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3rem;
-  padding: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -486,6 +546,25 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .exam-list__filters {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .exam-list__search {
+    max-width: none;
+  }
+
+  .exam-list__type-filter {
+    justify-content: center;
+  }
+
+  .exam-list__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   .pagination {
     flex-direction: column;
     gap: 1rem;
@@ -499,10 +578,6 @@
   .pagination__numbers {
     order: -1;
   }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
   .exam-list__container {
     padding: 0 0.5rem;
   }
@@ -515,22 +590,9 @@
     font-size: 1rem;
   }
 
-  .exam-list__filters {
-    padding: 1.5rem;
-  }
-
-  .exam-list__type-filter {
-    gap: 0.25rem;
-  }
-
   .filter-btn {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
-  }
-
-  .exam-list__grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   .exam-card__actions {

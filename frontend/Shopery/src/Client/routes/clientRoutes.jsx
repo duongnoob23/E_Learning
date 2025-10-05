@@ -25,6 +25,7 @@ import Profile from "../pages/Profile/Profile";
 
 // Exam Pages
 import ExamDetail from "../pages/Exam/ExamDetail/ExamDetail";
+import ExamSession from "../pages/Exam/ExamSession/ExamSession";
 import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamResult from "../pages/Exam/ExamResult/ExamResult";
 import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
@@ -215,6 +216,17 @@ const ClientRoutes = () => {
       />
 
       <Route
+        path="/exam/:id/session/:userTestId"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <ExamSession />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
         path="/exam/:id/take"
         element={
           <PrivateRoute requiredRole="client">
@@ -224,7 +236,7 @@ const ClientRoutes = () => {
       />
 
       <Route
-        path="/exam/:id/result"
+        path="/exam/:id/result/:userTestId"
         element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>
