@@ -70,8 +70,6 @@ exports.verifyOtp = async (req, res, next) => {
   try {
     const type = req.params.type;
     const { email, otp } = req.body;
-    console.log("run1");
-
     const response = await authClientService.verifyOtp(email, otp, type);
     res.json(response);
   } catch (error) {

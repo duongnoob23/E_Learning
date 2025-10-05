@@ -41,5 +41,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "lessons", timestamps: false }
   );
+
+  Lesson.findById = async (lesson_id) => {
+    return Lesson.findOne({where: {lesson_id}});
+  };
+
+  // Add associations
+  Lesson.associate = function(models) {
+    Lesson.belongsTo(models.Module, {
+      foreignKey: 'module_id',
+      as: 'module'
+    });
+    Lesson.belongsTo(models.Course, {
+      foreignKey: 'course_id', 
+      as: 'course'
+    });
+  };
   return Lesson;
 };

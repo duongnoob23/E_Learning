@@ -42,8 +42,35 @@ const CourseCoupon = require("./CourseCoupon")(sequelize, DataTypes);
 const CourseCertificate = require("./CourseCertificate")(sequelize, DataTypes);
 const CourseTag = require("./CourseTag")(sequelize, DataTypes);
 const CourseTagRelation = require("./CourseTagRelation")(sequelize, DataTypes);
+const Test = require("./exam/Test")(sequelize, DataTypes);
+const Part = require("./exam/Part")(sequelize, DataTypes);
+const Passages = require("./exam/Passages")(sequelize, DataTypes);
+const Questions = require("./exam/Questions")(sequelize, DataTypes);
+const Results = require("./exam/Results")(sequelize, DataTypes);
+const UserAnswers = require("./exam/UserAnswers")(sequelize, DataTypes);
+const ResultPart = require("./exam/ResultPart")(sequelize, DataTypes);
+
 
 // Associations
+
+
+// Exam 
+
+Test.hasMany(Part, { foreignKey: "test_id" });
+Part.belongsTo(Test, { foreignKey: "test_id" });
+
+Part.hasMany(Passages, { foreignKey: "part_id" });
+Passages.belongsTo(Part, { foreignKey: "part_id" });
+
+Part.hasMany(Questions, { foreignKey: "part_id" });
+Questions.belongsTo(Part, { foreignKey: "part_id" });
+
+Results.hasMany(ResultPart, { foreignKey: "result_id" });
+ResultPart.belongsTo(Results, { foreignKey: "result_id" });
+
+Passages.hasMany(Questions, { foreignKey: "passage_id" });
+Questions.belongsTo(Passages, { foreignKey: "passage_id" });
+
 
 // Accounts
 UserRole.belongsTo(User, { foreignKey: "user_id" });
@@ -168,4 +195,11 @@ module.exports = {
   CourseCertificate,
   CourseTag,
   CourseTagRelation,
+  Test,
+  Part,
+  Passages,
+  Questions,
+  Results,
+  UserAnswers,
+  ResultPart,
 };
