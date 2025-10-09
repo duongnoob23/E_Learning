@@ -1,0 +1,33 @@
+.assessment-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.assessment-filter__categories,
+.assessment-filter__sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assessment-filter__btn {
+  padding: 6px 14px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.assessment-filter__btn:hover {
+  border-color: #1677ff;
+  color: #1677ff;
+}
+
+.assessment-filter__btn--small {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+}

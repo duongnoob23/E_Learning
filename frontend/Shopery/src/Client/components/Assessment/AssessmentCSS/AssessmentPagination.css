@@ -1,0 +1,33 @@
+.assessment-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.assessment-pagination__btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.assessment-pagination__btn:hover {
+  border-color: #1677ff;
+  color: #1677ff;
+}
+
+.assessment-pagination__btn--active {
+  background: #1677ff;
+  color: #fff;
+  border-color: #1677ff;
+}
+
+.assessment-pagination__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
