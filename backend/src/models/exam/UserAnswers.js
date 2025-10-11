@@ -1,25 +1,68 @@
-module.exports = (sequence, DataTypes) => { 
-    const UserAnswers = sequence.define(
-        "UserAnswers",
+module.exports = (sequelize, DataTypes) => {
+    const UserAnswer = sequelize.define(
+        "UserAnswer",
         {
-            answer_id:{
+            id: {
                 type: DataTypes.BIGINT,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            user_id: { type: DataTypes.BIGINT, allowNull: false },
-            question_id: { type: DataTypes.BIGINT, allowNull: false },
-            user_answer: { type: DataTypes.STRING(5), allowNull: true },
-            is_correct: { type: DataTypes.BOOLEAN, allowNull: true },
-            answered_at: { type: DataTypes.DATE, allowNull: true },
+            session_id: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            question_id: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            selected_choice_id: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
+            answer_time: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: DataTypes.NOW,
+            },
+            is_correct: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true,
+            },
+            created_at: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
         },
-        {tableName : "user_answers", timestamps: true}
+        {
+            tableName: "user_answers",
+            timestamps: true,
+            createdAt: 'created_at',
+            updatedAt: false,
+        }
     );
-    
-    UserAnswers.findById = async (answer_id) => UserAnswers.findOne({where: { answer_id }});
-    UserAnswers.findAll = async () => UserAnswers.findAll();
-    UserAnswers.create = async (data) => UserAnswers.create(data);
-    UserAnswers.updateUserAnswers = async (answer_id, data) => UserAnswers.upadte(data, {where : {answer_id}});
-    return UserAnswers;
 
+    UserAnswer.findById = async (id) =>
+        UserAnswer.findOne({ where: { id } });
+
+    UserAnswer.findBySessionId = async (session_id) =>
+        UserAnswer.findAll({ where: { session_id } });
+
+    UserAnswer.findByQuestionId = async (question_id) =>
+        UserAnswer.findAll({ where: { question_id } });
+
+    UserAnswer.findBySessionAndQuestion = async (session_id, question_id) =>
+        UserAnswer.findOne({ where: { session_id, question_id } });
+
+    UserAnswer.findAll = async () => UserAnswer.findAll();
+
+    UserAnswer.createAnswer = async (data) => UserAnswer.create(data);
+
+    UserAnswer.updateAnswer = async (id, data) =>
+        UserAnswer.update(data, { where: { id } });
+
+    UserAnswer.deleteAnswer = async (id) =>
+        UserAnswer.destroy({ where: { id } });
+
+    return UserAnswer;
 }

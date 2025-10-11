@@ -1,69 +1,95 @@
-const ResultPart = require("./ResultPart");
-const { Result, Part, Passage, Question } = require("../index");
-
 module.exports = (sequelize, DataTypes) => {
     const Test = sequelize.define(
         "Test",
         {
-            test_id: {
-                type: DataTypes.BIGINT,
+            id: {
+                type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            test_name: {
-                type: DataTypes.STRING(100),
+            title: {
+                type: DataTypes.STRING(255),
                 allowNull: false,
             },
-            description: { type: DataTypes.TEXT, allowNull: true },
-            created_at: { type: DataTypes.DATE, allowNull: true },
+            description: {
+                type: DataTypes.TEXT,
+                allowNull: true
+            },
+            exam_type: {
+                type: DataTypes.STRING(50),
+                allowNull: false,
+                comment: 'TOEIC, IELTS, HSK, THPT'
+            },
+            total_duration: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                comment: 'minutes'
+            },
+            total_questions: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            total_parts: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            difficulty_level: {
+                type: DataTypes.STRING(20),
+                allowNull: false,
+                comment: 'EASY, MEDIUM, HARD'
+            },
+            created_by: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
+            created_at: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
+            updated_at: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
         },
         {
             tableName: "tests",
             timestamps: true,
             createdAt: 'created_at',
-            updatedAt: false,
+            updatedAt: 'updated_at',
         }
     );
 
-    Test.findById = async (test_id) => 
-        Test.findOne({ where: { test_id } });
+    Test.findById = async (id) =>
+        Test.findOne({ where: { id } });
 
-    Test.findwithRP = async (test_id) => 
+    Test.findWithParts = async (id) =>
         Test.findOne({
-            where: { test_id },
-            include : [
+            where: { id },
+            include: [
                 {
-                    model: Result,
-                    as: "results",
-                    include: [
-                        {
-                            model: ResultPart,
-                            as: "result_parts",
-                        },
-                    ],
-                },
-                {
-                    model: Part,
+                    model: sequelize.models.Part,
                     as: "parts",
                 },
             ],
         });
 
-    Test.findwithAll = async (test_id) => 
+    Test.findWithAll = async (id) =>
         Test.findOne({
-            where: { test_id },
+            where: { id },
             include: [
                 {
-                    model: Part,
+                    model: sequelize.models.Part,
                     as: "parts",
                     include: [
                         {
-                            model: Passage,
-                            as: "passages",
+                            model: sequelize.models.Question,
+                            as: "questions",
                             include: [
                                 {
-                                    model: Question,
-                                    as: "questions"
+                                    model: sequelize.models.Choice,
+                                    as: "choices"
                                 }
                             ]
                         },
@@ -72,12 +98,15 @@ module.exports = (sequelize, DataTypes) => {
             ],
         });
 
-    Test.findForAll = async () => Test.findAll();
+    Test.findAll = async () => Test.findAll();
 
     Test.createTest = async (data) => Test.create(data);
 
-    Test.updateTest = async (test_id, data) => 
-        Test.update(data, { where : { test_id } });
+    Test.updateTest = async (id, data) =>
+        Test.update(data, { where: { id } });
+
+    Test.deleteTest = async (id) =>
+        Test.destroy({ where: { id } });
 
     return Test;
 }

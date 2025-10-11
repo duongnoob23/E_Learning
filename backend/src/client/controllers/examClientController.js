@@ -1,7 +1,7 @@
 const examClientService = require("../services/examClientService");
 
 // Lấy danh sách bài thi
-exports.getExams = async (req, res, next) => {
+exports.getTests = async (req, res, next) => {
   try {
     const response = await examClientService.getExams();
     res.json(response);
