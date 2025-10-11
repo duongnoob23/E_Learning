@@ -29,6 +29,8 @@ import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamResult from "../pages/Exam/ExamResult/ExamResult";
 import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
 
+import Lesson from "../pages/Lesson/Lesson";
+
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
     //
@@ -229,6 +231,16 @@ const ClientRoutes = () => {
           <PrivateRoute requiredRole="client">
             <ClientLayout>
               <ExamResult />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/lesson"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Lesson />
             </ClientLayout>
           </PrivateRoute>
         }

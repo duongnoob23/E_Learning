@@ -93,9 +93,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Course.findAllWithFilters = async (filters) => {
     return Course.findAndCountAll(filters);
-  };
+  };  
   Course.getFilterOptions = async () => {
     return Course.findAndCountAll(filters);
   };
+
   return Course;
 };

@@ -12,8 +12,6 @@ import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
 import AppRoutes from "./routes/routes";
-import Flashcard from "./Client/pages/Flashcard/Flashcard";
-
 function App() {
   return (
     <Provider store={store}>

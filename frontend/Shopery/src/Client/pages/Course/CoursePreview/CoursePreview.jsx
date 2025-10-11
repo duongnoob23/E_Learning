@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CoursePreview.css";
-
 const fakeCourse = {
   category: "Toeic 4 kĩ năng",
   title: "TOEIC 4 Skills Mastery: Chuẩn bị cho kỳ thi TOEIC",
@@ -241,6 +241,12 @@ const CoursePreview = () => {
   // Accordion logic
   const handleToggleModule = (idx) => {
     setOpenModuleIdx(openModuleIdx === idx ? null : idx);
+  };
+  const navigate = useNavigate();
+
+  const handleNavigateLesson = () => {
+    console.log("click");
+    navigate(`/lesson`);
   };
 
   return (
@@ -574,7 +580,12 @@ const CoursePreview = () => {
               <button className="course-preview__btn-add-cart">
                 Thêm vào giỏ hàng
               </button>
-              <button className="course-preview__btn-buy-now">Mua ngay</button>
+              <button
+                className="course-preview__btn-buy-now"
+                onClick={handleNavigateLesson}
+              >
+                Học thử ngay
+              </button>
               <div className="course-preview__info-list">
                 {fakeCourse.info.map((info, i) => (
                   <div key={i}>

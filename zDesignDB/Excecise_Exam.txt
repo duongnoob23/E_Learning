@@ -455,3 +455,341 @@ Table notifications {
 
 
 Ref: "question_options"."option_text" < "exercise_questions"."question_type"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////
+// BẢNG NGƯỜI DÙNG (USERS) - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table users {
+  id integer [primary key, increment, note: 'Khóa chính']
+  email varchar(255) [unique, not null, note: 'Email đăng nhập']
+  password_hash varchar(255) [not null, note: 'Mật khẩu đã mã hóa']
+  full_name varchar(255) [not null, note: 'Họ tên đầy đủ']
+  avatar_url varchar(500) [note: 'Link ảnh đại diện']
+  role enum('student', 'teacher', 'admin') [default: 'student', note: 'Vai trò: học viên, giảng viên, admin']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LOẠI BÀI THI (EXAM TYPES) - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table exam_types {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(100) [not null, note: 'Tên loại bài thi: TOEIC, IELTS, HSK...']
+  description text [note: 'Mô tả chi tiết về loại bài thi']
+  total_score integer [note: 'Điểm tối đa: 990 cho TOEIC, 9.0 cho IELTS']
+  duration_minutes integer [note: 'Thời gian làm bài (phút)']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG KỸ NĂNG (SKILLS) - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table skills {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(100) [not null, note: 'Tên kỹ năng: Listening, Reading, Writing, Speaking']
+  description text [note: 'Mô tả về kỹ năng']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LIÊN KẾT LOẠI BÀI THI - KỸ NĂNG - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table exam_type_skills {
+  id integer [primary key, increment, note: 'Khóa chính']
+  exam_type_id integer [ref: > exam_types.id, note: 'Liên kết với loại bài thi']
+  skill_id integer [ref: > skills.id, note: 'Liên kết với kỹ năng']
+  weight_percentage integer [note: 'Trọng số của kỹ năng trong bài thi (%)']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (exam_type_id, skill_id) [unique, note: 'Đảm bảo mỗi cặp exam_type-skill chỉ có 1 lần']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TAG PHÂN LOẠI - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table tags {
+  id integer [primary key, increment, note: 'Khóa chính']
+  name varchar(100) [not null, unique, note: 'Tên tag: #listening, #toeic, #part1...']
+  category enum('exam_type', 'skill', 'part', 'question_type', 'topic', 'grammar') [not null, note: 'Phân loại tag']
+  description text [note: 'Mô tả tag']
+  parent_tag_id integer [ref: > tags.id, note: 'Tag cha (cho tag phân cấp)']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG BÀI THI/BÀI TẬP GỘP (ASSESSMENTS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table assessments {
+  id integer [primary key, increment, note: 'Khóa chính']
+  title varchar(255) [not null, note: 'Tiêu đề bài thi/bài tập']
+  description text [note: 'Mô tả bài thi/bài tập']
+  assessment_type enum('exam', 'exercise') [not null, note: 'Loại: exam hoặc exercise']
+  exam_type_id integer [ref: > exam_types.id, note: 'Loại bài thi (chỉ dùng cho exam)']
+  skill_id integer [ref: > skills.id, not null, note: 'Kỹ năng chính']
+  duration_minutes integer [not null, note: 'Thời gian làm bài (phút)']
+  total_questions integer [not null, note: 'Tổng số câu hỏi']
+  total_parts integer [note: 'Tổng số phần thi (chỉ dùng cho exam, NULL cho exercise)']
+  difficulty_level enum('beginner', 'intermediate', 'advanced') [default: 'intermediate', note: 'Mức độ khó']
+  is_free boolean [default: true, note: 'Miễn phí hay trả phí']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_by integer [ref: > users.id, note: 'Người tạo']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TAG CỦA BÀI THI/BÀI TẬP GỘP - MỚI
+//////////////////////////////////////////////////////////
+
+Table assessment_tags {
+  id integer [primary key, increment, note: 'Khóa chính']
+  assessment_id integer [ref: > assessments.id, note: 'Liên kết với bài thi/bài tập']
+  tag_id integer [ref: > tags.id, note: 'Liên kết với tag']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (assessment_id, tag_id) [unique, note: 'Đảm bảo mỗi cặp assessment-tag chỉ có 1 lần']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG PHẦN THI GỘP (ASSESSMENT PARTS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table assessment_parts {
+  id integer [primary key, increment, note: 'Khóa chính']
+  assessment_id integer [ref: > assessments.id, not null, note: 'Liên kết với bài thi/bài tập']
+  part_number integer [note: 'Số thứ tự phần: 1, 2, 3... (NULL cho exercise)']
+  part_name varchar(100) [note: 'Tên phần: "Part 1: Photographs" (NULL cho exercise)']
+  description text [note: 'Mô tả phần thi']
+  total_questions integer [not null, note: 'Số câu hỏi trong phần']
+  duration_minutes integer [note: 'Thời gian làm phần này (phút)']
+  instructions text [note: 'Hướng dẫn làm bài']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (assessment_id, part_number) [unique, note: 'Đảm bảo số thứ tự phần không trùng trong cùng bài thi']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TAG CỦA PHẦN THI GỘP - MỚI
+//////////////////////////////////////////////////////////
+
+Table part_tags {
+  id integer [primary key, increment, note: 'Khóa chính']
+  part_id integer [ref: > assessment_parts.id, note: 'Liên kết với phần thi']
+  tag_id integer [ref: > tags.id, note: 'Liên kết với tag']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (part_id, tag_id) [unique, note: 'Đảm bảo mỗi cặp part-tag chỉ có 1 lần']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CÂU HỎI GỘP (ASSESSMENT QUESTIONS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table assessment_questions {
+  id integer [primary key, increment, note: 'Khóa chính']
+  assessment_id integer [ref: > assessments.id, not null, note: 'Liên kết với bài thi/bài tập']
+  part_id integer [ref: > assessment_parts.id, note: 'Liên kết với phần thi (NULL cho exercise)']
+  question_number integer [not null, note: 'Số thứ tự câu hỏi']
+  question_type enum('multiple_choice', 'fill_blank', 'essay', 'speaking') [not null, note: 'Loại câu hỏi']
+  question_text text [not null, note: 'Nội dung câu hỏi']
+  audio_url varchar(500) [note: 'Link audio (cho câu hỏi listening)']
+  image_url varchar(500) [note: 'Link hình ảnh (cho câu hỏi có hình)']
+  transcript text [note: 'Bản ghi âm (cho câu hỏi listening)']
+  correct_answer text [not null, note: 'Đáp án đúng']
+  explanation text [note: 'Giải thích đáp án']
+  points integer [default: 1, note: 'Điểm cho câu hỏi này']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (assessment_id, question_number) [unique, note: 'Đảm bảo số thứ tự câu hỏi không trùng trong cùng bài thi/bài tập']
+    (part_id, question_number) [unique, note: 'Đảm bảo số thứ tự câu hỏi không trùng trong cùng phần (nếu có part)']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LỰA CHỌN CÂU HỎI GỘP (QUESTION OPTIONS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table question_options {
+  id integer [primary key, increment, note: 'Khóa chính']
+  question_id integer [ref: > assessment_questions.id, not null, note: 'Liên kết với câu hỏi']
+  option_letter char(1) [not null, note: 'Ký tự lựa chọn: A, B, C, D']
+  option_text text [not null, note: 'Nội dung lựa chọn']
+  is_correct boolean [default: false, note: 'Có phải đáp án đúng không']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (question_id, option_letter) [unique, note: 'Đảm bảo ký tự lựa chọn không trùng trong cùng câu hỏi']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG TAG CỦA CÂU HỎI GỘP - MỚI
+//////////////////////////////////////////////////////////
+
+Table question_tags {
+  id integer [primary key, increment, note: 'Khóa chính']
+  question_id integer [ref: > assessment_questions.id, note: 'Liên kết với câu hỏi']
+  tag_id integer [ref: > tags.id, note: 'Liên kết với tag']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (question_id, tag_id) [unique, note: 'Đảm bảo mỗi cặp question-tag chỉ có 1 lần']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG PHIÊN LÀM BÀI GỘP (ASSESSMENT SESSIONS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table assessment_sessions {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Học viên làm bài']
+  assessment_id integer [ref: > assessments.id, not null, note: 'Bài thi/bài tập được làm']
+  session_type enum('full_test', 'part_practice', 'exercise') [not null, note: 'Loại phiên: full test, part practice, hoặc exercise']
+  selected_parts text [note: 'JSON array chứa ID các phần được chọn (cho part practice)']
+  time_limit_minutes integer [note: 'Thời gian giới hạn tùy chỉnh (null = không giới hạn)']
+  started_at timestamp [not null, note: 'Thời gian bắt đầu làm bài']
+  completed_at timestamp [note: 'Thời gian hoàn thành']
+  total_score integer [note: 'Tổng điểm đạt được']
+  total_correct integer [note: 'Số câu đúng']
+  total_questions integer [note: 'Tổng số câu đã làm']
+  status enum('in_progress', 'completed', 'abandoned') [default: 'in_progress', note: 'Trạng thái phiên làm bài']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG CÂU TRẢ LỜI TRONG PHIÊN GỘP (SESSION ANSWERS) - MỚI
+//////////////////////////////////////////////////////////
+
+Table session_answers {
+  id integer [primary key, increment, note: 'Khóa chính']
+  session_id integer [ref: > assessment_sessions.id, not null, note: 'Liên kết với phiên làm bài']
+  question_id integer [ref: > assessment_questions.id, not null, note: 'Liên kết với câu hỏi']
+  user_answer text [note: 'Câu trả lời của học viên']
+  selected_option_id integer [ref: > question_options.id, note: 'Lựa chọn được chọn (cho câu trắc nghiệm)']
+  is_correct boolean [note: 'Có đúng không']
+  points_earned integer [default: 0, note: 'Điểm đạt được cho câu này']
+  time_spent_seconds integer [note: 'Thời gian làm câu hỏi (giây)']
+  answered_at timestamp [default: `now()`, note: 'Thời gian trả lời']
+  
+  indexes {
+    (session_id, question_id) [unique, note: 'Đảm bảo mỗi câu hỏi chỉ được trả lời 1 lần trong phiên']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG BÌNH LUẬN - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table comments {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Người bình luận']
+  comment_type enum('exam', 'exercise', 'blog') [not null, note: 'Loại bình luận: bài thi, bài tập, blog']
+  entity_id integer [not null, note: 'ID của đối tượng được bình luận']
+  parent_comment_id integer [ref: > comments.id, note: 'Bình luận cha (cho reply)']
+  content text [not null, note: 'Nội dung bình luận']
+  rating integer [note: 'Đánh giá sao (1-5)']
+  is_active boolean [default: true, note: 'Trạng thái hoạt động']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THEO DÕI TIẾN ĐỘ HỌC VIÊN - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table user_progress {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Học viên']
+  skill_id integer [ref: > skills.id, not null, note: 'Kỹ năng']
+  exam_type_id integer [ref: > exam_types.id, note: 'Loại bài thi']
+  total_exams_taken integer [default: 0, note: 'Tổng số bài thi đã làm']
+  total_exercises_completed integer [default: 0, note: 'Tổng số bài tập đã hoàn thành']
+  average_score decimal(5,2) [note: 'Điểm trung bình']
+  best_score integer [note: 'Điểm cao nhất']
+  last_activity_at timestamp [note: 'Hoạt động cuối cùng']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  updated_at timestamp [default: `now()`, note: 'Thời gian cập nhật']
+  
+  indexes {
+    (user_id, skill_id, exam_type_id) [unique, note: 'Đảm bảo mỗi cặp user-skill-exam_type chỉ có 1 bản ghi']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG YÊU THÍCH CỦA HỌC VIÊN - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table user_favorites {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Học viên']
+  entity_type enum('exam', 'exercise') [not null, note: 'Loại đối tượng: bài thi, bài tập']
+  entity_id integer [not null, note: 'ID của đối tượng được yêu thích']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+  
+  indexes {
+    (user_id, entity_type, entity_id) [unique, note: 'Đảm bảo mỗi học viên chỉ yêu thích 1 đối tượng 1 lần']
+  }
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG LỊCH SỬ HỌC TẬP - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table study_history {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Học viên']
+  entity_type enum('exam', 'exercise') [not null, note: 'Loại đối tượng: bài thi, bài tập']
+  entity_id integer [not null, note: 'ID của đối tượng']
+  session_id integer [note: 'ID phiên làm bài (assessment_sessions.id)']
+  score integer [note: 'Điểm đạt được']
+  time_spent_minutes integer [note: 'Thời gian làm bài (phút)']
+  completed_at timestamp [not null, note: 'Thời gian hoàn thành']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
+
+//////////////////////////////////////////////////////////
+// BẢNG THÔNG BÁO - GIỮ NGUYÊN
+//////////////////////////////////////////////////////////
+
+Table notifications {
+  id integer [primary key, increment, note: 'Khóa chính']
+  user_id integer [ref: > users.id, not null, note: 'Người nhận thông báo']
+  title varchar(255) [not null, note: 'Tiêu đề thông báo']
+  message text [not null, note: 'Nội dung thông báo']
+  notification_type enum('exam_result', 'exercise_result', 'system') [not null, note: 'Loại thông báo']
+  entity_type enum('exam', 'exercise') [note: 'Loại đối tượng liên quan']
+  entity_id integer [note: 'ID đối tượng liên quan']
+  is_read boolean [default: false, note: 'Đã đọc chưa']
+  created_at timestamp [default: `now()`, note: 'Thời gian tạo']
+}
