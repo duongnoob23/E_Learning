@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 // Lấy danh sách bài thi
 exports.getExams = async () => {
     try {
-        const tests = await Test.findAll();
+        const tests = await Test.findForAll();
         if(!tests){
             return {
                 EM: "Không tìm thấy bài thi",
@@ -18,6 +18,7 @@ exports.getExams = async () => {
             DT: tests,
         };
     } catch (error) {
+        console.error("Error in getExams service:", error);
         return {
             EM: "Có lỗi xảy ra trong quá trình lấy danh sách bài thi",
             EC: "-2",
@@ -29,7 +30,12 @@ exports.getExams = async () => {
 // Lấy chi tiết bài thi
 exports.getTestDetail = async (testId) => {
     try {
-        const test = await Test.findwithRP(testId);
+        console.log("Getting test detail for testId:", testId);
+
+        // Thử method đơn giản trước
+        const test = await Test.findById(testId);
+        console.log("Test found:", test);
+
         if(!test){
             return {
                 EM: "Không tìm thấy bài thi",
@@ -40,10 +46,11 @@ exports.getTestDetail = async (testId) => {
         return {
             EM: "Lấy chi tiết bài thi thành công",
             EC: "0",
-            DT: test,result,
+            DT: test,
         };
     }
     catch (error) {
+        console.error("Error in getTestDetail service:", error);
         return {
             EM: "Có lỗi xảy ra trong quá trình lấy chi tiết bài thi",
             EC: "-2",

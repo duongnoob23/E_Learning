@@ -8,8 +8,6 @@ router.get("/", authMiddleware, ExamClientController.getExams);
 
 router.get("/tests/:testId", authMiddleware, ExamClientController.getTestDetail);
 
-// router.get("/results/:testId", ExamClientController.getResults);
-
 router.get("/tests/:testId/start", authMiddleware, ExamClientController.startTest);
 
 router.get("/tests/practice/:testId", authMiddleware, ExamClientController.getPracticeTests);

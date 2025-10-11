@@ -71,7 +71,6 @@ ResultPart.belongsTo(Results, { foreignKey: "result_id" });
 Passages.hasMany(Questions, { foreignKey: "passage_id" });
 Questions.belongsTo(Passages, { foreignKey: "passage_id" });
 
-
 // Accounts
 UserRole.belongsTo(User, { foreignKey: "user_id" });
 UserRole.belongsTo(Role, { foreignKey: "role_id" });
