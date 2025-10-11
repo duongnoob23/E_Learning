@@ -1,3 +1,5 @@
+
+
 -- =============================================
 -- TẠO DATABASE VÀ SỬ DỤNG
 -- =============================================
@@ -585,49 +587,54 @@ INSERT INTO questions (question_id, part_id, question_number, question_text, que
 (161, 7, 15, 'What is the author\'s attitude toward the Internet?', 'MULTIPLE_CHOICE', NULL, NULL, 'The Internet has revolutionized the way we communicate, work, and access information. It has connected people from all over the world and made it possible to share knowledge instantly. However, it has also created new challenges, such as privacy concerns and the spread of misinformation.', 'This question tests your ability to understand the author\'s attitude.', 'Understanding author\'s attitude', '2024-01-15 09:40:00', '2024-01-15 09:40:00'),
 (162, 7, 16, 'What is the main topic of the passage?', 'MULTIPLE_CHOICE', NULL, NULL, 'Education is the foundation of a successful society. It provides individuals with the knowledge and skills they need to contribute to their communities and achieve their personal goals. However, access to quality education remains a challenge in many parts of the world.', 'This question tests your ability to identify the main topic.', 'Identifying main topics', '2024-01-15 09:40:00', '2024-01-15 09:40:00'),
 (163, 7, 17, 'What does the author say about education?', 'MULTIPLE_CHOICE', NULL, NULL, 'Education is the foundation of a successful society. It provides individuals with the knowledge and skills they need to contribute to their communities and achieve their personal goals. However, access to quality education remains a challenge in many parts of the world.', 'This question tests your ability to understand the author\'s viewpoint.', 'Understanding author\'s viewpoint', '2024-01-15 09:40:00', '2024-01-15 09:40:00'),
-(164, 7, 18, 'What is the author\'s main argument?', 'MULTIPLE_CHOICE', NULL, NULL, 'Education is the foundation of a successful society. It provides individuals with the knowledge and skills they need to contribute to their communities and achieve their personal goals. However, access to quality education remains a challenge in many parts of the world.', 'This question tests your ability to identify the main argument.', 'Identifying main arguments', '2024-01-15 09:40:00', '2024-01-15 09:40:00'),
+(164, 7, 18, 'What is the author\'s main argument?', 'MULTIPLE_CHOICE', NULL, NULL, 'Education is the foundation of a successful society. It provides individuals with the knowledge and skills they need to contribute to their communities and achieve their personal goals. However, access to quality education remains a challenge in many parts of the world.', 'This question tests your ability to identify the main argument.', 'Identifying main arguments', '2024-01-15 09:40:00', '2024-01-15 09:40:00');
 
+-- ✅ INSERT: questions (Part 7: 54 questions, id 147–200)
+INSERT INTO questions (
+  question_id, part_id, question_number, question_text,
+  question_type, audio_file, image_file, transcript,
+  explanation, grammar_notes, created_at, updated_at
+) VALUES
+(165, 7, 19, 'What is the main topic?', 'MULTIPLE_CHOICE', NULL, NULL, 'Sample passage about business strategy.', 'Tests topic recognition.', 'Recognizing topics', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(166, 7, 20, 'What is the author’s recommendation?', 'MULTIPLE_CHOICE', NULL, NULL, 'Sample passage about teamwork.', 'Tests recommendation understanding.', 'Understanding recommendations', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(167, 7, 21, 'What is the purpose of this memo?', 'MULTIPLE_CHOICE', NULL, NULL, 'Sample office memo text.', 'Tests comprehension of work-related documents.', 'Understanding memos', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(168, 7, 22, 'What should the employees do?', 'MULTIPLE_CHOICE', NULL, NULL, 'Instructional announcement about company policy.', 'Tests ability to find instructions.', 'Following instructions', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(169, 7, 23, 'What is the tone of the article?', 'MULTIPLE_CHOICE', NULL, NULL, 'Positive tone about company performance.', 'Tests tone recognition.', 'Tone understanding', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(170, 7, 24, 'Who is the intended audience?', 'MULTIPLE_CHOICE', NULL, NULL, 'Customer newsletter excerpt.', 'Tests audience identification.', 'Identifying audience', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(171, 7, 25, 'What is the main benefit mentioned?', 'MULTIPLE_CHOICE', NULL, NULL, 'Marketing brochure text.', 'Tests comprehension of benefits.', 'Recognizing benefits', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(172, 7, 26, 'What problem is discussed?', 'MULTIPLE_CHOICE', NULL, NULL, 'Excerpt from company report.', 'Tests problem identification.', 'Identifying problems', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(173, 7, 27, 'What is the likely result?', 'MULTIPLE_CHOICE', NULL, NULL, 'Business forecast document.', 'Tests inference of outcomes.', 'Predicting results', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(174, 7, 28, 'What is the company’s plan?', 'MULTIPLE_CHOICE', NULL, NULL, 'Meeting minutes summary.', 'Tests comprehension of future plans.', 'Understanding plans', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(175, 7, 29, 'What action should be taken?', 'MULTIPLE_CHOICE', NULL, NULL, 'Instructional notice.', 'Tests understanding of directives.', 'Recognizing actions', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(176, 7, 30, 'What is being announced?', 'MULTIPLE_CHOICE', NULL, NULL, 'Internal company update.', 'Tests comprehension of announcements.', 'Understanding announcements', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(177, 7, 31, 'What event is being discussed?', 'MULTIPLE_CHOICE', NULL, NULL, 'Conference invitation message.', 'Tests detail identification.', 'Finding details', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(178, 7, 32, 'When will the event take place?', 'MULTIPLE_CHOICE', NULL, NULL, 'Event schedule excerpt.', 'Tests understanding of time expressions.', 'Recognizing time info', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(179, 7, 33, 'Who is responsible for the project?', 'MULTIPLE_CHOICE', NULL, NULL, 'Company project overview.', 'Tests recognition of roles.', 'Identifying roles', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(180, 7, 34, 'What is the key message?', 'MULTIPLE_CHOICE', NULL, NULL, 'Internal communication memo.', 'Tests comprehension of core ideas.', 'Recognizing key message', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(181, 7, 35, 'What should readers understand?', 'MULTIPLE_CHOICE', NULL, NULL, 'Company training guide.', 'Tests comprehension of purpose.', 'Recognizing purpose', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(182, 7, 36, 'What information is missing?', 'MULTIPLE_CHOICE', NULL, NULL, 'Email snippet with incomplete data.', 'Tests identification of missing info.', 'Finding missing info', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(183, 7, 37, 'What problem is being solved?', 'MULTIPLE_CHOICE', NULL, NULL, 'Excerpt from technical article.', 'Tests understanding of solutions.', 'Understanding problem-solution', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(184, 7, 38, 'What is the purpose of the chart?', 'MULTIPLE_CHOICE', NULL, NULL, 'Visual data interpretation text.', 'Tests ability to interpret visuals.', 'Chart interpretation', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(185, 7, 39, 'What can be inferred from the report?', 'MULTIPLE_CHOICE', NULL, NULL, 'Excerpt from performance report.', 'Tests inference-making.', 'Making inferences', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(186, 7, 40, 'What conclusion can be made?', 'MULTIPLE_CHOICE', NULL, NULL, 'Meeting summary paragraph.', 'Tests summarization skill.', 'Drawing conclusions', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(187, 7, 41, 'Who wrote the message?', 'MULTIPLE_CHOICE', NULL, NULL, 'Formal business email.', 'Tests sender identification.', 'Identifying sender', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(188, 7, 42, 'What department issued this?', 'MULTIPLE_CHOICE', NULL, NULL, 'Internal notice.', 'Tests recognition of origin.', 'Recognizing source', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(189, 7, 43, 'What is the next step mentioned?', 'MULTIPLE_CHOICE', NULL, NULL, 'Procedural instruction.', 'Tests action sequence understanding.', 'Process recognition', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(190, 7, 44, 'What problem is described?', 'MULTIPLE_CHOICE', NULL, NULL, 'Maintenance request note.', 'Tests issue identification.', 'Recognizing problems', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(191, 7, 45, 'What is being requested?', 'MULTIPLE_CHOICE', NULL, NULL, 'Customer service email.', 'Tests understanding of requests.', 'Identifying requests', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(192, 7, 46, 'What will happen next?', 'MULTIPLE_CHOICE', NULL, NULL, 'Schedule change notice.', 'Tests prediction skills.', 'Predicting outcomes', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(193, 7, 47, 'Who is the intended recipient?', 'MULTIPLE_CHOICE', NULL, NULL, 'Formal letter opening.', 'Tests reader identification.', 'Recognizing recipients', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(194, 7, 48, 'What is the subject of the passage?', 'MULTIPLE_CHOICE', NULL, NULL, 'Excerpt from article.', 'Tests comprehension of subjects.', 'Recognizing subjects', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(195, 7, 49, 'What information is emphasized?', 'MULTIPLE_CHOICE', NULL, NULL, 'Company presentation script.', 'Tests ability to spot emphasis.', 'Recognizing emphasis', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(196, 7, 50, 'What is the main conclusion?', 'MULTIPLE_CHOICE', NULL, NULL, 'Summary section excerpt.', 'Tests conclusion understanding.', 'Recognizing conclusions', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(197, 7, 51, 'What is the key detail?', 'MULTIPLE_CHOICE', NULL, NULL, 'Short report excerpt.', 'Tests attention to detail.', 'Identifying details', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(198, 7, 52, 'What question does the passage answer?', 'MULTIPLE_CHOICE', NULL, NULL, 'Short FAQ text.', 'Tests comprehension of Q&A.', 'Recognizing question focus', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(199, 7, 53, 'What best summarizes this passage?', 'MULTIPLE_CHOICE', NULL, NULL, 'Paragraph about business ethics.', 'Tests summarization ability.', 'Summarizing text', '2024-01-15 09:45:00', '2024-01-15 09:45:00'),
+(200, 7, 54, 'What is the author’s message?', 'MULTIPLE_CHOICE', NULL, NULL, 'Final review text.', 'Tests understanding of message.', 'Recognizing author message', '2024-01-15 09:45:00', '2024-01-15 09:45:00');
 
--- INSERT: questions (tiếp tục từ question_id 165 đến 200)
-(165, 7, 165, 'What is the main topic of the article?', 'Chủ đề chính của bài viết là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(166, 7, 166, 'According to the passage, what should employees do?', 'Theo đoạn văn, nhân viên nên làm gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(167, 7, 167, 'What is the purpose of the meeting?', 'Mục đích của cuộc họp là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(168, 7, 168, 'Who is the intended audience?', 'Đối tượng mục tiêu là ai?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(169, 7, 169, 'What does the word "efficient" mean in this context?', 'Từ "efficient" có nghĩa gì trong ngữ cảnh này?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(170, 7, 170, 'What is the company\'s main concern?', 'Mối quan tâm chính của công ty là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(171, 7, 171, 'According to the text, what is the deadline?', 'Theo văn bản, hạn chót là khi nào?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(172, 7, 172, 'What should customers do if they have problems?', 'Khách hàng nên làm gì nếu gặp vấn đề?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(173, 7, 173, 'What is the main advantage mentioned?', 'Lợi ích chính được đề cập là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(174, 7, 174, 'Who should contact the manager?', 'Ai nên liên hệ với người quản lý?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(175, 7, 175, 'What is the next step?', 'Bước tiếp theo là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(176, 7, 176, 'What information is required?', 'Thông tin nào được yêu cầu?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(177, 7, 177, 'What is the main reason for the change?', 'Lý do chính cho sự thay đổi là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(178, 7, 178, 'What does the author suggest?', 'Tác giả đề xuất gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(179, 7, 179, 'What is the main problem?', 'Vấn đề chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(180, 7, 180, 'What is the solution proposed?', 'Giải pháp được đề xuất là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(181, 7, 181, 'What is the main benefit?', 'Lợi ích chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(182, 7, 182, 'What is the company\'s policy?', 'Chính sách của công ty là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(183, 7, 183, 'What is the main focus?', 'Trọng tâm chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(184, 7, 184, 'What is the expected outcome?', 'Kết quả mong đợi là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(185, 7, 185, 'What is the main challenge?', 'Thách thức chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(186, 7, 186, 'What is the recommendation?', 'Khuyến nghị là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(187, 7, 187, 'What is the main objective?', 'Mục tiêu chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(188, 7, 188, 'What is the key requirement?', 'Yêu cầu chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(189, 7, 189, 'What is the main advantage?', 'Lợi thế chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(190, 7, 190, 'What is the primary concern?', 'Mối quan tâm chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(191, 7, 191, 'What is the main purpose?', 'Mục đích chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(192, 7, 192, 'What is the main issue?', 'Vấn đề chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(193, 7, 193, 'What is the main goal?', 'Mục tiêu chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(194, 7, 194, 'What is the main priority?', 'Ưu tiên chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(195, 7, 195, 'What is the main consideration?', 'Yếu tố chính cần xem xét là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(196, 7, 196, 'What is the main factor?', 'Yếu tố chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(197, 7, 197, 'What is the main element?', 'Yếu tố chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(198, 7, 198, 'What is the main component?', 'Thành phần chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(199, 7, 199, 'What is the main feature?', 'Tính năng chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(200, 7, 200, 'What is the main characteristic?', 'Đặc điểm chính là gì?', 'Sample question text for reading comprehension...', '2024-01-01 00:00:00', '2024-01-01 00:00:00');
 
 -- INSERT: choices (tất cả 800 choices cho 200 câu hỏi)
-INSERT INTO choices (choice_id, question_id, choice_letter, choice_text, choice_text_vietnamese, explanation, is_correct, created_at, updated_at) VALUES
+INSERT INTO choices (choice_id, question_id, choice_letter, choice_text, choice_translation, choice_explanation, is_correct, created_at, updated_at) VALUES
 -- Question 1 (Part 1)
 (1, 1, 'A', 'A man is reading a book.', 'Một người đàn ông đang đọc sách.', 'This describes what you see in the picture.', TRUE, '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
 (2, 1, 'B', 'A woman is cooking.', 'Một người phụ nữ đang nấu ăn.', 'This is not what you see in the picture.', FALSE, '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
@@ -1733,32 +1740,333 @@ INSERT INTO choices (choice_id, question_id, choice_letter, choice_text, choice_
 -- (6, 3, 1, 6, 16, 12, 75.0, 960, '2024-01-01 10:28:09', '2024-01-01 10:28:09'),
 -- (7, 3, 1, 7, 54, 35, 64.8, 3240, '2024-01-01 10:28:09', '2024-01-01 10:28:09');
 
--- INSERT: test_categories (3 records)
-INSERT INTO test_categories (test_category_id, test_id, exam_category_id, created_at) VALUES
-(1, 1, 1, '2024-01-01 00:00:00'),
-(2, 2, 2, '2024-01-02 00:00:00'),
-(3, 3, 1, '2024-01-03 00:00:00');
+-- -- INSERT: test_categories (3 records)
+-- INSERT INTO test_categories (test_category_id, test_id, exam_category_id, created_at) VALUES
+-- (1, 1, 1, '2024-01-01 00:00:00'),
+-- (2, 2, 2, '2024-01-02 00:00:00'),
+-- (3, 3, 1, '2024-01-03 00:00:00');
 
--- INSERT: exam_tags (5 records)
+-- =========================================
+-- DỮ LIỆU MẪU: exam_tags (TOEIC Exam Tags)
+-- =========================================
+-- Giả định bảng exam_tags gồm:
+-- exam_tag_id (PK), name, description, created_at, updated_at
+-- =========================================
+
 INSERT INTO exam_tags (exam_tag_id, name, description, created_at, updated_at) VALUES
-(1, 'Part 1 - Photographs', 'Câu hỏi về mô tả hình ảnh', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(2, 'Part 2 - Question-Response', 'Câu hỏi về hỏi đáp', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(3, 'Part 5 - Grammar', 'Câu hỏi về ngữ pháp', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(4, 'Part 7 - Reading Comprehension', 'Câu hỏi về đọc hiểu', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
-(5, 'IELTS Listening', 'Câu hỏi về nghe hiểu IELTS', '2024-01-01 00:00:00', '2024-01-01 00:00:00');
+-- Part 1
+(1, '[Part 1] Tranh tả người', 'Câu hỏi mô tả hình ảnh có người', NOW(), NOW()),
+(2, '[Part 1] Tranh tả cả người và vật', 'Câu hỏi mô tả hình ảnh có cả người và vật', NOW(), NOW()),
 
--- INSERT: question_tags (10 records)
+-- Part 2
+(3, '[Part 2] Câu hỏi WHAT', 'Câu hỏi dạng What', NOW(), NOW()),
+(4, '[Part 2] Câu hỏi WHO', 'Câu hỏi dạng Who', NOW(), NOW()),
+(5, '[Part 2] Câu hỏi WHERE', 'Câu hỏi dạng Where', NOW(), NOW()),
+(6, '[Part 2] Câu hỏi WHEN', 'Câu hỏi dạng When', NOW(), NOW()),
+(7, '[Part 2] Câu hỏi HOW', 'Câu hỏi dạng How', NOW(), NOW()),
+(8, '[Part 2] Câu hỏi WHY', 'Câu hỏi dạng Why', NOW(), NOW()),
+(9, '[Part 2] Câu hỏi YES/NO', 'Câu hỏi dạng Yes/No', NOW(), NOW()),
+(10, '[Part 2] Câu hỏi đuôi', 'Câu hỏi dạng đuôi (tag question)', NOW(), NOW()),
+(11, '[Part 2] Câu yêu cầu, đề nghị', 'Câu hỏi yêu cầu, đề nghị hành động', NOW(), NOW()),
+(12, '[Part 2] Câu trần thuật', 'Câu hỏi dạng trần thuật/statement', NOW(), NOW()),
+
+-- Part 3
+(13, '[Part 3] Câu hỏi về chủ đề, mục đích', 'Hiểu mục đích của cuộc hội thoại', NOW(), NOW()),
+(14, '[Part 3] Câu hỏi về danh tính người nói', 'Nhận biết vai trò, người nói là ai', NOW(), NOW()),
+(15, '[Part 3] Câu hỏi về chi tiết cuộc hội thoại', 'Nghe và hiểu chi tiết trong hội thoại', NOW(), NOW()),
+(16, '[Part 3] Câu hỏi về hành động tương lai', 'Dự đoán hành động sắp tới', NOW(), NOW()),
+(17, '[Part 3] Câu hỏi kết hợp bảng biểu', 'Kết hợp nghe với đọc bảng biểu', NOW(), NOW()),
+(18, '[Part 3] Câu hỏi về hàm ý câu nói', 'Hiểu ngụ ý, hàm ý lời nói', NOW(), NOW()),
+(19, '[Part 3] Chủ đề: Company - General Office Work', 'Hội thoại công việc văn phòng', NOW(), NOW()),
+(20, '[Part 3] Chủ đề: Company - Business, Marketing', 'Hội thoại về kinh doanh, marketing', NOW(), NOW()),
+(21, '[Part 3] Chủ đề: Company - Facility', 'Hội thoại về cơ sở vật chất', NOW(), NOW()),
+(22, '[Part 3] Chủ đề: Shopping, Service', 'Hội thoại về mua sắm, dịch vụ', NOW(), NOW()),
+(23, '[Part 3] Chủ đề: Order, delivery', 'Hội thoại về đơn hàng, giao hàng', NOW(), NOW()),
+(24, '[Part 3] Chủ đề: Transportation', 'Hội thoại về phương tiện, di chuyển', NOW(), NOW()),
+(25, '[Part 3] Chủ đề: Housing', 'Hội thoại về nhà ở', NOW(), NOW()),
+(26, '[Part 3] Câu hỏi về yêu cầu, gợi ý', 'Hiểu yêu cầu, đề nghị trong hội thoại', NOW(), NOW()),
+
+-- Part 4
+(27, '[Part 4] Câu hỏi về chủ đề, mục đích', 'Hiểu mục đích bài nói', NOW(), NOW()),
+(28, '[Part 4] Câu hỏi về chi tiết', 'Tìm chi tiết cụ thể trong bài nói', NOW(), NOW()),
+(29, '[Part 4] Câu hỏi về hành động tương lai', 'Suy luận hành động sắp xảy ra', NOW(), NOW()),
+(30, '[Part 4] Câu hỏi kết hợp bảng biểu', 'Kết hợp nghe với biểu đồ, bảng', NOW(), NOW()),
+(31, '[Part 4] Câu hỏi về hàm ý câu nói', 'Hiểu ngụ ý, hàm ý trong bài nói', NOW(), NOW()),
+(32, '[Part 4] Dạng bài: Advertisement - Quảng cáo', 'Đoạn nói về quảng cáo sản phẩm/dịch vụ', NOW(), NOW()),
+(33, '[Part 4] Dạng bài: Announcement - Thông báo', 'Đoạn nói dạng thông báo', NOW(), NOW()),
+(34, '[Part 4] Dạng bài: News report - Bản tin', 'Đoạn nói dạng bản tin phát thanh', NOW(), NOW()),
+(35, '[Part 4] Dạng bài: Talk - Bài phát biểu', 'Đoạn nói dạng bài phát biểu hoặc diễn văn', NOW(), NOW()),
+(36, '[Part 4] Dạng bài: Meeting excerpt', 'Trích đoạn từ buổi họp', NOW(), NOW()),
+(37, '[Part 4] Câu hỏi yêu cầu, gợi ý', 'Câu hỏi về đề nghị, hành động trong bài nói', NOW(), NOW()),
+
+-- Part 5
+(38, '[Part 5] Câu hỏi từ loại', 'Chọn đúng loại từ thích hợp', NOW(), NOW()),
+(39, '[Part 5] Câu hỏi ngữ pháp', 'Câu hỏi kiểm tra ngữ pháp', NOW(), NOW()),
+(40, '[Part 5] Câu hỏi từ vựng', 'Kiểm tra vốn từ vựng', NOW(), NOW()),
+(41, '[Grammar] Danh từ', 'Câu hỏi về danh từ', NOW(), NOW()),
+(42, '[Grammar] Đại từ', 'Câu hỏi về đại từ', NOW(), NOW()),
+(43, '[Grammar] Tính từ', 'Câu hỏi về tính từ', NOW(), NOW()),
+(44, '[Grammar] Thì', 'Câu hỏi về thì (tenses)', NOW(), NOW()),
+(45, '[Grammar] Thể', 'Câu hỏi về thể chủ động/bị động', NOW(), NOW()),
+(46, '[Grammar] Trạng từ', 'Câu hỏi về trạng từ', NOW(), NOW()),
+(47, '[Grammar] Động từ nguyên mẫu', 'Câu hỏi về động từ nguyên mẫu', NOW(), NOW()),
+(48, '[Grammar] Phân từ và cấu trúc phân từ', 'Câu hỏi về phân từ (Participle)', NOW(), NOW()),
+(49, '[Grammar] Giới từ', 'Câu hỏi về giới từ', NOW(), NOW()),
+(50, '[Grammar] Liên từ', 'Câu hỏi về liên từ', NOW(), NOW()),
+
+-- Part 6
+(51, '[Part 6] Câu hỏi từ loại', 'Câu hỏi về loại từ trong đoạn văn', NOW(), NOW()),
+(52, '[Part 6] Câu hỏi ngữ pháp', 'Câu hỏi ngữ pháp dạng đoạn văn', NOW(), NOW()),
+(53, '[Part 6] Câu hỏi từ vựng', 'Câu hỏi chọn từ vựng phù hợp ngữ cảnh', NOW(), NOW()),
+(54, '[Part 6] Câu hỏi điền câu vào đoạn văn', 'Câu hỏi chọn câu phù hợp để điền vào đoạn', NOW(), NOW()),
+(55, '[Part 6] Hình thức: Email/Letter', 'Dạng bài thư điện tử hoặc thư tay', NOW(), NOW()),
+(56, '[Part 6] Hình thức: Advertisement', 'Dạng bài quảng cáo', NOW(), NOW()),
+(57, '[Part 6] Hình thức: Notice/Announcement', 'Dạng bài thông báo hoặc hướng dẫn', NOW(), NOW()),
+(58, '[Grammar] Động từ nguyên mẫu có to', 'Câu hỏi về to-infinitive', NOW(), NOW()),
+(59, '[Grammar] Danh động từ', 'Câu hỏi về gerund (V-ing)', NOW(), NOW()),
+(60, '[Grammar] Câu điều kiện', 'Câu hỏi về conditional sentences', NOW(), NOW()),
+
+-- Part 7
+(61, '[Part 7] Câu hỏi tìm thông tin', 'Câu hỏi yêu cầu tìm thông tin cụ thể trong bài đọc', NOW(), NOW()),
+(62, '[Part 7] Câu hỏi tìm chi tiết sai', 'Câu hỏi yêu cầu phát hiện chi tiết sai', NOW(), NOW()),
+(63, '[Part 7] Câu hỏi về chủ đề, mục đích', 'Hiểu chủ đề hoặc mục đích của đoạn văn', NOW(), NOW()),
+(64, '[Part 7] Câu hỏi suy luận', 'Câu hỏi yêu cầu suy luận từ ngữ cảnh', NOW(), NOW()),
+(65, '[Part 7] Câu hỏi điền câu', 'Câu hỏi chọn câu phù hợp để hoàn thiện bài đọc', NOW(), NOW()),
+(66, '[Part 7] Cấu trúc: Một đoạn', 'Dạng bài đọc 1 đoạn', NOW(), NOW()),
+(67, '[Part 7] Cấu trúc: Nhiều đoạn', 'Dạng bài đọc 2–3 đoạn liên kết', NOW(), NOW()),
+(68, '[Part 7] Dạng bài: Email/Letter', 'Bài đọc dạng thư điện tử hoặc thư tay', NOW(), NOW()),
+(69, '[Part 7] Dạng bài: Form', 'Bài đọc dạng biểu mẫu, đơn từ', NOW(), NOW()),
+(70, '[Part 7] Dạng bài: Article/Review', 'Bài đọc dạng bài báo hoặc đánh giá', NOW(), NOW()),
+(71, '[Part 7] Dạng bài: Advertisement', 'Bài đọc dạng quảng cáo', NOW(), NOW()),
+(72, '[Part 7] Dạng bài: Text message chain', 'Bài đọc dạng chuỗi tin nhắn', NOW(), NOW()),
+(73, '[Part 7] Dạng bài: Schedule', 'Bài đọc dạng lịch trình', NOW(), NOW()),
+(74, '[Part 7] Dạng bài: Instructions', 'Bài đọc dạng hướng dẫn', NOW(), NOW()),
+(75, '[Part 7] Câu hỏi về hàm ý câu nói', 'Hiểu ngụ ý trong bài đọc', NOW(), NOW());
+
+
+-- =========================================
+-- DỮ LIỆU MẪU CỐ ĐỊNH CHO BẢNG question_tags (200 bản ghi)
+-- =========================================
+-- question_tag_id: 1–200
+-- question_id: 1–200
+-- exam_tag_id: gắn cố định theo logic từng Part
+-- =========================================
+
 INSERT INTO question_tags (question_tag_id, question_id, exam_tag_id, created_at) VALUES
-(1, 1, 1, '2024-01-01 00:00:00'),
-(2, 2, 1, '2024-01-01 00:00:00'),
-(3, 3, 2, '2024-01-01 00:00:00'),
-(4, 4, 2, '2024-01-01 00:00:00'),
-(5, 5, 3, '2024-01-01 00:00:00'),
-(6, 6, 3, '2024-01-01 00:00:00'),
-(7, 7, 4, '2024-01-01 00:00:00'),
-(8, 8, 4, '2024-01-01 00:00:00'),
-(9, 9, 5, '2024-01-02 00:00:00'),
-(10, 10, 5, '2024-01-02 00:00:00');
+-- ===== Part 1 (6 câu) =====
+(1, 1, 1, NOW()),  -- Tranh tả người
+(2, 2, 1, NOW()),
+(3, 3, 1, NOW()),
+(4, 4, 2, NOW()),  -- Tranh tả người và vật
+(5, 5, 2, NOW()),
+(6, 6, 2, NOW()),
+
+-- ===== Part 2 (25 câu) =====
+(7, 7, 3, NOW()),   -- WHAT
+(8, 8, 4, NOW()),   -- WHO
+(9, 9, 5, NOW()),   -- WHERE
+(10, 10, 6, NOW()), -- WHEN
+(11, 11, 7, NOW()), -- HOW
+(12, 12, 8, NOW()), -- WHY
+(13, 13, 9, NOW()), -- YES/NO
+(14, 14, 10, NOW()),-- Câu đuôi
+(15, 15, 11, NOW()),-- Câu yêu cầu
+(16, 16, 12, NOW()),-- Câu trần thuật
+(17, 17, 3, NOW()),
+(18, 18, 4, NOW()),
+(19, 19, 5, NOW()),
+(20, 20, 6, NOW()),
+(21, 21, 7, NOW()),
+(22, 22, 8, NOW()),
+(23, 23, 9, NOW()),
+(24, 24, 10, NOW()),
+(25, 25, 11, NOW()),
+(26, 26, 12, NOW()),
+(27, 27, 3, NOW()),
+(28, 28, 4, NOW()),
+(29, 29, 5, NOW()),
+(30, 30, 6, NOW()),
+(31, 31, 7, NOW()),
+
+-- ===== Part 3 (39 câu) =====
+(32, 32, 13, NOW()),  -- chủ đề, mục đích
+(33, 33, 14, NOW()),  -- danh tính người nói
+(34, 34, 15, NOW()),  -- chi tiết hội thoại
+(35, 35, 16, NOW()),  -- hành động tương lai
+(36, 36, 17, NOW()),  -- kết hợp bảng biểu
+(37, 37, 18, NOW()),  -- hàm ý câu nói
+(38, 38, 19, NOW()),  -- Company - General Office
+(39, 39, 20, NOW()),  -- Business
+(40, 40, 21, NOW()),  -- Facility
+(41, 41, 22, NOW()),  -- Shopping
+(42, 42, 23, NOW()),  -- Order
+(43, 43, 24, NOW()),  -- Transportation
+(44, 44, 25, NOW()),  -- Housing
+(45, 45, 26, NOW()),  -- yêu cầu, gợi ý
+(46, 46, 13, NOW()),
+(47, 47, 14, NOW()),
+(48, 48, 15, NOW()),
+(49, 49, 16, NOW()),
+(50, 50, 17, NOW()),
+(51, 51, 18, NOW()),
+(52, 52, 19, NOW()),
+(53, 53, 20, NOW()),
+(54, 54, 21, NOW()),
+(55, 55, 22, NOW()),
+(56, 56, 23, NOW()),
+(57, 57, 24, NOW()),
+(58, 58, 25, NOW()),
+(59, 59, 26, NOW()),
+(60, 60, 13, NOW()),
+(61, 61, 14, NOW()),
+(62, 62, 15, NOW()),
+(63, 63, 16, NOW()),
+(64, 64, 17, NOW()),
+(65, 65, 18, NOW()),
+(66, 66, 19, NOW()),
+(67, 67, 20, NOW()),
+(68, 68, 21, NOW()),
+(69, 69, 22, NOW()),
+(70, 70, 23, NOW()),
+
+-- ===== Part 4 (30 câu) =====
+(71, 71, 27, NOW()),  -- chủ đề, mục đích
+(72, 72, 28, NOW()),  -- chi tiết
+(73, 73, 29, NOW()),  -- hành động tương lai
+(74, 74, 30, NOW()),  -- bảng biểu
+(75, 75, 31, NOW()),  -- hàm ý
+(76, 76, 32, NOW()),  -- quảng cáo
+(77, 77, 33, NOW()),  -- thông báo
+(78, 78, 34, NOW()),  -- bản tin
+(79, 79, 35, NOW()),  -- talk
+(80, 80, 36, NOW()),  -- meeting
+(81, 81, 37, NOW()),  -- yêu cầu
+(82, 82, 27, NOW()),
+(83, 83, 28, NOW()),
+(84, 84, 29, NOW()),
+(85, 85, 30, NOW()),
+(86, 86, 31, NOW()),
+(87, 87, 32, NOW()),
+(88, 88, 33, NOW()),
+(89, 89, 34, NOW()),
+(90, 90, 35, NOW()),
+(91, 91, 36, NOW()),
+(92, 92, 37, NOW()),
+(93, 93, 27, NOW()),
+(94, 94, 28, NOW()),
+(95, 95, 29, NOW()),
+(96, 96, 30, NOW()),
+(97, 97, 31, NOW()),
+(98, 98, 32, NOW()),
+(99, 99, 33, NOW()),
+(100, 100, 34, NOW()),
+
+-- ===== Part 5 (30 câu) =====
+(101, 101, 38, NOW()), -- từ loại
+(102, 102, 39, NOW()), -- ngữ pháp
+(103, 103, 40, NOW()), -- từ vựng
+(104, 104, 41, NOW()), -- danh từ
+(105, 105, 42, NOW()), -- đại từ
+(106, 106, 43, NOW()), -- tính từ
+(107, 107, 44, NOW()), -- thì
+(108, 108, 45, NOW()), -- thể
+(109, 109, 46, NOW()), -- trạng từ
+(110, 110, 47, NOW()), -- động từ nguyên mẫu
+(111, 111, 48, NOW()), -- phân từ
+(112, 112, 49, NOW()), -- giới từ
+(113, 113, 50, NOW()), -- liên từ
+(114, 114, 38, NOW()),
+(115, 115, 39, NOW()),
+(116, 116, 40, NOW()),
+(117, 117, 41, NOW()),
+(118, 118, 42, NOW()),
+(119, 119, 43, NOW()),
+(120, 120, 44, NOW()),
+(121, 121, 45, NOW()),
+(122, 122, 46, NOW()),
+(123, 123, 47, NOW()),
+(124, 124, 48, NOW()),
+(125, 125, 49, NOW()),
+(126, 126, 50, NOW()),
+(127, 127, 38, NOW()),
+(128, 128, 39, NOW()),
+(129, 129, 40, NOW()),
+(130, 130, 41, NOW()),
+
+-- ===== Part 6 (16 câu) =====
+(131, 131, 51, NOW()),
+(132, 132, 52, NOW()),
+(133, 133, 53, NOW()),
+(134, 134, 54, NOW()),
+(135, 135, 55, NOW()),
+(136, 136, 56, NOW()),
+(137, 137, 57, NOW()),
+(138, 138, 58, NOW()),
+(139, 139, 59, NOW()),
+(140, 140, 60, NOW()),
+(141, 141, 51, NOW()),
+(142, 142, 52, NOW()),
+(143, 143, 53, NOW()),
+(144, 144, 54, NOW()),
+(145, 145, 55, NOW()),
+(146, 146, 56, NOW()),
+
+-- ===== Part 7 (54 câu) =====
+(147, 147, 61, NOW()),
+(148, 148, 62, NOW()),
+(149, 149, 63, NOW()),
+(150, 150, 64, NOW()),
+(151, 151, 65, NOW()),
+(152, 152, 66, NOW()),
+(153, 153, 67, NOW()),
+(154, 154, 68, NOW()),
+(155, 155, 69, NOW()),
+(156, 156, 70, NOW()),
+(157, 157, 71, NOW()),
+(158, 158, 72, NOW()),
+(159, 159, 73, NOW()),
+(160, 160, 74, NOW()),
+(161, 161, 75, NOW()),
+(162, 162, 61, NOW()),
+(163, 163, 62, NOW()),
+(164, 164, 63, NOW()),
+(165, 165, 64, NOW()),
+(166, 166, 65, NOW()),
+(167, 167, 66, NOW()),
+(168, 168, 67, NOW()),
+(169, 169, 68, NOW()),
+(170, 170, 69, NOW()),
+(171, 171, 70, NOW()),
+(172, 172, 71, NOW()),
+(173, 173, 72, NOW()),
+(174, 174, 73, NOW()),
+(175, 175, 74, NOW()),
+(176, 176, 75, NOW()),
+(177, 177, 61, NOW()),
+(178, 178, 62, NOW()),
+(179, 179, 63, NOW()),
+(180, 180, 64, NOW()),
+(181, 181, 65, NOW()),
+(182, 182, 66, NOW()),
+(183, 183, 67, NOW()),
+(184, 184, 68, NOW()),
+(185, 185, 69, NOW()),
+(186, 186, 70, NOW()),
+(187, 187, 71, NOW()),
+(188, 188, 72, NOW()),
+(189, 189, 73, NOW()),
+(190, 190, 74, NOW()),
+(191, 191, 75, NOW()),
+(192, 192, 61, NOW()),
+(193, 193, 62, NOW()),
+(194, 194, 63, NOW()),
+(195, 195, 64, NOW()),
+(196, 196, 65, NOW()),
+(197, 197, 66, NOW()),
+(198, 198, 67, NOW()),
+(199, 199, 68, NOW()),
+(200, 200, 69, NOW());
+
 
 -- INSERT: test_discussions (4 records)
 INSERT INTO test_discussions (test_discussion_id, test_id, user_id, title, content, created_at, updated_at) VALUES
@@ -1911,21 +2219,6 @@ WHERE (SELECT total_tests_taken FROM user_exam_statistics WHERE user_id = 3) = 3
 
 
 
-
-
-
-
-
-
-
-
-
-=========================================================================================================
-=========================================================================================================
-=========================================================================================================
-=========================================================================================================
-=========================================================================================================
-=========================================================================================================
 
 
 
