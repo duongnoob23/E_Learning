@@ -1,137 +1,75 @@
 tôi đang code chức năng làm bài thi của stuyd4, bạn có biết trang web này không , nếu biết hãy mô tả cho tôi luồng nghiệp vụ từ khi ấn vào đề thi online cho đến khi làm bài, xem chi tiết đáp án , một luồng hoàn chỉnh đầy đủ 
-
 Mô tả giao diện – Thư viện luyện đề
-
 Giao diện thư viện luyện đề là nơi hiển thị toàn bộ các đề thi thử thuộc nhiều chủ đề khác nhau, cho phép người dùng lựa chọn đề phù hợp để luyện tập hoặc thi thử.
-
 Phần trên cùng của giao diện là thanh tab chủ đề, bao gồm các nhóm chính như: TOEIC, IELTS, HSK, Tiếng Anh THPT, v.v. Khi người dùng chọn một tab, hệ thống sẽ hiển thị danh sách các đề thi tương ứng với chủ đề đó.
-
 Ngay bên dưới thanh tab là thanh tìm kiếm, cho phép người dùng nhập từ khóa (tên đề, kỹ năng, chủ đề, v.v.) để lọc nhanh các đề thi trong danh sách.
-
 Phần nội dung trung tâm của giao diện là danh sách các đề thi thuộc chủ đề đã chọn.
 Mỗi đề thi được hiển thị dưới dạng một thẻ (card), bao gồm các thông tin tóm tắt sau:
-
 Tiêu đề đề thi (ví dụ: TOEIC Test 01 – Listening & Reading).
-
 Thời gian làm bài (ví dụ: 120 phút).
-
 Số lượng phần thi (ví dụ: 7 Parts).
-
 Tổng số câu hỏi (ví dụ: 200 câu).
-
 Số lượng người đã làm bài (ví dụ: 12.543 người).
-
 Số bình luận hoặc lượt thảo luận (ví dụ: 45 bình luận).
-
 Các tag liên quan thể hiện kỹ năng hoặc hình thức bài thi, ví dụ: #Listening, #Reading, #Academic, #Grammar, v.v.
-
 Mỗi đề thi khi được bấm vào sẽ dẫn người dùng đến trang chi tiết đề thi, nơi hiển thị nội dung chi tiết, phần mô tả, thống kê và lựa chọn hình thức làm bài.
-
 Ở cột bên phải của giao diện, hệ thống hiển thị bảng thống kê luyện đề cá nhân, bao gồm tổng số đề đã làm, tỉ lệ hoàn thành, điểm trung bình, hoặc tiến độ học tập. Phần này giúp người dùng theo dõi kết quả luyện tập của mình trong từng chủ đề (ví dụ: TOEIC, IELTS...).
-
 Nhờ cấu trúc này, người dùng có thể:
-
 Lựa chọn nhanh đề thi theo từng loại chứng chỉ.
-
 Tìm kiếm đề cụ thể bằng từ khóa.
-
 Quan sát thống kê cá nhân và tiến độ học tập.
-
 Truy cập chi tiết đề thi để chọn hình thức làm bài hoặc luyện tập.
-
 _______________________________________________________________________________
 
 Trong phần Chi tiết đề thi, giao diện được thiết kế để người học có thể xem toàn bộ thông tin liên quan đến một bài thi TOEIC hoặc IELTS, bao gồm nội dung tổng quan, các phần thi, cấu trúc câu hỏi và lựa chọn chế độ làm bài. Ở đầu trang hiển thị khối thông tin tổng quát của đề thi như tên bài thi, kỹ năng (Listening, Reading, hoặc cả hai), chủ đề (ví dụ: “Listening - Water” hoặc “Reading - Business Emails”), mã hoặc số thứ tự đề thi (Test 1, Test 2...), cùng với thời gian làm bài (ví dụ: 120 phút), tổng số phần thi, tổng số câu hỏi, số lượt bình luận, và số người đã làm bài thi này. Phần này giúp người dùng nhanh chóng nắm được phạm vi, độ dài và mức độ phổ biến của bài thi trước khi bắt đầu.
-
 Ngay bên dưới thông tin tổng quan là khu vực hành động chính, gồm ba nút lựa chọn chế độ:
-
 Luyện tập – cho phép người dùng chọn một hoặc nhiều phần cụ thể trong đề thi để làm thử, ví dụ chỉ làm Listening hoặc chỉ làm Reading. Khi chọn chế độ này, bên dưới sẽ mở rộng danh sách các phần thi chi tiết (Part 1 → Part 7 đối với TOEIC hoặc Recording 1 → Recording 4 đối với IELTS), mỗi phần đều hiển thị số lượng câu hỏi và danh sách các tag con mô tả dạng bài hoặc chủ đề.
-
 Làm Full Test – khi chọn nút này, hệ thống sẽ bỏ qua phần lựa chọn chi tiết và đưa người dùng vào giao diện làm bài toàn bộ đề, với đầy đủ thời gian và thứ tự câu hỏi như bài thi thật.
-
 Thảo luận – dẫn đến khu vực bình luận, nơi người học có thể xem hoặc trao đổi kinh nghiệm, lời giải, hoặc thắc mắc về từng câu hỏi trong đề.
-
 Trong chế độ luyện tập, phần “Chọn phần thi bạn muốn làm” được trình bày dạng danh sách các Part (TOEIC) hoặc Recording (IELTS). Mỗi phần hiển thị tên phần, số lượng câu hỏi, và các nhóm tag con mô tả cụ thể nội dung hoặc kỹ năng được kiểm tra.
 Ví dụ:
-
 Với đề TOEIC, các Part hiển thị như:
-
 Part 1 (6 câu hỏi) — có các nhóm tag như [Part 1] Tranh tả người, [Part 1] Tranh tả cả người và vật.
-
 Part 2 (25 câu hỏi) — chứa nhiều dạng Câu hỏi WHAT, WHO, WHERE, WHEN, YES/NO, Câu trần thuật, Câu yêu cầu – đề nghị, v.v.
-
 Part 3 – Part 7 tương tự, liệt kê chi tiết từng loại câu hỏi, từng chủ đề (ví dụ: Company – Personnel, Shopping – Service, Grammar – Liên từ, Dạng bài – Email/Letter, v.v.).
-
 Với đề IELTS Listening, các phần được trình bày như:
-
 Recording 1 (10 câu hỏi) — có tag [Listening] Note/Form Completion.
-
 Recording 2 (10 câu hỏi) — gồm [Listening] Table Completion và [Listening] Multiple Choice.
-
 Các recording khác hiển thị tương tự, giúp người dùng nhận biết dạng bài luyện tập.
-
 Người dùng có thể tích chọn các phần muốn làm trong chế độ luyện tập, và khi bắt đầu, hệ thống sẽ chỉ tải lên những câu hỏi thuộc các phần được chọn. Giao diện được chia bố cục rõ ràng: phần trên là thông tin đề và hành động (3 nút), phần giữa là danh sách phần thi (có thể thu gọn/mở rộng), và phần dưới là khu vực chứa đáp án hoặc phần xem lại (nếu người dùng đã từng làm bài). Ở chế độ xem lại, hệ thống sẽ hiển thị cả đáp án đúng, đáp án đã chọn, giải thích chi tiết, và có thể hiện tỷ lệ đúng của cộng đồng (nếu có dữ liệu thống kê).
-
 Tổng thể, giao diện “Chi tiết đề thi” mang phong cách bố cục rõ ràng, hướng người dùng từ việc xem thông tin đề → chọn chế độ làm bài → luyện tập hoặc thi full test, đồng thời hỗ trợ người học trong việc phân tích kết quả và thảo luận sau khi hoàn thành.
-
 
 ____________________________________________________________________________________
 
 
 Mô tả giao diện – Làm bài thi (Exam/Test Interface)
-
 Sau khi người dùng chọn hình thức Luyện tập (Practice) hoặc Làm Full Test, hệ thống chuyển hướng đến giao diện làm bài thi. Giao diện này được chia thành hai phần chính: khu vực làm bài (bên trái) và khu vực điều hướng – thống kê (bên phải).
-
 1. Khu vực bên trái – Vùng làm bài
-
 Đây là phần hiển thị nội dung câu hỏi và các phương tiện liên quan, được cập nhật tùy theo Part mà người dùng đang làm.
 Phần này được thiết kế dạng tab, mỗi tab tương ứng với một Part (Part 1 → Part 7 đối với TOEIC, hoặc từng Section đối với IELTS/HSK, v.v.). Người dùng có thể chuyển đổi qua lại giữa các Part để xem hoặc làm các nhóm câu hỏi khác nhau.
-
 Nội dung hiển thị trong khu vực này thay đổi tùy theo dạng Part:
-
 Part 1 – Tranh tả người/vật: hiển thị hình ảnh (question image), một file âm thanh (MP3 player) phía trên, và 4 lựa chọn đáp án (A, B, C, D).
-
 Part 2 – Câu hỏi – Phản hồi ngắn: chỉ hiển thị thanh phát âm thanh và các lựa chọn đáp án, không có hình ảnh.
-
 Part 3 – Hội thoại ngắn và Part 4 – Bài nói ngắn: hiển thị audio, đoạn hội thoại (hoặc script khi cần), và các câu hỏi liên quan (mỗi audio có nhiều câu).
-
 Part 5 – Điền từ vào câu: hiển thị câu chứa chỗ trống và các đáp án lựa chọn.
-
 Part 6 – Điền từ/điền câu vào đoạn văn: hiển thị đoạn văn có chỗ trống, người dùng chọn đáp án thích hợp cho từng vị trí.
-
 Part 7 – Đọc hiểu: hiển thị đoạn văn hoặc chuỗi văn bản (1 hoặc nhiều đoạn) và danh sách các câu hỏi tương ứng bên dưới.
-
 Khi người dùng chọn đáp án cho một câu, hệ thống tự động ghi nhận kết quả tạm thời (auto-save).
 Nếu người dùng quay lại câu trước, đáp án đã chọn vẫn được giữ nguyên.
-
 2. Khu vực bên phải – Thanh điều hướng và thống kê
-
 Bên phải màn hình là bảng điều hướng Part và thống kê trạng thái làm bài, gồm các thành phần sau:
-
 Đồng hồ đếm ngược (Timer): hiển thị tổng thời gian làm bài còn lại, tự động chạy khi bài thi bắt đầu.
-
 Nút “Nộp bài” (Submit): cho phép người dùng kết thúc bài thi sớm và nộp kết quả.
-
 Thanh Part Navigation: hiển thị danh sách các Part hiện có (ví dụ: Part 1 → Part 7). Khi người dùng chọn vào một Part, bên dưới sẽ hiển thị lưới số câu hỏi (Question Map) tương ứng.
-
 Mỗi câu hỏi được biểu diễn bằng một ô vuông nhỏ, có đánh số (1, 2, 3, …).
-
 Khi người dùng chọn đáp án cho câu hỏi nào, ô vuông tương ứng sẽ đổi màu (xanh), giúp dễ dàng nhận biết câu đã làm.
-
 Các câu chưa làm vẫn giữ màu trắng.
-
 Khi rê chuột hoặc bấm vào ô, người dùng có thể nhảy trực tiếp đến câu hỏi đó.
-
 Ví dụ:
-
 Part 1: có 6 câu → hiển thị 6 ô vuông.
-
 Part 7: có 54 câu → hiển thị 54 ô vuông.
-
 Nhờ cơ chế này, người dùng có thể quan sát trực quan mức độ hoàn thành bài thi, biết mình đã bỏ qua câu nào hoặc làm sai ở đâu sau khi nộp bài.
-
 3. Cơ chế chuyển Part và hiển thị nội dung
-
 Người dùng có thể chuyển giữa các Part bằng tab điều hướng phía trên vùng làm bài hoặc thông qua bảng Part Navigation bên phải.
 Mỗi lần chuyển, hệ thống sẽ tải nội dung câu hỏi, audio và dữ liệu đáp án tương ứng của Part đó.
 Các câu hỏi được sắp xếp theo thứ tự cố định (theo đề gốc), không thể thay đổi trong khi làm bài.
