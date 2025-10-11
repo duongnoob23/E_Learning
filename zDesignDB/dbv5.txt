@@ -926,4 +926,11 @@ CREATE TABLE test_comments (
 -- =============================================
 -- HOÀN THÀNH KHỞI TẠO SCHEMA
 -- =============================================
-SELECT 'Schema e_learnning6 (Users + Vocabulary + Course + Exam) đã đượ
+
+
+
+
+
+
+
+
