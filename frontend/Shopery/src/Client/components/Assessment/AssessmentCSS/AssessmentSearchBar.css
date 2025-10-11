@@ -1,0 +1,27 @@
+.assessment-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.assessment-search__input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.assessment-search__button {
+  padding: 8px 16px;
+  background: #1677ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.assessment-search__button:hover {
+  background: #105ad1;
+}

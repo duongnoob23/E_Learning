@@ -56,7 +56,7 @@
 .header__nav {
   display: flex;
   align-items: center;
-  background-color: #47C7BE;
+  background-color: #47c7be;
 }
 
 .header__nav-list {
@@ -65,12 +65,12 @@
   margin: 0;
   padding: 0;
   gap: 32px;
-  background-color: #47C7BE;
+  background-color: #47c7be;
 }
 
 .header__nav-item {
   position: relative;
-  background-color: #47C7BE;
+  background-color: #47c7be;
 }
 
 .header__nav-link {
@@ -84,7 +84,7 @@
 }
 
 .header__nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -237,6 +237,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 70px;
 }
 
 .client-main {

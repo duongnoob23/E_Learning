@@ -30,10 +30,12 @@ import ExamResult from "../pages/Exam/ExamResult/ExamResult";
 import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
 
 import Lesson from "../pages/Lesson/Lesson";
+import Assessment from "../pages/Assessment/Assessment";
+import AssessmentDetail from "../components/Assessment/AssessmentJSX/AssessmentDetail";
+import AssessmentTest from "../components/AssessmentTest/AssessmentTestJSX/AssessmentTest";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
-    //
     <Header />
     <main className="client-main" style={{ padding: 0 }}>
       {children}
@@ -179,6 +181,36 @@ const ClientRoutes = () => {
               <Profile />
             </ClientLayout>
           // </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessment"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Assessment />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessment/:id"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <AssessmentDetail />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessmentTest"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <AssessmentTest />
+            </ClientLayout>
+          </PrivateRoute>
         }
       />
 

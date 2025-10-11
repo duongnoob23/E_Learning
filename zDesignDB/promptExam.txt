@@ -1,0 +1,1552 @@
+tôi đang code chức năng làm bài thi của stuyd4, bạn có biết trang web này không , nếu biết hãy mô tả cho tôi luồng nghiệp vụ từ khi ấn vào đề thi online cho đến khi làm bài, xem chi tiết đáp án , một luồng hoàn chỉnh đầy đủ 
+Mô tả giao diện – Thư viện luyện đề
+Giao diện thư viện luyện đề là nơi hiển thị toàn bộ các đề thi thử thuộc nhiều chủ đề khác nhau, cho phép người dùng lựa chọn đề phù hợp để luyện tập hoặc thi thử.
+Phần trên cùng của giao diện là thanh tab chủ đề, bao gồm các nhóm chính như: TOEIC, IELTS, HSK, Tiếng Anh THPT, v.v. Khi người dùng chọn một tab, hệ thống sẽ hiển thị danh sách các đề thi tương ứng với chủ đề đó.
+Ngay bên dưới thanh tab là thanh tìm kiếm, cho phép người dùng nhập từ khóa (tên đề, kỹ năng, chủ đề, v.v.) để lọc nhanh các đề thi trong danh sách.
+Phần nội dung trung tâm của giao diện là danh sách các đề thi thuộc chủ đề đã chọn.
+Mỗi đề thi được hiển thị dưới dạng một thẻ (card), bao gồm các thông tin tóm tắt sau:
+Tiêu đề đề thi (ví dụ: TOEIC Test 01 – Listening & Reading).
+Thời gian làm bài (ví dụ: 120 phút).
+Số lượng phần thi (ví dụ: 7 Parts).
+Tổng số câu hỏi (ví dụ: 200 câu).
+Số lượng người đã làm bài (ví dụ: 12.543 người).
+Số bình luận hoặc lượt thảo luận (ví dụ: 45 bình luận).
+Các tag liên quan thể hiện kỹ năng hoặc hình thức bài thi, ví dụ: #Listening, #Reading, #Academic, #Grammar, v.v.
+Mỗi đề thi khi được bấm vào sẽ dẫn người dùng đến trang chi tiết đề thi, nơi hiển thị nội dung chi tiết, phần mô tả, thống kê và lựa chọn hình thức làm bài.
+Ở cột bên phải của giao diện, hệ thống hiển thị bảng thống kê luyện đề cá nhân, bao gồm tổng số đề đã làm, tỉ lệ hoàn thành, điểm trung bình, hoặc tiến độ học tập. Phần này giúp người dùng theo dõi kết quả luyện tập của mình trong từng chủ đề (ví dụ: TOEIC, IELTS...).
+Nhờ cấu trúc này, người dùng có thể:
+Lựa chọn nhanh đề thi theo từng loại chứng chỉ.
+Tìm kiếm đề cụ thể bằng từ khóa.
+Quan sát thống kê cá nhân và tiến độ học tập.
+Truy cập chi tiết đề thi để chọn hình thức làm bài hoặc luyện tập.
+_______________________________________________________________________________
+
+Trong phần Chi tiết đề thi, giao diện được thiết kế để người học có thể xem toàn bộ thông tin liên quan đến một bài thi TOEIC hoặc IELTS, bao gồm nội dung tổng quan, các phần thi, cấu trúc câu hỏi và lựa chọn chế độ làm bài. Ở đầu trang hiển thị khối thông tin tổng quát của đề thi như tên bài thi, kỹ năng (Listening, Reading, hoặc cả hai), chủ đề (ví dụ: “Listening - Water” hoặc “Reading - Business Emails”), mã hoặc số thứ tự đề thi (Test 1, Test 2...), cùng với thời gian làm bài (ví dụ: 120 phút), tổng số phần thi, tổng số câu hỏi, số lượt bình luận, và số người đã làm bài thi này. Phần này giúp người dùng nhanh chóng nắm được phạm vi, độ dài và mức độ phổ biến của bài thi trước khi bắt đầu.
+Ngay bên dưới thông tin tổng quan là khu vực hành động chính, gồm ba nút lựa chọn chế độ:
+Luyện tập – cho phép người dùng chọn một hoặc nhiều phần cụ thể trong đề thi để làm thử, ví dụ chỉ làm Listening hoặc chỉ làm Reading. Khi chọn chế độ này, bên dưới sẽ mở rộng danh sách các phần thi chi tiết (Part 1 → Part 7 đối với TOEIC hoặc Recording 1 → Recording 4 đối với IELTS), mỗi phần đều hiển thị số lượng câu hỏi và danh sách các tag con mô tả dạng bài hoặc chủ đề.
+Làm Full Test – khi chọn nút này, hệ thống sẽ bỏ qua phần lựa chọn chi tiết và đưa người dùng vào giao diện làm bài toàn bộ đề, với đầy đủ thời gian và thứ tự câu hỏi như bài thi thật.
+Thảo luận – dẫn đến khu vực bình luận, nơi người học có thể xem hoặc trao đổi kinh nghiệm, lời giải, hoặc thắc mắc về từng câu hỏi trong đề.
+Trong chế độ luyện tập, phần “Chọn phần thi bạn muốn làm” được trình bày dạng danh sách các Part (TOEIC) hoặc Recording (IELTS). Mỗi phần hiển thị tên phần, số lượng câu hỏi, và các nhóm tag con mô tả cụ thể nội dung hoặc kỹ năng được kiểm tra.
+Ví dụ:
+Với đề TOEIC, các Part hiển thị như:
+Part 1 (6 câu hỏi) — có các nhóm tag như [Part 1] Tranh tả người, [Part 1] Tranh tả cả người và vật.
+Part 2 (25 câu hỏi) — chứa nhiều dạng Câu hỏi WHAT, WHO, WHERE, WHEN, YES/NO, Câu trần thuật, Câu yêu cầu – đề nghị, v.v.
+Part 3 – Part 7 tương tự, liệt kê chi tiết từng loại câu hỏi, từng chủ đề (ví dụ: Company – Personnel, Shopping – Service, Grammar – Liên từ, Dạng bài – Email/Letter, v.v.).
+Với đề IELTS Listening, các phần được trình bày như:
+Recording 1 (10 câu hỏi) — có tag [Listening] Note/Form Completion.
+Recording 2 (10 câu hỏi) — gồm [Listening] Table Completion và [Listening] Multiple Choice.
+Các recording khác hiển thị tương tự, giúp người dùng nhận biết dạng bài luyện tập.
+Người dùng có thể tích chọn các phần muốn làm trong chế độ luyện tập, và khi bắt đầu, hệ thống sẽ chỉ tải lên những câu hỏi thuộc các phần được chọn. Giao diện được chia bố cục rõ ràng: phần trên là thông tin đề và hành động (3 nút), phần giữa là danh sách phần thi (có thể thu gọn/mở rộng), và phần dưới là khu vực chứa đáp án hoặc phần xem lại (nếu người dùng đã từng làm bài). Ở chế độ xem lại, hệ thống sẽ hiển thị cả đáp án đúng, đáp án đã chọn, giải thích chi tiết, và có thể hiện tỷ lệ đúng của cộng đồng (nếu có dữ liệu thống kê).
+Tổng thể, giao diện “Chi tiết đề thi” mang phong cách bố cục rõ ràng, hướng người dùng từ việc xem thông tin đề → chọn chế độ làm bài → luyện tập hoặc thi full test, đồng thời hỗ trợ người học trong việc phân tích kết quả và thảo luận sau khi hoàn thành.
+
+____________________________________________________________________________________
+
+
+Mô tả giao diện – Làm bài thi (Exam/Test Interface)
+Sau khi người dùng chọn hình thức Luyện tập (Practice) hoặc Làm Full Test, hệ thống chuyển hướng đến giao diện làm bài thi. Giao diện này được chia thành hai phần chính: khu vực làm bài (bên trái) và khu vực điều hướng – thống kê (bên phải).
+1. Khu vực bên trái – Vùng làm bài
+Đây là phần hiển thị nội dung câu hỏi và các phương tiện liên quan, được cập nhật tùy theo Part mà người dùng đang làm.
+Phần này được thiết kế dạng tab, mỗi tab tương ứng với một Part (Part 1 → Part 7 đối với TOEIC, hoặc từng Section đối với IELTS/HSK, v.v.). Người dùng có thể chuyển đổi qua lại giữa các Part để xem hoặc làm các nhóm câu hỏi khác nhau.
+Nội dung hiển thị trong khu vực này thay đổi tùy theo dạng Part:
+Part 1 – Tranh tả người/vật: hiển thị hình ảnh (question image), một file âm thanh (MP3 player) phía trên, và 4 lựa chọn đáp án (A, B, C, D).
+Part 2 – Câu hỏi – Phản hồi ngắn: chỉ hiển thị thanh phát âm thanh và các lựa chọn đáp án, không có hình ảnh.
+Part 3 – Hội thoại ngắn và Part 4 – Bài nói ngắn: hiển thị audio, đoạn hội thoại (hoặc script khi cần), và các câu hỏi liên quan (mỗi audio có nhiều câu).
+Part 5 – Điền từ vào câu: hiển thị câu chứa chỗ trống và các đáp án lựa chọn.
+Part 6 – Điền từ/điền câu vào đoạn văn: hiển thị đoạn văn có chỗ trống, người dùng chọn đáp án thích hợp cho từng vị trí.
+Part 7 – Đọc hiểu: hiển thị đoạn văn hoặc chuỗi văn bản (1 hoặc nhiều đoạn) và danh sách các câu hỏi tương ứng bên dưới.
+Khi người dùng chọn đáp án cho một câu, hệ thống tự động ghi nhận kết quả tạm thời (auto-save).
+Nếu người dùng quay lại câu trước, đáp án đã chọn vẫn được giữ nguyên.
+2. Khu vực bên phải – Thanh điều hướng và thống kê
+Bên phải màn hình là bảng điều hướng Part và thống kê trạng thái làm bài, gồm các thành phần sau:
+Đồng hồ đếm ngược (Timer): hiển thị tổng thời gian làm bài còn lại, tự động chạy khi bài thi bắt đầu.
+Nút “Nộp bài” (Submit): cho phép người dùng kết thúc bài thi sớm và nộp kết quả.
+Thanh Part Navigation: hiển thị danh sách các Part hiện có (ví dụ: Part 1 → Part 7). Khi người dùng chọn vào một Part, bên dưới sẽ hiển thị lưới số câu hỏi (Question Map) tương ứng.
+Mỗi câu hỏi được biểu diễn bằng một ô vuông nhỏ, có đánh số (1, 2, 3, …).
+Khi người dùng chọn đáp án cho câu hỏi nào, ô vuông tương ứng sẽ đổi màu (xanh), giúp dễ dàng nhận biết câu đã làm.
+Các câu chưa làm vẫn giữ màu trắng.
+Khi rê chuột hoặc bấm vào ô, người dùng có thể nhảy trực tiếp đến câu hỏi đó.
+Ví dụ:
+Part 1: có 6 câu → hiển thị 6 ô vuông.
+Part 7: có 54 câu → hiển thị 54 ô vuông.
+Nhờ cơ chế này, người dùng có thể quan sát trực quan mức độ hoàn thành bài thi, biết mình đã bỏ qua câu nào hoặc làm sai ở đâu sau khi nộp bài.
+3. Cơ chế chuyển Part và hiển thị nội dung
+Người dùng có thể chuyển giữa các Part bằng tab điều hướng phía trên vùng làm bài hoặc thông qua bảng Part Navigation bên phải.
+Mỗi lần chuyển, hệ thống sẽ tải nội dung câu hỏi, audio và dữ liệu đáp án tương ứng của Part đó.
+Các câu hỏi được sắp xếp theo thứ tự cố định (theo đề gốc), không thể thay đổi trong khi làm bài.
+
+4. Trạng thái và hành vi
+
+Khi bài thi bắt đầu, bộ đếm thời gian (timer) tự khởi động.
+
+Nếu hết thời gian, hệ thống tự động thu bài và lưu kết quả.
+
+Khi người dùng nộp bài, hệ thống ghi nhận toàn bộ đáp án, thời gian làm bài, và trạng thái hoàn thành.
+
+Sau khi nộp, người dùng được chuyển sang màn hình kết quả để xem thống kê, đáp án đúng/sai và phân tích chi tiết từng Part.
+
+_____________________________________________________________________________________
+
+
+Giao diện: Kết quả làm bài thi
+
+Sau khi người dùng hoàn thành một bài thi (hoặc luyện tập), hệ thống chuyển hướng đến trang kết quả làm bài. Giao diện này gồm ba khu vực chính: thông tin tổng quan, phần phân tích chi tiết, và phần đáp án.
+
+1. Khu vực thông tin tổng quan
+
+Phần đầu trang hiển thị tiêu đề của đề thi, ví dụ:
+“Kết quả thi: New Economy TOEIC Test 1”
+
+Ngay bên dưới là các nút điều hướng chính:
+
+“Xem đáp án” – chuyển đến phần xem chi tiết từng câu trả lời.
+
+“Quay về trang đề thi” – trở lại giao diện chi tiết của đề thi.
+
+Bên trái là bảng tổng hợp kết quả làm bài, bao gồm:
+
+Kết quả làm bài: hiển thị tổng số câu đúng trên tổng số câu hỏi (ví dụ: 0/200).
+
+Độ chính xác (%): tính theo công thức (Số câu đúng / Tổng số câu làm) × 100%.
+
+Thời gian hoàn thành: hiển thị thời lượng người dùng đã làm bài (ví dụ: 05:03).
+
+Ngay bên cạnh là các thẻ thống kê dạng hộp:
+
+Trả lời đúng: hiển thị tổng số câu đúng, có biểu tượng dấu ✔ màu xanh.
+
+Trả lời sai: hiển thị tổng số câu sai, có biểu tượng dấu ✖ màu đỏ.
+
+Bỏ qua: tổng số câu chưa làm, biểu tượng dấu “–”.
+
+Điểm: hiển thị tổng điểm đạt được, nếu có hệ thống tính điểm tự động.
+
+Bên phải trang là thanh thông tin người dùng, bao gồm:
+
+Ảnh đại diện và tên tài khoản (ví dụ: lamtienduong11082003).
+
+Thông báo nhắc nhở tạo mục tiêu luyện thi.
+
+Một số banner quảng bá khóa học hoặc công cụ hỗ trợ học tập (như “IELTS Combo Intensive Courses”, “TOEIC Score Calculator”…).
+
+2. Khu vực phân tích chi tiết (Phân tích theo Part)
+
+Ngay bên dưới phần tổng quan là khu vực phân tích chi tiết kết quả.
+Phần này được trình bày theo dạng tab, mỗi tab tương ứng với một Part của bài thi (Part 1 → Part 7) và một tab tổng hợp là “Tổng quát”.
+
+Trong mỗi tab Part, hệ thống hiển thị một bảng thống kê chi tiết với các cột sau:
+
+Cột	Mô tả
+Phân loại câu hỏi	Tên nhóm hoặc tag con, ví dụ: “[Part 7] Câu hỏi điền câu”, “[Part 7] Câu hỏi suy luận”…
+Số câu đúng	Tổng số câu trả lời đúng trong nhóm
+Số câu sai	Tổng số câu trả lời sai
+Số câu bỏ qua	Tổng số câu người dùng chưa làm
+Độ chính xác	Tính theo công thức Đúng / (Đúng + Sai) và hiển thị phần trăm
+Danh sách câu hỏi	Hiển thị danh sách số thứ tự câu hỏi thuộc nhóm đó, mỗi số nằm trong vòng tròn nhỏ.
+
+Mỗi số thứ tự câu hỏi được thể hiện bằng một ô tròn nhỏ, có màu:
+
+Xanh: câu trả lời đúng
+
+Đỏ: câu trả lời sai
+
+Xám/trắng: câu chưa làm
+
+Ví dụ: trong Part 7, hệ thống hiển thị nhiều nhóm như:
+
+[Part 7] Câu hỏi điền câu
+
+[Part 7] Câu hỏi suy luận
+
+[Part 7] Câu hỏi tìm chi tiết sai
+
+[Part 7] Câu hỏi tìm thông tin
+
+[Part 7] Câu hỏi tìm từ đồng nghĩa
+
+[Part 7] Câu hỏi về chủ đề, mục đích
+
+[Part 7] Câu hỏi về hàm ý câu nói
+
+[Part 7] Cấu trúc: một đoạn
+
+Dưới mỗi nhóm là danh sách số thứ tự câu hỏi tương ứng (ví dụ: 147, 148, 149,... 200).
+
+3. Khu vực đáp án
+
+Phần cuối cùng của giao diện là bảng đáp án chi tiết.
+
+Phía trên có các nút chức năng:
+
+“Xem chi tiết đáp án” – mở phần xem lời giải chi tiết và phân tích từng câu.
+
+“Làm lại các câu sai” – cho phép người dùng ôn luyện lại những câu đã làm sai mà không ảnh hưởng đến điểm trung bình.
+
+Có thêm một chú thích màu đỏ:
+
+“Khi làm lại các câu sai, điểm trung bình của bạn sẽ KHÔNG BỊ ẢNH HƯỞNG.”
+
+Phía dưới là danh sách toàn bộ các câu hỏi, được chia theo Part, ví dụ:
+
+Part 1 hiển thị các câu từ 1–6.
+
+Part 2 hiển thị các câu từ 7–31.
+v.v.
+
+Mỗi dòng thể hiện thông tin sau:
+
+Số thứ tự câu hỏi (trong vòng tròn nhỏ).
+
+Đáp án người dùng chọn (ví dụ: A: chưa trả lời, B, C, D …).
+
+Nút [Chi tiết] để xem giải thích hoặc transcript, tùy dạng câu hỏi.
+
+Phía trên cùng của phần này có hộp hướng dẫn xanh với biểu tượng đèn sáng 💡, hướng dẫn người dùng tạo flashcards từ các đoạn highlight, lưu từ vựng, keyword, note học tập, để ôn lại trong tương lai.
+
+Tổng kết
+
+Trang kết quả làm bài thi trong Study4 thể hiện toàn bộ dữ liệu sau khi người dùng hoàn tất một bài thi hoặc luyện tập, bao gồm:
+
+Tổng điểm, số câu đúng/sai/bỏ qua.
+
+Thời gian làm bài.
+
+Phân tích chi tiết từng phần và nhóm câu hỏi.
+
+Danh sách đáp án và chức năng ôn lại.
+
+Khu vực thống kê người dùng và gợi ý học tập.
+
+Toàn bộ bố cục được trình bày dạng bảng và card trực quan, giúp người dùng dễ dàng nhận biết mức độ hoàn thành, điểm mạnh, điểm yếu, và có thể luyện lại các phần sai để cải thiện kết quả.
+
+Bạn có muốn mình viết tiếp mô tả “Giao diện làm bài thi” (trước khi đến trang kết quả này) — tức phần hiển thị câu hỏi, thanh thời gian, lựa chọn part, file nghe… — theo cùng phong cách chuẩn hóa luôn không?
+Nếu có, mình sẽ nối liền để bạn có thể dùng luôn cho phần đặc tả nghiệp vụ / thiết kế CSDL.
+
+
+4. Chức năng: Xem chi tiết đáp án
+
+Khi người dùng bấm nút “Xem chi tiết đáp án” trên trang kết quả, hệ thống sẽ chuyển hướng đến giao diện Review đề thi — giao diện này có bố cục tương tự như giao diện làm bài, nhưng được bổ sung thêm phần dịch, nghĩa, và giải thích chi tiết cho từng câu hỏi.
+
+4.1. Mục tiêu chức năng
+
+Giúp người học xem lại toàn bộ câu hỏi, đáp án đúng, nghĩa dịch, và giải thích chi tiết, từ đó hiểu rõ tại sao câu trả lời của mình đúng hay sai, và ôn luyện hiệu quả hơn.
+
+4.2. Bố cục giao diện
+
+Giao diện chia thành hai phần chính:
+
+A. Thanh công cụ bên phải (Sidebar)
+
+Bảng điều hướng Part: hiển thị danh sách các Part (Part 1 → Part 7).
+
+Khi người dùng chọn một Part, nội dung bên trái sẽ hiển thị toàn bộ câu hỏi thuộc Part đó.
+
+Thanh trạng thái câu hỏi: hiển thị danh sách số thứ tự câu hỏi (dạng ô vuông).
+
+Ô xanh: câu trả lời đúng.
+
+Ô đỏ: câu trả lời sai.
+
+Người dùng có thể bấm trực tiếp vào số câu để chuyển nhanh đến nội dung chi tiết.
+
+Các nút chức năng chính:
+
+“Hiện giải thích” / “Ẩn giải thích”: bật/tắt toàn bộ phần phân tích chi tiết.
+
+“Chia sẻ”: chia sẻ kết quả hoặc đường link đề thi cho bạn bè.
+
+“Quay lại trang kết quả”: trở về màn hình thống kê chính.
+
+B. Phần nội dung chính bên trái
+
+Hiển thị nội dung từng Part tương ứng với dạng bài thi TOEIC.
+
+Part 1 – Mô tả tranh
+
+Giao diện tương tự khi làm bài thi:
+
+1 hình ảnh minh họa.
+
+4 đáp án dạng câu tiếng Anh (A, B, C, D).
+
+File MP3 để nghe câu miêu tả.
+
+Ở chế độ “xem chi tiết đáp án”, hệ thống bổ sung thêm:
+
+Nghĩa tiếng Anh của từng đáp án (giải nghĩa từ hoặc cấu trúc chính).
+
+Bản dịch tiếng Việt của từng đáp án.
+
+Đánh dấu đáp án đúng bằng màu xanh hoặc biểu tượng ✔.
+
+Hiển thị phần dịch nội dung câu hội thoại trong file MP3, giúp người dùng hiểu rõ vì sao chọn đáp án đó.
+
+Part 2 – Hỏi – Đáp ngắn
+
+Hiển thị lại file nghe MP3 chứa câu hỏi và 3 đáp án.
+
+Bổ sung:
+
+Transcript của câu hỏi (nguyên văn tiếng Anh).
+
+Dịch tiếng Việt của câu hỏi và ba lựa chọn.
+
+Ghi chú đáp án đúng và lý do chọn.
+
+Part 3 – Hội thoại ngắn
+
+Hiển thị toàn bộ transcript của đoạn hội thoại.
+
+Mỗi câu hỏi đi kèm:
+
+Nội dung câu hỏi tiếng Anh
+
+Dịch tiếng Việt
+
+Các lựa chọn đáp án (A, B, C, D)
+
+Giải thích lý do chọn đáp án đúng (phần “Giải thích chi tiết”).
+
+Part 4 – Bài nói ngắn (Độc thoại)
+
+Hiển thị transcript của đoạn nói và dịch nghĩa tương ứng.
+
+Với mỗi câu hỏi:
+
+Hiển thị câu hỏi, dịch tiếng Việt, 4 đáp án và phần giải thích tại sao chọn.
+
+Part 5 – Điền từ trong câu
+
+Hiển thị từng câu hỏi riêng lẻ.
+
+Bổ sung:
+
+Câu hỏi gốc (tiếng Anh).
+
+Nghĩa dịch của câu.
+
+4 đáp án lựa chọn kèm dịch nghĩa từng đáp án.
+
+Giải thích ngữ pháp hoặc từ vựng giúp chọn đúng đáp án.
+
+Part 6 – Điền câu vào đoạn văn
+
+Hiển thị đoạn văn tiếng Anh có chỗ trống.
+
+Bổ sung phần:
+
+Dịch toàn bộ đoạn văn.
+
+Hiển thị 4 lựa chọn điền vào chỗ trống, kèm bản dịch từng đáp án.
+
+Giải thích: tại sao đáp án đúng phù hợp với ngữ cảnh.
+
+Part 7 – Đọc hiểu
+
+Hiển thị các đoạn văn đọc hiểu (1 đoạn hoặc 2–3 đoạn liên quan).
+
+Dưới mỗi đoạn là danh sách các câu hỏi tương ứng.
+
+Mỗi câu hỏi có:
+
+Câu hỏi tiếng Anh + bản dịch tiếng Việt.
+
+Bốn đáp án + bản dịch nghĩa.
+
+Phần giải thích chi tiết: nêu câu trong bài chứng minh đáp án đúng, kèm phân tích lý do sai của các lựa chọn khác.
+
+Highlight màu trong đoạn văn để người học dễ đối chiếu phần chứa đáp án.
+
+4.3. Tính năng mở rộng
+
+Chia sẻ kết quả:
+Cho phép người dùng tạo đường dẫn hoặc ảnh chụp tổng kết để chia sẻ điểm và tiến bộ lên mạng xã hội hoặc với bạn bè.
+
+Làm lại bài / phần sai:
+Ở cuối giao diện, có nút “Làm lại các câu sai” giúp luyện lại các câu chưa đúng.
+Khi chọn tính năng này, hệ thống chỉ hiển thị các câu sai để người dùng ôn luyện nhanh.
+
+Ẩn/hiện phần giải thích:
+Người học có thể ẩn phần phân tích để tự kiểm tra lại trước, rồi bật lại để đối chiếu đáp án đúng.
+
+4.4. Tổng kết chức năng
+
+Chức năng “Xem chi tiết đáp án” giúp người dùng:
+
+Hiểu rõ nội dung, nghĩa dịch và đáp án đúng/sai cho từng câu.
+
+Rèn luyện kỹ năng nghe – đọc – hiểu – ngữ pháp thông qua phần dịch và giải thích ngữ nghĩa.
+
+Có thể chia sẻ, ôn lại hoặc luyện lại các phần sai.
+
+
+Phần luyện đề thi TOEIC online là một luồng chức năng hoàn chỉnh cho phép người dùng:
+
+Lựa chọn các phần thi (Part 1–7) để luyện tập hoặc làm full test.
+
+Làm bài thi với giao diện tương tác, có đồng hồ đếm ngược, trạng thái hoàn thành câu hỏi, và hệ thống chấm điểm – thống kê chi tiết kết quả sau bài làm.
+
+⚙️ Luồng giao diện tổng thể
+1. Màn hình chọn phần thi
+
+Người dùng chọn:
+
+Làm full test (Part 1–7)
+
+Hoặc chọn một hoặc nhiều part riêng (VD: chỉ Part 5 và 6)
+
+Khi nhấn “Bắt đầu làm bài”, hệ thống sinh một phiên làm bài (Exam Session) mới.
+
+2. Màn hình làm bài
+
+Gồm hai phần chính:
+
+Bên trái: giao diện làm bài (câu hỏi, đáp án, file nghe, ảnh…)
+
+Bên phải: khu vực thống kê & điều hướng, gồm:
+
+Bộ đếm thời gian làm bài.
+
+Nút “Nộp bài”.
+
+Bảng câu hỏi: mỗi câu hiển thị bằng một ô vuông.
+
+Ô trắng = chưa làm
+
+Ô xanh = đã chọn đáp án
+
+Với Part 7, số ô vuông có thể lên đến ~53 ô tương ứng với số câu hỏi.
+
+Nội dung từng Part:
+Part	Nội dung hiển thị
+Part 1	Ảnh + file MP3 + 4 đáp án (A–D)
+Part 2	File MP3 (nghe câu hỏi) + 3 đáp án (A–C)
+Part 3	File MP3 hội thoại + các câu hỏi, đáp án
+Part 4	File MP3 bài nói + câu hỏi, đáp án
+Part 5	Câu hỏi trắc nghiệm điền từ
+Part 6	Đoạn văn có chỗ trống cần điền
+Part 7	Đọc hiểu đoạn văn và chọn đáp án cho từng câu
+📊 Màn hình kết quả sau khi nộp bài
+
+Khi người dùng hoàn thành bài thi:
+
+Hiển thị điểm tổng, thời gian làm, và tỉ lệ đúng – sai theo từng part.
+
+Cho phép người dùng chọn hai hành động lớn:
+
+Xem chi tiết đáp án
+
+Xem giải thích chi tiết (Explanation Mode)
+
+📖 Chức năng “Xem chi tiết đáp án”
+
+Giao diện hiển thị lại đề thi giống lúc làm bài.
+
+Bổ sung thêm thông tin học tập:
+
+Nghĩa tiếng Anh & nghĩa tiếng Việt của từng đáp án.
+
+Hiển thị phần transcript (đoạn hội thoại, bài nói, đoạn đọc).
+
+Có thể nghe lại audio của từng câu (MP3).
+
+Mỗi part sẽ hiển thị nội dung phù hợp:
+
+Part 1–2: dịch file nghe + nghĩa đáp án.
+
+Part 3–4: transcript + dịch câu hỏi và đáp án.
+
+Part 5–6: dịch từng câu hỏi và phân tích lý do chọn đáp án đúng.
+
+Part 7: dịch toàn bộ đoạn văn + giải thích logic chọn đáp án.
+
+Ngoài ra còn có nút “Chia sẻ kết quả” và “Quay về trang kết quả”.
+
+💡 Chức năng “Giải thích chi tiết toàn bộ”
+
+Khi bật chế độ “Hiện giải thích tất cả”, hệ thống hiển thị toàn bộ phần dịch, transcript, và phân tích đáp án cho toàn bộ câu hỏi trong bài thi (không cần bấm từng câu).
+
+🧱 Yêu cầu về cơ sở dữ liệu & nghiệp vụ cần có
+
+Từ giao diện trên, các nghiệp vụ chính cần hỗ trợ trong CSDL gồm:
+
+1. Quản lý bài thi và câu hỏi
+
+Bảng tests (đề thi tổng hợp: Test 1, Test 2, …)
+
+Bảng parts (Part 1–7, liên kết đến test)
+
+Bảng questions (mỗi câu hỏi, dạng, nội dung, đáp án đúng)
+
+Bảng choices (đáp án A–D, có cờ is_correct)
+
+Bảng resources (liên kết ảnh, audio, transcript)
+
+2. Quản lý người dùng và phiên làm bài
+
+Bảng users
+
+Bảng exam_sessions (mỗi lần làm bài, lưu thời gian bắt đầu/kết thúc, test_id, user_id)
+
+Bảng user_answers (ghi lại lựa chọn từng câu, thời điểm chọn, có thể hỗ trợ resume)
+
+Bảng user_progress (tiến trình làm bài theo part, câu nào đã làm)
+
+3. Thống kê và lịch sử luyện tập
+
+Lưu tổng số lần làm bài, điểm cao nhất, thời gian trung bình.
+
+Thống kê theo part (độ chính xác từng part).
+
+Gợi ý luyện tập dựa trên lịch sử (VD: part 5 yếu nhất).
+
+4. Dữ liệu học tập sau bài làm
+
+Lưu lại bản dịch, transcript, phân tích, từ vựng học được.
+
+Cho phép đánh dấu câu sai / câu cần ôn lại (marked_questions).
+
+_______________________________________________________________________________
+
+D:\KY_II_NAM_4\Thuc_Tap_Tot_Nghiep\E-commerce\zDesignDB\promptExam.txt
+
+đọc kĩ toàn bộ đoạn mô tả này và  cho tôi biết website của tôi sẽ có những nghiệp vụ gì, từ giao diên -> suy ra nghiệp vụ logic -> suy ra là phải có bảng nào trong cở sở dữ liệu , phải lưu mối quan hệ như nào sao cho , số lượng bảng vừa phải ,không cần quá thừa thãi, tuy nhiên các thuộc tính trong bảng phải đủ, đủ các bảng liên quan để hiển thị đầy đủ thông tin và thực hiện các nghiệp vụ trong mô tả -> thiết kế nghiệp vụ -> cho tôi biết cơ sở dữ liệu có những bảng nào, tại sao phải có bảng đó ,có thuộc tính nào, tại sao có thuộc tính đó - > sinh code DB diagram để tôi nhìn cho trực quan 
+
+_______________________________________________________________________________
+
+PHÂN TÍCH NGHIỆP VỤ
+1. Nghiệp vụ chính từ giao diện:
+A. Thư viện luyện đề:
+Hiển thị danh sách đề thi theo chủ đề (TOEIC, IELTS, HSK, THPT)
+Tìm kiếm đề thi theo từ khóa
+Xem thông tin chi tiết đề thi (thời gian, số câu, số người làm, bình luận)
+Thống kê cá nhân (số đề đã làm, tỉ lệ hoàn thành, điểm trung bình)
+B. Chi tiết đề thi:
+Xem thông tin tổng quan đề thi
+Chọn chế độ: Luyện tập (chọn part cụ thể) / Full Test / Thảo luận
+Hiển thị danh sách các Part với số câu và tag mô tả
+C. Làm bài thi:
+Giao diện làm bài theo từng Part (Part 1-7)
+Hiển thị câu hỏi, đáp án, audio, hình ảnh
+Đồng hồ đếm ngược, nút nộp bài
+Thanh điều hướng Part và trạng thái câu hỏi
+Auto-save đáp án
+D. Kết quả làm bài:
+Thống kê tổng quan (điểm, thời gian, tỉ lệ đúng/sai)
+Phân tích chi tiết theo Part và nhóm câu hỏi
+Xem đáp án chi tiết với giải thích
+Làm lại câu sai
+E. Xem chi tiết đáp án:
+Hiển thị lại đề thi với giải thích đầy đủ
+Dịch nghĩa, transcript, phân tích từng câu
+Chia sẻ kết quả, đánh dấu câu cần ôn
+
+THIẾT KẾ CƠ SỞ DỮ LIỆU
+Các bảng cần thiết:
+1. Bảng quản lý người dùng:
+-- Bảng Users
+Users (id, username, email, password, full_name, avatar, created_at, updated_at)
+2. Bảng quản lý đề thi:
+-- Bảng Tests (đề thi chính)
+Tests (id, title, description, exam_type, duration_minutes, total_questions, 
+       total_parts, difficulty_level, created_by, created_at, updated_at)
+
+-- Bảng Parts (các phần thi trong đề)
+Parts (id, test_id, part_number, part_name, question_count, description, 
+       created_at, updated_at)
+
+-- Bảng Questions (câu hỏi)
+Questions (id, part_id, question_number, question_text, question_type, 
+           explanation, created_at, updated_at)
+
+-- Bảng Choices (đáp án)
+Choices (id, question_id, choice_letter, choice_text, is_correct, 
+         explanation, created_at, updated_at)
+
+-- Bảng Resources (tài nguyên: audio, hình ảnh, transcript)
+Resources (id, question_id, resource_type, file_path, file_name, 
+           content_text, created_at, updated_at)
+3. Bảng quản lý phiên làm bài:
+
+-- Bảng Exam_Sessions (phiên làm bài)
+Exam_Sessions (id, user_id, test_id, session_type, start_time, end_time, 
+               total_score, correct_answers, wrong_answers, skipped_answers, 
+               status, created_at, updated_at)
+
+-- Bảng User_Answers (câu trả lời của người dùng)
+User_Answers (id, session_id, question_id, selected_choice_id, 
+              answer_time, is_correct, created_at, updated_at)
+
+-- Bảng User_Progress (tiến trình làm bài)
+User_Progress (id, user_id, test_id, part_id, completed_questions, 
+               total_questions, accuracy_rate, last_attempt, created_at, updated_at)
+4. Bảng phân loại và tag:
+-- Bảng Categories (chủ đề đề thi)
+Categories (id, name, description, icon, created_at, updated_at)
+
+-- Bảng Test_Categories (liên kết đề thi với chủ đề)
+Test_Categories (id, test_id, category_id, created_at)
+
+-- Bảng Tags (tag mô tả câu hỏi)
+Tags (id, name, description, created_at, updated_at)
+
+-- Bảng Question_Tags (liên kết câu hỏi với tag)
+Question_Tags (id, question_id, tag_id, created_at)
+5. Bảng thống kê và lịch sử:
+-- Bảng User_Statistics (thống kê người dùng)
+User_Statistics (id, user_id, total_tests_taken, average_score, 
+                 best_score, total_study_time, created_at, updated_at)
+
+-- Bảng Part_Statistics (thống kê theo Part)
+Part_Statistics (id, user_id, part_id, total_attempts, correct_answers, 
+                 accuracy_rate, last_attempt, created_at, updated_at)
+6. Bảng thảo luận:
+
+-- Bảng Discussions (thảo luận)
+Discussions (id, test_id, user_id, title, content, created_at, updated_at)
+
+-- Bảng Comments (bình luận)
+Comments (id, discussion_id, user_id, content, parent_comment_id, 
+          created_at, updated_at)
+
+          
+Lý do thiết kế các bảng:
+Tests, Parts, Questions, Choices: Cấu trúc phân cấp rõ ràng để quản lý đề thi
+Resources: Tách riêng để quản lý audio, hình ảnh, transcript
+Exam_Sessions, User_Answers: Lưu trữ phiên làm bài và câu trả lời
+Categories, Tags: Hỗ trợ phân loại và tìm kiếm
+User_Statistics, Part_Statistics: Thống kê và theo dõi tiến độ
+Discussions, Comments: Hỗ trợ tính năng thảo luận
+Mối quan hệ chính:
+Users → Exam_Sessions (1:N)
+Tests → Parts (1:N)
+Parts → Questions (1:N)
+Questions → Choices (1:N)
+Questions → Resources (1:N)
+Exam_Sessions → User_Answers (1:N)
+Tests → Categories (N:N qua Test_Categories)
+Questions → Tags (N:N qua Question_Tags)
+
+erDiagram
+    Users ||--o{ Exam_Sessions : "has many"
+    Users ||--o{ User_Statistics : "has one"
+    Users ||--o{ Part_Statistics : "has many"
+    Users ||--o{ Discussions : "creates"
+    Users ||--o{ Comments : "writes"
+    
+    Tests ||--o{ Parts : "contains"
+    Tests ||--o{ Exam_Sessions : "used in"
+    Tests ||--o{ Test_Categories : "belongs to"
+    
+    Parts ||--o{ Questions : "contains"
+    Parts ||--o{ User_Progress : "tracks"
+    Parts ||--o{ Part_Statistics : "analyzes"
+    
+    Questions ||--o{ Choices : "has"
+    Questions ||--o{ Resources : "has"
+    Questions ||--o{ User_Answers : "answered in"
+    Questions ||--o{ Question_Tags : "tagged with"
+    
+    Exam_Sessions ||--o{ User_Answers : "contains"
+    
+    Categories ||--o{ Test_Categories : "categorizes"
+    Tags ||--o{ Question_Tags : "describes"
+    
+    Discussions ||--o{ Comments : "has"
+    
+    Users {
+        int id PK
+        string username
+        string email
+        string password
+        string full_name
+        string avatar
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Tests {
+        int id PK
+        string title
+        text description
+        string exam_type
+        int duration_minutes
+        int total_questions
+        int total_parts
+        string difficulty_level
+        int created_by FK
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Parts {
+        int id PK
+        int test_id FK
+        int part_number
+        string part_name
+        int question_count
+        text description
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Questions {
+        int id PK
+        int part_id FK
+        int question_number
+        text question_text
+        string question_type
+        text explanation
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Choices {
+        int id PK
+        int question_id FK
+        string choice_letter
+        text choice_text
+        boolean is_correct
+        text explanation
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Resources {
+        int id PK
+        int question_id FK
+        string resource_type
+        string file_path
+        string file_name
+        text content_text
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Exam_Sessions {
+        int id PK
+        int user_id FK
+        int test_id FK
+        string session_type
+        datetime start_time
+        datetime end_time
+        decimal total_score
+        int correct_answers
+        int wrong_answers
+        int skipped_answers
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+    
+    User_Answers {
+        int id PK
+        int session_id FK
+        int question_id FK
+        int selected_choice_id FK
+        datetime answer_time
+        boolean is_correct
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Categories {
+        int id PK
+        string name
+        text description
+        string icon
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Tags {
+        int id PK
+        string name
+        text description
+        datetime created_at
+        datetime updated_at
+    }
+
+ném vào trong này 
+
+https://mermaid.live/edit#pako:eNqdUsGKwjAQ_ZUw5yo2tkZzVQ97EBdXL0thCU2sgTbppgmsW_33TVsrSsHDzmnm8fLm5TE1pJoLoCDMSrLMsCJRyNfy8LHfbtY7dLmMRrpG293KDxSVOUtF1XE6rCFcboSvt_1641mpVpZJdeO977arw3L_JNUzpUpzx3vF-9a6m5uqrJEqQ5IPIMUKMQBFwWTeoddHm68VObMCacN9Cr4bUCvLrKueVPtP_cPpMdfMotLIVAyNdsE8qEpl0bdjykp7fqUBAWRGcqDWOBFAIYxPwo_QaiVgT8KbAOpbLo7M5TaBRDXPSqY-tS76l0a77AT0yPLKT65ssrndxp0ilI9qqZ2yQKezVgJoDT9Aoxkexzgm4ZyEUUQiEgdwBhpOyHiB4xATgsP5YoHJNYDfdutkHIfRjPjCJIonBE8DEFxabTbdabYXev0D3nTIdg
+
+// ========================================
+// TOEIC EXAM SYSTEM DATABASE SCHEMA
+// ========================================
+
+Table users {
+  id int [pk, increment]
+  username varchar(50) [unique, not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]
+  full_name varchar(100)
+  avatar varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table tests {
+  id int [pk, increment]
+  title varchar(255) [not null]
+  description text
+  exam_type varchar(50) [not null] // TOEIC, IELTS, HSK, THPT
+  total_duration int [not null] // minutes
+  total_questions int [not null]
+  total_parts int [not null]
+  difficulty_level varchar(20) [not null] // EASY, MEDIUM, HARD
+  created_by int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table parts {
+  id int [pk, increment]
+  test_id int [not null]
+  part_number int [not null]
+  part_name varchar(100) [not null]
+  part_type varchar(20) [not null] // LISTENING, READING
+  question_count int [not null]
+  duration_minutes int [not null]
+  description text
+  display_template varchar(50)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table questions {
+  id int [pk, increment]
+  part_id int [not null]
+  question_number int [not null]
+  question_text text [not null]
+  question_type varchar(30) [not null] // MULTIPLE_CHOICE, FILL_BLANK, READING_COMPREHENSION
+  audio_file varchar(255)
+  image_file varchar(255)
+  transcript text
+  explanation text
+  grammar_notes text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table choices {
+  id int [pk, increment]
+  question_id int [not null]
+  choice_letter varchar(1) [not null] // A, B, C, D
+  choice_text text [not null]
+  choice_translation text
+  choice_explanation text
+  is_correct boolean [default: false]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table exam_sessions {
+  id int [pk, increment]
+  user_id int [not null]
+  test_id int [not null]
+  session_type varchar(20) [not null] // FULL_TEST, PRACTICE, REVIEW
+  start_time timestamp [not null]
+  end_time timestamp
+  duration_seconds int
+  total_score int [default: 0]
+  correct_answers int [default: 0]
+  wrong_answers int [default: 0]
+  skipped_answers int [default: 0]
+  status varchar(20) [default: 'IN_PROGRESS'] // IN_PROGRESS, COMPLETED, ABANDONED
+  selected_parts json
+  time_limit_minutes int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table user_answers {
+  id bigint [pk, increment]
+  session_id int [not null]
+  question_id int [not null]
+  selected_choice_id int
+  answer_time timestamp [default: `now()`]
+  is_correct boolean
+  created_at timestamp [default: `now()`]
+}
+
+Table user_statistics {
+  id int [pk, increment]
+  user_id int [not null]
+  total_tests_taken int [default: 0]
+  total_questions_answered int [default: 0]
+  total_correct_answers int [default: 0]
+  average_score decimal(5,2) [default: 0.00]
+  best_score int [default: 0]
+  total_study_time_seconds int [default: 0]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table part_statistics {
+  id int [pk, increment]
+  user_id int [not null]
+  part_id int [not null]
+  total_attempts int [default: 0]
+  total_questions int [default: 0]
+  correct_answers int [default: 0]
+  accuracy_rate decimal(5,2) [default: 0.00]
+  last_attempt timestamp
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  icon varchar(100)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table test_categories {
+  id int [pk, increment]
+  test_id int [not null]
+  category_id int [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table tags {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table question_tags {
+  id int [pk, increment]
+  question_id int [not null]
+  tag_id int [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table discussions {
+  id int [pk, increment]
+  test_id int [not null]
+  user_id int [not null]
+  title varchar(255) [not null]
+  content text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table comments {
+  id int [pk, increment]
+  discussion_id int [not null]
+  user_id int [not null]
+  content text [not null]
+  parent_comment_id int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// ========================================
+// RELATIONSHIPS
+// ========================================
+
+Ref: tests.created_by > users.id
+Ref: parts.test_id > tests.id
+Ref: questions.part_id > parts.id
+Ref: choices.question_id > questions.id
+Ref: exam_sessions.user_id > users.id
+Ref: exam_sessions.test_id > tests.id
+Ref: user_answers.session_id > exam_sessions.id
+Ref: user_answers.question_id > questions.id
+Ref: user_answers.selected_choice_id > choices.id
+Ref: user_statistics.user_id > users.id
+Ref: part_statistics.user_id > users.id
+Ref: part_statistics.part_id > parts.id
+Ref: test_categories.test_id > tests.id
+Ref: test_categories.category_id > categories.id
+Ref: question_tags.question_id > questions.id
+Ref: question_tags.tag_id > tags.id
+Ref: discussions.test_id > tests.id
+Ref: discussions.user_id > users.id
+Ref: comments.discussion_id > discussions.id
+Ref: comments.user_id > users.id
+Ref: comments.parent_comment_id > comments.id
+
+
+https://dbdiagram.io/d/EXAM-68e53a16d2b621e422b37c66
+
+https://runsql.com/?utm_source=dbdiagram&utm_medium=navButton
+
+https://runsql.com/r
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ========================================
+-- CREATE DATABASE FOR EXAM SYSTEM (Study4 Style)
+-- ========================================
+
+-- Tạo mới database (đổi tên nếu cần)
+DROP DATABASE IF EXISTS exam_system_db;
+CREATE DATABASE exam_system_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Sử dụng database này
+USE exam_system_db;
+
+-- ========================================
+-- TABLE DEFINITIONS
+-- ========================================
+
+-- Users table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    avatar VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    INDEX idx_username (username),
+    INDEX idx_email (email)
+);
+
+-- Tests table
+CREATE TABLE tests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    exam_type ENUM('TOEIC', 'IELTS', 'HSK', 'THPT') NOT NULL,
+    total_duration INT NOT NULL,
+    total_questions INT NOT NULL,
+    total_parts INT NOT NULL,
+    difficulty_level ENUM('EASY', 'MEDIUM', 'HARD') NOT NULL,
+    created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (created_by) REFERENCES users(id),
+    INDEX idx_exam_type (exam_type),
+    INDEX idx_difficulty (difficulty_level)
+);
+
+-- Parts table
+CREATE TABLE parts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    test_id INT NOT NULL,
+    part_number INT NOT NULL,
+    part_name VARCHAR(100) NOT NULL,
+    part_type ENUM('LISTENING', 'READING') NOT NULL,
+    question_count INT NOT NULL,
+    duration_minutes INT NOT NULL,
+    description TEXT,
+    display_template VARCHAR(50),
+    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_part_number (part_number),
+    INDEX idx_part_type (part_type)
+);
+
+-- Questions table
+CREATE TABLE questions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    part_id INT NOT NULL,
+    question_number INT NOT NULL,
+    question_text TEXT NOT NULL,
+    question_type ENUM('MULTIPLE_CHOICE', 'FILL_BLANK', 'READING_COMPREHENSION') NOT NULL,
+    audio_file VARCHAR(255),
+    image_file VARCHAR(255),
+    transcript TEXT,
+    explanation TEXT,
+    grammar_notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE,
+    INDEX idx_part_id (part_id),
+    INDEX idx_question_number (question_number),
+    INDEX idx_question_type (question_type)
+);
+
+-- Choices table
+CREATE TABLE choices (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    choice_letter ENUM('A', 'B', 'C', 'D') NOT NULL,
+    choice_text TEXT NOT NULL,
+    choice_translation TEXT,
+    choice_explanation TEXT,
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    INDEX idx_question_id (question_id),
+    INDEX idx_choice_letter (choice_letter),
+    INDEX idx_is_correct (is_correct)
+);
+
+-- Exam Sessions
+CREATE TABLE exam_sessions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    test_id INT NOT NULL,
+    session_type ENUM('FULL_TEST', 'PRACTICE', 'REVIEW') NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NULL,
+    duration_seconds INT NULL,
+    total_score INT DEFAULT 0,
+    correct_answers INT DEFAULT 0,
+    wrong_answers INT DEFAULT 0,
+    skipped_answers INT DEFAULT 0,
+    status ENUM('IN_PROGRESS', 'COMPLETED', 'ABANDONED') DEFAULT 'IN_PROGRESS',
+    selected_parts JSON,
+    time_limit_minutes INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (test_id) REFERENCES tests(id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_status (status),
+    INDEX idx_start_time (start_time)
+);
+
+-- User Answers
+CREATE TABLE user_answers (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    session_id INT NOT NULL,
+    question_id INT NOT NULL,
+    selected_choice_id INT NULL,
+    answer_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_correct BOOLEAN NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (session_id) REFERENCES exam_sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(id),
+    FOREIGN KEY (selected_choice_id) REFERENCES choices(id),
+    
+    UNIQUE KEY unique_session_question (session_id, question_id),
+    INDEX idx_session_id (session_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_answer_time (answer_time)
+);
+
+-- User Statistics
+CREATE TABLE user_statistics (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    total_tests_taken INT DEFAULT 0,
+    total_questions_answered INT DEFAULT 0,
+    total_correct_answers INT DEFAULT 0,
+    average_score DECIMAL(5,2) DEFAULT 0.00,
+    best_score INT DEFAULT 0,
+    total_study_time_seconds INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE KEY unique_user_stats (user_id),
+    INDEX idx_average_score (average_score),
+    INDEX idx_best_score (best_score)
+);
+
+-- Part Statistics
+CREATE TABLE part_statistics (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    part_id INT NOT NULL,
+    total_attempts INT DEFAULT 0,
+    total_questions INT DEFAULT 0,
+    correct_answers INT DEFAULT 0,
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00,
+    last_attempt TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (part_id) REFERENCES parts(id),
+    UNIQUE KEY unique_user_part (user_id, part_id),
+    INDEX idx_accuracy_rate (accuracy_rate),
+    INDEX idx_last_attempt (last_attempt)
+);
+
+-- Categories
+CREATE TABLE categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    icon VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+);
+
+-- Test Categories
+CREATE TABLE test_categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    test_id INT NOT NULL,
+    category_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_test_category (test_id, category_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_category_id (category_id)
+);
+
+-- Tags
+CREATE TABLE tags (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+);
+
+-- Question Tags
+CREATE TABLE question_tags (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_question_tag (question_id, tag_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_tag_id (tag_id)
+);
+
+-- Discussions
+CREATE TABLE discussions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    test_id INT NOT NULL,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_created_at (created_at)
+);
+
+-- Comments
+CREATE TABLE comments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    discussion_id INT NOT NULL,
+    user_id INT NOT NULL,
+    content TEXT NOT NULL,
+    parent_comment_id INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (discussion_id) REFERENCES discussions(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (parent_comment_id) REFERENCES comments(id) ON DELETE CASCADE,
+    INDEX idx_discussion_id (discussion_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_parent_comment (parent_comment_id),
+    INDEX idx_created_at (created_at)
+);
+
+-- ========================================
+-- SEED DATA
+-- ========================================
+
+INSERT INTO users (username, email, password_hash, full_name)
+VALUES 
+('admin', 'admin@example.com', 'hash_admin', 'Admin User'),
+('teacher1', 'teacher1@example.com', 'hash_teacher1', 'Teacher One'),
+('student1', 'student1@example.com', 'hash_student1', 'Student One');
+
+INSERT INTO tests (
+    title, description, exam_type, total_duration, total_questions, total_parts, difficulty_level, created_by
+)
+VALUES
+('TOEIC Full Test 01', 'Bài thi TOEIC mẫu số 1 gồm đủ 7 part', 'TOEIC', 120, 200, 7, 'MEDIUM', 2),
+('IELTS Reading Practice 01', 'Bài luyện đọc IELTS Reading', 'IELTS', 60, 40, 3, 'MEDIUM', 2),
+('THPT Quốc Gia Tiếng Anh - 2024', 'Đề luyện thi THPTQG 2024', 'THPT', 60, 50, 4, 'MEDIUM', 3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ========================================
+// TOEIC EXAM SYSTEM DATABASE SCHEMA
+// ========================================
+
+Table users {
+  id int [pk, increment]
+  username varchar(50) [unique, not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]
+  full_name varchar(100)
+  avatar varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table tests {
+  id int [pk, increment]
+  title varchar(255) [not null]
+  description text
+  exam_type varchar(50) [not null] // TOEIC, IELTS, HSK, THPT
+  total_duration int [not null] // minutes
+  total_questions int [not null]
+  total_parts int [not null]
+  difficulty_level varchar(20) [not null] // EASY, MEDIUM, HARD
+  created_by int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table parts {
+  id int [pk, increment]
+  test_id int [not null]
+  part_number int [not null]
+  part_name varchar(100) [not null]
+  part_type varchar(20) [not null] // LISTENING, READING
+  question_count int [not null]
+  duration_minutes int [not null]
+  description text
+  display_template varchar(50)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table questions {
+  id int [pk, increment]
+  part_id int [not null]
+  question_number int [not null]
+  question_text text [not null]
+  question_type varchar(30) [not null] // MULTIPLE_CHOICE, FILL_BLANK, READING_COMPREHENSION
+  audio_file varchar(255)
+  image_file varchar(255)
+  transcript text
+  explanation text
+  grammar_notes text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table choices {
+  id int [pk, increment]
+  question_id int [not null]
+  choice_letter varchar(1) [not null] // A, B, C, D
+  choice_text text [not null]
+  choice_translation text
+  choice_explanation text
+  is_correct boolean [default: false]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table exam_sessions {
+  id int [pk, increment]
+  user_id int [not null]
+  test_id int [not null]
+  session_type varchar(20) [not null] // FULL_TEST, PRACTICE, REVIEW
+  start_time timestamp [not null]
+  end_time timestamp
+  duration_seconds int
+  total_score int [default: 0]
+  correct_answers int [default: 0]
+  wrong_answers int [default: 0]
+  skipped_answers int [default: 0]
+  status varchar(20) [default: 'IN_PROGRESS'] // IN_PROGRESS, COMPLETED, ABANDONED
+  selected_parts json
+  time_limit_minutes int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table user_answers {
+  id bigint [pk, increment]
+  session_id int [not null]
+  question_id int [not null]
+  selected_choice_id int
+  answer_time timestamp [default: `now()`]
+  is_correct boolean
+  created_at timestamp [default: `now()`]
+}
+
+Table user_statistics {
+  id int [pk, increment]
+  user_id int [not null]
+  total_tests_taken int [default: 0]
+  total_questions_answered int [default: 0]
+  total_correct_answers int [default: 0]
+  average_score decimal(5,2) [default: 0.00]
+  best_score int [default: 0]
+  total_study_time_seconds int [default: 0]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table part_statistics {
+  id int [pk, increment]
+  user_id int [not null]
+  part_id int [not null]
+  total_attempts int [default: 0]
+  total_questions int [default: 0]
+  correct_answers int [default: 0]
+  accuracy_rate decimal(5,2) [default: 0.00]
+  last_attempt timestamp
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  icon varchar(100)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table test_categories {
+  id int [pk, increment]
+  test_id int [not null]
+  category_id int [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table tags {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table question_tags {
+  id int [pk, increment]
+  question_id int [not null]
+  tag_id int [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table discussions {
+  id int [pk, increment]
+  test_id int [not null]
+  user_id int [not null]
+  title varchar(255) [not null]
+  content text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table comments {
+  id int [pk, increment]
+  discussion_id int [not null]
+  user_id int [not null]
+  content text [not null]
+  parent_comment_id int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// ========================================
+// RELATIONSHIPS
+// ========================================
+
+Ref: tests.created_by > users.id
+Ref: parts.test_id > tests.id
+Ref: questions.part_id > parts.id
+Ref: choices.question_id > questions.id
+Ref: exam_sessions.user_id > users.id
+Ref: exam_sessions.test_id > tests.id
+Ref: user_answers.session_id > exam_sessions.id
+Ref: user_answers.question_id > questions.id
+Ref: user_answers.selected_choice_id > choices.id
+Ref: user_statistics.user_id > users.id
+Ref: part_statistics.user_id > users.id
+Ref: part_statistics.part_id > parts.id
+Ref: test_categories.test_id > tests.id
+Ref: test_categories.category_id > categories.id
+Ref: question_tags.question_id > questions.id
+Ref: question_tags.tag_id > tags.id
+Ref: discussions.test_id > tests.id
+Ref: discussions.user_id > users.id
+Ref: comments.discussion_id > discussions.id
+Ref: comments.user_id > users.id
+Ref: comments.parent_comment_id > comments.id
