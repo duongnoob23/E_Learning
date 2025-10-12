@@ -49,14 +49,14 @@ const Question = require("./exam/Questions")(sequelize, DataTypes);
 const Choice = require("./exam/Choice")(sequelize, DataTypes);
 const ExamSession = require("./exam/ExamSession")(sequelize, DataTypes);
 const UserAnswer = require("./exam/UserAnswers")(sequelize, DataTypes);
-const UserStatistics = require("./exam/UserStatistics")(sequelize, DataTypes);
+const UserExamStatistics = require("./exam/UserStatistics")(sequelize, DataTypes);
 const PartStatistics = require("./exam/PartStatistics")(sequelize, DataTypes);
-const TestCategory = require("./exam/TestCategory")(sequelize, DataTypes);
+const ExamCategory = require("./exam/TestCategory")(sequelize, DataTypes);
 const TestCategoryRelation = require("./exam/TestCategoryRelation")(sequelize, DataTypes);
-const Tag = require("./exam/Tag")(sequelize, DataTypes);
+const ExamTag = require("./exam/Tag")(sequelize, DataTypes);
 const QuestionTag = require("./exam/QuestionTag")(sequelize, DataTypes);
-const Discussion = require("./exam/Discussion")(sequelize, DataTypes);
-const Comment = require("./exam/Comment")(sequelize, DataTypes);
+const TestDiscussion = require("./exam/Discussion")(sequelize, DataTypes);
+const TestComment = require("./exam/Comment")(sequelize, DataTypes);
 
 
 // Associations
@@ -84,34 +84,34 @@ ExamSession.belongsTo(User, { as: "user", foreignKey: "user_id" });
 ExamSession.belongsTo(Test, { as: "test", foreignKey: "test_id" });
 
 // ExamSession -> UserAnswers
-ExamSession.hasMany(UserAnswer, { as: "user_answers", foreignKey: "session_id" });
-UserAnswer.belongsTo(ExamSession, { as: "session", foreignKey: "session_id" });
+ExamSession.hasMany(UserAnswer, { as: "user_answers", foreignKey: "exam_session_id" });
+UserAnswer.belongsTo(ExamSession, { as: "session", foreignKey: "exam_session_id" });
 
 // UserAnswer -> Question and Choice
 UserAnswer.belongsTo(Question, { as: "question", foreignKey: "question_id" });
 UserAnswer.belongsTo(Choice, { as: "selected_choice", foreignKey: "selected_choice_id" });
 
 // Statistics
-UserStatistics.belongsTo(User, { as: "user", foreignKey: "user_id" });
+UserExamStatistics.belongsTo(User, { as: "user", foreignKey: "user_id" });
 PartStatistics.belongsTo(User, { as: "user", foreignKey: "user_id" });
 PartStatistics.belongsTo(Part, { as: "part", foreignKey: "part_id" });
 
 // Categories and Tags
 TestCategoryRelation.belongsTo(Test, { as: "test", foreignKey: "test_id" });
-TestCategoryRelation.belongsTo(TestCategory, { as: "category", foreignKey: "category_id" });
+TestCategoryRelation.belongsTo(ExamCategory, { as: "category", foreignKey: "exam_category_id" });
 
 QuestionTag.belongsTo(Question, { as: "question", foreignKey: "question_id" });
-QuestionTag.belongsTo(Tag, { as: "tag", foreignKey: "tag_id" });
+QuestionTag.belongsTo(ExamTag, { as: "tag", foreignKey: "exam_tag_id" });
 
 // Discussions and Comments
-Discussion.belongsTo(Test, { as: "test", foreignKey: "test_id" });
-Discussion.belongsTo(User, { as: "user", foreignKey: "user_id" });
-Discussion.hasMany(Comment, { as: "comments", foreignKey: "discussion_id" });
+TestDiscussion.belongsTo(Test, { as: "test", foreignKey: "test_id" });
+TestDiscussion.belongsTo(User, { as: "user", foreignKey: "user_id" });
+TestDiscussion.hasMany(TestComment, { as: "comments", foreignKey: "test_discussion_id" });
 
-Comment.belongsTo(Discussion, { as: "discussion", foreignKey: "discussion_id" });
-Comment.belongsTo(User, { as: "user", foreignKey: "user_id" });
-Comment.belongsTo(Comment, { as: "parent", foreignKey: "parent_comment_id" });
-Comment.hasMany(Comment, { as: "replies", foreignKey: "parent_comment_id" });
+TestComment.belongsTo(TestDiscussion, { as: "discussion", foreignKey: "test_discussion_id" });
+TestComment.belongsTo(User, { as: "user", foreignKey: "user_id" });
+TestComment.belongsTo(TestComment, { as: "parent", foreignKey: "parent_comment_id" });
+TestComment.hasMany(TestComment, { as: "replies", foreignKey: "parent_comment_id" });
 
 // Accounts
 UserRole.belongsTo(User, { foreignKey: "user_id" });
@@ -243,12 +243,12 @@ module.exports = {
   Choice,
   ExamSession,
   UserAnswer,
-  UserStatistics,
+  UserExamStatistics,
   PartStatistics,
-  TestCategory,
+  ExamCategory,
   TestCategoryRelation,
-  Tag,
+  ExamTag,
   QuestionTag,
-  Discussion,
-  Comment,
+  TestDiscussion,
+  TestComment,
 };

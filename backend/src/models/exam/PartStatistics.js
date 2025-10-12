@@ -2,17 +2,17 @@ module.exports = (sequelize, DataTypes) => {
     const PartStatistics = sequelize.define(
         "PartStatistics",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            part_stat_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             user_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             part_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             total_attempts: {
@@ -58,20 +58,20 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    PartStatistics.findById = async (id) => 
-        PartStatistics.findOne({ where: { id } });
+    PartStatistics.findById = async (part_stat_id) =>
+        PartStatistics.findOne({ where: { part_stat_id } });
 
-    PartStatistics.findByUserId = async (user_id) => 
+    PartStatistics.findByUserId = async (user_id) =>
         PartStatistics.findAll({ where: { user_id } });
 
-    PartStatistics.findByUserIdAndPartId = async (user_id, part_id) => 
+    PartStatistics.findByUserIdAndPartId = async (user_id, part_id) =>
         PartStatistics.findOne({ where: { user_id, part_id } });
 
     PartStatistics.findAll = async () => PartStatistics.findAll();
 
     PartStatistics.createStatistics = async (data) => PartStatistics.create(data);
 
-    PartStatistics.updateStatistics = async (user_id, part_id, data) => 
+    PartStatistics.updateStatistics = async (user_id, part_id, data) =>
         PartStatistics.update(data, { where: { user_id, part_id } });
 
     PartStatistics.updatePartPerformance = async (user_id, part_id, questionsAnswered, correctAnswers) => {

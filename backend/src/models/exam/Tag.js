@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-    const Tag = sequelize.define(
-        "Tag",
+    const ExamTag = sequelize.define(
+        "ExamTag",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            exam_tag_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
@@ -15,40 +15,40 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: true,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: { 
-                type: DataTypes.DATE, 
+            updated_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
         },
         {
-            tableName: "tags",
+            tableName: "exam_tags",
             timestamps: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at',
         }
     );
 
-    Tag.findById = async (id) => 
-        Tag.findOne({ where: { id } });
+    ExamTag.findById = async (exam_tag_id) =>
+        ExamTag.findOne({ where: { exam_tag_id } });
 
-    Tag.findByName = async (name) => 
-        Tag.findOne({ where: { name } });
+    ExamTag.findByName = async (name) =>
+        ExamTag.findOne({ where: { name } });
 
-    Tag.findAll = async () => Tag.findAll();
+    ExamTag.findAll = async () => ExamTag.findAll();
 
-    Tag.createTag = async (data) => Tag.create(data);
+    ExamTag.createTag = async (data) => ExamTag.create(data);
 
-    Tag.updateTag = async (id, data) => 
-        Tag.update(data, { where: { id } });
+    ExamTag.updateTag = async (exam_tag_id, data) =>
+        ExamTag.update(data, { where: { exam_tag_id } });
 
-    Tag.deleteTag = async (id) => 
-        Tag.destroy({ where: { id } });
+    ExamTag.deleteTag = async (exam_tag_id) =>
+        ExamTag.destroy({ where: { exam_tag_id } });
 
-    return Tag;
+    return ExamTag;
 };

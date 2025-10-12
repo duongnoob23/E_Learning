@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    const UserStatistics = sequelize.define(
-        "UserStatistics",
+    const UserExamStatistics = sequelize.define(
+        "UserExamStatistics",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            user_exam_stat_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             user_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             total_tests_taken: {
@@ -53,55 +53,55 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         {
-            tableName: "user_statistics",
+            tableName: "user_exam_statistics",
             timestamps: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at',
         }
     );
 
-    UserStatistics.findById = async (id) => 
-        UserStatistics.findOne({ where: { id } });
+    UserExamStatistics.findById = async (user_exam_stat_id) =>
+        UserExamStatistics.findOne({ where: { user_exam_stat_id } });
 
-    UserStatistics.findByUserId = async (user_id) => 
-        UserStatistics.findOne({ where: { user_id } });
+    UserExamStatistics.findByUserId = async (user_id) =>
+        UserExamStatistics.findOne({ where: { user_id } });
 
-    UserStatistics.findAll = async () => UserStatistics.findAll();
+    UserExamStatistics.findAll = async () => UserExamStatistics.findAll();
 
-    UserStatistics.createStatistics = async (data) => UserStatistics.create(data);
+    UserExamStatistics.createStatistics = async (data) => UserExamStatistics.create(data);
 
-    UserStatistics.updateStatistics = async (user_id, data) => 
-        UserStatistics.update(data, { where: { user_id } });
+    UserExamStatistics.updateStatistics = async (user_id, data) =>
+        UserExamStatistics.update(data, { where: { user_id } });
 
-    UserStatistics.incrementTestsTaken = async (user_id) => {
-        const stats = await UserStatistics.findByUserId(user_id);
+    UserExamStatistics.incrementTestsTaken = async (user_id) => {
+        const stats = await UserExamStatistics.findByUserId(user_id);
         if (stats) {
-            return UserStatistics.updateStatistics(user_id, {
+            return UserExamStatistics.updateStatistics(user_id, {
                 total_tests_taken: stats.total_tests_taken + 1
             });
         }
-        return UserStatistics.createStatistics({
+        return UserExamStatistics.createStatistics({
             user_id,
             total_tests_taken: 1
         });
     };
 
-    UserStatistics.updateScores = async (user_id, score, questionsAnswered, correctAnswers) => {
-        const stats = await UserStatistics.findByUserId(user_id);
+    UserExamStatistics.updateScores = async (user_id, score, questionsAnswered, correctAnswers) => {
+        const stats = await UserExamStatistics.findByUserId(user_id);
         if (stats) {
             const newTotalQuestions = stats.total_questions_answered + questionsAnswered;
             const newTotalCorrect = stats.total_correct_answers + correctAnswers;
             const newAverageScore = ((stats.average_score * stats.total_tests_taken) + score) / (stats.total_tests_taken + 1);
             const newBestScore = Math.max(stats.best_score, score);
 
-            return UserStatistics.updateStatistics(user_id, {
+            return UserExamStatistics.updateStatistics(user_id, {
                 total_questions_answered: newTotalQuestions,
                 total_correct_answers: newTotalCorrect,
                 average_score: newAverageScore,
                 best_score: newBestScore
             });
         }
-        return UserStatistics.createStatistics({
+        return UserExamStatistics.createStatistics({
             user_id,
             total_questions_answered: questionsAnswered,
             total_correct_answers: correctAnswers,
@@ -110,5 +110,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    return UserStatistics;
+    return UserExamStatistics;
 };

@@ -2,13 +2,13 @@ module.exports = (sequelize, DataTypes) => {
     const Question = sequelize.define(
         "Question",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            question_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             part_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             question_number: {
@@ -20,9 +20,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             question_type: {
-                type: DataTypes.STRING(30),
+                type: DataTypes.ENUM('MULTIPLE_CHOICE', 'FILL_BLANK', 'READING_COMPREHENSION'),
                 allowNull: false,
-                comment: 'MULTIPLE_CHOICE, FILL_BLANK, READING_COMPREHENSION'
             },
             audio_file: {
                 type: DataTypes.STRING(255),
@@ -63,15 +62,15 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Question.findById = async (id) =>
-        Question.findOne({ where: { id } });
+    Question.findById = async (question_id) =>
+        Question.findOne({ where: { question_id } });
 
     Question.findByPartId = async (part_id) =>
         Question.findAll({ where: { part_id } });
 
-    Question.findWithChoices = async (id) =>
+    Question.findWithChoices = async (question_id) =>
         Question.findOne({
-            where: { id },
+            where: { question_id },
             include: [
                 {
                     model: sequelize.models.Choice,
@@ -95,11 +94,33 @@ module.exports = (sequelize, DataTypes) => {
 
     Question.createQuestion = async (data) => Question.create(data);
 
-    Question.updateQuestion = async (id, data) =>
-        Question.update(data, { where: { id } });
+    Question.updateQuestion = async (question_id, data) =>
+        Question.update(data, { where: { question_id } });
 
-    Question.deleteQuestion = async (id) =>
-        Question.destroy({ where: { id } });
+    Question.deleteQuestion = async (question_id) =>
+        Question.destroy({ where: { question_id } });
+
+    Question.findByPartIdWithChoices = async (part_id) =>
+        Question.findAll({
+            where: { part_id },
+            include: [
+                {
+                    model: sequelize.models.Choice,
+                    as: "choices"
+                }
+            ]
+        });
+
+    Question.findWithChoices = async (question_id) =>
+        Question.findOne({
+            where: { question_id },
+            include: [
+                {
+                    model: sequelize.models.Choice,
+                    as: "choices"
+                }
+            ]
+        });
 
     return Question;
 };

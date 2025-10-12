@@ -2,21 +2,21 @@ module.exports = (sequelize, DataTypes) => {
     const TestCategoryRelation = sequelize.define(
         "TestCategoryRelation",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            test_category_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             test_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
-            category_id: {
-                type: DataTypes.INTEGER,
+            exam_category_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
@@ -29,26 +29,26 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    TestCategoryRelation.findById = async (id) => 
-        TestCategoryRelation.findOne({ where: { id } });
+    TestCategoryRelation.findById = async (test_category_id) =>
+        TestCategoryRelation.findOne({ where: { test_category_id } });
 
-    TestCategoryRelation.findByTestId = async (test_id) => 
+    TestCategoryRelation.findByTestId = async (test_id) =>
         TestCategoryRelation.findAll({ where: { test_id } });
 
-    TestCategoryRelation.findByCategoryId = async (category_id) => 
-        TestCategoryRelation.findAll({ where: { category_id } });
+    TestCategoryRelation.findByCategoryId = async (exam_category_id) =>
+        TestCategoryRelation.findAll({ where: { exam_category_id } });
 
-    TestCategoryRelation.findByTestAndCategory = async (test_id, category_id) => 
-        TestCategoryRelation.findOne({ where: { test_id, category_id } });
+    TestCategoryRelation.findByTestAndCategory = async (test_id, exam_category_id) =>
+        TestCategoryRelation.findOne({ where: { test_id, exam_category_id } });
 
     TestCategoryRelation.findAll = async () => TestCategoryRelation.findAll();
 
     TestCategoryRelation.createRelation = async (data) => TestCategoryRelation.create(data);
 
-    TestCategoryRelation.deleteRelation = async (test_id, category_id) => 
-        TestCategoryRelation.destroy({ where: { test_id, category_id } });
+    TestCategoryRelation.deleteRelation = async (test_id, exam_category_id) =>
+        TestCategoryRelation.destroy({ where: { test_id, exam_category_id } });
 
-    TestCategoryRelation.deleteByTestId = async (test_id) => 
+    TestCategoryRelation.deleteByTestId = async (test_id) =>
         TestCategoryRelation.destroy({ where: { test_id } });
 
     return TestCategoryRelation;

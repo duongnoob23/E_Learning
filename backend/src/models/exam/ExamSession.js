@@ -2,23 +2,22 @@ module.exports = (sequelize, DataTypes) => {
     const ExamSession = sequelize.define(
         "ExamSession",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            exam_session_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             user_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             test_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             session_type: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.ENUM('FULL_TEST', 'PRACTICE', 'REVIEW'),
                 allowNull: false,
-                comment: 'FULL_TEST, PRACTICE, REVIEW'
             },
             start_time: {
                 type: DataTypes.DATE,
@@ -53,10 +52,9 @@ module.exports = (sequelize, DataTypes) => {
                 defaultValue: 0,
             },
             status: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.ENUM('IN_PROGRESS', 'COMPLETED', 'ABANDONED'),
                 allowNull: false,
                 defaultValue: 'IN_PROGRESS',
-                comment: 'IN_PROGRESS, COMPLETED, ABANDONED'
             },
             selected_parts: {
                 type: DataTypes.JSON,
@@ -66,13 +64,13 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
                 allowNull: true,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: { 
-                type: DataTypes.DATE, 
+            updated_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
@@ -85,27 +83,27 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    ExamSession.findById = async (id) => 
-        ExamSession.findOne({ where: { id } });
+    ExamSession.findById = async (exam_session_id) =>
+        ExamSession.findOne({ where: { exam_session_id } });
 
-    ExamSession.findByUserId = async (user_id) => 
+    ExamSession.findByUserId = async (user_id) =>
         ExamSession.findAll({ where: { user_id } });
 
-    ExamSession.findByUserIdAndTestId = async (user_id, test_id) => 
+    ExamSession.findByUserIdAndTestId = async (user_id, test_id) =>
         ExamSession.findAll({ where: { user_id, test_id } });
 
-    ExamSession.findActiveSession = async (user_id, test_id) => 
-        ExamSession.findOne({ 
-            where: { 
-                user_id, 
-                test_id, 
-                status: 'IN_PROGRESS' 
-            } 
+    ExamSession.findActiveSession = async (user_id, test_id) =>
+        ExamSession.findOne({
+            where: {
+                user_id,
+                test_id,
+                status: 'IN_PROGRESS'
+            }
         });
 
-    ExamSession.findWithAnswers = async (id) => 
+    ExamSession.findWithAnswers = async (exam_session_id) =>
         ExamSession.findOne({
-            where: { id },
+            where: { exam_session_id },
             include: [
                 {
                     model: sequelize.models.UserAnswer,
@@ -118,11 +116,50 @@ module.exports = (sequelize, DataTypes) => {
 
     ExamSession.createSession = async (data) => ExamSession.create(data);
 
-    ExamSession.updateSession = async (id, data) => 
-        ExamSession.update(data, { where: { id } });
+    ExamSession.updateSession = async (exam_session_id, data) =>
+        ExamSession.update(data, { where: { exam_session_id } });
 
-    ExamSession.deleteSession = async (id) => 
-        ExamSession.destroy({ where: { id } });
+    ExamSession.deleteSession = async (exam_session_id) =>
+        ExamSession.destroy({ where: { exam_session_id } });
+
+    ExamSession.findActiveSession = async (user_id, test_id) =>
+        ExamSession.findOne({
+            where: {
+                user_id,
+                test_id,
+                status: 'IN_PROGRESS'
+            }
+        });
+
+    ExamSession.createSession = async (data) => ExamSession.create(data);
+
+    ExamSession.updateSession = async (exam_session_id, data) =>
+        ExamSession.update(data, { where: { exam_session_id } });
+
+    ExamSession.findWithAnswers = async (exam_session_id) =>
+        ExamSession.findOne({
+            where: { exam_session_id },
+            include: [
+                {
+                    model: sequelize.models.UserAnswer,
+                    as: "user_answers"
+                }
+            ]
+        });
+
+    ExamSession.findRecentSessions = async (user_id, limit = 10) =>
+        ExamSession.findAll({
+            where: { user_id },
+            limit,
+            order: [['created_at', 'DESC']],
+            include: [
+                {
+                    model: sequelize.models.Test,
+                    as: "test",
+                    attributes: ['test_id', 'title', 'exam_type']
+                }
+            ]
+        });
 
     return ExamSession;
 };

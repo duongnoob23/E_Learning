@@ -1550,3 +1550,1028 @@ Ref: discussions.user_id > users.id
 Ref: comments.discussion_id > discussions.id
 Ref: comments.user_id > users.id
 Ref: comments.parent_comment_id > comments.id
+
+
+========================================================================
+========================================================================
+========================================================================
+========================================================================
+========================================================================
+
+
+
+
+-- Tạo mới database (đổi tên nếu cần)
+DROP DATABASE IF EXISTS exam_system_db;
+CREATE DATABASE exam_system_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Sử dụng database này
+USE exam_system_db;
+
+-- ========================================
+-- TABLE DEFINITIONS (ALL IDs ARE BIGINT)
+-- ========================================
+
+-- Users table
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    avatar VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    INDEX idx_username (username),
+    INDEX idx_email (email)
+);
+
+-- Tests table
+CREATE TABLE tests (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    exam_type ENUM('TOEIC', 'IELTS', 'HSK', 'THPT') NOT NULL,
+    total_duration INT NOT NULL,
+    total_questions INT NOT NULL,
+    total_parts INT NOT NULL,
+    difficulty_level ENUM('EASY', 'MEDIUM', 'HARD') NOT NULL,
+    created_by BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (created_by) REFERENCES users(id),
+    INDEX idx_exam_type (exam_type),
+    INDEX idx_difficulty (difficulty_level)
+);
+
+-- Parts table
+CREATE TABLE parts (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    test_id BIGINT NOT NULL,
+    part_number INT NOT NULL,
+    part_name VARCHAR(100) NOT NULL,
+    part_type ENUM('LISTENING', 'READING') NOT NULL,
+    question_count INT NOT NULL,
+    duration_minutes INT NOT NULL,
+    description TEXT,
+    display_template VARCHAR(50),
+    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_part_number (part_number),
+    INDEX idx_part_type (part_type)
+);
+
+-- Questions table
+CREATE TABLE questions (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    part_id BIGINT NOT NULL,
+    question_number INT NOT NULL,
+    question_text TEXT NOT NULL,
+    question_type ENUM('MULTIPLE_CHOICE', 'FILL_BLANK', 'READING_COMPREHENSION') NOT NULL,
+    audio_file VARCHAR(255),
+    image_file VARCHAR(255),
+    transcript TEXT,
+    explanation TEXT,
+    grammar_notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE,
+    INDEX idx_part_id (part_id),
+    INDEX idx_question_number (question_number),
+    INDEX idx_question_type (question_type)
+);
+
+-- Choices table
+CREATE TABLE choices (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    question_id BIGINT NOT NULL,
+    choice_letter ENUM('A', 'B', 'C', 'D') NOT NULL,
+    choice_text TEXT NOT NULL,
+    choice_translation TEXT,
+    choice_explanation TEXT,
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    INDEX idx_question_id (question_id),
+    INDEX idx_choice_letter (choice_letter),
+    INDEX idx_is_correct (is_correct)
+);
+
+-- Exam Sessions
+CREATE TABLE exam_sessions (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    test_id BIGINT NOT NULL,
+    session_type ENUM('FULL_TEST', 'PRACTICE', 'REVIEW') NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NULL,
+    duration_seconds INT NULL,
+    total_score INT DEFAULT 0,
+    correct_answers INT DEFAULT 0,
+    wrong_answers INT DEFAULT 0,
+    skipped_answers INT DEFAULT 0,
+    status ENUM('IN_PROGRESS', 'COMPLETED', 'ABANDONED') DEFAULT 'IN_PROGRESS',
+    selected_parts JSON,
+    time_limit_minutes INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (test_id) REFERENCES tests(id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_status (status),
+    INDEX idx_start_time (start_time)
+);
+
+-- User Answers
+CREATE TABLE user_answers (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    session_id BIGINT NOT NULL,
+    question_id BIGINT NOT NULL,
+    selected_choice_id BIGINT NULL,
+    answer_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_correct BOOLEAN NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (session_id) REFERENCES exam_sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(id),
+    FOREIGN KEY (selected_choice_id) REFERENCES choices(id),
+    
+    UNIQUE KEY unique_session_question (session_id, question_id),
+    INDEX idx_session_id (session_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_answer_time (answer_time)
+);
+
+-- User Statistics
+CREATE TABLE user_statistics (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    total_tests_taken INT DEFAULT 0,
+    total_questions_answered INT DEFAULT 0,
+    total_correct_answers INT DEFAULT 0,
+    average_score DECIMAL(5,2) DEFAULT 0.00,
+    best_score INT DEFAULT 0,
+    total_study_time_seconds INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE KEY unique_user_stats (user_id),
+    INDEX idx_average_score (average_score),
+    INDEX idx_best_score (best_score)
+);
+
+-- Part Statistics
+CREATE TABLE part_statistics (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    part_id BIGINT NOT NULL,
+    total_attempts INT DEFAULT 0,
+    total_questions INT DEFAULT 0,
+    correct_answers INT DEFAULT 0,
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00,
+    last_attempt TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (part_id) REFERENCES parts(id),
+    UNIQUE KEY unique_user_part (user_id, part_id),
+    INDEX idx_accuracy_rate (accuracy_rate),
+    INDEX idx_last_attempt (last_attempt)
+);
+
+-- Categories
+CREATE TABLE categories (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    icon VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+);
+
+-- Test Categories
+CREATE TABLE test_categories (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    test_id BIGINT NOT NULL,
+    category_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_test_category (test_id, category_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_category_id (category_id)
+);
+
+-- Tags
+CREATE TABLE tags (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+);
+
+-- Question Tags
+CREATE TABLE question_tags (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    question_id BIGINT NOT NULL,
+    tag_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_question_tag (question_id, tag_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_tag_id (tag_id)
+);
+
+-- Discussions
+CREATE TABLE discussions (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    test_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_created_at (created_at)
+);
+
+-- Comments
+CREATE TABLE comments (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    discussion_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    content TEXT NOT NULL,
+    parent_comment_id BIGINT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (discussion_id) REFERENCES discussions(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (parent_comment_id) REFERENCES comments(id) ON DELETE CASCADE,
+    INDEX idx_discussion_id (discussion_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_parent_comment (parent_comment_id),
+    INDEX idx_created_at (created_at)
+);
+
+-- ========================================
+-- SEED DATA
+-- ========================================
+
+INSERT INTO users (username, email, password_hash, full_name)
+VALUES 
+('admin', 'admin@example.com', 'hash_admin', 'Admin User'),
+('teacher1', 'teacher1@example.com', 'hash_teacher1', 'Teacher One'),
+('student1', 'student1@example.com', 'hash_student1', 'Student One');
+
+INSERT INTO tests (
+    title, description, exam_type, total_duration, total_questions, total_parts, difficulty_level, created_by
+)
+VALUES
+('TOEIC Full Test 01', 'Bài thi TOEIC mẫu số 1 gồm đủ 7 part', 'TOEIC', 120, 200, 7, 'MEDIUM', 2),
+('IELTS Reading Practice 01', 'Bài luyện đọc IELTS Reading', 'IELTS', 60, 40, 3, 'MEDIUM', 2),
+('THPT Quốc Gia Tiếng Anh - 2024', 'Đề luyện thi THPTQG 2024', 'THPT', 60, 50, 4, 'MEDIUM', 1);
+
+INSERT INTO parts (test_id, part_number, part_name, part_type, question_count, duration_minutes, description, display_template)
+VALUES
+-- Test 1: TOEIC Full Test 01
+(1, 1, 'Part 1: Photographs', 'LISTENING', 6, 5, 'Mô tả tranh', 'PHOTO_AUDIO'),
+(1, 2, 'Part 2: Question-Response', 'LISTENING', 25, 15, 'Hỏi đáp ngắn', 'AUDIO_ONLY'),
+(1, 3, 'Part 3: Conversations', 'LISTENING', 39, 20, 'Hội thoại ngắn', 'CONVERSATION_AUDIO'),
+(1, 4, 'Part 4: Talks', 'LISTENING', 30, 20, 'Bài nói ngắn', 'TALK_AUDIO'),
+(1, 5, 'Part 5: Incomplete Sentences', 'READING', 30, 15, 'Điền từ vào câu', 'TEXT_ONLY'),
+(1, 6, 'Part 6: Text Completion', 'READING', 16, 10, 'Điền câu vào đoạn văn', 'TEXT_COMPLETION'),
+(1, 7, 'Part 7: Reading Comprehension', 'READING', 54, 35, 'Đọc hiểu', 'READING_COMPREHENSION');
+
+INSERT INTO questions (part_id, question_number, question_text, question_type, audio_file, image_file, transcript, explanation)
+VALUES
+-- Part 1 questions
+(1, 1, 'Look at the picture marked number 1 in your test book.', 'MULTIPLE_CHOICE', 'audio/p1_q1.mp3', 'images/p1_q1.jpg', 
+ 'A) A man is reading a newspaper.\nB) A man is opening a window.\nC) A man is leaving an office.\nD) A man is working at a desk.', 
+ 'Đáp án đúng là D vì trong hình có người đàn ông đang làm việc tại bàn.'),
+(1, 2, 'Look at the picture marked number 2 in your test book.', 'MULTIPLE_CHOICE', 'audio/p1_q2.mp3', 'images/p1_q2.jpg',
+ 'A) She is making a phone call.\nB) She is typing on a keyboard.\nC) She is holding a cup.\nD) She is writing notes.',
+ 'Đáp án đúng là B vì người phụ nữ đang gõ phím.'),
+ 
+-- Part 5 questions
+(5, 1, 'The new product launch has been ------- until next month.', 'MULTIPLE_CHOICE', NULL, NULL,
+ NULL, 'Đáp án đúng là "postponed" vì câu cần động từ ở thể bị động, nghĩa là "bị hoãn lại".'),
+(5, 2, 'All employees are required to ------- the safety training.', 'MULTIPLE_CHOICE', NULL, NULL,
+ NULL, 'Đáp án đúng là "attend" vì sau "to" cần động từ nguyên mẫu.');
+
+INSERT INTO choices (question_id, choice_letter, choice_text, choice_translation, choice_explanation, is_correct)
+VALUES
+-- Question 1 choices
+(1, 'A', 'A man is reading a newspaper.', 'Một người đàn ông đang đọc báo.', 'Sai vì không thấy báo trong hình.', FALSE),
+(1, 'B', 'A man is opening a window.', 'Một người đàn ông đang mở cửa sổ.', 'Sai vì không có hành động mở cửa sổ.', FALSE),
+(1, 'C', 'A man is leaving an office.', 'Một người đàn ông đang rời văn phòng.', 'Sai vì người đó vẫn ở trong văn phòng.', FALSE),
+(1, 'D', 'A man is working at a desk.', 'Một người đàn ông đang làm việc tại bàn.', 'Đúng vì mô tả chính xác hành động trong hình.', TRUE),
+
+-- Question 2 choices
+(2, 'A', 'She is making a phone call.', 'Cô ấy đang gọi điện thoại.', 'Sai vì không thấy điện thoại.', FALSE),
+(2, 'B', 'She is typing on a keyboard.', 'Cô ấy đang gõ phím.', 'Đúng vì mô tả chính xác hành động.', TRUE),
+(2, 'C', 'She is holding a cup.', 'Cô ấy đang cầm cốc.', 'Sai vì không có cốc trong hình.', FALSE),
+(2, 'D', 'She is writing notes.', 'Cô ấy đang viết ghi chú.', 'Sai vì không thấy hành động viết.', FALSE),
+
+-- Question 3 (Part 5 Q1) choices
+(3, 'A', 'postpone', 'hoãn (động từ nguyên mẫu)', 'Sai vì cần dạng bị động.', FALSE),
+(3, 'B', 'postponed', 'bị hoãn (quá khứ phân từ)', 'Đúng vì câu bị động với "has been".', TRUE),
+(3, 'C', 'postponing', 'đang hoãn (hiện tại phân từ)', 'Sai vì không phù hợp với cấu trúc bị động.', FALSE),
+(3, 'D', 'postponement', 'sự hoãn lại (danh từ)', 'Sai vì cần động từ, không phải danh từ.', FALSE),
+
+-- Question 4 (Part 5 Q2) choices
+(4, 'A', 'attend', 'tham dự', 'Đúng vì sau "to" cần động từ nguyên mẫu.', TRUE),
+(4, 'B', 'attending', 'đang tham dự', 'Sai vì sau "to" không dùng V-ing.', FALSE),
+(4, 'C', 'attended', 'đã tham dự', 'Sai vì sau "to" cần động từ nguyên mẫu.', FALSE),
+(4, 'D', 'attendance', 'sự tham dự', 'Sai vì cần động từ, không phải danh từ.', FALSE);
+
+-- Exam sessions
+INSERT INTO exam_sessions (user_id, test_id, session_type, start_time, end_time, duration_seconds, total_score, correct_answers, wrong_answers, skipped_answers, status)
+VALUES
+(3, 1, 'FULL_TEST', '2024-01-15 10:00:00', '2024-01-15 12:00:00', 7200, 750, 150, 50, 0, 'COMPLETED'),
+(3, 1, 'PRACTICE', '2024-01-16 14:00:00', '2024-01-16 14:30:00', 1800, 200, 4, 2, 0, 'COMPLETED');
+
+-- User answers
+INSERT INTO user_answers (session_id, question_id, selected_choice_id, is_correct)
+VALUES
+(1, 1, 4, TRUE),   -- Question 1, chose D (correct)
+(1, 2, 6, TRUE),   -- Question 2, chose B (correct)
+(1, 3, 10, TRUE),  -- Question 3, chose B (correct)
+(1, 4, 13, TRUE);  -- Question 4, chose A (correct)
+
+-- Categories
+INSERT INTO categories (name, description, icon)
+VALUES
+('TOEIC', 'Test of English for International Communication', 'toeic-icon.png'),
+('IELTS', 'International English Language Testing System', 'ielts-icon.png'),
+('HSK', 'Hanyu Shuiping Kaoshi - Chinese Proficiency Test', 'hsk-icon.png');
+
+-- Test categories
+INSERT INTO test_categories (test_id, category_id)
+VALUES
+(1, 1),  -- TOEIC Full Test 01 belongs to TOEIC
+(2, 2),  -- IELTS Practice belongs to IELTS
+(3, 1);  -- THPT belongs to TOEIC category
+
+-- Tags
+INSERT INTO tags (name, description)
+VALUES
+('Listening', 'Câu hỏi về kỹ năng nghe'),
+('Reading', 'Câu hỏi về kỹ năng đọc'),
+('Grammar', 'Câu hỏi về ngữ pháp'),
+('Vocabulary', 'Câu hỏi về từ vựng');
+
+-- Question tags
+INSERT INTO question_tags (question_id, tag_id)
+VALUES
+(1, 1),  -- Question 1 is tagged as Listening
+(2, 1),  -- Question 2 is tagged as Listening
+(3, 2),  -- Question 3 is tagged as Reading
+(3, 3),  -- Question 3 is also tagged as Grammar
+(4, 2),  -- Question 4 is tagged as Reading
+(4, 3);  -- Question 4 is also tagged as Grammar
+
+
+
+========================================================================
+========================================================================
+========================================================================
+========================================================================
+========================================================================
+
+
+// ========================================
+// TOEIC EXAM SYSTEM DATABASE SCHEMA
+// ALL IDs ARE BIGINT
+// ========================================
+
+Table users {
+  id bigint [pk, increment]
+  username varchar(50) [unique, not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]
+  full_name varchar(100)
+  avatar varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table tests {
+  id bigint [pk, increment]
+  title varchar(255) [not null]
+  description text
+  exam_type varchar(50) [not null]
+  total_duration int [not null]
+  total_questions int [not null]
+  total_parts int [not null]
+  difficulty_level varchar(20) [not null]
+  created_by bigint
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table parts {
+  id bigint [pk, increment]
+  test_id bigint [not null]
+  part_number int [not null]
+  part_name varchar(100) [not null]
+  part_type varchar(20) [not null]
+  question_count int [not null]
+  duration_minutes int [not null]
+  description text
+  display_template varchar(50)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table questions {
+  id bigint [pk, increment]
+  part_id bigint [not null]
+  question_number int [not null]
+  question_text text [not null]
+  question_type varchar(30) [not null]
+  audio_file varchar(255)
+  image_file varchar(255)
+  transcript text
+  explanation text
+  grammar_notes text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table choices {
+  id bigint [pk, increment]
+  question_id bigint [not null]
+  choice_letter varchar(1) [not null]
+  choice_text text [not null]
+  choice_translation text
+  choice_explanation text
+  is_correct boolean [default: false]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table exam_sessions {
+  id bigint [pk, increment]
+  user_id bigint [not null]
+  test_id bigint [not null]
+  session_type varchar(20) [not null]
+  start_time timestamp [not null]
+  end_time timestamp
+  duration_seconds int
+  total_score int [default: 0]
+  correct_answers int [default: 0]
+  wrong_answers int [default: 0]
+  skipped_answers int [default: 0]
+  status varchar(20) [default: 'IN_PROGRESS']
+  selected_parts json
+  time_limit_minutes int
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table user_answers {
+  id bigint [pk, increment]
+  session_id bigint [not null]
+  question_id bigint [not null]
+  selected_choice_id bigint
+  answer_time timestamp [default: `now()`]
+  is_correct boolean
+  created_at timestamp [default: `now()`]
+}
+
+Table user_statistics {
+  id bigint [pk, increment]
+  user_id bigint [not null]
+  total_tests_taken int [default: 0]
+  total_questions_answered int [default: 0]
+  total_correct_answers int [default: 0]
+  average_score decimal(5,2) [default: 0.00]
+  best_score int [default: 0]
+  total_study_time_seconds int [default: 0]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table part_statistics {
+  id bigint [pk, increment]
+  user_id bigint [not null]
+  part_id bigint [not null]
+  total_attempts int [default: 0]
+  total_questions int [default: 0]
+  correct_answers int [default: 0]
+  accuracy_rate decimal(5,2) [default: 0.00]
+  last_attempt timestamp
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table categories {
+  id bigint [pk, increment]
+  name varchar(100) [not null]
+  description text
+  icon varchar(100)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table test_categories {
+  id bigint [pk, increment]
+  test_id bigint [not null]
+  category_id bigint [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table tags {
+  id bigint [pk, increment]
+  name varchar(100) [not null]
+  description text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table question_tags {
+  id bigint [pk, increment]
+  question_id bigint [not null]
+  tag_id bigint [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table discussions {
+  id bigint [pk, increment]
+  test_id bigint [not null]
+  user_id bigint [not null]
+  title varchar(255) [not null]
+  content text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table comments {
+  id bigint [pk, increment]
+  discussion_id bigint [not null]
+  user_id bigint [not null]
+  content text [not null]
+  parent_comment_id bigint
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// ========================================
+// RELATIONSHIPS
+// ========================================
+
+Ref: tests.created_by > users.id
+Ref: parts.test_id > tests.id
+Ref: questions.part_id > parts.id
+Ref: choices.question_id > questions.id
+Ref: exam_sessions.user_id > users.id
+Ref: exam_sessions.test_id > tests.id
+Ref: user_answers.session_id > exam_sessions.id
+Ref: user_answers.question_id > questions.id
+Ref: user_answers.selected_choice_id > choices.id
+Ref: user_statistics.user_id > users.id
+Ref: part_statistics.user_id > users.id
+Ref: part_statistics.part_id > parts.id
+Ref: test_categories.test_id > tests.id
+Ref: test_categories.category_id > categories.id
+Ref: question_tags.question_id > questions.id
+Ref: question_tags.tag_id > tags.id
+Ref: discussions.test_id > tests.id
+Ref: discussions.user_id > users.id
+Ref: comments.discussion_id > discussions.id
+Ref: comments.user_id > users.id
+Ref: comments.parent_comment_id > comments.id
+
+
+
+
+
+
+
+=======================================================================================================
+=======================================================================================================
+=======================================================================================================
+=======================================================================================================
+=======================================================================================================
+
+
+
+-- =============================================
+-- KHỐI EXAM (THI TRẮC NGHIỆM TOEIC/IELTS/HSK)
+-- =============================================
+
+-- EXAM_CATEGORIES: Danh mục đề thi (riêng biệt với categories của Course)
+CREATE TABLE exam_categories (
+    exam_category_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID danh mục thi',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên danh mục: TOEIC, IELTS, HSK, THPT',
+    description TEXT COMMENT 'Mô tả',
+    icon VARCHAR(100) COMMENT 'Icon',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+) ENGINE=InnoDB;
+
+-- TESTS: Đề thi chính
+CREATE TABLE tests (
+    test_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đề thi',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề đề thi',
+    description TEXT COMMENT 'Mô tả',
+    exam_type ENUM('TOEIC', 'IELTS', 'HSK', 'THPT') NOT NULL COMMENT 'Loại đề thi',
+    total_duration INT NOT NULL COMMENT 'Tổng thời gian (phút)',
+    total_questions INT NOT NULL COMMENT 'Tổng số câu hỏi',
+    total_parts INT NOT NULL COMMENT 'Tổng số phần thi',
+    difficulty_level ENUM('EASY', 'MEDIUM', 'HARD') NOT NULL COMMENT 'Độ khó',
+    created_by BIGINT UNSIGNED COMMENT 'Người tạo',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL,
+    INDEX idx_exam_type (exam_type),
+    INDEX idx_difficulty (difficulty_level)
+) ENGINE=InnoDB;
+
+-- PARTS: Các phần trong đề thi (Part 1-7 của TOEIC)
+CREATE TABLE parts (
+    part_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID phần thi',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    part_number INT NOT NULL COMMENT 'Số thứ tự Part (1,2,3...)',
+    part_name VARCHAR(100) NOT NULL COMMENT 'Tên Part',
+    part_type ENUM('LISTENING', 'READING') NOT NULL COMMENT 'Loại: nghe/đọc',
+    question_count INT NOT NULL COMMENT 'Số câu hỏi',
+    duration_minutes INT NOT NULL COMMENT 'Thời lượng (phút)',
+    description TEXT COMMENT 'Mô tả',
+    display_template VARCHAR(50) COMMENT 'Template hiển thị: PHOTO_AUDIO, AUDIO_ONLY, TEXT_ONLY...',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_part_number (part_number),
+    INDEX idx_part_type (part_type)
+) ENGINE=InnoDB;
+
+-- QUESTIONS: Câu hỏi
+CREATE TABLE questions (
+    question_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID câu hỏi',
+    part_id BIGINT UNSIGNED NOT NULL COMMENT 'Phần thi',
+    question_number INT NOT NULL COMMENT 'Số thứ tự câu trong Part',
+    question_text TEXT NOT NULL COMMENT 'Nội dung câu hỏi',
+    question_type ENUM('MULTIPLE_CHOICE', 'FILL_BLANK', 'READING_COMPREHENSION') NOT NULL COMMENT 'Loại câu hỏi',
+    
+    -- Embedded resources (lưu trực tiếp cho nhanh)
+    audio_file VARCHAR(255) COMMENT 'File âm thanh',
+    image_file VARCHAR(255) COMMENT 'File hình ảnh',
+    transcript TEXT COMMENT 'Nội dung nghe/đọc gốc',
+    explanation TEXT COMMENT 'Giải thích đáp án',
+    grammar_notes TEXT COMMENT 'Ghi chú ngữ pháp',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (part_id) REFERENCES parts(part_id) ON DELETE CASCADE,
+    INDEX idx_part_id (part_id),
+    INDEX idx_question_number (question_number),
+    INDEX idx_question_type (question_type)
+) ENGINE=InnoDB;
+
+-- CHOICES: Đáp án lựa chọn
+CREATE TABLE choices (
+    choice_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đáp án',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    choice_letter ENUM('A', 'B', 'C', 'D') NOT NULL COMMENT 'Ký hiệu đáp án',
+    choice_text TEXT NOT NULL COMMENT 'Nội dung đáp án',
+    choice_translation TEXT COMMENT 'Dịch nghĩa đáp án',
+    choice_explanation TEXT COMMENT 'Giải thích đáp án',
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Đáp án đúng',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    INDEX idx_question_id (question_id),
+    INDEX idx_choice_letter (choice_letter),
+    INDEX idx_is_correct (is_correct)
+) ENGINE=InnoDB;
+
+-- EXAM_SESSIONS: Phiên làm bài thi
+CREATE TABLE exam_sessions (
+    exam_session_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID phiên thi',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người làm bài',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    session_type ENUM('FULL_TEST', 'PRACTICE', 'REVIEW') NOT NULL COMMENT 'Loại: full/luyện tập/xem lại',
+    
+    -- Timing
+    start_time DATETIME NOT NULL COMMENT 'Bắt đầu',
+    end_time DATETIME NULL COMMENT 'Kết thúc',
+    duration_seconds INT NULL COMMENT 'Thời gian làm bài (giây)',
+    
+    -- Results
+    total_score INT DEFAULT 0 COMMENT 'Tổng điểm',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu đúng',
+    wrong_answers INT DEFAULT 0 COMMENT 'Số câu sai',
+    skipped_answers INT DEFAULT 0 COMMENT 'Số câu bỏ qua',
+    
+    -- Status
+    status ENUM('IN_PROGRESS', 'COMPLETED', 'ABANDONED') DEFAULT 'IN_PROGRESS' COMMENT 'Trạng thái',
+    
+    -- Practice mode
+    selected_parts JSON COMMENT 'Các Part được chọn khi practice',
+    time_limit_minutes INT COMMENT 'Giới hạn thời gian',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_status (status),
+    INDEX idx_start_time (start_time)
+) ENGINE=InnoDB;
+
+-- USER_ANSWERS: Câu trả lời của người dùng
+CREATE TABLE user_answers (
+    user_answer_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID câu trả lời',
+    exam_session_id BIGINT UNSIGNED NOT NULL COMMENT 'Phiên thi',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    selected_choice_id BIGINT UNSIGNED NULL COMMENT 'Đáp án đã chọn (NULL nếu bỏ qua)',
+    answer_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm trả lời',
+    is_correct BOOLEAN NULL COMMENT 'Đúng/sai (NULL nếu chưa chấm)',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (exam_session_id) REFERENCES exam_sessions(exam_session_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    FOREIGN KEY (selected_choice_id) REFERENCES choices(choice_id) ON DELETE SET NULL,
+    
+    UNIQUE KEY unique_session_question (exam_session_id, question_id),
+    INDEX idx_exam_session_id (exam_session_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_answer_time (answer_time)
+) ENGINE=InnoDB;
+
+-- USER_STATISTICS: Thống kê tổng quan người dùng
+CREATE TABLE user_exam_statistics (
+    user_exam_stat_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thống kê',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    total_tests_taken INT DEFAULT 0 COMMENT 'Tổng số đề đã làm',
+    total_questions_answered INT DEFAULT 0 COMMENT 'Tổng số câu đã làm',
+    total_correct_answers INT DEFAULT 0 COMMENT 'Tổng số câu đúng',
+    average_score DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Điểm trung bình',
+    best_score INT DEFAULT 0 COMMENT 'Điểm cao nhất',
+    total_study_time_seconds INT DEFAULT 0 COMMENT 'Tổng thời gian học (giây)',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_exam_stats (user_id),
+    INDEX idx_average_score (average_score),
+    INDEX idx_best_score (best_score)
+) ENGINE=InnoDB;
+
+-- PART_STATISTICS: Thống kê theo Part
+CREATE TABLE part_statistics (
+    part_stat_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thống kê Part',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    part_id BIGINT UNSIGNED NOT NULL COMMENT 'Phần thi',
+    total_attempts INT DEFAULT 0 COMMENT 'Số lần làm',
+    total_questions INT DEFAULT 0 COMMENT 'Tổng số câu',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu đúng',
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Tỷ lệ đúng (%)',
+    last_attempt DATETIME NULL COMMENT 'Lần làm gần nhất',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (part_id) REFERENCES parts(part_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_part (user_id, part_id),
+    INDEX idx_accuracy_rate (accuracy_rate),
+    INDEX idx_last_attempt (last_attempt)
+) ENGINE=InnoDB;
+
+-- TEST_CATEGORIES: Gán đề thi vào danh mục
+CREATE TABLE test_categories (
+    test_category_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID liên kết',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    exam_category_id BIGINT UNSIGNED NOT NULL COMMENT 'Danh mục thi',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_category_id) REFERENCES exam_categories(exam_category_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_test_category (test_id, exam_category_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_exam_category_id (exam_category_id)
+) ENGINE=InnoDB;
+
+-- EXAM_TAGS: Tag cho câu hỏi
+CREATE TABLE exam_tags (
+    exam_tag_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID tag',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên tag: [Part 7] Câu hỏi suy luận...',
+    description TEXT COMMENT 'Mô tả',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+) ENGINE=InnoDB;
+
+-- QUESTION_TAGS: Gán tag cho câu hỏi
+CREATE TABLE question_tags (
+    question_tag_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID liên kết',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    exam_tag_id BIGINT UNSIGNED NOT NULL COMMENT 'Tag',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_tag_id) REFERENCES exam_tags(exam_tag_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_question_tag (question_id, exam_tag_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_exam_tag_id (exam_tag_id)
+) ENGINE=InnoDB;
+
+-- TEST_DISCUSSIONS: Thảo luận về đề thi
+CREATE TABLE test_discussions (
+    test_discussion_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thảo luận',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người đăng',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề',
+    content TEXT NOT NULL COMMENT 'Nội dung',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB;
+
+-- TEST_COMMENTS: Bình luận trong thảo luận
+CREATE TABLE test_comments (
+    test_comment_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID bình luận',
+    test_discussion_id BIGINT UNSIGNED NOT NULL COMMENT 'Thảo luận',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người bình luận',
+    content TEXT NOT NULL COMMENT 'Nội dung',
+    parent_comment_id BIGINT UNSIGNED NULL COMMENT 'Bình luận cha (để reply)',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_discussion_id) REFERENCES test_discussions(test_discussion_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_comment_id) REFERENCES test_comments(test_comment_id) ON DELETE CASCADE,
+    INDEX idx_test_discussion_id (test_discussion_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_parent_comment (parent_comment_id),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB;
+
+-- =============================================
+-- DỮ LIỆU MẪU CHO MODULE EXAM
+-- =============================================
+
+SET SQL_SAFE_UPDATES = 0;
+
+-- Exam Categories
+INSERT INTO exam_categories (name, description, icon)
+VALUES
+('TOEIC', 'Test of English for International Communication', 'toeic-icon.png'),
+('IELTS', 'International English Language Testing System', 'ielts-icon.png'),
+('HSK', 'Hanyu Shuiping Kaoshi - Chinese Proficiency Test', 'hsk-icon.png'),
+('THPT', 'Thi THPT Quốc Gia - Tiếng Anh', 'thpt-icon.png');
+
+-- Tests
+INSERT INTO tests (title, description, exam_type, total_duration, total_questions, total_parts, difficulty_level, created_by)
+VALUES
+('TOEIC Full Test 01', 'New Economy TOEIC Test 1 - Full Test', 'TOEIC', 120, 200, 7, 'MEDIUM', 2),
+('TOEIC Full Test 02', 'New Economy TOEIC Test 2 - Full Test', 'TOEIC', 120, 200, 7, 'HARD', 2),
+('IELTS Academic Reading', 'IELTS Academic Reading Practice Test', 'IELTS', 60, 40, 3, 'MEDIUM', 2);
+
+-- Parts (Test 1 - TOEIC)
+INSERT INTO parts (test_id, part_number, part_name, part_type, question_count, duration_minutes, description, display_template)
+VALUES
+(1, 1, 'Part 1: Photographs', 'LISTENING', 6, 5, 'Mô tả tranh', 'PHOTO_AUDIO'),
+(1, 2, 'Part 2: Question-Response', 'LISTENING', 25, 15, 'Hỏi đáp ngắn', 'AUDIO_ONLY'),
+(1, 3, 'Part 3: Conversations', 'LISTENING', 39, 20, 'Hội thoại ngắn', 'CONVERSATION_AUDIO'),
+(1, 4, 'Part 4: Talks', 'LISTENING', 30, 20, 'Bài nói ngắn', 'TALK_AUDIO'),
+(1, 5, 'Part 5: Incomplete Sentences', 'READING', 30, 15, 'Điền từ vào câu', 'TEXT_ONLY'),
+(1, 6, 'Part 6: Text Completion', 'READING', 16, 10, 'Điền câu vào đoạn văn', 'TEXT_COMPLETION'),
+(1, 7, 'Part 7: Reading Comprehension', 'READING', 54, 35, 'Đọc hiểu', 'READING_COMPREHENSION');
+
+-- Questions (mẫu cho Part 1)
+INSERT INTO questions (part_id, question_number, question_text, question_type, audio_file, image_file, transcript, explanation)
+VALUES
+(1, 1, 'Look at the picture marked number 1 in your test book.', 'MULTIPLE_CHOICE', 'audio/p1_q1.mp3', 'images/p1_q1.jpg', 
+ 'A) A man is reading a newspaper.\nB) A man is opening a window.\nC) A man is leaving an office.\nD) A man is working at a desk.', 
+ 'Đáp án đúng là D vì trong hình có người đàn ông đang làm việc tại bàn.'),
+(1, 2, 'Look at the picture marked number 2 in your test book.', 'MULTIPLE_CHOICE', 'audio/p1_q2.mp3', 'images/p1_q2.jpg',
+ 'A) She is making a phone call.\nB) She is typing on a keyboard.\nC) She is holding a cup.\nD) She is writing notes.',
+ 'Đáp án đúng là B vì người phụ nữ đang gõ phím.');
+
+-- Choices
+INSERT INTO choices (question_id, choice_letter, choice_text, choice_translation, choice_explanation, is_correct)
+VALUES
+-- Question 1
+(1, 'A', 'A man is reading a newspaper.', 'Một người đàn ông đang đọc báo.', 'Sai vì không thấy báo trong hình.', FALSE),
+(1, 'B', 'A man is opening a window.', 'Một người đàn ông đang mở cửa sổ.', 'Sai vì không có hành động mở cửa sổ.', FALSE),
+(1, 'C', 'A man is leaving an office.', 'Một người đàn ông đang rời văn phòng.', 'Sai vì người đó vẫn ở trong văn phòng.', FALSE),
+(1, 'D', 'A man is working at a desk.', 'Một người đàn ông đang làm việc tại bàn.', 'Đúng vì mô tả chính xác hành động trong hình.', TRUE),
+
+-- Question 2
+(2, 'A', 'She is making a phone call.', 'Cô ấy đang gọi điện thoại.', 'Sai vì không thấy điện thoại.', FALSE),
+(2, 'B', 'She is typing on a keyboard.', 'Cô ấy đang gõ phím.', 'Đúng vì mô tả chính xác hành động.', TRUE),
+(2, 'C', 'She is holding a cup.', 'Cô ấy đang cầm cốc.', 'Sai vì không có cốc trong hình.', FALSE),
+(2, 'D', 'She is writing notes.', 'Cô ấy đang viết ghi chú.', 'Sai vì không thấy hành động viết.', FALSE);
+
+-- Exam Sessions
+INSERT INTO exam_sessions (user_id, test_id, session_type, start_time, end_time, duration_seconds, total_score, correct_answers, wrong_answers, skipped_answers, status)
+VALUES
+(3, 1, 'FULL_TEST', NOW() - INTERVAL 7 DAY, NOW() - INTERVAL 7 DAY + INTERVAL 2 HOUR, 7200, 750, 150, 50, 0, 'COMPLETED'),
+(4, 1, 'PRACTICE', NOW() - INTERVAL 3 DAY, NOW() - INTERVAL 3 DAY + INTERVAL 30 MINUTE, 1800, 200, 40, 10, 0, 'COMPLETED');
+
+-- User Answers
+INSERT INTO user_answers (exam_session_id, question_id, selected_choice_id, is_correct)
+VALUES
+(1, 1, 4, TRUE),   -- Question 1, chose D (correct)
+(1, 2, 6, TRUE);   -- Question 2, chose B (correct)
+
+-- Test Categories
+INSERT INTO test_categories (test_id, exam_category_id)
+VALUES
+(1, 1),  -- TOEIC Test 1 → TOEIC category
+(2, 1),  -- TOEIC Test 2 → TOEIC category
+(3, 2);  -- IELTS Reading → IELTS category
+
+-- Exam Tags
+INSERT INTO exam_tags (name, description)
+VALUES
+('[Part 1] Tranh tả người', 'Câu hỏi mô tả người trong tranh'),
+('[Part 1] Tranh tả vật', 'Câu hỏi mô tả vật trong tranh'),
+('[Part 5] Ngữ pháp - Từ loại', 'Câu hỏi về từ loại'),
+('[Part 7] Câu hỏi suy luận', 'Câu hỏi suy luận trong đọc hiểu');
+
+-- Question Tags
+INSERT INTO question_tags (question_id, exam_tag_id)
+VALUES
+(1, 1),  -- Question 1 tagged as tranh tả người
+(2, 1);  -- Question 2 tagged as tranh tả người
+
+-- Test Discussions
+INSERT INTO test_discussions (test_id, user_id, title, content)
+VALUES
+(1, 3, 'Hỏi về Part 5', 'Có ai giải thích câu 120 không ạ?'),
+(1, 4, 'Part 7 khó quá', 'Làm sao để đọc nhanh hơn được?');
+
+-- Test Comments
+INSERT INTO test_comments (test_discussion_id, user_id, content, parent_comment_id)
+VALUES
+(1, 2, 'Câu 120 là về từ loại, chọn B vì cần danh từ sau "the"', NULL),
+(2, 2, 'Bạn nên luyện skimming và scanning nhé', NULL);
+
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT 'Module EXAM đã được thêm vào database e_learnning2' AS message;
+SELECT COUNT(*) AS total_tests FROM tests;
+SELECT COUNT(*) AS total_questions FROM questions;
+SELECT COUNT(*) AS total_exam_sessions FROM exam_sessions;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

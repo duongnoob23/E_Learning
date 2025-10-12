@@ -2,8 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     const Test = sequelize.define(
         "Test",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            test_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
@@ -16,9 +16,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: true
             },
             exam_type: {
-                type: DataTypes.STRING(50),
+                type: DataTypes.ENUM('TOEIC', 'IELTS', 'HSK', 'THPT'),
                 allowNull: false,
-                comment: 'TOEIC, IELTS, HSK, THPT'
             },
             total_duration: {
                 type: DataTypes.INTEGER,
@@ -34,12 +33,11 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             difficulty_level: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.ENUM('EASY', 'MEDIUM', 'HARD'),
                 allowNull: false,
-                comment: 'EASY, MEDIUM, HARD'
             },
             created_by: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: true,
             },
             created_at: {
@@ -61,12 +59,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Test.findById = async (id) =>
-        Test.findOne({ where: { id } });
+    Test.findById = async (test_id) =>
+        Test.findOne({ where: { test_id } });
 
-    Test.findWithParts = async (id) =>
+    Test.findWithParts = async (test_id) =>
         Test.findOne({
-            where: { id },
+            where: { test_id },
             include: [
                 {
                     model: sequelize.models.Part,
@@ -75,9 +73,9 @@ module.exports = (sequelize, DataTypes) => {
             ],
         });
 
-    Test.findWithAll = async (id) =>
+    Test.findWithAll = async (test_id) =>
         Test.findOne({
-            where: { id },
+            where: { test_id },
             include: [
                 {
                     model: sequelize.models.Part,
@@ -98,15 +96,13 @@ module.exports = (sequelize, DataTypes) => {
             ],
         });
 
-    Test.findAll = async () => Test.findAll();
-
     Test.createTest = async (data) => Test.create(data);
 
-    Test.updateTest = async (id, data) =>
-        Test.update(data, { where: { id } });
+    Test.updateTest = async (test_id, data) =>
+        Test.update(data, { where: { test_id } });
 
-    Test.deleteTest = async (id) =>
-        Test.destroy({ where: { id } });
+    Test.deleteTest = async (test_id) =>
+        Test.destroy({ where: { test_id } });
 
     return Test;
 }

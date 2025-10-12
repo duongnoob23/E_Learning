@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-    const TestCategory = sequelize.define(
-        "TestCategory",
+    const ExamCategory = sequelize.define(
+        "ExamCategory",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            exam_category_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
@@ -19,40 +19,40 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(100),
                 allowNull: true,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: { 
-                type: DataTypes.DATE, 
+            updated_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
         },
         {
-            tableName: "categories",
+            tableName: "exam_categories",
             timestamps: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at',
         }
     );
 
-    TestCategory.findById = async (id) => 
-        TestCategory.findOne({ where: { id } });
+    ExamCategory.findById = async (exam_category_id) =>
+        ExamCategory.findOne({ where: { exam_category_id } });
 
-    TestCategory.findByName = async (name) => 
-        TestCategory.findOne({ where: { name } });
+    ExamCategory.findByName = async (name) =>
+        ExamCategory.findOne({ where: { name } });
 
-    TestCategory.findAll = async () => TestCategory.findAll();
+    ExamCategory.findAll = async () => ExamCategory.findAll();
 
-    TestCategory.createCategory = async (data) => TestCategory.create(data);
+    ExamCategory.createCategory = async (data) => ExamCategory.create(data);
 
-    TestCategory.updateCategory = async (id, data) => 
-        TestCategory.update(data, { where: { id } });
+    ExamCategory.updateCategory = async (exam_category_id, data) =>
+        ExamCategory.update(data, { where: { exam_category_id } });
 
-    TestCategory.deleteCategory = async (id) => 
-        TestCategory.destroy({ where: { id } });
+    ExamCategory.deleteCategory = async (exam_category_id) =>
+        ExamCategory.destroy({ where: { exam_category_id } });
 
-    return TestCategory;
+    return ExamCategory;
 };

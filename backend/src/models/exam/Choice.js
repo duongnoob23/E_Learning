@@ -2,19 +2,18 @@ module.exports = (sequelize, DataTypes) => {
     const Choice = sequelize.define(
         "Choice",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            choice_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             question_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             choice_letter: {
-                type: DataTypes.STRING(1),
+                type: DataTypes.ENUM('A', 'B', 'C', 'D'),
                 allowNull: false,
-                comment: 'A, B, C, D'
             },
             choice_text: {
                 type: DataTypes.TEXT,
@@ -33,13 +32,13 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 defaultValue: false,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: { 
-                type: DataTypes.DATE, 
+            updated_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
@@ -52,29 +51,29 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Choice.findById = async (id) => 
-        Choice.findOne({ where: { id } });
+    Choice.findById = async (choice_id) =>
+        Choice.findOne({ where: { choice_id } });
 
-    Choice.findByQuestionId = async (question_id) => 
+    Choice.findByQuestionId = async (question_id) =>
         Choice.findAll({ where: { question_id } });
 
-    Choice.findCorrectByQuestionId = async (question_id) => 
-        Choice.findOne({ 
-            where: { 
-                question_id, 
-                is_correct: true 
-            } 
+    Choice.findCorrectByQuestionId = async (question_id) =>
+        Choice.findOne({
+            where: {
+                question_id,
+                is_correct: true
+            }
         });
 
     Choice.findAll = async () => Choice.findAll();
 
     Choice.createChoice = async (data) => Choice.create(data);
 
-    Choice.updateChoice = async (id, data) => 
-        Choice.update(data, { where: { id } });
+    Choice.updateChoice = async (choice_id, data) =>
+        Choice.update(data, { where: { choice_id } });
 
-    Choice.deleteChoice = async (id) => 
-        Choice.destroy({ where: { id } });
+    Choice.deleteChoice = async (choice_id) =>
+        Choice.destroy({ where: { choice_id } });
 
     return Choice;
 };

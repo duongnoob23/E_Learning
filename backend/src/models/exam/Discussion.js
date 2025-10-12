@@ -1,18 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-    const Discussion = sequelize.define(
-        "Discussion",
+    const TestDiscussion = sequelize.define(
+        "TestDiscussion",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            test_discussion_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             test_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             user_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             title: {
@@ -23,54 +23,54 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: false,
             },
-            created_at: { 
-                type: DataTypes.DATE, 
+            created_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: { 
-                type: DataTypes.DATE, 
+            updated_at: {
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW
             },
         },
         {
-            tableName: "discussions",
+            tableName: "test_discussions",
             timestamps: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at',
         }
     );
 
-    Discussion.findById = async (id) => 
-        Discussion.findOne({ where: { id } });
+    TestDiscussion.findById = async (test_discussion_id) =>
+        TestDiscussion.findOne({ where: { test_discussion_id } });
 
-    Discussion.findByTestId = async (test_id) => 
-        Discussion.findAll({ where: { test_id } });
+    TestDiscussion.findByTestId = async (test_id) =>
+        TestDiscussion.findAll({ where: { test_id } });
 
-    Discussion.findByUserId = async (user_id) => 
-        Discussion.findAll({ where: { user_id } });
+    TestDiscussion.findByUserId = async (user_id) =>
+        TestDiscussion.findAll({ where: { user_id } });
 
-    Discussion.findWithComments = async (id) => 
-        Discussion.findOne({
-            where: { id },
+    TestDiscussion.findWithComments = async (test_discussion_id) =>
+        TestDiscussion.findOne({
+            where: { test_discussion_id },
             include: [
                 {
-                    model: sequelize.models.Comment,
+                    model: sequelize.models.TestComment,
                     as: "comments"
                 }
             ]
         });
 
-    Discussion.findAll = async () => Discussion.findAll();
+    TestDiscussion.findAll = async () => TestDiscussion.findAll();
 
-    Discussion.createDiscussion = async (data) => Discussion.create(data);
+    TestDiscussion.createDiscussion = async (data) => TestDiscussion.create(data);
 
-    Discussion.updateDiscussion = async (id, data) => 
-        Discussion.update(data, { where: { id } });
+    TestDiscussion.updateDiscussion = async (test_discussion_id, data) =>
+        TestDiscussion.update(data, { where: { test_discussion_id } });
 
-    Discussion.deleteDiscussion = async (id) => 
-        Discussion.destroy({ where: { id } });
+    TestDiscussion.deleteDiscussion = async (test_discussion_id) =>
+        TestDiscussion.destroy({ where: { test_discussion_id } });
 
-    return Discussion;
+    return TestDiscussion;
 };

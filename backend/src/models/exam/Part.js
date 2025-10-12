@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     const Part = sequelize.define(
         "Part",
         {
-            id: {
-                type: DataTypes.INTEGER,
+            part_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
             },
             test_id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
             part_number: {
@@ -22,9 +22,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             part_type: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.ENUM('LISTENING', 'READING'),
                 allowNull: false,
-                comment: 'LISTENING, READING'
             },
             question_count: {
                 type: DataTypes.INTEGER,
@@ -61,15 +60,15 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Part.findById = async (id) =>
-        Part.findOne({ where: { id } });
+    Part.findById = async (part_id) =>
+        Part.findOne({ where: { part_id } });
 
     Part.findByTestId = async (test_id) =>
         Part.findAll({ where: { test_id } });
 
-    Part.findWithQuestions = async (id) =>
+    Part.findWithQuestions = async (part_id) =>
         Part.findOne({
-            where: { id },
+            where: { part_id },
             include: [
                 {
                     model: sequelize.models.Question,
@@ -99,11 +98,11 @@ module.exports = (sequelize, DataTypes) => {
 
     Part.createPart = async (data) => Part.create(data);
 
-    Part.updatePart = async (id, data) =>
-        Part.update(data, { where: { id } });
+    Part.updatePart = async (part_id, data) =>
+        Part.update(data, { where: { part_id } });
 
-    Part.deletePart = async (id) =>
-        Part.destroy({ where: { id } });
+    Part.deletePart = async (part_id) =>
+        Part.destroy({ where: { part_id } });
 
     return Part;
 }
