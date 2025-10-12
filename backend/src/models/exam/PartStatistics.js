@@ -67,8 +67,6 @@ module.exports = (sequelize, DataTypes) => {
     PartStatistics.findByUserIdAndPartId = async (user_id, part_id) =>
         PartStatistics.findOne({ where: { user_id, part_id } });
 
-    PartStatistics.findAll = async () => PartStatistics.findAll();
-
     PartStatistics.createStatistics = async (data) => PartStatistics.create(data);
 
     PartStatistics.updateStatistics = async (user_id, part_id, data) =>

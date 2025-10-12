@@ -112,8 +112,6 @@ module.exports = (sequelize, DataTypes) => {
             ]
         });
 
-    ExamSession.findAll = async () => ExamSession.findAll();
-
     ExamSession.createSession = async (data) => ExamSession.create(data);
 
     ExamSession.updateSession = async (exam_session_id, data) =>

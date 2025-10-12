@@ -62,8 +62,6 @@ module.exports = (sequelize, DataTypes) => {
             ]
         });
 
-    TestDiscussion.findAll = async () => TestDiscussion.findAll();
-
     TestDiscussion.createDiscussion = async (data) => TestDiscussion.create(data);
 
     TestDiscussion.updateDiscussion = async (test_discussion_id, data) =>

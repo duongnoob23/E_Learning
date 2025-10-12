@@ -90,8 +90,6 @@ module.exports = (sequelize, DataTypes) => {
             ]
         });
 
-    Question.findAll = async () => Question.findAll();
-
     Question.createQuestion = async (data) => Question.create(data);
 
     Question.updateQuestion = async (question_id, data) =>

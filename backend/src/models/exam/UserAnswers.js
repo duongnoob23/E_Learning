@@ -54,8 +54,6 @@ module.exports = (sequelize, DataTypes) => {
     UserAnswer.findBySessionAndQuestion = async (exam_session_id, question_id) =>
         UserAnswer.findOne({ where: { exam_session_id, question_id } });
 
-    UserAnswer.findAll = async () => UserAnswer.findAll();
-
     UserAnswer.createAnswer = async (data) => UserAnswer.create(data);
 
     UserAnswer.updateAnswer = async (user_answer_id, data) =>

@@ -94,8 +94,6 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    Part.findAll = async () => Part.findAll();
-
     Part.createPart = async (data) => Part.create(data);
 
     Part.updatePart = async (part_id, data) =>

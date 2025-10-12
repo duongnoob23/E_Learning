@@ -41,8 +41,6 @@ module.exports = (sequelize, DataTypes) => {
     QuestionTag.findByQuestionAndTag = async (question_id, exam_tag_id) =>
         QuestionTag.findOne({ where: { question_id, exam_tag_id } });
 
-    QuestionTag.findAll = async () => QuestionTag.findAll();
-
     QuestionTag.createRelation = async (data) => QuestionTag.create(data);
 
     QuestionTag.deleteRelation = async (question_id, exam_tag_id) =>

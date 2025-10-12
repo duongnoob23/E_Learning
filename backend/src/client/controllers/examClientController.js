@@ -46,7 +46,7 @@ exports.getPartQuestions = async (req, res, next) => {
 // POST /api/exam-sessions/start - Bắt đầu phiên thi
 exports.startExamSession = async (req, res, next) => {
   try {
-    const { user_id } = req.user;
+    const user_id = req.user.userId;
     const { test_id, session_type, selected_parts, time_limit_minutes } = req.body;
     const response = await examClientService.startExamSession({
       user_id,
@@ -65,8 +65,9 @@ exports.startExamSession = async (req, res, next) => {
 exports.submitExamSession = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const { user_id } = req.user;
-    const { answers } = req.body;
+    const user_id  = req.user.userId;
+    const  { answers } = req.body;
+    console.log( user_id ,answers);
     const response = await examClientService.submitExamSession(session_id, user_id, answers);
     res.json(response);
   } catch (error) {

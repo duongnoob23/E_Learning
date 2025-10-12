@@ -65,8 +65,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         });
 
-    Choice.findAll = async () => Choice.findAll();
-
     Choice.createChoice = async (data) => Choice.create(data);
 
     Choice.updateChoice = async (choice_id, data) =>

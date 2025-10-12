@@ -41,8 +41,6 @@ module.exports = (sequelize, DataTypes) => {
     TestCategoryRelation.findByTestAndCategory = async (test_id, exam_category_id) =>
         TestCategoryRelation.findOne({ where: { test_id, exam_category_id } });
 
-    TestCategoryRelation.findAll = async () => TestCategoryRelation.findAll();
-
     TestCategoryRelation.createRelation = async (data) => TestCategoryRelation.create(data);
 
     TestCategoryRelation.deleteRelation = async (test_id, exam_category_id) =>

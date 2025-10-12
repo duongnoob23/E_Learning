@@ -197,7 +197,7 @@ exports.startExamSession = async (sessionData) => {
     }
 }
 // POST /api/exam-sessions/{session_id}/submit - Nộp bài thi
-exports.submitExamSession = async (session_id, user_id, answers) => {
+exports.submitExamSession = async (session_id, user_id, answers) => {   
     try {
         // Kiểm tra phiên thi có tồn tại và thuộc về user không
         const examSession = await ExamSession.findById(session_id);

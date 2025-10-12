@@ -44,8 +44,6 @@ module.exports = (sequelize, DataTypes) => {
     ExamCategory.findByName = async (name) =>
         ExamCategory.findOne({ where: { name } });
 
-    ExamCategory.findAll = async () => ExamCategory.findAll();
-
     ExamCategory.createCategory = async (data) => ExamCategory.create(data);
 
     ExamCategory.updateCategory = async (exam_category_id, data) =>

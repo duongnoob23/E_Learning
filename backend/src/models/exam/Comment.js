@@ -67,8 +67,6 @@ module.exports = (sequelize, DataTypes) => {
             ]
         });
 
-    TestComment.findAll = async () => TestComment.findAll();
-
     TestComment.createComment = async (data) => TestComment.create(data);
 
     TestComment.updateComment = async (test_comment_id, data) =>

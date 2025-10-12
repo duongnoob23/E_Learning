@@ -66,8 +66,6 @@ module.exports = (sequelize, DataTypes) => {
     UserExamStatistics.findByUserId = async (user_id) =>
         UserExamStatistics.findOne({ where: { user_id } });
 
-    UserExamStatistics.findAll = async () => UserExamStatistics.findAll();
-
     UserExamStatistics.createStatistics = async (data) => UserExamStatistics.create(data);
 
     UserExamStatistics.updateStatistics = async (user_id, data) =>

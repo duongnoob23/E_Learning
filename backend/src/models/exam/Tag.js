@@ -40,8 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     ExamTag.findByName = async (name) =>
         ExamTag.findOne({ where: { name } });
 
-    ExamTag.findAll = async () => ExamTag.findAll();
-
     ExamTag.createTag = async (data) => ExamTag.create(data);
 
     ExamTag.updateTag = async (exam_tag_id, data) =>
