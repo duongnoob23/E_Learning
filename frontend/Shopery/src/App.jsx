@@ -11,7 +11,7 @@ import { store } from "./redux/store";
 import "./App.css";
 import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
-import AppRoutes from "./routes/routes.jsx";
+import AppRoutes from "./routes/routes";
 function App() {
   return (
     <Provider store={store}>

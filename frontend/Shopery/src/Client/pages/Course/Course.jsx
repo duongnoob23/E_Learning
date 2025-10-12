@@ -28,6 +28,26 @@ function Course() {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("newest");
 
+  const {
+    data: categoriesData,
+    isLoading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories();
+
+  // Lấy danh sách levels
+  const {
+    data: levelsData,
+    isLoading: levelsLoading,
+    error: levelsError,
+  } = useLevels();
+
+  // Lấy danh sách instructors
+  const {
+    data: instructorsData,
+    isLoading: instructorsLoading,
+    error: instructorsError,
+  } = useInstructors();
+
   const navigate = useNavigate();
 
   // Build filters object for API
@@ -43,19 +63,53 @@ function Course() {
       apiFilters.title = search.trim();
     }
 
-    // Categories
+    // Categories - SỬA: dùng ID thay vì tên
+    // Sửa dòng 67-78
+    // Categories - SỬA: dùng ID thay vì tên
     if (selectedCategories.length > 0) {
-      apiFilters.category = selectedCategories.join(",");
+      // Tìm ID từ tên được chọn
+      const selectedCategoryIds = selectedCategories
+        .map((categoryName) => {
+          const category = categoriesData?.DT?.find(
+            (cat) => cat.name === categoryName
+          );
+          return category?.category_id;
+        })
+        .filter(Boolean);
+
+      if (selectedCategoryIds.length > 0) {
+        apiFilters.category = selectedCategoryIds[0]; // Gửi ID
+      }
     }
 
-    // Instructors
+    // Instructors - SỬA: dùng ID thay vì tên
     if (selectedInstructors.length > 0) {
-      apiFilters.instructor = selectedInstructors.join(",");
+      const selectedInstructorIds = selectedInstructors
+        .map((instructorName) => {
+          const instructor = instructorsData?.DT?.find(
+            (inst) => inst.name === instructorName
+          );
+          return instructor?.instructor_id;
+        })
+        .filter(Boolean);
+
+      if (selectedInstructorIds.length > 0) {
+        apiFilters.instructor = selectedInstructorIds[0]; // Gửi ID
+      }
     }
 
-    // Levels
+    // Levels - SỬA: dùng ID thay vì tên
     if (selectedLevels.length > 0) {
-      apiFilters.level = selectedLevels.join(",");
+      const selectedLevelIds = selectedLevels
+        .map((levelName) => {
+          const level = levelsData?.DT?.find((lvl) => lvl.name === levelName);
+          return level?.level_id;
+        })
+        .filter(Boolean);
+
+      if (selectedLevelIds.length > 0) {
+        apiFilters.level = selectedLevelIds[0]; // Gửi ID
+      }
     }
 
     // Price
@@ -91,14 +145,6 @@ function Course() {
     isFetching: coursesFetching,
   } = useCourses(filters);
 
-  const { data: categoriesData, isLoading: categoriesLoading } =
-    useCategories();
-
-  const { data: instructorsData, isLoading: instructorsLoading } =
-    useInstructors();
-
-  const { data: levelsData, isLoading: levelsLoading } = useLevels();
-
   // Map dữ liệu từ API
   const courses = useMemo(() => {
     if (!coursesData?.DT?.courses) return [];
@@ -118,13 +164,13 @@ function Course() {
 
   // Map filter options từ API
   const filterOptions = useMemo(() => {
-    const categories = categoriesData?.DT?.categories || [];
-    const instructors = instructorsData?.DT?.instructors || [];
-    const levels = levelsData?.DT?.levels || [];
+    const categories = categoriesData?.DT || [];
+    const instructors = instructorsData?.DT || [];
+    const levels = levelsData?.DT || [];
 
     return {
-      categories: categories.map((cat) => ({ name: cat.name, count: 0 })),
-      instructors: instructors.map((inst) => ({ name: inst.name, count: 0 })),
+      categories: categories.map((cat) => ({ name: cat.name, count: 1 })),
+      instructors: instructors.map((inst) => ({ name: inst.name, count: 2 })),
       levels: levels.map((level) => ({ name: level.name, count: 0 })),
     };
   }, [categoriesData, instructorsData, levelsData]);

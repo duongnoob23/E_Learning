@@ -24,9 +24,15 @@ export const queryKeys = {
     list: (filters) => ["course", "list", { filters }],
     details: ["course", "detail"],
     detail: (id) => ["course", "detail", id],
-    categories: ["course", "categories"],
-    instructors: ["course", "instructors"],
-    levels: ["course", "levels"],
+
+    // Bổ sung các key bị thiếu
+    byCategory: (categoryId) => ["course", "byCategory", categoryId],
+    byLevel: (levelId) => ["course", "byLevel", levelId],
+    byInstructor: (instructorId) => ["course", "byInstructor", instructorId],
+
+    categories: () => ["course", "categories"],
+    instructors: () => ["course", "instructors"],
+    levels: () => ["course", "levels"],
   },
 
   // User keys

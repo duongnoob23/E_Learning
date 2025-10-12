@@ -1,4 +1,4 @@
-USE e_learnning2;
+USE e_learnning6;
 
 -- Cho phép xóa khi có ràng buộc FK từ các bảng khác tới users
 SET SQL_SAFE_UPDATES = 0;
@@ -100,7 +100,7 @@ SELECT COUNT(*) total_role_permissions FROM role_permissions;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Dọn sạch theo thứ tự phụ thuộc
@@ -196,7 +196,7 @@ SELECT 'B2.1 Topics & Words OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Dọn sạch theo thứ tự phụ thuộc
@@ -267,7 +267,7 @@ SELECT 'B2.2 FIXED OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM import_details;
@@ -318,7 +318,7 @@ SELECT 'B2.3 FIXED OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Kiểm tra xem courses có tồn tại không
@@ -440,7 +440,7 @@ SELECT 'Modules and lessons inserted successfully' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM lesson_progress;
@@ -503,7 +503,7 @@ SELECT 'C2.4 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_discussions;
@@ -555,7 +555,7 @@ SELECT 'C2.5 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_certificates;
@@ -597,7 +597,7 @@ SELECT 'C2.6 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_tag_relations;
@@ -636,7 +636,7 @@ SELECT 'C2.7 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_discussions;
@@ -681,7 +681,7 @@ SELECT 'C2.5 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_certificates;
@@ -723,7 +723,7 @@ SELECT 'C2.6 OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning6;
 SET SQL_SAFE_UPDATES = 0;
 
 DELETE FROM course_tag_relations;

@@ -1,0 +1,63 @@
+.assessment-card {
+  width: calc(25% - 12px);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+
+.assessment-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.assessment-card__title {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.assessment-card__info {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.assessment-card__details {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.assessment-card__tags {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.assessment-card__tag {
+  background: #f0f4ff;
+  color: #1677ff;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.assessment-card__button {
+  border: 1px solid #1677ff;
+  color: #1677ff;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.assessment-card__button:hover {
+  background: #1677ff;
+  color: #fff;
+}
