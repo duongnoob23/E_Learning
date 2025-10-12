@@ -22,6 +22,7 @@ const ExamClientController = require("../controllers/examClientController");
 router.get("/tests", authMiddleware, ExamClientController.getTests); // Done
 router.get("/tests/:test_id", authMiddleware, ExamClientController.getTestDetail); // Done
 router.get("/tests/:test_id/parts", authMiddleware, ExamClientController.getTestParts); // Done
+router.get("/tests/:test_id/result", authMiddleware, ExamClientController.getPracticeTestResult); // Done
 
 // Part Routes
 router.get("/parts/:part_id/questions", authMiddleware, ExamClientController.getPartQuestions); // Done
@@ -29,12 +30,12 @@ router.get("/parts/:part_id/questions", authMiddleware, ExamClientController.get
 // Exam Session Routes
 router.post("/exam-sessions/start", authMiddleware, ExamClientController.startExamSession); // Done
 router.post("/exam-sessions/:session_id/submit", authMiddleware, ExamClientController.submitExamSession); // Done
-router.get("/exam-sessions/:session_id/result", authMiddleware, ExamClientController.getExamResult);
-router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession);
-router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers);
+router.get("/exam-sessions/:session_id/result", authMiddleware, ExamClientController.getExamResult); // Done
+router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession); // Done
+router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers); // Done
 
 // User Statistics Routes
-router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics);
+router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics); // Done
 
 // Discussion Routes
 router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions);

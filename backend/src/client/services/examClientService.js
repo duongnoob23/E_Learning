@@ -118,6 +118,33 @@ exports.getTestParts = async (test_id) => {
     }
 }
 
+// GET /api/tests/{test_id}/result - Lấy kết quả thi của đề thi
+exports.getPracticeTestResult = async (test_id, user_id) => {
+    try {
+        const examSessions = await ExamSession.findByUserIdAndTestId(user_id, test_id);
+        if (!examSessions || examSessions.length === 0) {
+            return {
+                EM: "Bạn chưa thi đề này",
+                EC: "2",
+                DT: null,
+            };
+        }
+
+        return {
+            EM: "Lấy kết quả thi thành công",
+            EC: "0",
+            DT: examSessions,
+        };
+    } catch (error) {
+        console.error("Error in getPracticeTestResult service:", error);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình lấy kết quả thi",
+            EC: "-2",
+            DT: null,
+        };
+    }
+}
+
 // GET /api/parts/{part_id}/questions - Lấy danh sách câu hỏi của part
 exports.getPartQuestions = async (part_id) => {
     try {
@@ -357,7 +384,7 @@ exports.reviewExamSession = async (session_id, user_id) => {
 
         if (!examSession || examSession.user_id !== user_id) {
             return {
-                EM: "Không tìm thấy phiên thi hoặc bạn không có quyền truy cập",
+                EM: "Không tìm thấy phiên thi",
                 EC: "2",
                 DT: null,
             };
@@ -412,7 +439,7 @@ exports.retryWrongAnswers = async (session_id, user_id) => {
 
         if (!examSession || examSession.user_id !== user_id) {
             return {
-                EM: "Không tìm thấy phiên thi hoặc bạn không có quyền truy cập",
+                EM: "Không tìm thấy phiên thi",
                 EC: "2",
                 DT: null,
             };

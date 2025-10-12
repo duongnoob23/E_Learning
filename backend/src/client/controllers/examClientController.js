@@ -32,6 +32,18 @@ exports.getTestParts = async (req, res, next) => {
     next(error);
   }
 };
+
+// GET /api/tests/{test_id}/result - Lấy kết quả thi của đề thi
+exports.getPracticeTestResult = async (req, res, next) => {
+  try {
+    const { test_id } = req.params;
+    const  user_id  = req.user.userId;
+    const response = await examClientService.getPracticeTestResult(test_id, user_id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
 // GET /api/parts/{part_id}/questions - Lấy danh sách câu hỏi của part
 exports.getPartQuestions = async (req, res, next) => {
   try {
@@ -79,7 +91,7 @@ exports.submitExamSession = async (req, res, next) => {
 exports.getExamResult = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const { user_id } = req.user;
+    const  user_id  = req.user.userId;
     const response = await examClientService.getExamResult(session_id, user_id);
     res.json(response);
   } catch (error) {
@@ -91,7 +103,7 @@ exports.getExamResult = async (req, res, next) => {
 exports.reviewExamSession = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const { user_id } = req.user;
+    const user_id = req.user.userId;
     const response = await examClientService.reviewExamSession(session_id, user_id);
     res.json(response);
   } catch (error) {
@@ -103,7 +115,8 @@ exports.reviewExamSession = async (req, res, next) => {
 exports.retryWrongAnswers = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const { user_id } = req.user;
+    const user_id  = req.user.userId;
+    console.log("🚀 ~ retryWrongAnswers ~ user_id:", user_id);
     const response = await examClientService.retryWrongAnswers(session_id, user_id);
     res.json(response);
   } catch (error) {
@@ -114,7 +127,7 @@ exports.retryWrongAnswers = async (req, res, next) => {
 // GET /api/user/statistics - Lấy thống kê người dùng
 exports.getUserStatistics = async (req, res, next) => {
   try {
-    const { user_id } = req.user;
+    const user_id  = req.user.userId;
     const response = await examClientService.getUserStatistics(user_id);
     res.json(response);
   } catch (error) {
@@ -137,7 +150,7 @@ exports.getTestDiscussions = async (req, res, next) => {
 // POST /api/discussions - Tạo thảo luận mới
 exports.createDiscussion = async (req, res, next) => {
   try {
-    const { user_id } = req.user;
+    const user_id  = req.user.userId;
     const { test_id, title, content } = req.body;
     const response = await examClientService.createDiscussion({
       test_id,
@@ -155,7 +168,7 @@ exports.createDiscussion = async (req, res, next) => {
 exports.addComment = async (req, res, next) => {
   try {
     const { discussion_id } = req.params;
-    const { user_id } = req.user;
+    const user_id  = req.user.userId;
     const { content, parent_comment_id } = req.body;
     const response = await examClientService.addComment({
       test_discussion_id: discussion_id,
