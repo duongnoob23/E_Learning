@@ -547,7 +547,7 @@ exports.getTestDiscussions = async (test_id, options = {}) => {
                 {
                     model: User,
                     as: 'user',
-                    attributes: ['user_id', 'username', 'full_name', 'avatar']
+                    attributes: ['user_id', 'username', 'full_name', 'avatar_url']
                 },
                 {
                     model: TestComment,
@@ -558,7 +558,7 @@ exports.getTestDiscussions = async (test_id, options = {}) => {
                         {
                             model: User,
                             as: 'user',
-                            attributes: ['user_id', 'username', 'full_name', 'avatar']
+                            attributes: ['user_id', 'username', 'full_name', 'avatar_url']
                         }
                     ]
                 }
@@ -618,7 +618,7 @@ exports.createDiscussion = async (discussionData) => {
                 {
                     model: User,
                     as: 'user',
-                    attributes: ['user_id', 'username', 'full_name', 'avatar']
+                    attributes: ['user_id', 'username', 'full_name', 'avatar_url']
                 }
             ]
         });
@@ -680,7 +680,7 @@ exports.addComment = async (commentData) => {
                 {
                     model: User,
                     as: 'user',
-                    attributes: ['user_id', 'username', 'full_name', 'avatar']
+                    attributes: ['user_id', 'username', 'full_name', 'avatar_url']
                 }
             ]
         });

@@ -4,7 +4,10 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs");
+const http = require("http");
+const { Server } = require("socket.io");
 const routes = require("./routes");
+const { handleDiscussionSocket } = require("./socket/discussionSocket");
 require("dotenv").config();
 
 // Import database connection
@@ -16,6 +19,22 @@ const {
 } = require("./config");
 
 const app = express();
+const server = http.createServer(app);
+
+// Cấu hình Socket.IO với CORS
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+// Khởi tạo Socket.IO cho discussion
+handleDiscussionSocket(io);
+
+// Lưu io instance vào app để sử dụng trong controllers
+app.set('io', io);
 
 // Security middleware - Tạm tắt để test CORS
 // app.use(helmet());
@@ -33,6 +52,9 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Route riêng để serve avatar files
 app.get('/uploads/avatars/:filename', (req, res) => {
@@ -70,6 +92,58 @@ app.get('/test-avatar', (req, res) => {
     avatar_url: '/uploads/avatars/avatar-1758302390265-316843243.jpg',
     full_url: 'http://localhost:5000/uploads/avatars/avatar-1758302390265-316843243.jpg'
   });
+});
+
+// Demo token endpoint for Socket.IO testing
+app.get('/demo-token', async (req, res) => {
+  try {
+    const jwt = require('jsonwebtoken');
+    const bcrypt = require('bcryptjs');
+    const { User } = require('./models');
+
+    // Kiểm tra và tạo demo user nếu chưa tồn tại
+    let demoUser = await User.findOne({ where: { username: 'demo_user' } });
+
+    if (!demoUser) {
+      const hashedPassword = await bcrypt.hash('demo123', 10);
+      demoUser = await User.create({
+        username: 'demo_user',
+        email: 'demo@example.com',
+        password: hashedPassword,
+        full_name: 'Demo User',
+        role: 'STUDENT',
+        status: 'ACTIVE'
+      });
+      console.log('Demo user created for Socket.IO testing');
+    }
+
+    const tokenPayload = {
+      user_id: demoUser.user_id,
+      username: demoUser.username,
+      email: demoUser.email
+    };
+
+    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.json({
+      message: 'Demo JWT token for Socket.IO testing',
+      token: token,
+      user: {
+        user_id: demoUser.user_id,
+        username: demoUser.username,
+        email: demoUser.email,
+        full_name: demoUser.full_name
+      },
+      expires_in: '1 hour',
+      usage: 'Copy this token and paste it in the Socket.IO demo page'
+    });
+  } catch (error) {
+    console.error('Error creating demo token:', error);
+    res.status(500).json({
+      message: 'Error creating demo token',
+      error: error.message
+    });
+  }
 });
 
 // Simple image test route
@@ -163,12 +237,13 @@ const startServer = async () => {
     }
 
     // Start server sau khi database đã kết nối thành công
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log("=".repeat(50));
       console.log(`✅ Server đã khởi động thành công!`);
       console.log(`🚀 Port: ${PORT}`);
       console.log(`📍 Environment: ${process.env.NODE_ENV || "development"}`);
       console.log(`🔗 API Test: http://localhost:${PORT}`);
+      console.log(`🔌 Socket.IO: Enabled for discussions`);
       console.log("=".repeat(50));
     });
   } catch (error) {
