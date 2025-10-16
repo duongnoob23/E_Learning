@@ -200,7 +200,7 @@ exports.register = async (
 
 // Xác thực OTP
 exports.verifyOtp = async (email, otp, type) => {
-  console.log("🚀 ~ emailVerification:");
+
 
   try {
     console.log("run2");
@@ -221,7 +221,7 @@ exports.verifyOtp = async (email, otp, type) => {
     if (type === "register") {
       const user = await User.findByEmail(email);
       if (user) {
-        await User.updateUser(user.user_id, { status: "active" });
+        await User.updateUser(user.user_id, { status: "active", email_verified: true });
       }
     }
 

@@ -21,7 +21,7 @@ import Register from "../../Client/pages/Auth/Register/Register";
 import Course from "../pages/Course/Course";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
 import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
-import Profile from "../pages/Profile/Profile";
+import Profile from "../pages/ProfileV2/index";
 
 // Exam Pages
 import ExamDetail from "../pages/Exam/ExamDetail/ExamDetail";
@@ -29,10 +29,11 @@ import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamResult from "../pages/Exam/ExamResult/ExamResult";
 import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
 
-import Lesson from "../pages/Lesson/Lesson";
-import Assessment from "../pages/Assessment/Assessment";
-import AssessmentDetail from "../components/Assessment/AssessmentJSX/AssessmentDetail";
+import Detail from "../components/Assessment/AssessmentJSX/Detail";
+import Result from "../components/Assessment/AssessmentJSX/Result";
 import AssessmentTest from "../components/AssessmentTest/AssessmentTestJSX/AssessmentTest";
+import Assessment from "../pages/Assessment/Assessment";
+import Lesson from "../pages/Lesson/Lesson";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
@@ -176,11 +177,11 @@ const ClientRoutes = () => {
       <Route
         path="/profile"
         element={
-          <PrivateRoute requiredRole="client">
-            <ClientLayout>
-              <Profile />
-            </ClientLayout>
-          </PrivateRoute>
+          // <PrivateRoute requiredRole="client">
+          <ClientLayout>
+            <Profile />
+          </ClientLayout>
+          // </PrivateRoute>
         }
       />
       <Route
@@ -198,7 +199,7 @@ const ClientRoutes = () => {
         element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>
-              <AssessmentDetail />
+              <Detail />
             </ClientLayout>
           </PrivateRoute>
         }
@@ -209,6 +210,16 @@ const ClientRoutes = () => {
           <PrivateRoute requiredRole="client">
             <ClientLayout>
               <AssessmentTest />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessmentResult"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Result />
             </ClientLayout>
           </PrivateRoute>
         }

@@ -1,36 +1,100 @@
-import React from "react";
+/* File: src/components/Part1.jsx */
+import React, { useEffect, useState } from "react";
+import { usePartQuestions } from "../../../services/Assessment/assessmentQueries";
 
-export default function Part1({ items, onAnswer, registerRef, answers }) {
+export default function Part1({
+  onAnswer,
+  registerRef,
+  answers,
+  onDataLoaded,
+}) {
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Gọi API riêng cho Part 1
+  const { data, isLoading, error } = usePartQuestions(1, true);
+
+  useEffect(() => {
+    if (data?.EC === "0" && data?.DT) {
+      setQuestions(data.DT);
+      setLoading(false);
+      onDataLoaded(data.DT); // Gửi dữ liệu về parent
+    } else if (error) {
+      setLoading(false);
+      console.error("Error loading Part 1 questions:", error);
+    }
+  }, [data, error, onDataLoaded]); // ✅ onDataLoaded giờ đã stable
+
+  if (loading || isLoading) {
+    return (
+      <section className="part part--1">
+        <h3 className="part__title">Part 1</h3>
+        <div className="part__loading">
+          <p>Đang tải câu hỏi Part 1...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="part part--1">
+        <h3 className="part__title">Part 1</h3>
+        <div className="part__error">
+          <p>Có lỗi xảy ra khi tải câu hỏi Part 1</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="part part--1">
       <h3 className="part__title">Part 1</h3>
       <div className="part__list">
-        {items.map((it) => (
+        {questions.map((question) => (
           <div
-            key={it.id}
-            ref={(el) => registerRef(it.id, el)}
+            key={question.question_id}
+            ref={(el) => registerRef(question.question_id, el)}
             className="question question--photo"
           >
             <div className="question__left">
-              <div className="question__num">{it.id}</div>
+              <div className="question__num">{question.question_number}</div>
             </div>
             <div className="question__body">
-              <div className="question__prompt">{it.prompt}</div>
-              <img
-                src={it.image}
-                alt={`photo ${it.id}`}
-                className="question__image"
-              />
+              <div className="question__prompt">{question.question_text}</div>
+
+              {/* Hiển thị hình ảnh nếu có */}
+              {question.image_file && (
+                <img
+                  src={question.image_file}
+                  alt={`photo ${question.question_number}`}
+                  className="question__image"
+                />
+              )}
+
+              {/* Hiển thị audio nếu có */}
+              {question.audio_file && (
+                <div className="question__audio">
+                  🔊 <audio controls src={question.audio_file} />
+                </div>
+              )}
+
               <div className="question__options">
-                {it.options.map((opt, idx) => (
-                  <label key={idx} className="option">
+                {question.choices.map((choice) => (
+                  <label key={choice.choice_id} className="option">
                     <input
                       type="radio"
-                      name={`q-${it.id}`}
-                      checked={answers[it.id] === idx}
-                      onChange={() => onAnswer(it.id, idx)}
+                      name={`q-${question.question_id}`}
+                      checked={
+                        answers[question.question_id] === choice.choice_id
+                      }
+                      onChange={() =>
+                        onAnswer(question.question_id, choice.choice_id)
+                      }
                     />
-                    <span className="option__label">{opt}</span>
+                    <span className="option__label">
+                      {choice.choice_letter}. {choice.choice_text}
+                    </span>
                   </label>
                 ))}
               </div>
@@ -41,3 +105,47 @@ export default function Part1({ items, onAnswer, registerRef, answers }) {
     </section>
   );
 }
+
+// import React from "react";
+
+// export default function Part1({ items, onAnswer, registerRef, answers }) {
+//   return (
+//     <section className="part part--1">
+//       <h3 className="part__title">Part 1</h3>
+//       <div className="part__list">
+//         {items.map((it) => (
+//           <div
+//             key={it.id}
+//             ref={(el) => registerRef(it.id, el)}
+//             className="question question--photo"
+//           >
+//             <div className="question__left">
+//               <div className="question__num">{it.id}</div>
+//             </div>
+//             <div className="question__body">
+//               <div className="question__prompt">{it.prompt}</div>
+//               <img
+//                 src={it.image}
+//                 alt={`photo ${it.id}`}
+//                 className="question__image"
+//               />
+//               <div className="question__options">
+//                 {it.options.map((opt, idx) => (
+//                   <label key={idx} className="option">
+//                     <input
+//                       type="radio"
+//                       name={`q-${it.id}`}
+//                       checked={answers[it.id] === idx}
+//                       onChange={() => onAnswer(it.id, idx)}
+//                     />
+//                     <span className="option__label">{opt}</span>
+//                   </label>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }

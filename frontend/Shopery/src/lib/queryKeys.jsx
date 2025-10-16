@@ -42,4 +42,17 @@ export const queryKeys = {
     enrollments: ["user", "enrollments"],
     wishlist: ["user", "wishlist"],
   },
+
+  // Thêm vào queryKeys object
+  assessment: {
+    all: ["assessment"],
+    lists: ["assessment", "list"],
+    list: (filters) => ["assessment", "list", { filters }],
+    details: ["assessment", "detail"],
+    detail: (id) => ["assessment", "detail", id],
+    statistics: () => ["assessment", "statistics"],
+    sessions: ["assessment", "sessions"],
+    session: (id) => ["assessment", "session", id],
+    discussions: (testId) => ["assessment", "discussions", testId],
+  },
 };

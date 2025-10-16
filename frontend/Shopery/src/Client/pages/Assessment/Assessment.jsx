@@ -1,24 +1,28 @@
 import React from "react";
+import Filter from "../../components/Assessment/AssessmentJSX/Filter";
+import Layout from "../../components/Assessment/AssessmentJSX/Layout";
+import List from "../../components/Assessment/AssessmentJSX/List";
+import SearchBar from "../../components/Assessment/AssessmentJSX/SearchBar";
+import Sidebar from "../../components/Assessment/AssessmentJSX/Sidebar";
+import { useTests } from "../../services/Assessment/assessmentQueries";
 import "./Assessment.css";
-import AssessmentLayout from "../../components/Assessment/AssessmentJSX/AssessmentLayout";
-import AssessmentFilter from "../../components/Assessment/AssessmentJSX/AssessmentFilter";
-import AssessmentSearchBar from "../../components/Assessment/AssessmentJSX/AssessmentSearchBar";
-import AssessmentList from "../../components/Assessment/AssessmentJSX/AssessmentList";
-import AssessmentSidebar from "../../components/Assessment/AssessmentJSX/AssessmentSidebar";
 
+// 🍎🍊🍋🍉🍇🍓🥑🍍
 const Assessment = () => {
+  const { data: testsData, isLoading: testsLoading } = useTests();
+
   return (
     <div className="assessment">
       <div className="assessment__title">Thư viện đề thi</div>
-      <AssessmentLayout
+      <Layout
         left={
           <>
-            <AssessmentFilter />
-            <AssessmentSearchBar />
-            <AssessmentList />
+            <Filter />
+            <SearchBar />
+            <List data={testsData} />
           </>
         }
-        right={<AssessmentSidebar />}
+        right={<Sidebar />}
       />
     </div>
   );
