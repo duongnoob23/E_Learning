@@ -1,5 +1,5 @@
 const examClientService = require("../services/examClientService");
-
+const { TestDiscussion } = require('../../models');
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
   try {
@@ -147,10 +147,10 @@ exports.getTestDiscussions = async (req, res, next) => {
   }
 };
 
-// POST /api/discussions - Tạo thảo luận mới
+// POST /api/discussions - Tạo thảo luận mới (REST API fallback)
 exports.createDiscussion = async (req, res, next) => {
   try {
-    const user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const { test_id, title, content } = req.body;
     const response = await examClientService.createDiscussion({
       test_id,
@@ -158,17 +158,19 @@ exports.createDiscussion = async (req, res, next) => {
       title,
       content
     });
+
+
     res.json(response);
   } catch (error) {
     next(error);
   }
 };
 
-// POST /api/discussions/{discussion_id}/comments - Thêm bình luận
+// POST /api/discussions/{discussion_id}/comments - Thêm bình luận (REST API fallback)
 exports.addComment = async (req, res, next) => {
   try {
     const { discussion_id } = req.params;
-    const user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const { content, parent_comment_id } = req.body;
     const response = await examClientService.addComment({
       test_discussion_id: discussion_id,
@@ -176,6 +178,7 @@ exports.addComment = async (req, res, next) => {
       content,
       parent_comment_id
     });
+
     res.json(response);
   } catch (error) {
     next(error);
