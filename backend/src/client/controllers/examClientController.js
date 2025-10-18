@@ -184,3 +184,15 @@ exports.addComment = async (req, res, next) => {
     next(error);
   }
 };
+
+// GET /api/exam-sessions/{session_id}/result-by-tags - Lấy kết quả phân tích theo tag
+exports.getResultByTags = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+    const response = await examClientService.getResultByTags(session_id, user_id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
