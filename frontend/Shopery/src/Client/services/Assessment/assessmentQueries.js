@@ -82,12 +82,36 @@ export const useUserStatistics = () => {
   });
 };
 
-// Query để lấy thảo luận của đề thi
-export const useTestDiscussions = (testId, options = {}, enabled = true) => {
+// ========== DISCUSSION QUERIES ==========
+
+export const useDiscussions = (testId) => {
   return useQuery({
-    queryKey: [...queryKeys.assessment.all, "discussions", testId, options],
-    queryFn: () => assessmentApi.getTestDiscussions(testId, options),
-    enabled: enabled && !!testId,
-    staleTime: 2 * 60 * 1000, // 2 phút
+    queryKey: ["discussions"],
+    queryFn: () => {
+      console.log("COMMENT - SERVICE - 2");
+      return assessmentApi.getTestDiscussions(testId);
+    },
+  });
+};
+
+// Query để lấy thảo luận của đề thi
+export const useTestDiscussions = (testId) => {
+  return useQuery({
+    // queryKey: [...queryKeys.assessment.all, "discussions", testId, options],
+    queryKey: ["discussions"],
+    queryFn: () => {
+      console.log("COMMENT - SERVICE");
+      return assessmentApi.getTestDiscussions(testId);
+    },
+    enabled: !!testId,
+  });
+};
+
+export const useResultByTags = (sessionId, enabled = true) => {
+  return useQuery({
+    queryKey: ["result-by-tags", sessionId],
+    queryFn: () => assessmentApi.getResultByTags(sessionId),
+    enabled: enabled && !!sessionId,
+    staleTime: 5 * 60 * 1000, // 5 phút
   });
 };

@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 10px;
+}
+
+.assessment-banner {
+  color: #1f5e39;
+  background-color: #d8f0e2;
+  border-color: #c8ead6;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
 }
 
 /* --- từng block Part --- */

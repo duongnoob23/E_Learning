@@ -1,5 +1,5 @@
 /* File: src/components/Part4.jsx */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { usePartQuestions } from "../../../services/Assessment/assessmentQueries";
 
 export default function Part4({
@@ -7,11 +7,14 @@ export default function Part4({
   registerRef,
   answers,
   onDataLoaded,
+  partData,
 }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const { data, isLoading, error } = usePartQuestions(4, true);
+  const partId = useMemo(() => {
+    return partData.find((item, index) => item.part_number == 4);
+  }, [partData]);
+  const { data, isLoading, error } = usePartQuestions(partId.part_id, true);
 
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
@@ -58,11 +61,10 @@ export default function Part4({
       <div className="part__list">
         {talkGroups.map((group, groupIndex) => (
           <div key={groupIndex} className="talk">
-            <div className="talk__header">Talk {groupIndex + 1} — (audio)</div>
+            {/* <div className="talk__header">Talk {groupIndex + 1} — (audio)</div>
             <div className="talk__script">
-              {/* Hiển thị transcript nếu có */}
               {group[0]?.transcript && <p>{group[0].transcript}</p>}
-            </div>
+            </div> */}
             {group.map((question) => (
               <div
                 key={question.question_id}
@@ -75,16 +77,14 @@ export default function Part4({
                   </div>
                 </div>
                 <div className="question__body">
-                  <div className="question__prompt">
-                    {question.question_text}
-                  </div>
-
-                  {/* Hiển thị audio nếu có */}
                   {question.audio_file && (
                     <div className="question__audio">
                       🔊 <audio controls src={question.audio_file} />
                     </div>
                   )}
+                  <div className="question__prompt">
+                    {question.question_text}
+                  </div>
 
                   <div className="question__options">
                     {question.choices.map((choice) => (

@@ -54,7 +54,6 @@ const parts = [
 const Tabs = (Props) => {
   const { data, testId } = Props;
 
-  console.log("testId", testId);
   const [activeTab, setActiveTab] = useState("Luyện tập");
   const navigate = useNavigate();
   const { mutateAsync: createStartExam, isPending: loadingStartExam } =
@@ -73,12 +72,12 @@ const Tabs = (Props) => {
       time_limit_minutes,
     });
 
-    console.log("===", result);
     if (result && +result.EC === 0) {
       // ✅ Truyền sessionData qua navigation
       navigate("/assessmentTest", {
         state: {
           sessionData: result.DT,
+          partData: data,
         },
       });
     }
@@ -98,28 +97,34 @@ const Tabs = (Props) => {
           </button>
         ))}
       </div>
-
+      // phần luyện tập từng phần một
       {activeTab === "Luyện tập" && (
         <PartSelector data={data} testId={testId} />
       )}
-
+      // Phần làm full test
       {activeTab === "Full test" && (
-        <div className="assessment-tabs_content_fix">
-          <div className="assessment-tabs__content">
-            <p>Chế độ Full Test sẽ làm toàn bộ 200 câu trong 120 phút.</p>
-            <button
-              className="assessment-tabs__start-btn"
-              onClick={handleStartTest}
-            >
-              Bắt đầu làm bài
-            </button>
+        <>
+          <div className="assessment-tabs_content_fix">
+            <div className="assessment-tabs__content">
+              <div className="assessment-banner__fullTest">
+                ‼️Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt
+                nhất, bạn cần dành ra 120 phút cho bài test này.
+              </div>
+              <button
+                className="assessment-tabs__start-btn"
+                onClick={handleStartTest}
+              >
+                Bắt đầu làm bài
+              </button>
+            </div>
           </div>
-        </div>
+          <Comment testId={testId} />
+        </>
       )}
-
+      // Phần thảo luận trong chi tiết đề thi
       {activeTab === "Thảo luận" && (
         <div className="assessment-tabs__content">
-          <Comment />
+          <Comment testId={testId} />
         </div>
       )}
     </div>

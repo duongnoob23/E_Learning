@@ -31,8 +31,8 @@ router.get("/parts/:part_id/questions", authMiddleware, ExamClientController.get
 router.post("/exam-sessions/start", authMiddleware, ExamClientController.startExamSession); // Done
 router.post("/exam-sessions/:session_id/submit", authMiddleware, ExamClientController.submitExamSession); // Done
 router.get("/exam-sessions/:session_id/result", authMiddleware, ExamClientController.getExamResult); // Done
-router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession); // Done
-router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers); // Done
+router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession); 
+router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers); 
 
 // User Statistics Routes
 router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics); // Done
@@ -41,8 +41,8 @@ router.get("/user/statistics", authMiddleware, ExamClientController.getUserStati
 router.get("/exam-sessions/:session_id/result-by-tags", authMiddleware, ExamClientController.getResultByTags); // New
 
 // Discussion Routes
-router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions);
-router.post("/discussions", authMiddleware, ExamClientController.createDiscussion);
-router.post("/discussions/:discussion_id/comments", authMiddleware, ExamClientController.addComment);
+router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions); // Done 
+router.post("/discussions", authMiddleware, ExamClientController.createDiscussion); // Done 
+router.post("/discussions/:discussion_id/comments", authMiddleware, ExamClientController.addComment); // Done
 
 module.exports = router;

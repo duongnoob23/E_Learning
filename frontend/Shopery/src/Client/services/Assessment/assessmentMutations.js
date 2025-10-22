@@ -76,6 +76,7 @@ export const useRetryWrongAnswers = () => {
     },
   });
 };
+// ========== DISCUSSION MUTATIONS ==========
 
 // Mutation để tạo thảo luận mới
 export const useCreateDiscussion = () => {
@@ -89,11 +90,10 @@ export const useCreateDiscussion = () => {
         toast.success(EM || "Tạo thảo luận thành công!");
         // Invalidate discussions query
         queryClient.invalidateQueries({
-          queryKey: [
-            ...queryKeys.assessment.all,
-            "discussions",
-            variables.test_id,
-          ],
+          queryKey: ["discussions"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["assessment", "detail"],
         });
       } else {
         toast.error(EM || "Tạo thảo luận thất bại!");
@@ -119,7 +119,10 @@ export const useAddComment = () => {
         toast.success(EM || "Thêm bình luận thành công!");
         // Invalidate discussions query
         queryClient.invalidateQueries({
-          queryKey: [...queryKeys.assessment.all, "discussions"],
+          queryKey: ["discussions"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["assessment", "detail"],
         });
       } else {
         toast.error(EM || "Thêm bình luận thất bại!");

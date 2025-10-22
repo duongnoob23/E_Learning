@@ -1,5 +1,5 @@
 /* File: src/components/Part3.jsx */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { usePartQuestions } from "../../../services/Assessment/assessmentQueries";
 
 export default function Part3({
@@ -7,11 +7,14 @@ export default function Part3({
   registerRef,
   answers,
   onDataLoaded,
+  partData,
 }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const { data, isLoading, error } = usePartQuestions(3, true);
+  const partId = useMemo(() => {
+    return partData.find((item, index) => item.part_number == 3);
+  }, [partData]);
+  const { data, isLoading, error } = usePartQuestions(partId.part_id, true);
 
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
@@ -58,13 +61,12 @@ export default function Part3({
       <div className="part__list">
         {conversationGroups.map((group, groupIndex) => (
           <div key={groupIndex} className="conversation">
-            <div className="conversation__header">
+            {/* <div className="conversation__header">
               Conversation {groupIndex + 1} — (audio)
             </div>
             <div className="conversation__script">
-              {/* Hiển thị transcript nếu có */}
               {group[0]?.transcript && <p>{group[0].transcript}</p>}
-            </div>
+            </div> */}
             {group.map((question) => (
               <div
                 key={question.question_id}
@@ -77,16 +79,14 @@ export default function Part3({
                   </div>
                 </div>
                 <div className="question__body">
-                  <div className="question__prompt">
-                    {question.question_text}
-                  </div>
-
-                  {/* Hiển thị audio nếu có */}
                   {question.audio_file && (
                     <div className="question__audio">
                       🔊 <audio controls src={question.audio_file} />
                     </div>
                   )}
+                  <div className="question__prompt">
+                    {question.question_text}
+                  </div>
 
                   <div className="question__options">
                     {question.choices.map((choice) => (
@@ -116,50 +116,3 @@ export default function Part3({
     </section>
   );
 }
-
-// import React from "react";
-
-// export default function Part3({ groups, onAnswer, registerRef, answers }) {
-//   return (
-//     <section className="part part--3">
-//       <h3 className="part__title">Part 3</h3>
-//       <div className="part__list">
-//         {groups.map((g, gi) => (
-//           <div key={g.groupId} className="conversation">
-//             <div className="conversation__header">
-//               Conversation {gi + 1} — (audio)
-//             </div>
-//             <div className="conversation__script">{g.script}</div>
-//             {g.questions.map((q) => (
-//               <div
-//                 key={q.id}
-//                 ref={(el) => registerRef(q.id, el)}
-//                 className="question question--conv"
-//               >
-//                 <div className="question__left">
-//                   <div className="question__num">{q.id}</div>
-//                 </div>
-//                 <div className="question__body">
-//                   <div className="question__prompt">{q.prompt}</div>
-//                   <div className="question__options">
-//                     {q.options.map((opt, idx) => (
-//                       <label key={idx} className="option">
-//                         <input
-//                           type="radio"
-//                           name={`q-${q.id}`}
-//                           checked={answers[q.id] === idx}
-//                           onChange={() => onAnswer(q.id, idx)}
-//                         />
-//                         <span className="option__label">{opt}</span>
-//                       </label>
-//                     ))}
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }

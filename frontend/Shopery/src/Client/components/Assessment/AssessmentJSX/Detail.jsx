@@ -11,12 +11,17 @@ import Tabs from "./Tabs";
 
 const Detail = () => {
   const { id } = useParams();
+  console.log("id", id);
   const [exam, setExam] = useState(null);
   const location = useLocation();
   const testId = location.state?.testId;
-  console.log("detaill - testid", testId);
+  const userStats = location.state?.userStats;
+  console.log("[STEP - 02]", userStats);
+
   const { data: detailsData, isLoading: detailsLoading } = useTestDetail(id);
   const { data: partsData, isLoading: partsLoading } = useTestParts(id);
+
+  console.log("part detail", partsData);
   useEffect(() => {
     const mockData = {
       id,
@@ -36,10 +41,8 @@ const Detail = () => {
   return (
     <div className="assessment-detail container">
       <div className="assessment-detail__main">
-        <InfoBox exam={exam} data={detailsData.DT} />
-        <Tabs data={partsData.DT} testId={testId}>
-          {" "}
-        </Tabs>
+        <InfoBox exam={exam} data={detailsData.DT} userStats={userStats} />
+        <Tabs data={partsData.DT} testId={testId}></Tabs>
       </div>
 
       <div className="assessment-detail__sidebar">
@@ -50,25 +53,3 @@ const Detail = () => {
 };
 
 export default Detail;
-
-{
-  /* <AssessmentTabs
-  tabs={["Thông tin đề thi", "Luyện tập", "Full Test", "Thảo luận"]}
->
-  <div label="Thông tin đề thi">
-    <p>{exam.note}</p>
-  </div>
-
-  <div label="Luyện tập">
-    <AssessmentPartSelector />
-  </div>
-
-  <div label="Full Test">
-    <p>Chế độ làm toàn bộ đề thi.</p>
-  </div>
-
-  <div label="Thảo luận">
-    <p>Hiển thị bình luận, chia sẻ kinh nghiệm làm đề.</p>
-  </div>
-</AssessmentTabs> */
-}

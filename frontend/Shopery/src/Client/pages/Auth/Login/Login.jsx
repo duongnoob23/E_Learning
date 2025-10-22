@@ -70,13 +70,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
-    console.log("0");
     if (!validateForm()) {
       return;
     } // kiểm tra chưa validate form thì return
     setIsLoading(true);
     setErrors({});
-    console.log("1");
     try {
       if (isLoginMode) {
         const result = await loginMutation.mutateAsync({
@@ -89,7 +87,6 @@ const Login = () => {
       } else if (!isLoginMode) {
         // gọi api lấy lại mật khẩu;
         setShowOtpModal(true);
-        console.log("🚀 ~ handleSubmit ~ setShowOtpModal:");
       }
       // Đăng nhập
     } catch (error) {
@@ -104,7 +101,6 @@ const Login = () => {
   };
 
   const handleOTP = async (e) => {
-    console.log("submit");
   };
   return (
     <>

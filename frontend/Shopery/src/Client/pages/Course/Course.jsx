@@ -177,17 +177,17 @@ function Course() {
 
   // Debug logs
   useEffect(() => {
-    console.log("=== COURSE DEBUG ===");
-    console.log("Filters:", filters);
-    console.log("Courses Loading:", coursesLoading);
-    console.log("Courses Fetching:", coursesFetching);
-    console.log("Courses Error:", coursesError);
-    console.log("Courses Data:", coursesData);
-    console.log("Courses:", courses);
-    console.log("Categories Data:", categoriesData);
-    console.log("Instructors Data:", instructorsData);
-    console.log("Levels Data:", levelsData);
-    console.log("===================");
+    // console.log("=== COURSE DEBUG ===");
+    // console.log("Filters:", filters);
+    // console.log("Courses Loading:", coursesLoading);
+    // console.log("Courses Fetching:", coursesFetching);
+    // console.log("Courses Error:", coursesError);
+    // console.log("Courses Data:", coursesData);
+    // console.log("Courses:", courses);
+    // console.log("Categories Data:", categoriesData);
+    // console.log("Instructors Data:", instructorsData);
+    // console.log("Levels Data:", levelsData);
+    // console.log("===================");
   }, [
     filters,
     coursesLoading,

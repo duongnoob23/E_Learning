@@ -1,5 +1,5 @@
 /* File: src/components/Part5.jsx */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { usePartQuestions } from "../../../services/Assessment/assessmentQueries";
 
 export default function Part5({
@@ -7,11 +7,14 @@ export default function Part5({
   registerRef,
   answers,
   onDataLoaded,
+  partData,
 }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const { data, isLoading, error } = usePartQuestions(5, true);
+  const partId = useMemo(() => {
+    return partData.find((item, index) => +item.part_number == 5);
+  }, [partData]);
+  const { data, isLoading, error } = usePartQuestions(partId.part_id, true);
 
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {

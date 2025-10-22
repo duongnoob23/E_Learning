@@ -1,19 +1,8 @@
 // Result.jsx
 import React, { useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useResultByTags } from "../../../services/Assessment/assessmentQueries";
 import "../AssessmentCSS/Result.css";
-
-/**
- * Single-file UI for Assessment Result (contains ResultSummary & ResultAnalysis as inner components)
- * - Font: Roboto
- * - Flexbox only
- * - BEM classnames
- *
- * Integration notes:
- * - Replace fakeNavigate with react-router's useNavigate when integrating to actual router.
- * - This file expects Result.css to be present in same folder.
- */
-
-/* Mock data (use real prop or API call in real use) */
 const MOCK_DATA = {
   testId: "T2025-NE01",
   testTitle: "New Economy TOEIC Full Test 1",
@@ -270,294 +259,79 @@ const MOCK_DATA = {
   answers: {},
 };
 
-// const MOCK_DATA = {
-//   testId: "T2025-NE01",
-//   testTitle: "New Economy TOEIC Full Test 1",
-//   mode: "Luyện đề đầy đủ",
-//   durationMin: 120,
-//   timeTakenSeconds: 6723,
-//   answeredCount: 185,
-//   totalQuestions: 200,
-//   correctCount: 142,
-//   wrongCount: 43,
-//   skippedCount: 15,
-//   accuracyPct: 71.0,
-//   parts: [
-//     // ======================
-//     // 📘 PART 1
-//     // ======================
-//     {
-//       part: 1,
-//       questionsCount: 6,
-//       tags: [
-//         {
-//           tagId: "p1-photo-people",
-//           tagName: "[Part 1] Tranh tả người",
-//           total: 3,
-//           correct: 2,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: 66.7,
-//           questionIds: [
-//             { id: 1, status: "correct" },
-//             { id: 2, status: "wrong" },
-//             { id: 3, status: "correct" },
-//           ],
-//         },
-//         {
-//           tagId: "p1-photo-both",
-//           tagName: "[Part 1] Tranh tả cả người và vật",
-//           total: 3,
-//           correct: 2,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: 66.7,
-//           questionIds: [
-//             { id: 4, status: "correct" },
-//             { id: 5, status: "correct" },
-//             { id: 6, status: "wrong" },
-//           ],
-//         },
-//       ],
-//     },
+// Thêm vào file Result.jsx
 
-//     // ======================
-//     // 📘 PART 2
-//     // ======================
-//     {
-//       part: 2,
-//       questionsCount: 25,
-//       tags: [
-//         ...[
-//           "WHAT",
-//           "WHO",
-//           "WHERE",
-//           "WHEN",
-//           "HOW",
-//           "WHY",
-//           "YES/NO",
-//           "Đuôi",
-//           "Yêu cầu/Đề nghị",
-//           "Trần thuật",
-//         ].map((type, index) => {
-//           const baseId = 7 + index * 2;
-//           return {
-//             tagId: `p2-${type.toLowerCase().replace(/[ /]/g, "-")}`,
-//             tagName: `[Part 2] Câu hỏi ${type}`,
-//             total: 2,
-//             correct: index % 3 !== 0 ? 2 : 1,
-//             wrong: index % 3 === 0 ? 1 : 0,
-//             skipped: 0,
-//             accuracyPct: index % 3 === 0 ? 50.0 : 100.0,
-//             questionIds: [
-//               { id: baseId, status: index % 3 === 0 ? "wrong" : "correct" },
-//               { id: baseId + 1, status: "correct" },
-//             ],
-//           };
-//         }),
-//       ],
-//     },
+// Hàm transform dữ liệu thực tế thành format tương thích
+function transformRealDataToMockFormat(realData, testInfo = {}) {
+  if (!realData?.DT) return null;
 
-//     // ======================
-//     // 📘 PART 3
-//     // ======================
-//     {
-//       part: 3,
-//       questionsCount: 39,
-//       tags: [
-//         "Chủ đề, mục đích",
-//         "Danh tính người nói",
-//         "Chi tiết hội thoại",
-//         "Hành động tương lai",
-//         "Kết hợp bảng biểu",
-//         "Hàm ý câu nói",
-//         "Company - General Office Work",
-//         "Company - Business, Marketing",
-//         "Company - Facility",
-//         "Shopping, Service",
-//         "Order, delivery",
-//         "Transportation",
-//         "Housing",
-//         "Yêu cầu, gợi ý",
-//       ].map((label, index) => {
-//         const total = 3;
-//         const baseId = 27 + index * total;
-//         const correct = total - 1;
-//         return {
-//           tagId: `p3-${index + 1}`,
-//           tagName: `[Part 3] ${label}`,
-//           total,
-//           correct,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: 66.7,
-//           questionIds: [
-//             { id: baseId, status: "correct" },
-//             { id: baseId + 1, status: "correct" },
-//             { id: baseId + 2, status: "wrong" },
-//           ],
-//         };
-//       }),
-//     },
+  const { session_info, overall_statistics, tag_analysis } = realData.DT;
 
-//     // ======================
-//     // 📘 PART 4
-//     // ======================
-//     {
-//       part: 4,
-//       questionsCount: 30,
-//       tags: [
-//         "Chủ đề, mục đích",
-//         "Chi tiết",
-//         "Hành động tương lai",
-//         "Kết hợp bảng biểu",
-//         "Hàm ý câu nói",
-//         "Advertisement - Quảng cáo",
-//         "Announcement - Thông báo",
-//         "News report - Bản tin",
-//         "Talk - Bài phát biểu",
-//         "Meeting excerpt",
-//         "Câu hỏi yêu cầu, gợi ý",
-//       ].map((label, index) => {
-//         const total = 3;
-//         const baseId = 69 + index * total;
-//         return {
-//           tagId: `p4-${index + 1}`,
-//           tagName: `[Part 4] ${label}`,
-//           total,
-//           correct: 2,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: 66.7,
-//           questionIds: [
-//             { id: baseId, status: "correct" },
-//             { id: baseId + 1, status: "correct" },
-//             { id: baseId + 2, status: "wrong" },
-//           ],
-//         };
-//       }),
-//     },
+  // Tạo cấu trúc parts từ tag_analysis
+  const partsMap = new Map();
 
-//     // ======================
-//     // 📘 PART 5
-//     // ======================
-//     {
-//       part: 5,
-//       questionsCount: 30,
-//       tags: [
-//         "Từ loại",
-//         "Ngữ pháp",
-//         "Từ vựng",
-//         "Danh từ",
-//         "Đại từ",
-//         "Tính từ",
-//         "Thì",
-//         "Thể",
-//         "Trạng từ",
-//         "Động từ nguyên mẫu",
-//         "Phân từ và cấu trúc phân từ",
-//         "Giới từ",
-//         "Liên từ",
-//       ].map((label, index) => {
-//         const total = 2;
-//         const baseId = 102 + index * total;
-//         return {
-//           tagId: `p5-${index + 1}`,
-//           tagName: `[Part 5] ${label}`,
-//           total,
-//           correct: 1,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: 50.0,
-//           questionIds: [
-//             { id: baseId, status: "correct" },
-//             { id: baseId + 1, status: "wrong" },
-//           ],
-//         };
-//       }),
-//     },
+  tag_analysis.forEach((tag) => {
+    // Extract part number from tag_name (e.g., "[Part 1] Tranh tả người" -> 1)
+    const partMatch = tag.tag_name.match(/\[Part (\d+)\]/);
+    const partNumber = partMatch ? parseInt(partMatch[1]) : 1;
 
-//     // ======================
-//     // 📘 PART 6
-//     // ======================
-//     {
-//       part: 6,
-//       questionsCount: 16,
-//       tags: [
-//         "Từ loại",
-//         "Ngữ pháp",
-//         "Từ vựng",
-//         "Điền câu vào đoạn văn",
-//         "Email/Letter",
-//         "Advertisement",
-//         "Notice/Announcement",
-//         "Động từ nguyên mẫu có to",
-//         "Danh động từ",
-//         "Câu điều kiện",
-//       ].map((label, index) => {
-//         const total = 1 + (index % 2);
-//         const baseId = 128 + index * 2;
-//         return {
-//           tagId: `p6-${index + 1}`,
-//           tagName: `[Part 6] ${label}`,
-//           total,
-//           correct: total - 0,
-//           wrong: 0,
-//           skipped: 0,
-//           accuracyPct: 100.0,
-//           questionIds: Array.from({ length: total }, (_, i) => ({
-//             id: baseId + i,
-//             status: "correct",
-//           })),
-//         };
-//       }),
-//     },
+    if (!partsMap.has(partNumber)) {
+      partsMap.set(partNumber, {
+        part: partNumber,
+        questionsCount: 0,
+        tags: [],
+      });
+    }
 
-//     // ======================
-//     // 📘 PART 7
-//     // ======================
-//     {
-//       part: 7,
-//       questionsCount: 54,
-//       tags: [
-//         "Tìm thông tin",
-//         "Tìm chi tiết sai",
-//         "Chủ đề, mục đích",
-//         "Suy luận",
-//         "Điền câu",
-//         "Một đoạn",
-//         "Nhiều đoạn",
-//         "Email/Letter",
-//         "Form",
-//         "Article/Review",
-//         "Advertisement",
-//         "Text message chain",
-//         "Schedule",
-//         "Instructions",
-//         "Hàm ý câu nói",
-//       ].map((label, index) => {
-//         const total = 3 + (index % 2);
-//         const baseId = 150 + index * total;
-//         return {
-//           tagId: `p7-${index + 1}`,
-//           tagName: `[Part 7] ${label}`,
-//           total,
-//           correct: total - 1,
-//           wrong: 1,
-//           skipped: 0,
-//           accuracyPct: (((total - 1) / total) * 100).toFixed(1),
-//           questionIds: Array.from({ length: total }, (_, i) => ({
-//             id: baseId + i,
-//             status: i < total - 1 ? "correct" : "wrong",
-//           })),
-//         };
-//       }),
-//     },
-//   ],
-//   answers: {},
-// };
+    const part = partsMap.get(partNumber);
+    part.questionsCount += tag.total_questions;
 
-/* Helper + fake navigate */
+    // Transform tag data
+    const transformedTag = {
+      tagId: tag.tag_name.toLowerCase().replace(/[^a-z0-9]/g, "-"),
+      tagName: tag.tag_name,
+      total: tag.total_questions,
+      correct: tag.correct_answers,
+      wrong: tag.wrong_answers,
+      skipped: tag.skipped_answers,
+      accuracyPct: parseFloat(tag.accuracy_rate),
+      questionIds: tag.question_list.map((q) => ({
+        id: q.question_id,
+        status:
+          q.is_correct === true
+            ? "correct"
+            : q.is_correct === false
+            ? "wrong"
+            : "skipped",
+      })),
+    };
+
+    part.tags.push(transformedTag);
+  });
+
+  // Convert Map to Array and sort by part number
+  const parts = Array.from(partsMap.values()).sort((a, b) => a.part - b.part);
+
+  // Calculate total time in seconds
+  const durationSeconds = session_info.duration_seconds || 0;
+
+  return {
+    testId: testInfo.testId || `T${session_info.test_id}`,
+    testTitle: testInfo.testTitle || `Test ${session_info.test_id}`,
+    mode: "Luyện đề đầy đủ",
+    durationMin: Math.floor(durationSeconds / 60),
+    timeTakenSeconds: durationSeconds,
+    answeredCount: overall_statistics.total_questions,
+    totalQuestions: overall_statistics.total_questions,
+    correctCount: overall_statistics.total_correct,
+    wrongCount: overall_statistics.total_wrong,
+    skippedCount: overall_statistics.total_skipped,
+    accuracyPct: parseFloat(overall_statistics.overall_accuracy),
+    parts: parts,
+    answers: {}, // Có thể thêm thông tin answers nếu cần
+  };
+}
+
 function formatTime(seconds) {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
@@ -566,123 +340,137 @@ function formatTime(seconds) {
   return `${pad(h)}:${pad(m)}:${pad(s)}`;
 }
 function fakeNavigate(path, options) {
-  console.log("navigate ->", path, options);
   alert(`Navigate: ${path}\n${JSON.stringify(options?.state || {}, null, 2)}`);
 }
 
 /* ResultSummary component */
 function ResultSummary({ data, onViewAnswers, onBackToAssessment }) {
   return (
-    <div
-      className="assessment-result__summary result-summary"
-      role="region"
-      aria-label="Tổng quan kết quả"
-    >
-      <div className="result-banner result-banner--warning" role="alert">
-        <span className="result-banner__icon" aria-hidden>
-          ⚠️
-        </span>
-        <div className="result-banner__text">
-          Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.{" "}
-          <button
-            className="result-banner__link"
-            onClick={() => alert("Tạo mục tiêu (demo)")}
-          >
-            Tạo ngay.
-          </button>
-        </div>
-      </div>
-
-      <div className="result-banner result-banner--info" role="note">
-        <span className="result-banner__icon" aria-hidden>
-          💡
-        </span>
-        <div className="result-banner__text">
-          Bạn có thể tạo flashcards từ highlights (bao gồm các highlights các
-          bạn đã tạo trước đây) trong trang chi tiết kết quả bài thi.{" "}
-          <button
-            className="result-banner__link"
-            onClick={() => alert("Xem hướng dẫn (demo)")}
-          >
-            Xem hướng dẫn.
-          </button>
-        </div>
-      </div>
-
-      <div className="result-header">
-        <div className="result-header__left">
-          <h2 className="result-header__title">
-            Kết quả luyện tập: {data.testTitle}
-          </h2>
-          <div className="result-badges">
-            <span className="result-badge">{data.mode}</span>
-            <span className="result-badge result-badge--muted">
-              Test ID: {data.testId}
-            </span>
+    <div className="assessment-result-container">
+      <div
+        className="assessment-result__summary result-summary"
+        role="region"
+        aria-label="Tổng quan kết quả"
+      >
+        <div className="result-banner result-banner--warning" role="alert">
+          <span className="result-banner__icon" aria-hidden>
+            ⚠️
+          </span>
+          <div className="result-banner__text">
+            Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.{" "}
+            <button
+              className="result-banner__link"
+              onClick={() => alert("Tạo mục tiêu (demo)")}
+            >
+              Tạo ngay.
+            </button>
           </div>
         </div>
 
-        <div className="result-header__actions">
-          <button
-            className="result-btn result-btn--primary"
-            aria-label="Xem đáp án"
-            onClick={onViewAnswers}
-          >
-            Xem đáp án
-          </button>
-          <button
-            className="result-btn result-btn--outline"
-            aria-label="Quay về trang đề thi"
-            onClick={onBackToAssessment}
-          >
-            Quay về trang đề thi
-          </button>
-        </div>
-      </div>
-
-      <div className="result-summary__body">
-        <div className="result-summary__left">
-          <div className="result-overview">
-            <div className="result-overview__row">
-              <div className="result-overview__label">Kết quả làm</div>
-              <div className="result-overview__value">
-                {data.answeredCount}/{data.totalQuestions}
-              </div>
-            </div>
-            <div className="result-overview__row">
-              <div className="result-overview__label">Độ chính xác</div>
-              <div className="result-overview__value">{data.accuracyPct}%</div>
-            </div>
-            <div className="result-overview__row">
-              <div className="result-overview__label">Thời gian hoàn thành</div>
-              <div className="result-overview__value">
-                {formatTime(data.timeTakenSeconds)}
-              </div>
-            </div>
+        <div className="result-banner result-banner--info" role="note">
+          <span className="result-banner__icon" aria-hidden>
+            💡
+          </span>
+          <div className="result-banner__text">
+            Bạn có thể tạo flashcards từ highlights (bao gồm các highlights các
+            bạn đã tạo trước đây) trong trang chi tiết kết quả bài thi.{" "}
+            <button
+              className="result-banner__link"
+              onClick={() => alert("Xem hướng dẫn (demo)")}
+            >
+              Xem hướng dẫn.
+            </button>
           </div>
         </div>
 
-        <div className="result-summary__right">
-          <div className="result-cards">
-            <div className="result-card result-card--correct">
-              <div className="result-card__label">Trả lời đúng</div>
-              <div className="result-card__value">
-                {data.correctCount}{" "}
-                <span className="result-card__sub">câu hỏi</span>
+        <div className="result-header">
+          <div className="result-header__left">
+            <h2 className="result-header__title">
+              Kết quả luyện tập: {data.testTitle}
+            </h2>
+            <div className="result-badges">
+              <span className="result-badge">{data.mode}</span>
+              <span className="result-badge result-badge--muted">
+                Test ID: {data.testId}
+              </span>
+            </div>
+          </div>
+
+          <div className="result-header__actions">
+            <button
+              className="result-btn result-btn--primary"
+              aria-label="Xem đáp án"
+              onClick={onViewAnswers}
+            >
+              Xem đáp án
+            </button>
+            <button
+              className="result-btn result-btn--outline"
+              aria-label="Quay về trang đề thi"
+              onClick={onBackToAssessment}
+            >
+              Quay về trang đề thi
+            </button>
+          </div>
+        </div>
+
+        <div className="result-summary__body">
+          <div className="result-summary__left">
+            <div className="result-overview">
+              <div className="result-overview__row">
+                <div className="result-overview__label">Kết quả làm</div>
+                <div className="result-overview__value">
+                  {data.answeredCount}/{data.totalQuestions}
+                </div>
+              </div>
+              <div className="result-overview__row">
+                <div className="result-overview__label">Độ chính xác</div>
+                <div className="result-overview__value">
+                  {data.accuracyPct}%
+                </div>
+              </div>
+              <div className="result-overview__row">
+                <div className="result-overview__label">
+                  Thời gian hoàn thành
+                </div>
+                <div className="result-overview__value">
+                  {formatTime(data.timeTakenSeconds)}
+                </div>
               </div>
             </div>
-            <div className="result-card result-card--wrong">
-              <div className="result-card__label">Trả lời sai</div>
-              <div className="result-card__value">
-                {data.wrongCount}{" "}
-                <span className="result-card__sub">câu hỏi</span>
+          </div>
+
+          <div className="result-summary__right">
+            <div className="result-cards">
+              <div className="result-card result-card--correct">
+                <i class="fa-regular fa-circle-check"></i>
+                <span className="result-card__label result-card__label--correct">
+                  Trả lời đúng
+                </span>
+                <div className="result-card__value">{data.correctCount} </div>
+                <div>
+                  <span className="result-card__sub">câu hỏi</span>
+                </div>
               </div>
-            </div>
-            <div className="result-card result-card--skipped">
-              <div className="result-card__label">Bỏ qua</div>
-              <div className="result-card__value">
-                {data.skippedCount}{" "}
-                <span className="result-card__sub">câu hỏi</span>
+              <div className="result-card result-card--wrong">
+                <i class="fa-regular fa-circle-xmark"></i>
+                <div className="result-card__label result-card__label--wrong">
+                  Trả lời sai
+                </div>
+                <div className="result-card__value">{data.wrongCount} </div>
+                <div>
+                  <span className="result-card__sub">câu hỏi</span>
+                </div>
+              </div>
+              <div className="result-card result-card--skipped">
+                <i class="fa-regular fa-circle-question"></i>
+                <div className="result-card__label result-card__label--skipped">
+                  Bỏ qua
+                </div>
+                <div className="result-card__value">{data.skippedCount} </div>
+                <div>
+                  <span className="result-card__sub">câu hỏi</span>
+                </div>
               </div>
             </div>
           </div>
@@ -851,13 +639,43 @@ function ResultAnalysis({ data, activePart, setActivePart, onQuestionClick }) {
 }
 
 /* Main exported component */
-export default function Result({ resultData = MOCK_DATA }) {
-  const [activePart, setActivePart] = useState(() => {
-    // default to first part if exists, else total
-    return resultData.parts && resultData.parts.length
-      ? `part-${resultData.parts[0].part}`
-      : "total";
-  });
+// export default function Result({ resultData = MOCK_DATA }) {
+export default function Result() {
+  const location = useLocation();
+
+  // ✅ Cách 1: Lấy state trực tiếp
+  const { sessionId, testId, testTitle } = location.state || {};
+  const testInfo = {
+    testId,
+    testTitle,
+  };
+  const [activePart, setActivePart] = useState("part-1");
+  // const [activePart, setActivePart] = useState(() => {
+  //   // default to first part if exists, else total
+  //   return resultData.parts && resultData.parts.length
+  //     ? `part-${resultData.parts[0].part}`
+  //     : "total";
+  // });
+
+  const { data: realData, isLoading, error } = useResultByTags(sessionId);
+
+  console.log()
+
+  // Transform dữ liệu
+  const resultData = useMemo(() => {
+    if (!realData) return MOCK_DATA;
+    return transformRealDataToMockFormat(realData, testInfo);
+  }, [realData, testInfo]);
+
+  if (isLoading) {
+    return <div className="assessment-result">Đang tải kết quả...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="assessment-result">Có lỗi xảy ra khi tải kết quả</div>
+    );
+  }
 
   if (!resultData) {
     return <div className="assessment-result">Không có dữ liệu.</div>;
@@ -874,7 +692,8 @@ export default function Result({ resultData = MOCK_DATA }) {
   };
 
   const handleBackToAssessment = () => {
-    fakeNavigate(`/assessment/${resultData.testId}`, {});
+    const navigate = useNavigate();
+    navigate("/assessment");
   };
 
   const handleQuestionClick = (qid) => {

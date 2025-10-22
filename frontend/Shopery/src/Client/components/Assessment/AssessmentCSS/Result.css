@@ -14,13 +14,13 @@
   --success: #16a34a;
   --danger: #ef4444;
   --warning: #fbbf24;
-  --muted: #6b7280;
   --neutral: #f9fafb;
+  --muted: #6b7280;
   --bg: #ffffff;
   --text: #111827;
   --border: #e5e7eb;
   --radius: 8px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow: 0 1px 3px rgba(46, 38, 38, 0.335);
   --shadow-md: 0 2px 8px rgba(16, 24, 40, 0.06);
   --font: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
     Arial;
@@ -59,6 +59,7 @@
   box-shadow: var(--shadow);
   border: 1px solid transparent;
   line-height: 1.5;
+  margin-bottom: 15px;
 }
 
 .result-banner--warning {
@@ -98,6 +99,7 @@
 ------------------------------ */
 .result-header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -110,6 +112,7 @@
   font-weight: 700;
   margin: 0;
   color: #111827;
+  margin-bottom: 10px;
 }
 .result-badges {
   display: flex;
@@ -146,6 +149,7 @@
   padding: 8px 14px;
   transition: var(--transition);
   border: 1px solid transparent;
+  margin-left: 5px;
 }
 .result-btn--primary {
   background-color: var(--primary);
@@ -177,7 +181,7 @@
   margin-top: 16px;
 }
 .result-summary__left {
-  flex: 1 1 280px;
+  flex: 1;
   min-width: 220px;
 }
 .result-summary__right {
@@ -236,23 +240,27 @@
   padding: 14px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
   border: 1px solid #f3f4f6;
   box-shadow: var(--shadow);
+  font-size: 20px;
 }
 .result-card__label {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
+  font-weight: 600;
 }
 .result-card__value {
   font-size: 18px;
   font-weight: 700;
+  color: black;
 }
 .result-card__sub {
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
   margin-left: 6px;
 }
 .result-card--correct {
@@ -268,6 +276,18 @@
 .result-card--skipped {
   border-color: rgba(156, 163, 175, 0.16);
   background: rgba(156, 163, 175, 0.06);
+  color: #6b7280;
+}
+.result-card__label--correct {
+  border-color: rgba(22, 163, 74, 0.2);
+  color: var(--success);
+}
+.result-card__label--wrong {
+  border-color: rgba(239, 68, 68, 0.18);
+  color: var(--danger);
+}
+.result-card__label--skipped {
+  border-color: rgba(156, 163, 175, 0.16);
   color: #6b7280;
 }
 

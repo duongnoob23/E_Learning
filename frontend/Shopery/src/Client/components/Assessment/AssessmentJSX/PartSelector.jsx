@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStartExamSession } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentCSS/PartSelector.css";
+import Comment from "./Comment.jsx";
 const partList = [
   {
     id: 1,
@@ -141,7 +142,6 @@ const partList = [
 
 const PartSelector = (Props) => {
   const { data, testId } = Props;
-  console.log("Props part selector", Props);
   const [selectPart, setSelectPart] = useState([]);
   const navigate = useNavigate();
 
@@ -158,9 +158,7 @@ const PartSelector = (Props) => {
       const newSelectPart = [...selectPart, id];
       setSelectPart(newSelectPart);
     }
-    console.log("click", id);
   };
-  console.log(selectPart);
 
   const handleStartTest = async () => {
     const testId = Props?.testId;
@@ -179,12 +177,12 @@ const PartSelector = (Props) => {
       time_limit_minutes,
     });
 
-    console.log("===", result);
     if (result && +result?.EC === 0) {
       // ✅ Truyền sessionData qua navigation
       navigate("/assessmentTest", {
         state: {
           sessionData: result.DT,
+          partData: data,
         },
       });
     }
@@ -196,74 +194,88 @@ const PartSelector = (Props) => {
   };
 
   return (
-    <div className="assessment-part">
-      {data &&
-        data?.map((part, index) => {
-          const fakePart = _getPartFake(index + 1);
+    <>
+      <div className="assessment-part">
+        <div className="assessment-banner">
+          💡Pro tips: Hình thức luyện tập từng phần và chọn mức thời gian phù
+          hợp sẽ giúp bạn tập trung vào giải đúng các câu hỏi thay vì phải chịu
+          áp lực hoàn thành bài thi.
+        </div>
 
-          return (
-            <div key={part.part_id} className="assessment-part__section">
-              <label className="assessment-part__header">
-                <input
-                  type="checkbox"
-                  className="assessment-part__checkbox"
-                  onClick={() => handleSelectPart(part.part_id)}
-                />
-                <span className="assessment-part__title">
-                  {part?.part_name} ({part?.question_count} câu hỏi){" "}
-                </span>
-              </label>
-              <label className="assessment-part__header">
-                <span className="assessment-part__title">
-                  {part?.description}
-                </span>
-              </label>
+        {data &&
+          data?.map((part, index) => {
+            const fakePart = _getPartFake(index + 1);
 
-              {/* ✅ Hiển thị tag nếu tồn tại trong partList */}
-              {fakePart && (
-                <div className="assessment-part__tags">
-                  {fakePart.tags.map((tag, i) => (
-                    <span key={i} className="assessment-part__tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })}
+            return (
+              <div key={part.part_id} className="assessment-part__section">
+                <label className="assessment-part__header">
+                  <input
+                    type="checkbox"
+                    className="assessment-part__checkbox"
+                    onClick={() => handleSelectPart(part.part_number)}
+                  />
+                  <span className="assessment-part__title">
+                    {part?.part_name} ({part?.question_count} câu hỏi){" "}
+                  </span>
+                </label>
+                <label className="assessment-part__header">
+                  <span className="assessment-part__title">
+                    {part?.description}
+                  </span>
+                </label>
 
-      {/* Giới hạn thời gian */}
-      <div className="assessment-part__time">
-        <label>Giới hạn thời gian (Để trống để làm bài không giới hạn)</label>
-        <div className="assessment-part__time-inputs">
-          <input
-            type="number"
-            placeholder="Giờ"
-            min="0"
-            className="assessment-part__input"
-          />
-          <span>:</span>
-          <input
-            type="number"
-            placeholder="Phút"
-            min="0"
-            max="59"
-            className="assessment-part__input"
-          />
+                {/* ✅ Hiển thị tag nếu tồn tại trong partList */}
+                {fakePart && (
+                  <div className="assessment-part__tags">
+                    {fakePart.tags.map((tag, i) => (
+                      <span key={i} className="assessment-part__tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+        {/* Giới hạn thời gian */}
+        <div className="assessment-part__time">
+          <label>Giới hạn thời gian (Để trống để làm bài không giới hạn)</label>
+          <div className="assessment-part__time-inputs">
+            <input
+              type="number"
+              placeholder="Giờ"
+              min="0"
+              className="assessment-part__input"
+            />
+            <span>:</span>
+            <input
+              type="number"
+              placeholder="Phút"
+              min="0"
+              max="59"
+              className="assessment-part__input"
+            />
+          </div>
+        </div>
+
+        {/* Nút luyện tập */}
+        <div className="assessment-part__actions">
+          <button
+            className="assessment-part__start-btn"
+            onClick={() => handleStartTest()}
+          >
+            🎯 Bắt đầu luyện tập
+          </button>
         </div>
       </div>
-
-      {/* Nút luyện tập */}
-      <div className="assessment-part__actions">
-        <button
-          className="assessment-part__start-btn"
-          onClick={() => handleStartTest()}
-        >
-          🎯 Bắt đầu luyện tập
-        </button>
-      </div>
-    </div>
+      <div
+        style={{
+          width: "100%",
+        }}
+      ></div>
+      <Comment testId={testId} />
+    </>
   );
 };
 

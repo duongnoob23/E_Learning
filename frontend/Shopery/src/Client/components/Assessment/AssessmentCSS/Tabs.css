@@ -89,3 +89,12 @@
 /* .assessment-tabs_content_fix {
   margin-bottom: 100px;
 } */
+
+.assessment-banner__fullTest {
+  color: #855a1f;
+  background-color: #ffefd8;
+  border-color: #ffe8c8;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}

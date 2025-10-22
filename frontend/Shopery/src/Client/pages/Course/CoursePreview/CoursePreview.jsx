@@ -245,7 +245,6 @@ const CoursePreview = () => {
   const navigate = useNavigate();
 
   const handleNavigateLesson = () => {
-    console.log("click");
     navigate(`/lesson`);
   };
 
