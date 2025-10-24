@@ -14,7 +14,7 @@ const validateRegister = (data) => {
   } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
     errors.email = ["Email không hợp lệ"];
   }
-
+ 
   if (!password) {
     errors.password = ["Password là bắt buộc"];
   } else if (password.length < 6) {

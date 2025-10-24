@@ -9,10 +9,13 @@ const {
   PartStatistics,
   TestDiscussion,
   TestComment,
-  User
+  User,
+  SpeakingResponse,
+  WritingResponse,
 } = require("../../models");
 const { Op } = require("sequelize");
-
+const { transcribeAudio } = require("./whisperService");
+const llmService = require("./llmService");
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (filters = {}) => {
     try {
@@ -737,5 +740,176 @@ exports.updateUserStatistics = async (user_id, score, total_questions, correct_a
         }
     } catch (error) {
         console.error("Error updating user statistics:", error);
+    }
+}
+
+
+// --------- Speaking and Writing Routes --------- //
+
+// POST /api/speaking/upload - Tải lên tệp âm thanh speaking
+exports.uploadSpeakingAudio = async (audioData) => {
+    try {
+        const { user_id, session_id, question_id, audio_file_path, language } = audioData;
+
+        // Kiểm tra phiên thi có tồn tại không
+        const examSession = await ExamSession.findById(session_id);
+        if (!examSession) {
+            return {
+                EM: "Không tìm thấy phiên thi",
+                EC: "2",
+                DT: null,
+            };
+        }
+
+        // Kiểm tra câu hỏi speaking có tồn tại không
+        const speakingQuestion = await Question.findById(question_id);
+        if (!speakingQuestion || speakingQuestion.question_type !== 'SPEAKING') {
+            return {
+                EM: "Không tìm thấy câu hỏi speaking",
+                EC: "3",
+                DT: null,
+            };
+        }
+
+        // Transcribe audio
+        let transcription = "";
+        try {
+            transcription = await transcribeAudio(audio_file_path, language);
+        } catch (transcribeError) {
+            console.error("Transcription error:", transcribeError.message);
+            return {
+                EM: `Lỗi xử lý âm thanh: ${transcribeError.message}`,
+                EC: "-3",
+                DT: null,
+            };
+        }
+
+        // Tạo phản hồi speaking mới
+        const speakingResponse = await SpeakingResponse.create({
+            session_id,
+            question_id,
+            user_id,
+            audio_file_path,
+            transcription,
+            language,
+            processing_status: 'COMPLETED'
+        });
+
+        return {
+            EM: "Tải lên tệp âm thanh thành công",
+            EC: "0",
+            DT: speakingResponse,
+        };
+    } catch (error) {
+        console.error("Error in uploadSpeakingAudio service:", error);
+        return {
+            EM: `Có lỗi xảy ra: ${error.message}`,
+            EC: "-2",
+            DT: null,
+        };
+    }
+}
+
+// GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
+exports.getSessionSpeakingResponses = async (session_id, options = {}) => {
+    try {
+        const { status, page = 1, limit = 10 } = options;
+        const offset = (page - 1) * limit;
+
+        const whereClause = { session_id };
+        if (status) whereClause.processing_status = status;
+        
+        const { count, rows: responses } = await SpeakingResponse.findAndCountAll({
+            where: whereClause,
+            limit: parseInt(limit),
+            offset: offset,
+            order: [['created_at', 'DESC']]
+        });
+
+        return {
+            EM: "Lấy danh sách phản hồi speaking thành công",
+            EC: "0",
+            DT: {
+                responses,
+                pagination: {
+                    current_page: parseInt(page),
+                    total_pages: Math.ceil(count / limit),
+                    total_items: count,
+                    items_per_page: parseInt(limit)
+                }
+
+                
+            },
+        };
+    } catch (error) {
+        console.error("Error in getSessionSpeakingResponses service:", error);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi speaking",
+            EC: "-2",
+            DT: null,
+        };
+    }
+}
+
+
+// Chấm điểm speaking response
+exports.gradeSpeaking = async ({response_id, user_id, text, language }) => {
+     try {
+        const result = await llmService.gradeByLLM({
+            text,
+            type: "SPEAKING",
+            language
+        });
+
+        // Cập nhật điểm và feedback cho response
+        await SpeakingResponse.update({
+            score: result.score,
+            feedback: result.feedback
+        }, {
+            where: { response_id, user_id }
+        });
+        return {
+            EM: "Chấm bài Speaking thành công",
+            EC: "0",
+            DT: result
+        };
+    } catch (error) {
+        console.error("Error in gradeSpeaking:", error);
+        return {
+            EM: "Có lỗi xảy ra khi chấm Speaking",
+            EC: "-2",
+            DT: null
+        };
+    }
+}
+
+// Chấm điểm writing response
+exports.gradeWriting = async ({ user_id, text, language }) => {
+    try {
+        const result = await llmService.gradeByLLM({
+            text,
+            type: "WRITING",
+            language
+        });
+        // Cập nhật điểm và feedback cho response
+        await WritingResponse.update({
+            score: result.score,
+            feedback: result.feedback
+        }, {
+            where: { response_id }
+        });
+        return {
+            EM: "Chấm bài Writing thành công",
+            EC: "0",
+            DT: result
+        };
+    }
+    catch (error) {
+        console.error("Error in gradeWriting:", error);
+        return {
+            EM: "Có lỗi xảy ra khi chấm Writing",
+            EC: "-2",
+            DT: null
+        };
     }
 }

@@ -1,5 +1,6 @@
 const examClientService = require("../services/examClientService");
 const { TestDiscussion } = require('../../models');
+
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
   try {
@@ -183,4 +184,77 @@ exports.addComment = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+
+
+// --------- Speaking Routes --------- //
+// POST /api/speaking/upload - Tải lên tệp âm thanh speaking
+exports.uploadSpeakingAudio = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+    const { session_id, question_id, language } = req.body;
+    const audio_file_path = req.file.path;
+
+    console.log("=== uploadSpeakingAudio ===");
+    console.log("File path from multer:", audio_file_path);
+    console.log("File info:", {
+      filename: req.file.filename,
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      size: req.file.size
+    });
+
+    const response = await examClientService.uploadSpeakingAudio({
+      user_id,
+      session_id,
+      question_id,
+      audio_file_path,
+      language
+    });
+
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
+exports.getSessionSpeakingResponses = async (req, res, next) => {
+  try {
+        const user_id = req.user.userId;
+        const { text, type, language } = req.body;
+
+        const response = await examClientService.scoreResponse({
+            user_id,
+            text,
+            type,
+            language
+        });
+
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// POST /api/llmservice/score - Chấm điểm speaking/writing response
+exports.gradeExam = async (req, res, next) => {
+    try {
+        const {response_id, type, text, language } = req.body;
+        const user_id = req.user.userId;
+
+        let response;
+        if (type === "WRITING") {
+            response = await examClientService.gradeWriting({response_id, user_id, text, language });
+        } else if (type === "SPEAKING") {
+            response = await examClientService.gradeSpeaking({response_id, user_id, text, language });
+        } else {
+            return res.status(400).json({ EM: "Loại bài không hợp lệ", EC: "-1", DT: null });
+        }
+
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
 };

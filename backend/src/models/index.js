@@ -57,6 +57,8 @@ const ExamTag = require("./exam/Tag")(sequelize, DataTypes);
 const QuestionTag = require("./exam/QuestionTag")(sequelize, DataTypes);
 const TestDiscussion = require("./exam/Discussion")(sequelize, DataTypes);
 const TestComment = require("./exam/Comment")(sequelize, DataTypes);
+const SpeakingResponse = require("./exam/SpeakingResponse")(sequelize, DataTypes);
+const WritingResponse = require("./exam/WritingResponse")(sequelize, DataTypes);
 
 
 // Associations
@@ -251,4 +253,6 @@ module.exports = {
   QuestionTag,
   TestDiscussion,
   TestComment,
+  SpeakingResponse,
+  WritingResponse,
 };
