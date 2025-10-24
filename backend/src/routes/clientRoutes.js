@@ -13,6 +13,7 @@ const profileRoutes = require("../client/routes/profileClientRoutes");
 const lessonRoutes = require("../client/routes/lessonClientRoutes");
 const examRoutes = require("../client/routes/examClientRoutes");
 
+
 router.use("/auth", authClient);
 router.use("/word", wordRoutes);
 router.use("/topic", topicRoutes);

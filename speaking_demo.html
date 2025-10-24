@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Exam Demo - E-Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        .demo-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .question-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #1565c0;
+            font-weight: 500;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(86, 171, 47, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .status.recording {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .status.processing {
+            background: #fff3e0;
+            color: #ef6c00;
+            border: 1px solid #ffcc02;
+        }
+
+        .status.success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .result-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+
+        .result-box h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .transcription {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .metadata-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .metadata-value {
+            color: #333;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        .timer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .audio-player {
+            margin: 15px 0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pulse {
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 1; }
+            to { opacity: 0.5; }
+        }
+
+        .config-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎤 Speaking Exam Demo</h1>
+            <p>Test the Whisper Speech-to-Text Integration</p>
+        </div>
+
+        <div class="content">
+            <!-- Configuration Section -->
+            <div class="demo-section">
+                <h2>⚙️ Configuration</h2>
+                <div class="config-section">
+                    <div class="form-group">
+                        <label for="apiUrl">Backend API URL:</label>
+                        <input type="text" id="apiUrl" value="http://localhost:5000" placeholder="http://localhost:5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionId">Session ID:</label>
+                        <input type="number" id="sessionId" value="1" placeholder="Enter session ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="questionId">Question ID:</label>
+                        <input type="number" id="questionId" value="1" placeholder="Enter question ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Language (optional):</label>
+                        <select id="language">
+                            <option value="">Auto-detect</option>
+                            <option value="en">English</option>
+                            <option value="vi">Vietnamese</option>
+                            <option value="zh">Chinese</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="es">Spanish</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="authToken">Auth Token (JWT):</label>
+                        <input type="text" id="authToken" placeholder="Enter your JWT token for authentication">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speaking Test Section -->
+            <div class="demo-section">
+                <h2>🗣️ Speaking Test</h2>
+                
+                <div class="question-box">
+                    <div class="question-text">
+                        Sample Question: Tell me about yourself and your hometown. Describe what you like most about living there and explain why it's special to you. Speak for 1-2 minutes.
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">🎤 Start Recording</button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>⏹️ Stop Recording</button>
+                    <button id="uploadBtn" class="btn btn-success" disabled>📤 Upload & Transcribe</button>
+                    <div id="timer" class="timer">00:00</div>
+                </div>
+
+                <div id="status" class="status" style="display: none;"></div>
+
+                <div id="audioPlayer" style="display: none;">
+                    <h3>🎵 Recorded Audio:</h3>
+                    <audio id="audioElement" controls style="width: 100%;"></audio>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="demo-section" style="display: none;">
+                <h2>📊 Transcription Results</h2>
+                <div id="results" class="result-box"></div>
+            </div>
+
+            <!-- Service Health Section -->
+            <div class="demo-section">
+                <h2>🏥 Service Health</h2>
+                <div class="controls">
+                    <button id="healthBtn" class="btn btn-primary">Check Health</button>
+                </div>
+                <div id="healthResults" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordingStartTime;
+        let timerInterval;
+        let recordedBlob;
+
+        // DOM elements
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const timer = document.getElementById('timer');
+        const status = document.getElementById('status');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioElement = document.getElementById('audioElement');
+        const resultsSection = document.getElementById('resultsSection');
+        const results = document.getElementById('results');
+        const healthBtn = document.getElementById('healthBtn');
+        const healthResults = document.getElementById('healthResults');
+
+        // Configuration elements
+        const apiUrl = document.getElementById('apiUrl');
+        const sessionId = document.getElementById('sessionId');
+        const questionId = document.getElementById('questionId');
+        const language = document.getElementById('language');
+        const authToken = document.getElementById('authToken');
+
+        // Event listeners
+        startBtn.addEventListener('click', startRecording);
+        stopBtn.addEventListener('click', stopRecording);
+        uploadBtn.addEventListener('click', uploadAudio);
+        healthBtn.addEventListener('click', checkHealth);
+
+        // Utility functions
+        function showStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            status.style.display = 'none';
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+            timer.textContent = formatTime(elapsed);
+        }
+
+        // Recording functions
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 44100
+                    } 
+                });
+
+                mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm;codecs=opus'
+                });
+
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    recordedBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const audioUrl = URL.createObjectURL(recordedBlob);
+                    audioElement.src = audioUrl;
+                    audioPlayer.style.display = 'block';
+                    uploadBtn.disabled = false;
+                };
+
+                mediaRecorder.start();
+                recordingStartTime = Date.now();
+                
+                // Update UI
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                uploadBtn.disabled = true;
+                timer.classList.add('pulse');
+                
+                // Start timer
+                timerInterval = setInterval(updateTimer, 1000);
+                
+                showStatus('🎤 Recording in progress... Speak clearly into your microphone.', 'recording');
+
+            } catch (error) {
+                console.error('Error starting recording:', error);
+                showStatus('❌ Error accessing microphone. Please check permissions.', 'error');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                
+                // Update UI
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                timer.classList.remove('pulse');
+                
+                // Stop timer
+                clearInterval(timerInterval);
+                
+                showStatus('✅ Recording completed! You can now upload for transcription.', 'success');
+            }
+        }
+
+        async function uploadAudio() {
+            if (!recordedBlob) {
+                showStatus('❌ No audio recorded yet.', 'error');
+                return;
+            }
+
+            // Validate configuration
+            if (!apiUrl.value || !sessionId.value || !questionId.value) {
+                showStatus('❌ Please fill in all required configuration fields.', 'error');
+                return;
+            }
+
+            if (!authToken.value) {
+                showStatus('❌ Please provide an authentication token.', 'error');
+                return;
+            }
+
+            try {
+                uploadBtn.disabled = true;
+                showStatus('📤 Uploading audio and processing transcription...', 'processing');
+
+                const formData = new FormData();
+                formData.append('audio_file', recordedBlob, 'recording.webm');
+                formData.append('session_id', sessionId.value);
+                formData.append('question_id', questionId.value);
+                
+                if (language.value) {
+                    formData.append('language', language.value);
+                }
+
+                const response = await fetch(`${apiUrl.value}/exam/speaking/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken.value}`
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showStatus('✅ Upload successful! Checking transcription status...', 'success');
+                    
+                    // Poll for transcription result
+                    pollTranscriptionResult(result.data.response_id);
+                } else {
+                    throw new Error(result.message || 'Upload failed');
+                }
+
+            } catch (error) {
+                console.error('Upload error:', error);
+                showStatus(`❌ Upload failed: ${error.message}`, 'error');
+                uploadBtn.disabled = false;
+            }
+        }
+
+        async function pollTranscriptionResult(responseId) {
+            const maxAttempts = 30; // 30 attempts = 1.5 minutes
+            let attempts = 0;
+
+            const poll = async () => {
+                try {
+                    attempts++;
+                    
+                    const response = await fetch(`${apiUrl.value}/exam/speaking/response/${responseId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${authToken.value}`
+                        }
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        const data = result.data;
+                        
+                        if (data.processing_status === 'COMPLETED') {
+                            displayResults(data);
+                            showStatus('🎉 Transcription completed successfully!', 'success');
+                            uploadBtn.disabled = false;
+                            return;
+                        } else if (data.processing_status === 'FAILED') {
+                            throw new Error(data.error_message || 'Transcription failed');
+                        } else if (data.processing_status === 'PROCESSING' || data.processing_status === 'PENDING') {
+                            if (attempts < maxAttempts) {
+                                showStatus(`⏳ Processing transcription... (${attempts}/${maxAttempts})`, 'processing');
+                                setTimeout(poll, 3000); // Poll every 3 seconds
+                            } else {
+                                throw new Error('Transcription timeout - please try again');
+                            }
+                        }
+                    } else {
+                        throw new Error(result.message || 'Failed to get transcription status');
+                    }
+
+                } catch (error) {
+                    console.error('Polling error:', error);
+                    showStatus(`❌ Error checking transcription: ${error.message}`, 'error');
+                    uploadBtn.disabled = false;
+                }
+            };
+
+            poll();
+        }
+
+        function displayResults(data) {
+            const resultsHtml = `
+                <h3>📝 Transcription</h3>
+                <div class="transcription">
+                    ${data.transcription || 'No transcription available'}
+                </div>
+                
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <div class="metadata-label">Language Detected</div>
+                        <div class="metadata-value">${data.language_detected || 'Unknown'}</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-label">Confidence Score</div>
+                        <div class="metadata-value">${data.confidence_score ? (data.confidence_score * 100).toFixed(1) + '%' : 'N/A'}</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-label">Duration</div>
+                        <div class="metadata-value">${data.duration_seconds ? data.duration_seconds.toFixed(1) + 's' : 'N/A'}</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-label">Processing Status</div>
+                        <div class="metadata-value">${data.processing_status}</div>
+                    </div>
+                </div>
+                
+                ${data.score ? `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Score</div>
+                        <div class="metadata-value">${data.score}</div>
+                    </div>
+                ` : ''}
+                
+                ${data.feedback ? `
+                    <h3>💬 Feedback</h3>
+                    <div class="transcription">
+                        ${data.feedback}
+                    </div>
+                ` : ''}
+            `;
+
+            results.innerHTML = resultsHtml;
+            resultsSection.style.display = 'block';
+        }
+
+        async function checkHealth() {
+            try {
+                healthBtn.disabled = true;
+                healthBtn.innerHTML = '<span class="loading"></span> Checking...';
+
+                const response = await fetch(`${apiUrl.value}/exam/speaking/health`, {
+                    headers: authToken.value ? {
+                        'Authorization': `Bearer ${authToken.value}`
+                    } : {}
+                });
+
+                const result = await response.json();
+
+                let healthHtml = '';
+                if (result.success) {
+                    const whisper = result.whisper_service;
+                    healthHtml = `
+                        <h3>✅ Service Health Status</h3>
+                        <div class="metadata">
+                            <div class="metadata-item">
+                                <div class="metadata-label">Service Status</div>
+                                <div class="metadata-value">${whisper.status}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">Model Loaded</div>
+                                <div class="metadata-value">${whisper.model_loaded ? '✅ Yes' : '❌ No'}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">Current Model</div>
+                                <div class="metadata-value">${whisper.model}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">Last Check</div>
+                                <div class="metadata-value">${new Date(whisper.timestamp).toLocaleString()}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    healthHtml = `
+                        <h3>❌ Service Health Check Failed</h3>
+                        <div class="transcription">
+                            ${result.message || 'Unknown error'}
+                        </div>
+                    `;
+                }
+
+                healthResults.innerHTML = healthHtml;
+                healthResults.style.display = 'block';
+
+            } catch (error) {
+                console.error('Health check error:', error);
+                healthResults.innerHTML = `
+                    <h3>❌ Health Check Error</h3>
+                    <div class="transcription">
+                        ${error.message}
+                    </div>
+                `;
+                healthResults.style.display = 'block';
+            } finally {
+                healthBtn.disabled = false;
+                healthBtn.innerHTML = 'Check Health';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if browser supports required APIs
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                showStatus('❌ Your browser does not support audio recording.', 'error');
+                startBtn.disabled = true;
+            }
+
+            // Load saved configuration from localStorage
+            const savedConfig = localStorage.getItem('speakingDemoConfig');
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    if (config.apiUrl) apiUrl.value = config.apiUrl;
+                    if (config.authToken) authToken.value = config.authToken;
+                } catch (e) {
+                    console.warn('Failed to load saved configuration');
+                }
+            }
+
+            // Save configuration on change
+            [apiUrl, authToken].forEach(element => {
+                element.addEventListener('change', () => {
+                    const config = {
+                        apiUrl: apiUrl.value,
+                        authToken: authToken.value
+                    };
+                    localStorage.setItem('speakingDemoConfig', JSON.stringify(config));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

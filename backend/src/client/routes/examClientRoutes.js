@@ -37,9 +37,6 @@ router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClient
 // User Statistics Routes
 router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics); // Done
 
-// Result Analysis Routes
-router.get("/exam-sessions/:session_id/result-by-tags", authMiddleware, ExamClientController.getResultByTags); // New
-
 // Discussion Routes
 router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions);
 router.post("/discussions", authMiddleware, ExamClientController.createDiscussion);
