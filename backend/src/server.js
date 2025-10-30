@@ -10,7 +10,6 @@ const routes = require("./routes");
 const { handleDiscussionSocket } = require("./socket/discussionSocket");
 require("dotenv").config();
 
-// Import database connection
 const {
   connectDatabase,
   closeDatabase,

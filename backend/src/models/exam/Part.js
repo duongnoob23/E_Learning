@@ -93,6 +93,8 @@ module.exports = (sequelize, DataTypes) => {
             },
         });
     };
+    Part.deletePartByTestId = async (test_id) =>
+        Part.destroy({ where: { test_id } });
 
     Part.createPart = async (data) => Part.create(data);
 
