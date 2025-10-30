@@ -93,7 +93,6 @@ import { useNavigate } from "react-router-dom";
 import "../AssessmentCSS/Card.css";
 const Card = ({ exam, id, isCompleted, userStats }) => {
   const navigate = useNavigate();
-  console.log("[STEP - 01]", userStats);
   const handleNavigate = () => {
     navigate(`/assessment/${id}`, {
       state: { testId: exam.test_id, userStats: userStats },

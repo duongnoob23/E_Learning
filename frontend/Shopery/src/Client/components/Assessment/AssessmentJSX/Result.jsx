@@ -1,5 +1,5 @@
 // Result.jsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useResultByTags } from "../../../services/Assessment/assessmentQueries";
 import "../AssessmentCSS/Result.css";
@@ -657,9 +657,16 @@ export default function Result() {
   //     : "total";
   // });
 
+  useEffect(() => {
+    console.log("MOUNT");
+    return () => {
+      console.log("UN MOUNT");
+    };
+  }, []);
+
   const { data: realData, isLoading, error } = useResultByTags(sessionId);
 
-  console.log()
+  console.log();
 
   // Transform dữ liệu
   const resultData = useMemo(() => {

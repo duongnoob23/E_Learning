@@ -10,7 +10,7 @@ import "./Assessment.css";
 // 🍎🍊🍋🍉🍇🍓🥑🍍
 const Assessment = () => {
   const { data: testsData, isLoading: testsLoading } = useTests();
-
+  console.log("JSON", JSON.stringify(testsData, null, 2));
   return (
     <div className="assessment">
       <div className="assessment__title">Thư viện đề thi</div>

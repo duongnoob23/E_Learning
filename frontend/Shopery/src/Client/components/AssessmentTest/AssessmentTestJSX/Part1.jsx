@@ -11,7 +11,6 @@ export default function Part1({
 }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log("JSON", JSON.stringify(partData, null, 2));
   const partId = useMemo(() => {
     return partData.find((item, index) => +item.part_number == 1);
   }, [partData]);

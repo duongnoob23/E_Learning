@@ -32,8 +32,8 @@ export const useSubmitExamSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ sessionId, answers }) =>
-      assessmentApi.submitExamSession(sessionId, answers),
+    mutationFn: ({ sessionId, answers, examId }) =>
+      assessmentApi.submitExamSession(sessionId, answers, examId),
     onSuccess: (data, variables) => {
       const { EM, EC, DT } = data;
       if (EC === "0") {

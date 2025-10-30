@@ -41,7 +41,7 @@ const Detail = () => {
   return (
     <div className="assessment-detail container">
       <div className="assessment-detail__main">
-        <InfoBox exam={exam} data={detailsData.DT} userStats={userStats} />
+        <InfoBox examId={id} data={detailsData.DT} userStats={userStats} />
         <Tabs data={partsData.DT} testId={testId}></Tabs>
       </div>
 

@@ -1,0 +1,52 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+
+  &__main {
+    flex: 1;
+    margin-left: 240px; // tương ứng width sidebar
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+  }
+
+  &__username {
+    font-weight: 500;
+  }
+
+  &__content {
+    flex: 1;
+    padding: 24px;
+    background-color: #f8f9fa;
+  }
+}

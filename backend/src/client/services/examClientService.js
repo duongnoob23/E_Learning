@@ -18,7 +18,7 @@ const { Op } = require("sequelize");
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (filters = {}) => {
   try {
-    const { exam_type, difficulty_level, page = 1, limit = 10 } = filters;
+    const { exam_type, difficulty_level, page = 1, limit = 20 } = filters;
 
     const whereClause = {};
     if (exam_type) whereClause.exam_type = exam_type;
@@ -235,9 +235,253 @@ exports.startExamSession = async (sessionData) => {
   }
 };
 // POST /api/exam-sessions/{session_id}/submit - Nộp bài thi
+// exports.submitExamSession = async (session_id, user_id, answers) => {
+//   try {
+//     // Kiểm tra phiên thi có tồn tại và thuộc về user không
+//     const examSession = await ExamSession.findById(session_id);
+//     if (!examSession || examSession.user_id !== user_id) {
+//       return {
+//         EM: "Không tìm thấy phiên thi hoặc bạn không có quyền truy cập",
+//         EC: "2",
+//         DT: null,
+//       };
+//     }
+
+//     if (examSession.status !== "IN_PROGRESS") {
+//       return {
+//         EM: "Phiên thi đã kết thúc",
+//         EC: "3",
+//         DT: null,
+//       };
+//     }
+
+//     let correctAnswers = 0;
+//     let wrongAnswers = 0;
+//     let skippedAnswers = 0;
+//     const totalQuestions = answers.length;
+//     const partStats = {}; // { part_id: { total: x, correct: y } }
+
+//     // Xử lý từng câu trả lời
+//     for (const ans of answers) {
+//       const question = await Question.findById(ans.question_id);
+//       if (!question) continue;
+
+//       let isCorrect = null;
+//       let selectedChoice = null;
+
+//       if (ans.selected_choice_id) {
+//         selectedChoice = await Choice.findById(ans.selected_choice_id);
+//         isCorrect = selectedChoice ? selectedChoice.is_correct : false;
+
+//         if (isCorrect) {
+//           correctAnswers++;
+//         } else {
+//           wrongAnswers++;
+//         }
+//       } else {
+//         skippedAnswers++;
+//       }
+
+//       // Lưu UserAnswer
+//       await UserAnswer.createAnswer({
+//         exam_session_id: session_id,
+//         question_id: ans.question_id,
+//         selected_choice_id: ans.selected_choice_id || null,
+//         is_correct: isCorrect,
+//         answer_time: new Date(),
+//       });
+
+//       // Thống kê theo Part
+//       if (!partStats[question.part_id]) {
+//         partStats[question.part_id] = { total: 0, correct: 0 };
+//       }
+//       partStats[question.part_id].total += 1;
+//       if (isCorrect) partStats[question.part_id].correct += 1;
+//     }
+
+//     // Tính điểm tổng
+//     const totalScore = Math.round((correctAnswers / totalQuestions) * 100);
+
+//     // Cập nhật phiên thi
+//     const endTime = new Date();
+//     const durationSeconds = Math.floor(
+//       (endTime - new Date(examSession.start_time)) / 1000
+//     );
+
+//     await ExamSession.updateSession(session_id, {
+//       end_time: endTime,
+//       duration_seconds: durationSeconds,
+//       total_score: totalScore,
+//       correct_answers: correctAnswers,
+//       wrong_answers: wrongAnswers,
+//       skipped_answers: skippedAnswers,
+//       status: "COMPLETED",
+//     });
+
+//     // Cập nhật thống kê người dùng
+//     await this.updateUserStatistics(
+//       user_id,
+//       totalScore,
+//       totalQuestions,
+//       correctAnswers
+//     );
+
+//     // Cập nhật thống kê từng part
+//     for (const [part_id, stats] of Object.entries(partStats)) {
+//       await PartStatistics.updatePartPerformance(
+//         user_id,
+//         parseInt(part_id),
+//         stats.total,
+//         stats.correct
+//       );
+//     }
+
+//     const updatedSession = await ExamSession.findById(session_id);
+
+//     return {
+//       EM: "Nộp bài thi thành công",
+//       EC: "0",
+//       DT: updatedSession,
+//     };
+//   } catch (error) {
+//     console.error("Error in submitExamSession service:", error);
+//     return {
+//       EM: "Có lỗi xảy ra trong quá trình nộp bài thi",
+//       EC: "-2",
+//       DT: null,
+//     };
+//   }
+// };
+
+// exports.submitExamSession = async (session_id, user_id, answers) => {
+//   try {
+//     // 1️⃣ Kiểm tra phiên thi có hợp lệ không
+//     const examSession = await ExamSession.findById(session_id);
+//     if (!examSession || examSession.user_id !== user_id) {
+//       return {
+//         EM: "Không tìm thấy phiên thi hoặc bạn không có quyền truy cập",
+//         EC: "2",
+//         DT: null,
+//       };
+//     }
+
+//     if (examSession.status !== "IN_PROGRESS") {
+//       return {
+//         EM: "Phiên thi đã kết thúc",
+//         EC: "3",
+//         DT: null,
+//       };
+//     }
+
+//     // 2️⃣ Lấy toàn bộ câu hỏi trong bài test
+//     const test = await Test.findWithAll(examSession.test_id);
+//     const allQuestions = test.parts.flatMap((p) => p.questions);
+
+//     let correctAnswers = 0;
+//     let wrongAnswers = 0;
+//     let skippedAnswers = 0;
+//     const partStats = {};
+
+//     // Chuyển answers thành map để tra nhanh
+//     const userAnswerMap = new Map(answers.map((a) => [a.question_id, a]));
+
+//     // 3️⃣ Duyệt qua toàn bộ câu hỏi của test
+//     for (const question of allQuestions) {
+//       const ans = userAnswerMap.get(question.question_id);
+//       let isCorrect = -1; // mặc định là chưa trả lời
+//       let selectedChoiceId = null;
+
+//       if (ans && ans.selected_choice_id) {
+//         selectedChoiceId = ans.selected_choice_id;
+//         const selectedChoice = await Choice.findById(selectedChoiceId);
+
+//         if (selectedChoice) {
+//           isCorrect = selectedChoice.is_correct ? 1 : 0;
+//         } else {
+//           isCorrect = 0;
+//         }
+
+//         if (isCorrect === 1) correctAnswers++;
+//         else wrongAnswers++;
+//       } else {
+//         skippedAnswers++;
+//       }
+
+//       // 4️⃣ Lưu UserAnswer
+//       await UserAnswer.createAnswer({
+//         exam_session_id: session_id,
+//         question_id: question.question_id,
+//         selected_choice_id: selectedChoiceId,
+//         is_correct: isCorrect,
+//         answer_time: new Date(),
+//       });
+
+//       // 5️⃣ Thống kê theo Part
+//       if (!partStats[question.part_id]) {
+//         partStats[question.part_id] = { total: 0, correct: 0 };
+//       }
+//       partStats[question.part_id].total += 1;
+//       if (isCorrect === 1) partStats[question.part_id].correct += 1;
+//     }
+
+//     // 6️⃣ Tính điểm
+//     const totalQuestions = allQuestions.length;
+//     const totalScore = Math.round((correctAnswers / totalQuestions) * 100);
+
+//     // 7️⃣ Cập nhật phiên thi
+//     const endTime = new Date();
+//     const durationSeconds = Math.floor(
+//       (endTime - new Date(examSession.start_time)) / 1000
+//     );
+
+//     await ExamSession.updateSession(session_id, {
+//       end_time: endTime,
+//       duration_seconds: durationSeconds,
+//       total_score: totalScore,
+//       correct_answers: correctAnswers,
+//       wrong_answers: wrongAnswers,
+//       skipped_answers: skippedAnswers,
+//       status: "COMPLETED",
+//     });
+
+//     // 8️⃣ Cập nhật thống kê người dùng
+//     await this.updateUserStatistics(
+//       user_id,
+//       totalScore,
+//       totalQuestions,
+//       correctAnswers
+//     );
+
+//     // 9️⃣ Cập nhật thống kê từng Part
+//     for (const [part_id, stats] of Object.entries(partStats)) {
+//       await PartStatistics.updatePartPerformance(
+//         user_id,
+//         parseInt(part_id),
+//         stats.total,
+//         stats.correct
+//       );
+//     }
+
+//     const updatedSession = await ExamSession.findById(session_id);
+
+//     return {
+//       EM: "Nộp bài thi thành công",
+//       EC: "0",
+//       DT: updatedSession,
+//     };
+//   } catch (error) {
+//     console.error("Error in submitExamSession service:", error);
+//     return {
+//       EM: "Có lỗi xảy ra trong quá trình nộp bài thi",
+//       EC: "-2",
+//       DT: null,
+//     };
+//   }
+// };
+
 exports.submitExamSession = async (session_id, user_id, answers) => {
   try {
-    // Kiểm tra phiên thi có tồn tại và thuộc về user không
+    // 1) Validate session & ownership
     const examSession = await ExamSession.findById(session_id);
     if (!examSession || examSession.user_id !== user_id) {
       return {
@@ -246,63 +490,161 @@ exports.submitExamSession = async (session_id, user_id, answers) => {
         DT: null,
       };
     }
-
     if (examSession.status !== "IN_PROGRESS") {
-      return {
-        EM: "Phiên thi đã kết thúc",
-        EC: "3",
-        DT: null,
-      };
+      return { EM: "Phiên thi đã kết thúc", EC: "3", DT: null };
     }
 
+    // answers: [{ question_id, selected_choice_id }, ...]
+    // Normalize input (ensure array)
+    answers = Array.isArray(answers) ? answers : [];
+
+    // 2) Lấy toàn bộ cấu trúc Test -> parts -> questions (dùng hàm có sẵn)
+    const test = await Test.findWithAll(examSession.test_id);
+    if (!test || !test.parts) {
+      return { EM: "Không tìm thấy câu hỏi trong bài thi", EC: "4", DT: null };
+    }
+
+    // 3) Gom mọi question từ tất cả các part
+    const allQuestions = test.parts.flatMap((p) =>
+      (p.questions || []).map((q) => {
+        // ensure plain object shape, Sequelize instances may appear
+        return q.toJSON ? q.toJSON() : q;
+      })
+    );
+
+    if (!allQuestions.length) {
+      return { EM: "Không tìm thấy câu hỏi trong bài thi", EC: "4", DT: null };
+    }
+
+    // 4) Tạo map cho answers user (để tra nhanh)
+    const answerMap = new Map();
+    for (const a of answers) {
+      if (a && a.question_id != null) {
+        // normalize numeric/string keys
+        answerMap.set(String(a.question_id), {
+          question_id: a.question_id,
+          selected_choice_id: a.selected_choice_id ?? null,
+        });
+      }
+    }
+
+    // 5) Tính toán / bổ sung các câu thiếu: nếu question không có trong answerMap => treat as skipped
+    // We'll iterate allQuestions and produce a normalized list `toProcess`
+    const toProcess = allQuestions.map((q) => {
+      const qid = String(q.question_id ?? q.id ?? q.questionId);
+      const provided = answerMap.get(qid);
+      return {
+        question_id: Number(qid),
+        part_id: q.part_id ?? q.partId ?? null,
+        selected_choice_id: provided ? provided.selected_choice_id : null,
+        originalQuestion: q,
+      };
+    });
+
+    // 6) Init stats
     let correctAnswers = 0;
     let wrongAnswers = 0;
     let skippedAnswers = 0;
-    const totalQuestions = answers.length;
+    const totalQuestions = toProcess.length;
     const partStats = {}; // { part_id: { total: x, correct: y } }
 
-    // Xử lý từng câu trả lời
-    for (const ans of answers) {
-      const question = await Question.findById(ans.question_id);
-      if (!question) continue;
+    // 7) Process each question: check choice correctness, upsert UserAnswer
+    for (const item of toProcess) {
+      const { question_id, selected_choice_id, part_id } = item;
 
-      let isCorrect = null;
-      let selectedChoice = null;
-
-      if (ans.selected_choice_id) {
-        selectedChoice = await Choice.findById(ans.selected_choice_id);
-        isCorrect = selectedChoice ? selectedChoice.is_correct : false;
-
-        if (isCorrect) {
-          correctAnswers++;
-        } else {
-          wrongAnswers++;
-        }
+      let isCorrect = -1; // -1 = skipped / not answered
+      if (selected_choice_id != null) {
+        // if selected_choice_id provided, check correctness
+        const selectedChoice = await Choice.findById(selected_choice_id);
+        const correctFlag = selectedChoice
+          ? !!selectedChoice.is_correct
+          : false;
+        isCorrect = correctFlag ? 1 : 0;
+        if (isCorrect === 1) correctAnswers++;
+        else wrongAnswers++;
       } else {
         skippedAnswers++;
+        isCorrect = -1;
       }
 
-      // Lưu UserAnswer
-      await UserAnswer.createAnswer({
-        exam_session_id: session_id,
-        question_id: ans.question_id,
-        selected_choice_id: ans.selected_choice_id || null,
-        is_correct: isCorrect,
-        answer_time: new Date(),
-      });
-
-      // Thống kê theo Part
-      if (!partStats[question.part_id]) {
-        partStats[question.part_id] = { total: 0, correct: 0 };
+      // Upsert user answer: if exists (same session + question), update; else create.
+      // We don't know exact helper signatures in your project; try generic approach:
+      let existing = null;
+      try {
+        if (UserAnswer.findOne) {
+          existing = await UserAnswer.findOne({
+            where: { exam_session_id: session_id, question_id },
+          });
+        }
+      } catch (e) {
+        // ignore if model doesn't implement findOne
+        existing = null;
       }
-      partStats[question.part_id].total += 1;
-      if (isCorrect) partStats[question.part_id].correct += 1;
+
+      if (existing) {
+        // update
+        try {
+          if (existing.update) {
+            await existing.update({
+              selected_choice_id: selected_choice_id || null,
+              is_correct: isCorrect,
+              answer_time: new Date(),
+            });
+          } else if (UserAnswer.updateAnswer) {
+            // fallback to custom helper if present
+            await UserAnswer.updateAnswer(
+              existing.id || { exam_session_id: session_id, question_id },
+              {
+                selected_choice_id: selected_choice_id || null,
+                is_correct: isCorrect,
+                answer_time: new Date(),
+              }
+            );
+          } else {
+            // last fallback: create new record (may duplicate if no unique constraint)
+            await UserAnswer.createAnswer({
+              exam_session_id: session_id,
+              question_id,
+              selected_choice_id: selected_choice_id || null,
+              is_correct: isCorrect,
+              answer_time: new Date(),
+            });
+          }
+        } catch (err) {
+          // If update fails, attempt create to avoid blocking entire flow
+          await UserAnswer.createAnswer({
+            exam_session_id: session_id,
+            question_id,
+            selected_choice_id: selected_choice_id || null,
+            is_correct: isCorrect,
+            answer_time: new Date(),
+          });
+        }
+      } else {
+        // create
+        await UserAnswer.createAnswer({
+          exam_session_id: session_id,
+          question_id,
+          selected_choice_id: selected_choice_id || null,
+          is_correct: isCorrect,
+          answer_time: new Date(),
+        });
+      }
+
+      // 8) Update partStats
+      const pid = part_id != null ? String(part_id) : "unknown";
+      if (!partStats[pid]) partStats[pid] = { total: 0, correct: 0 };
+      partStats[pid].total += 1;
+      if (isCorrect === 1) partStats[pid].correct += 1;
     }
 
-    // Tính điểm tổng
-    const totalScore = Math.round((correctAnswers / totalQuestions) * 100);
+    // 9) Calculate total score
+    const totalScore =
+      totalQuestions > 0
+        ? Math.round((correctAnswers / totalQuestions) * 100)
+        : 0;
 
-    // Cập nhật phiên thi
+    // 10) Update exam session
     const endTime = new Date();
     const durationSeconds = Math.floor(
       (endTime - new Date(examSession.start_time)) / 1000
@@ -318,31 +660,34 @@ exports.submitExamSession = async (session_id, user_id, answers) => {
       status: "COMPLETED",
     });
 
-    // Cập nhật thống kê người dùng
-    await this.updateUserStatistics(
-      user_id,
-      totalScore,
-      totalQuestions,
-      correctAnswers
-    );
+    // 11) Update PartStatistics for each part
+    for (const [pid, stats] of Object.entries(partStats)) {
+      // skip unknown part if any
+      if (pid === "unknown") continue;
+      const partIdNum = parseInt(pid, 10);
+      if (PartStatistics.updatePartPerformance) {
+        await PartStatistics.updatePartPerformance(
+          user_id,
+          partIdNum,
+          stats.total,
+          stats.correct
+        );
+      }
+    }
 
-    // Cập nhật thống kê từng part
-    for (const [part_id, stats] of Object.entries(partStats)) {
-      await PartStatistics.updatePartPerformance(
+    // 12) Optional update user overall statistics if helper exists
+    if (typeof this.updateUserStatistics === "function") {
+      await this.updateUserStatistics(
         user_id,
-        parseInt(part_id),
-        stats.total,
-        stats.correct
+        totalScore,
+        totalQuestions,
+        correctAnswers
       );
     }
 
+    // 13) Return updated session
     const updatedSession = await ExamSession.findById(session_id);
-
-    return {
-      EM: "Nộp bài thi thành công",
-      EC: "0",
-      DT: updatedSession,
-    };
+    return { EM: "Nộp bài thi thành công", EC: "0", DT: updatedSession };
   } catch (error) {
     console.error("Error in submitExamSession service:", error);
     return {

@@ -1,10 +1,15 @@
 const examClientService = require("../services/examClientService");
-const { TestDiscussion } = require('../../models');
+const { TestDiscussion } = require("../../models");
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
   try {
     const { exam_type, difficulty_level, page, limit } = req.query;
-    const response = await examClientService.getTests({ exam_type, difficulty_level, page, limit });
+    const response = await examClientService.getTests({
+      exam_type,
+      difficulty_level,
+      page,
+      limit,
+    });
     res.json(response);
   } catch (error) {
     next(error);
@@ -37,8 +42,11 @@ exports.getTestParts = async (req, res, next) => {
 exports.getPracticeTestResult = async (req, res, next) => {
   try {
     const { test_id } = req.params;
-    const  user_id  = req.user.userId;
-    const response = await examClientService.getPracticeTestResult(test_id, user_id);
+    const user_id = req.user.userId;
+    const response = await examClientService.getPracticeTestResult(
+      test_id,
+      user_id
+    );
     res.json(response);
   } catch (error) {
     next(error);
@@ -59,13 +67,14 @@ exports.getPartQuestions = async (req, res, next) => {
 exports.startExamSession = async (req, res, next) => {
   try {
     const user_id = req.user.userId;
-    const { test_id, session_type, selected_parts, time_limit_minutes } = req.body;
+    const { test_id, session_type, selected_parts, time_limit_minutes } =
+      req.body;
     const response = await examClientService.startExamSession({
       user_id,
       test_id,
       session_type,
       selected_parts,
-      time_limit_minutes
+      time_limit_minutes,
     });
     res.json(response);
   } catch (error) {
@@ -77,10 +86,15 @@ exports.startExamSession = async (req, res, next) => {
 exports.submitExamSession = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const user_id  = req.user.userId;
-    const  { answers } = req.body;
-    console.log( user_id ,answers);
-    const response = await examClientService.submitExamSession(session_id, user_id, answers);
+    const user_id = req.user.userId;
+    const { answers, examId } = req.body;
+    console.log(user_id, answers, examId);
+    const response = await examClientService.submitExamSession(
+      session_id,
+      user_id,
+      answers,
+      examId
+    );
     res.json(response);
   } catch (error) {
     next(error);
@@ -91,7 +105,7 @@ exports.submitExamSession = async (req, res, next) => {
 exports.getExamResult = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const  user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const response = await examClientService.getExamResult(session_id, user_id);
     res.json(response);
   } catch (error) {
@@ -104,7 +118,10 @@ exports.reviewExamSession = async (req, res, next) => {
   try {
     const { session_id } = req.params;
     const user_id = req.user.userId;
-    const response = await examClientService.reviewExamSession(session_id, user_id);
+    const response = await examClientService.reviewExamSession(
+      session_id,
+      user_id
+    );
     res.json(response);
   } catch (error) {
     next(error);
@@ -115,9 +132,12 @@ exports.reviewExamSession = async (req, res, next) => {
 exports.retryWrongAnswers = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const user_id  = req.user.userId;
+    const user_id = req.user.userId;
     console.log("🚀 ~ retryWrongAnswers ~ user_id:", user_id);
-    const response = await examClientService.retryWrongAnswers(session_id, user_id);
+    const response = await examClientService.retryWrongAnswers(
+      session_id,
+      user_id
+    );
     res.json(response);
   } catch (error) {
     next(error);
@@ -127,7 +147,7 @@ exports.retryWrongAnswers = async (req, res, next) => {
 // GET /api/user/statistics - Lấy thống kê người dùng
 exports.getUserStatistics = async (req, res, next) => {
   try {
-    const user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const response = await examClientService.getUserStatistics(user_id);
     res.json(response);
   } catch (error) {
@@ -140,7 +160,10 @@ exports.getTestDiscussions = async (req, res, next) => {
   try {
     const { test_id } = req.params;
     const { page, limit } = req.query;
-    const response = await examClientService.getTestDiscussions(test_id, { page, limit });
+    const response = await examClientService.getTestDiscussions(test_id, {
+      page,
+      limit,
+    });
     res.json(response);
   } catch (error) {
     next(error);
@@ -156,9 +179,8 @@ exports.createDiscussion = async (req, res, next) => {
       test_id,
       user_id,
       title,
-      content
+      content,
     });
-
 
     res.json(response);
   } catch (error) {
@@ -176,7 +198,7 @@ exports.addComment = async (req, res, next) => {
       test_discussion_id: discussion_id,
       user_id,
       content,
-      parent_comment_id
+      parent_comment_id,
     });
 
     res.json(response);
@@ -190,7 +212,10 @@ exports.getResultByTags = async (req, res, next) => {
   try {
     const { session_id } = req.params;
     const user_id = req.user.userId;
-    const response = await examClientService.getResultByTags(session_id, user_id);
+    const response = await examClientService.getResultByTags(
+      session_id,
+      user_id
+    );
     res.json(response);
   } catch (error) {
     next(error);

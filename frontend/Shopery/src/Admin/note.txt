@@ -1,0 +1,101 @@
+src/
+├── app/
+│   ├── App.jsx                   # Khởi tạo providers (Query, Zustand, Router)
+│   ├── routes.jsx                # Định nghĩa toàn bộ routes (Admin + Client)
+│   ├── store.js                  # Zustand global store
+│   └── queryClient.js            # Tanstack Query config
+│
+├── features/
+│   ├── dashboard/
+│   │   ├── components/
+│   │   │   ├── StatsCard.jsx
+│   │   │   ├── EnrollmentChart.jsx
+│   │   │   ├── RecentActivity.jsx
+│   │   │   └── DeadlineCalendar.jsx
+│   │   ├── pages/
+│   │   │   └── DashboardPage.jsx
+│   │   ├── api.js
+│   │   └── hooks.js
+│   │
+│   ├── courses/
+│   │   ├── components/
+│   │   │   ├── CourseTable.jsx
+│   │   │   ├── CourseForm.jsx
+│   │   │   ├── CourseFilter.jsx
+│   │   │   └── CourseDetails.jsx
+│   │   ├── pages/
+│   │   │   ├── ManageCoursesPage.jsx
+│   │   │   ├── CourseDetailPage.jsx
+│   │   │   └── AddCoursePage.jsx
+│   │   ├── api.js
+│   │   └── hooks.js
+│   │
+│   ├── students/
+│   │   ├── components/
+│   │   │   ├── StudentList.jsx
+│   │   │   └── StudentProfile.jsx
+│   │   ├── pages/
+│   │   │   ├── ManageStudentsPage.jsx
+│   │   │   └── StudentDetailPage.jsx
+│   │   ├── api.js
+│   │   └── hooks.js
+│   │
+│   ├── earnings/
+│   │   ├── components/
+│   │   │   ├── EarningsSummary.jsx
+│   │   │   ├── PaymentTable.jsx
+│   │   │   └── RevenueChart.jsx
+│   │   ├── pages/
+│   │   │   └── EarningsPage.jsx
+│   │   ├── api.js
+│   │   └── hooks.js
+│   │
+│   ├── reports/
+│   │   ├── components/
+│   │   │   ├── ReportFilter.jsx
+│   │   │   └── ReportTable.jsx
+│   │   ├── pages/
+│   │   │   └── ReportsPage.jsx
+│   │   ├── api.js
+│   │   └── hooks.js
+│   │
+│   └── settings/
+│       ├── components/
+│       │   ├── AccountSettings.jsx
+│       │   └── NotificationSettings.jsx
+│       ├── pages/
+│       │   └── SettingsPage.jsx
+│       ├── api.js
+│       └── hooks.js
+│
+├── layouts/
+│   ├── AdminLayout.jsx           # Sidebar + Navbar + Outlet
+│   └── ClientLayout.jsx
+│
+├── shared/
+│   ├── components/
+│   │   ├── Sidebar.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── Button.jsx
+│   │   ├── Table.jsx
+│   │   ├── Modal.jsx
+│   │   └── ChartWrapper.jsx
+│   ├── hooks/
+│   │   ├── useFetch.js
+│   │   └── useDebounce.js
+│   └── utils/
+│       ├── formatDate.js
+│       ├── calculateStats.js
+│       └── constants.js
+│
+├── routes/
+│   ├── adminRoutes.jsx           # Toàn bộ route của admin
+│   └── clientRoutes.jsx          # Toàn bộ route của client (nếu cần)
+│
+└── assets/
+    ├── icons/
+    ├── images/
+    └── styles/
+        ├── colors.js
+        ├── typography.js
+        └── global.css

@@ -1,6 +1,13 @@
 /* File: src/components/AssessmentTest.jsx */
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
 import { useSubmitExamSession } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentTestCSS/AssessmentTest.css";
 import Part1 from "./Part1";
@@ -14,12 +21,21 @@ import QuestionNavigator from "./QuestionNavigator";
 import TestHeader from "./TestHeader";
 
 export default function AssessmentTest() {
+  useEffect(() => {
+    console.log("MOUNT");
+    return () => {
+      console.log("UN MOUNT");
+    };
+  }, []);
   const location = useLocation();
   const navigate = useNavigate();
+  const prevPath = useRef(location.pathname);
+  console.log(prevPath);
   const sessionData = location.state?.sessionData;
   const partData = location.state?.partData;
 
   console.log("sessionData", sessionData);
+  console.log("LOG", sessionData.test_id);
   const [answers, setAnswers] = useState({});
   const questionRefs = useRef({});
   const leftContainerRef = useRef(null);
@@ -39,7 +55,7 @@ export default function AssessmentTest() {
   // Hook để nộp bài
   const { mutateAsync: submitExam, isPending: isSubmitting } =
     useSubmitExamSession();
-
+  console.log;
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;
   }
@@ -55,7 +71,7 @@ export default function AssessmentTest() {
 
   const handleNavigate = () => {
     // navigate("/assessmentResult");
-    navigate("/assessmentResult", {
+    customNavigate("/assessmentResult", {
       state: {
         sessionId: 21,
         testId: "T2025-NE01",
@@ -77,35 +93,6 @@ export default function AssessmentTest() {
   function handleAnswer(qid, choiceId) {
     setAnswers((prev) => ({ ...prev, [qid]: choiceId }));
   }
-
-  // ✅ SỬA: Sử dụng useCallback để tạo stable functions
-  const handlePart1DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 1: data }));
-  }, []);
-
-  const handlePart2DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 2: data }));
-  }, []);
-
-  const handlePart3DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 3: data }));
-  }, []);
-
-  const handlePart4DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 4: data }));
-  }, []);
-
-  const handlePart5DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 5: data }));
-  }, []);
-
-  const handlePart6DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 6: data }));
-  }, []);
-
-  const handlePart7DataLoaded = useCallback((data) => {
-    setQuestionsData((prev) => ({ ...prev, 7: data }));
-  }, []);
 
   // Build parts summary cho navigator
   const partsSummary = useMemo(() => {
@@ -148,6 +135,7 @@ export default function AssessmentTest() {
       const result = await submitExam({
         sessionId: sessionData.exam_session_id,
         answers: answersArray,
+        examId: sessionData.test_id,
       });
 
       if (result && +result.EC === 0) {
@@ -164,36 +152,40 @@ export default function AssessmentTest() {
     }
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     // Gom tất cả câu trả lời thành mảng
-  //     const answersArray = Object.entries(answers).map(
-  //       ([questionId, choiceId]) => ({
-  //         question_id: parseInt(questionId),
-  //         selected_choice_id: choiceId,
-  //       })
-  //     );
+  const { customNavigate } = useExamLeaveBlocker(
+    true,
+    "⚠️ Bài kiểm tra chưa được nộp. Bạn có chắc muốn rời khỏi trang không?",
+    handleSubmit
+  );
 
-  //     // Gọi API nộp bài
-  //     const result = await submitExam({
-  //       sessionId: sessionData.exam_session_id,
-  //       answers: answersArray,
-  //     });
+  // ✅ SỬA: Sử dụng useCallback để tạo stable functions
+  const handlePart1DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 1: data }));
+  }, []);
 
-  //     if (result && +result.EC === 0) {
+  const handlePart2DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 2: data }));
+  }, []);
 
-  //       navigate("/assessmentResult", {
-  //         state: {
-  //           sessionId: sessionData.exam_session_id,
-  //           testId: "T2025-NE01",
-  //           testTitle: "New Economy TOEIC Full Test 1",
-  //         },
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error("Error submitting exam:", error);
-  //   }
-  // };
+  const handlePart3DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 3: data }));
+  }, []);
+
+  const handlePart4DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 4: data }));
+  }, []);
+
+  const handlePart5DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 5: data }));
+  }, []);
+
+  const handlePart6DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 6: data }));
+  }, []);
+
+  const handlePart7DataLoaded = useCallback((data) => {
+    setQuestionsData((prev) => ({ ...prev, 7: data }));
+  }, []);
 
   return (
     <div className="toeic">

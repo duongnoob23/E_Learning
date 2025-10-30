@@ -34,6 +34,7 @@ const List = (Props) => {
       {data &&
         data.DT.tests.map((assessment) => {
           const isCompleted = completedTests.has(assessment.test_id);
+          console.log(assessment);
           return (
             <Card
               key={assessment.test_id}

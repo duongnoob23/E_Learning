@@ -149,6 +149,10 @@
 }
 
 .statistics-table__cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -156,11 +160,13 @@
 }
 
 .session-date {
+  align-self: flex-start;
   font-weight: 500;
   color: #2c3e50;
 }
 
 .session-tags {
+  align-self: flex-start;
   display: flex;
   gap: 4px;
   margin-top: 4px;
@@ -168,8 +174,8 @@
 }
 
 .session-tag {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #d1f9e2;
+  color: #3cb46e;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 11px;
