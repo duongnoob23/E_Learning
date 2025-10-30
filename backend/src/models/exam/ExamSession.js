@@ -86,6 +86,17 @@ module.exports = (sequelize, DataTypes) => {
     ExamSession.findById = async (exam_session_id) =>
         ExamSession.findOne({ where: { exam_session_id } });
 
+    ExamSession.findByTestId = async (test_id) =>
+        ExamSession.findAll({
+            where: { test_id },
+            include: [
+                {
+                    model: sequelize.models.User,
+                    as: "user",
+                    attributes: ['user_id', 'username', 'email']
+                }
+            ]
+        });
     ExamSession.findByUserId = async (user_id) =>
         ExamSession.findAll({ where: { user_id } });
 
@@ -114,6 +125,7 @@ module.exports = (sequelize, DataTypes) => {
 
     ExamSession.createSession = async (data) => ExamSession.create(data);
 
+    
     ExamSession.updateSession = async (exam_session_id, data) =>
         ExamSession.update(data, { where: { exam_session_id } });
 

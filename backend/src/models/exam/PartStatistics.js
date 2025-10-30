@@ -71,7 +71,13 @@ module.exports = (sequelize, DataTypes) => {
 
     PartStatistics.updateStatistics = async (user_id, part_id, data) =>
         PartStatistics.update(data, { where: { user_id, part_id } });
-
+    PartStatistics.deleteStatistics = async (user_id, part_id) =>
+        PartStatistics.destroy({ where: { user_id, part_id } });
+    PartStatistics.findByTestId = async (test_id) => {
+        const parts = await Part.findByTestId(test_id);
+        const partIds = parts.map((part) => part.part_id);
+        return PartStatistics.findAll({ where: { part_id: partIds } });
+    };
     PartStatistics.updatePartPerformance = async (user_id, part_id, questionsAnswered, correctAnswers) => {
         const stats = await PartStatistics.findByUserIdAndPartId(user_id, part_id);
         

@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// GET /admin/dashboard/stats
-router.get("/dashboard/stats", (req, res) => {
-  res.json({
-    message: "Get dashboard stats",
-  });
-});
+const examAdminRoutes = require("../admin/routes/examAdminRoutes");
 
+router.use("/exam", examAdminRoutes);
 module.exports = router;
