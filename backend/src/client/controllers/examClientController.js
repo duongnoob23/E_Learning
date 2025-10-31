@@ -208,7 +208,16 @@ exports.addComment = async (req, res, next) => {
   }
 };
 
-
+exports.getResultByTags = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id  = req.user.userId;
+    const response = await examClientService.getResultByTags(session_id, user_id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // --------- Speaking Routes --------- //
 // POST /api/speaking/upload - Tải lên tệp âm thanh speaking

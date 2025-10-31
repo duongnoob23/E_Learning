@@ -16,11 +16,15 @@ const ExamAdminController = require("../controllers/examAdminController");
 // Admin	Xem thống kê bài thi	GET	/api/admin/tests/{test_id}/statistics
 
 router.get("/tests", authMiddleware, ExamAdminController.getTests); // Done
-router.post("/tests", authMiddleware, ExamAdminController.createTest); // Done
 router.patch("/tests/:test_id", authMiddleware, ExamAdminController.updateTest); // Done
 router.delete("/tests/:test_id", authMiddleware, ExamAdminController.deleteTest); // Done
+
+// ------ Tạo 1 bài test mới ------ //
+router.post("/tests", authMiddleware, ExamAdminController.createTest); // Done
 router.post("/tests/:test_id/parts", authMiddleware, ExamAdminController.addPartToTest); // Done
 router.post("/parts/:part_id/questions", authMiddleware, ExamAdminController.addQuestionToPart);
+// ------- End ---------- //
+
 router.patch("/questions/:question_id", authMiddleware, ExamAdminController.updateQuestion);
 router.delete("/questions/:question_id", authMiddleware, ExamAdminController.deleteQuestion);
 router.get("/tests/:test_id/sessions", authMiddleware, ExamAdminController.getTestSessions);

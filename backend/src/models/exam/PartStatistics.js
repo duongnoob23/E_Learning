@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.BIGINT.UNSIGNED,
                 allowNull: false,
             },
+            exam_session_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
+                allowNull: false,
+            },
             total_attempts: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
