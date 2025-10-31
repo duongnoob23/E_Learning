@@ -20,7 +20,7 @@ export default function Part1({
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
       setQuestions(data.DT);
-      setLoading(false);
+      setLoading(false);  
       onDataLoaded(data.DT); // Gửi dữ liệu về parent
     } else if (error) {
       setLoading(false);

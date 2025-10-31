@@ -5,12 +5,11 @@ import "../AssessmentCSS/InfoBox.css";
 const InfoBox = ({ examId, data, testId, userStats }) => {
   const [activeTab, setActiveTab] = useState("info"); // "info", "answer", "statistics"
 
-  console.log("[STEP - 03]", userStats);
-  console.log("exam", examId);
   // Lấy thống kê người dùng
   const { data: userStatsData, isLoading: userStatsLoading } =
     useUserStatistics();
-  console.log("EXAM", JSON.stringify(examId, null, 2));
+
+    
   const arrayUserStats = useMemo(() => {
     if (userStats.recent_sessions) {
       return userStats.recent_sessions.filter((item, index) => {
@@ -19,7 +18,6 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
     } else return [];
   }, [userStats]);
 
-  console.log("array", arrayUserStats);
 
   const isCompleted = useMemo(() => {
     if (arrayUserStats) {
@@ -27,7 +25,6 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
     }
   }, [arrayUserStats]);
 
-  console.log("boolean", isCompleted);
   return (
     <div className="assessment-info">
       {/* Tags */}

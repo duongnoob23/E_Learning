@@ -30,12 +30,12 @@ export default function AssessmentTest() {
   const location = useLocation();
   const navigate = useNavigate();
   const prevPath = useRef(location.pathname);
-  console.log(prevPath);
+  // console.log(prevPath);
   const sessionData = location.state?.sessionData;
   const partData = location.state?.partData;
 
-  console.log("sessionData", sessionData);
-  console.log("LOG", sessionData.test_id);
+  // console.log("sessionData", sessionData);
+  // console.log("LOG", sessionData.test_id);
   const [answers, setAnswers] = useState({});
   const questionRefs = useRef({});
   const leftContainerRef = useRef(null);
@@ -55,7 +55,6 @@ export default function AssessmentTest() {
   // Hook để nộp bài
   const { mutateAsync: submitExam, isPending: isSubmitting } =
     useSubmitExamSession();
-  console.log;
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;
   }
@@ -124,11 +123,27 @@ export default function AssessmentTest() {
       }
 
       // Gom tất cả câu trả lời thành mảng
-      const answersArray = Object.entries(answers).map(
-        ([questionId, choiceId]) => ({
-          question_id: parseInt(questionId),
-          selected_choice_id: choiceId,
-        })
+      // const answersArray = Object.entries(answers).map(
+      //   ([questionId, choiceId]) => ({
+      //     question_id: parseInt(questionId),
+      //     selected_choice_id: choiceId,
+      //   })
+      // );
+
+      // Lấy toàn bộ danh sách câu hỏi từ tất cả các part
+      const allQuestions = Object.values(questionsData).flatMap(
+        (partQuestions) => partQuestions.map((q) => q.question_id)
+      );
+
+      // Gom tất cả câu hỏi, kể cả chưa trả lời
+      const answersArray = allQuestions.map((questionId) => ({
+        question_id: questionId,
+        selected_choice_id: answers[questionId] ?? null, // nếu chưa làm -> null
+      }));
+
+      console.log(
+        "🚀 ~ handleSubmit ~ answersArray:",
+        JSON.stringify(answersArray, null, 2)
       );
 
       // Gọi API nộp bài

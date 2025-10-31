@@ -1,5 +1,5 @@
 const examClientService = require("../services/examClientService");
-const { TestDiscussion } = require('../../models');
+const { TestDiscussion } = require("../../models");
 
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
@@ -149,6 +149,8 @@ exports.retryWrongAnswers = async (req, res, next) => {
 exports.getUserStatistics = async (req, res, next) => {
   try {
     const user_id = req.user.userId;
+    console.log("🚀 ~ user_id:", user_id);
+
     const response = await examClientService.getUserStatistics(user_id);
     res.json(response);
   } catch (error) {
@@ -211,8 +213,11 @@ exports.addComment = async (req, res, next) => {
 exports.getResultByTags = async (req, res, next) => {
   try {
     const { session_id } = req.params;
-    const user_id  = req.user.userId;
-    const response = await examClientService.getResultByTags(session_id, user_id);
+    const user_id = req.user.userId;
+    const response = await examClientService.getResultByTags(
+      session_id,
+      user_id
+    );
     res.json(response);
   } catch (error) {
     next(error);
@@ -233,7 +238,7 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
       filename: req.file.filename,
       originalname: req.file.originalname,
       mimetype: req.file.mimetype,
-      size: req.file.size
+      size: req.file.size,
     });
 
     const response = await examClientService.uploadSpeakingAudio({
@@ -241,7 +246,7 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
       session_id,
       question_id,
       audio_file_path,
-      language
+      language,
     });
 
     res.json(response);
@@ -253,39 +258,51 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
 // GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
 exports.getSessionSpeakingResponses = async (req, res, next) => {
   try {
-        const user_id = req.user.userId;
-        const { text, type, language } = req.body;
+    const user_id = req.user.userId;
+    const { text, type, language } = req.body;
 
-        const response = await examClientService.scoreResponse({
-            user_id,
-            text,
-            type,
-            language
-        });
+    const response = await examClientService.scoreResponse({
+      user_id,
+      text,
+      type,
+      language,
+    });
 
-        res.json(response);
-    } catch (error) {
-        next(error);
-    }
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // POST /api/llmservice/score - Chấm điểm speaking/writing response
 exports.gradeExam = async (req, res, next) => {
-    try {
-        const {response_id, type, text, language } = req.body;
-        const user_id = req.user.userId;
+  try {
+    const { response_id, type, text, language } = req.body;
+    const user_id = req.user.userId;
 
-        let response;
-        if (type === "WRITING") {
-            response = await examClientService.gradeWriting({response_id, user_id, text, language });
-        } else if (type === "SPEAKING") {
-            response = await examClientService.gradeSpeaking({response_id, user_id, text, language });
-        } else {
-            return res.status(400).json({ EM: "Loại bài không hợp lệ", EC: "-1", DT: null });
-        }
-
-        res.json(response);
-    } catch (error) {
-        next(error);
+    let response;
+    if (type === "WRITING") {
+      response = await examClientService.gradeWriting({
+        response_id,
+        user_id,
+        text,
+        language,
+      });
+    } else if (type === "SPEAKING") {
+      response = await examClientService.gradeSpeaking({
+        response_id,
+        user_id,
+        text,
+        language,
+      });
+    } else {
+      return res
+        .status(400)
+        .json({ EM: "Loại bài không hợp lệ", EC: "-1", DT: null });
     }
+
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
 };
