@@ -66,6 +66,10 @@ module.exports = (sequelize, DataTypes) => {
         });
 
     Choice.createChoice = async (data) => Choice.create(data);
+    Choice.createChoices = async (question_id, choices) => {
+        const choiceData = choices.map(c => ({ ...c, question_id }));
+        return Choice.bulkCreate(choiceData);
+    };
 
     Choice.updateChoice = async (choice_id, data) =>
         Choice.update(data, { where: { choice_id } });
