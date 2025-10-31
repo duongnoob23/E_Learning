@@ -10,12 +10,11 @@ const {
   TestDiscussion,
   TestComment,
   User,
-  SpeakingResponse,
-  WritingResponse,
+  ExamTag,
+  QuestionTag
 } = require("../../models");
 const { Op } = require("sequelize");
-const { transcribeAudio } = require("./whisperService");
-const llmService = require("./llmService");
+
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (filters = {}) => {
     try {
@@ -743,173 +742,151 @@ exports.updateUserStatistics = async (user_id, score, total_questions, correct_a
     }
 }
 
-
-// --------- Speaking and Writing Routes --------- //
-
-// POST /api/speaking/upload - Tải lên tệp âm thanh speaking
-exports.uploadSpeakingAudio = async (audioData) => {
+// GET /api/exam-sessions/{session_id}/result-by-tags - Lấy kết quả phân tích theo tag
+exports.getResultByTags = async (session_id, user_id) => {
     try {
-        const { user_id, session_id, question_id, audio_file_path, language } = audioData;
+        // Kiểm tra session có tồn tại và thuộc về user không
+        const session = await ExamSession.findOne({
+            where: {
+                exam_session_id: session_id,
+                user_id: user_id,
+                status: 'COMPLETED'
+            }
+        });
 
-        // Kiểm tra phiên thi có tồn tại không
-        const examSession = await ExamSession.findById(session_id);
-        if (!examSession) {
+        if (!session) {
             return {
-                EM: "Không tìm thấy phiên thi",
+                EM: "Không tìm thấy phiên thi hoặc phiên thi chưa hoàn thành",
                 EC: "2",
                 DT: null,
             };
         }
 
-        // Kiểm tra câu hỏi speaking có tồn tại không
-        const speakingQuestion = await Question.findById(question_id);
-        if (!speakingQuestion || speakingQuestion.question_type !== 'SPEAKING') {
+        // Lấy tất cả câu trả lời của user trong session này
+        const userAnswers = await UserAnswer.findAll({
+            where: { exam_session_id: session_id },
+            include: [
+                {
+                    model: Question,
+                    as: 'question',
+                    include: [
+                        {
+                            model: QuestionTag,
+                            as: 'questionTags',
+                            include: [
+                                {
+                                    model: ExamTag,
+                                    as: 'examTag'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+
+        if (!userAnswers || userAnswers.length === 0) {
             return {
-                EM: "Không tìm thấy câu hỏi speaking",
-                EC: "3",
+                EM: "Không tìm thấy câu trả lời",
+                EC: "2",
                 DT: null,
             };
         }
 
-        // Transcribe audio
-        let transcription = "";
-        try {
-            transcription = await transcribeAudio(audio_file_path, language);
-        } catch (transcribeError) {
-            console.error("Transcription error:", transcribeError.message);
-            return {
-                EM: `Lỗi xử lý âm thanh: ${transcribeError.message}`,
-                EC: "-3",
-                DT: null,
-            };
-        }
+        // Tạo map để lưu thống kê theo tag
+        const tagStats = new Map();
 
-        // Tạo phản hồi speaking mới
-        const speakingResponse = await SpeakingResponse.create({
-            session_id,
-            question_id,
-            user_id,
-            audio_file_path,
-            transcription,
-            language,
-            processing_status: 'COMPLETED'
-        });
+        // Duyệt qua tất cả câu trả lời
+        userAnswers.forEach(answer => {
+            const question = answer.question;
+            if (!question || !question.questionTags) return;
 
-        return {
-            EM: "Tải lên tệp âm thanh thành công",
-            EC: "0",
-            DT: speakingResponse,
-        };
-    } catch (error) {
-        console.error("Error in uploadSpeakingAudio service:", error);
-        return {
-            EM: `Có lỗi xảy ra: ${error.message}`,
-            EC: "-2",
-            DT: null,
-        };
-    }
-}
+            // Duyệt qua tất cả tag của câu hỏi
+            question.questionTags.forEach(questionTag => {
+                const tag = questionTag.examTag;
+                if (!tag) return;
 
-// GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
-exports.getSessionSpeakingResponses = async (session_id, options = {}) => {
-    try {
-        const { status, page = 1, limit = 10 } = options;
-        const offset = (page - 1) * limit;
+                const tagName = tag.name;
 
-        const whereClause = { session_id };
-        if (status) whereClause.processing_status = status;
-        
-        const { count, rows: responses } = await SpeakingResponse.findAndCountAll({
-            where: whereClause,
-            limit: parseInt(limit),
-            offset: offset,
-            order: [['created_at', 'DESC']]
-        });
-
-        return {
-            EM: "Lấy danh sách phản hồi speaking thành công",
-            EC: "0",
-            DT: {
-                responses,
-                pagination: {
-                    current_page: parseInt(page),
-                    total_pages: Math.ceil(count / limit),
-                    total_items: count,
-                    items_per_page: parseInt(limit)
+                // Khởi tạo thống kê cho tag nếu chưa có
+                if (!tagStats.has(tagName)) {
+                    tagStats.set(tagName, {
+                        tag_name: tagName,
+                        tag_description: tag.description,
+                        total_questions: 0,
+                        correct_answers: 0,
+                        wrong_answers: 0,
+                        skipped_answers: 0,
+                        accuracy_rate: 0,
+                        question_list: []
+                    });
                 }
 
-                
+                const stats = tagStats.get(tagName);
+                stats.total_questions++;
+
+                // Thêm thông tin câu hỏi vào danh sách
+                stats.question_list.push({
+                    question_id: question.question_id,
+                    question_number: question.question_number,
+                    question_text: question.question_text.substring(0, 100) + '...', // Cắt ngắn text
+                    is_correct: answer.is_correct,
+                    selected_choice_id: answer.selected_choice_id
+                });
+
+                // Cập nhật thống kê
+                if (answer.is_correct === true) {
+                    stats.correct_answers++;
+                } else if (answer.is_correct === false) {
+                    stats.wrong_answers++;
+                } else {
+                    stats.skipped_answers++;
+                }
+
+                // Tính tỷ lệ chính xác
+                if (stats.total_questions > 0) {
+                    stats.accuracy_rate = ((stats.correct_answers / stats.total_questions) * 100).toFixed(2);
+                }
+            });
+        });
+
+        // Chuyển Map thành Array và sắp xếp theo tên tag
+        const tagAnalysis = Array.from(tagStats.values()).sort((a, b) =>
+            a.tag_name.localeCompare(b.tag_name)
+        );
+
+        // Tính tổng thống kê
+        const totalStats = {
+            total_questions: userAnswers.length,
+            total_correct: userAnswers.filter(a => a.is_correct === true).length,
+            total_wrong: userAnswers.filter(a => a.is_correct === false).length,
+            total_skipped: userAnswers.filter(a => a.is_correct === null).length,
+            overall_accuracy: ((userAnswers.filter(a => a.is_correct === true).length / userAnswers.length) * 100).toFixed(2)
+        };
+
+        return {
+            EM: "Lấy kết quả phân tích theo tag thành công",
+            EC: "0",
+            DT: {
+                session_info: {
+                    session_id: session.exam_session_id,
+                    test_id: session.test_id,
+                    total_score: session.total_score,
+                    start_time: session.start_time,
+                    end_time: session.end_time,
+                    duration_seconds: session.duration_seconds
+                },
+                overall_statistics: totalStats,
+                tag_analysis: tagAnalysis
             },
         };
+
     } catch (error) {
-        console.error("Error in getSessionSpeakingResponses service:", error);
+        console.error("Error in getResultByTags service:", error);
         return {
-            EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi speaking",
-            EC: "-2",
+            EM: "Lỗi server khi lấy kết quả phân tích theo tag",
+            EC: "1",
             DT: null,
         };
     }
-}
-
-
-// Chấm điểm speaking response
-exports.gradeSpeaking = async ({response_id, user_id, text, language }) => {
-     try {
-        const result = await llmService.gradeByLLM({
-            text,
-            type: "SPEAKING",
-            language
-        });
-
-        // Cập nhật điểm và feedback cho response
-        await SpeakingResponse.update({
-            score: result.score,
-            feedback: result.feedback
-        }, {
-            where: { response_id, user_id }
-        });
-        return {
-            EM: "Chấm bài Speaking thành công",
-            EC: "0",
-            DT: result
-        };
-    } catch (error) {
-        console.error("Error in gradeSpeaking:", error);
-        return {
-            EM: "Có lỗi xảy ra khi chấm Speaking",
-            EC: "-2",
-            DT: null
-        };
-    }
-}
-
-// Chấm điểm writing response
-exports.gradeWriting = async ({ user_id, text, language }) => {
-    try {
-        const result = await llmService.gradeByLLM({
-            text,
-            type: "WRITING",
-            language
-        });
-        // Cập nhật điểm và feedback cho response
-        await WritingResponse.update({
-            score: result.score,
-            feedback: result.feedback
-        }, {
-            where: { response_id }
-        });
-        return {
-            EM: "Chấm bài Writing thành công",
-            EC: "0",
-            DT: result
-        };
-    }
-    catch (error) {
-        console.error("Error in gradeWriting:", error);
-        return {
-            EM: "Có lỗi xảy ra khi chấm Writing",
-            EC: "-2",
-            DT: null
-        };
-    }
-}
+};

@@ -1,4 +1,4 @@
-const { Test, TestCategoryRelation, ExamSession, Question, Choice, Part } = require("../../models");
+const { Test, TestCategoryRelation, ExamSession,UserAnswer, Question, Choice, Part } = require("../../models");
 
 exports.getTests = async () => {
     try {

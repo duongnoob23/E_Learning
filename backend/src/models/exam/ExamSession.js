@@ -120,6 +120,12 @@ module.exports = (sequelize, DataTypes) => {
                     model: sequelize.models.UserAnswer,
                     as: "user_answers"
                 }
+            ],
+            include :[
+                {    
+                    model : sequelize.models.PartStatistics,
+                    as : "part_statistics"
+                }
             ]
         });
 
