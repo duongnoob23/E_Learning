@@ -1,6 +1,5 @@
 const examAdminService = require("../services/examAdminService");
 
-
 // Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
   try {
@@ -25,8 +24,13 @@ exports.getTestDetail = async (req, res, next) => {
 // Tạo đề thi
 exports.createTest = async (req, res, next) => {
   try {
-    const {title, duration, description, category_ids} = req.body;
-    const response = await examAdminService.createTest({title, duration, description, category_ids});
+    const { title, duration, description, category_ids } = req.body;
+    const response = await examAdminService.getTest({
+      title,
+      duration,
+      description,
+      category_ids,
+    });
     res.json(response);
   } catch (error) {
     next(error);
@@ -37,8 +41,12 @@ exports.createTest = async (req, res, next) => {
 exports.updateTest = async (req, res, next) => {
   try {
     const { test_id } = req.params;
-    const {title, duration, description} = req.body;
-    const response = await examAdminService.updateTest(test_id, { title, duration, description});
+    const { title, duration, description } = req.body;
+    const response = await examAdminService.updateTest(test_id, {
+      title,
+      duration,
+      description,
+    });
     res.json(response);
   } catch (error) {
     next(error);
@@ -60,8 +68,24 @@ exports.deleteTest = async (req, res, next) => {
 exports.addPartToTest = async (req, res, next) => {
   try {
     const { test_id } = req.params;
-    const { part_name, part_type,part_number, question_count, duration_minutes, description, display_template } = req.body; 
-    const response = await examAdminService.addPartToTest(test_id, { part_name, part_type,part_number, question_count, duration_minutes, description, display_template });
+    const {
+      part_name,
+      part_type,
+      part_number,
+      question_count,
+      duration_minutes,
+      description,
+      display_template,
+    } = req.body;
+    const response = await examAdminService.addPartToTest(test_id, {
+      part_name,
+      part_type,
+      part_number,
+      question_count,
+      duration_minutes,
+      description,
+      display_template,
+    });
     res.json(response);
   } catch (error) {
     next(error);
@@ -74,7 +98,10 @@ exports.addQuestionToPart = async (req, res, next) => {
     const { part_id } = req.params;
     const { questions } = req.body;
 
-    const response = await examAdminService.addMultipleQuestionsToPart(part_id, questions);
+    const response = await examAdminService.addMultipleQuestionsToPart(
+      part_id,
+      questions
+    );
     return res.status(200).json(response);
   } catch (error) {
     next(error);
@@ -85,14 +112,29 @@ exports.addQuestionToPart = async (req, res, next) => {
 exports.updateQuestion = async (req, res, next) => {
   try {
     const { question_id } = req.params;
-    const { question_text, question_type, audio_file, image_file, transcript, explanation, grammar_notes } = req.body; 
-    const response = await examAdminService.updateQuestion(question_id, { question_text, question_type, audio_file, image_file, transcript, explanation, grammar_notes });
+    const {
+      question_text,
+      question_type,
+      audio_file,
+      image_file,
+      transcript,
+      explanation,
+      grammar_notes,
+    } = req.body;
+    const response = await examAdminService.updateQuestion(question_id, {
+      question_text,
+      question_type,
+      audio_file,
+      image_file,
+      transcript,
+      explanation,
+      grammar_notes,
+    });
     res.json(response);
   } catch (error) {
     next(error);
   }
 };
-
 
 // Xóa câu hỏi
 exports.deleteQuestion = async (req, res, next) => {
