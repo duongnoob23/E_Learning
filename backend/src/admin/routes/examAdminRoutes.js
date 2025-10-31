@@ -16,6 +16,7 @@ const ExamAdminController = require("../controllers/examAdminController");
 // Admin	Xem thống kê bài thi	GET	/api/admin/tests/{test_id}/statistics
 
 router.get("/tests", authMiddleware, ExamAdminController.getTests); // Done
+router.get("/tests/detail/:test_id", authMiddleware, ExamAdminController.getTestDetail); // Done
 router.patch("/tests/:test_id", authMiddleware, ExamAdminController.updateTest); // Done
 router.delete("/tests/:test_id", authMiddleware, ExamAdminController.deleteTest); // Done
 

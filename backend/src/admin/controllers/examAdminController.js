@@ -11,6 +11,17 @@ exports.getTests = async (req, res, next) => {
   }
 };
 
+// Lấy chi tiết đề thi
+exports.getTestDetail = async (req, res, next) => {
+  try {
+    const { test_id } = req.params;
+    const response = await examAdminService.getTestDetail(test_id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Tạo đề thi
 exports.createTest = async (req, res, next) => {
   try {
@@ -57,13 +68,14 @@ exports.addPartToTest = async (req, res, next) => {
   }
 };
 
-// Thêm câu hỏi vào part
+// Thêm câu hỏi vào part và thêm choice vào câu hỏi
 exports.addQuestionToPart = async (req, res, next) => {
   try {
     const { part_id } = req.params;
-    const { question_text, question_type, audio_file, image_file, transcript, explanation, grammar_notes } = req.body; 
-    const response = await examAdminService.addQuestionToPart(part_id, { question_text, question_type, audio_file, image_file, transcript, explanation, grammar_notes });
-    res.json(response);
+    const { questions } = req.body;
+
+    const response = await examAdminService.addMultipleQuestionsToPart(part_id, questions);
+    return res.status(200).json(response);
   } catch (error) {
     next(error);
   }

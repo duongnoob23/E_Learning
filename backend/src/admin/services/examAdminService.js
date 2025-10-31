@@ -17,36 +17,66 @@ exports.getTests = async () => {
     }
 }
 
-exports.createTest = async ( {title, duration, description, category_ids}) => {
+exports.getTestDetail = async (test_id) => {
     try {
-        const testData = {
-            title,
-            description,
-            exam_type: 'TOEIC',
-            total_duration: duration,
-            total_questions: 0,
-            total_parts: 0,
-            difficulty_level: 'EASY',
-            created_by: 1,
-        };
-        const test = await Test.createTest(testData);
-        const testCategory = await TestCategoryRelation.createRelation({
-            test_id: test.test_id,
-            exam_category_id: category_ids,
-        });
+        const test = await Test.findWithAll(test_id);
         return {
-            EM: "Tạo đề thi thành công",
+            EM: "Lấy chi tiết đề thi thành công",
             EC: "0",
             DT: test,
         };
     } catch (error) {
         return {
-            EM: "Có lỗi xảy ra trong quá trình tạo đề thi",
+            EM: "Có lỗi xảy ra trong quá trình lấy chi tiết đề thi",
             EC: "-2",
             DT: null,
         };
     }
 }
+
+
+exports.addMultipleQuestionsToPart = async (part_id, questions) => {
+  try {
+    const createdQuestions = [];
+
+    for (const q of questions) {
+      const { question_text, question_type,question_number, audio_file, image_file, transcript, explanation, grammar_notes, choices } = q;
+
+      const question = await Question.createQuestion({
+        part_id,
+        question_text,
+        question_type,
+        question_number,
+        audio_file,
+        image_file,
+        transcript,
+        explanation,
+        grammar_notes,
+      });
+
+      if (choices && choices.length > 0) {
+        const choiceData = choices.map(c => ({ ...c, question_id: question.question_id }));
+        await Choice.createChoices(question.question_id, choiceData);
+      }
+
+      createdQuestions.push(question);
+    }
+
+    return {
+      EM: "Thêm nhiều câu hỏi thành công",
+      EC: "0",
+      DT: createdQuestions,
+    };
+  } catch (error) {
+    console.error("Error in addMultipleQuestionsToPart:", error);
+    return {
+      EM: "Có lỗi xảy ra khi thêm nhiều câu hỏi",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
 
 exports.updateTest = async (test_id, {title, duration, description}) => {
     try {
@@ -124,6 +154,7 @@ exports.addQuestionToPart = async (part_id, { question_text, question_type, audi
             explanation,
             grammar_notes,
         });
+        const choices = await Choice.createChoices(question.question_id, choices);
         return {
             EM: "Thêm câu hỏi thành công",
             EC: "0",
