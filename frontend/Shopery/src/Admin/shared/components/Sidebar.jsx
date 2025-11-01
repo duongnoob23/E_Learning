@@ -37,7 +37,7 @@ const Sidebar = () => {
       {/* ✅ Logo với icon */}
       <div className="sidebar__logo">
         <div className="sidebar__logo-icon">📖</div>
-        <h2 className="sidebar__title">Educa</h2>
+        <h2 className="sidebar__title">TOTC</h2>
       </div>
 
       {/* ✅ Search bar */}
