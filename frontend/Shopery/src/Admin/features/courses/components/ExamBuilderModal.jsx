@@ -143,7 +143,7 @@ export default function ExamBuilderModal({ open, onClose, onSubmit }) {
             </button>
             <button
               className="btn btn--primary"
-              disabled={!canSubmit}
+              // disabled={!canSubmit}
               onClick={() => onSubmit?.({ info, parts })}
             >
               Submit

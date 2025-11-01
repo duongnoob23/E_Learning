@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExamBuilderModal from "../components/ExamBuilderModal";
 import ExamPreviewModal from "../components/ExamPreviewModal";
+import ExamEditModal from "../components/ExamEditModal";
 import {
   useAdminAddPartToTest,
   useAdminAddQuestionsToPart,
@@ -12,7 +13,6 @@ import {
   useAdminTestStatistics,
 } from "../hooks/useExamAdminQueries";
 import "./CoursesPage.scss";
-
 function RatingStar() {
   return (
     <svg width="18" height="18" fill="none" viewBox="0 0 20 20">
@@ -24,7 +24,7 @@ function RatingStar() {
   );
 }
 
-const stats = [
+const stats1 = [
   {
     title: "Total Assessment",
     value: "12",
@@ -76,7 +76,7 @@ export default function CoursesPage() {
   const [previewTestId, setPreviewTestId] = useState(null);
   const [hoveredTestId, setHoveredTestId] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const [editTestId, setEditTestId] = useState(null);
   // Lấy danh sách đề thi
   const { data: testsRes, isLoading } = useAdminTests();
   const tests = testsRes?.DT || [];
@@ -206,8 +206,8 @@ export default function CoursesPage() {
       </div>
 
       {/* Stats Row */}
-      {/* <div className="courses-stats-row">
-        {stats.map((stat, i) => (
+      <div className="courses-stats-row">
+        {stats1.map((stat, i) => (
           <div className="course-stat-card" key={i}>
             {stat.icon}
             <div className="stat-data">
@@ -219,7 +219,7 @@ export default function CoursesPage() {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
 
       <div className="courses-table-wrapper">
         <div className="table-header-row">
@@ -403,9 +403,7 @@ export default function CoursesPage() {
                         </button>
                         {/* Edit icon */}
                         <button
-                          onClick={() => {
-                            /* TODO: mở edit modal */
-                          }}
+                          onClick={() => setEditTestId(t.test_id)}
                           style={{
                             background: "none",
                             border: "none",
@@ -533,6 +531,15 @@ export default function CoursesPage() {
         open={!!previewTestId}
         onClose={() => setPreviewTestId(null)}
         testId={previewTestId}
+      />
+
+      <ExamEditModal
+        open={!!editTestId}
+        onClose={() => setEditTestId(null)}
+        testId={editTestId}
+        onSaveSuccess={() => {
+          setEditTestId(null);
+        }}
       />
     </div>
   );
