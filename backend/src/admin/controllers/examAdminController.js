@@ -3,7 +3,7 @@ const examAdminService = require("../services/examAdminService");
 // Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
   try {
-    const response = await examAdminService.getTests();
+    const response = await examAdminService.getTest();
     res.json(response);
   } catch (error) {
     next(error);
@@ -24,11 +24,22 @@ exports.getTestDetail = async (req, res, next) => {
 // Tạo đề thi
 exports.createTest = async (req, res, next) => {
   try {
-    const { title, duration, description, category_ids } = req.body;
-    const response = await examAdminService.getTest({
+    const {
       title,
       duration,
       description,
+      total_questions,
+      total_parts,
+      difficulty_level,
+      category_ids,
+    } = req.body;
+    const response = await examAdminService.createTest({
+      title,
+      duration,
+      description,
+      total_questions,
+      total_parts,
+      difficulty_level,
       category_ids,
     });
     res.json(response);

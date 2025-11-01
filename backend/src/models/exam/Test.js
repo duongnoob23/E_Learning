@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             exam_type: {
                 type: DataTypes.ENUM('TOEIC', 'IELTS', 'HSK', 'THPT'),
+                defaultValue: 'TOEIC',
                 allowNull: false,
             },
             total_duration: {

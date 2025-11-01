@@ -228,6 +228,12 @@
     &:hover {
       background: #f9fafb;
     }
+    &:nth-child(even) {
+      background: #e8e8e8;
+    }
+    &:nth-child(odd) {
+      background: #ffffff;
+    }
   }
   td {
     font-size: 14px;
@@ -332,4 +338,101 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
+}
+
+.statistics-tooltip {
+  position: fixed;
+  animation: tooltipFadeIn 0.2s ease-out;
+
+  &__content {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    min-width: 220px;
+    overflow: hidden;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+    font-size: 14px;
+    color: #111827;
+
+    svg {
+      color: #2563eb;
+      flex-shrink: 0;
+    }
+  }
+
+  &__body {
+    padding: 12px 16px;
+    background: #ffffff;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  &__value {
+    font-size: 14px;
+    color: #111827;
+    font-weight: 600;
+  }
+
+  &__arrow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #e5e7eb;
+    }
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 5px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
 }

@@ -42,6 +42,63 @@ exports.getTestDetail = async (test_id) => {
   }
 };
 
+exports.createTest = async ({
+  title,
+  duration,
+  description,
+  total_questions,
+  total_parts,
+  difficulty_level,
+  category_ids,
+}) => {
+  try {
+    const test = await Test.createTest({
+      title,
+      total_duration: duration,
+      description,
+      total_questions,
+      total_parts,
+      difficulty_level,
+    });
+    // if (category_ids) {
+    //   // Chuẩn hóa category_ids thành mảng
+    //   let ids = [];
+
+    //   if (Array.isArray(category_ids)) {
+    //     ids = category_ids;
+    //   } else if (typeof category_ids === "string") {
+    //     ids = category_ids
+    //       .split(",")
+    //       .map((id) => parseInt(id.trim()))
+    //       .filter((id) => !isNaN(id));
+    //   } else if (typeof category_ids === "number") {
+    //     ids = [category_ids];
+    //   }
+
+    //   if (ids.length > 0) {
+    //     const relations = ids.map((c) => ({
+    //       test_id: test.test_id,
+    //       exam_category_id: c,
+    //     }));
+    //     await TestCategoryRelation.createRelations(relations);
+    //   }
+    // }
+
+    return {
+      EM: "Tạo đề thi thành công",
+      EC: "0",
+      DT: test,
+    };
+  } catch (error) {
+    console.error("Error in createTest:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình tạo đề thi",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
 exports.addMultipleQuestionsToPart = async (part_id, questions) => {
   try {
     const createdQuestions = [];

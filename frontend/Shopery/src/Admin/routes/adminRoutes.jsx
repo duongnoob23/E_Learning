@@ -12,7 +12,7 @@ const AdminRoutes = () => {
     <AdminLayout>
       <Routes>
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/assessment" element={<CoursesPage />} />
         {/* Có thể thêm nhiều route khác ở đây */}
         <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
       </Routes>

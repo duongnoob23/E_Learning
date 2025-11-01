@@ -51,6 +51,7 @@ export const useAdminDeleteTest = () => {
       if (isOk(data)) {
         toast.success(em(data, "Xóa đề thi thành công"));
         qc.invalidateQueries({ queryKey: adminExamKeys.tests() });
+        qc.invalidateQueries({ queryKey: ["ListExamsAdmin"] });
       } else toast.error(em(data, "Xóa đề thi thất bại"));
     },
     onError: () => toast.error("Có lỗi xảy ra khi xóa đề thi"),

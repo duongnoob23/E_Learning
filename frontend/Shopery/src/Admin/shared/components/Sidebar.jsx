@@ -5,7 +5,7 @@ import "./Sidebar.scss";
 const Sidebar = () => {
   const menuItems = [
     { name: "Dashboard", path: "/admin/dashboard", icon: "📊" },
-    { name: "Courses", path: "/admin/courses", icon: "📚" },
+    { name: "Assessment", path: "/admin/assessment", icon: "📚" },
     { name: "Students", path: "/admin/students", icon: "👩‍🎓" },
     { name: "Earnings", path: "/admin/earnings", icon: "💰" },
     { name: "Reports", path: "/admin/reports", icon: "📈" },
