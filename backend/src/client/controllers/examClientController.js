@@ -231,35 +231,51 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
 // GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
 exports.getSessionSpeakingResponses = async (req, res, next) => {
   try {
-        const user_id = req.user.userId;
-        const { text, type, language } = req.body;
+        const { session_id } = req.params;
+        const { status, page, limit } = req.query;
 
-        const response = await examClientService.scoreResponse({
-            user_id,
-            text,
-            type,
-            language
-        });
-
+        const response = await examClientService.getSessionSpeakingResponses(session_id, { status, page, limit });
         res.json(response);
     } catch (error) {
         next(error);
     }
 };
 
-// POST /api/llmservice/score - Chấm điểm speaking/writing response
+// POST /api/llmservice/score - Chấm điểm speaking response using MultiPA
 exports.gradeExam = async (req, res, next) => {
     try {
-        const {response_id, type, text, language } = req.body;
+        const {response_id, type, audio_file_path, text, language } = req.body;
         const user_id = req.user.userId;
+
+        if (!response_id || !type) {
+            return res.status(400).json({
+                EM: "Thiếu thông tin: response_id, type",
+                EC: "-1",
+                DT: null
+            });
+        }
 
         let response;
         if (type === "WRITING") {
+            if (!text) {
+                return res.status(400).json({
+                    EM: "Thiếu text cho WRITING type",
+                    EC: "-1",
+                    DT: null
+                });
+            }
             response = await examClientService.gradeWriting({response_id, user_id, text, language });
         } else if (type === "SPEAKING") {
-            response = await examClientService.gradeSpeaking({response_id, user_id, text, language });
+            if (!audio_file_path) {
+                return res.status(400).json({
+                    EM: "Thiếu audio_file_path cho SPEAKING type",
+                    EC: "-1",
+                    DT: null
+                });
+            }
+            response = await examClientService.gradeSpeaking({response_id, user_id, audio_file_path, language });
         } else {
-            return res.status(400).json({ EM: "Loại bài không hợp lệ", EC: "-1", DT: null });
+            return res.status(400).json({ EM: "Loại bài không hợp lệ (SPEAKING/WRITING)", EC: "-1", DT: null });
         }
 
         res.json(response);

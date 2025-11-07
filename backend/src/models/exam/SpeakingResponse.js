@@ -61,12 +61,52 @@ module.exports = (sequelize, DataTypes) => {
             score: {
                 type: DataTypes.FLOAT,
                 allowNull: true,
-                comment: 'Speaking score (if auto-graded)'
+                comment: 'Overall speaking score (0-100)'
+            },
+            pronunciation_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Pronunciation score (0-100)'
+            },
+            fluency_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Fluency score (0-100) - from MultiPA'
+            },
+            prosody_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Prosody score (0-100) - from MultiPA'
+            },
+            grammar_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Grammar score (0-100)'
+            },
+            vocabulary_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Vocabulary score (0-100)'
+            },
+            coherence_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Coherence/Organization score (0-100)'
+            },
+            transcript: {
+                type: DataTypes.TEXT,
+                allowNull: true,
+                comment: 'MultiPA transcription result'
             },
             feedback: {
                 type: DataTypes.TEXT,
                 allowNull: true,
-                comment: 'AI-generated feedback on pronunciation, grammar, etc.'
+                comment: 'AI-generated feedback on pronunciation, grammar, fluency, etc.'
+            },
+            detailed_feedback: {
+                type: DataTypes.JSON,
+                allowNull: true,
+                comment: 'Detailed feedback for each criterion'
             },
             created_at: {
                 type: DataTypes.DATE,

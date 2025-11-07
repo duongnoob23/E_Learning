@@ -45,19 +45,37 @@ module.exports = (sequelize, DataTypes) => {
             grammar_score: {
                 type: DataTypes.FLOAT,
                 allowNull: true,
+                comment: 'Grammar score (0-100)'
             },
             coherence_score: {
                 type: DataTypes.FLOAT,
                 allowNull: true,
+                comment: 'Coherence/Organization score (0-100)'
             },
             vocabulary_score: {
                 type: DataTypes.FLOAT,
                 allowNull: true,
+                comment: 'Vocabulary score (0-100)'
+            },
+            task_completion_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Task completion score (0-100)'
+            },
+            spelling_score: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+                comment: 'Spelling score (0-100)'
             },
             feedback: {
                 type: DataTypes.TEXT,
                 allowNull: true,
                 comment: 'AI-generated feedback'
+            },
+            detailed_feedback: {
+                type: DataTypes.JSON,
+                allowNull: true,
+                comment: 'Detailed feedback for each criterion'
             },
             error_message: {
                 type: DataTypes.TEXT,
