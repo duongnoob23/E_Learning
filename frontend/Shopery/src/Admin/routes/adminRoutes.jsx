@@ -4,6 +4,8 @@ import AdminLayout from "../layouts/AdminLayout";
 
 // Pages
 import CoursesPage from "../features/courses/pages/CoursesPage";
+import CoursesPage2 from "../features/courses2/pages/CoursesPage2";
+import CreateCoursePage from "../features/courses2/pages/CreateCoursePage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 
 const AdminRoutes = () => {
@@ -13,6 +15,8 @@ const AdminRoutes = () => {
       <Routes>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/assessment" element={<CoursesPage />} />
+        <Route path="/courses" element={<CoursesPage2 />} />
+        <Route path="/create-course" element={<CreateCoursePage />} />
         {/* Có thể thêm nhiều route khác ở đây */}
         <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
       </Routes>

@@ -18,6 +18,7 @@ const Sidebar = () => {
       items: [
         { name: "Users", path: "/admin/users", icon: "👥" },
         { name: "Courses", path: "/admin/courses", icon: "📚" },
+        { name: "Create Course", path: "/admin/create-course", icon: "📚" },
         { name: "Assignments", path: "/admin/assessment", icon: "📝" },
       ],
     },
