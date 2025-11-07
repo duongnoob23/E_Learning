@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
       status: {
-        type: DataTypes.ENUM("draft", "published", "archived"),
+        type: DataTypes.ENUM("draft", "published", "archived","pending_review","rejected"),
         allowNull: false,
         defaultValue: "draft",
       },
@@ -97,6 +97,37 @@ module.exports = (sequelize, DataTypes) => {
   Course.getFilterOptions = async () => {
     return Course.findAndCountAll(filters);
   };
-
+  Course.associate = (models) => {
+    // Một khóa học có nhiều module
+    Course.hasMany(models.Module, {
+      foreignKey: "course_id",
+      as: "modules",
+    });
+  
+    // Một khóa học có nhiều bài học
+    Course.hasMany(models.Lesson, {
+      foreignKey: "course_id",
+      as: "lessons",
+    });
+  
+    // Một khóa học có thể có nhiều đánh giá
+    Course.hasMany(models.CourseReview, {
+      foreignKey: "course_id",
+      as: "reviews",
+    });
+  
+    // Một khóa học thuộc về một giảng viên
+    Course.belongsTo(models.Instructor, {
+      foreignKey: "instructor_id",
+      as: "instructor",
+    });
+  
+    // Một khóa học thuộc về một danh mục
+    Course.belongsTo(models.Category, {
+      foreignKey: "category_id",
+      as: "category",
+    });
+  };
+  
   return Course;
 };

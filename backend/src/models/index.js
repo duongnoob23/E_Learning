@@ -202,7 +202,7 @@ CourseTagRelation.belongsTo(CourseTag, { foreignKey: "tag_id" });
 Instructor.belongsTo(User, { foreignKey: "user_id" });
 
 // Export
-module.exports = {
+const db = {
   sequelize,
   // User & Authentication models
   User,
@@ -256,3 +256,9 @@ module.exports = {
   TestDiscussion,
   TestComment,
 };
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+module.exports = db;

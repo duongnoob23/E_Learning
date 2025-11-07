@@ -8,6 +8,353 @@ const Lesson = require("../../models").Lesson;
 const CourseReview = require("../../models").CourseReview;
 const User = require("../../models").User;
 const CourseDiscussion = require("../../models").CourseDiscussion;
+const CourseEnrollment = require("../../models").CourseEnrollment; // Bảng trung gian user - course
+const LessonProgress = require("../../models").LessonProgress;
+
+const vnd = n => n == null ? null : n.toLocaleString("vi-VN") + "₫";
+// ==================== COURSE DETAIL ==================== //
+exports.getCourseDetail = async (course_id) => {
+  try {
+    const course = await Course.findByPk(course_id, {
+      include: [
+        { model: Category, attributes: ["name"] },
+        { model: Instructor, attributes: ["name", "avatar", "bio"] },
+        { model: Level, attributes: ["name"] },
+      ],
+    });
+
+    if (!course) {
+      return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+    }
+
+    return { EM: "Lấy chi tiết khóa học thành công", EC: "0", DT: course };
+  } catch (error) {
+    console.error("Lỗi trong getCourseDetail service:", error);
+    return { EM: "Có lỗi xảy ra khi lấy chi tiết khóa học", EC: "-2", DT: null };
+  }
+};
+// COURSE PREVIEW
+exports.getCoursePreview = async (course_id) => {
+  try {
+    const course = await Course.findOne({
+      where: { course_id },
+      include: [
+        { model: Instructor, as: "instructor", attributes: ["name", "avatar"] },
+        { model: Category, as: "category", attributes: ["name"] },
+        {
+          model: Module,
+          as: "modules",
+          attributes: ["module_id", "title", "total_lectures", "total_duration", "sort_order"],
+          include: [
+            {
+              model: Lesson,
+              as: "lessons",
+              attributes: ["lesson_id", "title", "video_duration", "sort_order", "is_free"]
+            }
+          ],
+          order: [["sort_order", "ASC"]]
+        },
+        {
+          model: CourseReview,
+          as: "reviews",
+          where: { status: "approved" },
+          required: false,
+          attributes: ["review_id", "rating"]
+        }
+      ],
+      attributes: [
+        "course_id",
+        "title",
+        "short_description",
+        "description",
+        "image",
+        "video_preview",
+        "video_duration",
+        "video_progress",
+        "total_lessons",
+        "total_duration",
+        "rating",
+        "rating_count",
+        // 🔥 các trường giá
+        "price",
+        "old_price",
+        "discount_percent",
+        "is_free"
+      ]
+    });
+
+    if (!course) return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+
+    // Tính toán giá
+    const is_free = !!course.is_free;
+    const basePrice = Number(course.price || 0);
+    const oldPrice = course.old_price != null ? Number(course.old_price) : null;
+    const discountPercent = Number(course.discount_percent || 0);
+
+    let effectivePrice = basePrice;
+    let hasDiscount = false;
+    let discountAmount = 0;
+
+    if (!is_free && discountPercent > 0 && basePrice > 0) {
+      const disc = Math.round((basePrice * discountPercent) / 100);
+      discountAmount = disc;
+      effectivePrice = basePrice; // bạn đang lưu sẵn price đã giảm → giữ nguyên
+      hasDiscount = true;
+    }
+
+    // Modules + lessons format
+    const modules = (course.modules || [])
+      .sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+      .map(m => ({
+        title: m.title,
+        lectures: m.total_lectures ?? (m.lessons?.length || 0),
+        time: m.total_duration || null,
+        lessons: (m.lessons || [])
+          .sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+          .map(l => ({ name: l.title, time: l.video_duration }))
+      }));
+
+    const ratingCount = course.rating_count ?? course.reviews?.length ?? 0;
+
+    return {
+      EM: "Lấy chi tiết khóa học thành công",
+      EC: "0",
+      DT: {
+        course: {
+          course_id: course.course_id,
+          category: course.category?.name || null,
+          title: course.title,
+          shortDesc: course.short_description,
+          rating: Number(course.rating || 0),
+          ratingCount,
+          lessons: course.total_lessons,
+          duration: course.total_duration,
+          instructor: {
+            name: course.instructor?.name || null,
+            avatar: course.instructor?.avatar || null
+          },
+          video: {
+            thumb: course.image,
+            duration: course.video_duration,
+            progress: Number(course.video_progress || 0),
+            url: course.video_preview
+          },
+          pricing: {
+            is_free,
+            price: is_free ? 0 : basePrice,
+            old_price: oldPrice,
+            discount_percent: is_free ? 0 : discountPercent,
+            has_discount: !is_free && hasDiscount,
+            discount_amount: is_free ? 0 : discountAmount,
+            effective_price: is_free ? 0 : effectivePrice,
+            currency: "VND",
+            price_display: vnd(is_free ? 0 : effectivePrice),
+            old_price_display: vnd(oldPrice),
+            discount_badge: !is_free && hasDiscount ? `-${discountPercent}%` : null
+          },
+          about: course.description ? course.description.split("\n").filter(Boolean) : [],
+          learn: [],
+          skills: [],
+          requirements: [],
+          modules
+        },
+        // Có thể tái sử dụng getSuggestedCourses hiện có (nhớ bổ sung block pricing tương tự)
+        suggestedCourses: []
+      }
+    };
+  } catch (err) {
+    console.error("getCoursePreview error:", err);
+    return { EM: "Lỗi server", EC: "-1", DT: null };
+  }
+};
+// ==================== ENROLL COURSE ==================== //
+exports.enrollCourse = async (user_id, course_id) => {
+  try {
+    const course = await Course.findByPk(course_id);
+    if (!course) return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+
+    // Kiểm tra đã đăng ký chưa
+    const existing = await CourseEnrollment.findOne({ where: { user_id, course_id } });
+    if (existing) return { EM: "Bạn đã đăng ký khóa học này rồi", EC: "3", DT: existing };
+
+    // Nếu miễn phí thì đăng ký luôn
+    const newEnroll = await CourseEnrollment.create({
+      user_id,
+      course_id,
+      enrolled_at: new Date(),
+      status: "active",
+      payment_status: course.is_free ? "paid" : "pending",
+    });
+
+    return { EM: "Đăng ký khóa học thành công", EC: "0", DT: newEnroll };
+  } catch (error) {
+    console.error("Lỗi trong enrollCourse service:", error);
+    return { EM: "Có lỗi xảy ra khi đăng ký khóa học", EC: "-2", DT: null };
+  }
+};
+
+// ==================== USER COURSES ==================== //
+exports.getUserCourses = async (user_id) => {
+  try {
+    const CourseEnrollments = await CourseEnrollment.findAll({
+      where: { user_id },
+      include: [
+        {
+          model: Course,
+          include: [
+            { model: Instructor, attributes: ["name"] },
+            { model: Category, attributes: ["name"] },
+          ],
+        },
+      ],
+      order: [["enrolled_at", "DESC"]],
+    });
+
+    return { EM: "Lấy danh sách khóa học của bạn thành công", EC: "0", DT: CourseEnrollments };
+  } catch (error) {
+    console.error("Lỗi trong getUserCourses service:", error);
+    return { EM: "Có lỗi xảy ra khi lấy khóa học người dùng", EC: "-2", DT: null };
+  }
+};
+
+// ==================== COURSE PROGRESS ==================== //
+exports.getLearningProgress = async (user_id, course_id) => {
+  try {
+    const lessons = await Lesson.findAll({ where: { course_id } });
+    const progress = await LessonProgress.findAll({
+      where: { user_id, course_id },
+      attributes: ["lesson_id", "completion_percent"],
+    });
+
+    const total = lessons.length;
+    const completed = progress.filter((p) => p.is_completed).length;
+    const percentage = total > 0 ? (completed / total).toFixed(2) : 0;
+
+    return {
+      EM: "Lấy tiến độ học thành công",
+      EC: "0",
+      DT: { total_lessons: total, completed_lessons: completed, progress: percentage },
+    };
+  } catch (error) {
+    console.error("Lỗi trong getLearningProgress service:", error);
+    return { EM: "Có lỗi xảy ra khi lấy tiến độ học", EC: "-2", DT: null };
+  }
+};
+
+// ==================== UPDATE LESSON PROGRESS ==================== //
+exports.updateLessonProgress = async (user_id, lesson_id, progress) => {
+  try {
+    // 1️⃣ Tìm lesson để biết nó thuộc course nào
+    const lesson = await Lesson.findByPk(lesson_id, {
+      attributes: ["lesson_id", "course_id"],
+    });
+
+    if (!lesson) {
+      return {
+        EM: "Không tìm thấy bài học",
+        EC: "404",
+        DT: null,
+      };
+    }
+
+    const course_id = lesson.course_id;
+
+    // 2️⃣ Tìm hoặc tạo bản ghi tiến độ học
+    const [record, created] = await LessonProgress.findOrCreate({
+      where: { user_id, lesson_id },
+      defaults: {
+        course_id,
+        completion_percent: progress, // dùng đúng cột của bạn
+      },
+    });
+
+    // 3️⃣ Nếu đã tồn tại, cập nhật lại tiến độ
+    if (!created) {
+      record.completion_percent = progress;
+      await record.save();
+    }
+
+    // 4️⃣ Cập nhật tiến độ tổng thể trong course_enrollments (nếu cần)
+    // Bạn có thể cộng dồn % hoặc tính trung bình
+    const allLessons = await LessonProgress.findAll({
+      where: { user_id, course_id },
+      attributes: ["completion_percent"],
+    });
+
+    const avgProgress =
+      allLessons.reduce((sum, l) => sum + parseFloat(l.completion_percent || 0), 0) /
+      allLessons.length;
+
+    await CourseEnrollment.update(
+      { progress_percent: avgProgress.toFixed(2) },
+      { where: { user_id, course_id } }
+    );
+
+    return {
+      EM: "Cập nhật tiến độ bài học thành công",
+      EC: "0",
+      DT: {
+        lesson_id,
+        course_id,
+        progress: progress,
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi trong updateLessonProgress service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi cập nhật tiến độ bài học",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// ==================== LESSON DETAIL ==================== //
+exports.getLessonDetail = async (user_id, lesson_id) => {
+  try {
+    // 1. Lấy thông tin bài học và course_id của nó
+    const lesson = await Lesson.findByPk(lesson_id, {
+      attributes: ["lesson_id", "title", "description", "video_url", "course_id"],
+    });
+
+    if (!lesson) {
+      return {
+        EM: "Không tìm thấy bài học",
+        EC: "404",
+        DT: null,
+      };
+    }
+
+    const course_id = lesson.course_id;
+
+    // 2. Kiểm tra xem user đã đăng ký khóa học này chưa
+    const enrollment = await CourseEnrollment.findOne({
+      where: { user_id, course_id },
+    });
+
+    if (!enrollment) {
+      return {
+        EM: "Người dùng chưa đăng ký khóa học này",
+        EC: "403",
+        DT: null,
+      };
+    }
+
+    // 3. Trả thông tin chi tiết bài học
+    return {
+      EM: "Lấy thông tin bài học thành công",
+      EC: "0",
+      DT: lesson,
+    };
+  } catch (error) {
+    console.error("Lỗi trong getLessonDetail service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi lấy chi tiết bài học",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
 
 // ==================== CATEGORIES ====================
 

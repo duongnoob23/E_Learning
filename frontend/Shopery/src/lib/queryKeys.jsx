@@ -23,7 +23,7 @@ export const queryKeys = {
     lists: ["course", "list"],
     list: (filters) => ["course", "list", { filters }],
     details: ["course", "detail"],
-    detail: (id) => ["course", "detail", id],
+    detail: (id) => ["course", id],
 
     // Bổ sung các key bị thiếu
     byCategory: (categoryId) => ["course", "byCategory", categoryId],

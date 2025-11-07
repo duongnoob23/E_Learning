@@ -19,7 +19,7 @@ export const useCourseDetail = (courseId, enabled = true) => {
     queryKey: queryKeys.course.detail(courseId),
     queryFn: () => courseApi.getCourseById(courseId),
     enabled: enabled && !!courseId,
-    staleTime: 10 * 60 * 1000, // 10 phút
+    staleTime: 10 * 60 * 1000, // cache 10 phút
   });
 };
 
