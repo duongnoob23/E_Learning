@@ -10,7 +10,7 @@ const VIDEO_EXAMPLES = {
   "Local Upload": "Upload a video file from your device",
 };
 
-export default function CourseIntroVideoTab({ data, onChange }) {
+export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
   const { videoSource = "", videoUrl = "" } = data;
   const [urlError, setUrlError] = useState("");
 
@@ -79,10 +79,16 @@ export default function CourseIntroVideoTab({ data, onChange }) {
           {urlError && (
             <div className="course-intro-video-tab__error">{urlError}</div>
           )}
+          {errors.videoUrl && !urlError && (
+            <div className="course-intro-video-tab__error">{errors.videoUrl}</div>
+          )}
           <div className="course-intro-video-tab__helper">
             Example: {VIDEO_EXAMPLES[videoSource]}
           </div>
         </div>
+      )}
+      {errors.videoSource && (
+        <div className="course-intro-video-tab__error">{errors.videoSource}</div>
       )}
 
       {/* Video Preview */}

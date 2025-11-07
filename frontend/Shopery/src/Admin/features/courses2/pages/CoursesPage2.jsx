@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import AddCourseModal from "../components/AddCourseModal";
+import CreateCoursePage from "./CreateCoursePage";
 import "./CoursesPage2.scss";
 
 // Mock data
@@ -661,16 +661,34 @@ export default function CoursesPage2() {
         )}
       </div>
 
-      {/* Add Course Modal */}
-      <AddCourseModal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        onSave={(data) => {
-          console.log("Save course:", data);
-          setOpenModal(false);
-          // TODO: Call API
-        }}
-      />
+      {/* Create Course Modal */}
+      {openModal && (
+        <div className="course-modal2__backdrop" onClick={() => setOpenModal(false)}>
+          <div className="course-modal2__wrapper" onClick={(e) => e.stopPropagation()}>
+            <div className="course-modal2__header">
+              <div style={{ fontWeight: 600, fontSize: "18px" }}>
+                Create New Course
+              </div>
+              <button
+                className="course-modal2__btn-close"
+                onClick={() => setOpenModal(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="course-modal2__content-wrapper">
+              <CreateCoursePage
+                onClose={() => setOpenModal(false)}
+                onSave={(data) => {
+                  console.log("Save course:", data);
+                  setOpenModal(false);
+                  // TODO: Call API
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

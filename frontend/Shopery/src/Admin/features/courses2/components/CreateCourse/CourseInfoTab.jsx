@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./CourseInfoTab.scss";
 
-export default function CourseInfoTab({ data, onChange }) {
+export default function CourseInfoTab({ data, onChange, errors = {} }) {
   const {
     title = "",
     slug = "",
@@ -60,6 +60,9 @@ export default function CourseInfoTab({ data, onChange }) {
           <span className="course-info-tab__helper-icon">ℹ️</span>
           Title should be 30 characters.
         </div>
+        {errors.title && (
+          <div className="course-info-tab__error">{errors.title}</div>
+        )}
       </div>
 
       {/* Course Slug */}
@@ -76,6 +79,9 @@ export default function CourseInfoTab({ data, onChange }) {
           <span className="course-info-tab__helper-icon">ℹ️</span>
           Permalink: https://yourdomain.com/{slug || "new-course"}
         </div>
+        {errors.slug && (
+          <div className="course-info-tab__error">{errors.slug}</div>
+        )}
       </div>
 
       {/* About Course */}
@@ -93,6 +99,9 @@ export default function CourseInfoTab({ data, onChange }) {
           HTML or plain text allowed. No emoji. This field is used for search,
           so please be descriptive!
         </div>
+        {errors.about && (
+          <div className="course-info-tab__error">{errors.about}</div>
+        )}
       </div>
 
       {/* Course Price */}
@@ -102,9 +111,7 @@ export default function CourseInfoTab({ data, onChange }) {
           <button
             type="button"
             className={`course-info-tab__toggle-btn ${
-              priceType === "paid"
-                ? "course-info-tab__toggle-btn--active"
-                : ""
+              priceType === "paid" ? "course-info-tab__toggle-btn--active" : ""
             }`}
             onClick={() => handleChange("priceType", "paid")}
           >
@@ -113,9 +120,7 @@ export default function CourseInfoTab({ data, onChange }) {
           <button
             type="button"
             className={`course-info-tab__toggle-btn ${
-              priceType === "free"
-                ? "course-info-tab__toggle-btn--active"
-                : ""
+              priceType === "free" ? "course-info-tab__toggle-btn--active" : ""
             }`}
             onClick={() => handleChange("priceType", "free")}
           >
@@ -139,6 +144,11 @@ export default function CourseInfoTab({ data, onChange }) {
               <div className="course-info-tab__helper">
                 The Course Price Includes Your Author Fee.
               </div>
+              {errors.regularPrice && (
+                <div className="course-info-tab__error">
+                  {errors.regularPrice}
+                </div>
+              )}
             </div>
             <div className="course-info-tab__price-field">
               <label className="course-info-tab__price-label">
@@ -169,7 +179,7 @@ export default function CourseInfoTab({ data, onChange }) {
             type="text"
             className="course-info-tab__input course-info-tab__input--dropdown"
             placeholder="Search Course Category. ex. Design, Development, Business"
-            value={category?.name || ""}
+            value={category?.name || "aaa"}
             onChange={(e) => {
               // TODO: Implement search dropdown
               console.log("Search category:", e.target.value);
@@ -177,6 +187,9 @@ export default function CourseInfoTab({ data, onChange }) {
           />
           <span className="course-info-tab__dropdown-arrow">▼</span>
         </div>
+        {errors.category && (
+          <div className="course-info-tab__error">{errors.category}</div>
+        )}
       </div>
 
       {/* Course Thumbnail */}
@@ -222,8 +235,10 @@ export default function CourseInfoTab({ data, onChange }) {
         <div className="course-info-tab__helper">
           Size: 700x430 pixels, File Support: JPG, JPEG, PNG, GIF, WEBP
         </div>
+        {errors.thumbnail && (
+          <div className="course-info-tab__error">{errors.thumbnail}</div>
+        )}
       </div>
     </div>
   );
 }
-

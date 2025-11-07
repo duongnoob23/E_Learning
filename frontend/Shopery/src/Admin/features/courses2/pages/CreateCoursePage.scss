@@ -71,6 +71,8 @@
   border: 1px solid #e5e7eb;
   padding: 32px;
   min-height: 500px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .course-create-page__tab-placeholder {
@@ -112,6 +114,15 @@
 
     &:hover {
       background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    }
+  }
+
+  &--reset {
+    background: #ef4444;
+    color: #ffffff;
+
+    &:hover {
+      background: #dc2626;
     }
   }
 }

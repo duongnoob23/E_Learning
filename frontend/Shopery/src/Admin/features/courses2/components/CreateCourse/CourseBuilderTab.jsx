@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LessonFormModal from "./LessonFormModal";
 import "./CourseBuilderTab.scss";
 
-export default function CourseBuilderTab({ modules = [], onChange }) {
+export default function CourseBuilderTab({ modules = [], onChange, errors = {} }) {
   const [editingModule, setEditingModule] = useState(null);
   const [editingLesson, setEditingLesson] = useState(null);
   const [showLessonModal, setShowLessonModal] = useState(false);
@@ -201,6 +201,22 @@ export default function CourseBuilderTab({ modules = [], onChange }) {
       >
         + Add New Topic
       </button>
+
+      {/* Validation Errors */}
+      {errors.modules && (
+        <div className="course-builder-tab__error">{errors.modules}</div>
+      )}
+      {modules.map((module, moduleIndex) => {
+        const moduleError = errors[`module_${moduleIndex}`];
+        if (moduleError) {
+          return (
+            <div key={`error-${module.id}`} className="course-builder-tab__error">
+              {module.name}: {moduleError}
+            </div>
+          );
+        }
+        return null;
+      })}
 
       {/* Lesson Form Modal */}
       {showLessonModal && (

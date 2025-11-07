@@ -653,3 +653,72 @@
     width: 100%;
   }
 }
+
+// Modal styles for CreateCoursePage
+.course-modal2__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.course-modal2__wrapper {
+  width: 100%;
+  max-width: 1600px;
+  max-height: 95vh;
+  background: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.course-modal2__header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.course-modal2__btn-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+.course-modal2__content-wrapper {
+  overflow-y: auto;
+  flex: 1;
+  background: #f8fafc;
+
+  .course-create-page {
+    padding: 0;
+    min-height: auto;
+  }
+
+  .course-create-page__container {
+    max-width: 100%;
+  }
+}
