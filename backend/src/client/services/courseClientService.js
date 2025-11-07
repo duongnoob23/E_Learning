@@ -11,6 +11,7 @@ const CourseDiscussion = require("../../models").CourseDiscussion;
 const CourseEnrollment = require("../../models").CourseEnrollment; // Bảng trung gian user - course
 const LessonProgress = require("../../models").LessonProgress;
 
+const vnd = n => n == null ? null : n.toLocaleString("vi-VN") + "₫";
 // ==================== COURSE DETAIL ==================== //
 exports.getCourseDetail = async (course_id) => {
   try {
@@ -32,7 +33,140 @@ exports.getCourseDetail = async (course_id) => {
     return { EM: "Có lỗi xảy ra khi lấy chi tiết khóa học", EC: "-2", DT: null };
   }
 };
+// COURSE PREVIEW
+exports.getCoursePreview = async (course_id) => {
+  try {
+    const course = await Course.findOne({
+      where: { course_id },
+      include: [
+        { model: Instructor, as: "instructor", attributes: ["name", "avatar"] },
+        { model: Category, as: "category", attributes: ["name"] },
+        {
+          model: Module,
+          as: "modules",
+          attributes: ["module_id", "title", "total_lectures", "total_duration", "sort_order"],
+          include: [
+            {
+              model: Lesson,
+              as: "lessons",
+              attributes: ["lesson_id", "title", "video_duration", "sort_order", "is_free"]
+            }
+          ],
+          order: [["sort_order", "ASC"]]
+        },
+        {
+          model: CourseReview,
+          as: "reviews",
+          where: { status: "approved" },
+          required: false,
+          attributes: ["review_id", "rating"]
+        }
+      ],
+      attributes: [
+        "course_id",
+        "title",
+        "short_description",
+        "description",
+        "image",
+        "video_preview",
+        "video_duration",
+        "video_progress",
+        "total_lessons",
+        "total_duration",
+        "rating",
+        "rating_count",
+        // 🔥 các trường giá
+        "price",
+        "old_price",
+        "discount_percent",
+        "is_free"
+      ]
+    });
 
+    if (!course) return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+
+    // Tính toán giá
+    const is_free = !!course.is_free;
+    const basePrice = Number(course.price || 0);
+    const oldPrice = course.old_price != null ? Number(course.old_price) : null;
+    const discountPercent = Number(course.discount_percent || 0);
+
+    let effectivePrice = basePrice;
+    let hasDiscount = false;
+    let discountAmount = 0;
+
+    if (!is_free && discountPercent > 0 && basePrice > 0) {
+      const disc = Math.round((basePrice * discountPercent) / 100);
+      discountAmount = disc;
+      effectivePrice = basePrice; // bạn đang lưu sẵn price đã giảm → giữ nguyên
+      hasDiscount = true;
+    }
+
+    // Modules + lessons format
+    const modules = (course.modules || [])
+      .sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+      .map(m => ({
+        title: m.title,
+        lectures: m.total_lectures ?? (m.lessons?.length || 0),
+        time: m.total_duration || null,
+        lessons: (m.lessons || [])
+          .sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+          .map(l => ({ name: l.title, time: l.video_duration }))
+      }));
+
+    const ratingCount = course.rating_count ?? course.reviews?.length ?? 0;
+
+    return {
+      EM: "Lấy chi tiết khóa học thành công",
+      EC: "0",
+      DT: {
+        course: {
+          course_id: course.course_id,
+          category: course.category?.name || null,
+          title: course.title,
+          shortDesc: course.short_description,
+          rating: Number(course.rating || 0),
+          ratingCount,
+          lessons: course.total_lessons,
+          duration: course.total_duration,
+          instructor: {
+            name: course.instructor?.name || null,
+            avatar: course.instructor?.avatar || null
+          },
+          video: {
+            thumb: course.image,
+            duration: course.video_duration,
+            progress: Number(course.video_progress || 0),
+            url: course.video_preview
+          },
+          pricing: {
+            is_free,
+            price: is_free ? 0 : basePrice,
+            old_price: oldPrice,
+            discount_percent: is_free ? 0 : discountPercent,
+            has_discount: !is_free && hasDiscount,
+            discount_amount: is_free ? 0 : discountAmount,
+            effective_price: is_free ? 0 : effectivePrice,
+            currency: "VND",
+            price_display: vnd(is_free ? 0 : effectivePrice),
+            old_price_display: vnd(oldPrice),
+            discount_badge: !is_free && hasDiscount ? `-${discountPercent}%` : null
+          },
+          about: course.description ? course.description.split("\n").filter(Boolean) : [],
+          learn: [],
+          skills: [],
+          requirements: [],
+          modules
+        },
+        // Có thể tái sử dụng getSuggestedCourses hiện có (nhớ bổ sung block pricing tương tự)
+        suggestedCourses: []
+      }
+    };
+  } catch (err) {
+    console.error("getCoursePreview error:", err);
+    return { EM: "Lỗi server", EC: "-1", DT: null };
+  }
+};
 // ==================== ENROLL COURSE ==================== //
 exports.enrollCourse = async (user_id, course_id) => {
   try {

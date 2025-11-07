@@ -773,6 +773,7 @@
   width: 100%;
   transition: background 0.2s;
 }
+
 .course-preview__btn-buy-now--sm:hover {
   background: #23235b;
 }

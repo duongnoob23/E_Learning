@@ -11,7 +11,12 @@ exports.getCategories = async (req, res, next) => {
     next(error);
   }
 };
-
+// [GET] /api/courses/:id/preview - Lấy chi tiết khóa học
+exports.getCoursePreview = async (req, res) => {
+  const { id } = req.params;
+  const data = await Course.getCoursePreview(id);
+  res.json(data);
+};
 // [GET] /api/courses/instructors - Lấy danh sách giảng viên
 exports.getInstructors = async (req, res, next) => {
   try {

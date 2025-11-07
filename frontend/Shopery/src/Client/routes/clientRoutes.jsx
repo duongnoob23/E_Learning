@@ -152,7 +152,7 @@ const ClientRoutes = () => {
       />
 
       <Route
-        path="/course/1"
+        path="/course/:id"
         element={
           <PrivateRoute>
             <ClientLayout>

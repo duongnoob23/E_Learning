@@ -19,7 +19,7 @@ export const courseApi = {
 
   // Lấy chi tiết khóa học
   getCourseById: async (courseId) => {
-    const response = await axiosInstance.get(`/course/${courseId}`);
+    const response = await axiosInstance.get(`/course/courses/${courseId}/preview`);
     return response.data;
   },
 

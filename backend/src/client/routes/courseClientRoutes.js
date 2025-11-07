@@ -11,7 +11,8 @@ router.get("/instructors", controller.getInstructors);
 // ==================== COURSE LIST & DETAIL ==================== //
 // Lấy danh sách khóa học (có filter/sort)
 router.get("/", controller.getCourse);
-
+// Lấy chi tiết khóa học (preview)
+router.get("/courses/:id/preview", controller.getCoursePreview);
 // Gợi ý khóa học
 router.get("/suggested", controller.getSuggestedCourses);
 
