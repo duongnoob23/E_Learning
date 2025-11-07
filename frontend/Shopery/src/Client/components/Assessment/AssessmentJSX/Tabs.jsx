@@ -72,7 +72,7 @@ const Tabs = (Props) => {
       time_limit_minutes,
     });
 
-    console.log(JSON.stringify(result, null, 2));
+    // console.log(JSON.stringify(result, null, 2));
 
     if (result && +result.EC === 0) {
       // ✅ Truyền sessionData qua navigation

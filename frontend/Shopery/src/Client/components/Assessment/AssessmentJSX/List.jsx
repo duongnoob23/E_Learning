@@ -9,8 +9,10 @@ const List = (Props) => {
   // Lấy thống kê người dùng để kiểm tra các session đã hoàn thành
   const { data: userStatsData, isLoading: userStatsLoading } =
     useUserStatistics();
-
-  console.log("statistical", userStatsData);
+  console.log(
+    "🚀 ~ List ~ userStatsData:",
+    JSON.stringify(userStatsData, null, 2)
+  );
 
   // Tạo map các test đã hoàn thành từ recent_sessions
   const completedTests = React.useMemo(() => {
@@ -34,7 +36,6 @@ const List = (Props) => {
       {data &&
         data.DT.tests.map((assessment) => {
           const isCompleted = completedTests.has(assessment.test_id);
-          console.log(assessment);
           return (
             <Card
               key={assessment.test_id}

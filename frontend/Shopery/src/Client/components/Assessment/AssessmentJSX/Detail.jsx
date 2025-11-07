@@ -11,17 +11,16 @@ import Tabs from "./Tabs";
 
 const Detail = () => {
   const { id } = useParams();
-  console.log("id", id);
   const [exam, setExam] = useState(null);
   const location = useLocation();
   const testId = location.state?.testId;
   const userStats = location.state?.userStats;
-  console.log("[STEP - 02]", userStats);
+
+  console.log("userStats", JSON.stringify(userStats));
 
   const { data: detailsData, isLoading: detailsLoading } = useTestDetail(id);
   const { data: partsData, isLoading: partsLoading } = useTestParts(id);
 
-  console.log("part detail", partsData);
   useEffect(() => {
     const mockData = {
       id,

@@ -1,314 +1,466 @@
-import React, { useMemo, useState } from "react";
+// frontend/Shopery/src/Client/pages/Lesson/Lesson.jsx
+import React, { useCallback, useMemo, useState } from "react";
 import "./Lesson.css";
 
-const lessons = [
-  { id: 1, title: "Let's Get Started!", duration: "4:27", status: "done" },
+/**
+ * ------------------------------------------------------------------------
+ * Mock Data Definitions
+ * ------------------------------------------------------------------------
+ */
+
+/**
+ * Course chapters and lessons.
+ * Each lesson contains all metadata needed to render state icons,
+ * durations, and the simulated video asset.
+ */
+const COURSE_STRUCTURE = [
   {
-    id: 2,
-    title: "What is Adobe Photoshop",
-    duration: "13:12",
-    status: "done",
+    id: "chapter-1",
+    title: "Chapter 1: Course Overview",
+    totalVideos: 12,
+    totalDuration: "1h 28m",
+    lessons: [
+      {
+        id: "lesson-1-1",
+        title: "Welcome & Interface Tour",
+        duration: "06m",
+        status: "available",
+        videoId: "InU21w0vAsk",
+        description:
+          "Get to know the learning interface, playback controls, and how to navigate between chapters efficiently.",
+      },
+      {
+        id: "lesson-1-2",
+        title: "Installing Vue JS",
+        duration: "12m",
+        status: "available",
+        videoId: "uYnZ77P0Nqs",
+        description:
+          "Install Vue CLI, configure the development environment, and run the very first hello-world project together.",
+      },
+      {
+        id: "lesson-1-3",
+        title: "Project Structure Overview",
+        duration: "09m",
+        status: "playing",
+        videoId: "AnEJmMs6yDs",
+        description:
+          "Understand the anatomy of a Vue project including src folder layout, single file components, and tooling.",
+      },
+    ],
   },
   {
-    id: 3,
-    title: "Tools in Adobe Photoshop",
-    duration: "41:29",
-    status: "done",
+    id: "chapter-2",
+    title: "Chapter 2: Curriculum",
+    totalVideos: 12,
+    totalDuration: "1h 28m",
+    lessons: [
+      {
+        id: "lesson-2-1",
+        title: "Understand Vue Components",
+        duration: "09m",
+        status: "available",
+        videoId: "Nitl-K8IUmo",
+        description:
+          "Build the first reusable component, communicate via props, and evaluate component hierarchies with examples.",
+      },
+      {
+        id: "lesson-2-2",
+        title: "Vue Templating",
+        duration: "12m",
+        status: "available",
+        videoId: "39Db8GPSpxQ",
+        description:
+          "Explore Vue template syntax including directives, computed values, watchers, and template level conditionals.",
+      },
+      {
+        id: "lesson-2-3",
+        title: "Vue Forms",
+        duration: "10m",
+        status: "available",
+        videoId: "7DznJwNFxnE",
+        description:
+          "Build interactive form flows using v-model, validation patterns, and watchers for saving user progress.",
+      },
+    ],
   },
-  { id: 4, title: "Create Flower", duration: "19:52", status: "done" },
-  { id: 5, title: "Easy Digital Painting", duration: "7:08", status: "done" },
-  { id: 6, title: "Add Texture", duration: "16:12", status: "done" },
-  { id: 7, title: "Painting Interaction", duration: "3:15", status: "current" },
   {
-    id: 8,
-    title: "Digital Imaging phase 1",
-    duration: "--:--",
-    status: "locked",
+    id: "chapter-3",
+    title: "Chapter 3: Components",
+    totalVideos: 12,
+    totalDuration: "1h 28m",
+    lessons: [],
+  },
+];
+/**
+ * Course reviews and meta information for the bottom section.
+ */
+const COURSE_REVIEWS = [
+  {
+    id: "review-1",
+    name: "Leonardo Da Vinci",
+    timestamp: "Today",
+    avatarInitials: "LD",
+    comment:
+      "Loved the course. I have learned subtle techniques and feel confident building interfaces on my own.",
   },
   {
-    id: 9,
-    title: "Digital Imaging phase 2",
-    duration: "--:--",
-    status: "locked",
+    id: "review-2",
+    name: "Titania S",
+    timestamp: "Today",
+    avatarInitials: "TS",
+    comment:
+      "It had been a long time since I experimented with frontend frameworks. The examples are clear and engaging.",
   },
   {
-    id: 10,
-    title: "Save and Documentation",
-    duration: "--:--",
-    status: "locked",
+    id: "review-3",
+    name: "Zhirakov",
+    timestamp: "2 days ago",
+    avatarInitials: "ZH",
+    comment:
+      "The lessons on routing and state management were exactly what I needed. Practical insights throughout the curriculum.",
+  },
+  {
+    id: "review-4",
+    name: "Miphoska",
+    timestamp: "2 days ago",
+    avatarInitials: "MI",
+    comment:
+      "I would love to have some feedback from the teacher on my assignments. Nevertheless, the course is well structured.",
   },
 ];
 
-const seedMsgs = [
-  { id: 1, name: "Addison rae", text: "is anyone else learning english?" },
-  {
-    id: 2,
-    name: "Zyon Brown",
-    text: "@Galaxa Yeah me too, this is just to good.",
+const COURSE_SUMMARY = {
+  title: "VUE JS SCRATCH COURSE",
+  studioName: "Kitani Studio",
+  studioTagline: "Design Studio",
+  descriptionParagraphs: [
+    "Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable.",
+    "The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.",
+  ],
+};
+
+const FEATURED_WEBINAR = {
+  badge: "WEBINAR",
+  instructor: "Ana Kursova",
+  title: "Masterclass in Design Thinking, Innovation & Creativity",
+  background:
+    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
+  stats: {
+    attendees: "2.3k",
+    likes: "1.4k",
   },
-  {
-    id: 3,
-    name: "Crystal moon",
-    text: "@Addison rae you're not alone, me too here",
-  },
-  { id: 4, name: "Crystal moon", text: "Everything works well" },
-  { id: 5, name: "Zyon Brown", text: "Nice One" },
-];
+};
 
-export default function Lesson() {
-  const [tab, setTab] = useState("chat");
-  const [selected, setSelected] = useState(
-    lessons.find((l) => l.status === "current")?.id || 1
+const getYoutubeEmbedUrl = (videoId) =>
+  `https://www.youtube.com/embed/${videoId}?rel=0`;
+
+/**
+ * ------------------------------------------------------------------------
+ * Utility Helpers
+ * ------------------------------------------------------------------------
+ */
+
+/**
+ * Returns the default lesson to display on first render.
+ * Prefers a lesson marked as "playing", otherwise the first lesson encountered.
+ */
+const getInitialLesson = () => {
+  for (const chapter of COURSE_STRUCTURE) {
+    const current = chapter.lessons.find(
+      (lesson) => lesson.status === "playing"
+    );
+    if (current) {
+      return { chapterId: chapter.id, lessonId: current.id };
+    }
+  }
+
+  const fallbackChapter = COURSE_STRUCTURE[0];
+  const fallbackLesson = fallbackChapter.lessons[0];
+  return { chapterId: fallbackChapter.id, lessonId: fallbackLesson.id };
+};
+
+/**
+ * Returns a CSS modifier based on lesson status.
+ */
+const getLessonModifier = (status) => {
+  if (status === "playing") return "lesson-page__lesson-item--playing";
+  return "lesson-page__lesson-item--available";
+};
+
+const LessonStatusIcon = ({ status }) => {
+  if (status === "playing") {
+    return (
+      <svg className="lesson-page__lesson-status-icon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    );
+  }
+  return (
+    <svg className="lesson-page__lesson-status-icon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3" />
+    </svg>
   );
-  const [msgs, setMsgs] = useState(seedMsgs);
-  const [draft, setDraft] = useState("");
+};
 
-  const current = useMemo(
-    () => lessons.find((l) => l.id === selected) || lessons[0],
-    [selected]
+/**
+ * ------------------------------------------------------------------------
+ * Page Component
+ * ------------------------------------------------------------------------
+ */
+
+const Lesson = () => {
+  const initial = useMemo(() => getInitialLesson(), []);
+  const [activeChapterId, setActiveChapterId] = useState(initial.chapterId);
+  const [activeLessonId, setActiveLessonId] = useState(initial.lessonId);
+
+  /**
+   * Derived state: active lesson object.
+   */
+  const activeLesson = useMemo(() => {
+    const chapter = COURSE_STRUCTURE.find(
+      (section) => section.id === activeChapterId
+    );
+    if (!chapter) return COURSE_STRUCTURE[0].lessons[0];
+    return (
+      chapter.lessons.find((item) => item.id === activeLessonId) ||
+      chapter.lessons[0]
+    );
+  }, [activeChapterId, activeLessonId]);
+
+  /**
+   * Handler toggling accordion visibility.
+   */
+  const handleToggleChapter = useCallback(
+    (chapterId) => {
+      setActiveChapterId((prev) => (prev === chapterId ? "" : chapterId));
+    },
+    [setActiveChapterId]
   );
 
-  const send = (e) => {
-    e.preventDefault();
-    const t = draft.trim();
-    if (!t) return;
-    setMsgs((m) => [...m, { id: Date.now(), name: "You", text: t }]);
-    setDraft("");
-  };
+  /**
+   * Handler switching lesson.
+   */
+  const handleSelectLesson = useCallback((chapterId, lesson) => {
+    setActiveChapterId(chapterId);
+    setActiveLessonId(lesson.id);
+  }, []);
+
+  /**
+   * Derived progress for the video progress bar.
+   * Completed lessons count as progress, plus half progress for current playing.
+   */
+  const videoProgress = useMemo(() => {
+    const totalLessons = COURSE_STRUCTURE.reduce(
+      (sum, chapter) => sum + chapter.lessons.length,
+      0
+    );
+    const completedLessons = COURSE_STRUCTURE.reduce((sum, chapter) => {
+      const completed = chapter.lessons.filter(
+        (lesson) => lesson.status === "completed"
+      ).length;
+      return sum + completed;
+    }, 0);
+
+    const playingBonus = 0.5;
+    const raw = (completedLessons + playingBonus) / totalLessons;
+    return Math.min(1, raw);
+  }, []);
 
   return (
-    <div className="lesson">
-      <div className="lesson__container">
-        <div className="lesson__row">
-          {/* MAIN */}
-          <section className="lesson__col lesson__col--main">
-            <div className="lesson__videoWrap">
-              <span className="lesson__liveTag">LIVE NOW</span>
+    <div className="lesson-page">
+      <div className="lesson-page__container">
+        {/* Top Section */}
+        <section className="lesson-page__layout">
+          <div className="lesson-page__layout-left">
+            <div className="lesson-page__video-panel">
+              <div className="lesson-page__video-wrapper">
+                <div className="lesson-page__player-shell">
+                  <div className="lesson-page__video-frame">
+                    <iframe
+                      src={getYoutubeEmbedUrl(activeLesson.videoId)}
+                      title={activeLesson.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
-              <video
-                className="lesson__video"
-                poster="https://images.unsplash.com/photo-1529336953121-c82189b8792d?q=80&w=1600&auto=format&fit=crop"
-                controls
-              />
+            <header className="lesson-page__course-header">
+              <h2 className="lesson-page__course-title">
+                {COURSE_SUMMARY.title}
+              </h2>
+              <div className="lesson-page__course-badge">
+                <div className="lesson-page__course-logo">KS</div>
+                <div className="lesson-page__course-meta">
+                  <span className="lesson-page__course-studio">
+                    {COURSE_SUMMARY.studioName}
+                  </span>
+                  <span className="lesson-page__course-tagline">
+                    {COURSE_SUMMARY.studioTagline}
+                  </span>
+                </div>
+              </div>
+            </header>
 
-              <div className="lesson__miniCam">
-                <img
-                  className="lesson__miniCam-img"
-                  alt="Instructor"
-                  src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=700&auto=format&fit=crop"
-                />
-                <div className="lesson__miniCam-tools">
-                  <span className="lesson__tool">HD</span>
-                  <span className="lesson__tool">CC</span>
-                  <span className="lesson__tool">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
+            <article className="lesson-page__about-course">
+              <h3 className="lesson-page__section-heading">About Course</h3>
+              {COURSE_SUMMARY.descriptionParagraphs.map((paragraph, index) => (
+                <p className="lesson-page__about-text" key={`about-${index}`}>
+                  {paragraph}
+                </p>
+              ))}
+            </article>
+
+            <section className="lesson-page__reviews">
+              <h3 className="lesson-page__section-heading">Review</h3>
+              <ul className="lesson-page__review-list">
+                {COURSE_REVIEWS.map((review) => (
+                  <li className="lesson-page__review-item" key={review.id}>
+                    <div
+                      className="lesson-page__review-avatar"
+                      aria-hidden="true"
                     >
+                      {review.avatarInitials}
+                    </div>
+                    <div className="lesson-page__review-content">
+                      <div className="lesson-page__review-header">
+                        <span className="lesson-page__review-name">
+                          {review.name}
+                        </span>
+                        <span className="lesson-page__review-time">
+                          {review.timestamp}
+                        </span>
+                      </div>
+                      <p className="lesson-page__review-text">
+                        {review.comment}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+
+          <aside className="lesson-page__layout-right">
+            {COURSE_STRUCTURE.map((chapter) => {
+              const isOpen = activeChapterId === chapter.id;
+              return (
+                <div
+                  className={`lesson-page__chapter ${
+                    isOpen ? "lesson-page__chapter--open" : ""
+                  }`}
+                  key={chapter.id}
+                >
+                  <button
+                    type="button"
+                    className="lesson-page__chapter-header"
+                    onClick={() => handleToggleChapter(chapter.id)}
+                  >
+                    <div className="lesson-page__chapter-header-text">
+                      <h3 className="lesson-page__chapter-title">
+                        {chapter.title}
+                      </h3>
+                      <span className="lesson-page__chapter-meta">
+                        {chapter.totalVideos} Videos • {chapter.totalDuration}
+                      </span>
+                    </div>
+                    <svg
+                      className="lesson-page__chapter-arrow"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 10l5 5 5-5z" />
+                    </svg>
+                  </button>
+
+                  <div
+                    className="lesson-page__lesson-list"
+                    aria-hidden={!isOpen}
+                  >
+                    {chapter.lessons.map((lesson) => {
+                      const isActiveLesson = activeLessonId === lesson.id;
+                      const statusModifier = getLessonModifier(lesson.status);
+                      return (
+                        <button
+                          key={lesson.id}
+                          type="button"
+                          className={`lesson-page__lesson-item ${statusModifier} ${
+                            isActiveLesson
+                              ? "lesson-page__lesson-item--active"
+                              : ""
+                          }`}
+                          onClick={() => handleSelectLesson(chapter.id, lesson)}
+                        >
+                          <span className="lesson-page__lesson-state">
+                            <LessonStatusIcon status={lesson.status} />
+                          </span>
+                          <span className="lesson-page__lesson-name">
+                            {lesson.title}
+                          </span>
+                          <span className="lesson-page__lesson-duration">
+                            {lesson.duration}
+                          </span>
+                          <span
+                            className={`lesson-page__lesson-badge ${
+                              lesson.status === "playing"
+                                ? "lesson-page__lesson-badge--playing"
+                                : "lesson-page__lesson-badge--available"
+                            }`}
+                          >
+                            {lesson.status === "playing"
+                              ? "Playing"
+                              : "Available"}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+
+            <div
+              className="lesson-page__webinar-card"
+              style={{ backgroundImage: `url(${FEATURED_WEBINAR.background})` }}
+            >
+              <div className="lesson-page__webinar-overlay" />
+              <div className="lesson-page__webinar-content">
+                <span className="lesson-page__webinar-badge">
+                  {FEATURED_WEBINAR.badge}
+                </span>
+                <span className="lesson-page__webinar-instructor">
+                  {FEATURED_WEBINAR.instructor}
+                </span>
+                <h4 className="lesson-page__webinar-title">
+                  {FEATURED_WEBINAR.title}
+                </h4>
+                <div className="lesson-page__webinar-stats">
+                  <span className="lesson-page__webinar-stat">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" />
                     </svg>
+                    {FEATURED_WEBINAR.stats.attendees}
                   </span>
-                  <span className="lesson__tool">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M12 22c5.4 0 9.8-4.4 9.8-9.8S17.4 2.4 12 2.4 2.2 6.8 2.2 12.2 6.6 22 12 22zm-1-6.5h2v2h-2v-2zm0-9h2v7h-2v-7z" />
+                  <span className="lesson-page__webinar-stat">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                     </svg>
+                    {FEATURED_WEBINAR.stats.likes}
                   </span>
                 </div>
-              </div>
-            </div>
-
-            <div className="lesson__heading">
-              <h2 className="lesson__title">
-                {current.id}. {current.title}
-              </h2>
-              <div className="lesson__stats">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5z" />
-                </svg>
-                <span>2.3K</span>
-              </div>
-            </div>
-
-            <div className="lesson__authorBar">
-              <div className="lesson__authorMeta">
-                <div className="lesson__avatar">Bē</div>
-                <div className="lesson__authorTxt">
-                  <div className="lesson__authorName">Marius Ciocirland</div>
-                  <div className="lesson__authorSub">Behance</div>
-                </div>
-              </div>
-              <span className="lesson__chip lesson__chip--live">LIVE NOW</span>
-            </div>
-
-            <div className="lesson__card">
-              <div className="lesson__tabs">
-                <button
-                  type="button"
-                  className={`lesson__tab ${
-                    tab === "about" ? "lesson__tab--active" : ""
-                  }`}
-                  onClick={() => setTab("about")}
-                >
-                  About
-                </button>
-                <button
-                  type="button"
-                  className={`lesson__tab ${
-                    tab === "chat" ? "lesson__tab--active" : ""
-                  }`}
-                  onClick={() => setTab("chat")}
-                >
-                  Live Chat
+                <button type="button" className="lesson-page__webinar-button">
+                  Browse
                 </button>
               </div>
-
-              {tab === "about" ? (
-                <div className="lesson__about">
-                  <p>
-                    Learn practical techniques for digital painting and photo
-                    editing. This session covers brushes, layers, and real-time
-                    interaction with the instructor.
-                  </p>
-                </div>
-              ) : (
-                <div className="lesson__chat">
-                  <ul className="lesson__chatList">
-                    {msgs.map((m) => (
-                      <li key={m.id} className="lesson__chatItem">
-                        <div className="lesson__chatAvatar" />
-                        <div className="lesson__chatBubble">
-                          <div className="lesson__chatName">{m.name}</div>
-                          <div className="lesson__chatText">{m.text}</div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <form className="lesson__chatForm" onSubmit={send}>
-                    <input
-                      className="lesson__input"
-                      placeholder="Ask Something..."
-                      value={draft}
-                      onChange={(e) => setDraft(e.target.value)}
-                    />
-                    <button
-                      type="submit"
-                      className="lesson__send"
-                      aria-label="Send"
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
-                      </svg>
-                    </button>
-                  </form>
-                </div>
-              )}
-            </div>
-          </section>
-
-          {/* SIDE */}
-          <aside className="lesson__col lesson__col--side">
-            <div className="lesson__playlist">
-              <div className="lesson__playlistHead">
-                <div>
-                  <div className="lesson__course">
-                    How to Become a Designer on 2020
-                  </div>
-                  <div className="lesson__courseMeta">
-                    Saturday, 18 Sep 2020 • Start on 01:00 PM
-                  </div>
-                </div>
-                <button className="lesson__follow" type="button">
-                  Follow
-                </button>
-              </div>
-
-              <ul className="lesson__list">
-                {lessons.map((item) => {
-                  const isDone = item.status === "done";
-                  const isCur = item.status === "current";
-                  const isLocked = item.status === "locked";
-                  return (
-                    <li
-                      key={item.id}
-                      className={[
-                        "lesson__item",
-                        isDone && "lesson__item--done",
-                        isCur && "lesson__item--current",
-                        isLocked && "lesson__item--locked",
-                        selected === item.id && "lesson__item--selected",
-                      ]
-                        .filter(Boolean)
-                        .join(" ")}
-                      onClick={() => !isLocked && setSelected(item.id)}
-                    >
-                      <div className="lesson__itemL">
-                        <span className="lesson__itemIcon" aria-hidden>
-                          {isDone ? (
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                            >
-                              <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" />
-                            </svg>
-                          ) : isCur ? (
-                            <span className="lesson__dot lesson__dot--live" />
-                          ) : (
-                            <span className="lesson__dot" />
-                          )}
-                        </span>
-                        <span className="lesson__itemIndex">{item.id}.</span>
-                        <span className="lesson__itemTitle">{item.title}</span>
-                      </div>
-                      <span className="lesson__itemTime">{item.duration}</span>
-                    </li>
-                  );
-                })}
-              </ul>
             </div>
           </aside>
-        </div>
-
-        <div className="lesson__row lesson__row--bottom">
-          <div className="lesson__col lesson__col--main" />
-          <aside className="lesson__col lesson__col--side">
-            <div className="lesson__banner">
-              <div className="lesson__bannerTop">
-                <span className="lesson__bannerTag">WEBINAR</span>
-                <span className="lesson__bannerDate">August 24, 2020</span>
-              </div>
-              <h3 className="lesson__bannerTitle">One Day Learn a Photo.</h3>
-              <img
-                className="lesson__bannerImg"
-                alt="Sarah Molek"
-                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-              />
-              <button className="lesson__bannerCta" type="button">
-                Get it Now
-              </button>
-            </div>
-          </aside>
-        </div>
+        </section>
       </div>
     </div>
   );
-}
+};
+
+export default Lesson;

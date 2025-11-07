@@ -267,6 +267,8 @@ function transformRealDataToMockFormat(realData, testInfo = {}) {
 
   const { session_info, overall_statistics, tag_analysis } = realData.DT;
 
+  console.log("AAAA", overall_statistics);
+
   // Tạo cấu trúc parts từ tag_analysis
   const partsMap = new Map();
 
@@ -665,8 +667,7 @@ export default function Result() {
   }, []);
 
   const { data: realData, isLoading, error } = useResultByTags(sessionId);
-
-  console.log();
+  console.log("🚀 ~ Result ~ realData:", JSON.stringify(realData, null, 2));
 
   // Transform dữ liệu
   const resultData = useMemo(() => {

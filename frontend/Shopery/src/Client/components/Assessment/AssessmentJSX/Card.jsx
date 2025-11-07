@@ -6,17 +6,21 @@
 //   const navigate = useNavigate();
 
 //   const handleNavigate = () => {
-//     if (isCompleted) {
-//       // Nếu đã hoàn thành, điều hướng đến trang kết quả
-//       navigate(`/assessment/${id}/result`, {
-//         state: { testId: exam.test_id, isCompleted: true },
-//       });
-//     } else {
-//       // Nếu chưa làm, điều hướng đến trang chi tiết
-//       navigate(`/assessment/${id}`, {
-//         state: { testId: exam.test_id },
-//       });
-//     }
+//     // if (isCompleted) {
+//     //   // Nếu đã hoàn thành, điều hướng đến trang kết quả
+//     //   navigate(`/assessment/${id}/result`, {
+//     //     state: { testId: exam.test_id, isCompleted: true },
+//     //   });
+//     // } else {
+//     //   // Nếu chưa làm, điều hướng đến trang chi tiết
+//     //   navigate(`/assessment/${id}`, {
+//     //     state: { testId: exam.test_id },
+//     //   });
+//     // }
+
+//     navigate(`/assessment/${id}`, {
+//       state: { testId: exam.test_id },
+//     });
 //   };
 
 //   // Tìm session gần nhất cho test này
@@ -93,6 +97,8 @@ import { useNavigate } from "react-router-dom";
 import "../AssessmentCSS/Card.css";
 const Card = ({ exam, id, isCompleted, userStats }) => {
   const navigate = useNavigate();
+
+  console.log("CARD", JSON.stringify(userStats));
   const handleNavigate = () => {
     navigate(`/assessment/${id}`, {
       state: { testId: exam.test_id, userStats: userStats },

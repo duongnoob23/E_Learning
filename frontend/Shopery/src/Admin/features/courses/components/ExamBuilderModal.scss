@@ -1,0 +1,240 @@
+/* src/Admin/features/courses/components/ExamBuilderModal.scss */
+.exam-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.exam-modal {
+  width: min(1100px, 96vw);
+  max-height: 92vh;
+  background: #ffffff; // ✅ Nền trắng
+  color: #111827; // ✅ Text màu đen
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.exam-modal__header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb; // ✅ Border nhạt
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+}
+
+.exam-modal__tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb; // ✅ Nền xám rất nhạt
+}
+
+.exam-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #6b7280;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #111827;
+  }
+}
+
+.exam-tab--active {
+  background: #10b981; // ✅ Xanh lá
+  color: #fff;
+  border-color: #10b981;
+}
+
+.exam-modal__content {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.exam-modal__slider {
+  display: flex;
+  width: 300%;
+  transition: transform 0.3s ease;
+}
+
+.exam-pane {
+  flex: 0 0 calc(100% / 3);
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(92vh - 200px);
+  background: #ffffff;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: #10b981; // ✅ Focus xanh lá
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+}
+
+.bad {
+  color: #dc2626;
+  font-size: 12px;
+}
+
+.good {
+  color: #10b981; // ✅ Xanh lá
+  font-size: 12px;
+}
+
+.btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+}
+
+.btn--primary {
+  background: #10b981; // ✅ Xanh lá
+  border-color: #10b981;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #059669; // ✅ Xanh lá đậm hơn
+  }
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.parts-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.part-card {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: #10b981; // ✅ Hover border xanh lá
+  }
+}
+
+.part-card h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #111827;
+  font-weight: 600;
+}
+
+.part-card .desc {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.part-card .badge {
+  display: inline-block;
+  background: #ecfdf5; // ✅ Nền xanh lá nhạt
+  color: #059669; // ✅ Text xanh lá đậm
+  border: 1px solid #a7f3d0; // ✅ Border xanh lá
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.q-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #10b981; // ✅ Hover border xanh lá
+  }
+}
+
+.q-head {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #111827;
+
+  &:hover {
+    background: #f9fafb;
+  }
+}
+
+.q-body {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.choice-row {
+  display: grid;
+  grid-template-columns: 22px 1fr 90px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.exam-modal__footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f9fafb;
+}

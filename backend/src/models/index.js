@@ -57,8 +57,6 @@ const ExamTag = require("./exam/Tag")(sequelize, DataTypes);
 const QuestionTag = require("./exam/QuestionTag")(sequelize, DataTypes);
 const TestDiscussion = require("./exam/Discussion")(sequelize, DataTypes);
 const TestComment = require("./exam/Comment")(sequelize, DataTypes);
-const SpeakingResponse = require("./exam/SpeakingResponse")(sequelize, DataTypes);
-const WritingResponse = require("./exam/WritingResponse")(sequelize, DataTypes);
 
 
 // Associations
@@ -103,7 +101,11 @@ TestCategoryRelation.belongsTo(Test, { as: "test", foreignKey: "test_id" });
 TestCategoryRelation.belongsTo(ExamCategory, { as: "category", foreignKey: "exam_category_id" });
 
 QuestionTag.belongsTo(Question, { as: "question", foreignKey: "question_id" });
-QuestionTag.belongsTo(ExamTag, { as: "tag", foreignKey: "exam_tag_id" });
+QuestionTag.belongsTo(ExamTag, { as: "examTag", foreignKey: "exam_tag_id" });
+
+// Reverse associations for tags
+Question.hasMany(QuestionTag, { as: "questionTags", foreignKey: "question_id" });
+ExamTag.hasMany(QuestionTag, { as: "questionTags", foreignKey: "exam_tag_id" });
 
 // Discussions and Comments
 TestDiscussion.belongsTo(Test, { as: "test", foreignKey: "test_id" });
@@ -253,8 +255,6 @@ const db = {
   QuestionTag,
   TestDiscussion,
   TestComment,
-  SpeakingResponse,
-  WritingResponse,
 };
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

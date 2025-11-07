@@ -63,6 +63,8 @@ router.get("/exam-sessions/:session_id/result", authMiddleware, ExamClientContro
 router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession); 
 router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers); 
 router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics); 
+
+router.get("/exam-sessions/:session_id/result-by-tags", authMiddleware, ExamClientController.getResultByTags); // New
 // Discussion Routes
 router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions);
 router.post("/discussions", authMiddleware, ExamClientController.createDiscussion);
