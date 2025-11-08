@@ -29,7 +29,7 @@ export const queryKeys = {
     byCategory: (categoryId) => ["course", "byCategory", categoryId],
     byLevel: (levelId) => ["course", "byLevel", levelId],
     byInstructor: (instructorId) => ["course", "byInstructor", instructorId],
-
+    userCourses: (userId) => ["course", "userCourses", userId],
     categories: () => ["course", "categories"],
     instructors: () => ["course", "instructors"],
     levels: () => ["course", "levels"],

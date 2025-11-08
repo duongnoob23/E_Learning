@@ -77,4 +77,11 @@ export const courseApi = {
     });
     return response.data;
   },  
+  // Lấy danh sách khóa học đã đăng ký
+  getUserCourses: async (userId) => {
+    const response = await axiosInstance.get(`/course/user/my-courses`, {
+      params: { user_id: userId },
+    });
+    return response.data;
+  },
 };

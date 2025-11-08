@@ -14,6 +14,7 @@ import Flashcard from "../pages/Flashcard/Flashcard";
 import Home from "../pages/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import InstructorDetail from "../pages/Instructor/InstructorDetail";
+import MyCourses from "../pages/MyCourses/MyCourses";
 
 // Auth Pages
 import Login from "../../Client/pages/Auth/Login/Login";
@@ -150,8 +151,8 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
-    {/* <Route
-        path="/mycourses "
+    <Route
+        path="/mycourses"
         element={
           <PrivateRoute>
             <ClientLayout>
@@ -159,7 +160,7 @@ const ClientRoutes = () => {
             </ClientLayout>
           </PrivateRoute>
         }
-      /> */}
+      />
       <Route
         path="/course/:id"
         element={

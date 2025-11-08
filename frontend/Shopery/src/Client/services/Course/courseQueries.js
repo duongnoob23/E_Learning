@@ -20,6 +20,15 @@ export const useCourseStructure = (courseId, enabled = true) => {
     staleTime: 10 * 60 * 1000, // cache 10 phút
   });
 };
+// Query để lấy danh sách khóa học đã đăng ký
+export const useUserCourses = (userId, enabled = true) => {
+  return useQuery({
+    queryKey: queryKeys.course.userCourses(userId),
+    queryFn: () => courseApi.getUserCourses(userId),
+    enabled: enabled && !!userId,
+    staleTime: 5 * 60 * 1000, // cache 5 phút
+  });
+};
 // Query để lấy chi tiết khóa học
 export const useCourseDetail = (courseId, enabled = true) => {
   return useQuery({
