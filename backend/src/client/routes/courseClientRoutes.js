@@ -39,11 +39,14 @@ router.get("/:course_id/progress", authMiddleware, controller.getLearningProgres
 // Lấy chi tiết bài học
 router.get("/lessons/:lesson_id", authMiddleware, controller.getLessonDetail);
 
+router.get("/:course_id/structure", authMiddleware, controller.getCourseStructure);
 // Cập nhật tiến độ học 1 bài
 router.post("/lessons/:lesson_id/progress", authMiddleware, controller.updateLessonProgress);
 
 // ==================== USER COURSES ==================== //
 // Lấy danh sách khóa học mà user đã đăng ký
 router.get("/user/my-courses", authMiddleware, controller.getUserCourses);
+
+
 
 module.exports = router;

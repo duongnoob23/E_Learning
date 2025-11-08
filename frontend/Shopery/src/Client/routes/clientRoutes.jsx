@@ -150,7 +150,16 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
-
+    {/* <Route
+        path="/mycourses "
+        element={
+          <PrivateRoute>
+            <ClientLayout>
+              <MyCourses />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      /> */}
       <Route
         path="/course/:id"
         element={
@@ -279,7 +288,7 @@ const ClientRoutes = () => {
         }
       />
       <Route
-        path="/lesson"
+        path="/lesson/:id"
         element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>

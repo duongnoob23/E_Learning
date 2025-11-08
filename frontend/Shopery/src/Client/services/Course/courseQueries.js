@@ -12,7 +12,14 @@ export const useCourses = (filters = {}) => {
     gcTime: 10 * 60 * 1000, // 10 phút
   });
 };
-
+export const useCourseStructure = (courseId, enabled = true) => {
+  return useQuery({
+    queryKey: queryKeys.course.structure(courseId),
+    queryFn: () => courseApi.getCourseStructure(courseId),
+    enabled: enabled && !!courseId,
+    staleTime: 10 * 60 * 1000, // cache 10 phút
+  });
+};
 // Query để lấy chi tiết khóa học
 export const useCourseDetail = (courseId, enabled = true) => {
   return useQuery({

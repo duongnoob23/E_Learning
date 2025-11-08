@@ -33,6 +33,41 @@ exports.getCourseDetail = async (course_id) => {
     return { EM: "Có lỗi xảy ra khi lấy chi tiết khóa học", EC: "-2", DT: null };
   }
 };
+// ==================== COURSE STRUCTURE ==================== //
+exports.getCourseStructure = async (user_id, course_id) => {
+  try {
+    const course = await Course.findByPk(course_id);
+    if (!course) return { EM: "Khóa học không tồn tại", EC: "2", DT: null };
+
+    const modules = await Module.findAll({
+      where: { course_id },
+      order: [["sort_order", "ASC"]],
+      attributes: ["module_id", "title", "sort_order"],
+      include: [{
+        model: Lesson,
+        as: "lessons",
+        attributes: ["lesson_id", "title", "sort_order", "lesson_type", "is_free","video_url"],
+        order: [["sort_order", "ASC"]]
+      }]
+    });
+
+    return {
+      EM: "Lấy cấu trúc khóa học thành công",
+      EC: "0",
+      DT: {
+        course: {
+          course_id: course.course_id,
+          title: course.title,
+        },
+        modules
+      }
+    };
+  } catch (error) {
+    console.error("Lỗi getCourseStructure:", error);
+    return { EM: "Lỗi khi lấy dữ liệu khóa học", EC: "-2", DT: null };
+  }
+};
+
 // COURSE PREVIEW
 exports.getCoursePreview = async (course_id) => {
   try {
@@ -171,27 +206,39 @@ exports.getCoursePreview = async (course_id) => {
 exports.enrollCourse = async (user_id, course_id) => {
   try {
     const course = await Course.findByPk(course_id);
-    if (!course) return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+    if (!course)
+      return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
 
-    // Kiểm tra đã đăng ký chưa
-    const existing = await CourseEnrollment.findOne({ where: { user_id, course_id } });
-    if (existing) return { EM: "Bạn đã đăng ký khóa học này rồi", EC: "3", DT: existing };
+    let enrollment = await CourseEnrollment.findOne({ where: { user_id, course_id } });
 
-    // Nếu miễn phí thì đăng ký luôn
-    const newEnroll = await CourseEnrollment.create({
-      user_id,
-      course_id,
-      enrolled_at: new Date(),
-      status: "active",
-      payment_status: course.is_free ? "paid" : "pending",
-    });
+    if (!enrollment) {
+      enrollment = await CourseEnrollment.create({
+        user_id,
+        course_id,
+        enrolled_at: new Date(),
+        status: "active",
+        payment_status: course.is_free ? "paid" : "pending",
+      });
+    }
 
-    return { EM: "Đăng ký khóa học thành công", EC: "0", DT: newEnroll };
+    return { 
+      EM: course.is_free 
+          ? "Bạn đã tham gia khóa học miễn phí" 
+          : "Khóa học cần thanh toán", 
+      EC: "0", 
+      DT: {
+        course_id,
+        is_free: course.is_free,
+        payment_status: enrollment.payment_status,
+      }
+    };
+
   } catch (error) {
     console.error("Lỗi trong enrollCourse service:", error);
     return { EM: "Có lỗi xảy ra khi đăng ký khóa học", EC: "-2", DT: null };
   }
 };
+
 
 // ==================== USER COURSES ==================== //
 exports.getUserCourses = async (user_id) => {

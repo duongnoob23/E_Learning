@@ -1,0 +1,129 @@
+.payment-modal__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    
+    .payment-modal__container {
+      background: #fff;
+      padding: 24px;
+      width: 420px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.25s ease-in;
+    }
+    
+    .payment-modal__title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .payment-modal__course {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .payment-modal__course-name {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .payment-modal__price {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 10px;
+    }
+    
+    .payment-modal__price-sale {
+      font-size: 1.5rem;
+      color: #1ec28b;
+      font-weight: 600;
+    }
+    
+    .payment-modal__price-old {
+      text-decoration: line-through;
+      color: #999;
+    }
+    
+    .payment-modal__discount-badge {
+      background-color: #ffebee;
+      color: #c62828;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    
+    .payment-modal__methods h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    
+    .payment-modal__method-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .payment-modal__method {
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .payment-modal__method.active {
+      border-color: #1ec28b;
+      background-color: #e8fff7;
+    }
+    
+    .payment-modal__actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .payment-modal__btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    
+    .payment-modal__btn--cancel {
+      background-color: #e0e0e0;
+    }
+    
+    .payment-modal__btn--confirm {
+      background-color: #1ec28b;
+      color: white;
+    }
+    
+    .payment-modal__btn--confirm:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
