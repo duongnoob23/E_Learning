@@ -3,6 +3,11 @@ import AdditionalInformationTab from "../components/CreateCourse/AdditionalInfor
 import CourseBuilderTab from "../components/CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "../components/CreateCourse/CourseInfoTab";
 import CourseIntroVideoTab from "../components/CreateCourse/CourseIntroVideoTab";
+import {
+  useAddLesson,
+  useAddModule,
+  useCreateCourse,
+} from "../hooks/useCoursesAdminMutations";
 import "./CreateCoursePage.scss";
 
 const initialFormData = {
@@ -37,6 +42,12 @@ export default function CreateCoursePage({ onClose, onSave }) {
   const [activeTab, setActiveTab] = useState(0); // 0: Course Info, 1: Intro Video, 2: Builder, 3: Additional Info
   const [formData, setFormData] = useState(initialFormData);
   const [validationErrors, setValidationErrors] = useState({});
+  const [isCreating, setIsCreating] = useState(false);
+
+  // Hooks cho mutations
+  const createCourseMutation = useCreateCourse();
+  const addModuleMutation = useAddModule();
+  const addLessonMutation = useAddLesson();
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -123,18 +134,136 @@ export default function CreateCoursePage({ onClose, onSave }) {
     // TODO: Open preview modal
   };
 
-  const handleCreateCourse = () => {
+  const handleCreateCourse = async () => {
     if (!validateForm()) {
       alert(
         "Vui lòng điền đầy đủ thông tin và đảm bảo tất cả modules có ít nhất 1 lesson"
       );
       return;
     }
-    console.log("Create course:", formData);
-    if (onSave) {
-      onSave(formData);
+
+    if (isCreating) return;
+    setIsCreating(true);
+
+    try {
+      // Bước 1: Tạo khóa học
+      // Chỉ gửi các trường API yêu cầu: title, description, price, is_free, category_id, level_id
+      const coursePayload = {
+        title: formData.title,
+        description: formData.about || formData.description || "",
+        price:
+          formData.priceType === "paid"
+            ? parseFloat(formData.regularPrice) || 0
+            : 0,
+        is_free: formData.priceType === "free",
+        category_id:
+          formData.category?.category_id || formData.category || null,
+        level_id: null, // Có thể thêm sau nếu có
+      };
+
+      const courseResult = await createCourseMutation.mutateAsync(
+        coursePayload
+      );
+
+      if (courseResult?.EC !== "0") {
+        throw new Error(courseResult?.EM || "Tạo khóa học thất bại");
+      }
+
+      const courseId = courseResult?.DT?.course_id;
+
+      if (!courseId) {
+        throw new Error("Không lấy được ID khóa học sau khi tạo");
+      }
+
+      // Bước 2: Tạo modules và lessons
+      if (formData.modules && formData.modules.length > 0) {
+        for (
+          let moduleIndex = 0;
+          moduleIndex < formData.modules.length;
+          moduleIndex++
+        ) {
+          const module = formData.modules[moduleIndex];
+
+          // Tạo module
+          // Chỉ gửi các trường API yêu cầu: title, description, sort_order
+          const modulePayload = {
+            title: module.title || `Module ${moduleIndex + 1}`,
+            description: module.description || null,
+            sort_order: moduleIndex + 1,
+          };
+
+          const moduleResult = await addModuleMutation.mutateAsync({
+            courseId,
+            payload: modulePayload,
+          });
+
+          if (moduleResult?.EC !== "0") {
+            console.error(
+              `Lỗi tạo module ${moduleIndex + 1}:`,
+              moduleResult?.EM
+            );
+            continue; // Bỏ qua module này, tiếp tục module khác
+          }
+
+          const moduleId = moduleResult?.DT?.module_id;
+
+          if (!moduleId) {
+            console.error(`Không lấy được ID module ${moduleIndex + 1}`);
+            continue;
+          }
+
+          // Bước 3: Tạo lessons cho module này
+          if (module.lessons && module.lessons.length > 0) {
+            for (
+              let lessonIndex = 0;
+              lessonIndex < module.lessons.length;
+              lessonIndex++
+            ) {
+              const lesson = module.lessons[lessonIndex];
+
+              // Tạo lesson
+              // Chỉ gửi các trường API yêu cầu: title, video_url, video_duration, sort_order, lesson_type, is_free
+              const lessonPayload = {
+                title: lesson.title,
+                video_url: lesson.videoUrl,
+                video_duration: lesson.duration || null,
+                lesson_type: "video", // Mặc định là video
+                sort_order: lessonIndex + 1,
+                is_free: lesson.isFree || false,
+              };
+
+              const lessonResult = await addLessonMutation.mutateAsync({
+                moduleId,
+                payload: lessonPayload,
+                courseId, // Để invalidate cache
+              });
+
+              if (lessonResult?.EC !== "0") {
+                console.error(
+                  `Lỗi tạo lesson ${lessonIndex + 1} trong module ${
+                    moduleIndex + 1
+                  }:`,
+                  lessonResult?.EM
+                );
+              }
+            }
+          }
+        }
+      }
+
+      // Thành công
+      if (onSave) {
+        onSave({ courseId, ...formData });
+      }
+      onClose();
+    } catch (error) {
+      console.error("Lỗi khi tạo khóa học:", error);
+      alert(
+        error.message || "Có lỗi xảy ra khi tạo khóa học. Vui lòng thử lại."
+      );
+    } finally {
+      setIsCreating(false);
     }
-    // TODO: Call API to create course
   };
 
   const tabs = [
@@ -272,8 +401,9 @@ export default function CreateCoursePage({ onClose, onSave }) {
               className="course-create-page__btn course-create-page__btn--create"
               onClick={handleCreateCourse}
               type="button"
+              disabled={isCreating}
             >
-              Create Course
+              {isCreating ? "Creating..." : "Create Course"}
               <svg
                 width="16"
                 height="16"

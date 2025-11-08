@@ -1,92 +1,13 @@
 import React, { useMemo, useState } from "react";
-import CreateCoursePage from "./CreateCoursePage";
+import { useAdminRemoveCourse } from "../hooks/useCoursesAdminMutations";
+import { useClientCourses } from "../hooks/useCoursesAdminQueries";
 import "./CoursesPage2.scss";
-
-// Mock data
-const mockKPIs = {
-  totalCourses: 12,
-  published: 8,
-  draft: 3,
-  enrollments: 1245,
-};
-
-const mockCourses = [
-  {
-    id: 1,
-    title: "Mockup Design with Photoshop",
-    status: "Published",
-    enrollments: 916,
-    rating: 4.8,
-    createdOn: "2026-07-15",
-  },
-  {
-    id: 2,
-    title: "Graphic Design with Canva",
-    status: "Published",
-    enrollments: 374,
-    rating: 4.8,
-    createdOn: "2024-11-22",
-  },
-  {
-    id: 3,
-    title: "3D Furniture Design with Blender",
-    status: "Published",
-    enrollments: 248,
-    rating: 4.8,
-    createdOn: "2027-02-09",
-  },
-  {
-    id: 4,
-    title: "Digital Drawing with MediBang",
-    status: "Published",
-    enrollments: 582,
-    rating: 4.8,
-    createdOn: "2028-01-05",
-  },
-  {
-    id: 5,
-    title: "Mastering Pencil Sketch for Drawing",
-    status: "Published",
-    enrollments: 753,
-    rating: 4.8,
-    createdOn: "2023-03-30",
-  },
-  {
-    id: 6,
-    title: "Mastering UX Writing for Beginner",
-    status: "Published",
-    enrollments: 631,
-    rating: 4.8,
-    createdOn: "2025-09-12",
-  },
-  {
-    id: 7,
-    title: "UI Design for Mobile Apps",
-    status: "Published",
-    enrollments: 485,
-    rating: 4.8,
-    createdOn: "2026-10-18",
-  },
-  {
-    id: 8,
-    title: "Video Editing with Capcut",
-    status: "Published",
-    enrollments: 207,
-    rating: 4.8,
-    createdOn: "2023-12-01",
-  },
-  {
-    id: 9,
-    title: "Motion Graphic for Beginner with AE",
-    status: "Published",
-    enrollments: 839,
-    rating: 4.8,
-    createdOn: "2025-05-04",
-  },
-];
+import CreateCoursePage from "./CreateCoursePage";
 
 function formatDate(dateString) {
+  if (!dateString) return "N/A";
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "N/A";
   const months = [
     "Jan",
     "Feb",
@@ -104,6 +25,17 @@ function formatDate(dateString) {
   return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }
 
+// Helper để format status
+function formatStatus(status) {
+  const statusMap = {
+    published: "Published",
+    draft: "Draft",
+    pending_review: "Pending Review",
+    archived: "Archived",
+  };
+  return statusMap[status] || status;
+}
+
 export default function CoursesPage2() {
   const [openModal, setOpenModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -118,37 +50,118 @@ export default function CoursesPage2() {
 
   const rowsPerPage = 10;
 
-  // Filter và sort courses
+  // Gọi API lấy danh sách khóa học từ client (backup vì admin API không hoạt động)
+  const {
+    data: coursesData,
+    isLoading,
+    error,
+    refetch,
+  } = useClientCourses({
+    page: currentPage,
+    limit: rowsPerPage,
+    title: search || undefined,
+    sort_by:
+      sortBy === "createdOn"
+        ? "newest"
+        : sortBy === "enrollments"
+        ? "popular"
+        : "newest",
+  });
+
+  const deleteCourseMutation = useAdminRemoveCourse();
+
+  // Xử lý dữ liệu từ API client
+  // Client API có thể trả về format khác, cần xử lý
+  const courses =
+    coursesData?.DT?.courses || coursesData?.DT || coursesData?.data || [];
+  const pagination = coursesData?.DT?.pagination ||
+    coursesData?.pagination || {
+      current_page: currentPage,
+      total_pages: 1,
+      total_items: courses.length,
+      items_per_page: rowsPerPage,
+    };
+
+  // Fetch tất cả courses để tính KPI chính xác (không pagination)
+  const { data: allCoursesData } = useClientCourses(
+    {
+      limit: 1000, // Lấy tất cả để đếm
+    },
+    !isLoading && courses.length > 0 // Chỉ fetch khi đã có data từ page đầu
+  );
+
+  const allCourses =
+    allCoursesData?.DT?.courses ||
+    allCoursesData?.DT ||
+    allCoursesData?.data ||
+    [];
+
+  // Tính toán KPIs từ tất cả courses
+  const kpis = useMemo(() => {
+    // Dùng allCourses để đếm chính xác
+    const coursesForKPI = allCourses.length > 0 ? allCourses : courses;
+    const totalCourses =
+      allCourses.length > 0
+        ? allCourses.length
+        : pagination.total_items || courses.length;
+
+    const published = coursesForKPI.filter(
+      (c) => c.status === "published" || c.status === "Published"
+    ).length;
+    const draft = coursesForKPI.filter(
+      (c) => c.status === "draft" || c.status === "Draft"
+    ).length;
+    const enrollments = coursesForKPI.reduce(
+      (sum, c) => sum + (c.total_students || c.enrollments || 0),
+      0
+    );
+
+    return {
+      totalCourses,
+      published,
+      draft,
+      enrollments,
+    };
+  }, [allCourses, courses, pagination]);
+
+  // Filter và sort courses (client-side cho search và status)
   const filteredAndSortedCourses = useMemo(() => {
-    let filtered = [...mockCourses];
+    let filtered = [...courses];
 
     // Search filter
     if (search.trim()) {
       filtered = filtered.filter((course) =>
-        course.title.toLowerCase().includes(search.toLowerCase())
+        course.title?.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     // Status filter
     if (statusFilter !== "all") {
-      filtered = filtered.filter((course) => course.status === statusFilter);
+      const statusMap = {
+        Published: "published",
+        Draft: "draft",
+        "Pending Review": "pending_review",
+      };
+      const filterStatus =
+        statusMap[statusFilter] || statusFilter.toLowerCase();
+      filtered = filtered.filter((course) => course.status === filterStatus);
     }
 
     // Sort
     filtered.sort((a, b) => {
       let aVal, bVal;
       if (sortBy === "createdOn") {
-        aVal = new Date(a.createdOn).getTime();
-        bVal = new Date(b.createdOn).getTime();
+        aVal = new Date(a.created_at || 0).getTime();
+        bVal = new Date(b.created_at || 0).getTime();
       } else if (sortBy === "enrollments") {
-        aVal = a.enrollments;
-        bVal = b.enrollments;
+        aVal = a.total_students || 0;
+        bVal = b.total_students || 0;
       } else if (sortBy === "rating") {
-        aVal = a.rating;
-        bVal = b.rating;
+        aVal = a.rating || 0;
+        bVal = b.rating || 0;
       } else {
-        aVal = a.title;
-        bVal = b.title;
+        aVal = a.title || "";
+        bVal = b.title || "";
       }
 
       if (sortOrder === "asc") {
@@ -159,20 +172,16 @@ export default function CoursesPage2() {
     });
 
     return filtered;
-  }, [search, statusFilter, sortBy, sortOrder]);
+  }, [courses, search, statusFilter, sortBy, sortOrder]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredAndSortedCourses.length / rowsPerPage);
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const paginatedCourses = filteredAndSortedCourses.slice(
-    startIndex,
-    startIndex + rowsPerPage
-  );
+  // Pagination - sử dụng từ API
+  const totalPages = pagination.total_pages || 1;
+  const paginatedCourses = filteredAndSortedCourses;
 
   // Select all
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedRows(paginatedCourses.map((c) => c.id));
+      setSelectedRows(paginatedCourses.map((c) => c.course_id));
     } else {
       setSelectedRows([]);
     }
@@ -198,10 +207,15 @@ export default function CoursesPage2() {
 
   const handleDelete = (courseId) => {
     if (window.confirm("Bạn có chắc muốn xóa khóa học này?")) {
-      console.log("Delete course:", courseId);
-      // TODO: Call API
+      deleteCourseMutation.mutate(courseId, {
+        onSuccess: () => {
+          refetch();
+          setShowActionMenu(null);
+        },
+      });
+    } else {
+      setShowActionMenu(null);
     }
-    setShowActionMenu(null);
   };
 
   const handleBulkDelete = () => {
@@ -211,9 +225,12 @@ export default function CoursesPage2() {
         `Bạn có chắc muốn xóa ${selectedRows.length} khóa học đã chọn?`
       )
     ) {
-      console.log("Bulk delete:", selectedRows);
-      // TODO: Call API
+      // Xóa từng khóa học một
+      selectedRows.forEach((courseId) => {
+        deleteCourseMutation.mutate(courseId);
+      });
       setSelectedRows([]);
+      refetch();
     }
   };
 
@@ -229,7 +246,10 @@ export default function CoursesPage2() {
       {/* Header */}
       <div className="course-page2__header-row">
         <div className="course-page2__title">My Courses</div>
-        <button className="course-page2__btn course-page2__btn--primary" onClick={() => setOpenModal(true)}>
+        <button
+          className="course-page2__btn course-page2__btn--primary"
+          onClick={() => setOpenModal(true)}
+        >
           Add New Course
         </button>
       </div>
@@ -237,22 +257,29 @@ export default function CoursesPage2() {
       {/* KPI Cards */}
       <div className="course-page2__stats-row">
         <div className="course-page2__stat-card">
-          <div className="course-page2__stat-icon" style={{ background: "#E6EEFF" }}>
+          <div
+            className="course-page2__stat-icon"
+            style={{ background: "#E6EEFF" }}
+          >
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
               <rect width="18" height="12" x="3" y="6" rx="2" fill="#14B8A6" />
             </svg>
           </div>
           <div className="course-page2__stat-data">
             <div className="course-page2__stat-title">Total Courses</div>
-            <div className="course-page2__stat-value">{mockKPIs.totalCourses}</div>
+            <div className="course-page2__stat-value">{kpis.totalCourses}</div>
             <div className="course-page2__stat-link">
-              View details <span className="course-page2__stat-link-arrow">{">"}</span>
+              View details{" "}
+              <span className="course-page2__stat-link-arrow">{">"}</span>
             </div>
           </div>
         </div>
 
         <div className="course-page2__stat-card">
-          <div className="course-page2__stat-icon" style={{ background: "#E6EEFF" }}>
+          <div
+            className="course-page2__stat-icon"
+            style={{ background: "#E6EEFF" }}
+          >
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
               <path
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
@@ -262,30 +289,38 @@ export default function CoursesPage2() {
           </div>
           <div className="course-page2__stat-data">
             <div className="course-page2__stat-title">Published Courses</div>
-            <div className="course-page2__stat-value">{mockKPIs.published}</div>
+            <div className="course-page2__stat-value">{kpis.published}</div>
             <div className="course-page2__stat-link">
-              View details <span className="course-page2__stat-link-arrow">{">"}</span>
+              View details{" "}
+              <span className="course-page2__stat-link-arrow">{">"}</span>
             </div>
           </div>
         </div>
 
         <div className="course-page2__stat-card">
-          <div className="course-page2__stat-icon" style={{ background: "#E6EEFF" }}>
+          <div
+            className="course-page2__stat-icon"
+            style={{ background: "#E6EEFF" }}
+          >
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
               <rect width="18" height="18" x="3" y="3" rx="2" fill="#A78BFA" />
             </svg>
           </div>
           <div className="course-page2__stat-data">
             <div className="course-page2__stat-title">Draft Courses</div>
-            <div className="course-page2__stat-value">{mockKPIs.draft}</div>
+            <div className="course-page2__stat-value">{kpis.draft}</div>
             <div className="course-page2__stat-link">
-              View details <span className="course-page2__stat-link-arrow">{">"}</span>
+              View details{" "}
+              <span className="course-page2__stat-link-arrow">{">"}</span>
             </div>
           </div>
         </div>
 
         <div className="course-page2__stat-card">
-          <div className="course-page2__stat-icon" style={{ background: "#E6EEFF" }}>
+          <div
+            className="course-page2__stat-icon"
+            style={{ background: "#E6EEFF" }}
+          >
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="8" fill="#2DD4BF" />
             </svg>
@@ -293,10 +328,11 @@ export default function CoursesPage2() {
           <div className="course-page2__stat-data">
             <div className="course-page2__stat-title">Total Enrollments</div>
             <div className="course-page2__stat-value">
-              {mockKPIs.enrollments.toLocaleString()}
+              {kpis.enrollments.toLocaleString()}
             </div>
             <div className="course-page2__stat-link">
-              View details <span className="course-page2__stat-link-arrow">{">"}</span>
+              View details{" "}
+              <span className="course-page2__stat-link-arrow">{">"}</span>
             </div>
           </div>
         </div>
@@ -395,6 +431,19 @@ export default function CoursesPage2() {
                     />
                     Draft
                   </label>
+                  <label className="course-page2__filter-option">
+                    <input
+                      type="radio"
+                      name="status"
+                      checked={statusFilter === "Pending Review"}
+                      onChange={() => {
+                        setStatusFilter("Pending Review");
+                        setShowFilterMenu(false);
+                        setCurrentPage(1);
+                      }}
+                    />
+                    Pending Review
+                  </label>
                 </div>
               )}
             </div>
@@ -457,7 +506,10 @@ export default function CoursesPage2() {
         {selectedRows.length > 0 && (
           <div className="course-page2__bulk-actions-bar">
             <span>{selectedRows.length} selected</span>
-            <button className="course-page2__btn course-page2__btn--danger" onClick={handleBulkDelete}>
+            <button
+              className="course-page2__btn course-page2__btn--danger"
+              onClick={handleBulkDelete}
+            >
               Delete Selected
             </button>
           </div>
@@ -493,7 +545,19 @@ export default function CoursesPage2() {
               </tr>
             </thead>
             <tbody>
-              {paginatedCourses.length === 0 ? (
+              {isLoading ? (
+                <tr>
+                  <td colSpan={8} style={{ textAlign: "center", padding: 20 }}>
+                    Loading...
+                  </td>
+                </tr>
+              ) : error ? (
+                <tr>
+                  <td colSpan={8} style={{ textAlign: "center", padding: 20 }}>
+                    Có lỗi xảy ra khi tải dữ liệu
+                  </td>
+                </tr>
+              ) : paginatedCourses.length === 0 ? (
                 <tr>
                   <td colSpan={8} style={{ textAlign: "center", padding: 20 }}>
                     No courses found
@@ -501,16 +565,16 @@ export default function CoursesPage2() {
                 </tr>
               ) : (
                 paginatedCourses.map((course, idx) => (
-                  <tr key={course.id}>
+                  <tr key={course.course_id}>
                     <td style={{ textAlign: "center" }}>
                       <input
                         type="checkbox"
-                        checked={selectedRows.includes(course.id)}
-                        onChange={() => handleRowSelect(course.id)}
+                        checked={selectedRows.includes(course.course_id)}
+                        onChange={() => handleRowSelect(course.course_id)}
                       />
                     </td>
                     <td style={{ textAlign: "center" }}>
-                      {startIndex + idx + 1}
+                      {(currentPage - 1) * rowsPerPage + idx + 1}
                     </td>
                     <td
                       style={{
@@ -519,19 +583,23 @@ export default function CoursesPage2() {
                         color: "#111827",
                         cursor: "pointer",
                       }}
-                      onClick={() => console.log("View course:", course.id)}
+                      onClick={() =>
+                        console.log("View course:", course.course_id)
+                      }
                     >
-                      {course.title}
+                      {course.title || "N/A"}
                     </td>
                     <td style={{ textAlign: "center" }}>
                       <span
-                        className={`course-page2__status-badge course-page2__status-badge--${course.status.toLowerCase()}`}
+                        className={`course-page2__status-badge course-page2__status-badge--${(
+                          course.status || ""
+                        ).toLowerCase()}`}
                       >
-                        {course.status}
+                        {formatStatus(course.status)}
                       </span>
                     </td>
                     <td style={{ textAlign: "right" }}>
-                      {course.enrollments.toLocaleString()}
+                      {(course.total_students || 0).toLocaleString()}
                     </td>
                     <td style={{ textAlign: "center" }}>
                       <div className="course-page2__rating-display">
@@ -546,13 +614,14 @@ export default function CoursesPage2() {
                           </svg>
                         </span>
                         <span className="course-page2__rating-value">
-                          {course.rating} / 5.0
+                          {/* {course.rating ? `${course.rating.toFixed(1)}` : "0.0"} / 5.0 */}
+                          {course.rating}
                         </span>
                       </div>
                     </td>
                     <td style={{ textAlign: "center" }}>
                       <span className="course-page2__created-date">
-                        {formatDate(course.createdOn)}
+                        {formatDate(course.created_at)}
                       </span>
                     </td>
                     <td style={{ textAlign: "right" }}>
@@ -561,7 +630,9 @@ export default function CoursesPage2() {
                           className="course-page2__action-menu-btn"
                           onClick={() =>
                             setShowActionMenu(
-                              showActionMenu === course.id ? null : course.id
+                              showActionMenu === course.course_id
+                                ? null
+                                : course.course_id
                             )
                           }
                           aria-label="Actions"
@@ -577,12 +648,12 @@ export default function CoursesPage2() {
                             <circle cx="12" cy="19" r="2" fill="#6b7280" />
                           </svg>
                         </button>
-                        {showActionMenu === course.id && (
+                        {showActionMenu === course.course_id && (
                           <div className="course-page2__action-menu-dropdown">
                             <button
                               className="course-page2__action-menu-item"
                               onClick={() => {
-                                console.log("Edit:", course.id);
+                                console.log("Edit:", course.course_id);
                                 setShowActionMenu(null);
                               }}
                             >
@@ -591,18 +662,21 @@ export default function CoursesPage2() {
                             <button
                               className="course-page2__action-menu-item"
                               onClick={() => {
-                                console.log("Publish/Unpublish:", course.id);
+                                console.log(
+                                  "Publish/Unpublish:",
+                                  course.course_id
+                                );
                                 setShowActionMenu(null);
                               }}
                             >
-                              {course.status === "Published"
+                              {course.status === "published"
                                 ? "Unpublish"
                                 : "Publish"}
                             </button>
                             <button
                               className="course-page2__action-menu-item"
                               onClick={() => {
-                                console.log("Duplicate:", course.id);
+                                console.log("Duplicate:", course.course_id);
                                 setShowActionMenu(null);
                               }}
                             >
@@ -610,7 +684,7 @@ export default function CoursesPage2() {
                             </button>
                             <button
                               className="course-page2__action-menu-item course-page2__action-menu-item--danger"
-                              onClick={() => handleDelete(course.id)}
+                              onClick={() => handleDelete(course.course_id)}
                             >
                               Delete
                             </button>
@@ -641,7 +715,9 @@ export default function CoursesPage2() {
                   <button
                     key={page}
                     className={`course-page2__pagination-number ${
-                      page === currentPage ? "course-page2__pagination-number--active" : ""
+                      page === currentPage
+                        ? "course-page2__pagination-number--active"
+                        : ""
                     }`}
                     onClick={() => setCurrentPage(page)}
                   >
@@ -663,8 +739,14 @@ export default function CoursesPage2() {
 
       {/* Create Course Modal */}
       {openModal && (
-        <div className="course-modal2__backdrop" onClick={() => setOpenModal(false)}>
-          <div className="course-modal2__wrapper" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="course-modal2__backdrop"
+          onClick={() => setOpenModal(false)}
+        >
+          <div
+            className="course-modal2__wrapper"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="course-modal2__header">
               <div style={{ fontWeight: 600, fontSize: "18px" }}>
                 Create New Course
@@ -682,7 +764,7 @@ export default function CoursesPage2() {
                 onSave={(data) => {
                   console.log("Save course:", data);
                   setOpenModal(false);
-                  // TODO: Call API
+                  refetch();
                 }}
               />
             </div>

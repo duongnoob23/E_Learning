@@ -7,8 +7,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 24px;
-  max-width: 1400px;
+  // padding: 24px;
+  // max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -17,7 +18,7 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 400;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 
   span {
     b {
@@ -274,7 +275,7 @@
 }
 
 .course-page2__table-scroll {
-  max-height: 600px;
+  max-height: 450px;
   overflow-y: auto;
   overflow-x: auto;
   border-top: 1px solid #e6eaf0;
@@ -676,6 +677,7 @@
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  padding: 15px 30px;
 }
 
 .course-modal2__header {

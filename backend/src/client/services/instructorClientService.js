@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Course, Module, Lesson, CourseReview, User } = require("../../models");
+const { Course, Module, Lesson, CourseReview, User, Instructor } = require("../../models");
 
 // ======================= //
 // 🎓 GIẢNG VIÊN - KHÓA HỌC //
@@ -54,9 +54,33 @@ exports.getInstructorCourses = async (user_id, page = 1, limit = 10) => {
 };
 
 // [POST] Tạo khóa học mới
-exports.createCourse = async (instructor_id, data) => {
+exports.createCourse = async (user_id, data) => {
   try {
     const { title, description, price, is_free, category_id, level_id } = data;
+
+    // Workaround: Tìm hoặc tạo instructor từ user_id
+    let instructor = await Instructor.findOne({
+      where: { user_id },
+    });
+
+    // Nếu chưa có instructor, tạo mới
+    if (!instructor) {
+      // Lấy thông tin user để tạo instructor
+      const user = await User.findByPk(user_id);
+      
+      instructor = await Instructor.create({
+        user_id,
+        name: user?.full_name || user?.email || "Admin Instructor",
+        avatar: user?.avatar || null,
+        bio: "Admin created instructor",
+        is_active: true,
+        is_verified: true, // Admin tự động verified
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
+    }
+
+    const instructor_id = instructor.instructor_id;
 
     const newCourse = await Course.create({
       title,
@@ -80,7 +104,7 @@ exports.createCourse = async (instructor_id, data) => {
   } catch (error) {
     console.error("Lỗi trong createCourse service:", error);
     return {
-      EM: "Có lỗi xảy ra khi tạo khóa học",
+      EM: "Có lỗi xảy ra khi tạo khóa học: " + (error.message || error.original?.message || "Unknown error"),
       EC: "-2",
       DT: null,
     };
@@ -132,8 +156,25 @@ exports.deleteCourse = async (instructor_id, course_id) => {
 // ======================= //
 
 // [POST] Thêm module mới vào khóa học
-exports.addModule = async (instructor_id, course_id, data) => {
+exports.addModule = async (user_id, course_id, data) => {
   try {
+    // Tìm hoặc tạo instructor từ user_id
+    let instructor = await Instructor.findOne({ where: { user_id } });
+    if (!instructor) {
+      const user = await User.findByPk(user_id);
+      instructor = await Instructor.create({
+        user_id,
+        name: user?.full_name || user?.email || "Admin Instructor",
+        avatar: user?.avatar || null,
+        bio: "Admin created instructor",
+        is_active: true,
+        is_verified: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
+    }
+    const instructor_id = instructor.instructor_id;
+
     const course = await Course.findOne({
       where: { course_id, instructor_id },
     });
@@ -251,8 +292,25 @@ exports.getModulesByCourse = async (instructor_id, course_id) => {
 // ======================= //
 
 // [POST] Thêm bài học vào module
-exports.addLesson = async (instructor_id, module_id, data) => {
+exports.addLesson = async (user_id, module_id, data) => {
   try {
+    // Tìm hoặc tạo instructor từ user_id
+    let instructor = await Instructor.findOne({ where: { user_id } });
+    if (!instructor) {
+      const user = await User.findByPk(user_id);
+      instructor = await Instructor.create({
+        user_id,
+        name: user?.full_name || user?.email || "Admin Instructor",
+        avatar: user?.avatar || null,
+        bio: "Admin created instructor",
+        is_active: true,
+        is_verified: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
+    }
+    const instructor_id = instructor.instructor_id;
+
     const module = await Module.findByPk(module_id);
     if (!module) return { EM: "Không tìm thấy module", EC: "2", DT: null };
 
