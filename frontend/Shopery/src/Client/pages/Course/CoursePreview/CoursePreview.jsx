@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCourseDetail } from "../../../../Client/services/Course/courseQueries";
 import "./CoursePreview.css";
-
+import { courseApi } from "../../../api/Course/courseApi";
+import { toast } from "react-toastify";
+import PaymentModal from "../../../components/Course/Payment/PaymentModal";
 const CoursePreview = () => {
   const [activeTab, setActiveTab] = useState("about");
   const [openModuleIdx, setOpenModuleIdx] = useState(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const navigate = useNavigate();
+  const userId = JSON.parse(localStorage.getItem("user"))?.id || 1;
   const { id } = useParams();
 
   // 🔥 Gọi API thật
@@ -17,11 +21,36 @@ const CoursePreview = () => {
   const handleToggleModule = (idx) => {
     setOpenModuleIdx(openModuleIdx === idx ? null : idx);
   };
-
-  const handleNavigateLesson = () => {
-    navigate(`/lesson`);
+  const handlePaymentSuccess = (courseId) => {
+    toast.success("Thanh toán thành công! ✅");
+    setIsPaymentModalOpen(false);
+    navigate(`/lesson/${courseId}`);
   };
+  const handleEnrollCourse = async () => {
+    try {
+      const res = await courseApi.enrollCourse(userId, course.course_id);
 
+      if (res.EC === "0") {
+        const { is_free, payment_status } = res.DT;
+
+        if (payment_status === "paid" && is_free) {
+          toast.success(res.EM);
+          navigate(`/lesson/${course.course_id}`);
+        } else if (payment_status === "pending" && !is_free) {
+          toast.info("💳 " + res.EM);
+          // 👉 Ở đây bạn có thể hiển thị modal thanh toán
+          setIsPaymentModalOpen(true);
+        } else {
+          toast.warning("⚠️ Không xác định trạng thái khóa học.");
+        }
+      } else {
+        toast.error(res.EM || "Đăng ký thất bại!");
+      }
+    } catch (err) {
+      console.error("Enroll error:", err);
+      toast.error("Có lỗi xảy ra khi đăng ký khóa học!");
+    }
+  };
   const getYoutubeEmbedUrl = (url) => {
     if (!url) return null;
     try {
@@ -268,7 +297,7 @@ const CoursePreview = () => {
           {course.pricing?.is_free ? (
             <button
               className="course-preview__btn-add-cart"
-              onClick={handleNavigateLesson}
+              onClick={handleEnrollCourse}
             >
               Học miễn phí
             </button>
@@ -276,15 +305,9 @@ const CoursePreview = () => {
             <>
               <button
                 className="course-preview__btn-add-cart"
-                onClick={() => alert("Đăng ký khóa học thành công!")}
+                onClick={handleEnrollCourse}
               >
                 Đăng ký khóa học
-              </button>
-              <button
-                className="course-preview__btn-buy-now"
-                onClick={handleNavigateLesson}
-              >
-                Học thử miễn phí
               </button>
             </>
           )}
@@ -360,6 +383,12 @@ const CoursePreview = () => {
           )}
         </section>
       </div>
+      <PaymentModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+        course={course}
+        onPaymentSuccess={handlePaymentSuccess}
+      />
     </div>
   );
 };

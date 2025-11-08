@@ -1,8 +1,20 @@
 const Course = require("../services/courseClientService");
 
 // ==================== CATEGORY / LEVEL / INSTRUCTOR ==================== //
+exports.getCourseStructure = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+    const { course_id } = req.params;
 
+    const result = await Course.getCourseStructure(user_id, course_id);
+
+    return res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 // [GET] /api/courses/categories - Lấy danh sách danh mục
+
 exports.getCategories = async (req, res, next) => {
   try {
     const result = await Course.getAllCategories();

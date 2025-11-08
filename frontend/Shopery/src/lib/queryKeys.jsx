@@ -24,12 +24,12 @@ export const queryKeys = {
     list: (filters) => ["course", "list", { filters }],
     details: ["course", "detail"],
     detail: (id) => ["course", id],
-
+    structure: (id) => ["course", "structure", id],
     // Bổ sung các key bị thiếu
     byCategory: (categoryId) => ["course", "byCategory", categoryId],
     byLevel: (levelId) => ["course", "byLevel", levelId],
     byInstructor: (instructorId) => ["course", "byInstructor", instructorId],
-
+    userCourses: (userId) => ["course", "userCourses", userId],
     categories: () => ["course", "categories"],
     instructors: () => ["course", "instructors"],
     levels: () => ["course", "levels"],

@@ -23,6 +23,12 @@ export const courseApi = {
     return response.data;
   },
 
+  // Lấy cấu trúc khóa học
+  getCourseStructure: async (courseId) => {
+    const response = await axiosInstance.get(`/course/${courseId}/structure`);
+    return response.data;
+  },
+
   // Lấy khóa học theo category
   getCoursesByCategory: async (categoryId) => {
     const response = await axiosInstance.get(
@@ -62,6 +68,20 @@ export const courseApi = {
   // Lấy tất cả levels
   getLevels: async () => {
     const response = await axiosInstance.get(`/course/levels`);
+    return response.data;
+  },
+  // Đăng ký khóa học
+  enrollCourse: async (userId, courseId) => {
+    const response = await axiosInstance.post(`/course/${courseId}/enroll`, {
+      user_id: userId,
+    });
+    return response.data;
+  },  
+  // Lấy danh sách khóa học đã đăng ký
+  getUserCourses: async (userId) => {
+    const response = await axiosInstance.get(`/course/user/my-courses`, {
+      params: { user_id: userId },
+    });
     return response.data;
   },
 };
