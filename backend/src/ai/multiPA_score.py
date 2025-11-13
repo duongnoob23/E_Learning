@@ -7,6 +7,12 @@ Reference: https://github.com/yuwchen/MultiPA
 import sys
 import json
 import os
+import io
+
+# Set UTF-8 encoding for stdout
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 import torch
 import torchaudio
 import librosa
@@ -275,32 +281,53 @@ def analyze_writing(text):
             }
 
         words = text.split()
-        sentences = text.split('.')
+        sentences = [s.strip() for s in text.split('.') if s.strip()]
+        text_lower = text.lower()
 
         # 1. Grammar Score (0-10)
-        # Check for basic grammar patterns
         grammar_score = 8.0
         grammar_issues = []
 
-        # Check for common grammar mistakes
-        text_lower = text.lower()
-        if text_lower.count(' a ') > text_lower.count(' an '):
-            # Rough check for a/an usage
-            pass
+        # Check for lowercase "i" (should be "I")
+        import re
+        i_pattern = r'\bi\b'
+        i_matches = re.findall(i_pattern, text)
+        if i_matches:
+            grammar_score -= len(i_matches) * 0.3
+            grammar_issues.append(f"'{len(i_matches)}' instances of lowercase 'i' (should be 'I')")
 
-        # Check sentence structure (should have subject + verb)
+        # Check for contractions errors (i'am, coundn't, etc.)
+        contraction_errors = {
+            "i'am": "I am",
+            "i'm": "I'm",
+            "coundn't": "couldn't",
+            "couldn't": "couldn't",
+            "gonna": "going to",
+            "wanna": "want to",
+            "gotta": "got to"
+        }
+
+        for error, correct in contraction_errors.items():
+            if error in text_lower:
+                if error in ["gonna", "wanna", "gotta"]:
+                    grammar_score -= 0.2
+                    grammar_issues.append(f"'{error}' is informal, use '{correct}' in formal writing")
+                else:
+                    grammar_score -= 0.5
+                    grammar_issues.append(f"'{error}' should be '{correct}'")
+
+        # Check for subject-verb agreement issues
         for sentence in sentences:
-            words_in_sent = sentence.strip().split()
+            words_in_sent = sentence.split()
             if len(words_in_sent) > 0 and len(words_in_sent) < 3:
-                grammar_score -= 0.5
-                grammar_issues.append(f"Short sentence: '{sentence.strip()}'")
+                grammar_score -= 0.3
+                grammar_issues.append(f"Fragment: '{sentence}' (too short)")
 
         grammar_score = max(0, min(10, grammar_score))
 
         # 2. Vocabulary Score (0-10)
-        # Based on word length and variety
         vocabulary_score = 6.0
-        unique_words = len(set(words))
+        unique_words = len(set(w.lower() for w in words))
         total_words = len(words)
 
         # Diversity ratio
@@ -314,41 +341,48 @@ def analyze_writing(text):
         vocabulary_score = max(0, min(10, vocabulary_score))
 
         # 3. Coherence Score (0-10)
-        # Based on text length and structure
         coherence_score = 7.0
+        coherence_issues = []
 
         if len(sentences) < 2:
-            coherence_score -= 2  # Too short, no clear structure
+            coherence_score -= 2
+            coherence_issues.append("Only one sentence - lacks structure")
         elif len(sentences) > 10:
-            coherence_score -= 1  # Too many short sentences
+            coherence_score -= 1
+            coherence_issues.append("Too many short sentences - consider combining")
 
         # Check for transition words
         transition_words = ['however', 'therefore', 'moreover', 'furthermore', 'in addition',
-                          'on the other hand', 'as a result', 'consequently', 'meanwhile']
+                          'on the other hand', 'as a result', 'consequently', 'meanwhile',
+                          'also', 'besides', 'instead', 'meanwhile', 'then', 'next']
         transition_count = sum(1 for word in transition_words if word in text_lower)
         coherence_score += min(2, transition_count * 0.5)
+
+        if transition_count == 0 and len(sentences) > 1:
+            coherence_issues.append("No transition words - ideas may not flow smoothly")
 
         coherence_score = max(0, min(10, coherence_score))
 
         # 4. Task Completion Score (0-10)
-        # Based on text length and completeness
         task_completion_score = 5.0
+        completion_issues = []
 
         if total_words < 10:
-            task_completion_score = 2.0  # Too short
+            task_completion_score = 2.0
+            completion_issues.append(f"Too short ({total_words} words) - minimum 50 words recommended")
         elif total_words < 50:
-            task_completion_score = 5.0  # Minimal
+            task_completion_score = 5.0
+            completion_issues.append(f"Short ({total_words} words) - consider expanding to 50+ words")
         elif total_words < 100:
-            task_completion_score = 7.0  # Good
+            task_completion_score = 7.0
         else:
-            task_completion_score = 9.0  # Comprehensive
+            task_completion_score = 9.0
 
         # 5. Spelling Score (0-10)
-        # Simple check for common misspellings
         spelling_score = 9.0
         spelling_issues = []
 
-        # Common misspellings
+        # Common misspellings and contractions
         common_misspellings = {
             'recieve': 'receive',
             'occured': 'occurred',
@@ -357,15 +391,35 @@ def analyze_writing(text):
             'untill': 'until',
             'wich': 'which',
             'thier': 'their',
-            'becuase': 'because'
+            'becuase': 'because',
+            'occassion': 'occasion',
+            'neccessary': 'necessary',
+            'accomodate': 'accommodate',
+            'dissapear': 'disappear',
+            'embarass': 'embarrass',
+            'reccomend': 'recommend',
+            'succesful': 'successful',
+            'coundn\'t': 'couldn\'t',
+            'i\'am': 'I am'
         }
 
         for misspelled, correct in common_misspellings.items():
             if misspelled in text_lower:
                 spelling_score -= 1
-                spelling_issues.append(f"'{misspelled}' should be '{correct}'")
+                spelling_issues.append(f"'{misspelled}' → '{correct}'")
 
         spelling_score = max(0, min(10, spelling_score))
+
+        # Combine all issues
+        all_issues = []
+        if grammar_issues:
+            all_issues.extend([f"[Grammar] {issue}" for issue in grammar_issues])
+        if spelling_issues:
+            all_issues.extend([f"[Spelling] {issue}" for issue in spelling_issues])
+        if coherence_issues:
+            all_issues.extend([f"[Coherence] {issue}" for issue in coherence_issues])
+        if completion_issues:
+            all_issues.extend([f"[Task Completion] {issue}" for issue in completion_issues])
 
         return {
             "grammar_score": round(grammar_score, 1),
@@ -375,9 +429,12 @@ def analyze_writing(text):
             "spelling_score": round(spelling_score, 1),
             "grammar_issues": grammar_issues,
             "spelling_issues": spelling_issues,
+            "coherence_issues": coherence_issues,
+            "completion_issues": completion_issues,
+            "all_issues": all_issues,
             "text_stats": {
                 "word_count": total_words,
-                "sentence_count": len([s for s in sentences if s.strip()]),
+                "sentence_count": len(sentences),
                 "unique_words": unique_words,
                 "diversity_ratio": round(diversity, 2)
             }
@@ -440,11 +497,38 @@ def score_writing(text, language="en"):
         f"Spelling: {analysis.get('spelling_score', 0):.1f}/10"
     ]
 
-    issues = []
-    if analysis.get("grammar_issues"):
-        issues.extend(analysis["grammar_issues"])
-    if analysis.get("spelling_issues"):
-        issues.extend(analysis["spelling_issues"])
+    # Collect all issues with details
+    all_issues = analysis.get("all_issues", [])
+
+    # Build detailed feedback with suggestions
+    detailed_feedback = {
+        "grammar": {
+            "score": f"{analysis.get('grammar_score', 0):.1f}/10",
+            "issues": analysis.get("grammar_issues", []),
+            "suggestions": _get_grammar_suggestions(analysis.get("grammar_issues", []))
+        },
+        "vocabulary": {
+            "score": f"{analysis.get('vocabulary_score', 0):.1f}/10",
+            "diversity_ratio": analysis.get("text_stats", {}).get("diversity_ratio", 0),
+            "suggestions": "Try using more varied and sophisticated vocabulary"
+        },
+        "coherence": {
+            "score": f"{analysis.get('coherence_score', 0):.1f}/10",
+            "issues": analysis.get("coherence_issues", []),
+            "suggestions": _get_coherence_suggestions(analysis.get("coherence_issues", []))
+        },
+        "task_completion": {
+            "score": f"{analysis.get('task_completion_score', 0):.1f}/10",
+            "word_count": analysis.get("text_stats", {}).get("word_count", 0),
+            "issues": analysis.get("completion_issues", []),
+            "suggestions": "Expand your response to meet the minimum word count requirement"
+        },
+        "spelling": {
+            "score": f"{analysis.get('spelling_score', 0):.1f}/10",
+            "errors": analysis.get("spelling_issues", []),
+            "suggestions": "Proofread carefully for spelling errors"
+        }
+    }
 
     return {
         "score": round(overall_score_100, 2),
@@ -454,16 +538,34 @@ def score_writing(text, language="en"):
         "task_completion_score": round(task_100, 2),
         "spelling_score": round(spelling_100, 2),
         "feedback": ", ".join(feedback_parts),
-        "detailed_feedback": {
-            "grammar": f"Grammar score: {analysis.get('grammar_score', 0):.1f}/10",
-            "vocabulary": f"Vocabulary score: {analysis.get('vocabulary_score', 0):.1f}/10",
-            "coherence": f"Coherence score: {analysis.get('coherence_score', 0):.1f}/10",
-            "task_completion": f"Task completion score: {analysis.get('task_completion_score', 0):.1f}/10",
-            "spelling": f"Spelling score: {analysis.get('spelling_score', 0):.1f}/10"
-        },
-        "issues": issues[:5],  # Top 5 issues
+        "detailed_feedback": detailed_feedback,
+        "issues": all_issues[:10],  # Top 10 issues
         "text_stats": analysis.get("text_stats", {})
     }
+
+def _get_grammar_suggestions(grammar_issues):
+    """Generate grammar improvement suggestions"""
+    suggestions = []
+    for issue in grammar_issues:
+        if "lowercase 'i'" in issue:
+            suggestions.append("Always capitalize the pronoun 'I'")
+        elif "informal" in issue:
+            suggestions.append("Use formal language in academic writing")
+        elif "Fragment" in issue:
+            suggestions.append("Ensure each sentence has a subject and verb")
+    return suggestions if suggestions else ["Review sentence structure and grammar rules"]
+
+def _get_coherence_suggestions(coherence_issues):
+    """Generate coherence improvement suggestions"""
+    suggestions = []
+    for issue in coherence_issues:
+        if "one sentence" in issue:
+            suggestions.append("Develop your ideas with multiple sentences")
+        elif "transition" in issue:
+            suggestions.append("Use transition words to connect ideas (however, therefore, moreover, etc.)")
+        elif "short sentences" in issue:
+            suggestions.append("Combine short sentences to improve flow")
+    return suggestions if suggestions else ["Improve the logical flow of your writing"]
 
 def main():
     """Main entry point for command-line usage"""
@@ -495,7 +597,10 @@ def main():
     else:
         result = {"error": f"Unknown score type: {score_type}"}
 
-    print(json.dumps(result, ensure_ascii=False))
+    # Output JSON with UTF-8 encoding
+    output = json.dumps(result, ensure_ascii=False)
+    sys.stdout.write(output)
+    sys.stdout.flush()
 
 if __name__ == "__main__":
     main()
