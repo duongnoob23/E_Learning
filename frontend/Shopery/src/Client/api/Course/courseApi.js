@@ -84,4 +84,26 @@ export const courseApi = {
     });
     return response.data;
   },
+  // Lesson Progress
+  startLesson: async (data) => {
+    const res = await axiosInstance.post("/course/start", data);
+    return res.data;
+  },
+  updateLessonProgress: async (data) => {
+    const res = await axiosInstance.post("/course/update", data);
+    return res.data;
+  },
+  completeLesson: async (data) => {
+    const res = await axiosInstance.post("/course/complete", data);
+    return res.data;
+  },
+  getLessonProgress: async (lesson_id, user_id) => {
+    const res = await axiosInstance.get(`/course/lesson/${lesson_id}?user_id=${user_id}`);
+    return res.data;
+  },
+  getCourseProgress: async (course_id, user_id) => {
+    const res = await axiosInstance.get(`/course/course/${course_id}?user_id=${user_id}`);
+    return res.data;
+  },
+  
 };

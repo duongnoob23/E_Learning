@@ -38,7 +38,7 @@ const MyCourses = () => {
             return (
               <div className="mycourses__card" key={course.id}>
                 <img
-                  src={course.thumb}
+                  src={course.image}
                   alt={course.title}
                   className="mycourses__thumb"
                 />

@@ -47,6 +47,11 @@ router.post("/lessons/:lesson_id/progress", authMiddleware, controller.updateLes
 // Lấy danh sách khóa học mà user đã đăng ký
 router.get("/user/my-courses", authMiddleware, controller.getUserCourses);
 
+router.post("/start", authMiddleware, controller.startLesson);
+router.post("/update", authMiddleware, controller.updateProgress);
+router.post("/complete", authMiddleware, controller.completeLesson);
 
+router.get("/course/:course_id", authMiddleware, controller.getCourseProgress);
+router.get("/lesson/:lesson_id", authMiddleware, controller.getLessonProgress);
 
 module.exports = router;

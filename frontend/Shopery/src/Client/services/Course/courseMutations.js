@@ -7,3 +7,4 @@ export const useEnrollCourse = () => {
       courseApi.enrollCourse(userId, courseId),
   });
 };
+

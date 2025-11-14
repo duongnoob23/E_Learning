@@ -2,7 +2,8 @@ import React, { useCallback, useMemo, useState } from "react";
 import "./Lesson.css";
 import { useParams } from "react-router-dom";
 import { useCourseStructure } from "../../services/Course/courseQueries";
-
+// import throttle from "lodash.throttle";
+// import ReactPlayer from "react-player";
 // ------------------------------- //
 // 🎓 Component Lesson
 // ------------------------------- //
@@ -22,7 +23,53 @@ const Lesson = () => {
     () => modules.find((m) => m.module_id === activeModuleId) || modules[0],
     [modules, activeModuleId]
   );
-
+  const convertYoutubeUrlToEmbed = (url) => {
+    try {
+      const urlObj = new URL(url);
+      let videoId = "";
+      let listId = urlObj.searchParams.get("list");
+  
+      // 1. Dạng chuẩn watch?v=
+      if (urlObj.searchParams.get("v")) {
+        videoId = urlObj.searchParams.get("v");
+      }
+  
+      // 2. Dạng youtu.be/VIDEO_ID
+      else if (urlObj.hostname === "youtu.be") {
+        videoId = urlObj.pathname.replace("/", "");
+      }
+  
+      // 3. Dạng embed/VIDEO_ID
+      else if (urlObj.pathname.startsWith("/embed/")) {
+        videoId = urlObj.pathname.split("/embed/")[1];
+      }
+  
+      // 4. Dạng shorts/VIDEO_ID
+      else if (urlObj.pathname.startsWith("/shorts/")) {
+        videoId = urlObj.pathname.split("/shorts/")[1];
+      }
+  
+      // 5. Live stream
+      else if (urlObj.pathname.startsWith("/live/")) {
+        videoId = urlObj.pathname.split("/live/")[1];
+      }
+  
+      // Nếu không tìm được ID
+      if (!videoId) return null;
+  
+      // Build embed URL
+      let embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  
+      if (listId) {
+        embedUrl += `?list=${listId}`;
+      }
+  
+      return embedUrl;
+    } catch (error) {
+      return null;
+    }
+  };
+  
   const activeLesson = useMemo(() => {
     if (!activeModule) return null;
     return (
@@ -65,9 +112,8 @@ const Lesson = () => {
                   <div className="lesson-page__video-frame">
                     {activeLesson ? (
                       <iframe
-                        src={`https://www.youtube.com/embed/${
-                          activeLesson.video_url || "dQw4w9WgXcQ"
-                        }`}
+                        src={convertYoutubeUrlToEmbed(activeLesson.video_url)}
+                          
                         title={activeLesson.title}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -84,10 +130,17 @@ const Lesson = () => {
 
             {/* Course Header */}
             <header className="lesson-page__course-header">
-              <h2 className="lesson-page__course-title">
-                {course.title || "Đang tải..."}
+              <h2 className="lesson-page__lesson-title">
+                {activeLesson?.title}
               </h2>
+
+              <div className="lesson-page__lesson-content">
+                {activeLesson?.content?.split("\n").map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
+              </div>
             </header>
+
           </div>
 
           {/* ================= RIGHT SIDE (SIDEBAR) ================= */}
@@ -135,17 +188,15 @@ const Lesson = () => {
                             key={lesson.lesson_id}
                             type="button"
                             className={`lesson-page__lesson-item ${statusClass} ${
-                              isActiveLesson
-                                ? "lesson-page__lesson-item--active"
-                                : ""
+                              isActiveLesson ? "lesson-page__lesson-item--active" : ""
                             }`}
                             onClick={() => handleSelectLesson(module.module_id, lesson)}
                           >
-                            {/* Icon status (same style as old CSS) */}
+                            {/* ICON — bài đang phát */}
                             <span className="lesson-page__lesson-state">
                               {isActiveLesson ? (
                                 <svg
-                                  className="lesson-page__lesson-status-icon"
+                                  className="lesson-page__lesson-status-icon lesson-active-icon"
                                   viewBox="0 0 24 24"
                                 >
                                   <path d="M8 5v14l11-7z" />
@@ -155,17 +206,16 @@ const Lesson = () => {
                                   className="lesson-page__lesson-status-icon"
                                   viewBox="0 0 24 24"
                                 >
-                                  <circle cx="12" cy="12" r="3" />
+                                  <circle cx="12" cy="12" r="4" />
                                 </svg>
                               )}
                             </span>
-
-                            {/* Title */}
-                            <span className="lesson-page__lesson-name">
-                              {lesson.title}
-                            </span>
-
-                            {/* Type + Free */}
+                        
+                            {/* TITLE */}
+                            <span className="lesson-page__lesson-name">{lesson.title}</span>
+                        
+                        
+                            {/* TYPE (video/quiz/assignment) */}
                             <span className="lesson-page__lesson-duration">
                               {lesson.lesson_type === "quiz"
                                 ? "Quiz"
@@ -173,14 +223,9 @@ const Lesson = () => {
                                 ? "Bài tập"
                                 : "Video"}
                             </span>
-
-                            {lesson.is_free && (
-                              <span className="lesson-page__lesson-badge lesson-page__lesson-badge--free">
-                                Miễn phí
-                              </span>
-                            )}
                           </button>
                         );
+                        
                       })}
                     </div>
                   )}

@@ -219,3 +219,33 @@ exports.getUserCourses = async (req, res, next) => {
     next(error);
   }
 };
+exports.startLesson = async (req, res) => {
+  const response = await Course.startLesson(req.body);
+  res.json(response);
+};
+
+exports.updateProgress = async (req, res) => {
+  const response = await Course.updateProgress(req.body);
+  res.json(response);
+};
+
+exports.completeLesson = async (req, res) => {
+  const response = await Course.completeLesson(req.body);
+  res.json(response);
+};
+
+exports.getCourseProgress = async (req, res) => {
+  const response = await Course.getCourseProgress({
+    user_id: req.user.user_id,
+    course_id: req.params.course_id
+  });
+  res.json(response);
+};
+
+exports.getLessonProgress = async (req, res) => {
+  const response = await Course.getLessonProgress({
+    user_id: req.user.user_id,
+    lesson_id: req.params.lesson_id
+  });
+  res.json(response);
+};

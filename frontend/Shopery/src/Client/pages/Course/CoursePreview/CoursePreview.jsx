@@ -1,391 +1,383 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useCourseDetail } from "../../../../Client/services/Course/courseQueries";
-import "./CoursePreview.css";
-import { courseApi } from "../../../api/Course/courseApi";
 import { toast } from "react-toastify";
+
+import { useCourseDetail } from "../../../../Client/services/Course/courseQueries";
+import { courseApi } from "../../../api/Course/courseApi";
+
 import PaymentModal from "../../../components/Course/Payment/PaymentModal";
+import "./CoursePreview.css";
+
 const CoursePreview = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const userId = JSON.parse(localStorage.getItem("user"))?.id || 1;
+
   const [activeTab, setActiveTab] = useState("about");
   const [openModuleIdx, setOpenModuleIdx] = useState(null);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-  const navigate = useNavigate();
-  const userId = JSON.parse(localStorage.getItem("user"))?.id || 1;
-  const { id } = useParams();
+  const [paymentOpen, setPaymentOpen] = useState(false);
 
-  // 🔥 Gọi API thật
   const { data, isLoading, error } = useCourseDetail(id);
   const course = data?.DT?.course;
-  const suggestedCourses = data?.DT?.suggestedCourses || [];
+
+  if (isLoading) return <div className="loading">Đang tải khóa học…</div>;
+  if (error || !course) return <div className="error">Không thể tải dữ liệu khóa học</div>;
 
   const handleToggleModule = (idx) => {
     setOpenModuleIdx(openModuleIdx === idx ? null : idx);
   };
-  const handlePaymentSuccess = (courseId) => {
-    toast.success("Thanh toán thành công! ✅");
-    setIsPaymentModalOpen(false);
-    navigate(`/lesson/${courseId}`);
-  };
+
   const handleEnrollCourse = async () => {
     try {
       const res = await courseApi.enrollCourse(userId, course.course_id);
 
       if (res.EC === "0") {
-        const { is_free, payment_status } = res.DT;
+        const { payment_status, is_free } = res.DT;
 
-        if (payment_status === "paid" && is_free) {
-          toast.success(res.EM);
-          navigate(`/lesson/${course.course_id}`);
-        } else if (payment_status === "pending" && !is_free) {
-          toast.info("💳 " + res.EM);
-          // 👉 Ở đây bạn có thể hiển thị modal thanh toán
-          setIsPaymentModalOpen(true);
-        } else {
-          toast.warning("⚠️ Không xác định trạng thái khóa học.");
+        // Free course → học ngay
+        if (is_free || payment_status === "paid") {
+          toast.success("Bạn đã đăng ký khóa học!");
+          return navigate(`/lesson/${course.course_id}`);
+        }
+
+        // Paid but pending
+        if (!is_free && payment_status === "pending") {
+          toast.info("Khóa học cần thanh toán!");
+          return setPaymentOpen(true);
         }
       } else {
-        toast.error(res.EM || "Đăng ký thất bại!");
+        toast.error(res.EM);
       }
     } catch (err) {
-      console.error("Enroll error:", err);
-      toast.error("Có lỗi xảy ra khi đăng ký khóa học!");
+      console.error(err);
+      toast.error("Có lỗi khi đăng ký khóa học");
     }
   };
-  const getYoutubeEmbedUrl = (url) => {
-    if (!url) return null;
+
+  const handlePaymentSuccess = () => {
+    toast.success("Thanh toán thành công!");
+    setPaymentOpen(false);
+    navigate(`/lesson/${course.course_id}`);
+  };
+  const convertYoutubeUrlToEmbed = (url) => {
     try {
       const urlObj = new URL(url);
-      if (urlObj.hostname.includes("youtube.com")) {
-        return `https://www.youtube.com/embed/${urlObj.searchParams.get("v")}`;
+      let videoId = "";
+      let listId = urlObj.searchParams.get("list");
+  
+      // 1. Dạng chuẩn watch?v=
+      if (urlObj.searchParams.get("v")) {
+        videoId = urlObj.searchParams.get("v");
       }
-      if (urlObj.hostname.includes("youtu.be")) {
-        return `https://www.youtube.com/embed${urlObj.pathname}`;
+  
+      // 2. Dạng youtu.be/VIDEO_ID
+      else if (urlObj.hostname === "youtu.be") {
+        videoId = urlObj.pathname.replace("/", "");
       }
-    } catch {
+  
+      // 3. Dạng embed/VIDEO_ID
+      else if (urlObj.pathname.startsWith("/embed/")) {
+        videoId = urlObj.pathname.split("/embed/")[1];
+      }
+  
+      // 4. Dạng shorts/VIDEO_ID
+      else if (urlObj.pathname.startsWith("/shorts/")) {
+        videoId = urlObj.pathname.split("/shorts/")[1];
+      }
+  
+      // 5. Live stream
+      else if (urlObj.pathname.startsWith("/live/")) {
+        videoId = urlObj.pathname.split("/live/")[1];
+      }
+  
+      // Nếu không tìm được ID
+      if (!videoId) return null;
+  
+      // Build embed URL
+      let embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  
+      if (listId) {
+        embedUrl += `?list=${listId}`;
+      }
+  
+      return embedUrl;
+    } catch (error) {
       return null;
     }
-    return null;
   };
-
-  if (isLoading) return <div className="loading">Đang tải khóa học...</div>;
-  if (error || !course) return <div className="error">Không thể tải chi tiết khóa học.</div>;
-
+  
   return (
     <div className="course-preview">
-      <div className="course-preview__container">
-        {/* ===== HEADER ===== */}
-        <section className="course-preview__header">
-          <div className="course-preview__header-left">
-            <span className="course-preview__badge">{course.category}</span>
-            <h1 className="course-preview__title">{course.title}</h1>
-            <div className="course-preview__desc">{course.shortDesc}</div>
-            <div className="course-preview__rating-row">
-              <span className="course-preview__rating">
-                {course.rating}{" "}
-                <i className="fa fa-star" style={{ color: "#ffc107" }}></i>
-                <span className="course-preview__rating-count">
-                  ({course.ratingCount} đánh giá)
-                </span>
-              </span>
-            </div>
-            <div className="course-preview__meta">
-              <span>
-                <i className="fa fa-list"></i> {course.lessons} bài học
-              </span>
-              <span>
-                <i className="fa fa-clock"></i> {course.duration}
-              </span>
-            </div>
-            <div className="course-preview__instructor">
-              <img
-                className="course-preview__instructor-avatar"
-                src={course.instructor?.avatar}
-                alt={course.instructor?.name}
-              />
-              <span className="course-preview__instructor-name">
-                {course.instructor?.name}
-              </span>
-            </div>
+      {/* ==================== HEADER ==================== */}
+      <section className="course-preview__header">
+        <div className="course-preview__header-left">
+          <span className="course-preview__badge">
+            {course.category?.name}
+          </span>
+
+          <h1 className="course-preview__title">{course.title}</h1>
+
+          <p className="course-preview__desc">{course.short_description}</p>
+
+          <div className="course-preview__rating-row">
+            ⭐ {course.rating}
+            <span className="course-preview__rating-count">
+              ({course.rating_count} đánh giá)
+            </span>
           </div>
 
-          <div className="course-preview__header-right">
-            <div className="course-preview__video">
-              {course.video?.url?.includes("youtube") ? (
-                <iframe
-                  width="100%"
-                  height="360"
-                  src={getYoutubeEmbedUrl(course.video.url)}
-                  title="Video Preview"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <video
-                  className="course-preview__video-player"
-                  src={course.video?.url}
-                  poster={course.video?.thumb}
-                  controls
-                />
-              )}
-            </div>
+          <div className="course-preview__meta">
+            <span>📚 {course.total_lessons} bài học</span>
+            <span>⏱ {course.total_duration}</span>
           </div>
-        </section>
 
-        {/* ===== 2-COLUMN LAYOUT ===== */}
-        <div className="course-preview__main-row">
-          {/* LEFT COLUMN */}
-          <div className="course-preview__main-col course-preview__main-col--left">
-            {/* ===== TABS ===== */}
-            <div className="course-preview__tabs">
-              <span
-                className={`course-preview__tab ${
-                  activeTab === "about" ? "course-preview__tab--active" : ""
-                }`}
-                onClick={() => setActiveTab("about")}
-              >
-                Giới thiệu
-              </span>
-              <span
-                className={`course-preview__tab ${
-                  activeTab === "curriculum" ? "course-preview__tab--active" : ""
-                }`}
-                onClick={() => setActiveTab("curriculum")}
-              >
-                Nội dung khóa học
-              </span>
-            </div>
+          <div className="course-preview__instructor">
+            <img
+              src={course.instructor?.avatar}
+              alt={course.instructor?.name}
+              className="course-preview__instructor-avatar"
+            />
+            <span className="course-preview__instructor-name">
+              {course.instructor?.name}
+            </span>
+          </div>
+        </div>
 
-            {/* ===== ABOUT TAB ===== */}
-            {activeTab === "about" && (
-              <section className="course-preview__about">
-                <h2>Giới thiệu khóa học</h2>
-                {course.about?.length > 0 ? (
-                  course.about.map((p, i) => <p key={i}>{p}</p>)
-                ) : (
-                  <p>Chưa có thông tin giới thiệu khóa học.</p>
-                )}
-
-                {/* === Skills & Requirements === */}
-                {(course.skills?.length || course.requirements?.length) && (
-                  <div className="course-preview__skills-req">
-                    <div className="course-preview__skills">
-                      <h2>Kỹ năng đạt được</h2>
-                      <div className="course-preview__skills-list">
-                        {course.skills?.map((skill, i) => (
-                          <span key={i} className="course-preview__skill-tag">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="course-preview__requirements">
-                      <h2>Yêu cầu</h2>
-                      <ul>
-                        {course.requirements?.map((req, i) => (
-                          <li key={i}>{req}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </section>
+        <div className="course-preview__header-right">
+          <div className="course-preview__video">
+            {course.video_preview ? (
+              <iframe
+                width="100%"
+                height="100%"
+                src={convertYoutubeUrlToEmbed(course.video_preview)}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Course Preview Video"
+              ></iframe>
+            ) : (
+              <img className="course-preview__video-thumb" src={course.image} />
             )}
+            <div className="course-preview__video-duration">
+              {course.video_duration}
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* ===== CURRICULUM TAB ===== */}
-            {activeTab === "curriculum" && (
-              <section className="course-preview__curriculum">
-                <h2>Nội dung khóa học</h2>
-                {course.modules && course.modules.length > 0 ? (
-                  <div className="curriculum-accordion">
-                    {course.modules.map((mod, idx) => (
-                      <div
-                        key={idx}
-                        className={`curriculum-accordion__item${
-                          openModuleIdx === idx
-                            ? " curriculum-accordion__item--open"
-                            : ""
-                        }`}
-                      >
-                        <div
-                          className="curriculum-accordion__title"
-                          onClick={() => handleToggleModule(idx)}
-                        >
-                          <span>{mod.title}</span>
-                          <span className="curriculum-accordion__meta">
-                            {mod.lectures || 0} bài giảng{" "}
-                            {mod.time ? `| ${mod.time}` : ""}
-                          </span>
-                          <span className="curriculum-accordion__arrow">
-                            <i
-                              className={`fa ${
-                                openModuleIdx === idx
-                                  ? "fa-chevron-up"
-                                  : "fa-chevron-down"
-                              }`}
-                            ></i>
-                          </span>
-                        </div>
+      {/* ==================== TABS ==================== */}
+      <div className="course-preview__tabs">
+        <div
+          className={`course-preview__tab ${
+            activeTab === "about" ? "course-preview__tab--active" : ""
+          }`}
+          onClick={() => setActiveTab("about")}
+        >
+          Giới thiệu
+        </div>
+        <div
+          className={`course-preview__tab ${
+            activeTab === "curriculum" ? "course-preview__tab--active" : ""
+          }`}
+          onClick={() => setActiveTab("curriculum")}
+        >
+          Nội dung
+        </div>
+        <div
+          className={`course-preview__tab ${
+            activeTab === "reviews" ? "course-preview__tab--active" : ""
+          }`}
+          onClick={() => setActiveTab("reviews")}
+        >
+          Đánh giá
+        </div>
+      </div>
 
-                        {openModuleIdx === idx && (
-                          <div className="curriculum-accordion__content">
-                            {mod.lessons && mod.lessons.length > 0 ? (
-                              mod.lessons.map((lesson, i) => (
-                                <div
-                                  key={i}
-                                  className="curriculum-accordion__lesson"
-                                >
-                                  <i className="fa fa-play-circle"></i>
-                                  <span>
-                                    {lesson.name ||
-                                      lesson.title ||
-                                      `Bài học ${i + 1}`}
-                                  </span>
-                                  {lesson.time && (
-                                    <span className="curriculum-accordion__lesson-time">
-                                      {lesson.time}
-                                    </span>
-                                  )}
-                                </div>
-                              ))
-                            ) : (
-                              <div className="curriculum-accordion__lesson curriculum-empty">
-                                <i className="fa fa-info-circle"></i> Chưa có bài
-                                học trong module này
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
+      <div className="course-preview__main-row">
+        {/* ==================== LEFT CONTENT ==================== */}
+        <div className="course-preview__main-col course-preview__main-col--left">
+          {activeTab === "about" && (
+            <>
+              <h2 className="course-preview__about-title">Giới thiệu khóa học</h2>
+              <p className="course-preview__about-desc">
+                {course.details?.about}
+              </p>
+
+              {/* Learning Outcomes */}
+              <div className="course-preview__about-learn">
+                <h3>Bạn sẽ học được gì</h3>
+                <ul>
+                  {course.details?.learning_outcomes?.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Skills & Requirements */}
+              <div className="course-preview__skills-req">
+                <div className="course-preview__skills">
+                  <h2>Kỹ năng đạt được</h2>
+                  <div className="course-preview__skills-list">
+                    {course.details?.skills?.map((s, i) => (
+                      <span key={i} className="course-preview__skill-tag">
+                        {s}
+                      </span>
                     ))}
                   </div>
-                ) : (
-                  <p>Chưa có module nào được thêm vào khóa học này.</p>
-                )}
-              </section>
-            )}
-          </div>
+                </div>
 
-          {/* RIGHT COLUMN (SIDEBAR) */}
-          <div className="course-preview__main-col course-preview__main-col--right">
+                <div className="course-preview__requirements">
+                  <h2>Yêu cầu</h2>
+                  <ul>
+                    {course.details?.requirements?.map((r, i) => (
+                      <li key={i}>{r}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* ==================== CURRICULUM ==================== */}
+          {activeTab === "curriculum" && (
+            <div className="course-preview__curriculum">
+              <h2 className="course-preview__curriculum-title">Nội dung khóa học</h2>
+
+              <div className="curriculum-accordion">
+                {course.modules?.map((module, idx) => (
+                  <div
+                    key={module.module_id}
+                    className={`curriculum-accordion__item ${
+                      openModuleIdx === idx ? "curriculum-accordion__item--open" : ""
+                    }`}
+                  >
+                    <div
+                      className="curriculum-accordion__title"
+                      onClick={() => handleToggleModule(idx)}
+                    >
+                      {module.title}
+                      <span className="curriculum-accordion__meta">
+                        {module.lectures} bài • {module.total_duration}
+                      </span>
+                      <span className="curriculum-accordion__arrow">
+                        {openModuleIdx === idx ? "▲" : "▼"}
+                      </span>
+                    </div>
+
+                    {openModuleIdx === idx && (
+                      <div className="curriculum-accordion__content">
+                        {module.lessons?.map((lesson) => (
+                          <div
+                            key={lesson.lesson_id}
+                            className="curriculum-accordion__lesson"
+                          >
+                            <i className="fa fa-play-circle"></i>
+                            {lesson.title}
+                            <span className="curriculum-accordion__lesson-time">
+                              {lesson.duration || "..."}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* ==================== REVIEWS TAB ==================== */}
+          {activeTab === "reviews" && (
+            <div className="course-preview__reviews">
+              <h2 className="course-preview__reviews-title">Đánh giá từ học viên</h2>
+
+              {course.reviews && course.reviews.length > 0 ? (
+                course.reviews.map((rv) => (
+                  <div key={rv.id} className="course-preview__review-item">
+                    <img
+                      src={rv.avatar}
+                      alt={rv.user}
+                      className="course-preview__review-avatar"
+                    />
+
+                    <div className="course-preview__review-content">
+                      <div className="course-preview__review-header">{rv.user}</div>
+
+                      <div className="course-preview__review-date">
+                        {new Date(rv.time).toLocaleDateString("vi-VN")}
+                      </div>
+
+                      <div className="course-preview__review-rating">
+                        {"⭐".repeat(rv.rating)}
+                      </div>
+
+                      <p>{rv.content}</p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>Chưa có đánh giá nào.</p>
+              )}
+            </div>
+          )}
+
+        </div>
+          
+        {/* ==================== RIGHT SIDEBAR ==================== */}
+        <div className="course-preview__main-col course-preview__main-col--right">
           <div className="course-preview__pricing-card">
-            {/* ===== Giá khóa học ===== */}
-          <div className="course-preview__price-main">
-            {course.pricing?.is_free ? (
-              <span className="course-preview__price-sale">Miễn phí</span>
-            ) : (
-              <>
-                <span className="course-preview__price-sale">
-                  {course.pricing?.price_display}
-                </span>
+            <div className="course-preview__price-main">
+              {course.is_free ? (
+                <span className="course-preview__price-sale">Miễn phí</span>
+              ) : (
+                <>
+                  <span className="course-preview__price-sale">
+                    {Number(course.price).toLocaleString()}₫
+                  </span>
+                  {course.discount_percent && (
+                    <>
+                      <span className="course-preview__price-old">
+                        {Number(course.old_price).toLocaleString()}₫
+                      </span>
+                      <span className="course-preview__price-discount">
+                        -{course.discount_percent}%
+                      </span>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
 
-                {course.pricing?.has_discount && (
-                  <>
-                    <span className="course-preview__price-old">
-                      {course.pricing?.old_price_display}
-                    </span>
-                    <span className="course-preview__price-discount">
-                      {course.pricing?.discount_badge}
-                    </span>
-                  </>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* ===== Nút hành động ===== */}
-          {course.pricing?.is_free ? (
-            <button
-              className="course-preview__btn-add-cart"
-              onClick={handleEnrollCourse}
-            >
-              Học miễn phí
-            </button>
-          ) : (
-            <>
+            {course.is_free ? (
               <button
                 className="course-preview__btn-add-cart"
                 onClick={handleEnrollCourse}
               >
-                Đăng ký khóa học
+                Học miễn phí
               </button>
-            </>
-          )}
+            ) : (
+              <>
+                <button
+                  className="course-preview__btn-add-cart"
+                  onClick={handleEnrollCourse}
+                >
+                  Đăng ký khóa học
+                </button>
+              </>
+            )}
 
-          {/* ===== Thông tin khóa học ===== */}
-          <div className="course-preview__info-list">
-            <div>
-              <i className="fa fa-clock"></i>
-              <span>
-                <b>Thời lượng:</b> {course.duration || "Không rõ"}
-              </span>
-            </div>
-            <div>
-              <i className="fa fa-list"></i>
-              <span>
-                <b>Bài học:</b> {course.lessons || 0}
-              </span>
-            </div>
-            <div>
-              <i className="fa fa-signal"></i>
-              <span>
-                <b>Trình độ:</b> {course.level || "Tất cả"}
-              </span>
-            </div>
-            <div>
-              <i className="fa fa-language"></i>
-              <span>
-                <b>Ngôn ngữ:</b> {course.language || "Tiếng Anh"}
-              </span>
+            <div className="course-preview__info-list">
+              <div><i className="fa fa-check"></i> Truy cập trọn đời</div>
+              <div><i className="fa fa-check"></i> Chứng chỉ hoàn thành</div>
+              <div><i className="fa fa-check"></i> Nội dung cập nhật liên tục</div>
             </div>
           </div>
-
-          {/* ===== Thành tựu đạt được (nếu có) ===== */}
-          {course.achieve?.length > 0 && (
-            <div className="course-preview__about-achieve">
-              <h4>Bạn sẽ đạt được gì?</h4>
-              <ul>
-                {course.achieve.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
-          </div>
-        </div>
-
-        {/* ===== SUGGESTED COURSES ===== */}
-        <section className="course-preview__suggested">
-          <h2>Khóa học gợi ý</h2>
-          {suggestedCourses.length > 0 ? (
-            <div className="course-preview__suggested-list">
-              {suggestedCourses.map((c, i) => (
-                <div key={i} className="course-preview__suggested-item">
-                  <img
-                    src={c.thumb}
-                    alt={c.title}
-                    className="course-preview__suggested-thumb"
-                  />
-                  <div className="course-preview__suggested-info">
-                    <div className="course-preview__suggested-title-sm">
-                      {c.title}
-                    </div>
-                    <div className="course-preview__suggested-instructor">
-                      <i className="fa fa-user"></i> {c.instructor}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>Hiện chưa có khóa học gợi ý.</p>
-          )}
-        </section>
       </div>
+
+      {/* ==================== PAYMENT MODAL ==================== */}
       <PaymentModal
-        isOpen={isPaymentModalOpen}
-        onClose={() => setIsPaymentModalOpen(false)}
+        isOpen={paymentOpen}
+        onClose={() => setPaymentOpen(false)}
         course={course}
         onPaymentSuccess={handlePaymentSuccess}
       />
