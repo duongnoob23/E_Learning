@@ -397,72 +397,91 @@ function Course() {
 
   return (
     <div className="course-container">
+      {/* Header Section with Gradient */}
+      <div className="course-header-section">
+        <div className="course-header-wrapper">
+          <div className="course-breadcrumb">
+            <span>Home</span>
+            <i className="fa fa-chevron-right"></i>
+            <span>All Courses</span>
+          </div>
+          <div className="course-header-title-row">
+            <h1 className="course-header-title">All Courses</h1>
+            <div className="course-header-badge">
+              <span className="badge-icon">🎉</span>
+              <span>{pagination.total_items || 0} Courses</span>
+            </div>
+          </div>
+          <p className="course-header-subtitle">
+            Courses that help beginner designers become true unicorns.
+          </p>
+          <div className="course-header-controls">
+            <div className="course-view-toggle">
+              <button
+                className={view === "grid" ? "active" : ""}
+                onClick={() => setView("grid")}
+                aria-label="Grid view"
+              >
+                <i className="fa fa-th-large"></i>
+                Grid
+              </button>
+              <button
+                className={view === "list" ? "active" : ""}
+                onClick={() => setView("list")}
+                aria-label="List view"
+              >
+                <i className="fa fa-list"></i>
+                List
+              </button>
+            </div>
+            <div className="course-results-info">
+              Showing{" "}
+              {courses.length > 0
+                ? (currentPage - 1) * pagination.items_per_page + 1
+                : 0}
+              –
+              {Math.min(
+                currentPage * pagination.items_per_page,
+                pagination.total_items
+              )}{" "}
+              of {pagination.total_items} results
+            </div>
+            <div className="course-sort-wrapper">
+              <label htmlFor="sort-select" className="sort-label">
+                Sort by:
+              </label>
+              <select
+                id="sort-select"
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="sort-select"
+              >
+                <option value="newest">Newest</option>
+                <option value="popular">Popularity</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="rating">Rating</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="course-page">
-        <div className="course-header">
-          <h2>Toàn bộ khóa học</h2>
-          <div className="course-search">
-            <input
-              type="text"
-              placeholder="Search course name..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <i className="fa fa-search icon-search"></i>
-          </div>
-          <div className="course-view-toggle">
-            <button
-              className={view === "list" ? "active" : ""}
-              onClick={() => setView("list")}
-              aria-label="List view"
-            >
-              <i className="fa fa-list"></i>
-            </button>
-            <button
-              className={view === "grid" ? "active" : ""}
-              onClick={() => setView("grid")}
-              aria-label="Grid view"
-            >
-              <i className="fa fa-th-large"></i>
-            </button>
-          </div>
-        </div>
-
-        {/* Sort and Filter Controls */}
-        <div className="course-controls">
-          <div className="course-sort">
-            <label htmlFor="sort-select">Sắp xếp theo:</label>
-            <select
-              id="sort-select"
-              value={sortBy}
-              onChange={(e) => handleSortChange(e.target.value)}
-              className="sort-select"
-            >
-              <option value="newest">Mới nhất</option>
-              <option value="popular">Phổ biến</option>
-              <option value="price_asc">Giá tăng dần</option>
-              <option value="price_desc">Giá giảm dần</option>
-              <option value="rating">Đánh giá cao</option>
-            </select>
-          </div>
-          <div className="course-results">
-            <span>
-              Hiển thị {courses.length} trong {pagination.total_items} khóa học
-            </span>
-            {coursesFetching && (
-              <span className="loading-indicator">
-                <i className="fa fa-spinner fa-spin"></i> Đang tải...
-              </span>
-            )}
-          </div>
-          <button onClick={clearAllFilters} className="btn-clear-filters">
-            <i className="fa fa-times"></i> Xóa bộ lọc
-          </button>
-        </div>
-
         <div className="course-main">
           <aside className="course-filter">
+            <div className="filter-search">
+              <input
+                type="text"
+                placeholder="Search Courses"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="filter-search-input"
+              />
+              <i className="fa fa-search filter-search-icon"></i>
+            </div>
             <div className="filter-group">
-              <h4>Thể loại</h4>
+              <h4>Categories</h4>
               {filterOptions.categories.length === 0 ? (
                 <div className="no-options">Không có dữ liệu</div>
               ) : (
@@ -488,7 +507,7 @@ function Course() {
             </div>
 
             <div className="filter-group">
-              <h4>Instructor</h4>
+              <h4>Instructors</h4>
               {filterOptions.instructors.length === 0 ? (
                 <div className="no-options">Không có dữ liệu</div>
               ) : (
@@ -513,8 +532,39 @@ function Course() {
               )}
             </div>
 
+            <div className="filter-group">
+              <h4>Ratings</h4>
+              {reviewOptions.map((star) => (
+                <label
+                  key={star}
+                  className={`custom-checkbox star-checkbox ${
+                    selectedReview.includes(star) ? "checked" : ""
+                  }`}
+                  onClick={() => handleReview(star)}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedReview.includes(star)}
+                    readOnly
+                  />
+                  <span className="checkmark"></span>
+                  <span className="star-rating">
+                    {[...Array(star)].map((_, i) => (
+                      <i key={i} className="fa fa-star"></i>
+                    ))}
+                  </span>
+                  <span className="filter-count">
+                    {
+                      courses.filter((c) => Math.round(c.rating) === star)
+                        .length
+                    }
+                  </span>
+                </label>
+              ))}
+            </div>
+
             <div className="filter-group filter-group-price">
-              <h4>Giá</h4>
+              <h4>Prices</h4>
               <label className="custom-radio">
                 <input
                   type="radio"
@@ -523,7 +573,7 @@ function Course() {
                   onChange={() => setSelectedPrice("all")}
                 />
                 <span className="radiomark"></span>
-                Tất cả
+                All
                 <span className="filter-count">
                   {pagination.total_items || 0}
                 </span>
@@ -536,7 +586,7 @@ function Course() {
                   onChange={() => setSelectedPrice("free")}
                 />
                 <span className="radiomark"></span>
-                Miễn phí
+                Free
                 <span className="filter-count">
                   {courses.filter((c) => c.isFree).length}
                 </span>
@@ -549,53 +599,12 @@ function Course() {
                   onChange={() => setSelectedPrice("paid")}
                 />
                 <span className="radiomark"></span>
-                Trả phí
+                Paid
                 <span className="filter-count">
                   {courses.filter((c) => !c.isFree).length}
                 </span>
               </label>
-              <button
-                className="btn-review"
-                onClick={() => setShowReview((v) => !v)}
-              >
-                Xem Thêm <i className="fa fa-angle-double-right"></i>
-              </button>
             </div>
-
-            {showReview && (
-              <div className="filter-group">
-                <h4>Review</h4>
-                {reviewOptions.map((star) => (
-                  <label
-                    key={star}
-                    className={`custom-checkbox star-checkbox ${
-                      selectedReview.includes(star) ? "checked" : ""
-                    }`}
-                    onClick={() => handleReview(star)}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedReview.includes(star)}
-                      readOnly
-                    />
-                    <span className="checkmark"></span>
-                    {[...Array(star)].map((_, i) => (
-                      <i
-                        key={i}
-                        className="fa fa-star"
-                        style={{ color: PRIMARY_COLOR, marginRight: 2 }}
-                      ></i>
-                    ))}
-                    <span className="filter-count">
-                      {
-                        courses.filter((c) => Math.round(c.rating) === star)
-                          .length
-                      }
-                    </span>
-                  </label>
-                ))}
-              </div>
-            )}
 
             <div className="filter-group">
               <h4>Level</h4>
@@ -642,32 +651,16 @@ function Course() {
               <div className="course-card" key={course.id}>
                 <div className="course-card-img">
                   <img src={course.image} alt={course.title} />
-                  <div className="course-card-tags">
-                    {course.bestSeller && (
-                      <span className="tag best-seller">Best Seller</span>
-                    )}
-                    {course.discount > 0 && (
-                      <span className="tag discount">
-                        {course.discount}% OFF
-                      </span>
-                    )}
-                    {course.isFree && <span className="tag free">Free</span>}
-                  </div>
+                  {course.discount > 0 && (
+                    <div className="course-card-discount-badge">
+                      -{course.discount}% Off
+                    </div>
+                  )}
+                  <button className="course-card-bookmark">
+                    <i className="fa fa-bookmark-o"></i>
+                  </button>
                 </div>
                 <div className="course-card-content">
-                  <div className="course-card-meta">
-                    <span className="course-card-instructor">
-                      <i className="fa fa-user"></i> {course.instructor}
-                    </span>
-                    <span className="course-card-duration">
-                      <i className="fa fa-clock"></i> {course.duration}
-                    </span>
-                    <span className="course-card-students">
-                      <i className="fa fa-users"></i> {course.students} HV
-                    </span>
-                  </div>
-                  <h3>{course.title}</h3>
-                  <div className="course-card-desc">{course.desc}</div>
                   <div className="course-card-rating">
                     <span className="stars">
                       {[...Array(5)].map((_, i) => (
@@ -677,48 +670,73 @@ function Course() {
                           style={{
                             color:
                               i < Math.round(course.rating)
-                                ? "#ffd60a"
-                                : "#e4e5e9",
+                                ? "#FBBF24"
+                                : "#E5E7EB",
                           }}
                         ></i>
                       ))}
                     </span>
                     <span className="reviews">
-                      ({course.reviews.toLocaleString()})
+                      ({course.reviews.toLocaleString()} Reviews)
                     </span>
                   </div>
-                  <div className="course-card-price">
-                    {course.isFree ? (
-                      <>
-                        <span className="old-price">
-                          ${course.oldPrice.toFixed(2)}
-                        </span>
-                        <span
-                          className="price"
-                          style={{ color: PRIMARY_COLOR }}
-                        >
-                          Free
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="price">
-                          ${course.price.toFixed(2)}
-                        </span>
-                        {course.oldPrice > course.price && (
-                          <span className="old-price">
-                            ${course.oldPrice.toFixed(2)}
-                          </span>
-                        )}
-                      </>
-                    )}
+                  <h3 className="course-card-title">{course.title}</h3>
+                  <div className="course-card-stats">
+                    <span className="course-stat-item">
+                      <i className="fa fa-book"></i>
+                      {course.lessons || 12} Lessons
+                    </span>
+                    <span className="course-stat-item">
+                      <i className="fa fa-users"></i>
+                      {course.students || 50} Students
+                    </span>
                   </div>
-                  <button
-                    onClick={() => navigate(`/course/${course.id}`)}
-                    className="btn-view-more"
-                  >
-                    View More <i className="fa fa-arrow-right"></i>
-                  </button>
+                  <div className="course-card-desc">{course.desc}</div>
+                  <div className="course-card-instructor-info">
+                    <img
+                      src={
+                        course.instructorAvatar ||
+                        "https://via.placeholder.com/32"
+                      }
+                      alt={course.instructor}
+                      className="instructor-avatar"
+                    />
+                    <span>
+                      By <strong>{course.instructor}</strong> In{" "}
+                      <strong>{course.category || "Development"}</strong>
+                    </span>
+                  </div>
+                  <div className="course-card-footer">
+                    <div className="course-card-price">
+                      {course.isFree ? (
+                        <>
+                          <span className="price">Free</span>
+                          {course.oldPrice > 0 && (
+                            <span className="old-price">
+                              ${course.oldPrice.toFixed(2)}
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <span className="price">
+                            ${course.price.toFixed(2)}
+                          </span>
+                          {course.oldPrice > course.price && (
+                            <span className="old-price">
+                              ${course.oldPrice.toFixed(2)}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => navigate(`/course/${course.id}`)}
+                      className="btn-course-action"
+                    >
+                      Learn More <i className="fa fa-arrow-right"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

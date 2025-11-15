@@ -22,7 +22,7 @@ import Register from "../../Client/pages/Auth/Register/Register";
 import Course from "../pages/Course/Course";
 import CourseDetail from "../pages/Course/CourseDetail/CourseDetail";
 import CoursePreview from "../pages/Course/CoursePreview/CoursePreview";
-import Profile from "../pages/ProfileV2/index";
+import Profile from "../pages/Profile/Profile";
 
 // Exam Pages
 import ExamDetail from "../pages/Exam/ExamDetail/ExamDetail";
@@ -151,7 +151,7 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
-    <Route
+      <Route
         path="/mycourses"
         element={
           <PrivateRoute>
