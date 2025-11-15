@@ -190,6 +190,19 @@
   padding: 8px;
 }
 
+.admin-course-lessons-lesson-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+
+  &--active {
+    .admin-course-lessons-lesson-edit-btn {
+      opacity: 1;
+    }
+  }
+}
+
 .admin-course-lessons-lesson-item {
   display: flex;
   align-items: center;
@@ -250,6 +263,35 @@
 
 .admin-course-lessons-lesson-item--active .admin-course-lessons-lesson-duration {
   color: #2563eb;
+}
+
+.admin-course-lessons-lesson-edit-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.admin-course-lessons-lesson-item-wrapper:hover .admin-course-lessons-lesson-edit-btn {
+  opacity: 1;
 }
 
 .admin-btn-close {

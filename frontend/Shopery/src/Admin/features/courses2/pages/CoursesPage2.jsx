@@ -3,6 +3,7 @@ import { useAdminRemoveCourse } from "../hooks/useCoursesAdminMutations";
 import { useClientCourses } from "../hooks/useCoursesAdminQueries";
 import CoursePreviewModal from "../components/CoursePreviewModal";
 import CourseLessonsModal from "../components/CourseLessonsModal";
+import EditCourseModal from "../components/EditCourseModal";
 import "./CoursesPage2.scss";
 import CreateCoursePage from "./CreateCoursePage";
 
@@ -51,6 +52,7 @@ export default function CoursesPage2() {
   const [showActionMenu, setShowActionMenu] = useState(null);
   const [previewCourseId, setPreviewCourseId] = useState(null);
   const [lessonsCourseId, setLessonsCourseId] = useState(null);
+  const [editCourseId, setEditCourseId] = useState(null);
 
   const rowsPerPage = 10;
 
@@ -675,7 +677,7 @@ export default function CoursesPage2() {
                             <button
                               className="course-page2__action-menu-item"
                               onClick={() => {
-                                console.log("Edit:", course.course_id);
+                                setEditCourseId(course.course_id);
                                 setShowActionMenu(null);
                               }}
                             >
@@ -806,6 +808,17 @@ export default function CoursesPage2() {
         open={!!lessonsCourseId}
         onClose={() => setLessonsCourseId(null)}
         courseId={lessonsCourseId}
+      />
+
+      {/* Edit Course Modal */}
+      <EditCourseModal
+        open={!!editCourseId}
+        onClose={() => setEditCourseId(null)}
+        courseId={editCourseId}
+        onSuccess={() => {
+          refetch();
+          setEditCourseId(null);
+        }}
       />
     </div>
   );

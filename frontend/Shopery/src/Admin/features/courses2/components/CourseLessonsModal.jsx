@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useAdminCourseStructure } from "../hooks/useCoursesAdminQueries";
+import EditLessonModal from "./EditLessonModal";
 import "./CourseLessonsModal.scss";
 
 const convertYoutubeUrlToEmbed = (url) => {
@@ -36,6 +37,7 @@ const convertYoutubeUrlToEmbed = (url) => {
 export default function CourseLessonsModal({ open, onClose, courseId }) {
   const [activeModuleId, setActiveModuleId] = useState(null);
   const [activeLessonId, setActiveLessonId] = useState(null);
+  const [editingLesson, setEditingLesson] = useState(null);
 
   const { data: courseStructureRes, isLoading, error } = useAdminCourseStructure(
     courseId,
@@ -230,48 +232,80 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
                             const isActiveLesson =
                               activeLessonId === lesson.lesson_id;
                             return (
-                              <button
+                              <div
                                 key={lesson.lesson_id}
-                                type="button"
-                                className={`admin-course-lessons-lesson-item ${
+                                className={`admin-course-lessons-lesson-item-wrapper ${
                                   isActiveLesson
-                                    ? "admin-course-lessons-lesson-item--active"
+                                    ? "admin-course-lessons-lesson-item-wrapper--active"
                                     : ""
                                 }`}
-                                onClick={() =>
-                                  handleSelectLesson(module.module_id, lesson)
-                                }
                               >
-                                <span className="admin-course-lessons-lesson-state">
-                                  {isActiveLesson ? (
-                                    <svg
-                                      className="admin-course-lessons-lesson-status-icon admin-lesson-active-icon"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                  ) : (
-                                    <svg
-                                      className="admin-course-lessons-lesson-status-icon"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <circle cx="12" cy="12" r="4" />
-                                    </svg>
-                                  )}
-                                </span>
+                                <button
+                                  type="button"
+                                  className={`admin-course-lessons-lesson-item ${
+                                    isActiveLesson
+                                      ? "admin-course-lessons-lesson-item--active"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleSelectLesson(module.module_id, lesson)
+                                  }
+                                >
+                                  <span className="admin-course-lessons-lesson-state">
+                                    {isActiveLesson ? (
+                                      <svg
+                                        className="admin-course-lessons-lesson-status-icon admin-lesson-active-icon"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path d="M8 5v14l11-7z" />
+                                      </svg>
+                                    ) : (
+                                      <svg
+                                        className="admin-course-lessons-lesson-status-icon"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <circle cx="12" cy="12" r="4" />
+                                      </svg>
+                                    )}
+                                  </span>
 
-                                <span className="admin-course-lessons-lesson-name">
-                                  {lesson.title}
-                                </span>
+                                  <span className="admin-course-lessons-lesson-name">
+                                    {lesson.title}
+                                  </span>
 
-                                <span className="admin-course-lessons-lesson-duration">
-                                  {lesson.lesson_type === "quiz"
-                                    ? "Quiz"
-                                    : lesson.lesson_type === "assignment"
-                                    ? "Bài tập"
-                                    : lesson.duration || "Video"}
-                                </span>
-                              </button>
+                                  <span className="admin-course-lessons-lesson-duration">
+                                    {lesson.lesson_type === "quiz"
+                                      ? "Quiz"
+                                      : lesson.lesson_type === "assignment"
+                                      ? "Bài tập"
+                                      : lesson.duration || "Video"}
+                                  </span>
+                                </button>
+                                <button
+                                  type="button"
+                                  className="admin-course-lessons-lesson-edit-btn"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setEditingLesson(lesson);
+                                  }}
+                                  title="Edit lesson"
+                                >
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
                             );
                           })}
                         </div>
@@ -284,6 +318,19 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
           )}
         </div>
       </div>
+
+      {/* Edit Lesson Modal */}
+      <EditLessonModal
+        open={!!editingLesson}
+        onClose={() => setEditingLesson(null)}
+        lesson={editingLesson}
+        courseId={courseId}
+        onSuccess={() => {
+          setEditingLesson(null);
+          // Refetch course structure to update the lesson list
+          // The query will automatically refetch when the mutation succeeds
+        }}
+      />
     </div>
   );
 }

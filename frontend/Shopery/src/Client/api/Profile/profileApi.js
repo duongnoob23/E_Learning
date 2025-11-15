@@ -45,4 +45,32 @@ export const profileApi = {
     const res = await axiosInstance.post("/user/verify-email", { email, otp });
     return res.data;
   },
+
+  // Privacy settings
+  getPrivacySettings: async () => {
+    const res = await axiosInstance.get("/user/privacy");
+    return res.data;
+  },
+
+  updatePrivacySettings: async (settings) => {
+    const res = await axiosInstance.patch("/user/privacy", settings);
+    return res.data;
+  },
+
+  // Notification settings
+  getNotificationSettings: async () => {
+    const res = await axiosInstance.get("/user/notifications");
+    return res.data;
+  },
+
+  updateNotificationSettings: async (settings) => {
+    const res = await axiosInstance.patch("/user/notifications", settings);
+    return res.data;
+  },
+
+  // Localization (Language & Currency)
+  updateLocalization: async ({ language, currency }) => {
+    const res = await axiosInstance.patch("/user/localization", { language, currency });
+    return res.data;
+  },
 };
