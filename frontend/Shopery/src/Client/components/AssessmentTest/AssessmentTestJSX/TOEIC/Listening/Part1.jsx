@@ -1,6 +1,6 @@
-/* File: src/components/Part1.jsx */
+/* File: src/components/TOEIC/Listening/Part1.jsx */
 import React, { useEffect, useMemo, useState } from "react";
-import { usePartQuestions } from "../../../services/Assessment/assessmentQueries";
+import { usePartQuestions } from "../../../../../services/Assessment/assessmentQueries";
 
 export default function Part1({
   onAnswer,
@@ -16,17 +16,23 @@ export default function Part1({
   }, [partData]);
 
   // Gọi API riêng cho Part 1
-  const { data, isLoading, error } = usePartQuestions(partId.part_id, true);
+  const { data, isLoading, error } = usePartQuestions(
+    partId?.part_id,
+    !!partId
+  );
+
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
       setQuestions(data.DT);
-      setLoading(false);  
+      setLoading(false);
       onDataLoaded(data.DT); // Gửi dữ liệu về parent
     } else if (error) {
       setLoading(false);
       console.error("Error loading Part 1 questions:", error);
     }
-  }, [data, error, onDataLoaded]); // ✅ onDataLoaded giờ đã stable
+    // ✅ Loại bỏ onDataLoaded khỏi dependency để tránh vòng lặp vô hạn
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
 
   console.log("DATA PART 1", data);
 
@@ -66,7 +72,6 @@ export default function Part1({
               <div className="question__num">{question.question_number}</div>
             </div>
             <div className="question__body">
-
               {/* Hiển thị audio nếu có */}
               {question.audio_file && (
                 <div className="question__audio">
@@ -85,7 +90,6 @@ export default function Part1({
                     question.image_file ||
                     `https://images.unsplash.com/photo-1601825085812-548b1c4d94b1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW1hZ2UlMjBibGFjayUyMGFuZCUyMHdoaXRlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600`
                   }
-                  // src={`https://images.unsplash.com/photo-1601825085812-548b1c4d94b1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW1hZ2UlMjBibGFjayUyMGFuZCUyMHdoaXRlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600`}
                   alt={`photo ${question.question_number}`}
                   className="question__image"
                 />
@@ -104,9 +108,6 @@ export default function Part1({
                         onAnswer(question.question_id, choice.choice_id)
                       }
                     />
-                    {/* <span className="option__label">
-                      {choice.choice_letter}. {choice.choice_text}
-                    </span> */}
                     <span className="option__label">
                       {choice.choice_letter}.
                     </span>
