@@ -159,6 +159,11 @@ Course.belongsTo(Category, { foreignKey: "category_id" });
 Course.belongsTo(Level, { foreignKey: "level_id" });
 Course.belongsTo(Instructor, { foreignKey: "instructor_id" });
 
+
+Course.hasOne(CourseDetail, {
+  foreignKey: "course_id",
+  as: "detail"
+});
 CourseDetail.belongsTo(Course, { foreignKey: "course_id" });
 
 Module.belongsTo(Course, { foreignKey: "course_id" });

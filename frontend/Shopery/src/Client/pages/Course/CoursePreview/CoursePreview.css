@@ -814,3 +814,57 @@
     margin-bottom: 6px;
   }
 }
+/* =========== REVIEWS SECTION =========== */
+
+.course-preview__reviews {
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.course-preview__reviews-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.course-preview__review-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.course-preview__review-item:last-child {
+  border-bottom: none;
+}
+
+.course-preview__review-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.course-preview__review-content {
+  flex: 1;
+}
+
+.course-preview__review-header {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.course-preview__review-date {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.course-preview__review-rating {
+  color: #ffb400;
+  margin-bottom: 6px;
+}

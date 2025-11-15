@@ -1342,3 +1342,38 @@ body {
   gap: 24px;
   position: relative;
 }
+/* ===== LESSON TITLE ===== */
+.lesson-page__lesson-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 14px;
+  color: #222;
+  line-height: 1.4;
+}
+
+/* ===== LESSON CONTENT ===== */
+.lesson-page__lesson-content {
+  padding: 14px 0 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-line;
+  color: #444;
+}
+
+.lesson-page__lesson-content p {
+  margin-bottom: 10px;
+}
+
+.lesson-page__lesson-content strong {
+  font-weight: 600;
+}
+
+.lesson-page__lesson-content ul {
+  margin-left: 20px;
+  list-style: disc;
+}
+
+.lesson-page__lesson-content li {
+  margin-bottom: 8px;
+}
