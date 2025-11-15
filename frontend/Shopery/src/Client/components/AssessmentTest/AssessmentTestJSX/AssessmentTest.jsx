@@ -1,6 +1,6 @@
 // components/AssessmentTest/AssessmentTestJSX/AssessmentTest.jsx
 
-import React, { Suspense, useCallback, useMemo, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
 import { useSubmitExamSession } from "../../../services/Assessment/assessmentMutations";
@@ -17,36 +17,135 @@ export default function AssessmentTest() {
   const sessionData = location.state?.sessionData;
   const partData = location.state?.partData;
 
-  // ✅ THÊM: Xác định examType và skill từ sessionData
-  // Giả sử sessionData có các field: exam_type, skill_type
-  // Hoặc có thể parse từ test_id, test_title, etc.
+  console.log("sessionData", JSON.stringify(sessionData, null, 2));
+  console.log("partData", partData);
+
+  // ✅ THÊM: Xác định examType và skill từ sessionData hoặc test data
   const examType = useMemo(() => {
-    // Logic xác định exam type (toeic, ielts, ...)
-    // Có thể từ sessionData.test_type hoặc parse từ test_title
-    return sessionData?.exam_type || "toeic"; // Default là toeic
-  }, [sessionData]);
+    // 1. Từ sessionData nếu có
+    if (sessionData?.exam_type) return sessionData.exam_type.toLowerCase();
+
+    // 2. Parse từ test title nếu có
+    const testTitle =
+      sessionData?.test?.title || location.state?.testTitle || "";
+    if (testTitle.toLowerCase().includes("ielts")) return "ielts";
+    if (testTitle.toLowerCase().includes("toeic")) return "toeic";
+
+    // 3. Default
+    return "toeic";
+  }, [sessionData, location.state]);
 
   const skill = useMemo(() => {
-    // Logic xác định skill (listening_reading, speaking_writing, ...)
-    // Có thể từ sessionData.skill_type hoặc parse từ test_title
-    return sessionData?.skill_type || "listening_reading"; // Default
-  }, [sessionData]);
+    // 1. Từ sessionData nếu có
+    if (sessionData?.skill_type) {
+      const skillType = sessionData.skill_type.toLowerCase();
+      // Map các giá trị có thể có
+      if (skillType === "speaking" || skillType === "writing") return skillType;
+      if (skillType === "speaking_writing") return "speaking_writing";
+      if (skillType === "listening_reading") return "listening_reading";
+    }
+
+    // 2. Parse từ test title
+    const testTitle =
+      sessionData?.test?.title || location.state?.testTitle || "";
+    const titleLower = testTitle.toLowerCase();
+
+    if (titleLower.includes("speaking")) return "speaking";
+    if (titleLower.includes("writing")) return "writing";
+    if (titleLower.includes("listening") && titleLower.includes("reading")) {
+      return "listening_reading";
+    }
+    if (titleLower.includes("listening")) return "listening";
+    if (titleLower.includes("reading")) return "reading";
+
+    // 3. Xác định từ partData (nếu part_type là LISTENING và test có "Speaking" → speaking)
+    if (partData && Array.isArray(partData) && partData.length > 0) {
+      const firstPart = partData[0];
+      // Nếu part_type là LISTENING nhưng test title có "Speaking" → đây là Speaking test
+      if (
+        firstPart.part_type === "LISTENING" &&
+        titleLower.includes("speaking")
+      ) {
+        return "speaking";
+      }
+      // Nếu part_type là READING nhưng test title có "Writing" → đây là Writing test
+      if (firstPart.part_type === "READING" && titleLower.includes("writing")) {
+        return "writing";
+      }
+    }
+
+    // 4. Default - dựa vào partData
+    if (partData && Array.isArray(partData) && partData.length > 0) {
+      const firstPart = partData[0];
+      if (firstPart.part_type === "LISTENING") {
+        // Có thể là Listening hoặc Speaking - ưu tiên Listening
+        return "listening";
+      }
+      if (firstPart.part_type === "READING") {
+        // Có thể là Reading hoặc Writing - ưu tiên Reading
+        return "reading";
+      }
+    }
+
+    // 5. Default fallback
+    return "listening_reading";
+  }, [sessionData, partData, location.state]);
+
+  // Debug: Log examType và skill
+  console.log("🔍 Detected examType:", examType, "skill:", skill);
 
   const [answers, setAnswers] = useState({});
   const questionRefs = useRef({});
   const leftContainerRef = useRef(null);
-  const [activePart, setActivePart] = useState(1);
   const [questionsData, setQuestionsData] = useState({});
 
-  // Parse selected_parts từ sessionData
+  // Parse selected_parts từ sessionData, fallback về partData nếu không có
   const selectedParts = useMemo(() => {
-    if (!sessionData?.selected_parts) return [];
-    try {
-      return JSON.parse(sessionData.selected_parts);
-    } catch {
-      return [];
+    // 1. Thử parse từ sessionData.selected_parts
+    if (sessionData?.selected_parts) {
+      try {
+        const parsed = JSON.parse(sessionData.selected_parts);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch {
+        // Nếu parse lỗi, tiếp tục fallback
+      }
     }
-  }, [sessionData]);
+    
+    // 2. Fallback: Lấy từ partData (sắp xếp theo part_number)
+    if (partData && Array.isArray(partData) && partData.length > 0) {
+      const parts = partData
+        .map((p) => p.part_number)
+        .filter((p) => p != null)
+        .sort((a, b) => a - b);
+      if (parts.length > 0) {
+        console.log("📋 Using partData for selectedParts:", parts);
+        return parts;
+      }
+    }
+    
+    // 3. Default fallback (không nên xảy ra)
+    console.warn("⚠️ No selectedParts found, using default [1]");
+    return [1];
+  }, [sessionData, partData]);
+
+  // ✅ Set activePart = phần tử đầu tiên của selectedParts
+  const [activePart, setActivePart] = useState(1);
+
+  // ✅ Cập nhật activePart khi selectedParts thay đổi
+  useEffect(() => {
+    if (selectedParts.length > 0) {
+      // Nếu activePart hiện tại không có trong selectedParts, set về phần tử đầu tiên
+      if (!selectedParts.includes(activePart)) {
+        console.log("🔄 Updating activePart from", activePart, "to", selectedParts[0]);
+        setActivePart(selectedParts[0]);
+      }
+    }
+  }, [selectedParts, activePart]);
+
+  // Debug: Log selectedParts
+  console.log("📋 selectedParts:", selectedParts, "activePart:", activePart);
 
   // Hook để nộp bài
   const { mutateAsync: submitExam, isPending: isSubmitting } =

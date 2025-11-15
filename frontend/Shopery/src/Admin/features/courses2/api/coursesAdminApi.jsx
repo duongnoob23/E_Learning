@@ -37,9 +37,13 @@ export const coursesAdminApi = {
     return (await axiosInstance.get(url)).data;
   },
 
-  // Lấy chi tiết khóa học
+  // Lấy chi tiết khóa học (dùng client API vì admin API không hoạt động)
   getCourseDetail: async (courseId) =>
-    (await axiosInstance.get(`/admin/courses/${courseId}`)).data,
+    (await axiosInstance.get(`/course/courses/${courseId}/preview`)).data,
+
+  // Lấy cấu trúc khóa học (modules + lessons) - dùng client API
+  getCourseStructure: async (courseId) =>
+    (await axiosInstance.get(`/course/${courseId}/structure`)).data,
 
   // Duyệt khóa học
   approveCourse: async (courseId, payload) =>

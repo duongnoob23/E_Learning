@@ -49,11 +49,20 @@ export const useClientCourses = (filters = {}, enabled = true) =>
     staleTime: 5 * 60 * 1000,
   });
 
-// Lấy chi tiết khóa học
+// Lấy chi tiết khóa học (dùng client API)
 export const useAdminCourseDetail = (courseId, enabled = true) =>
   useQuery({
     queryKey: adminCoursesKeys.courseDetail(courseId),
     queryFn: () => coursesAdminApi.getCourseDetail(courseId),
+    enabled: enabled && !!courseId,
+    staleTime: 5 * 60 * 1000,
+  });
+
+// Lấy cấu trúc khóa học (modules + lessons) - dùng client API
+export const useAdminCourseStructure = (courseId, enabled = true) =>
+  useQuery({
+    queryKey: [...adminCoursesKeys.courseDetail(courseId), "structure"],
+    queryFn: () => coursesAdminApi.getCourseStructure(courseId),
     enabled: enabled && !!courseId,
     staleTime: 5 * 60 * 1000,
   });

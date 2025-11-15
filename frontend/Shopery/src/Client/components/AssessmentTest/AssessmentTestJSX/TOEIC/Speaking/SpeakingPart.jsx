@@ -59,6 +59,12 @@ export default function SpeakingPart({
     return allQuestions.filter((q) => q.part_number == currentPartNumber);
   }, [allQuestions, currentPartNumber]);
 
+  // ✅ Reset activeQuestionIndex khi questions thay đổi
+  // ⚠️ QUAN TRỌNG: useEffect phải được gọi TRƯỚC các early return
+  useEffect(() => {
+    setActiveQuestionIndex(0);
+  }, [currentPartNumber]);
+
   const currentQuestion = questions[activeQuestionIndex] || null;
 
   const handleNotesChange = (questionId, notesText) => {
@@ -107,11 +113,6 @@ export default function SpeakingPart({
       </section>
     );
   }
-
-  // ✅ Reset activeQuestionIndex khi questions thay đổi
-  useEffect(() => {
-    setActiveQuestionIndex(0);
-  }, [currentPartNumber]);
 
   return (
     <section className="part part--speaking" style={{ padding: "16px 0" }}>

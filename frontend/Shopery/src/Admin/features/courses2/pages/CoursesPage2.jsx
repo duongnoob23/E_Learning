@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { useAdminRemoveCourse } from "../hooks/useCoursesAdminMutations";
 import { useClientCourses } from "../hooks/useCoursesAdminQueries";
+import CoursePreviewModal from "../components/CoursePreviewModal";
+import CourseLessonsModal from "../components/CourseLessonsModal";
 import "./CoursesPage2.scss";
 import CreateCoursePage from "./CreateCoursePage";
 
@@ -47,6 +49,8 @@ export default function CoursesPage2() {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [showActionMenu, setShowActionMenu] = useState(null);
+  const [previewCourseId, setPreviewCourseId] = useState(null);
+  const [lessonsCourseId, setLessonsCourseId] = useState(null);
 
   const rowsPerPage = 10;
 
@@ -653,6 +657,24 @@ export default function CoursesPage2() {
                             <button
                               className="course-page2__action-menu-item"
                               onClick={() => {
+                                setPreviewCourseId(course.course_id);
+                                setShowActionMenu(null);
+                              }}
+                            >
+                              Preview
+                            </button>
+                            <button
+                              className="course-page2__action-menu-item"
+                              onClick={() => {
+                                setLessonsCourseId(course.course_id);
+                                setShowActionMenu(null);
+                              }}
+                            >
+                              View Lessons
+                            </button>
+                            <button
+                              className="course-page2__action-menu-item"
+                              onClick={() => {
                                 console.log("Edit:", course.course_id);
                                 setShowActionMenu(null);
                               }}
@@ -771,6 +793,20 @@ export default function CoursesPage2() {
           </div>
         </div>
       )}
+
+      {/* Course Preview Modal */}
+      <CoursePreviewModal
+        open={!!previewCourseId}
+        onClose={() => setPreviewCourseId(null)}
+        courseId={previewCourseId}
+      />
+
+      {/* Course Lessons Modal */}
+      <CourseLessonsModal
+        open={!!lessonsCourseId}
+        onClose={() => setLessonsCourseId(null)}
+        courseId={lessonsCourseId}
+      />
     </div>
   );
 }
