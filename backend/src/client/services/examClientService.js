@@ -670,7 +670,8 @@ exports.submitExamSession = async (session_id, user_id, answers) => {
           user_id,
           partIdNum,
           stats.total,
-          stats.correct
+          stats.correct,
+          session_id // ✅ Truyền exam_session_id vào hàm updatePartPerformance
         );
       }
     }

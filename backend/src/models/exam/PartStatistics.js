@@ -82,15 +82,16 @@ module.exports = (sequelize, DataTypes) => {
         const partIds = parts.map((part) => part.part_id);
         return PartStatistics.findAll({ where: { part_id: partIds } });
     };
-    PartStatistics.updatePartPerformance = async (user_id, part_id, questionsAnswered, correctAnswers) => {
+    PartStatistics.updatePartPerformance = async (user_id, part_id, questionsAnswered, correctAnswers, exam_session_id) => {
         const stats = await PartStatistics.findByUserIdAndPartId(user_id, part_id);
         
         if (stats) {
             const newTotalQuestions = stats.total_questions + questionsAnswered;
             const newCorrectAnswers = stats.correct_answers + correctAnswers;
-            const newAccuracyRate = (newCorrectAnswers / newTotalQuestions) * 100;
+            const newAccuracyRate = (newTotalQuestions > 0) ? ((newCorrectAnswers / newTotalQuestions) * 100) : 0;
 
             return PartStatistics.updateStatistics(user_id, part_id, {
+                exam_session_id: exam_session_id || stats.exam_session_id, // Giữ exam_session_id cũ nếu không có mới
                 total_attempts: stats.total_attempts + 1,
                 total_questions: newTotalQuestions,
                 correct_answers: newCorrectAnswers,
@@ -98,10 +99,11 @@ module.exports = (sequelize, DataTypes) => {
                 last_attempt: new Date()
             });
         } else {
-            const accuracyRate = (correctAnswers / questionsAnswered) * 100;
+            const accuracyRate = questionsAnswered > 0 ? (correctAnswers / questionsAnswered) * 100 : 0;
             return PartStatistics.createStatistics({
                 user_id,
                 part_id,
+                exam_session_id: exam_session_id, // ✅ Thêm exam_session_id khi tạo mới
                 total_attempts: 1,
                 total_questions: questionsAnswered,
                 correct_answers: correctAnswers,

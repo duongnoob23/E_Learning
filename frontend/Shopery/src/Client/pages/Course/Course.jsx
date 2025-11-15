@@ -52,9 +52,12 @@ function Course() {
 
   // Build filters object for API
   const filters = useMemo(() => {
+    // Limit khác nhau cho grid và list
+    const itemsPerPage = view === "grid" ? 6 : 4;
+    
     const apiFilters = {
       page: currentPage,
-      limit: 12,
+      limit: itemsPerPage,
       sort_by: sortBy,
     };
 
@@ -134,6 +137,7 @@ function Course() {
     selectedReview,
     currentPage,
     sortBy,
+    view,
   ]);
 
   // Gọi các API trực tiếp
@@ -162,18 +166,47 @@ function Course() {
     );
   }, [coursesData]);
 
-  // Map filter options từ API
+  // Lấy tất cả courses để đếm (không filter)
+  const { data: allCoursesData } = useCourses({
+    page: 1,
+    limit: 1000, // Lấy nhiều để đếm
+  });
+
+  const allCourses = useMemo(() => {
+    if (!allCoursesData?.DT?.courses) return [];
+    return allCoursesData.DT.courses.map(mapCourseData);
+  }, [allCoursesData]);
+
+  // Map filter options từ API với count thực tế
   const filterOptions = useMemo(() => {
     const categories = categoriesData?.DT || [];
     const instructors = instructorsData?.DT || [];
     const levels = levelsData?.DT || [];
 
     return {
-      categories: categories.map((cat) => ({ name: cat.name, count: 1 })),
-      instructors: instructors.map((inst) => ({ name: inst.name, count: 2 })),
-      levels: levels.map((level) => ({ name: level.name, count: 0 })),
+      categories: categories.map((cat) => {
+        const categoryId = cat.category_id;
+        const count = allCourses.filter(
+          (course) => course.categoryId === categoryId
+        ).length;
+        return { name: cat.name, count, categoryId };
+      }),
+      instructors: instructors.map((inst) => {
+        const instructorId = inst.instructor_id;
+        const count = allCourses.filter(
+          (course) => course.instructorId === instructorId
+        ).length;
+        return { name: inst.name, count, instructorId };
+      }),
+      levels: levels.map((level) => {
+        const levelId = level.level_id;
+        const count = allCourses.filter(
+          (course) => course.levelId === levelId
+        ).length;
+        return { name: level.name, count, levelId };
+      }),
     };
-  }, [categoriesData, instructorsData, levelsData]);
+  }, [categoriesData, instructorsData, levelsData, allCourses]);
 
   // Debug logs
   useEffect(() => {
@@ -211,7 +244,7 @@ function Course() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  // Reset page when filters change
+  // Reset page when filters or view change
   useEffect(() => {
     setCurrentPage(1);
   }, [
@@ -221,6 +254,7 @@ function Course() {
     selectedPrice,
     selectedReview,
     sortBy,
+    view,
   ]);
 
   // Xử lý chọn filter
@@ -534,33 +568,35 @@ function Course() {
 
             <div className="filter-group">
               <h4>Ratings</h4>
-              {reviewOptions.map((star) => (
-                <label
-                  key={star}
-                  className={`custom-checkbox star-checkbox ${
-                    selectedReview.includes(star) ? "checked" : ""
-                  }`}
-                  onClick={() => handleReview(star)}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedReview.includes(star)}
-                    readOnly
-                  />
-                  <span className="checkmark"></span>
-                  <span className="star-rating">
-                    {[...Array(star)].map((_, i) => (
-                      <i key={i} className="fa fa-star"></i>
-                    ))}
-                  </span>
-                  <span className="filter-count">
-                    {
-                      courses.filter((c) => Math.round(c.rating) === star)
-                        .length
-                    }
-                  </span>
-                </label>
-              ))}
+                {reviewOptions.map((star) => {
+                  // Đếm từ allCourses, không phải courses đã filter
+                  const count = allCourses.filter(
+                    (c) => Math.round(c.rating || 0) === star
+                  ).length;
+                  
+                  return (
+                    <label
+                      key={star}
+                      className={`custom-checkbox star-checkbox ${
+                        selectedReview.includes(star) ? "checked" : ""
+                      }`}
+                      onClick={() => handleReview(star)}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedReview.includes(star)}
+                        readOnly
+                      />
+                      <span className="checkmark"></span>
+                      <span className="star-rating">
+                        {[...Array(star)].map((_, i) => (
+                          <i key={i} className="fa fa-star"></i>
+                        ))}
+                      </span>
+                      <span className="filter-count">{count}</span>
+                    </label>
+                  );
+                })}
             </div>
 
             <div className="filter-group filter-group-price">
@@ -575,7 +611,7 @@ function Course() {
                 <span className="radiomark"></span>
                 All
                 <span className="filter-count">
-                  {pagination.total_items || 0}
+                  {allCourses.length}
                 </span>
               </label>
               <label className="custom-radio">
@@ -588,7 +624,7 @@ function Course() {
                 <span className="radiomark"></span>
                 Free
                 <span className="filter-count">
-                  {courses.filter((c) => c.isFree).length}
+                  {allCourses.filter((c) => c.isFree).length}
                 </span>
               </label>
               <label className="custom-radio">
@@ -601,7 +637,7 @@ function Course() {
                 <span className="radiomark"></span>
                 Paid
                 <span className="filter-count">
-                  {courses.filter((c) => !c.isFree).length}
+                  {allCourses.filter((c) => !c.isFree).length}
                 </span>
               </label>
             </div>

@@ -9,11 +9,11 @@
   --main-radius: 18px;
   --main-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   
-  /* New purple theme colors */
-  --purple-primary: #7a4ff5;
-  --purple-dark: #6a38d0;
-  --purple-light: #ede7ff;
-  --purple-pastel: #f7f0ff;
+  /* New green theme colors - chỉ dùng ở header */
+  --green-primary: #1ec28b;
+  --green-dark: #17a085;
+  --green-light: #e6f7f3;
+  --green-pastel: #f0fdf9;
 }
 
 body {
@@ -30,7 +30,7 @@ body {
    HEADER SECTION WITH GRADIENT
    ============================================ */
 .course-header-section {
-  background: linear-gradient(135deg, #ede7ff 0%, #7a4ff5 100%);
+  background: linear-gradient(135deg, #e6f7f3 0%, #1ec28b 100%);
   padding: 100px 0 80px 0;
   width: 100%;
 }
@@ -74,12 +74,12 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f7f0ff;
-  border: 1px solid rgba(122, 79, 245, 0.2);
+  background: #f0fdf9;
+  border: 1px solid rgba(30, 194, 139, 0.2);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 14px;
-  color: #7a4ff5;
+  color: #1ec28b;
   font-weight: 500;
 }
 
@@ -126,7 +126,7 @@ body {
 
 .course-view-toggle button.active {
   background: #ffffff;
-  color: #7a4ff5;
+  color: #1ec28b;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -170,8 +170,8 @@ body {
 
 .sort-select:focus {
   outline: none;
-  border-color: #7a4ff5;
-  box-shadow: 0 0 0 3px rgba(122, 79, 245, 0.1);
+  border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
 }
 
 /* ============================================
@@ -217,12 +217,13 @@ body {
   background: #ffffff;
   height: 44px;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .filter-search-input:focus {
   outline: none;
-  border-color: #7a4ff5;
-  box-shadow: 0 0 0 3px rgba(122, 79, 245, 0.1);
+  border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
 }
 
 .filter-search-input::placeholder {
@@ -236,6 +237,7 @@ body {
   transform: translateY(-50%);
   color: #6b7280;
   font-size: 16px;
+  pointer-events: none;
 }
 
 .filter-group {
@@ -263,6 +265,7 @@ body {
   color: #374151;
   user-select: none;
   transition: color 0.2s ease;
+  padding: 2px 0;
 }
 
 .filter-group label:hover {
@@ -273,7 +276,7 @@ body {
 .filter-group input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: #7a4ff5;
+  accent-color: #1ec28b;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -331,6 +334,8 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
+  max-height: 600px;
+  height: 100%;
 }
 
 .course-card:hover {
@@ -340,22 +345,30 @@ body {
 
 .course-list.list .course-card {
   flex-direction: row;
-  min-height: 180px;
+  min-height: 200px;
+  max-height: 220px;
+  border: 1px solid #e5e7eb;
 }
 
+/* ============================================
+   COURSE CARD IMAGE
+   ============================================ */
 .course-card-img {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
   background: #eee;
+  flex-shrink: 0;
 }
 
 .course-list.list .course-card-img {
-  width: 30%;
-  min-width: 280px;
+  width: 35%;
+  min-width: 300px;
+  max-width: 380px;
   aspect-ratio: unset;
-  height: 100%;
+  height: 220px;
+  flex-shrink: 0;
 }
 
 .course-card-img img {
@@ -372,9 +385,9 @@ body {
 
 .course-card-discount-badge {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: #7a4ff5;
+  bottom: 16px;
+  right: 16px;
+  background: #ef4444;
   color: #ffffff;
   font-size: 13px;
   font-weight: 700;
@@ -382,182 +395,283 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  white-space: nowrap;
 }
 
 .course-card-bookmark {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.9);
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 2;
-  color: #6b7280;
-  font-size: 16px;
+  z-index: 3;
+  color: #374151;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .course-card-bookmark:hover {
   background: #ffffff;
-  color: #7a4ff5;
+  color: #374151;
   transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* ============================================
+   COURSE CARD CONTENT
+   ============================================ */
 .course-card-content {
-  padding: 20px 24px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 .course-list.list .course-card-content {
   padding: 24px;
   justify-content: space-between;
+  max-height: 220px;
+  overflow: hidden;
+  flex: 1;
+  box-sizing: border-box;
 }
 
+/* ============================================
+   RATING SECTION
+   ============================================ */
 .course-card-rating {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 .stars {
   display: flex;
-  gap: 2px;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .stars i {
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1;
 }
 
 .reviews {
   font-size: 14px;
   color: #6b7280;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
+/* ============================================
+   TITLE SECTION
+   ============================================ */
 .course-card-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #1f2937;
   margin: 0;
   line-height: 1.3;
   transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+  word-break: break-word;
+  flex-shrink: 0;
 }
 
 .course-card:hover .course-card-title {
-  color: #7a4ff5;
+  color: #1f2937;
 }
 
+/* ============================================
+   STATS SECTION
+   ============================================ */
 .course-card-stats {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   font-size: 14px;
   color: #6b7280;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .course-stat-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .course-stat-item i {
-  font-size: 14px;
+  font-size: 16px;
   color: #9ca3af;
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
 }
 
+/* ============================================
+   DESCRIPTION SECTION
+   ============================================ */
 .course-card-desc {
   font-size: 15px;
   color: #6b7280;
-  line-height: 1.5;
+  line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  font-weight: 400;
+  word-break: break-word;
 }
 
+/* ============================================
+   INSTRUCTOR SECTION
+   ============================================ */
 .course-card-instructor-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 14px;
   color: #6b7280;
-  margin-top: auto;
+  margin-bottom: 16px;
+  font-weight: 400;
+  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .instructor-avatar {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
+}
+
+.course-card-instructor-info span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  line-height: 1.5;
 }
 
 .course-card-instructor-info strong {
-  color: #7a4ff5;
+  color: #374151;
   font-weight: 600;
 }
 
+/* ============================================
+   FOOTER SECTION (PRICE & BUTTON)
+   ============================================ */
 .course-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 12px;
-  padding-top: 12px;
+  margin-top: auto;
+  padding-top: 16px;
   border-top: 1px solid #e5e7eb;
+  gap: 16px;
+  flex-shrink: 0;
+  min-height: 60px;
+  box-sizing: border-box;
+}
+
+.course-list.list .course-card-footer {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: auto;
 }
 
 .course-card-price {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .price {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #1f2937;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .old-price {
-  font-size: 16px;
+  font-size: 18px;
   color: #9ca3af;
   text-decoration: line-through;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
+/* ============================================
+   BUTTON SECTION
+   ============================================ */
 .btn-course-action {
   background: #ffffff;
-  color: #7a4ff5;
-  border: 1px solid #7a4ff5;
+  color: #374151;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: fit-content;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .btn-course-action:hover {
-  background: #7a4ff5;
-  color: #ffffff;
+  background: #f9fafb;
+  color: #1f2937;
+  border-color: #d1d5db;
   transform: translateX(2px);
 }
 
 .btn-course-action i {
   font-size: 12px;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .btn-course-action:hover i {
@@ -567,18 +681,45 @@ body {
 /* ============================================
    LIST VIEW SPECIFIC STYLES
    ============================================ */
-.course-list.list .course-card-footer {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
+.course-list.list .course-card-content {
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
+}
+
+.course-list.list .course-card-rating {
+  margin-bottom: 6px;
+}
+
+.course-list.list .course-card-title {
+  font-size: 24px;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.course-list.list .course-card-stats {
+  margin-bottom: 8px;
+  gap: 20px;
+}
+
+.course-list.list .course-card-desc {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.course-list.list .course-card-instructor-info {
+  margin-bottom: 12px;
+}
+
+.course-list.list .course-card-footer {
+  align-items: center;
+  gap: 20px;
 }
 
 .course-list.list .btn-course-action {
-  width: 100%;
-  justify-content: center;
+  flex-shrink: 0;
+  min-width: 140px;
+  max-width: 200px;
 }
 
 /* ============================================
@@ -590,6 +731,9 @@ body {
   align-items: center;
   gap: 8px;
   margin: 40px 0 0 0;
+  padding: 0;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .pagination-btn {
@@ -598,27 +742,41 @@ body {
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
   color: #374151;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  min-width: fit-content;
 }
 
 .pagination-btn:hover:not(:disabled) {
-  border-color: #7a4ff5;
-  color: #7a4ff5;
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #1f2937;
 }
 
 .pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  background: #f9fafb;
+}
+
+.pagination-btn i {
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 .pagination-numbers {
   display: flex;
   gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .pagination-numbers button {
@@ -627,21 +785,60 @@ body {
   border-radius: 8px;
   padding: 10px 14px;
   min-width: 44px;
+  max-width: 44px;
   font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
   color: #374151;
   transition: all 0.2s ease;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .pagination-numbers button:hover {
-  border-color: #7a4ff5;
-  color: #7a4ff5;
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #1f2937;
 }
 
 .pagination-numbers button.active {
-  background: #7a4ff5;
+  background: #1ec28b;
   color: #ffffff;
-  border-color: #7a4ff5;
+  border-color: #1ec28b;
+}
+
+.pagination-numbers button.active:hover {
+  background: #17a085;
+  border-color: #17a085;
+}
+
+/* ============================================
+   COURSE STATS
+   ============================================ */
+.course-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 20px;
+  color: #6b7280;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.stat-item i {
+  color: #1ec28b;
+  font-size: 16px;
 }
 
 /* ============================================
@@ -667,6 +864,7 @@ body {
   font-size: 20px;
   color: #1f2937;
   margin: 0 0 8px 0;
+  font-weight: 600;
 }
 
 .no-course p {
@@ -720,12 +918,12 @@ body {
 
 .loading-spinner {
   font-size: 32px;
-  color: #7a4ff5;
+  color: #1ec28b;
   margin-bottom: 16px;
 }
 
 .loading-indicator {
-  color: #7a4ff5;
+  color: #1ec28b;
   font-size: 14px;
   margin-left: 10px;
 }
@@ -755,7 +953,7 @@ body {
 }
 
 .btn-retry {
-  background: #7a4ff5;
+  background: #1ec28b;
   color: #ffffff;
   border: none;
   padding: 12px 24px;
@@ -764,10 +962,11 @@ body {
   font-size: 15px;
   margin-top: 16px;
   transition: background-color 0.3s;
+  font-weight: 500;
 }
 
 .btn-retry:hover {
-  background: #6a38d0;
+  background: #17a085;
 }
 
 /* ============================================
@@ -798,6 +997,11 @@ body {
 
   .course-list.grid {
     grid-template-columns: 1fr;
+  }
+
+  .course-list.list .course-card-img {
+    width: 40%;
+    min-width: 250px;
   }
 }
 
@@ -841,14 +1045,43 @@ body {
     padding: 24px;
   }
 
+  .course-list.list .course-card {
+    flex-direction: column;
+    max-height: none;
+  }
+
   .course-list.list .course-card-img {
     width: 100%;
     min-width: 100%;
     height: 200px;
+    max-width: 100%;
   }
 
-  .course-list.list .course-card {
+  .course-list.list .course-card-content {
+    max-height: none;
+  }
+
+  .course-pagination {
+    gap: 4px;
+    padding: 0 10px;
+  }
+
+  .pagination-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .pagination-numbers button {
+    padding: 8px 10px;
+    min-width: 40px;
+    max-width: 40px;
+    font-size: 14px;
+  }
+
+  .course-stats {
     flex-direction: column;
+    gap: 12px;
+    text-align: center;
   }
 }
 
@@ -871,10 +1104,235 @@ body {
   }
 
   .course-card-content {
-    padding: 16px;
+    padding: 20px;
   }
 
   .course-card-title {
     font-size: 18px;
   }
+
+  .course-list.list .course-card-title {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .old-price {
+    font-size: 16px;
+  }
+
+  .btn-course-action {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .pagination-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .pagination-numbers button {
+    padding: 8px;
+    min-width: 36px;
+    max-width: 36px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================
+   ADDITIONAL FIXES FOR TEXT OVERLAP
+   ============================================ */
+.course-card-content > * {
+  min-height: 0;
+}
+
+.course-card-title,
+.course-card-desc,
+.course-card-instructor-info span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.course-card-footer {
+  min-height: 60px;
+  align-items: center;
+}
+
+.course-list.list .course-card-footer {
+  min-height: auto;
+}
+
+/* Ensure buttons don't get cut off */
+.btn-course-action,
+.pagination-btn,
+.pagination-numbers button {
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+/* Prevent text overflow in stats */
+.course-card-stats {
+  overflow: visible;
+}
+
+.course-stat-item {
+  overflow: visible;
+}
+
+/* Fix for long instructor names */
+.course-card-instructor-info {
+  overflow: visible;
+  word-break: break-word;
+}
+
+/* Ensure pagination doesn't overflow */
+.course-pagination {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.pagination-numbers {
+  max-width: 100%;
+  overflow: visible;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Grid card height management */
+.course-card {
+  min-height: 400px;
+}
+
+.course-list.grid .course-card {
+  min-height: 500px;
+}
+
+/* List card specific fixes */
+.course-list.list .course-card {
+  overflow: visible;
+}
+
+.course-list.list .course-card-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Ensure all text is readable */
+.course-card-content * {
+  text-overflow: ellipsis;
+}
+
+.course-card-title {
+  hyphens: auto;
+}
+
+/* Button spacing fixes */
+.course-card-footer {
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.course-list.list .course-card-footer {
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+/* Ensure price and button don't overlap */
+.course-card-price {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.btn-course-action {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Image aspect ratio fixes */
+.course-card-img {
+  min-height: 180px;
+}
+
+.course-list.list .course-card-img {
+  min-height: 220px;
+}
+
+/* Content overflow protection */
+.course-card-content {
+  position: relative;
+}
+
+/* Rating stars alignment */
+.stars {
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Price alignment */
+.course-card-price {
+  align-items: baseline;
+  line-height: 1;
+}
+
+/* Instructor text wrapping */
+.course-card-instructor-info span {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Stats icon alignment */
+.course-stat-item {
+  line-height: 1.5;
+}
+
+/* Description line height */
+.course-card-desc {
+  min-height: 48px;
+}
+
+/* Title minimum height */
+.course-card-title {
+  min-height: 52px;
+}
+
+/* Footer button alignment */
+.course-card-footer {
+  align-items: flex-end;
+  overflow: visible;
+}
+
+.course-list.list .course-card-footer {
+  align-items: center;
+  overflow: visible;
+}
+
+/* Pagination number button text centering */
+.pagination-numbers button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure no horizontal scroll */
+.course-container,
+.course-page,
+.course-main {
+  overflow-x: hidden;
+}
+
+/* Card grid gap adjustment */
+.course-list.grid {
+  gap: 28px;
+}
+
+/* List card gap */
+.course-list.list {
+  gap: 24px;
 }
