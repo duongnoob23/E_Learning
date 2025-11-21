@@ -10,7 +10,6 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
     regularPrice = "",
     discountedPrice = "",
     category = null,
-    thumbnail = null,
   } = data;
 
   // Auto-generate slug from title (only if slug is empty)
@@ -28,17 +27,6 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
 
   const handleChange = (field, value) => {
     onChange({ [field]: value });
-  };
-
-  const handleThumbnailChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        onChange({ thumbnail: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   return (
@@ -205,53 +193,6 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
         )}
       </div>
 
-      {/* Course Thumbnail */}
-      <div className="course-info-tab__field">
-        <label className="course-info-tab__label">Course Thumbnail</label>
-        <div className="course-info-tab__upload-box">
-          {thumbnail ? (
-            <div className="course-info-tab__thumbnail-preview">
-              <img src={thumbnail} alt="Thumbnail preview" />
-              <button
-                type="button"
-                className="course-info-tab__remove-thumbnail"
-                onClick={() => handleChange("thumbnail", null)}
-              >
-                ×
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="course-info-tab__upload-icon">
-                <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M7 18h10M12 6v12m-6-6l6-6 6 6"
-                    stroke="#9ca3af"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="course-info-tab__upload-text">
-                Choose A File
-              </span>
-            </>
-          )}
-          <input
-            type="file"
-            className="course-info-tab__file-input"
-            accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-            onChange={handleThumbnailChange}
-          />
-        </div>
-        <div className="course-info-tab__helper">
-          Size: 700x430 pixels, File Support: JPG, JPEG, PNG, GIF, WEBP
-        </div>
-        {errors.thumbnail && (
-          <div className="course-info-tab__error">{errors.thumbnail}</div>
-        )}
-      </div>
     </div>
   );
 });

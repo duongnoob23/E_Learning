@@ -4,11 +4,7 @@ import AdditionalInformationTab from "../components/CreateCourse/AdditionalInfor
 import CourseBuilderTab from "../components/CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "../components/CreateCourse/CourseInfoTab";
 import CourseIntroVideoTab from "../components/CreateCourse/CourseIntroVideoTab";
-import {
-  useAddLesson,
-  useAddModule,
-  useCreateCourse,
-} from "../hooks/useCoursesAdminMutations";
+import { useCreateCourseWithDetails } from "../hooks/useCoursesAdminMutations";
 import "./CreateCoursePage.scss";
 
 const initialFormData = {
@@ -20,7 +16,6 @@ const initialFormData = {
   regularPrice: "",
   discountedPrice: "",
   category: null,
-  thumbnail: null,
   // Intro Video
   videoSource: "",
   videoUrl: "",
@@ -79,9 +74,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
   const formData = watch(); // Watch all form values
 
   // Hooks cho mutations
-  const createCourseMutation = useCreateCourse();
-  const addModuleMutation = useAddModule();
-  const addLessonMutation = useAddLesson();
+  const createCourseWithDetailsMutation = useCreateCourseWithDetails();
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -464,11 +457,102 @@ export default function CreateCoursePage({ onClose, onSave }) {
       return;
     }
 
-    // ✅ Nếu validate thành công, alert OK (chưa gọi API)
-    alert("OK - Tất cả thông tin đã đầy đủ!");
+    // Set loading state
+    setIsCreating(true);
 
-    // TODO: Sau này sẽ gọi API ở đây
-    // ... code gọi API sẽ được thêm sau
+    try {
+      // Log payload size trước khi gửi
+      const payloadBefore = {
+        // Course basic info
+        title: formData.title.trim(),
+        slug: formData.slug.trim(),
+        about: formData.about.trim(),
+        priceType: formData.priceType,
+        regularPrice: formData.regularPrice,
+        discountedPrice: formData.discountedPrice,
+        category: formData.category,
+        category_id: formData.category?.category_id || null,
+
+        // Intro Video
+        videoSource: formData.videoSource,
+        videoUrl: formData.videoUrl,
+
+        // Additional Information
+        startDate: formData.startDate,
+        language: formData.language,
+        requirements: formData.requirements,
+        requirementsPerLine: formData.requirementsPerLine,
+        description: formData.description,
+        descriptionPerLine: formData.descriptionPerLine,
+        durationHour: formData.durationHour,
+        durationMinute: formData.durationMinute,
+        tags: formData.tags,
+        targetedAudience: formData.targetedAudience,
+
+        // Modules with lessons
+        modules: formData.modules.map((module, moduleIndex) => ({
+          title: module.title || module.name,
+          description: module.description || null,
+          sort_order: moduleIndex + 1,
+          lessons: (module.lessons || []).map((lesson, lessonIndex) => ({
+            title: lesson.title,
+            description: lesson.description || null,
+            content: lesson.content || null,
+            videoUrl: lesson.videoUrl,
+            videoDuration: lesson.videoDuration || null,
+            lessonType: lesson.lessonType || "video",
+            isFree: lesson.isFree || false,
+            sort_order: lessonIndex + 1,
+          })),
+        })),
+      };
+
+      // Log payload size
+      const payloadString = JSON.stringify(payloadBefore);
+      const payloadSize = payloadString.length;
+      console.log("=".repeat(50));
+      console.log("📦 FRONTEND - PAYLOAD SIZE BEFORE SEND");
+      console.log("=".repeat(50));
+      console.log(
+        `📊 Total payload size: ${(payloadSize / 1024 / 1024).toFixed(2)} MB`
+      );
+      console.log(`📊 Total payload size: ${payloadSize} bytes`);
+
+      // Log modules và lessons
+      if (payloadBefore.modules) {
+        const totalLessons = payloadBefore.modules.reduce(
+          (sum, m) => sum + (m.lessons?.length || 0),
+          0
+        );
+        console.log(`📚 Modules count: ${payloadBefore.modules.length}`);
+        console.log(`📖 Total lessons: ${totalLessons}`);
+      }
+
+      console.log("=".repeat(50));
+
+      // Gọi API
+      const result = await createCourseWithDetailsMutation.mutateAsync(
+        payloadBefore
+      );
+
+      if (result?.EC === "0") {
+        // Success - close modal và refresh list
+        if (onSave) {
+          onSave(result.DT);
+        }
+        if (onClose) {
+          onClose();
+        }
+      } else {
+        // Error đã được xử lý trong hook (toast)
+        console.error("Error creating course:", result);
+      }
+    } catch (error) {
+      console.error("Error creating course:", error);
+      // Error đã được xử lý trong hook (toast)
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   const tabs = [

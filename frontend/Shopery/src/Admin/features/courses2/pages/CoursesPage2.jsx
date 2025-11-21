@@ -56,6 +56,81 @@ export default function CoursesPage2() {
 
   const rowsPerPage = 10;
 
+
+  const test = {
+    "title": "Complete Web Development Bootcamp 2024",
+    "slug": "complete-web-development-bootcamp-2024",
+    "about": "Master modern web development with this comprehensive bootcamp. Learn HTML, CSS, JavaScript, React, Node.js, and more. Build real-world projects and become a full-stack developer. This course covers everything from basics to advanced topics, including responsive design, API integration, database management, and deployment. Perfect for beginners and intermediate developers who want to level up their skills.",
+    "priceType": "paid",
+    "regularPrice": "199.99",
+    "discountedPrice": "149.99",
+    "category": {
+      "category_id": 1,
+      "name": "Development"
+    },
+    "videoSource": "YouTube",
+    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
+    "startDate": "2024-03-01",
+    "language": "English",
+    "requirements": "Basic computer skills\nNo prior programming experience required\nWillingness to learn and practice\nA computer with internet connection",
+    "requirementsPerLine": true,
+    "description": "By the end of this course, you will be able to:\nBuild responsive websites using HTML, CSS, and JavaScript\nCreate dynamic web applications with React\nDevelop backend APIs using Node.js and Express\nWork with databases (MongoDB and SQL)\nDeploy applications to production\nUnderstand modern development workflows and tools",
+    "descriptionPerLine": true,
+    "durationHour": "40",
+    "durationMinute": "30",
+    "tags": "Web Development, JavaScript, React, Node.js, Full Stack, Programming, Coding Bootcamp",
+    "targetedAudience": "Beginners who want to learn web development from scratch\nCareer changers looking to enter the tech industry\nStudents and professionals who want to upgrade their skills\nAnyone interested in building modern web applications",
+    "modules": [
+      {
+        "title": "Module 1: Frontend Fundamentals",
+        "description": "Learn the core technologies of frontend development including HTML, CSS, and JavaScript basics.",
+        "lessons": [
+          {
+            "title": "Introduction to HTML and CSS",
+            "description": "Learn the fundamentals of HTML structure and CSS styling. Build your first webpage with proper semantic HTML and beautiful styling.",
+            "content": "In this lesson, we'll cover HTML tags, CSS selectors, and how to create a responsive layout.",
+            "videoUrl": "https://www.youtube.com/watch?v=YOUR_LESSON_1_VIDEO_ID",
+            "videoDuration": "15:30",
+            "lessonType": "video",
+            "isFree": true
+          },
+          {
+            "title": "JavaScript Basics and DOM Manipulation",
+            "description": "Master JavaScript fundamentals including variables, functions, arrays, and how to interact with the Document Object Model.",
+            "content": "We'll learn how to make web pages interactive using JavaScript and manipulate HTML elements dynamically.",
+            "videoUrl": "https://www.youtube.com/watch?v=YOUR_LESSON_2_VIDEO_ID",
+            "videoDuration": "20:45",
+            "lessonType": "video",
+            "isFree": false
+          }
+        ]
+      },
+      {
+        "title": "Module 2: Advanced Frontend with React",
+        "description": "Dive deep into React framework, learn component-based architecture, state management, and build modern user interfaces.",
+        "lessons": [
+          {
+            "title": "React Components and Props",
+            "description": "Understand React component structure, props, and how to build reusable UI components. Learn JSX syntax and component lifecycle.",
+            "content": "We'll create our first React application and learn how to structure components properly.",
+            "videoUrl": "https://www.youtube.com/watch?v=YOUR_LESSON_3_VIDEO_ID",
+            "videoDuration": "25:20",
+            "lessonType": "video",
+            "isFree": false
+          },
+          {
+            "title": "State Management and Hooks",
+            "description": "Master React Hooks including useState, useEffect, and custom hooks. Learn how to manage application state effectively.",
+            "content": "We'll build a todo application to practice state management and understand React's powerful hook system.",
+            "videoUrl": "https://www.youtube.com/watch?v=YOUR_LESSON_4_VIDEO_ID",
+            "videoDuration": "30:15",
+            "lessonType": "video",
+            "isFree": false
+          }
+        ]
+      }
+    ]
+  }
   // Gọi API lấy danh sách khóa học từ client (backup vì admin API không hoạt động)
   const {
     data: coursesData,

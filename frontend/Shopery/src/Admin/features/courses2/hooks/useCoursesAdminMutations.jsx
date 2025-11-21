@@ -99,6 +99,32 @@ export const useCreateCourse = () => {
   });
 };
 
+// Tạo khóa học với đầy đủ thông tin (Course + CourseDetail + Tags + Modules + Lessons)
+export const useCreateCourseWithDetails = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (payload) => coursesAdminApi.createCourseWithDetails(payload),
+    onSuccess: (data) => {
+      if (isOk(data)) {
+        toast.success(em(data, "Tạo khóa học thành công"));
+        qc.invalidateQueries({
+          queryKey: ["ListCourses"],
+        });
+        qc.invalidateQueries({ queryKey: adminCoursesKeys.courses() });
+        qc.invalidateQueries({
+          queryKey: adminCoursesKeys.instructorCourses(),
+        });
+      } else {
+        toast.error(em(data, "Tạo khóa học thất bại"));
+      }
+    },
+    onError: (error) => {
+      console.error("Error creating course:", error);
+      toast.error(error?.response?.data?.EM || "Có lỗi xảy ra khi tạo khóa học");
+    },
+  });
+};
+
 // Cập nhật khóa học
 export const useUpdateCourse = () => {
   const qc = useQueryClient();
@@ -329,6 +355,7 @@ export default {
   useAdminRejectCourse,
   useAdminRemoveCourse,
   useCreateCourse,
+  useCreateCourseWithDetails,
   useUpdateCourse,
   useDeleteCourse,
   useSubmitCourseForReview,

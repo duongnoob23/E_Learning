@@ -13,6 +13,13 @@ router.get(
 // Tạo khóa học mới
 router.post("/courses", authMiddleware, instructorController.createCourse);
 
+// Tạo khóa học với đầy đủ thông tin (Course + CourseDetail + Tags + Modules + Lessons)
+router.post(
+  "/courses/with-details",
+  authMiddleware,
+  instructorController.createCourseWithDetails
+);
+
 // Cập nhật thông tin khóa học
 router.patch(
   "/courses/:course_id",

@@ -32,6 +32,44 @@ exports.createCourse = async (req, res, next) => {
   }
 };
 
+// ✅ Tạo khóa học với đầy đủ thông tin (Course + CourseDetail + Tags + Modules + Lessons)
+exports.createCourseWithDetails = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+
+    // Log để debug payload size
+    const payloadSize = JSON.stringify(req.body).length;
+    console.log("=".repeat(50));
+    console.log("📦 CREATE COURSE WITH DETAILS - PAYLOAD INFO");
+    console.log("=".repeat(50));
+    console.log(
+      `📊 Total payload size: ${(payloadSize / 1024 / 1024).toFixed(2)} MB`
+    );
+    console.log(`📊 Total payload size: ${payloadSize} bytes`);
+
+    // Log modules và lessons count
+    if (req.body.modules) {
+      const totalLessons = req.body.modules.reduce(
+        (sum, m) => sum + (m.lessons?.length || 0),
+        0
+      );
+      console.log(`📚 Modules count: ${req.body.modules.length}`);
+      console.log(`📖 Total lessons: ${totalLessons}`);
+    }
+
+    console.log("=".repeat(50));
+
+    const result = await InstructorService.createCourseWithDetails(
+      user_id,
+      req.body
+    );
+    res.json(result);
+  } catch (error) {
+    console.error("Lỗi trong createCourseWithDetails controller:", error);
+    next(error);
+  }
+};
+
 // ✅ Cập nhật khóa học
 exports.updateCourse = async (req, res, next) => {
   try {

@@ -91,6 +91,10 @@ export const coursesAdminApi = {
   createCourse: async (payload) =>
     (await axiosInstance.post("/instructor/courses", payload)).data,
 
+  // Tạo khóa học với đầy đủ thông tin (Course + CourseDetail + Tags + Modules + Lessons)
+  createCourseWithDetails: async (payload) =>
+    (await axiosInstance.post("/instructor/courses/with-details", payload)).data,
+
   // Cập nhật khóa học
   updateCourse: async (courseId, payload) =>
     (await axiosInstance.patch(`/instructor/courses/${courseId}`, payload))
