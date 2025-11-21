@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, forwardRef } from "react";
 import "./CourseInfoTab.scss";
 
-export default function CourseInfoTab({ data, onChange, errors = {} }) {
+const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, register }, ref) => {
   const {
     title = "",
     slug = "",
@@ -47,30 +47,36 @@ export default function CourseInfoTab({ data, onChange, errors = {} }) {
 
       {/* Course Title */}
       <div className="course-info-tab__field">
-        <label className="course-info-tab__label">Course Title</label>
+        <label className="course-info-tab__label">
+          Course Title <span style={{ color: "#ef4444" }}>*</span>
+        </label>
         <input
+          ref={refs?.titleRef}
           type="text"
-          className="course-info-tab__input"
+          className={`course-info-tab__input ${errors.title ? "course-info-tab__input--error" : ""}`}
           placeholder="New Course"
           value={title}
           onChange={(e) => handleChange("title", e.target.value)}
-          maxLength={30}
+          maxLength={200}
         />
         <div className="course-info-tab__helper">
           <span className="course-info-tab__helper-icon">ℹ️</span>
-          Title should be 30 characters.
+          Title should be at least 3 characters and less than 200 characters.
         </div>
         {errors.title && (
-          <div className="course-info-tab__error">{errors.title}</div>
+          <div className="course-info-tab__error">{errors.title.message || errors.title}</div>
         )}
       </div>
 
       {/* Course Slug */}
       <div className="course-info-tab__field">
-        <label className="course-info-tab__label">Course Slug</label>
+        <label className="course-info-tab__label">
+          Course Slug <span style={{ color: "#ef4444" }}>*</span>
+        </label>
         <input
+          ref={refs?.slugRef}
           type="text"
-          className="course-info-tab__input"
+          className={`course-info-tab__input ${errors.slug ? "course-info-tab__input--error" : ""}`}
           placeholder="new-course"
           value={slug}
           onChange={(e) => handleChange("slug", e.target.value)}
@@ -80,15 +86,18 @@ export default function CourseInfoTab({ data, onChange, errors = {} }) {
           Permalink: https://yourdomain.com/{slug || "new-course"}
         </div>
         {errors.slug && (
-          <div className="course-info-tab__error">{errors.slug}</div>
+          <div className="course-info-tab__error">{errors.slug.message || errors.slug}</div>
         )}
       </div>
 
       {/* About Course */}
       <div className="course-info-tab__field">
-        <label className="course-info-tab__label">About Course</label>
+        <label className="course-info-tab__label">
+          About Course <span style={{ color: "#ef4444" }}>*</span>
+        </label>
         <textarea
-          className="course-info-tab__textarea"
+          ref={refs?.aboutRef}
+          className={`course-info-tab__textarea ${errors.about ? "course-info-tab__textarea--error" : ""}`}
           placeholder="Enter course description..."
           value={about}
           onChange={(e) => handleChange("about", e.target.value)}
@@ -97,10 +106,10 @@ export default function CourseInfoTab({ data, onChange, errors = {} }) {
         <div className="course-info-tab__helper">
           <span className="course-info-tab__helper-icon">ℹ️</span>
           HTML or plain text allowed. No emoji. This field is used for search,
-          so please be descriptive!
+          so please be descriptive! (At least 10 characters)
         </div>
         {errors.about && (
-          <div className="course-info-tab__error">{errors.about}</div>
+          <div className="course-info-tab__error">{errors.about.message || errors.about}</div>
         )}
       </div>
 
@@ -132,21 +141,25 @@ export default function CourseInfoTab({ data, onChange, errors = {} }) {
           <div className="course-info-tab__price-fields">
             <div className="course-info-tab__price-field">
               <label className="course-info-tab__price-label">
-                Regular Price ($)
+                Regular Price ($) <span style={{ color: "#ef4444" }}>*</span>
               </label>
               <input
+                ref={refs?.regularPriceRef}
                 type="number"
-                className="course-info-tab__input"
+                className={`course-info-tab__input ${errors.regularPrice ? "course-info-tab__input--error" : ""}`}
                 placeholder="$ Regular Price"
                 value={regularPrice}
                 onChange={(e) => handleChange("regularPrice", e.target.value)}
+                min="0"
+                max="10000"
+                step="0.01"
               />
               <div className="course-info-tab__helper">
-                The Course Price Includes Your Author Fee.
+                The Course Price Includes Your Author Fee. (Must be greater than 0 and less than $10,000)
               </div>
               {errors.regularPrice && (
                 <div className="course-info-tab__error">
-                  {errors.regularPrice}
+                  {errors.regularPrice.message || errors.regularPrice}
                 </div>
               )}
             </div>
@@ -241,4 +254,8 @@ export default function CourseInfoTab({ data, onChange, errors = {} }) {
       </div>
     </div>
   );
-}
+});
+
+CourseInfoTab.displayName = "CourseInfoTab";
+
+export default CourseInfoTab;

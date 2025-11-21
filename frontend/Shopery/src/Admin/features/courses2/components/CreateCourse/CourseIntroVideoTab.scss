@@ -51,6 +51,26 @@
     border-color: #14b8a6;
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
   }
+
+  &--error {
+    border-color: #ef4444;
+    animation: errorBlink 0.5s ease-in-out 3;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+@keyframes errorBlink {
+  0%, 100% {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+  }
 }
 
 .course-intro-video-tab__input {
@@ -71,6 +91,7 @@
 
   &--error {
     border-color: #ef4444;
+    animation: errorBlink 0.5s ease-in-out 3;
 
     &:focus {
       box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);

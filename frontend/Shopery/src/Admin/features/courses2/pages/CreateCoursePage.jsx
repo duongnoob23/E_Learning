@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import AdditionalInformationTab from "../components/CreateCourse/AdditionalInformationTab";
 import CourseBuilderTab from "../components/CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "../components/CreateCourse/CourseInfoTab";
@@ -40,9 +41,42 @@ const initialFormData = {
 
 export default function CreateCoursePage({ onClose, onSave }) {
   const [activeTab, setActiveTab] = useState(0); // 0: Course Info, 1: Intro Video, 2: Builder, 3: Additional Info
-  const [formData, setFormData] = useState(initialFormData);
-  const [validationErrors, setValidationErrors] = useState({});
   const [isCreating, setIsCreating] = useState(false);
+
+  // Refs để scroll đến error field
+  const titleRef = useRef(null);
+  const slugRef = useRef(null);
+  const aboutRef = useRef(null);
+  const regularPriceRef = useRef(null);
+  const modulesRef = useRef(null);
+  // Course Intro Video refs
+  const videoSourceRef = useRef(null);
+  const videoUrlRef = useRef(null);
+  // Additional Information refs
+  const startDateRef = useRef(null);
+  const requirementsRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const durationHourRef = useRef(null);
+  const durationMinuteRef = useRef(null);
+  const tagsRef = useRef(null);
+  const targetedAudienceRef = useRef(null);
+
+  // React Hook Form
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    defaultValues: initialFormData,
+    mode: "onChange",
+  });
+
+  const formData = watch(); // Watch all form values
 
   // Hooks cho mutations
   const createCourseMutation = useCreateCourse();
@@ -55,78 +89,262 @@ export default function CreateCoursePage({ onClose, onSave }) {
 
   const handleReset = () => {
     if (window.confirm("Bạn có chắc muốn xóa toàn bộ thông tin đã nhập?")) {
-      setFormData(initialFormData);
-      setValidationErrors({});
+      Object.keys(initialFormData).forEach((key) => {
+        setValue(key, initialFormData[key]);
+      });
+      clearErrors();
       setActiveTab(0);
     }
   };
 
-  const validateForm = () => {
-    const errors = {};
+  // ✅ Function để scroll đến trường bị lỗi đầu tiên với hiệu ứng mượt mà
+  const scrollToFirstError = (errorFields) => {
+    // Map error field names to refs and tabs
+    const errorMap = {
+      title: { ref: titleRef, tab: 0 },
+      slug: { ref: slugRef, tab: 0 },
+      about: { ref: aboutRef, tab: 0 },
+      regularPrice: { ref: regularPriceRef, tab: 0 },
+      videoSource: { ref: videoSourceRef, tab: 1 },
+      videoUrl: { ref: videoUrlRef, tab: 1 },
+      startDate: { ref: startDateRef, tab: 3 },
+      requirements: { ref: requirementsRef, tab: 3 },
+      description: { ref: descriptionRef, tab: 3 },
+      durationHour: { ref: durationHourRef, tab: 3 },
+      durationMinute: { ref: durationMinuteRef, tab: 3 },
+      tags: { ref: tagsRef, tab: 3 },
+      targetedAudience: { ref: targetedAudienceRef, tab: 3 },
+      modules: { ref: modulesRef, tab: 2 },
+    };
 
-    // Course Info validation
-    if (!formData.title.trim()) {
-      errors.title = "Course title is required";
-    }
-    if (!formData.slug.trim()) {
-      errors.slug = "Course slug is required";
-    }
-    if (!formData.about.trim()) {
-      errors.about = "About course is required";
-    }
-    if (formData.priceType === "paid") {
-      if (!formData.regularPrice || parseFloat(formData.regularPrice) <= 0) {
-        errors.regularPrice = "Regular price is required";
+    // Tìm trường lỗi đầu tiên
+    const firstErrorField = Object.keys(errorFields)[0];
+
+    if (firstErrorField) {
+      const errorInfo = errorMap[firstErrorField];
+
+      // Nếu có module hoặc lesson error, chuyển sang tab Builder
+      if (
+        firstErrorField.startsWith("module_") ||
+        firstErrorField.startsWith("lesson_")
+      ) {
+        setActiveTab(2);
+        setTimeout(() => {
+          if (modulesRef.current) {
+            // Scroll mượt mà với offset
+            const element = modulesRef.current;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Thêm class error để highlight
+            element.classList.add("error-highlight");
+            setTimeout(() => {
+              element.classList.remove("error-highlight");
+            }, 2000);
+          }
+        }, 300);
+      } else if (errorInfo) {
+        // Chuyển sang tab chứa trường lỗi
+        setActiveTab(errorInfo.tab);
+        setTimeout(() => {
+          if (errorInfo.ref?.current) {
+            const element = errorInfo.ref.current;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Focus và highlight
+            element.focus();
+            element.classList.add("error-highlight");
+            setTimeout(() => {
+              element.classList.remove("error-highlight");
+            }, 2000);
+          }
+        }, 300);
       }
     }
-    // if (!formData.category) {
-    //   errors.category = "Category is required";
-    // }
-    if (!formData.thumbnail) {
-      errors.thumbnail = "Thumbnail is required";
+  };
+
+  // ✅ Custom validation function
+  const validateAllFields = async () => {
+    const validationErrors = {};
+
+    // 1. Course Info validation
+    if (!formData.title || !formData.title.trim()) {
+      validationErrors.title = "Course title is required";
+    } else if (formData.title.trim().length < 3) {
+      validationErrors.title = "Course title must be at least 3 characters";
+    } else if (formData.title.trim().length > 200) {
+      validationErrors.title = "Course title must be less than 200 characters";
     }
 
-    // Intro Video validation
-    if (!formData.videoSource) {
-      errors.videoSource = "Video source is required";
-    }
-    if (!formData.videoUrl.trim()) {
-      errors.videoUrl = "Video URL is required";
+    if (!formData.slug || !formData.slug.trim()) {
+      validationErrors.slug = "Course slug is required";
+    } else if (!/^[a-z0-9-]+$/.test(formData.slug)) {
+      validationErrors.slug =
+        "Slug can only contain lowercase letters, numbers, and hyphens";
     }
 
-    // Builder validation
+    if (!formData.about || !formData.about.trim()) {
+      validationErrors.about = "About course is required";
+    } else if (formData.about.trim().length < 10) {
+      validationErrors.about = "About course must be at least 10 characters";
+    }
+
+    if (formData.priceType === "paid") {
+      if (!formData.regularPrice || parseFloat(formData.regularPrice) <= 0) {
+        validationErrors.regularPrice = "Regular price must be greater than 0";
+      } else if (parseFloat(formData.regularPrice) > 10000) {
+        validationErrors.regularPrice =
+          "Regular price must be less than $10,000";
+      }
+    }
+
+    // 2. Builder validation (Modules & Lessons)
     if (!formData.modules || formData.modules.length === 0) {
-      errors.modules = "At least one module is required";
+      validationErrors.modules = "At least one module is required";
     } else {
       formData.modules.forEach((module, moduleIndex) => {
+        if (!module.title || !module.title.trim()) {
+          validationErrors[`module_${moduleIndex}_title`] = `Module ${
+            moduleIndex + 1
+          } title is required`;
+        }
         if (!module.lessons || module.lessons.length === 0) {
-          errors[`module_${moduleIndex}`] =
-            "Module must have at least one lesson";
+          validationErrors[`module_${moduleIndex}`] = `Module ${
+            moduleIndex + 1
+          } must have at least one lesson`;
         } else {
           module.lessons.forEach((lesson, lessonIndex) => {
             if (!lesson.title || !lesson.title.trim()) {
-              errors[`lesson_${moduleIndex}_${lessonIndex}_title`] =
-                "Lesson title is required";
-            }
-            if (!lesson.videoSource) {
-              errors[`lesson_${moduleIndex}_${lessonIndex}_videoSource`] =
-                "Video source is required";
+              validationErrors[
+                `lesson_${moduleIndex}_${lessonIndex}_title`
+              ] = `Lesson ${lessonIndex + 1} in Module ${
+                moduleIndex + 1
+              } title is required`;
             }
             if (!lesson.videoUrl || !lesson.videoUrl.trim()) {
-              errors[`lesson_${moduleIndex}_${lessonIndex}_videoUrl`] =
-                "Video URL is required";
+              validationErrors[
+                `lesson_${moduleIndex}_${lessonIndex}_videoUrl`
+              ] = `Lesson ${lessonIndex + 1} in Module ${
+                moduleIndex + 1
+              } video URL is required`;
             }
           });
         }
       });
     }
 
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
+    // 3. Course Intro Video validation
+    if (!formData.videoSource || !formData.videoSource.trim()) {
+      validationErrors.videoSource = "Video source is required";
+    }
+
+    if (
+      formData.videoSource &&
+      (!formData.videoUrl || !formData.videoUrl.trim())
+    ) {
+      validationErrors.videoUrl = "Video URL is required";
+    } else if (formData.videoSource && formData.videoUrl) {
+      // Validate URL format based on source
+      if (
+        formData.videoSource === "YouTube" &&
+        !formData.videoUrl.includes("youtube.com") &&
+        !formData.videoUrl.includes("youtu.be")
+      ) {
+        validationErrors.videoUrl = "Invalid YouTube URL format";
+      } else if (
+        formData.videoSource === "Vimeo" &&
+        !formData.videoUrl.includes("vimeo.com")
+      ) {
+        validationErrors.videoUrl = "Invalid Vimeo URL format";
+      } else if (
+        formData.videoSource === "Google Drive" &&
+        !formData.videoUrl.includes("drive.google.com")
+      ) {
+        validationErrors.videoUrl = "Invalid Google Drive URL format";
+      }
+    }
+
+    // 4. Additional Information validation (all required)
+    if (!formData.startDate || !formData.startDate.trim()) {
+      validationErrors.startDate = "Start date is required";
+    }
+
+    if (!formData.requirements || !formData.requirements.trim()) {
+      validationErrors.requirements = "Requirements is required";
+    } else if (formData.requirements.trim().length < 5) {
+      validationErrors.requirements =
+        "Requirements must be at least 5 characters";
+    }
+
+    if (!formData.description || !formData.description.trim()) {
+      validationErrors.description = "Description is required";
+    } else if (formData.description.trim().length < 10) {
+      validationErrors.description =
+        "Description must be at least 10 characters";
+    }
+
+    if (!formData.durationHour || formData.durationHour.trim() === "") {
+      validationErrors.durationHour = "Duration hour is required";
+    } else if (
+      parseInt(formData.durationHour) < 0 ||
+      parseInt(formData.durationHour) > 999
+    ) {
+      validationErrors.durationHour = "Duration hour must be between 0 and 999";
+    }
+
+    if (!formData.durationMinute || formData.durationMinute.trim() === "") {
+      validationErrors.durationMinute = "Duration minute is required";
+    } else if (
+      parseInt(formData.durationMinute) < 0 ||
+      parseInt(formData.durationMinute) > 59
+    ) {
+      validationErrors.durationMinute =
+        "Duration minute must be between 0 and 59";
+    }
+
+    if (!formData.tags || !formData.tags.trim()) {
+      validationErrors.tags = "Course tags is required";
+    } else {
+      const tagsArray = formData.tags
+        .split(",")
+        .map((t) => t.trim())
+        .filter((t) => t);
+      if (tagsArray.length === 0) {
+        validationErrors.tags = "At least one tag is required";
+      } else if (tagsArray.length > 15) {
+        validationErrors.tags = "Maximum 15 tags allowed";
+      }
+    }
+
+    if (!formData.targetedAudience || !formData.targetedAudience.trim()) {
+      validationErrors.targetedAudience = "Targeted audience is required";
+    } else if (formData.targetedAudience.trim().length < 5) {
+      validationErrors.targetedAudience =
+        "Targeted audience must be at least 5 characters";
+    }
+
+    return validationErrors;
   };
 
-  const handlePreview = () => {
-    if (!validateForm()) {
+  const handlePreview = async () => {
+    const validationErrors = await validateAllFields();
+    if (Object.keys(validationErrors).length > 0) {
+      // Set errors để hiển thị
+      Object.keys(validationErrors).forEach((key) => {
+        setError(key, { message: validationErrors[key] });
+      });
+      scrollToFirstError(validationErrors);
       alert("Vui lòng điền đầy đủ thông tin trước khi preview");
       return;
     }
@@ -134,136 +352,123 @@ export default function CreateCoursePage({ onClose, onSave }) {
     // TODO: Open preview modal
   };
 
-  const handleCreateCourse = async () => {
-    if (!validateForm()) {
-      alert(
-        "Vui lòng điền đầy đủ thông tin và đảm bảo tất cả modules có ít nhất 1 lesson"
-      );
-      return;
-    }
+  // ✅ Clear errors khi user nhập đúng
+  React.useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      if (name && errors[name]) {
+        // Validate lại trường vừa thay đổi
+        const fieldValue = value[name];
+        let isValid = true;
 
-    if (isCreating) return;
-    setIsCreating(true);
-
-    try {
-      // Bước 1: Tạo khóa học
-      // Chỉ gửi các trường API yêu cầu: title, description, price, is_free, category_id, level_id
-      const coursePayload = {
-        title: formData.title,
-        description: formData.about || formData.description || "",
-        price:
-          formData.priceType === "paid"
-            ? parseFloat(formData.regularPrice) || 0
-            : 0,
-        is_free: formData.priceType === "free",
-        category_id:
-          formData.category?.category_id || formData.category || null,
-        level_id: null, // Có thể thêm sau nếu có
-      };
-
-      const courseResult = await createCourseMutation.mutateAsync(
-        coursePayload
-      );
-
-      if (courseResult?.EC !== "0") {
-        throw new Error(courseResult?.EM || "Tạo khóa học thất bại");
-      }
-
-      const courseId = courseResult?.DT?.course_id;
-
-      if (!courseId) {
-        throw new Error("Không lấy được ID khóa học sau khi tạo");
-      }
-
-      // Bước 2: Tạo modules và lessons
-      if (formData.modules && formData.modules.length > 0) {
-        for (
-          let moduleIndex = 0;
-          moduleIndex < formData.modules.length;
-          moduleIndex++
-        ) {
-          const module = formData.modules[moduleIndex];
-
-          // Tạo module
-          // Chỉ gửi các trường API yêu cầu: title, description, sort_order
-          const modulePayload = {
-            title: module.title || `Module ${moduleIndex + 1}`,
-            description: module.description || null,
-            sort_order: moduleIndex + 1,
-          };
-
-          const moduleResult = await addModuleMutation.mutateAsync({
-            courseId,
-            payload: modulePayload,
-          });
-
-          if (moduleResult?.EC !== "0") {
-            console.error(
-              `Lỗi tạo module ${moduleIndex + 1}:`,
-              moduleResult?.EM
-            );
-            continue; // Bỏ qua module này, tiếp tục module khác
+        // Validate theo từng trường
+        if (name === "title") {
+          isValid =
+            fieldValue &&
+            fieldValue.trim().length >= 3 &&
+            fieldValue.trim().length <= 200;
+        } else if (name === "slug") {
+          isValid = fieldValue && /^[a-z0-9-]+$/.test(fieldValue);
+        } else if (name === "about") {
+          isValid = fieldValue && fieldValue.trim().length >= 10;
+        } else if (name === "regularPrice") {
+          if (formData.priceType === "paid") {
+            isValid =
+              fieldValue &&
+              parseFloat(fieldValue) > 0 &&
+              parseFloat(fieldValue) <= 10000;
+          } else {
+            isValid = true;
           }
-
-          const moduleId = moduleResult?.DT?.module_id;
-
-          if (!moduleId) {
-            console.error(`Không lấy được ID module ${moduleIndex + 1}`);
-            continue;
+        } else if (name === "videoSource") {
+          isValid = fieldValue && fieldValue.trim() !== "";
+        } else if (name === "videoUrl") {
+          isValid = fieldValue && fieldValue.trim() !== "";
+        } else if (name === "startDate") {
+          isValid = fieldValue && fieldValue.trim() !== "";
+        } else if (name === "requirements") {
+          isValid = fieldValue && fieldValue.trim().length >= 5;
+        } else if (name === "description") {
+          isValid = fieldValue && fieldValue.trim().length >= 10;
+        } else if (name === "durationHour") {
+          isValid =
+            fieldValue &&
+            fieldValue.trim() !== "" &&
+            parseInt(fieldValue) >= 0 &&
+            parseInt(fieldValue) <= 999;
+        } else if (name === "durationMinute") {
+          isValid =
+            fieldValue &&
+            fieldValue.trim() !== "" &&
+            parseInt(fieldValue) >= 0 &&
+            parseInt(fieldValue) <= 59;
+        } else if (name === "tags") {
+          if (fieldValue && fieldValue.trim()) {
+            const tagsArray = fieldValue
+              .split(",")
+              .map((t) => t.trim())
+              .filter((t) => t);
+            isValid = tagsArray.length > 0 && tagsArray.length <= 15;
+          } else {
+            isValid = false;
           }
+        } else if (name === "targetedAudience") {
+          isValid = fieldValue && fieldValue.trim().length >= 5;
+        }
 
-          // Bước 3: Tạo lessons cho module này
-          if (module.lessons && module.lessons.length > 0) {
-            for (
-              let lessonIndex = 0;
-              lessonIndex < module.lessons.length;
-              lessonIndex++
-            ) {
-              const lesson = module.lessons[lessonIndex];
-
-              // Tạo lesson
-              // Chỉ gửi các trường API yêu cầu: title, video_url, video_duration, sort_order, lesson_type, is_free
-              const lessonPayload = {
-                title: lesson.title,
-                video_url: lesson.videoUrl,
-                video_duration: lesson.duration || null,
-                lesson_type: "video", // Mặc định là video
-                sort_order: lessonIndex + 1,
-                is_free: lesson.isFree || false,
-              };
-
-              const lessonResult = await addLessonMutation.mutateAsync({
-                moduleId,
-                payload: lessonPayload,
-                courseId, // Để invalidate cache
-              });
-
-              if (lessonResult?.EC !== "0") {
-                console.error(
-                  `Lỗi tạo lesson ${lessonIndex + 1} trong module ${
-                    moduleIndex + 1
-                  }:`,
-                  lessonResult?.EM
-                );
-              }
-            }
-          }
+        if (isValid) {
+          clearErrors(name);
         }
       }
 
-      // Thành công
-      if (onSave) {
-        onSave({ courseId, ...formData });
+      // Clear module/lesson errors khi modules thay đổi
+      if (name === "modules" && value.modules) {
+        const modules = value.modules;
+        // Clear module errors nếu đã có đủ modules và lessons
+        if (modules.length > 0) {
+          clearErrors("modules");
+          modules.forEach((module, moduleIndex) => {
+            if (module.title && module.title.trim()) {
+              clearErrors(`module_${moduleIndex}_title`);
+            }
+            if (module.lessons && module.lessons.length > 0) {
+              clearErrors(`module_${moduleIndex}`);
+              module.lessons.forEach((lesson, lessonIndex) => {
+                if (lesson.title && lesson.title.trim()) {
+                  clearErrors(`lesson_${moduleIndex}_${lessonIndex}_title`);
+                }
+                if (lesson.videoUrl && lesson.videoUrl.trim()) {
+                  clearErrors(`lesson_${moduleIndex}_${lessonIndex}_videoUrl`);
+                }
+              });
+            }
+          });
+        }
       }
-      onClose();
-    } catch (error) {
-      console.error("Lỗi khi tạo khóa học:", error);
-      alert(
-        error.message || "Có lỗi xảy ra khi tạo khóa học. Vui lòng thử lại."
-      );
-    } finally {
-      setIsCreating(false);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, errors, formData.priceType, clearErrors]);
+
+  // ✅ Handle Create Course - CHỈ VALIDATE, KHÔNG ALERT, TỰ ĐỘNG SCROLL
+  const handleCreateCourse = async () => {
+    // Validate tất cả các trường
+    const validationErrors = await validateAllFields();
+
+    if (Object.keys(validationErrors).length > 0) {
+      // Set errors để hiển thị trong form
+      Object.keys(validationErrors).forEach((key) => {
+        setError(key, { message: validationErrors[key] });
+      });
+
+      // Scroll đến trường lỗi đầu tiên (không alert)
+      scrollToFirstError(validationErrors);
+      return;
     }
+
+    // ✅ Nếu validate thành công, alert OK (chưa gọi API)
+    alert("OK - Tất cả thông tin đã đầy đủ!");
+
+    // TODO: Sau này sẽ gọi API ở đây
+    // ... code gọi API sẽ được thêm sau
   };
 
   const tabs = [
@@ -305,37 +510,57 @@ export default function CreateCoursePage({ onClose, onSave }) {
                     {activeTab === 0 && (
                       <CourseInfoTab
                         data={formData}
-                        onChange={(data) =>
-                          setFormData((prev) => ({ ...prev, ...data }))
-                        }
-                        errors={validationErrors}
+                        onChange={(data) => {
+                          Object.keys(data).forEach((key) => {
+                            setValue(key, data[key]);
+                          });
+                        }}
+                        errors={errors}
+                        refs={{ titleRef, slugRef, aboutRef, regularPriceRef }}
+                        register={register}
                       />
                     )}
                     {activeTab === 1 && (
                       <CourseIntroVideoTab
                         data={formData}
-                        onChange={(data) =>
-                          setFormData((prev) => ({ ...prev, ...data }))
-                        }
-                        errors={validationErrors}
+                        onChange={(data) => {
+                          Object.keys(data).forEach((key) => {
+                            setValue(key, data[key]);
+                          });
+                        }}
+                        errors={errors}
+                        register={register}
                       />
                     )}
                     {activeTab === 2 && (
                       <CourseBuilderTab
                         modules={formData.modules || []}
-                        onChange={(modules) =>
-                          setFormData((prev) => ({ ...prev, modules }))
-                        }
-                        errors={validationErrors}
+                        onChange={(modules) => {
+                          setValue("modules", modules);
+                        }}
+                        errors={errors}
+                        modulesRef={modulesRef}
                       />
                     )}
                     {activeTab === 3 && (
                       <AdditionalInformationTab
                         data={formData}
-                        onChange={(data) =>
-                          setFormData((prev) => ({ ...prev, ...data }))
-                        }
-                        errors={validationErrors}
+                        onChange={(data) => {
+                          Object.keys(data).forEach((key) => {
+                            setValue(key, data[key]);
+                          });
+                        }}
+                        errors={errors}
+                        register={register}
+                        refs={{
+                          startDateRef,
+                          requirementsRef,
+                          descriptionRef,
+                          durationHourRef,
+                          durationMinuteRef,
+                          tagsRef,
+                          targetedAudienceRef,
+                        }}
                       />
                     )}
                   </div>

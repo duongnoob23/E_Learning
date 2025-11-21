@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import LessonFormModal from "./LessonFormModal";
 import "./CourseBuilderTab.scss";
+import LessonFormModal from "./LessonFormModal";
 
-export default function CourseBuilderTab({ modules = [], onChange, errors = {} }) {
+export default function CourseBuilderTab({
+  modules = [],
+  onChange,
+  errors = {},
+  modulesRef,
+}) {
   const [editingModule, setEditingModule] = useState(null);
   const [editingLesson, setEditingLesson] = useState(null);
   const [showLessonModal, setShowLessonModal] = useState(false);
@@ -11,15 +16,18 @@ export default function CourseBuilderTab({ modules = [], onChange, errors = {} }
   const handleAddModule = () => {
     const newModule = {
       id: Date.now(),
-      name: `Module ${modules.length + 1}`,
+      title: `Module ${modules.length + 1}`,
+      name: `Module ${modules.length + 1}`, // Keep for backward compatibility
       lessons: [],
     };
     onChange([...modules, newModule]);
   };
 
-  const handleEditModule = (moduleId, newName) => {
+  const handleEditModule = (moduleId, newTitle) => {
     onChange(
-      modules.map((m) => (m.id === moduleId ? { ...m, name: newName } : m))
+      modules.map((m) =>
+        m.id === moduleId ? { ...m, title: newTitle, name: newTitle } : m
+      )
     );
     setEditingModule(null);
   };
@@ -61,10 +69,7 @@ export default function CourseBuilderTab({ modules = [], onChange, errors = {} }
           // Add new lesson
           return {
             ...module,
-            lessons: [
-              ...module.lessons,
-              { id: Date.now(), ...lessonData },
-            ],
+            lessons: [...module.lessons, { id: Date.now(), ...lessonData }],
           };
         }
       }
@@ -92,106 +97,230 @@ export default function CourseBuilderTab({ modules = [], onChange, errors = {} }
   };
 
   return (
-    <div className="course-builder-tab">
-      <h2 className="course-builder-tab__title">Course Builder</h2>
+    <div className="course-builder-tab" ref={modulesRef}>
+      <h2 className="course-builder-tab__title">
+        Course Builder <span style={{ color: "#ef4444" }}>*</span>
+      </h2>
+
+      {/* Error message for modules */}
+      {errors.modules && (
+        <div
+          className="course-builder-tab__error"
+          style={{
+            color: "red",
+            marginBottom: "16px",
+            padding: "8px",
+            backgroundColor: "#fee",
+            borderRadius: "4px",
+          }}
+        >
+          {errors.modules?.message ||
+            (typeof errors.modules === "string"
+              ? errors.modules
+              : "At least one module is required")}
+        </div>
+      )}
 
       {/* Modules List */}
       <div className="course-builder-tab__modules">
-        {modules.map((module) => (
-          <div key={module.id} className="course-builder-tab__module">
-            <div className="course-builder-tab__module-header">
-              {editingModule === module.id ? (
-                <input
-                  type="text"
-                  className="course-builder-tab__module-name-input"
-                  value={module.name}
-                  onChange={(e) =>
-                    onChange(
-                      modules.map((m) =>
-                        m.id === module.id ? { ...m, name: e.target.value } : m
-                      )
-                    )
-                  }
-                  onBlur={() => handleEditModule(module.id, module.name)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleEditModule(module.id, module.name);
-                    }
-                  }}
-                  autoFocus
-                />
-              ) : (
-                <>
-                  <h3 className="course-builder-tab__module-title">
-                    {module.name}
-                  </h3>
-                  <div className="course-builder-tab__module-actions">
-                    <button
-                      className="course-builder-tab__module-btn"
-                      onClick={() => setEditingModule(module.id)}
-                      title="Edit module name"
-                    >
-                      ✏️
-                    </button>
-                    <button
-                      className="course-builder-tab__module-btn course-builder-tab__module-btn--delete"
-                      onClick={() => handleDeleteModule(module.id)}
-                      title="Delete module"
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
+        {modules.map((module, moduleIndex) => {
+          // ✅ Lấy error message đúng cách (chỉ string, không phải object)
+          const moduleTitleError = errors[`module_${moduleIndex}_title`];
+          const moduleError = errors[`module_${moduleIndex}`];
+          const moduleTitleErrorMsg =
+            moduleTitleError?.message ||
+            (typeof moduleTitleError === "string" ? moduleTitleError : null);
+          const moduleErrorMsg =
+            moduleError?.message ||
+            (typeof moduleError === "string" ? moduleError : null);
 
-            {/* Lessons List */}
-            <div className="course-builder-tab__lessons">
-              {module.lessons.map((lesson) => (
-                <div key={lesson.id} className="course-builder-tab__lesson">
-                  <div className="course-builder-tab__lesson-drag">⋮⋮</div>
-                  <div className="course-builder-tab__lesson-content">
-                    <h4 className="course-builder-tab__lesson-title">
-                      {lesson.title}
-                    </h4>
-                    {lesson.description && (
-                      <p className="course-builder-tab__lesson-desc">
-                        {lesson.description}
-                      </p>
+          return (
+            <div key={module.id} className="course-builder-tab__module">
+              <div className="course-builder-tab__module-header">
+                {editingModule === module.id ? (
+                  <input
+                    type="text"
+                    className={`course-builder-tab__module-name-input ${
+                      moduleTitleErrorMsg
+                        ? "course-builder-tab__module-name-input--error"
+                        : ""
+                    }`}
+                    value={module.title || module.name}
+                    onChange={(e) =>
+                      onChange(
+                        modules.map((m) =>
+                          m.id === module.id
+                            ? {
+                                ...m,
+                                title: e.target.value,
+                                name: e.target.value,
+                              }
+                            : m
+                        )
+                      )
+                    }
+                    onBlur={() =>
+                      handleEditModule(module.id, module.title || module.name)
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleEditModule(
+                          module.id,
+                          module.title || module.name
+                        );
+                      }
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <>
+                    <h3 className="course-builder-tab__module-title">
+                      {module.title || module.name}
+                    </h3>
+                    {/* Error for module title */}
+                    {moduleTitleErrorMsg && (
+                      <div
+                        className="course-builder-tab__error"
+                        style={{
+                          color: "red",
+                          fontSize: "12px",
+                          marginTop: "4px",
+                        }}
+                      >
+                        {moduleTitleErrorMsg}
+                      </div>
                     )}
-                    <div className="course-builder-tab__lesson-meta">
-                      <span className="course-builder-tab__lesson-source">
-                        {lesson.videoSource}
-                      </span>
+                    {/* Error for module lessons */}
+                    {moduleErrorMsg && (
+                      <div
+                        className="course-builder-tab__error"
+                        style={{
+                          color: "red",
+                          fontSize: "12px",
+                          marginTop: "4px",
+                        }}
+                      >
+                        {moduleErrorMsg}
+                      </div>
+                    )}
+                    <div className="course-builder-tab__module-actions">
+                      <button
+                        className="course-builder-tab__module-btn"
+                        onClick={() => setEditingModule(module.id)}
+                        title="Edit module name"
+                      >
+                        ✏️
+                      </button>
+                      <button
+                        className="course-builder-tab__module-btn course-builder-tab__module-btn--delete"
+                        onClick={() => handleDeleteModule(module.id)}
+                        title="Delete module"
+                      >
+                        🗑️
+                      </button>
                     </div>
-                  </div>
-                  <div className="course-builder-tab__lesson-actions">
-                    <button
-                      className="course-builder-tab__lesson-btn"
-                      onClick={() => handleEditLesson(module.id, lesson)}
-                      title="Edit lesson"
-                    >
-                      ✏️
-                    </button>
-                    <button
-                      className="course-builder-tab__lesson-btn course-builder-tab__lesson-btn--delete"
-                      onClick={() => handleDeleteLesson(module.id, lesson.id)}
-                      title="Delete lesson"
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                </div>
-              ))}
-              <button
-                className="course-builder-tab__add-lesson-btn"
-                onClick={() => handleAddLesson(module.id)}
-              >
-                + Add New Lesson
-              </button>
+                  </>
+                )}
+              </div>
+
+              {/* Lessons List */}
+              <div className="course-builder-tab__lessons">
+                {module.lessons.map((lesson, lessonIndex) => {
+                  // ✅ Lấy error message đúng cách (chỉ string, không phải object)
+                  const lessonTitleError =
+                    errors[`lesson_${moduleIndex}_${lessonIndex}_title`];
+                  const lessonVideoUrlError =
+                    errors[`lesson_${moduleIndex}_${lessonIndex}_videoUrl`];
+                  const lessonTitleErrorMsg =
+                    lessonTitleError?.message ||
+                    (typeof lessonTitleError === "string"
+                      ? lessonTitleError
+                      : null);
+                  const lessonVideoUrlErrorMsg =
+                    lessonVideoUrlError?.message ||
+                    (typeof lessonVideoUrlError === "string"
+                      ? lessonVideoUrlError
+                      : null);
+
+                  return (
+                    <div key={lesson.id} className="course-builder-tab__lesson">
+                      <div className="course-builder-tab__lesson-drag">⋮⋮</div>
+                      <div className="course-builder-tab__lesson-content">
+                        <h4
+                          className={`course-builder-tab__lesson-title ${
+                            lessonTitleErrorMsg
+                              ? "course-builder-tab__lesson-title--error"
+                              : ""
+                          }`}
+                        >
+                          {lesson.title || "Untitled Lesson"}
+                        </h4>
+                        {lessonTitleErrorMsg && (
+                          <div
+                            className="course-builder-tab__error"
+                            style={{
+                              color: "red",
+                              fontSize: "12px",
+                              marginTop: "4px",
+                            }}
+                          >
+                            {lessonTitleErrorMsg}
+                          </div>
+                        )}
+                        {lessonVideoUrlErrorMsg && (
+                          <div
+                            className="course-builder-tab__error"
+                            style={{
+                              color: "red",
+                              fontSize: "12px",
+                              marginTop: "4px",
+                            }}
+                          >
+                            {lessonVideoUrlErrorMsg}
+                          </div>
+                        )}
+                        {lesson.description && (
+                          <p className="course-builder-tab__lesson-desc">
+                            {lesson.description}
+                          </p>
+                        )}
+                        <div className="course-builder-tab__lesson-meta">
+                          <span className="course-builder-tab__lesson-source">
+                            {lesson.videoSource}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="course-builder-tab__lesson-actions">
+                        <button
+                          className="course-builder-tab__lesson-btn"
+                          onClick={() => handleEditLesson(module.id, lesson)}
+                          title="Edit lesson"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          className="course-builder-tab__lesson-btn course-builder-tab__lesson-btn--delete"
+                          onClick={() =>
+                            handleDeleteLesson(module.id, lesson.id)
+                          }
+                          title="Delete lesson"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+                <button
+                  className="course-builder-tab__add-lesson-btn"
+                  onClick={() => handleAddLesson(module.id)}
+                >
+                  + Add New Lesson
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Add New Module Button */}
@@ -202,21 +331,7 @@ export default function CourseBuilderTab({ modules = [], onChange, errors = {} }
         + Add New Topic
       </button>
 
-      {/* Validation Errors */}
-      {errors.modules && (
-        <div className="course-builder-tab__error">{errors.modules}</div>
-      )}
-      {modules.map((module, moduleIndex) => {
-        const moduleError = errors[`module_${moduleIndex}`];
-        if (moduleError) {
-          return (
-            <div key={`error-${module.id}`} className="course-builder-tab__error">
-              {module.name}: {moduleError}
-            </div>
-          );
-        }
-        return null;
-      })}
+      {/* Validation Errors - Đã xử lý ở trên, không cần render lại */}
 
       {/* Lesson Form Modal */}
       {showLessonModal && (
@@ -234,4 +349,3 @@ export default function CourseBuilderTab({ modules = [], onChange, errors = {} }
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import "./CourseIntroVideoTab.scss";
 
 const VIDEO_SOURCES = ["YouTube", "Vimeo", "Google Drive", "Local Upload"];
@@ -10,7 +10,7 @@ const VIDEO_EXAMPLES = {
   "Local Upload": "Upload a video file from your device",
 };
 
-export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
+const CourseIntroVideoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, register }, ref) => {
   const { videoSource = "", videoUrl = "" } = data;
   const [urlError, setUrlError] = useState("");
 
@@ -39,16 +39,19 @@ export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
   };
 
   return (
-    <div className="course-intro-video-tab">
-      <h2 className="course-intro-video-tab__title">Course Intro Video</h2>
+    <div className="course-intro-video-tab" ref={ref}>
+      <h2 className="course-intro-video-tab__title">
+        Course Intro Video <span style={{ color: "#ef4444" }}>*</span>
+      </h2>
 
       {/* Select Video Source */}
       <div className="course-intro-video-tab__field">
         <label className="course-intro-video-tab__label">
-          Select Video Sources
+          Select Video Sources <span style={{ color: "#ef4444" }}>*</span>
         </label>
         <select
-          className="course-intro-video-tab__select"
+          ref={refs?.videoSourceRef}
+          className={`course-intro-video-tab__select ${errors.videoSource ? "course-intro-video-tab__select--error" : ""}`}
           value={videoSource}
           onChange={(e) => handleSourceChange(e.target.value)}
         >
@@ -68,9 +71,10 @@ export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
             Add Your Video URL
           </label>
           <input
+            ref={refs?.videoUrlRef}
             type="text"
             className={`course-intro-video-tab__input ${
-              urlError ? "course-intro-video-tab__input--error" : ""
+              urlError || errors.videoUrl ? "course-intro-video-tab__input--error" : ""
             }`}
             placeholder="Add Your Video URL here."
             value={videoUrl}
@@ -80,7 +84,9 @@ export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
             <div className="course-intro-video-tab__error">{urlError}</div>
           )}
           {errors.videoUrl && !urlError && (
-            <div className="course-intro-video-tab__error">{errors.videoUrl}</div>
+            <div className="course-intro-video-tab__error">
+              {errors.videoUrl?.message || (typeof errors.videoUrl === 'string' ? errors.videoUrl : '')}
+            </div>
           )}
           <div className="course-intro-video-tab__helper">
             Example: {VIDEO_EXAMPLES[videoSource]}
@@ -88,7 +94,9 @@ export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
         </div>
       )}
       {errors.videoSource && (
-        <div className="course-intro-video-tab__error">{errors.videoSource}</div>
+        <div className="course-intro-video-tab__error">
+          {errors.videoSource?.message || (typeof errors.videoSource === 'string' ? errors.videoSource : '')}
+        </div>
       )}
 
       {/* Video Preview */}
@@ -112,5 +120,9 @@ export default function CourseIntroVideoTab({ data, onChange, errors = {} }) {
       )}
     </div>
   );
-}
+});
+
+CourseIntroVideoTab.displayName = "CourseIntroVideoTab";
+
+export default CourseIntroVideoTab;
 

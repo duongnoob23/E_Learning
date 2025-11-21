@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./AdditionalInformationTab.scss";
 
 const LANGUAGES = [
@@ -12,7 +12,7 @@ const LANGUAGES = [
   "Korean",
 ];
 
-export default function AdditionalInformationTab({ data, onChange, errors = {} }) {
+const AdditionalInformationTab = forwardRef(({ data, onChange, errors = {}, refs = {}, register }, ref) => {
   const {
     startDate = "",
     language = "English",
@@ -31,20 +31,23 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
   };
 
   return (
-    <div className="additional-info-tab">
-      <h2 className="additional-info-tab__title">Additional Information</h2>
+    <div className="additional-info-tab" ref={ref}>
+      <h2 className="additional-info-tab__title">
+        Additional Information <span style={{ color: "#ef4444" }}>*</span>
+      </h2>
 
       {/* Start Date & Language */}
       <div className="additional-info-tab__section">
         <div className="additional-info-tab__row">
           <div className="additional-info-tab__field additional-info-tab__field--half">
             <label className="additional-info-tab__label">
-              Start Date
+              Start Date <span style={{ color: "#ef4444" }}>*</span>
             </label>
             <div className="additional-info-tab__date-wrapper">
               <input
+                ref={refs?.startDateRef}
                 type="date"
-                className="additional-info-tab__input"
+                className={`additional-info-tab__input ${errors.startDate ? "additional-info-tab__input--error" : ""}`}
                 value={startDate}
                 onChange={(e) => handleChange("startDate", e.target.value)}
                 placeholder="dd/mm/yyyy"
@@ -52,7 +55,9 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
               <span className="additional-info-tab__date-icon">📅</span>
             </div>
             {errors.startDate && (
-              <div className="additional-info-tab__error">{errors.startDate}</div>
+              <div className="additional-info-tab__error">
+                {errors.startDate?.message || (typeof errors.startDate === 'string' ? errors.startDate : '')}
+              </div>
             )}
           </div>
 
@@ -80,9 +85,12 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
       <div className="additional-info-tab__section">
         <div className="additional-info-tab__row">
           <div className="additional-info-tab__field additional-info-tab__field--half">
-            <label className="additional-info-tab__label">Requirements</label>
+            <label className="additional-info-tab__label">
+              Requirements <span style={{ color: "#ef4444" }}>*</span>
+            </label>
             <textarea
-              className="additional-info-tab__textarea"
+              ref={refs?.requirementsRef}
+              className={`additional-info-tab__textarea ${errors.requirements ? "additional-info-tab__textarea--error" : ""}`}
               placeholder="Add your course benefits here."
               value={requirements}
               onChange={(e) => handleChange("requirements", e.target.value)}
@@ -98,14 +106,19 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
               <span>Enter for per line.</span>
             </label>
             {errors.requirements && (
-              <div className="additional-info-tab__error">{errors.requirements}</div>
+              <div className="additional-info-tab__error">
+                {errors.requirements?.message || (typeof errors.requirements === 'string' ? errors.requirements : '')}
+              </div>
             )}
           </div>
 
           <div className="additional-info-tab__field additional-info-tab__field--half">
-            <label className="additional-info-tab__label">Description</label>
+            <label className="additional-info-tab__label">
+              Description <span style={{ color: "#ef4444" }}>*</span>
+            </label>
             <textarea
-              className="additional-info-tab__textarea"
+              ref={refs?.descriptionRef}
+              className={`additional-info-tab__textarea ${errors.description ? "additional-info-tab__textarea--error" : ""}`}
               placeholder="Add your course benefits here."
               value={description}
               onChange={(e) => handleChange("description", e.target.value)}
@@ -121,7 +134,9 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
               <span>Enter for per line.</span>
             </label>
             {errors.description && (
-              <div className="additional-info-tab__error">{errors.description}</div>
+              <div className="additional-info-tab__error">
+                {errors.description?.message || (typeof errors.description === 'string' ? errors.description : '')}
+              </div>
             )}
           </div>
         </div>
@@ -131,10 +146,13 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
       <div className="additional-info-tab__section">
         <div className="additional-info-tab__row">
           <div className="additional-info-tab__field additional-info-tab__field--half">
-            <label className="additional-info-tab__label">Hour.</label>
+            <label className="additional-info-tab__label">
+              Hour. <span style={{ color: "#ef4444" }}>*</span>
+            </label>
             <input
+              ref={refs?.durationHourRef}
               type="number"
-              className="additional-info-tab__input additional-info-tab__input--number"
+              className={`additional-info-tab__input additional-info-tab__input--number ${errors.durationHour ? "additional-info-tab__input--error" : ""}`}
               placeholder="00"
               value={durationHour}
               onChange={(e) => handleChange("durationHour", e.target.value)}
@@ -142,15 +160,20 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
               max="999"
             />
             {errors.durationHour && (
-              <div className="additional-info-tab__error">{errors.durationHour}</div>
+              <div className="additional-info-tab__error">
+                {errors.durationHour?.message || (typeof errors.durationHour === 'string' ? errors.durationHour : '')}
+              </div>
             )}
           </div>
 
           <div className="additional-info-tab__field additional-info-tab__field--half">
-            <label className="additional-info-tab__label">Minute.</label>
+            <label className="additional-info-tab__label">
+              Minute. <span style={{ color: "#ef4444" }}>*</span>
+            </label>
             <input
+              ref={refs?.durationMinuteRef}
               type="number"
-              className="additional-info-tab__input additional-info-tab__input--number"
+              className={`additional-info-tab__input additional-info-tab__input--number ${errors.durationMinute ? "additional-info-tab__input--error" : ""}`}
               placeholder="00"
               value={durationMinute}
               onChange={(e) => handleChange("durationMinute", e.target.value)}
@@ -158,7 +181,9 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
               max="59"
             />
             {errors.durationMinute && (
-              <div className="additional-info-tab__error">{errors.durationMinute}</div>
+              <div className="additional-info-tab__error">
+                {errors.durationMinute?.message || (typeof errors.durationMinute === 'string' ? errors.durationMinute : '')}
+              </div>
             )}
           </div>
         </div>
@@ -167,9 +192,12 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
       {/* Course Tags */}
       <div className="additional-info-tab__section">
         <div className="additional-info-tab__field">
-          <label className="additional-info-tab__label">Course Tags</label>
+          <label className="additional-info-tab__label">
+            Course Tags <span style={{ color: "#ef4444" }}>*</span>
+          </label>
           <textarea
-            className="additional-info-tab__textarea"
+            ref={refs?.tagsRef}
+            className={`additional-info-tab__textarea ${errors.tags ? "additional-info-tab__textarea--error" : ""}`}
             placeholder="Add your course tag here."
             value={tags}
             onChange={(e) => handleChange("tags", e.target.value)}
@@ -181,7 +209,9 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
             gallery, modern, jquery, wordpress theme.
           </div>
           {errors.tags && (
-            <div className="additional-info-tab__error">{errors.tags}</div>
+            <div className="additional-info-tab__error">
+              {errors.tags?.message || (typeof errors.tags === 'string' ? errors.tags : '')}
+            </div>
           )}
         </div>
       </div>
@@ -189,9 +219,12 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
       {/* Targeted Audience */}
       <div className="additional-info-tab__section">
         <div className="additional-info-tab__field">
-          <label className="additional-info-tab__label">Targeted Audience</label>
+          <label className="additional-info-tab__label">
+            Targeted Audience <span style={{ color: "#ef4444" }}>*</span>
+          </label>
           <textarea
-            className="additional-info-tab__textarea"
+            ref={refs?.targetedAudienceRef}
+            className={`additional-info-tab__textarea ${errors.targetedAudience ? "additional-info-tab__textarea--error" : ""}`}
             placeholder="Add your course tag here."
             value={targetedAudience}
             onChange={(e) => handleChange("targetedAudience", e.target.value)}
@@ -201,11 +234,17 @@ export default function AdditionalInformationTab({ data, onChange, errors = {} }
             Specify the target audience that will benefit the most from the course.
           </div>
           {errors.targetedAudience && (
-            <div className="additional-info-tab__error">{errors.targetedAudience}</div>
+            <div className="additional-info-tab__error">
+              {errors.targetedAudience?.message || (typeof errors.targetedAudience === 'string' ? errors.targetedAudience : '')}
+            </div>
           )}
         </div>
       </div>
     </div>
   );
-}
+});
+
+AdditionalInformationTab.displayName = "AdditionalInformationTab";
+
+export default AdditionalInformationTab;
 

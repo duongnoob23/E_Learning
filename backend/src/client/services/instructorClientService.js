@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
-const { Course, Module, Lesson, CourseReview, User, Instructor } = require("../../models");
+const sequelize = require("../../config/database");
+const { Course, Module, Lesson, CourseReview, User, Instructor, CourseDetail, CourseTag, CourseTagRelation } = require("../../models");
 
 // ======================= //
 // 🎓 GIẢNG VIÊN - KHÓA HỌC //
@@ -82,9 +83,25 @@ exports.createCourse = async (user_id, data) => {
 
     const instructor_id = instructor.instructor_id;
 
+    // ✅ FIX: Tạo slug unique bằng cách thêm timestamp nếu duplicate
+    const baseSlug = title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .substring(0, 150); // Giới hạn độ dài
+    let slug = baseSlug;
+    let counter = 1;
+    
+    // Kiểm tra slug đã tồn tại chưa
+    while (await Course.findOne({ where: { slug } })) {
+      slug = `${baseSlug}-${Date.now()}-${counter}`;
+      counter++;
+      if (counter > 100) break; // Tránh vòng lặp vô hạn
+    }
+
     const newCourse = await Course.create({
       title,
-      slug: title.toLowerCase().replace(/\s+/g, "-"),
+      slug, // ✅ Slug unique
       description,
       price: is_free ? 0 : price || 0,
       is_free: !!is_free,
@@ -103,6 +120,209 @@ exports.createCourse = async (user_id, data) => {
     };
   } catch (error) {
     console.error("Lỗi trong createCourse service:", error);
+    return {
+      EM: "Có lỗi xảy ra khi tạo khóa học: " + (error.message || error.original?.message || "Unknown error"),
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// [POST] Tạo khóa học với đầy đủ thông tin (Course + CourseDetail + Tags + Modules + Lessons) - Transaction
+exports.createCourseWithDetails = async (user_id, data) => {
+  const transaction = await sequelize.transaction();
+  
+  try {
+    const {
+      // Course basic info
+      title,
+      description,
+      short_description,
+      price,
+      is_free,
+      category_id,
+      level_id,
+      image,
+      video_preview,
+      video_duration,
+      slug,
+      
+      // Course details
+      about_content,
+      learning_outcomes, // Array of strings
+      skills_covered, // Array of strings
+      requirements, // Array of strings
+      language,
+      target_audience,
+      
+      // Tags (comma-separated string or array)
+      tags,
+      
+      // Modules with lessons
+      modules, // Array of { title, description, sort_order, lessons: [...] }
+    } = data;
+
+    // 1. Tìm hoặc tạo instructor
+    let instructor = await Instructor.findOne({
+      where: { user_id },
+      transaction,
+    });
+
+    if (!instructor) {
+      const user = await User.findByPk(user_id, { transaction });
+      instructor = await Instructor.create({
+        user_id,
+        name: user?.full_name || user?.email || "Admin Instructor",
+        avatar: user?.avatar || null,
+        bio: "Admin created instructor",
+        is_active: true,
+        is_verified: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+      }, { transaction });
+    }
+
+    const instructor_id = instructor.instructor_id;
+
+    // 2. Tạo slug unique
+    const baseSlug = slug || title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .substring(0, 150);
+    let finalSlug = baseSlug;
+    let counter = 1;
+    
+    while (await Course.findOne({ where: { slug: finalSlug }, transaction })) {
+      finalSlug = `${baseSlug}-${Date.now()}-${counter}`;
+      counter++;
+      if (counter > 100) break;
+    }
+
+    // 3. Tạo Course
+    const newCourse = await Course.create({
+      title,
+      slug: finalSlug,
+      short_description: short_description || description?.substring(0, 500) || null,
+      description,
+      price: is_free ? 0 : price || 0,
+      is_free: !!is_free,
+      category_id,
+      level_id,
+      instructor_id,
+      image: image || null,
+      video_preview: video_preview || null,
+      video_duration: video_duration || null,
+      status: "draft",
+      created_at: new Date(),
+      updated_at: new Date(),
+    }, { transaction });
+
+    const course_id = newCourse.course_id;
+
+    // 4. Tạo CourseDetail
+    if (about_content || learning_outcomes || skills_covered || requirements || language || target_audience) {
+      await CourseDetail.create({
+        course_id,
+        about_content: about_content || description || null,
+        learning_outcomes: learning_outcomes ? JSON.stringify(learning_outcomes) : null,
+        skills_covered: skills_covered ? JSON.stringify(skills_covered) : null,
+        requirements: requirements ? JSON.stringify(requirements) : null,
+        language: language || "English",
+        target_audience: target_audience || null,
+        created_at: new Date(),
+        updated_at: new Date(),
+      }, { transaction });
+    }
+
+    // 5. Tạo Tags
+    if (tags) {
+      const tagArray = Array.isArray(tags) ? tags : tags.split(",").map(t => t.trim()).filter(t => t);
+      
+      for (const tagName of tagArray) {
+        if (!tagName) continue;
+        
+        // Tìm hoặc tạo tag
+        let tag = await CourseTag.findOne({
+          where: { name: tagName.toLowerCase() },
+          transaction,
+        });
+        
+        if (!tag) {
+          tag = await CourseTag.create({
+            name: tagName.toLowerCase(),
+            color: null,
+            created_at: new Date(),
+          }, { transaction });
+        }
+        
+        // Tạo relation
+        await CourseTagRelation.findOrCreate({
+          where: {
+            course_id,
+            tag_id: tag.tag_id,
+          },
+          defaults: {
+            course_id,
+            tag_id: tag.tag_id,
+          },
+          transaction,
+        });
+      }
+    }
+
+    // 6. Tạo Modules và Lessons
+    if (modules && modules.length > 0) {
+      for (let moduleIndex = 0; moduleIndex < modules.length; moduleIndex++) {
+        const moduleData = modules[moduleIndex];
+        
+        const newModule = await Module.create({
+          course_id,
+          title: moduleData.title || `Module ${moduleIndex + 1}`,
+          description: moduleData.description || null,
+          sort_order: moduleData.sort_order || (moduleIndex + 1),
+          total_lectures: 0,
+          total_duration: null,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }, { transaction });
+
+        const module_id = newModule.module_id;
+
+        // Tạo Lessons cho module
+        if (moduleData.lessons && moduleData.lessons.length > 0) {
+          for (let lessonIndex = 0; lessonIndex < moduleData.lessons.length; lessonIndex++) {
+            const lessonData = moduleData.lessons[lessonIndex];
+            
+            await Lesson.create({
+              module_id,
+              course_id,
+              title: lessonData.title,
+              description: lessonData.description || null,
+              content: lessonData.content || null,
+              video_url: lessonData.video_url || null,
+              video_duration: lessonData.video_duration || null,
+              sort_order: lessonData.sort_order || (lessonIndex + 1),
+              lesson_type: lessonData.lesson_type || "video",
+              is_free: !!lessonData.is_free,
+              created_at: new Date(),
+              updated_at: new Date(),
+            }, { transaction });
+          }
+        }
+      }
+    }
+
+    await transaction.commit();
+
+    return {
+      EM: "Tạo khóa học thành công",
+      EC: "0",
+      DT: newCourse,
+    };
+  } catch (error) {
+    await transaction.rollback();
+    console.error("Lỗi trong createCourseWithDetails service:", error);
     return {
       EM: "Có lỗi xảy ra khi tạo khóa học: " + (error.message || error.original?.message || "Unknown error"),
       EC: "-2",
@@ -176,12 +396,18 @@ exports.addModule = async (user_id, course_id, data) => {
     }
     const instructor_id = instructor.instructor_id;
 
+    // ✅ FIX: Tìm course trước, sau đó check permission
     const course = await Course.findOne({
-      where: { course_id, instructor_id },
+      where: { course_id },
     });
 
     if (!course) {
-      return { EM: "Không tìm thấy khóa học hoặc không có quyền", EC: "2", DT: null };
+      return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+    }
+
+    // ✅ FIX: Check permission - course phải thuộc về instructor này
+    if (course.instructor_id !== instructor_id) {
+      return { EM: "Không có quyền thêm module vào khóa học này", EC: "3", DT: null };
     }
 
     const { title, description, sort_order } = data;
@@ -200,7 +426,11 @@ exports.addModule = async (user_id, course_id, data) => {
     return { EM: "Thêm module thành công", EC: "0", DT: newModule };
   } catch (error) {
     console.error("Lỗi trong addModule service:", error);
-    return { EM: "Có lỗi xảy ra khi thêm module", EC: "-2", DT: null };
+    return { 
+      EM: "Có lỗi xảy ra khi thêm module: " + (error.message || error.original?.message || "Unknown error"), 
+      EC: "-2", 
+      DT: null 
+    };
   }
 };
 
@@ -314,11 +544,19 @@ exports.addLesson = async (user_id, module_id, data) => {
     const instructor_id = instructor.instructor_id;
 
     const module = await Module.findByPk(module_id);
-    if (!module) return { EM: "Không tìm thấy module", EC: "2", DT: null };
+    if (!module) {
+      return { EM: "Không tìm thấy module", EC: "2", DT: null };
+    }
 
     const course = await Course.findByPk(module.course_id);
-    if (!course || course.instructor_id !== instructor_id)
+    if (!course) {
+      return { EM: "Không tìm thấy khóa học", EC: "2", DT: null };
+    }
+
+    // ✅ FIX: Check permission
+    if (course.instructor_id !== instructor_id) {
       return { EM: "Không có quyền thêm bài học vào module này", EC: "3", DT: null };
+    }
 
     const { title, video_url, video_duration, sort_order, lesson_type, is_free } = data;
 
@@ -343,7 +581,7 @@ exports.addLesson = async (user_id, module_id, data) => {
   } catch (error) {
     console.error("Lỗi trong addLesson service:", error);
     return {
-      EM: "Có lỗi xảy ra khi thêm bài học",
+      EM: "Có lỗi xảy ra khi thêm bài học: " + (error.message || error.original?.message || "Unknown error"),
       EC: "-2",
       DT: null,
     };

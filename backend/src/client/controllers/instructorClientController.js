@@ -6,7 +6,11 @@ exports.getInstructorCourses = async (req, res, next) => {
     const user_id = req.user.userId;
     const { page = 1, limit = 10 } = req.query;
 
-    const result = await InstructorService.getInstructorCourses(user_id, page, limit);
+    const result = await InstructorService.getInstructorCourses(
+      user_id,
+      page,
+      limit
+    );
     res.json(result);
   } catch (error) {
     console.error("Lỗi trong getInstructorCourses controller:", error);
@@ -18,7 +22,10 @@ exports.getInstructorCourses = async (req, res, next) => {
 exports.createCourse = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
-    const result = await InstructorService.createCourse(instructor_id, req.body);
+    const result = await InstructorService.createCourse(
+      instructor_id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -30,7 +37,11 @@ exports.updateCourse = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const course_id = req.params.course_id;
-    const result = await InstructorService.updateCourse(instructor_id, course_id, req.body);
+    const result = await InstructorService.updateCourse(
+      instructor_id,
+      course_id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -42,7 +53,10 @@ exports.deleteCourse = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const course_id = req.params.course_id;
-    const result = await InstructorService.deleteCourse(instructor_id, course_id);
+    const result = await InstructorService.deleteCourse(
+      instructor_id,
+      course_id
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -54,7 +68,11 @@ exports.addModule = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const course_id = req.params.course_id;
-    const result = await InstructorService.addModule(instructor_id, course_id, req.body);
+    const result = await InstructorService.addModule(
+      instructor_id,
+      course_id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -66,7 +84,11 @@ exports.updateModule = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const module_id = req.params.module_id;
-    const result = await InstructorService.updateModule(instructor_id, module_id, req.body);
+    const result = await InstructorService.updateModule(
+      instructor_id,
+      module_id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -78,7 +100,10 @@ exports.deleteModule = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const module_id = req.params.module_id;
-    const result = await InstructorService.deleteModule(instructor_id, module_id);
+    const result = await InstructorService.deleteModule(
+      instructor_id,
+      module_id
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -90,7 +115,10 @@ exports.getModulesByCourse = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const { id } = req.params;
-    const result = await InstructorService.getModulesByCourse(instructor_id, id);
+    const result = await InstructorService.getModulesByCourse(
+      instructor_id,
+      id
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -102,7 +130,11 @@ exports.addLesson = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const { id } = req.params; // module_id
-    const result = await InstructorService.addLesson(instructor_id, id, req.body);
+    const result = await InstructorService.addLesson(
+      instructor_id,
+      id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -114,7 +146,11 @@ exports.updateLesson = async (req, res, next) => {
   try {
     const instructor_id = req.user.userId;
     const { id } = req.params;
-    const result = await InstructorService.updateLesson(instructor_id, id, req.body);
+    const result = await InstructorService.updateLesson(
+      instructor_id,
+      id,
+      req.body
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -138,7 +174,10 @@ exports.submitCourseForReview = async (req, res, next) => {
     const instructor_id = req.user.userId;
     const { id } = req.params;
 
-    const result = await InstructorService.submitCourseForReview(instructor_id, id);
+    const result = await InstructorService.submitCourseForReview(
+      instructor_id,
+      id
+    );
     res.json(result);
   } catch (error) {
     console.error("Lỗi trong submitCourseForReview controller:", error);
