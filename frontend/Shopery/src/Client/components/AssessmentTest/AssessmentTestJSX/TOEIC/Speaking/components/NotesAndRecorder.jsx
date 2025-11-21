@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useAudioRecorder } from "../hooks/useAudioRecorder";
 import AudioPlayerSimple from "./AudioPlayerSimple";
 
@@ -42,6 +42,23 @@ export default function NotesAndRecorder({
     }
   }, [recordingUrl]);
 
+  // ✅ FIX: Watch blob và recordingUrl - khi recording stop, blob sẽ được set
+  // ✅ Gọi onRecordStop khi blob đã sẵn sàng (sau khi onstop event fire)
+  const prevBlobRef = useRef(null);
+  useEffect(() => {
+    // ✅ Chỉ gọi khi blob mới được set (từ stopped state)
+    if (blob && blob !== prevBlobRef.current && recordState === "stopped" && onRecordStop) {
+      console.log("✅ [NotesAndRecorder] Blob ready, calling onRecordStop:", {
+        questionId,
+        blobSize: blob.size,
+        duration,
+        recordingUrl,
+      });
+      prevBlobRef.current = blob;
+      onRecordStop(questionId, blob, duration);
+    }
+  }, [blob, recordState, duration, questionId, onRecordStop, recordingUrl]);
+
   const handleNotesChange = (e) => {
     const newNotes = e.target.value;
     setNotes(newNotes);
@@ -52,6 +69,8 @@ export default function NotesAndRecorder({
 
   const handleStartRecord = async () => {
     try {
+      // ✅ Reset prevBlobRef khi start recording mới
+      prevBlobRef.current = null;
       await startRecord();
       if (onRecordStart) {
         onRecordStart(questionId);
@@ -62,10 +81,17 @@ export default function NotesAndRecorder({
   };
 
   const handleStopRecord = () => {
+    console.log("🛑 [NotesAndRecorder] handleStopRecord:", {
+      questionId,
+      currentState: recordState,
+      hasBlob: !!blob,
+      duration,
+      hasOnRecordStop: !!onRecordStop,
+      note: "Calling stopRecord(), blob will be set in onstop event",
+    });
+    // ✅ Chỉ gọi stopRecord(), blob sẽ được set trong onstop callback
+    // ✅ useEffect sẽ tự động gọi onRecordStop khi blob ready
     stopRecord();
-    if (onRecordStop && blob) {
-      onRecordStop(questionId, blob, duration);
-    }
   };
 
   const formatTime = (seconds) => {

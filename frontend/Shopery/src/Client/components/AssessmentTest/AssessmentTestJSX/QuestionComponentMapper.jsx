@@ -20,17 +20,17 @@ const COMPONENT_MAP = {
     },
     // TOEIC Speaking (5 parts: part1: 2 câu, part2: 2 câu, part3-5: mỗi part 1 câu)
     speaking: {
-      part1: lazy(() => import("./TOEIC/Speaking/SpeakingPart")),
-      part2: lazy(() => import("./TOEIC/Speaking/SpeakingPart")),
-      part3: lazy(() => import("./TOEIC/Speaking/SpeakingPart")),
-      part4: lazy(() => import("./TOEIC/Speaking/SpeakingPart")),
-      part5: lazy(() => import("./TOEIC/Speaking/SpeakingPart")),
+      part1: lazy(() => import("./TOEIC/Speaking/Part1")),
+      part2: lazy(() => import("./TOEIC/Speaking/Part2")),
+      part3: lazy(() => import("./TOEIC/Speaking/Part3")),
+      part4: lazy(() => import("./TOEIC/Speaking/Part4")),
+      part5: lazy(() => import("./TOEIC/Speaking/Part5")),
     },
     // TOEIC Writing (3 parts: part1: 5 câu, part2: 2 câu, part3: 1 câu)
     writing: {
-      part1: lazy(() => import("./TOEIC/Writing/WritingPart")),
-      part2: lazy(() => import("./TOEIC/Writing/WritingPart")),
-      part3: lazy(() => import("./TOEIC/Writing/WritingPart")),
+      part1: lazy(() => import("./TOEIC/Writing/Part1")),
+      part2: lazy(() => import("./TOEIC/Writing/Part2")),
+      part3: lazy(() => import("./TOEIC/Writing/Part3")),
     },
     // TOEIC Speaking + Writing (backward compatibility)
     speaking_writing: {

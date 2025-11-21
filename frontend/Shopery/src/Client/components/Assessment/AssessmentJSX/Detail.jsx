@@ -16,7 +16,6 @@ const Detail = () => {
   const testId = location.state?.testId;
   const userStats = location.state?.userStats;
 
-  console.log("userStats", JSON.stringify(userStats));
 
   const { data: detailsData, isLoading: detailsLoading } = useTestDetail(id);
   const { data: partsData, isLoading: partsLoading } = useTestParts(id);

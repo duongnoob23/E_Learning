@@ -5,7 +5,12 @@ import AudioPlayerSimple from "./AudioPlayerSimple";
  * Component hiển thị nội dung câu hỏi (bên trái)
  */
 export default function QuestionCard({ question, questionNumber }) {
-  const { content } = question || {};
+  const { content, question_text, transcript, image_file, audio_file } = question || {};
+
+  // ✅ Ưu tiên: content.text → question_text → transcript
+  const textContent = content?.text || question_text || transcript;
+  const imageUrl = content?.image_file || image_file;
+  const audioUrl = content?.audio_file || audio_file;
 
   return (
     <div
@@ -25,11 +30,11 @@ export default function QuestionCard({ question, questionNumber }) {
           color: "#333",
         }}
       >
-        Read a text aloud
+        Question {questionNumber}
       </h3>
 
       {/* Text Content */}
-      {content?.text && (
+      {textContent && (
         <div
           style={{
             fontSize: "15px",
@@ -38,15 +43,15 @@ export default function QuestionCard({ question, questionNumber }) {
             whiteSpace: "pre-line",
           }}
         >
-          {content.text}
+          {textContent}
         </div>
       )}
 
       {/* Image */}
-      {content?.image_file && (
+      {imageUrl && (
         <div style={{ marginBottom: "16px" }}>
           <img
-            src={content.image_file}
+            src={imageUrl}
             alt={`Question ${questionNumber}`}
             style={{
               maxWidth: "100%",
@@ -59,12 +64,12 @@ export default function QuestionCard({ question, questionNumber }) {
       )}
 
       {/* Audio Prompt */}
-      {content?.audio_file && (
+      {audioUrl && (
         <div style={{ marginTop: "16px" }}>
           <div style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>
             Audio prompt:
           </div>
-          <AudioPlayerSimple src={content.audio_file} />
+          <AudioPlayerSimple src={audioUrl} />
         </div>
       )}
     </div>

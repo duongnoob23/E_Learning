@@ -1,5 +1,5 @@
 /* File: src/components/QuestionNavigator.jsx */
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function QuestionNavigator({
   partsSummary,
@@ -78,7 +78,23 @@ export default function QuestionNavigator({
             <div className="navigator__part-title">Part {part.part}</div>
             <div className="navigator__grid">
               {part.questionIds.map((qid, index) => {
-                const answered = answers[qid];
+                const answer = answers[qid];
+                // ✅ Check nhiều loại answer: recording/essay/notes/selected_choice_id
+                let answered = false;
+                if (answer) {
+                  if (typeof answer === "object") {
+                    // Speaking/Writing: check recording, essay, hoặc notes có nội dung
+                    answered = !!(
+                      answer.recording ||
+                      (answer.essay && answer.essay.trim()) ||
+                      (answer.notes && answer.notes.trim()) ||
+                      answer.selected_choice_id
+                    );
+                  } else {
+                    // Listening/Reading: primitive value (choice ID)
+                    answered = true;
+                  }
+                }
                 return (
                   <button
                     key={qid}

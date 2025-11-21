@@ -98,7 +98,7 @@ import "../AssessmentCSS/Card.css";
 const Card = ({ exam, id, isCompleted, userStats }) => {
   const navigate = useNavigate();
 
-  console.log("CARD", JSON.stringify(userStats));
+  // console.log("CARD", JSON.stringify(userStats));
   const handleNavigate = () => {
     navigate(`/assessment/${id}`, {
       state: { testId: exam.test_id, userStats: userStats },

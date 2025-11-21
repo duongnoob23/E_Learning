@@ -1,6 +1,13 @@
 // components/AssessmentTest/AssessmentTestJSX/AssessmentTest.jsx
 
-import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
 import { useSubmitExamSession } from "../../../services/Assessment/assessmentMutations";
@@ -18,7 +25,7 @@ export default function AssessmentTest() {
   const partData = location.state?.partData;
 
   console.log("sessionData", JSON.stringify(sessionData, null, 2));
-  console.log("partData", partData);
+  console.log("partData", JSON.stringify(partData, null, 2));
 
   // ✅ THÊM: Xác định examType và skill từ sessionData hoặc test data
   const examType = useMemo(() => {
@@ -36,68 +43,62 @@ export default function AssessmentTest() {
   }, [sessionData, location.state]);
 
   const skill = useMemo(() => {
-    // 1. Từ sessionData nếu có
-    if (sessionData?.skill_type) {
-      const skillType = sessionData.skill_type.toLowerCase();
-      // Map các giá trị có thể có
-      if (skillType === "speaking" || skillType === "writing") return skillType;
-      if (skillType === "speaking_writing") return "speaking_writing";
-      if (skillType === "listening_reading") return "listening_reading";
-    }
-
-    // 2. Parse từ test title
-    const testTitle =
-      sessionData?.test?.title || location.state?.testTitle || "";
-    const titleLower = testTitle.toLowerCase();
-
-    if (titleLower.includes("speaking")) return "speaking";
-    if (titleLower.includes("writing")) return "writing";
-    if (titleLower.includes("listening") && titleLower.includes("reading")) {
-      return "listening_reading";
-    }
-    if (titleLower.includes("listening")) return "listening";
-    if (titleLower.includes("reading")) return "reading";
-
-    // 3. Xác định từ partData (nếu part_type là LISTENING và test có "Speaking" → speaking)
+    // ✅ 1. ƯU TIÊN CAO NHẤT: Lấy từ partData.part_type
     if (partData && Array.isArray(partData) && partData.length > 0) {
-      const firstPart = partData[0];
-      // Nếu part_type là LISTENING nhưng test title có "Speaking" → đây là Speaking test
-      if (
-        firstPart.part_type === "LISTENING" &&
-        titleLower.includes("speaking")
-      ) {
+      // Lấy tất cả unique part_types
+      const partTypes = [...new Set(partData.map((p) => p.part_type))];
+
+      // Nếu tất cả parts là SPEAKING → skill = "speaking"
+      if (partTypes.length === 1 && partTypes[0] === "SPEAKING") {
         return "speaking";
       }
-      // Nếu part_type là READING nhưng test title có "Writing" → đây là Writing test
-      if (firstPart.part_type === "READING" && titleLower.includes("writing")) {
+
+      // Nếu tất cả parts là WRITING → skill = "writing"
+      if (partTypes.length === 1 && partTypes[0] === "WRITING") {
         return "writing";
       }
-    }
 
-    // 4. Default - dựa vào partData
-    if (partData && Array.isArray(partData) && partData.length > 0) {
-      const firstPart = partData[0];
-      if (firstPart.part_type === "LISTENING") {
-        // Có thể là Listening hoặc Speaking - ưu tiên Listening
+      // Nếu tất cả parts là LISTENING → skill = "listening"
+      if (partTypes.length === 1 && partTypes[0] === "LISTENING") {
         return "listening";
       }
-      if (firstPart.part_type === "READING") {
-        // Có thể là Reading hoặc Writing - ưu tiên Reading
+
+      // Nếu tất cả parts là READING → skill = "reading"
+      if (partTypes.length === 1 && partTypes[0] === "READING") {
         return "reading";
+      }
+
+      // Nếu có cả LISTENING và READING → skill = "listening_reading"
+      if (partTypes.includes("LISTENING") && partTypes.includes("READING")) {
+        return "listening_reading";
+      }
+
+      // Nếu có SPEAKING và WRITING → speaking_writing
+      if (partTypes.includes("SPEAKING") && partTypes.includes("WRITING")) {
+        return "speaking_writing";
       }
     }
 
-    // 5. Default fallback
+    // 2. Default fallback
     return "listening_reading";
-  }, [sessionData, partData, location.state]);
+  }, [partData]);
 
   // Debug: Log examType và skill
-  console.log("🔍 Detected examType:", examType, "skill:", skill);
+  // console.log("🔍 Detected examType:", examType, "skill:", skill);
 
   const [answers, setAnswers] = useState({});
   const questionRefs = useRef({});
   const leftContainerRef = useRef(null);
   const [questionsData, setQuestionsData] = useState({});
+
+  // ✅ Debug: Log answers state changes
+  useEffect(() => {
+    console.log("📊 [AssessmentTest] answers state changed:", {
+      answersKeys: Object.keys(answers),
+      answersCount: Object.keys(answers).length,
+      answers,
+    });
+  }, [answers]);
 
   // Parse selected_parts từ sessionData, fallback về partData nếu không có
   const selectedParts = useMemo(() => {
@@ -112,7 +113,7 @@ export default function AssessmentTest() {
         // Nếu parse lỗi, tiếp tục fallback
       }
     }
-    
+
     // 2. Fallback: Lấy từ partData (sắp xếp theo part_number)
     if (partData && Array.isArray(partData) && partData.length > 0) {
       const parts = partData
@@ -120,11 +121,11 @@ export default function AssessmentTest() {
         .filter((p) => p != null)
         .sort((a, b) => a - b);
       if (parts.length > 0) {
-        console.log("📋 Using partData for selectedParts:", parts);
+        // console.log("📋 Using partData for selectedParts:", parts);
         return parts;
       }
     }
-    
+
     // 3. Default fallback (không nên xảy ra)
     console.warn("⚠️ No selectedParts found, using default [1]");
     return [1];
@@ -138,14 +139,14 @@ export default function AssessmentTest() {
     if (selectedParts.length > 0) {
       // Nếu activePart hiện tại không có trong selectedParts, set về phần tử đầu tiên
       if (!selectedParts.includes(activePart)) {
-        console.log("🔄 Updating activePart from", activePart, "to", selectedParts[0]);
+        // console.log("🔄 Updating activePart from", activePart, "to", selectedParts[0]);
         setActivePart(selectedParts[0]);
       }
     }
   }, [selectedParts, activePart]);
 
   // Debug: Log selectedParts
-  console.log("📋 selectedParts:", selectedParts, "activePart:", activePart);
+  // console.log("📋 selectedParts:", selectedParts, "activePart:", activePart);
 
   // Hook để nộp bài
   const { mutateAsync: submitExam, isPending: isSubmitting } =
@@ -176,31 +177,113 @@ export default function AssessmentTest() {
 
   function getPartFromQid(qid) {
     for (const partId of selectedParts) {
-      const questions = questionsData[partId] || [];
-      if (questions.some((q) => q.question_id === qid)) {
+      const questions = questionsData[partId];
+      // ✅ Đảm bảo questions là array trước khi .some()
+      if (
+        Array.isArray(questions) &&
+        questions.some((q) => q.question_id === qid)
+      ) {
         return partId;
       }
     }
     return null;
   }
 
-  function handleAnswer(qid, choiceId) {
-    setAnswers((prev) => ({ ...prev, [qid]: choiceId }));
+  function handleAnswer(qid, answerData) {
+    console.log("📥 [AssessmentTest] handleAnswer called:", {
+      qid,
+      answerData,
+      hasRecording: !!answerData?.recording,
+      hasNotes: !!answerData?.notes,
+    });
+
+    setAnswers((prev) => {
+      console.log("📋 [AssessmentTest] Current answers state:", {
+        prevKeys: Object.keys(prev),
+        existingAnswer: prev[qid],
+      });
+
+      // ✅ Support cả object (Speaking/Writing) và primitive (Listening/Reading)
+      if (typeof answerData === "object" && answerData !== null) {
+        // Speaking/Writing: merge với existing data (giữ lại notes khi có recording mới)
+        const existing = prev[qid] || {};
+        const merged = { ...existing, ...answerData };
+
+        // ✅ Nếu có recording mới nhưng không có notes trong answerData → giữ lại notes cũ
+        if (answerData.recording && !answerData.notes && existing.notes) {
+          merged.notes = existing.notes;
+          console.log(
+            "✅ [AssessmentTest] Preserved existing notes:",
+            existing.notes
+          );
+        }
+
+        // ✅ Nếu có notes mới nhưng không có recording trong answerData → giữ lại recording cũ
+        if (answerData.notes && !answerData.recording && existing.recording) {
+          merged.recording = existing.recording;
+          console.log(
+            "✅ [AssessmentTest] Preserved existing recording:",
+            existing.recording
+          );
+        }
+
+        console.log("💾 [AssessmentTest] Saving answer:", {
+          qid,
+          merged,
+          recordingUrl: merged.recording?.url,
+          hasNotes: !!merged.notes,
+        });
+
+        const updated = { ...prev, [qid]: merged };
+        console.log("✅ [AssessmentTest] Updated answers state:", {
+          allKeys: Object.keys(updated),
+          savedAnswer: updated[qid],
+        });
+        return updated;
+      }
+      // Listening/Reading: replace với choiceId
+      return { ...prev, [qid]: answerData };
+    });
   }
 
   // Build parts summary cho navigator
   const partsSummary = useMemo(() => {
-    return selectedParts.map((partId) => ({
-      part: partId,
-      questionIds: (questionsData[partId] || []).map((q) => q.question_id),
-    }));
+    console.log("🔍 [Navigator] Building partsSummary:", {
+      selectedParts,
+      questionsDataKeys: Object.keys(questionsData),
+      questionsData,
+    });
+
+    return selectedParts.map((partId) => {
+      const partQuestions = questionsData[partId];
+      // ✅ Đảm bảo partQuestions là array trước khi map
+      const questionIds = Array.isArray(partQuestions)
+        ? partQuestions.map((q) => q.question_id)
+        : [];
+
+      console.log(`📊 Part ${partId}:`, {
+        hasQuestions: !!partQuestions,
+        questionCount: questionIds.length,
+        questionIds,
+      });
+
+      return {
+        part: partId,
+        questionIds,
+      };
+    });
   }, [selectedParts, questionsData]);
 
   // ✅ XỬ LÝ NỘP BÀI
   const handleSubmit = async () => {
     try {
       const totalQuestions = Object.values(questionsData).reduce(
-        (sum, partQuestions) => sum + partQuestions.length,
+        (sum, partQuestions) => {
+          // ✅ Đảm bảo partQuestions là array
+          return (
+            sum + (Array.isArray(partQuestions) ? partQuestions.length : 0)
+          );
+        },
         0
       );
 
@@ -215,7 +298,12 @@ export default function AssessmentTest() {
       }
 
       const allQuestions = Object.values(questionsData).flatMap(
-        (partQuestions) => partQuestions.map((q) => q.question_id)
+        (partQuestions) => {
+          // ✅ Đảm bảo partQuestions là array
+          return Array.isArray(partQuestions)
+            ? partQuestions.map((q) => q.question_id)
+            : [];
+        }
       );
 
       const answersArray = allQuestions.map((questionId) => ({
@@ -250,9 +338,37 @@ export default function AssessmentTest() {
   );
 
   // ✅ SỬA: Tạo generic handler cho tất cả parts
-  const handlePartDataLoaded = useCallback((partId, data) => {
-    setQuestionsData((prev) => ({ ...prev, [partId]: data }));
-  }, []);
+  const handlePartDataLoaded = useCallback(
+    (partId, data) => {
+      console.log("📥 [AssessmentTest] handlePartDataLoaded:", {
+        partId,
+        dataLength: data?.length,
+        data,
+      });
+
+      // ✅ FIX: Map part_id → part_number để match với selectedParts
+      let partNumber = partId;
+      if (partData && Array.isArray(partData)) {
+        const part = partData.find(
+          (p) => p.part_id == partId || p.part_number == partId
+        );
+        if (part) {
+          partNumber = part.part_number; // ✅ Dùng part_number làm key
+        }
+      }
+
+      setQuestionsData((prev) => {
+        const updated = { ...prev, [partNumber]: data };
+        console.log(
+          "✅ [AssessmentTest] Updated questionsData:",
+          Object.keys(updated),
+          `(part_id: ${partId} → part_number: ${partNumber})`
+        );
+        return updated;
+      });
+    },
+    [partData]
+  );
 
   // ✅ MỚI: Render component động dựa trên activePart
   const renderPartComponent = (partId) => {
@@ -274,6 +390,12 @@ export default function AssessmentTest() {
       currentPartData = part ? [part] : partData; // Trả về array với 1 part hoặc toàn bộ nếu không tìm thấy
     }
 
+    console.log(`🎨 [AssessmentTest] Rendering Part ${partId}:`, {
+      answersKeys: answers ? Object.keys(answers) : [],
+      answersCount: answers ? Object.keys(answers).length : 0,
+      hasOnAnswer: !!handleAnswer,
+    });
+
     return (
       <Suspense fallback={<div>Đang tải Part {partId}...</div>}>
         <PartComponent
@@ -282,7 +404,21 @@ export default function AssessmentTest() {
           onAnswer={handleAnswer}
           registerRef={registerRef}
           answers={answers}
-          onDataLoaded={(data) => handlePartDataLoaded(partId, data)}
+          onDataLoaded={(loadedPartId, loadedData) => {
+            // ✅ onDataLoaded được gọi với (partId, data) từ Part components
+            console.log("📤 [AssessmentTest] onDataLoaded called:", {
+              loadedPartId,
+              loadedDataLength: loadedData?.length,
+              partId,
+            });
+            if (loadedData && Array.isArray(loadedData)) {
+              // Có 2 params: (partId, data)
+              handlePartDataLoaded(loadedPartId || partId, loadedData);
+            } else if (Array.isArray(loadedPartId)) {
+              // Chỉ có 1 param: (data)
+              handlePartDataLoaded(partId, loadedPartId);
+            }
+          }}
         />
       </Suspense>
     );

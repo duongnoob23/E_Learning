@@ -9,10 +9,10 @@ const List = (Props) => {
   // Lấy thống kê người dùng để kiểm tra các session đã hoàn thành
   const { data: userStatsData, isLoading: userStatsLoading } =
     useUserStatistics();
-  console.log(
-    "🚀 ~ List ~ userStatsData:",
-    JSON.stringify(userStatsData, null, 2)
-  );
+  // console.log(
+  //   "🚀 ~ List ~ userStatsData:",
+  //   JSON.stringify(userStatsData, null, 2)
+  // );
 
   // Tạo map các test đã hoàn thành từ recent_sessions
   const completedTests = React.useMemo(() => {

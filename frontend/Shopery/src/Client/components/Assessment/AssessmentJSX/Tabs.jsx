@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStartExamSession } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentCSS/Tabs.css";
-import PartSelector from "./PartSelector";
 import Comment from "../AssessmentJSX/Comment";
+import PartSelector from "./PartSelector";
 const tabs = ["Luyện tập", "Full test", "Thảo luận"];
 
 const parts = [
@@ -54,6 +54,9 @@ const parts = [
 const Tabs = (Props) => {
   const { data, testId } = Props;
 
+  console.log("data", JSON.stringify(data, null, 2));
+  console.log("testId", testId);
+
   const [activeTab, setActiveTab] = useState("Luyện tập");
   const navigate = useNavigate();
   const { mutateAsync: createStartExam, isPending: loadingStartExam } =
@@ -63,7 +66,12 @@ const Tabs = (Props) => {
     const testId = Props?.testId;
     const session_type = "FULL_TEST";
     const time_limit_minutes = 120;
-    const selected_parts = [1, 2, 3, 4, 5, 6, 7];
+
+    // ✅ Lấy tất cả parts từ data thực tế thay vì hardcode
+    const selected_parts =
+      data && Array.isArray(data)
+        ? data.map((part) => part.part_number).sort((a, b) => a - b)
+        : [1, 2, 3, 4, 5, 6, 7]; // Fallback nếu không có data
 
     const result = await createStartExam({
       test_id: testId,
