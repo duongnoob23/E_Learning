@@ -1,23 +1,51 @@
 // Client/components/Profile/ProfileJSX/AccountSecurity.jsx
 import React, { useState } from "react";
+import { useGetProfile } from "../../../services/Profile/profileQueries";
+import {
+  useChangePassword,
+  useChangeEmail,
+  useVerifyEmailOtp,
+} from "../../../services/Profile/profileMutations";
 import "../ProfileCSS/AccountSecurity.css";
 
 const AccountSecurity = () => {
-  const [showCurrentPasswordEmail, setShowCurrentPasswordEmail] = useState(false);
+  // Lấy thông tin profile để hiển thị email hiện tại
+  const { data: profileData } = useGetProfile();
+  const profile = profileData?.DT || null;
+  const currentEmail = profile?.email || "";
+
+  // Mutations
+  const { mutateAsync: changePassword, isPending: isChangingPassword } =
+    useChangePassword();
+  const { mutateAsync: changeEmail, isPending: isChangingEmail } =
+    useChangeEmail();
+  const { mutateAsync: verifyOtp, isPending: isVerifyingOtp } =
+    useVerifyEmailOtp();
+
+  // Password visibility states
+  const [showCurrentPasswordEmail, setShowCurrentPasswordEmail] =
+    useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showReTypePassword, setShowReTypePassword] = useState(false);
 
+  // Email form state
   const [emailForm, setEmailForm] = useState({
     newEmail: "",
     currentPassword: "",
   });
 
+  // Password form state
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
     newPassword: "",
     reTypePassword: "",
   });
+
+  // OTP state (hiển thị sau khi gửi email change request)
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [pendingEmail, setPendingEmail] = useState("");
 
   const handleEmailChange = (e) => {
     setEmailForm({
@@ -33,16 +61,73 @@ const AccountSecurity = () => {
     });
   };
 
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    // Handle email change logic here
-    console.log("Email change:", emailForm);
+
+    try {
+      // Gọi API change email (bước 1: gửi OTP)
+      await changeEmail({
+        newEmail: emailForm.newEmail,
+        currentPassword: emailForm.currentPassword,
+      });
+
+      // Nếu thành công, hiển thị form nhập OTP
+      setShowOtpInput(true);
+      setPendingEmail(emailForm.newEmail);
+      // Reset form
+      setEmailForm({
+        newEmail: "",
+        currentPassword: "",
+      });
+    } catch (error) {
+      console.error("Error changing email:", error);
+    }
   };
 
-  const handlePasswordSubmit = (e) => {
+  const handleOtpSubmit = async (e) => {
     e.preventDefault();
-    // Handle password change logic here
-    console.log("Password change:", passwordForm);
+
+    try {
+      // Gọi API verify OTP (bước 2: xác thực)
+      await verifyOtp({
+        email: pendingEmail,
+        otp: otp,
+      });
+
+      // Nếu thành công, reset form và ẩn OTP input
+      setShowOtpInput(false);
+      setOtp("");
+      setPendingEmail("");
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+    }
+  };
+
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate passwords match
+    if (passwordForm.newPassword !== passwordForm.reTypePassword) {
+      alert("Mật khẩu mới và xác nhận mật khẩu không khớp!");
+      return;
+    }
+
+    try {
+      await changePassword({
+        currentPassword: passwordForm.currentPassword,
+        newPassword: passwordForm.newPassword,
+        confirmPassword: passwordForm.reTypePassword,
+      });
+
+      // Reset form sau khi thành công
+      setPasswordForm({
+        currentPassword: "",
+        newPassword: "",
+        reTypePassword: "",
+      });
+    } catch (error) {
+      console.error("Error changing password:", error);
+    }
   };
 
   return (
@@ -51,51 +136,109 @@ const AccountSecurity = () => {
       <div className="account-security__card">
         <h2 className="account-security__card-title">Email address</h2>
         <div className="account-security__current-email">
-          <span className="account-security__current-email-label">Current email:</span>
-          <span className="account-security__current-email-value">textxyz@gmail.com</span>
+          <span className="account-security__current-email-label">
+            Current email:
+          </span>
+          <span className="account-security__current-email-value">
+            {currentEmail || "Loading..."}
+          </span>
         </div>
 
-        <form onSubmit={handleEmailSubmit} className="account-security__form">
-          <div className="account-security__form-group">
-            <label className="account-security__label">Enter a new email address</label>
-            <input
-              type="email"
-              name="newEmail"
-              value={emailForm.newEmail}
-              onChange={handleEmailChange}
-              placeholder="Enter a new email address"
-              className="account-security__input"
-            />
-          </div>
-
-          <div className="account-security__form-group">
-            <label className="account-security__label">Current password</label>
-            <div className="account-security__input-wrapper">
+        {!showOtpInput ? (
+          <form onSubmit={handleEmailSubmit} className="account-security__form">
+            <div className="account-security__form-group">
+              <label className="account-security__label">
+                Enter a new email address
+              </label>
               <input
-                type={showCurrentPasswordEmail ? "text" : "password"}
-                name="currentPassword"
-                value={emailForm.currentPassword}
+                type="email"
+                name="newEmail"
+                value={emailForm.newEmail}
                 onChange={handleEmailChange}
-                placeholder="Enter your current password"
+                placeholder="Enter a new email address"
                 className="account-security__input"
+                required
               />
+            </div>
+
+            <div className="account-security__form-group">
+              <label className="account-security__label">Current password</label>
+              <div className="account-security__input-wrapper">
+                <input
+                  type={showCurrentPasswordEmail ? "text" : "password"}
+                  name="currentPassword"
+                  value={emailForm.currentPassword}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your current password"
+                  className="account-security__input"
+                  required
+                />
+                <button
+                  type="button"
+                  className="account-security__eye-btn"
+                  onClick={() =>
+                    setShowCurrentPasswordEmail(!showCurrentPasswordEmail)
+                  }
+                >
+                  {showCurrentPasswordEmail ? "👁️" : "👁️‍🗨️"}
+                </button>
+              </div>
+              <p className="account-security__helper-text">
+                For safety reasons, enter your current password.
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="account-security__save-btn"
+              disabled={isChangingEmail}
+            >
+              {isChangingEmail ? "Sending OTP..." : "Send OTP"}
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleOtpSubmit} className="account-security__form">
+            <div className="account-security__form-group">
+              <label className="account-security__label">
+                Enter OTP sent to {pendingEmail}
+              </label>
+              <input
+                type="text"
+                name="otp"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter 6-digit OTP"
+                className="account-security__input"
+                maxLength={6}
+                required
+              />
+              <p className="account-security__helper-text">
+                Vui lòng kiểm tra email để lấy mã OTP.
+              </p>
+            </div>
+
+            <div className="account-security__form-actions">
+              <button
+                type="submit"
+                className="account-security__save-btn"
+                disabled={isVerifyingOtp}
+              >
+                {isVerifyingOtp ? "Verifying..." : "Verify OTP"}
+              </button>
               <button
                 type="button"
-                className="account-security__eye-btn"
-                onClick={() => setShowCurrentPasswordEmail(!showCurrentPasswordEmail)}
+                className="account-security__cancel-btn"
+                onClick={() => {
+                  setShowOtpInput(false);
+                  setOtp("");
+                  setPendingEmail("");
+                }}
               >
-                {showCurrentPasswordEmail ? "👁️" : "👁️‍🗨️"}
+                Cancel
               </button>
             </div>
-            <p className="account-security__helper-text">
-              For safety reasons, enter your current password.
-            </p>
-          </div>
-
-          <button type="submit" className="account-security__save-btn">
-            Save Changes
-          </button>
-        </form>
+          </form>
+        )}
       </div>
 
       {/* Password Card */}
@@ -172,8 +315,12 @@ const AccountSecurity = () => {
             </div>
           </div>
 
-          <button type="submit" className="account-security__save-btn">
-            Save Changes
+          <button
+            type="submit"
+            className="account-security__save-btn"
+            disabled={isChangingPassword}
+          >
+            {isChangingPassword ? "Changing..." : "Save Changes"}
           </button>
         </form>
       </div>

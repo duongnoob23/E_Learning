@@ -15,7 +15,26 @@ function generateOtp() {
 // Lấy thông tin profile của user
 exports.getUserProfile = async (userId) => {
   try {
-    const user = await User.findById(userId);
+    console.log("getUserProfile - userId:", userId);
+    console.log("getUserProfile - User model:", User);
+    console.log("getUserProfile - User.findbyId:", typeof User.findbyId);
+    
+    if (!userId) {
+      console.error("getUserProfile - userId is null or undefined");
+      return {
+        EM: "User ID không hợp lệ",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Dùng findOne trực tiếp để tránh lỗi với findbyId
+    const user = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
+    console.log("getUserProfile - user result:", user ? "Found" : "Not found");
+    
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -25,6 +44,7 @@ exports.getUserProfile = async (userId) => {
     }
 
     const { password_hash, ...userWithoutPass } = user.toJSON();
+    console.log("getUserProfile - success, returning user data");
     return {
       EM: "Lấy thông tin profile thành công",
       EC: "0",
@@ -32,8 +52,10 @@ exports.getUserProfile = async (userId) => {
     };
   } catch (error) {
     console.error("Error in getUserProfile service:", error);
+    console.error("Error stack:", error.stack);
+    console.error("Error message:", error.message);
     return {
-      EM: "Lỗi hệ thống khi lấy thông tin profile",
+      EM: "Lỗi hệ thống khi lấy thông tin profile: " + error.message,
       EC: "-2",
       DT: null,
     };
@@ -43,7 +65,10 @@ exports.getUserProfile = async (userId) => {
 // Cập nhật thông tin profile
 exports.updateUserProfile = async (userId, updateData) => {
   try {
-    const user = await User.findById(userId);
+    const user = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -65,7 +90,10 @@ exports.updateUserProfile = async (userId, updateData) => {
     await User.updateUser(userId, updateFields);
     
     // Lấy thông tin user đã cập nhật
-    const updatedUser = await User.findById(userId);
+    const updatedUser = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
     const { password_hash, ...userWithoutPass } = updatedUser.toJSON();
 
     return {
@@ -142,7 +170,8 @@ exports.getUserStats = async (userId) => {
 // Đổi mật khẩu
 exports.changePassword = async (userId, currentPassword, newPassword) => {
   try {
-    const user = await User.findById(userId);
+    // Cần password_hash nên không dùng findbyId (exclude password_hash)
+    const user = await User.findOne({ where: { user_id: userId } });
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -211,7 +240,8 @@ const calculateStudyStreak = async (userId) => {
 // Đổi email
 exports.changeEmail = async (userId, newEmail, currentPassword) => {
   try {
-    const user = await User.findById(userId);
+    // Cần password_hash nên không dùng findbyId (exclude password_hash)
+    const user = await User.findOne({ where: { user_id: userId } });
     if (!user) {
       return {
         EM: "Không tìm thấy user",

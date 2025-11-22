@@ -1,96 +1,201 @@
-import { useMutation } from "@tanstack/react-query";
+// D:\KY_II_NAM_4\Thuc_Tap_Tot_Nghiep\E-commerce\frontend\Shopery\src\Client\services\Profile\profileMutations.js
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { queryKeys } from "../../../lib/queryKeys";
 import { profileApi } from "../../api/Profile/profileApi";
 
-export const useUpdateProfile = (options = {}) =>
-  useMutation({
+// Mutation để cập nhật profile
+export const useUpdateProfile = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationFn: profileApi.updateProfile,
     onSuccess: (data) => {
-      // Gọi callback từ component nếu có
-      if (options.onSuccess) {
-        options.onSuccess(data);
+      const { EM, EC } = data;
+      if (EC === "0") {
+        toast.success(EM || "Cập nhật profile thành công!");
+        // Invalidate profile query để refetch dữ liệu mới
+        queryClient.invalidateQueries({
+          queryKey: queryKeys.user.profile,
+        });
       } else {
-        // Chỉ hiển thị toast mặc định nếu component không xử lý
-        const { EM, EC } = data;
-        if (EC === "0") toast.success(EM || "Profile updated");
-        else toast.error(EM || "Update failed");
+        toast.error(EM || "Cập nhật profile thất bại!");
       }
     },
     onError: (error) => {
       console.error("Update profile error:", error);
-      console.error("Error response:", error?.response);
-      console.error("Error response data:", error?.response?.data);
-      console.error("Error status:", error?.response?.status);
-
-      // Gọi callback từ component nếu có
-      if (options.onError) {
-        options.onError(error);
-      } else {
-        // Chỉ hiển thị toast error mặc định nếu component không xử lý
-        toast.error("Cập nhật profile thất bại!");
-      }
 
       // Xử lý lỗi validation 422
       if (error?.response?.status === 422) {
         const validationErrors = error.response.data?.errors;
         if (validationErrors && Array.isArray(validationErrors)) {
-          const errorMessages = validationErrors.map(err => err.msg).join(", ");
-          toast.error(`Validation error: ${errorMessages}`);
+          const errorMessages = validationErrors
+            .map((err) => err.msg)
+            .join(", ");
+          toast.error(`Lỗi validation: ${errorMessages}`);
         } else {
           toast.error("Dữ liệu không hợp lệ");
         }
       } else if (error?.response?.status === 500) {
         console.error("Server error 500:", error.response.data);
-        toast.error("Lỗi server. Vui lòng kiểm tra console và server logs.");
+        toast.error("Lỗi server. Vui lòng thử lại sau.");
       } else {
-        const errorMessage = error?.response?.data?.EM || error?.response?.data?.message || "Request failed";
+        const errorMessage =
+          error?.response?.data?.EM ||
+          error?.response?.data?.message ||
+          "Cập nhật profile thất bại!";
         toast.error(errorMessage);
       }
     },
   });
+};
 
-export const useChangePassword = () =>
-  useMutation({
+// Mutation để đổi mật khẩu
+export const useChangePassword = () => {
+  return useMutation({
     mutationFn: profileApi.changePassword,
     onSuccess: (data) => {
       const { EM, EC } = data || {};
-      if (EC === "0") toast.success(EM || "Password updated");
-      else toast.error(EM || "Update failed");
+      if (EC === "0") {
+        toast.success(EM || "Đổi mật khẩu thành công!");
+      } else {
+        toast.error(EM || "Đổi mật khẩu thất bại!");
+      }
     },
-    onError: () => toast.error("Request failed"),
-  });
+    onError: (error) => {
+      console.error("Change password error:", error);
 
-export const useChangeEmail = () =>
-  useMutation({
+      // Xử lý lỗi validation 422
+      if (error?.response?.status === 422) {
+        const validationErrors = error.response.data?.errors;
+        if (validationErrors && Array.isArray(validationErrors)) {
+          const errorMessages = validationErrors
+            .map((err) => err.msg)
+            .join(", ");
+          toast.error(`Lỗi validation: ${errorMessages}`);
+        } else {
+          toast.error("Dữ liệu không hợp lệ");
+        }
+      } else {
+        const errorMessage =
+          error?.response?.data?.EM ||
+          error?.response?.data?.message ||
+          "Đổi mật khẩu thất bại!";
+        toast.error(errorMessage);
+      }
+    },
+  });
+};
+
+// Mutation để upload avatar
+export const useUploadAvatar = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: profileApi.uploadAvatar,
+    onSuccess: (data) => {
+      const { EM, EC } = data;
+      if (EC === "0") {
+        toast.success(EM || "Upload avatar thành công!");
+        // Invalidate profile query để refetch dữ liệu mới
+        queryClient.invalidateQueries({
+          queryKey: queryKeys.user.profile,
+        });
+      } else {
+        toast.error(EM || "Upload avatar thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Upload avatar error:", error);
+      const errorMessage =
+        error?.response?.data?.EM ||
+        error?.response?.data?.message ||
+        "Upload avatar thất bại!";
+      toast.error(errorMessage);
+    },
+  });
+};
+
+// Mutation để đổi email (bước 1: gửi OTP)
+export const useChangeEmail = () => {
+  return useMutation({
     mutationFn: profileApi.changeEmail,
     onSuccess: (data) => {
       const { EM, EC } = data || {};
-      if (EC === "0") toast.success(EM || "Email updated");
-      else toast.error(EM || "Update failed");
+      if (EC === "0") {
+        toast.success(
+          EM || "Vui lòng kiểm tra email để lấy mã OTP xác thực!"
+        );
+      } else {
+        toast.error(EM || "Gửi OTP thất bại!");
+      }
     },
-    onError: () => toast.error("Request failed"),
-  });
+    onError: (error) => {
+      console.error("Change email error:", error);
 
-export const useUpdateLocalization = () =>
-  useMutation({
-    mutationFn: profileApi.updateLocalization,
-    onSuccess: (data) => {
-      const { EM, EC } = data || {};
-      if (EC === "0") toast.success(EM || "Updated");
-      else toast.error(EM || "Update failed");
+      // Xử lý lỗi validation 400
+      if (error?.response?.status === 400) {
+        const validationErrors = error.response.data?.errors;
+        if (validationErrors && Array.isArray(validationErrors)) {
+          const errorMessages = validationErrors
+            .map((err) => err.msg)
+            .join(", ");
+          toast.error(`Lỗi validation: ${errorMessages}`);
+        } else {
+          toast.error("Dữ liệu không hợp lệ");
+        }
+      } else {
+        const errorMessage =
+          error?.response?.data?.EM ||
+          error?.response?.data?.message ||
+          "Gửi OTP thất bại!";
+        toast.error(errorMessage);
+      }
     },
-    onError: () => toast.error("Request failed"),
   });
+};
 
-export const useVerifyEmailOtp = () =>
-  useMutation({
+// Mutation để xác thực OTP đổi email (bước 2)
+export const useVerifyEmailOtp = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationFn: profileApi.verifyEmailOtp,
     onSuccess: (data) => {
       const { EM, EC } = data || {};
-      if (EC === "0") toast.success(EM || "Email verified successfully");
-      else toast.error(EM || "Verification failed");
+      if (EC === "0") {
+        toast.success(EM || "Xác thực email thành công!");
+        // Invalidate profile query để refetch dữ liệu mới
+        queryClient.invalidateQueries({
+          queryKey: queryKeys.user.profile,
+        });
+      } else {
+        toast.error(EM || "Xác thực email thất bại!");
+      }
     },
-    onError: () => toast.error("Verification request failed"),
+    onError: (error) => {
+      console.error("Verify email OTP error:", error);
+
+      // Xử lý lỗi validation 400
+      if (error?.response?.status === 400) {
+        const validationErrors = error.response.data?.errors;
+        if (validationErrors && Array.isArray(validationErrors)) {
+          const errorMessages = validationErrors
+            .map((err) => err.msg)
+            .join(", ");
+          toast.error(`Lỗi validation: ${errorMessages}`);
+        } else {
+          toast.error("Dữ liệu không hợp lệ");
+        }
+      } else {
+        const errorMessage =
+          error?.response?.data?.EM ||
+          error?.response?.data?.message ||
+          "Xác thực email thất bại!";
+        toast.error(errorMessage);
+      }
+    },
   });
+};
 
 

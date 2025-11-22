@@ -5,11 +5,12 @@ import "../AssessmentCSS/InfoBox.css";
 const InfoBox = ({ examId, data, testId, userStats }) => {
   const [activeTab, setActiveTab] = useState("info"); // "info", "answer", "statistics"
 
+  console.log("JSON USER STATS",JSON.stringify(userStats, null, 2));
+
   // Lấy thống kê người dùng
   const { data: userStatsData, isLoading: userStatsLoading } =
     useUserStatistics();
 
-    
   const arrayUserStats = useMemo(() => {
     if (userStats.recent_sessions) {
       return userStats.recent_sessions.filter((item, index) => {
@@ -17,7 +18,6 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
       });
     } else return [];
   }, [userStats]);
-
 
   const isCompleted = useMemo(() => {
     if (arrayUserStats) {

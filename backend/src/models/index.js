@@ -46,6 +46,8 @@ const CourseTagRelation = require("./CourseTagRelation")(sequelize, DataTypes);
 const Test = require("./exam/Test")(sequelize, DataTypes);
 const Part = require("./exam/Part")(sequelize, DataTypes);
 const Question = require("./exam/Questions")(sequelize, DataTypes);
+const SpeakingResponse = require("./exam/SpeakingResponse")(sequelize, DataTypes);
+const WritingResponse = require("./exam/WritingResponse")(sequelize, DataTypes);
 const Choice = require("./exam/Choice")(sequelize, DataTypes);
 const ExamSession = require("./exam/ExamSession")(sequelize, DataTypes);
 const UserAnswer = require("./exam/UserAnswers")(sequelize, DataTypes);
@@ -252,6 +254,8 @@ const db = {
   Choice,
   ExamSession,
   UserAnswer,
+  SpeakingResponse,
+  WritingResponse,
   UserExamStatistics,
   PartStatistics,
   ExamCategory,

@@ -5,10 +5,24 @@ const { validationResult } = require("express-validator");
 // [GET] Lấy thông tin profile của user hiện tại
 exports.getProfile = async (req, res, next) => {
   try {
-    const userId = req.user.userId;
+    console.log("getProfile controller - req.user:", req.user);
+    const userId = req.user?.userId;
+    console.log("getProfile controller - userId:", userId);
+
+    if (!userId) {
+      console.error("getProfile controller - userId is missing");
+      return res.status(401).json({
+        EM: "Không tìm thấy thông tin user",
+        EC: "1",
+        DT: null,
+      });
+    }
+
     const profile = await profileClientService.getUserProfile(userId);
+    console.log("getProfile controller - profile result:", profile);
     res.json(profile);
   } catch (error) {
+    console.error("getProfile controller error:", error);
     next(error);
   }
 };
@@ -42,7 +56,6 @@ exports.updateProfile = async (req, res, next) => {
   }
 };
 
-
 // [GET] Lấy thống kê của user
 exports.getUserStats = async (req, res, next) => {
   try {
@@ -64,13 +77,13 @@ exports.changePassword = async (req, res, next) => {
 
     const userId = req.user.userId;
     const { currentPassword, newPassword } = req.body;
-    
+
     const result = await profileClientService.changePassword(
       userId,
       currentPassword,
       newPassword
     );
-    
+
     res.json(result);
   } catch (error) {
     next(error);
@@ -82,20 +95,19 @@ exports.uploadAvatar = async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const avatarUrl = req.file ? req.file.path : null;
-    
+
     if (!avatarUrl) {
       return res.status(400).json({
         EM: "Không có file ảnh được upload",
         EC: "1",
-        DT: null
+        DT: null,
       });
     }
 
-    const result = await profileClientService.updateUserProfile(
-      userId,
-      { avatar_url: avatarUrl }
-    );
-    
+    const result = await profileClientService.updateUserProfile(userId, {
+      avatar_url: avatarUrl,
+    });
+
     res.json(result);
   } catch (error) {
     next(error);
@@ -111,7 +123,7 @@ exports.changeEmail = async (req, res, next) => {
       return res.status(400).json({
         EM: "Dữ liệu không hợp lệ",
         EC: "1",
-        DT: errors.array()
+        DT: errors.array(),
       });
     }
 
@@ -139,7 +151,7 @@ exports.verifyOtp = async (req, res, next) => {
       return res.status(400).json({
         EM: "Dữ liệu không hợp lệ",
         EC: "1",
-        DT: errors.array()
+        DT: errors.array(),
       });
     }
 

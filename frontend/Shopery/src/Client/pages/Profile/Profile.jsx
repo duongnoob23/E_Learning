@@ -5,10 +5,22 @@ import DeleteAccount from "../../components/Profile/ProfileJSX/DeleteAccount";
 import MyProfile from "../../components/Profile/ProfileJSX/MyProfile";
 import Notification from "../../components/Profile/ProfileJSX/Notification";
 import Privacy from "../../components/Profile/ProfileJSX/Privacy";
+import { useGetProfile } from "../../services/Profile/profileQueries";
 import "./Profile.css";
-const Profile = () => {
-  const [activeTab, setActiveTab] = useState("account-security");
 
+const Profile = () => {
+  const [activeTab, setActiveTab] = useState("my-profile");
+
+  // Lấy thông tin profile từ API
+  const { data: profileData, isLoading, error } = useGetProfile();
+
+  // Debug logging
+  console.log("profileData:", profileData);
+  console.log("isLoading:", isLoading);
+  console.log("error:", error);
+
+  const profile = profileData?.DT || null;
+  console.log("PROFILE (extracted):", profile);
   // Tab titles mapping
   const tabTitles = {
     "my-profile": "My Profile",
@@ -53,16 +65,50 @@ const Profile = () => {
       case "delete-account":
         return <DeleteAccount />;
       default:
-        return <AccountSecurity />;
+        return <MyProfile />;
     }
   };
+
+  // Xử lý khi click Edit <Profile></Profile>
+  const handleEditProfile = () => {
+    setActiveTab("my-profile");
+  };
+
+  // Hiển thị loading
+  if (isLoading) {
+    return (
+      <div className="profile-page">
+        <div className="profile-loading">Đang tải thông tin profile...</div>
+      </div>
+    );
+  }
+
+  // Hiển thị error
+  if (error) {
+    return (
+      <div className="profile-page">
+        <div className="profile-error">
+          Có lỗi xảy ra khi tải thông tin profile. Vui lòng thử lại sau.
+        </div>
+      </div>
+    );
+  }
+
+  // Lấy thông tin hiển thị
+  const displayName = profile?.full_name || profile?.username || "User";
+  const displayUsername = profile?.username
+    ? `@${profile.username}`
+    : "@username";
+  const avatarUrl = profile?.avatar_url
+    ? `http://localhost:5000${profile.avatar_url}`
+    : "https://images.unsplash.com/photo-1757351122515-21a7b61d682e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D";
 
   return (
     <div className="profile-page">
       {/* Header */}
       <div className="profile-header">
         <h1 className="profile-header__title">
-          {tabTitles[activeTab] || "Account Security"}
+          {tabTitles[activeTab] || "My Profile"}
         </h1>
       </div>
 
@@ -74,18 +120,21 @@ const Profile = () => {
           <div className="profile-card">
             <div className="profile-card__avatar">
               <img
-                src="https://images.unsplash.com/photo-1757351122515-21a7b61d682e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D"
+                src={avatarUrl}
                 alt="Profile"
                 className="profile-card__avatar-img"
               />
             </div>
-            <h2 className="profile-card__name">Christine A. Watkins</h2>
+            <h2 className="profile-card__name">{displayName}</h2>
             <div className="profile-card__location">
               <span className="profile-card__location-icon">📍</span>
-              <span>Kathmandu, Nepal</span>
+              <span>{profile?.email || "No email"}</span>
             </div>
-            <div className="profile-card__username">@Christine</div>
-            <button className="profile-card__edit-btn">
+            <div className="profile-card__username">{displayUsername}</div>
+            <button
+              className="profile-card__edit-btn"
+              onClick={handleEditProfile}
+            >
               <span className="profile-card__edit-icon">✏️</span>
               Edit Profile
             </button>
