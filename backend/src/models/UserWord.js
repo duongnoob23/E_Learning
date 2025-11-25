@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       part_of_speech: { type: DataTypes.STRING(50), allowNull: true },
       pronunciation: { type: DataTypes.STRING(255), allowNull: true },
       meaning_vi: { type: DataTypes.TEXT, allowNull: false },
+      is_starred: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0 },
+      audio_url: { type: DataTypes.STRING(255), allowNull: true },
       example_en: { type: DataTypes.TEXT, allowNull: true },
       example_vi: { type: DataTypes.TEXT, allowNull: true },
       image_url: { type: DataTypes.STRING(255), allowNull: true },
@@ -32,13 +34,13 @@ module.exports = (sequelize, DataTypes) => {
   // Các hàm helper riêng, KHÔNG override hàm Sequelize gốc
   UserWord.findByUser = async (user_id) =>
     UserWord.findAll({ where: { user_id } });
-
+  UserWord.findByWord = async (word) => UserWord.findOne({ where: { word, from_system_word_id: null } });
   UserWord.createWord = async (data) => UserWord.create(data);
-
-  // ✅ Đổi tên, không dùng findAndCountAll
   UserWord.findAndCountByFilters = async (filters) => {
     return UserWord.findAndCountAll(filters);
   };
+
+  UserWord.deleteWord = async (user_word_id) => UserWord.destroy({ where: { user_word_id } });
 
   UserWord.updateWord = async (user_word_id, data) =>
     UserWord.update(data, { where: { user_word_id } });

@@ -145,8 +145,8 @@ UserWord.belongsTo(Word, {
 
 UserWordStatus.belongsTo(User, { foreignKey: "user_id" });
 UserWordStatus.belongsTo(Topic, { foreignKey: "topic_id" });
-UserWordStatus.belongsTo(Word, { foreignKey: "word_id" });
-UserWordStatus.belongsTo(UserWord, { foreignKey: "user_word_id" });
+UserWordStatus.belongsTo(Word, { as: "words", foreignKey: "word_id" });
+UserWordStatus.belongsTo(UserWord, { as: "user_words", foreignKey: "user_word_id" });
 
 FavoriteTopic.belongsTo(User, { foreignKey: "user_id" });
 FavoriteTopic.belongsTo(Topic, { foreignKey: "topic_id" });

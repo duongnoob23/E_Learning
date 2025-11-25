@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       topic_id: { type: DataTypes.BIGINT, allowNull: false },
       word: { type: DataTypes.STRING(255), allowNull: false },
       part_of_speech: { type: DataTypes.STRING(50), allowNull: true },
+      audio_url: { type: DataTypes.STRING(255), allowNull: true },
       pronunciation: { type: DataTypes.STRING(255), allowNull: true },
       meaning_vi: { type: DataTypes.TEXT, allowNull: false },
       example_en: { type: DataTypes.TEXT, allowNull: true },

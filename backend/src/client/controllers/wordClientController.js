@@ -1,13 +1,11 @@
 const wordClientService = require("../services/wordClientService");
-
-
-
 // [GET] Words hệ thống theo topic + tìm kiếm
 exports.getWordsByTopic = async (req, res, next) => {
   try {
-    const { topicId, page, limit } = req.query;
+    const { topicId,q, page, limit } = req.query;
     const result = await wordClientService.getWordsByTopic({
       topicId,
+      q,
       page,
       limit,
     });
@@ -17,12 +15,36 @@ exports.getWordsByTopic = async (req, res, next) => {
   }
 };
 
+// [GET] Topic
+exports.getTopicPublic = async (req, res, next) => {
+  try {
+
+    const result = await wordClientService.getTopicPublic();
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Chi tiết word theo id
+exports.getWordDetail = async (req, res, next) => {
+  try {
+    const { word_id } = req.params;
+    const result = await wordClientService.getWordDetail(word_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
 // [GET] User words theo cas nhan
-exports.getWordsbyUser = async (req, res, next) => {
+exports.getWordsByUser = async (req, res, next) => {
   try{
     const topicId = req.params.topicId;
+    const userId = req.user.userId;
     const { page, limit } = req.query;
     const result = await wordClientService.getWordsbyUser({
+      userId,
       topicId,
       page,
       limit,
@@ -37,32 +59,29 @@ exports.getWordsbyUser = async (req, res, next) => {
 // [POST] Thêm từ cá nhân
 exports.postWordToUser = async (req, res, next) => {
   try {
-    const { 
-    word, 
-    partOfSpeech, 
-    pronunciation, 
-    meaningVi, 
-    exampleEn, 
-    exampleVi, 
-    imageUrl, 
-    fromSystemWordId,
-    userId,
-    topicId
-  } = req.body;
+    const userId = req.user.userId;
+    let  {word, meaning_vi, topic_id, meaning, example_en, example_vi, example = null, partOfSpeech = null, pronunciation = null, imageUrl = null, fromSystemWordId = null, notes = null } = req.body;
+    word = word.trim().toLowerCase();
 
-  const result = await wordClientService.postWordToUser({
-    user_id: userId,
-    topic_id: topicId,
-    word,
-    part_of_speech: partOfSpeech,
-    pronunciation,
-    meaning_vi: meaningVi,
-    example_en: exampleEn,
-    example_vi: exampleVi,
-    image_url: imageUrl || null,
-    from_system_word_id: fromSystemWordId,
-  });
+    // Support both camelCase and snake_case
+    const finalMeaningVi = meaning_vi || meaning;
+    const finalTopicId =  topic_id;
+    const finalExampleEn = example_en || example;
+    const finalExampleVi = example_vi || null;
 
+    const result = await wordClientService.postWordToUser({
+      user_id: userId,
+      topic_id: finalTopicId,
+      word,
+      meaning_vi: finalMeaningVi,
+      example_en: finalExampleEn,
+      example_vi: finalExampleVi,
+      part_of_speech: partOfSpeech,
+      pronunciation,
+      image_url: imageUrl,
+      from_system_word_id: fromSystemWordId,
+      notes,
+    });
     res.json(result);
   } catch (error) {
     next(error);
@@ -113,6 +132,202 @@ exports.deleteWordToUser = async (req, res, next) => {
   }
 };
 
+// [POST] đánh dấu đã học
+exports.markLearned = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { word_id, topic_id } = req.body;
+    const result = await wordClientService.markLearned(userId, word_id, topic_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [POST] đánh dấu chưa học
+exports.unmarkLearned = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { word_id, topic_id } = req.body;
+    const result = await wordClientService.unmarkLearned(userId, word_id, topic_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ---------- Flashcard Routes ---------- //
+
+// [GET] Lấy danh sách topic của user
+exports.getTopicByUser = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const result = await wordClientService.getTopicByUser(userId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [POST] Tạo set
+exports.createSet = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { topic_name, description } = req.body;
+    const result = await wordClientService.createSet(userId, topic_name, description);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Chi tiết set theo id
+exports.getSetDetail = async (req, res, next) => {
+  try {
+    const set_id = req.params.set_id;
+    const result = await wordClientService.getSetDetail(set_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Lấy danh sách từ vựng trong set theo id
+exports.getWordsBySet = async (req, res, next) => {
+  try {
+    const set_id = req.params.set_id;
+    const result = await wordClientService.getWordsBySet(set_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 
+// [GET] Lấy flashcard tiếp theo
+exports.getNextFlashcard = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { set_id } = req.query;
+    const result = await wordClientService.getNextFlashcard(userId, set_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
+
+//---- SRS (SPACED REPETITION) ----//
+
+// [GET] Lấy danh sách từ vựng hôm nay
+exports.getTodayWords = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const result = await wordClientService.getTodayWords(userId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+// [GET] Lấy từ vựng tiếp theo
+exports.getNextWord = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const result = await wordClientService.getNextWord(userId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [POST] Gửi feedback cho từ vựng
+exports.submitFeedback = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const word_id = req.params.word_id;
+    const { feedback } = req.body;
+    const result = await wordClientService.submitFeedback(userId, word_id, feedback);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+//---- PROGRESS (TIẾN ĐỘ HỌC) ----//
+
+// [GET] Tổng quan tiến độ học
+exports.getOverview = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const result = await wordClientService.getOverview(userId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Tiến độ học theo chủ đề
+exports.getProgressByTopic = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const topicId = req.params.topic_id;
+    const result = await wordClientService.getProgressByTopic(userId, topicId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// [GET] Tiến độ học theo ngày
+exports.getDailyProgress = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const result = await wordClientService.getDailyProgress(userId);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+/**
+ * =============================
+ *  PRACTICE (QUIZ)
+ * =============================
+ */
+
+// [GET] Tạo quiz
+exports.getVocabQuiz = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { topic_id } = req.query;
+
+    if (!userId || !topic_id) {
+      return res.status(400).json({
+        EM: "Thiếu userId hoặc topic_id",
+        EC: "-1",
+        DT: null
+      });
+    }
+
+    const data = await wordClientService.generateQuiz(userId, topic_id);
+    return res.json(data);
+
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.submitVocabQuiz = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { answers } = req.body;
+
+    const data = await wordClientService.submitQuiz(userId, answers);
+    return res.json(data);
+
+  } catch (err) {
+    next(err);
+  }
+};
