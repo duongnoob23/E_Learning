@@ -2,41 +2,75 @@ const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/wordClientController");
+const middleware = require("../../middleware/authMiddleware");
+const { authorizeByRole } = require("../../middleware/authorizeMiddleware");
+const upload = require("../../middleware/uploadMiddleware");
+/**
+ * =============================
+ *  WORDS – SYSTEM & USER WORDS
+ * =============================
+ */
+router.get("/system", controller.getWordsByTopic);
+router.get("/system/:word_id", controller.getWordDetail);
+router.get("/user", middleware, controller.getWordsByUser);
+/**
+ * =============================
+ *  LEARN STATUS (learned / unlearned / starred)
+ * =============================
+ */
+router.post("/status/mark",middleware, controller.markLearned);
+router.post("/status/unmark",middleware, controller.unmarkLearned);
+// router.post("/status/star", controller.markStarred);
+// router.post("/status/unstar", controller.unmarkStarred);
 
 /**
- * Words & User Words – client
- * - GET   /system?topic_id=&q=      (words hệ thống theo topic + search q)
- * - GET   /user?topic_id=&q=        (từ cá nhân theo topic + search q)
- * - POST  /user                     (thêm từ cá nhân)
- * - PUT   /user/:user_word_id       (sửa từ cá nhân)
- * - DELETE/user/:user_word_id       (xóa từ cá nhân)
- * - GET   /status?topic_id=         (lấy trạng thái học theo topic: learned/unlearned)
- * - POST  /status/mark              (đánh dấu đã thuộc)
- * - POST  /status/unmark            (bỏ đánh dấu)
+ * =============================
+ *  FLASHCARD SYSTEM
+ * =============================
  */
+router.get("/topics", controller.getTopicPublic);
+router.get("/topics/user", middleware, authorizeByRole("student"), controller.getTopicByUser);
+router.post("/topics/sets", middleware, authorizeByRole("student"), controller.createSet);
+router.get("/flashcard/set/:set_id", middleware, authorizeByRole("student"), controller.getSetDetail);
+router.patch("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.patchWordToUser);
+router.delete("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.deleteWordToUser);
+router.post("/flashcard/set/item", middleware, authorizeByRole("student"), controller.postWordToUser);
+router.get("/flashcard/set/:set_id/words", middleware, authorizeByRole("student"), controller.getWordsBySet);
 
-// Words hệ thống theo topic + tìm kiếm
-router.get("/system", controller.getWordsByTopic);
-// User words theo cas nhan
-router.get("/user/:topic_id", controller.getWordsbyUser);
-// Thêm từ cá nhân
-router.post("/user/:topic_id", controller.postWordToUser);
-// Sửa từ cá nhân
-router.patch("/user/editword/:user_word_id", controller.patchWordToUser);
-// Xóa từ cá nhân
-router.patch("/user/deteteword/:user_word_id", controller.deleteWordToUser);
+/**
+ * =============================
+ *  SRS (SPACED REPETITION)
+ * Mục đích: Học từ theo thuật toán lặp lại ngắt quãng.
+ * =============================
+ */
+router.get("/learning/today", middleware, authorizeByRole("student"), controller.getTodayWords);
+router.get("/learning/next", middleware, authorizeByRole("student"), controller.getNextWord);
+router.post("/learning/:word_id/feedback", middleware, authorizeByRole("student"), controller.submitFeedback);
 
-// Trạng thái học theo topic (dựa vào user_word_status)
-router.get("/status", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-// Đánh dấu đã thuộc (system word hoặc user word)
-router.post("/status/mark", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
-// Bỏ đánh dấu đã thuộc
-router.post("/status/unmark", (req, res) =>
-  res.status(501).json({ message: "Not implemented" })
-);
+/**
+ * =============================
+ *  PRACTICE (QUIZ)
+ * =============================
+ */
+router.get("/practice/vocab", middleware, authorizeByRole("student"), controller.getVocabQuiz);
+router.post("/practice/vocab/submit", middleware, authorizeByRole("student"), controller.submitVocabQuiz);
+
+/**
+ * =============================
+ *  PROGRESS (TIẾN ĐỘ HỌC)
+ * =============================
+ */
+router.get("/progress/overview", middleware, authorizeByRole("student"), controller.getOverview);
+// router.get("/progress/topic/:topic_id", middleware, authorizeByRole("student"), controller.getProgressByTopic);
+router.get("/progress/daily", middleware, authorizeByRole("student"), controller.getDailyProgress);
+
+/**
+ * =============================
+ *  PRONUNCIATION ASSESSMENT
+ * =============================
+ */
+router.post("/pronunciation/assess", middleware, authorizeByRole("student"), upload.single("audio"), controller.assessPronunciation);
+router.get("/pronunciation/history/:word_id", middleware, authorizeByRole("student"), controller.getPronunciationHistory);
+router.get("/pronunciation/stats", middleware, authorizeByRole("student"), controller.getPronunciationStats);
 
 module.exports = router;

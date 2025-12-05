@@ -1,5 +1,16 @@
 const userAdminService = require("../services/userAdminService");
 
+// gan role cho user
+exports.assignRoleToUser = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const { role_id } = req.body;
+        const response = await userAdminService.assignRoleToUser(user_id, role_id);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
 
 //--- Quản lý tài khoản ---//
 exports.getUsers = async (req, res, next) => {

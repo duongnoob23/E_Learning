@@ -36,6 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "topics", timestamps: false }
   );
+  Topic.findByType = async (topic_type) => Topic.findAll({ where: { topic_type } });
+  Topic.createTopic = async (data) => Topic.create(data);
   return Topic;
 };
 

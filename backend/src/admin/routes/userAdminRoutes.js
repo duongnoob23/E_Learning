@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const authMiddleware = require("../../middleware/authMiddleware");
+const { authorizeByRole } = require("../../middleware/authorizeMiddleware");
 const UserAdminController = require("../controllers/userAdminController");
 
 // ------- Quản lý tài khoản --------- //
@@ -24,29 +25,41 @@ const UserAdminController = require("../controllers/userAdminController");
 // GET /api/admin/stats thống kê
 // GET /api/admin/stats/status
 
+// gán role cho 1 user
+/** 
+ * @route POST /api/admin/users/:user_id/roles
+ * @desc Gán role cho user
+ * @body { role_id }
+ */
+router.post(
+  "/users/:user_id/roles",
+  authMiddleware,
+  authorizeByRole("admin"),
+  UserAdminController.assignRoleToUser
+);
 //--- Quản lý tài khoản ---//
-router.get("/", UserAdminController.getUsers);
-router.get("/:user_id", UserAdminController.getUserDetail);
-router.post("/", UserAdminController.createUser);
-router.patch("/:user_id", UserAdminController.updateUser);
-router.delete("/:user_id", UserAdminController.deleteUser);
+router.get("/", authMiddleware, authorizeByRole("admin"), UserAdminController.getUsers);
+router.get("/:user_id", authMiddleware, authorizeByRole("admin"), UserAdminController.getUserDetail);
+router.post("/", authMiddleware, authorizeByRole("admin"), UserAdminController.createUser);
+router.patch("/:user_id", authMiddleware, authorizeByRole("admin"), UserAdminController.updateUser);
+router.delete("/:user_id", authMiddleware, authorizeByRole("admin"), UserAdminController.deleteUser);
 
 //--- Quản lý trạng thái tài khoản ---//
-router.patch("/:user_id/ban", UserAdminController.banUser);
-router.patch("/:user_id/unban", UserAdminController.unbanUser);
-router.patch("/:user_id/status", UserAdminController.updateUserStatus);
+router.patch("/:user_id/ban", authMiddleware, authorizeByRole("admin"), UserAdminController.banUser);
+router.patch("/:user_id/unban", authMiddleware, authorizeByRole("admin"), UserAdminController.unbanUser);
+router.patch("/:user_id/status", authMiddleware, authorizeByRole("admin"), UserAdminController.updateUserStatus);
 
 //--- Quản lý xác thực email & phone ---//
-router.patch("/:user_id/verify-phone", UserAdminController.verifyPhone);
+router.patch("/:user_id/verify-phone", authMiddleware, authorizeByRole("admin"), UserAdminController.verifyPhone);
 
 //--- Quản lý bảo mật & đăng nhập ---//
-router.patch("/:user_id/verify-email", UserAdminController.verifyEmail);
+router.patch("/:user_id/verify-email", authMiddleware, authorizeByRole("admin"), UserAdminController.verifyEmail);
 
 //--- Tìm kiếm & lọc nâng cao ---//
-router.get("/search", UserAdminController.searchUsers);
-router.get("/filter", UserAdminController.filterUsers);
+router.get("/search", authMiddleware, authorizeByRole("admin"), UserAdminController.searchUsers);
+router.get("/filter", authMiddleware, authorizeByRole("admin"), UserAdminController.filterUsers);
 
 //--- Thống kê phân tích ---//
-router.get("/stats", UserAdminController.getUsersStats);
-router.get("/stats/status", UserAdminController.getUsersStatsByStatus);
+router.get("/stats", authMiddleware, authorizeByRole("admin"), UserAdminController.getUsersStats);
+router.get("/stats/status", authMiddleware, authorizeByRole("admin"), UserAdminController.getUsersStatsByStatus);
 module.exports = router;

@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 
 const authMiddleware = require("../../middleware/authMiddleware");
+const { authorizeByRole } = require("../../middleware/authorizeMiddleware");
 const speakingValidator = require("../validators/speakingWritingValidator");
 const ExamClientController = require("../controllers/examClientController");
 
@@ -50,24 +51,24 @@ const upload = multer({
 
 // ------------ Listening and Reading Routes ------------ //
 // Test Routes
-router.get("/tests", authMiddleware, ExamClientController.getTests); 
-router.get("/tests/:test_id", authMiddleware, ExamClientController.getTestDetail); 
-router.get("/tests/:test_id/parts", authMiddleware, ExamClientController.getTestParts); 
-router.get("/tests/:test_id/result", authMiddleware, ExamClientController.getPracticeTestResult); 
+router.get("/tests", authMiddleware, authorizeByRole("student"), ExamClientController.getTests);
+router.get("/tests/:test_id", authMiddleware, authorizeByRole("student"), ExamClientController.getTestDetail);
+router.get("/tests/:test_id/parts", authMiddleware, authorizeByRole("student"), ExamClientController.getTestParts);
+router.get("/tests/:test_id/result", authMiddleware, authorizeByRole("student"), ExamClientController.getPracticeTestResult);
 // Part Routes
-router.get("/parts/:part_id/questions", authMiddleware, ExamClientController.getPartQuestions); 
+router.get("/parts/:part_id/questions", authMiddleware, authorizeByRole("student"), ExamClientController.getPartQuestions);
 // Exam Session Routes
-router.post("/exam-sessions/start", authMiddleware, ExamClientController.startExamSession); 
-router.post("/exam-sessions/:session_id/submit", authMiddleware, ExamClientController.submitExamSession);
-router.get("/exam-sessions/:session_id/result", authMiddleware, ExamClientController.getExamResult); 
-router.get("/exam-sessions/:session_id/review", authMiddleware, ExamClientController.reviewExamSession); 
-router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, ExamClientController.retryWrongAnswers); 
-router.get("/user/statistics", authMiddleware, ExamClientController.getUserStatistics); 
+router.post("/exam-sessions/start", authMiddleware, authorizeByRole("student"), ExamClientController.startExamSession);
+router.post("/exam-sessions/:session_id/submit", authMiddleware, authorizeByRole("student"), ExamClientController.submitExamSession);
+router.get("/exam-sessions/:session_id/result", authMiddleware, authorizeByRole("student"), ExamClientController.getExamResult);
+router.get("/exam-sessions/:session_id/review", authMiddleware, authorizeByRole("student"), ExamClientController.reviewExamSession);
+router.post("/exam-sessions/:session_id/retry-wrong", authMiddleware, authorizeByRole("student"), ExamClientController.retryWrongAnswers);
+router.get("/user/statistics", authMiddleware, authorizeByRole("student"), ExamClientController.getUserStatistics);
 
-router.get("/exam-sessions/:session_id/result-by-tags", authMiddleware, ExamClientController.getResultByTags); // New
+router.get("/exam-sessions/:session_id/result-by-tags", authMiddleware, authorizeByRole("student"), ExamClientController.getResultByTags); // New
 // Discussion Routes
-router.get("/discussions/test/:test_id", authMiddleware, ExamClientController.getTestDiscussions);
-router.post("/discussions", authMiddleware, ExamClientController.createDiscussion);
+router.get("/discussions/test/:test_id", authMiddleware, authorizeByRole("student"), ExamClientController.getTestDiscussions);
+router.post("/discussions", authMiddleware, authorizeByRole("student"), ExamClientController.createDiscussion);
 router.post("/discussions/:discussion_id/comments", authMiddleware, ExamClientController.addComment);
 
 // ------------ Speaking and Writing Routes ------------ //

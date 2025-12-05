@@ -1,6 +1,43 @@
-const { User } = require("../../models");
+const { User, UserRole } = require("../../models");
 const { Op } = require("sequelize");
 
+//--- Gán role cho user ---//
+
+exports.assignRoleToUser = async (user_id, role_id) => {
+    try {
+        const user = await User.findByPk(user_id);
+        if (!user) {
+            return {
+                EM: "Người dùng không tồn tại",
+                EC: "2",
+                DT: null,
+            };
+        }
+        const existingUserRole = await UserRole.findOne({
+            where: { user_id, role_id },
+        });
+        if (existingUserRole) {
+            return {
+                EM: "Người dùng đã có role này",
+                EC: "2",
+                DT: null,
+            };
+        }
+        const userRole = await UserRole.create({ user_id, role_id });
+        return {
+            EM: "Gán role thành công",
+            EC: "0",
+            DT: userRole,
+        };
+    } catch (error) {
+        console.error("Error in assignRoleToUser:", error.message);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình gán role",
+            EC: "-2",
+            DT: null,
+        };
+    }
+}
 //--- Quản lý tài khoản ---//
 exports.getUsers = async (query) => {
     try {
