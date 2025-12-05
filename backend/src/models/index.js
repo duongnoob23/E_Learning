@@ -20,6 +20,7 @@ const Topic = require("./Topic")(sequelize, DataTypes);
 const Word = require("./Word")(sequelize, DataTypes);
 const UserWord = require("./UserWord")(sequelize, DataTypes);
 const UserWordStatus = require("./UserWordStatus")(sequelize, DataTypes);
+const PronunciationAssessment = require("./PronunciationAssessment")(sequelize, DataTypes);
 const FavoriteTopic = require("./FavoriteTopic")(sequelize, DataTypes);
 const BatchImport = require("./BatchImport")(sequelize, DataTypes);
 const ImportDetail = require("./ImportDetail")(sequelize, DataTypes);
@@ -120,6 +121,11 @@ TestComment.belongsTo(TestComment, { as: "parent", foreignKey: "parent_comment_i
 TestComment.hasMany(TestComment, { as: "replies", foreignKey: "parent_comment_id" });
 
 // Accounts
+User.belongsToMany(Role, { through: UserRole, as: "roles", foreignKey: "user_id" });
+Role.belongsToMany(User, { through: UserRole, as: "users", foreignKey: "role_id" });
+Role.belongsToMany(Permission, { through: RolePermission, as: "permissions", foreignKey: "role_id" });
+Permission.belongsToMany(Role, { through: RolePermission, as: "roles", foreignKey: "permission_id" });
+
 UserRole.belongsTo(User, { foreignKey: "user_id" });
 UserRole.belongsTo(Role, { foreignKey: "role_id" });
 RolePermission.belongsTo(Role, { foreignKey: "role_id" });
@@ -221,6 +227,7 @@ module.exports = {
   Word,
   UserWord,
   UserWordStatus,
+  PronunciationAssessment,
   FavoriteTopic,
   BatchImport,
   ImportDetail,

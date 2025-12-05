@@ -331,3 +331,79 @@ exports.submitVocabQuiz = async (req, res, next) => {
     next(err);
   }
 };
+
+/**
+ * =============================
+ *  PRONUNCIATION ASSESSMENT
+ * =============================
+ */
+
+// [POST] Chấm điểm phát âm
+exports.assessPronunciation = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { word_id } = req.body;
+    const audioFile = req.file;
+
+    if (!word_id || !audioFile) {
+      return res.status(400).json({
+        EM: "Thiếu word_id hoặc audio file",
+        EC: "-1",
+        DT: null
+      });
+    }
+
+    // Tạo object audioFile với thông tin cần thiết
+    const audioFileData = {
+      path: audioFile.path,
+      filename: audioFile.filename,
+      mimetype: audioFile.mimetype,
+      size: audioFile.size,
+      url: `/uploads/audio/${audioFile.filename}`
+    };
+
+    const data = await wordClientService.assessPronunciation(
+      userId,
+      word_id,
+      audioFileData
+    );
+
+    return res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// [GET] Lấy lịch sử chấm điểm phát âm
+exports.getPronunciationHistory = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { word_id } = req.params;
+
+    if (!word_id) {
+      return res.status(400).json({
+        EM: "Thiếu word_id",
+        EC: "-1",
+        DT: null
+      });
+    }
+
+    const data = await wordClientService.getPronunciationHistory(userId, word_id);
+    return res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// [GET] Lấy thống kê phát âm
+exports.getPronunciationStats = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { topic_id } = req.query;
+
+    const data = await wordClientService.getPronunciationStats(userId, topic_id);
+    return res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};

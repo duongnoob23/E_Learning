@@ -3,6 +3,8 @@ const router = express.Router();
 
 const controller = require("../controllers/wordClientController");
 const middleware = require("../../middleware/authMiddleware");
+const { authorizeByRole } = require("../../middleware/authorizeMiddleware");
+const upload = require("../../middleware/uploadMiddleware");
 /**
  * =============================
  *  WORDS – SYSTEM & USER WORDS
@@ -27,13 +29,13 @@ router.post("/status/unmark",middleware, controller.unmarkLearned);
  * =============================
  */
 router.get("/topics", controller.getTopicPublic);
-router.get("/topics/user", middleware, controller.getTopicByUser);
-router.post("/topics/sets",middleware, controller.createSet);
-router.get("/flashcard/set/:set_id",middleware, controller.getSetDetail);
-router.patch("/flashcard/user/:user_word_id",middleware, controller.patchWordToUser);
-router.delete("/flashcard/user/:user_word_id",middleware, controller.deleteWordToUser);
-router.post("/flashcard/set/item",middleware, controller.postWordToUser);
-router.get("/flashcard/set/:set_id/words", middleware, controller.getWordsBySet);
+router.get("/topics/user", middleware, authorizeByRole("student"), controller.getTopicByUser);
+router.post("/topics/sets", middleware, authorizeByRole("student"), controller.createSet);
+router.get("/flashcard/set/:set_id", middleware, authorizeByRole("student"), controller.getSetDetail);
+router.patch("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.patchWordToUser);
+router.delete("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.deleteWordToUser);
+router.post("/flashcard/set/item", middleware, authorizeByRole("student"), controller.postWordToUser);
+router.get("/flashcard/set/:set_id/words", middleware, authorizeByRole("student"), controller.getWordsBySet);
 
 /**
  * =============================
@@ -41,25 +43,34 @@ router.get("/flashcard/set/:set_id/words", middleware, controller.getWordsBySet)
  * Mục đích: Học từ theo thuật toán lặp lại ngắt quãng.
  * =============================
  */
-router.get("/learning/today",middleware, controller.getTodayWords);
-router.get("/learning/next",middleware, controller.getNextWord);
-router.post("/learning/:word_id/feedback",middleware, controller.submitFeedback);
+router.get("/learning/today", middleware, authorizeByRole("student"), controller.getTodayWords);
+router.get("/learning/next", middleware, authorizeByRole("student"), controller.getNextWord);
+router.post("/learning/:word_id/feedback", middleware, authorizeByRole("student"), controller.submitFeedback);
 
 /**
  * =============================
  *  PRACTICE (QUIZ)
  * =============================
  */
-router.get("/practice/vocab",middleware, controller.getVocabQuiz);
-router.post("/practice/vocab/submit",middleware, controller.submitVocabQuiz);
+router.get("/practice/vocab", middleware, authorizeByRole("student"), controller.getVocabQuiz);
+router.post("/practice/vocab/submit", middleware, authorizeByRole("student"), controller.submitVocabQuiz);
 
 /**
  * =============================
  *  PROGRESS (TIẾN ĐỘ HỌC)
  * =============================
  */
-router.get("/progress/overview",middleware, controller.getOverview);
-// router.get("/progress/topic/:topic_id",middleware, controller.getProgressByTopic);
-router.get("/progress/daily",middleware, controller.getDailyProgress);
+router.get("/progress/overview", middleware, authorizeByRole("student"), controller.getOverview);
+// router.get("/progress/topic/:topic_id", middleware, authorizeByRole("student"), controller.getProgressByTopic);
+router.get("/progress/daily", middleware, authorizeByRole("student"), controller.getDailyProgress);
+
+/**
+ * =============================
+ *  PRONUNCIATION ASSESSMENT
+ * =============================
+ */
+router.post("/pronunciation/assess", middleware, authorizeByRole("student"), upload.single("audio"), controller.assessPronunciation);
+router.get("/pronunciation/history/:word_id", middleware, authorizeByRole("student"), controller.getPronunciationHistory);
+router.get("/pronunciation/stats", middleware, authorizeByRole("student"), controller.getPronunciationStats);
 
 module.exports = router;

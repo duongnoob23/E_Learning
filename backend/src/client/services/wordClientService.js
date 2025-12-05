@@ -1,6 +1,10 @@
-const { Word,Topic, UserWord, UserWordStatus } = require("../../models");
+const { Word, Topic, UserWord, UserWordStatus, PronunciationAssessment } = require("../../models");
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
+const axios = require("axios");
+const path = require("path");
+const fs = require("fs");
+const { spawn } = require("child_process");
 
 // Lấy danh sách từ vựng theo topic + tìm kiếm
 exports.getWordsByTopic = async (filters) => {
@@ -142,6 +146,50 @@ exports.getWordsbyUser = async (filters) => {
   }
 };
 
+// Helper: Tạo file MP3 từ text bằng gTTS
+const generateAudioFile = async (word) => {
+  try {
+    const uploadsDir = path.join(__dirname, "../../uploads/audio");
+
+    // Tạo thư mục nếu chưa tồn tại
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+
+    const filename = `${word.toLowerCase().replace(/\s+/g, "_")}_${Date.now()}.mp3`;
+    const filepath = path.join(uploadsDir, filename);
+
+    // Gọi Python script để tạo MP3 bằng gTTS
+    return new Promise((resolve, reject) => {
+      const pythonProcess = spawn("python", [
+        path.join(__dirname, "../../../scripts/generate_audio.py"),
+        word,
+        filepath
+      ]);
+
+      let errorOutput = "";
+
+      pythonProcess.stderr.on("data", (data) => {
+        errorOutput += data.toString();
+      });
+
+      pythonProcess.on("close", (code) => {
+        if (code === 0) {
+          // Trả về URL tương đối
+          const audioUrl = `/uploads/audio/${filename}`;
+          resolve(audioUrl);
+        } else {
+          console.error("Python error:", errorOutput);
+          reject(new Error("Không thể tạo file âm thanh"));
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Lỗi tạo audio:", error);
+    return null;
+  }
+};
+
 // Tao du tu vung moi ca nhan
 exports.postWordToUser = async (data) => {
   try {
@@ -172,6 +220,7 @@ exports.postWordToUser = async (data) => {
         example_en: systemWord.example_en,
         example_vi: systemWord.example_vi,
         image_url: systemWord.image_url,
+        audio_url: systemWord.audio_url,
         notes: null,
         from_system_word_id: systemWord.word_id,
         is_active: true,
@@ -206,13 +255,24 @@ exports.postWordToUser = async (data) => {
     });
 
     if (existingPersonal) {
+      // Tạo file MP3 nếu chưa có audio_url
+      let audioUrl = null;
+      if (!existingPersonal.audio_url) {
+        try {
+          audioUrl = await generateAudioFile(data.word);
+        } catch (error) {
+          console.error("Lỗi tạo audio:", error);
+        }
+      }
+
       const newUserWord = await UserWord.create({
         user_id: user_id,
         topic_id: existingPersonal.topic_id,
         word: data.word,
         part_of_speech: part_of_speech || existingPersonal.part_of_speech,
-        pronunciation: pronunciation || existingPersonal.pronunciation,
+        pronunciation: pronunciation || existingPersonal.pronunciation || null,
         meaning_vi: meaning_vi || existingPersonal.meaning_vi,
+        audio_url: audioUrl || existingPersonal.audio_url || null,
         example_en: example_en || existingPersonal.example_en,
         example_vi: example_vi || existingPersonal.example_vi,
         image_url: existingPersonal.image_url,
@@ -222,7 +282,7 @@ exports.postWordToUser = async (data) => {
         created_at: new Date(),
         updated_at: new Date(),
       });
-      const newUserWordStatus = await UserWordStatus.create({
+      await UserWordStatus.create({
         user_id: user_id,
         topic_id: existingPersonal.topic_id,
         word_id: existingPersonal.word_id,
@@ -259,6 +319,15 @@ exports.postWordToUser = async (data) => {
       };
     }
 
+    // Tạo file MP3 nếu chưa có audio_url
+    let audioUrl = null;
+    try {
+      audioUrl = await generateAudioFile(data.word);
+    } catch (error) {
+      console.error("Lỗi tạo audio:", error);
+      // Tiếp tục mà không có audio
+    }
+
     const newUserWord = await UserWord.create({
       user_id: user_id,
       topic_id: topic_id,
@@ -269,6 +338,7 @@ exports.postWordToUser = async (data) => {
       example_en: example_en || null,
       example_vi: example_vi || null,
       image_url: image_url || null,
+      audio_url: audioUrl || null,
       notes: notes || null,
       from_system_word_id: null,
       is_active: true,
@@ -277,7 +347,7 @@ exports.postWordToUser = async (data) => {
     });
 
     // Tạo UserWordStatus cho từ mới
-    const newUserWordStatus = await UserWordStatus.create({
+    await UserWordStatus.create({
       user_id: user_id,
       topic_id: topic_id,
       word_id: null,
@@ -922,4 +992,197 @@ exports.submitQuiz = async (user_id, answers) => {
   }
 };
 
+/**
+ * =============================
+ *  PRONUNCIATION ASSESSMENT
+ * =============================
+ */
+
+// Chấm điểm phát âm
+exports.assessPronunciation = async (userId, wordId, audioFile) => {
+  try {
+    // 1. Lấy thông tin từ
+    const word = await Word.findByPk(wordId);
+    if (!word) {
+      return {
+        EM: "Từ không tồn tại",
+        EC: "1",
+        DT: null
+      };
+    }
+
+    // 2. Gửi audio đến Python service (MultiPA)
+    const pronunciationScore = await callMultiPAService(
+      audioFile,
+      word.pronunciation || word.word
+    );
+
+    // 3. Lưu kết quả vào database
+    const assessment = await PronunciationAssessment.create({
+      user_id: userId,
+      word_id: wordId,
+      score: pronunciationScore.score,
+      pronunciation_score: pronunciationScore.pronunciation_score,
+      fluency_score: pronunciationScore.fluency_score,
+      feedback: pronunciationScore.feedback,
+      audio_url: audioFile.url || null,
+      created_at: new Date(),
+      updated_at: new Date()
+    });
+
+    // 4. Cập nhật UserWordStatus
+    await updateUserWordStatusByPronunciation(userId, wordId, pronunciationScore.score);
+
+    return {
+      EM: "Chấm điểm thành công",
+      EC: "0",
+      DT: {
+        assessment_id: assessment.assessment_id,
+        score: pronunciationScore.score,
+        pronunciation_score: pronunciationScore.pronunciation_score,
+        fluency_score: pronunciationScore.fluency_score,
+        feedback: pronunciationScore.feedback
+      }
+    };
+  } catch (error) {
+    console.error("Lỗi trong assessPronunciation:", error);
+    return {
+      EM: error.message || "Có lỗi xảy ra trong quá trình chấm điểm",
+      EC: "-2",
+      DT: null
+    };
+  }
+};
+
+// Lấy lịch sử chấm điểm phát âm
+exports.getPronunciationHistory = async (userId, wordId) => {
+  try {
+    const history = await PronunciationAssessment.findAll({
+      where: { user_id: userId, word_id: wordId },
+      order: [['created_at', 'DESC']],
+      limit: 10
+    });
+
+    return {
+      EM: "Lấy lịch sử thành công",
+      EC: "0",
+      DT: history
+    };
+  } catch (error) {
+    console.error("Lỗi trong getPronunciationHistory:", error);
+    return {
+      EM: error.message,
+      EC: "-2",
+      DT: null
+    };
+  }
+};
+
+// Lấy thống kê phát âm của user
+exports.getPronunciationStats = async (userId, topicId = null) => {
+  try {
+    const whereClause = { user_id: userId };
+
+    if (topicId) {
+      const userWords = await UserWord.findAll({
+        where: { user_id: userId, topic_id: topicId },
+        attributes: ['user_word_id']
+      });
+      const userWordIds = userWords.map(w => w.user_word_id);
+      whereClause.user_word_id = { [Op.in]: userWordIds };
+    }
+
+    const assessments = await PronunciationAssessment.findAll({
+      where: whereClause
+    });
+
+    const totalAssessments = assessments.length;
+    const avgScore = totalAssessments > 0
+      ? (assessments.reduce((sum, a) => sum + a.score, 0) / totalAssessments).toFixed(2)
+      : 0;
+
+    const scoreDistribution = {
+      excellent: assessments.filter(a => a.score >= 90).length,
+      good: assessments.filter(a => a.score >= 80 && a.score < 90).length,
+      average: assessments.filter(a => a.score >= 70 && a.score < 80).length,
+      poor: assessments.filter(a => a.score < 70).length
+    };
+
+    return {
+      EM: "Lấy thống kê thành công",
+      EC: "0",
+      DT: {
+        totalAssessments,
+        avgScore,
+        scoreDistribution
+      }
+    };
+  } catch (error) {
+    console.error("Lỗi trong getPronunciationStats:", error);
+    return {
+      EM: error.message,
+      EC: "-2",
+      DT: null
+    };
+  }
+};
+
+// Gọi Python MultiPA service
+const callMultiPAService = async (audioFile, referenceText) => {
+  try {
+    const formData = new FormData();
+    formData.append('audio', audioFile);
+    formData.append('reference_text', referenceText);
+
+    const response = await axios.post(
+      process.env.MULTIPA_SERVICE_URL || 'http://localhost:5001/api/pronunciation/assess',
+      formData,
+      { headers: formData.getHeaders() }
+    );
+
+    return {
+      score: response.data.score || 0,
+      pronunciation_score: response.data.pronunciation_score || 0,
+      fluency_score: response.data.fluency_score || 0,
+      feedback: response.data.feedback || {}
+    };
+  } catch (error) {
+    console.error("Lỗi gọi MultiPA service:", error);
+    throw new Error("Không thể kết nối đến dịch vụ chấm điểm");
+  }
+};
+
+// Cập nhật UserWordStatus dựa trên điểm phát âm
+const updateUserWordStatusByPronunciation = async (userId, wordId, pronunciationScore) => {
+  try {
+    const userWordStatus = await UserWordStatus.findOne({
+      where: { user_id: userId, word_id: wordId }
+    });
+
+    if (!userWordStatus) return;
+
+    let newReviewCount = userWordStatus.review_count + 1;
+    let newEaseFactor = userWordStatus.ease_factor;
+    let newInterval = userWordStatus.intervall;
+
+    if (pronunciationScore >= 80) {
+      newInterval = Math.ceil(userWordStatus.intervall * newEaseFactor);
+    } else if (pronunciationScore >= 60) {
+      newInterval = userWordStatus.intervall;
+    } else {
+      newInterval = 1;
+      newEaseFactor = Math.max(1.3, newEaseFactor - 0.2);
+    }
+
+    await userWordStatus.update({
+      review_count: newReviewCount,
+      ease_factor: newEaseFactor,
+      intervall: newInterval,
+      last_reviewed: new Date(),
+      next_review: new Date(Date.now() + newInterval * 24 * 60 * 60 * 1000)
+    });
+  } catch (error) {
+    console.error("Lỗi cập nhật UserWordStatus:", error);
+  }
+};
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const authMiddleware = require("../../middleware/authMiddleware");
+const { authorizeByRole } = require("../../middleware/authorizeMiddleware");
 const ExamAdminController = require("../controllers/examAdminController");
 
 // Admin	Tạo bài thi mới	POST	/api/admin/tests
@@ -15,22 +16,22 @@ const ExamAdminController = require("../controllers/examAdminController");
 // Admin	Xem kết quả chi tiết của user	GET	/api/admin/exam-sessions/{session_id}
 // Admin	Xem thống kê bài thi	GET	/api/admin/tests/{test_id}/statistics
 
-router.get("/tests", authMiddleware, ExamAdminController.getTests); // Done
-router.get("/tests/detail/:test_id", authMiddleware, ExamAdminController.getTestDetail); // Done
-router.patch("/tests/:test_id", authMiddleware, ExamAdminController.updateTest); // Done
-router.delete("/tests/:test_id", authMiddleware, ExamAdminController.deleteTest); // Done
+router.get("/tests", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.getTests); // Done
+router.get("/tests/detail/:test_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.getTestDetail); // Done
+router.patch("/tests/:test_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.updateTest); // Done
+router.delete("/tests/:test_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.deleteTest); // Done
 
 // ------ Tạo 1 bài test mới ------ //
-router.post("/tests", authMiddleware, ExamAdminController.createTest); // Done
-router.post("/tests/:test_id/parts", authMiddleware, ExamAdminController.addPartToTest); // Done
-router.post("/parts/:part_id/questions", authMiddleware, ExamAdminController.addQuestionToPart);
+router.post("/tests", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.createTest); // Done
+router.post("/tests/:test_id/parts", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.addPartToTest); // Done
+router.post("/parts/:part_id/questions", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.addQuestionToPart);
 // ------- End ---------- //
 
-router.patch("/questions/:question_id", authMiddleware, ExamAdminController.updateQuestion);
-router.delete("/questions/:question_id", authMiddleware, ExamAdminController.deleteQuestion);
-router.get("/tests/:test_id/sessions", authMiddleware, ExamAdminController.getTestSessions);
-router.get("/exam-sessions/:session_id", authMiddleware, ExamAdminController.getExamSessionDetail);
-router.get("/tests/:test_id/statistics", authMiddleware, ExamAdminController.getTestStatistics); // Xem thống kê bài thi
+router.patch("/questions/:question_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.updateQuestion);
+router.delete("/questions/:question_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.deleteQuestion);
+router.get("/tests/:test_id/sessions", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.getTestSessions);
+router.get("/exam-sessions/:session_id", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.getExamSessionDetail);
+router.get("/tests/:test_id/statistics", authMiddleware, authorizeByRole(["admin", "teacher"]), ExamAdminController.getTestStatistics); // Xem thống kê bài thi
 
 
 module.exports = router;
