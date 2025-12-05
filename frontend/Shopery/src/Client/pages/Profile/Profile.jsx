@@ -1,348 +1,164 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { clientApi } from '../../services/clientApi';
-import './Profile.css';
+// Client/pages/Profile/Profile.jsx
+import React, { useState } from "react";
+import AccountSecurity from "../../components/Profile/ProfileJSX/AccountSecurity";
+import DeleteAccount from "../../components/Profile/ProfileJSX/DeleteAccount";
+import MyProfile from "../../components/Profile/ProfileJSX/MyProfile";
+import Notification from "../../components/Profile/ProfileJSX/Notification";
+import Privacy from "../../components/Profile/ProfileJSX/Privacy";
+import { useGetProfile } from "../../services/Profile/profileQueries";
+import "./Profile.css";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const [isEditing, setIsEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState({ type: '', text: '' });
-  
-  // Form data
-  const [formData, setFormData] = useState({
-    full_name: '',
-    phone_number: '',
-    avatar_url: '',
-    email: '',
-    username: ''
-  });
+  const [activeTab, setActiveTab] = useState("my-profile");
 
-  // Stats data
-  const [stats, setStats] = useState({
-    enrolledCourses: 0,
-    completedCourses: 0,
-    wishlistItems: 0,
-    totalWords: 0,
-    studyStreak: 0
-  });
+  // Lấy thông tin profile từ API
+  const { data: profileData, isLoading, error } = useGetProfile();
 
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        full_name: user.full_name || '',
-        phone_number: user.phone_number || '',
-        avatar_url: user.avatar_url || '',
-        email: user.email || '',
-        username: user.username || ''
-      });
-      // Load user stats
-      loadUserStats();
-    }
-  }, [user]);
+  // Debug logging
+  console.log("profileData:", profileData);
+  console.log("isLoading:", isLoading);
+  console.log("error:", error);
 
-  const loadUserStats = async () => {
-    try {
-      const response = await clientApi.getUserStats();
-      if (response.EC === '0') {
-        setStats(response.DT);
-      }
-    } catch (error) {
-      console.error('Error loading user stats:', error);
-      // Fallback to default stats if API fails
-      setStats({
-        enrolledCourses: 0,
-        completedCourses: 0,
-        wishlistItems: 0,
-        totalWords: 0,
-        studyStreak: 0
-      });
-    }
+  const profile = profileData?.DT || null;
+  console.log("PROFILE (extracted):", profile);
+  // Tab titles mapping
+  const tabTitles = {
+    "my-profile": "My Profile",
+    "my-courses": "My Courses",
+    wishlists: "Wishlists",
+    "account-security": "Account Security",
+    privacy: "Privacy",
+    notifications: "Notifications",
+    "delete-account": "Delete Account",
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // Navigation menu items
+  const menuItems = [
+    { id: "my-profile", label: "My Profile", icon: "👤" },
+    { id: "my-courses", label: "My Courses", icon: "📚" },
+    { id: "wishlists", label: "Wishlists", icon: "❤️" },
+    { id: "account-security", label: "Account Security", icon: "✓" },
+    { id: "privacy", label: "Privacy", icon: "🔒" },
+    { id: "notifications", label: "Notifications", icon: "🔔" },
+    { id: "delete-account", label: "Delete Account", icon: "🗑️" },
+  ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage({ type: '', text: '' });
-
-    try {
-      const response = await clientApi.updateUserProfile(formData);
-      if (response.EC === '0') {
-        setMessage({ type: 'success', text: 'Cập nhật thông tin thành công!' });
-        setIsEditing(false);
-        // Update user in Redux store
-        dispatch({ type: 'auth/updateUser', payload: response.DT });
-      } else {
-        setMessage({ type: 'error', text: response.EM });
-      }
-    } catch (error) {
-      setMessage({ type: 'error', text: 'Có lỗi xảy ra khi cập nhật thông tin' });
-    } finally {
-      setLoading(false);
+  // Render content based on active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case "account-security":
+        return <AccountSecurity />;
+      case "my-profile":
+        return <MyProfile />;
+      case "my-courses":
+        return (
+          <div className="profile-content-placeholder">My Courses Content</div>
+        );
+      case "wishlists":
+        return (
+          <div className="profile-content-placeholder">Wishlists Content</div>
+        );
+      case "privacy":
+        return <Privacy />;
+      case "notifications":
+        return <Notification />;
+      case "delete-account":
+        return <DeleteAccount />;
+      default:
+        return <MyProfile />;
     }
   };
 
-  const handleCancel = () => {
-    setFormData({
-      full_name: user.full_name || '',
-      phone_number: user.phone_number || '',
-      avatar_url: user.avatar_url || '',
-      email: user.email || '',
-      username: user.username || ''
-    });
-    setIsEditing(false);
-    setMessage({ type: '', text: '' });
+  // Xử lý khi click Edit <Profile></Profile>
+  const handleEditProfile = () => {
+    setActiveTab("my-profile");
   };
 
-  const formatDate = (dateString) => {
-    if (!dateString) return 'Chưa có';
-    return new Date(dateString).toLocaleDateString('vi-VN');
-  };
+  // Hiển thị loading
+  if (isLoading) {
+    return (
+      <div className="profile-page">
+        <div className="profile-loading">Đang tải thông tin profile...</div>
+      </div>
+    );
+  }
 
-  const getStatusBadge = (status) => {
-    const statusMap = {
-      'active': { text: 'Hoạt động', class: 'status-active' },
-      'unverified': { text: 'Chưa xác thực', class: 'status-unverified' },
-      'suspended': { text: 'Tạm khóa', class: 'status-suspended' }
-    };
-    const statusInfo = statusMap[status] || { text: status, class: 'status-default' };
-    return <span className={`status-badge ${statusInfo.class}`}>{statusInfo.text}</span>;
-  };
-
-  return (
-    <div className="profile-container">
-      <div className="profile-header">
-        <div className="profile-cover">
-          <div className="profile-avatar-section">
-            <div className="profile-avatar">
-              {user?.avatar_url ? (
-                <img src={user.avatar_url} alt="Avatar" />
-              ) : (
-                <div className="avatar-placeholder">
-                  {user?.full_name?.charAt(0) || user?.username?.charAt(0) || 'U'}
-                </div>
-              )}
-            </div>
-            <div className="profile-info">
-              <h1 className="profile-name">
-                {user?.full_name || user?.username || 'Chưa có tên'}
-              </h1>
-              <p className="profile-username">@{user?.username}</p>
-              {getStatusBadge(user?.status)}
-            </div>
-          </div>
+  // Hiển thị error
+  if (error) {
+    return (
+      <div className="profile-page">
+        <div className="profile-error">
+          Có lỗi xảy ra khi tải thông tin profile. Vui lòng thử lại sau.
         </div>
       </div>
+    );
+  }
 
-      <div className="profile-content">
-        <div className="profile-stats">
-          <div className="stats-grid">
-            <div className="stat-card">
-              <div className="stat-icon">📚</div>
-              <div className="stat-info">
-                <h3>{stats.enrolledCourses}</h3>
-                <p>Khóa học đã đăng ký</p>
-              </div>
+  // Lấy thông tin hiển thị
+  const displayName = profile?.full_name || profile?.username || "User";
+  const displayUsername = profile?.username
+    ? `@${profile.username}`
+    : "@username";
+  const avatarUrl = profile?.avatar_url
+    ? `http://localhost:5000${profile.avatar_url}`
+    : "https://images.unsplash.com/photo-1757351122515-21a7b61d682e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D";
+
+  return (
+    <div className="profile-page">
+      {/* Header */}
+      <div className="profile-header">
+        <h1 className="profile-header__title">
+          {tabTitles[activeTab] || "My Profile"}
+        </h1>
+      </div>
+
+      {/* Main Container */}
+      <div className="profile-container">
+        {/* Left Sidebar */}
+        <div className="profile-sidebar">
+          {/* Profile Card */}
+          <div className="profile-card">
+            <div className="profile-card__avatar">
+              <img
+                src={avatarUrl}
+                alt="Profile"
+                className="profile-card__avatar-img"
+              />
             </div>
-            <div className="stat-card">
-              <div className="stat-icon">✅</div>
-              <div className="stat-info">
-                <h3>{stats.completedCourses}</h3>
-                <p>Khóa học hoàn thành</p>
-              </div>
+            <h2 className="profile-card__name">{displayName}</h2>
+            <div className="profile-card__location">
+              <span className="profile-card__location-icon">📍</span>
+              <span>{profile?.email || "No email"}</span>
             </div>
-            <div className="stat-card">
-              <div className="stat-icon">❤️</div>
-              <div className="stat-info">
-                <h3>{stats.wishlistItems}</h3>
-                <p>Khóa học yêu thích</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">📝</div>
-              <div className="stat-info">
-                <h3>{stats.totalWords}</h3>
-                <p>Từ vựng đã học</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">🔥</div>
-              <div className="stat-info">
-                <h3>{stats.studyStreak}</h3>
-                <p>Ngày học liên tiếp</p>
-              </div>
-            </div>
+            <div className="profile-card__username">{displayUsername}</div>
+            <button
+              className="profile-card__edit-btn"
+              onClick={handleEditProfile}
+            >
+              <span className="profile-card__edit-icon">✏️</span>
+              Edit Profile
+            </button>
           </div>
+
+          {/* Navigation Menu */}
+          <nav className="profile-nav">
+            {menuItems.map((item) => (
+              <button
+                key={item.id}
+                className={`profile-nav__item ${
+                  activeTab === item.id ? "profile-nav__item--active" : ""
+                }`}
+                onClick={() => setActiveTab(item.id)}
+              >
+                <span className="profile-nav__icon">{item.icon}</span>
+                <span className="profile-nav__label">{item.label}</span>
+              </button>
+            ))}
+          </nav>
         </div>
 
-        <div className="profile-details">
-          <div className="profile-section">
-            <div className="section-header">
-              <h2>Thông tin cá nhân</h2>
-              {!isEditing && (
-                <button 
-                  className="edit-btn"
-                  onClick={() => setIsEditing(true)}
-                >
-                  Chỉnh sửa
-                </button>
-              )}
-            </div>
-
-            {message.text && (
-              <div className={`message ${message.type}`}>
-                {message.text}
-              </div>
-            )}
-
-            {isEditing ? (
-              <form onSubmit={handleSubmit} className="profile-form">
-                <div className="form-group">
-                  <label htmlFor="full_name">Họ và tên</label>
-                  <input
-                    type="text"
-                    id="full_name"
-                    name="full_name"
-                    value={formData.full_name}
-                    onChange={handleInputChange}
-                    placeholder="Nhập họ và tên"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="phone_number">Số điện thoại</label>
-                  <input
-                    type="tel"
-                    id="phone_number"
-                    name="phone_number"
-                    value={formData.phone_number}
-                    onChange={handleInputChange}
-                    placeholder="Nhập số điện thoại"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="avatar_url">URL ảnh đại diện</label>
-                  <input
-                    type="url"
-                    id="avatar_url"
-                    name="avatar_url"
-                    value={formData.avatar_url}
-                    onChange={handleInputChange}
-                    placeholder="Nhập URL ảnh đại diện"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    disabled
-                    className="disabled-input"
-                  />
-                  <small>Email không thể thay đổi</small>
-                </div>
-
-                <div className="form-group">
-                  <label>Tên đăng nhập</label>
-                  <input
-                    type="text"
-                    value={formData.username}
-                    disabled
-                    className="disabled-input"
-                  />
-                  <small>Tên đăng nhập không thể thay đổi</small>
-                </div>
-
-                <div className="form-actions">
-                  <button 
-                    type="button" 
-                    className="cancel-btn"
-                    onClick={handleCancel}
-                    disabled={loading}
-                  >
-                    Hủy
-                  </button>
-                  <button 
-                    type="submit" 
-                    className="save-btn"
-                    disabled={loading}
-                  >
-                    {loading ? 'Đang lưu...' : 'Lưu thay đổi'}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <div className="profile-info-display">
-                <div className="info-item">
-                  <label>Họ và tên:</label>
-                  <span>{user?.full_name || 'Chưa cập nhật'}</span>
-                </div>
-                <div className="info-item">
-                  <label>Email:</label>
-                  <span>{user?.email}</span>
-                  <span className={`verification-badge ${user?.email_verified ? 'verified' : 'unverified'}`}>
-                    {user?.email_verified ? '✓ Đã xác thực' : '⚠ Chưa xác thực'}
-                  </span>
-                </div>
-                <div className="info-item">
-                  <label>Số điện thoại:</label>
-                  <span>{user?.phone_number || 'Chưa cập nhật'}</span>
-                  {user?.phone_number && (
-                    <span className={`verification-badge ${user?.phone_verified ? 'verified' : 'unverified'}`}>
-                      {user?.phone_verified ? '✓ Đã xác thực' : '⚠ Chưa xác thực'}
-                    </span>
-                  )}
-                </div>
-                <div className="info-item">
-                  <label>Ngày tham gia:</label>
-                  <span>{formatDate(user?.created_at)}</span>
-                </div>
-                <div className="info-item">
-                  <label>Lần đăng nhập cuối:</label>
-                  <span>{formatDate(user?.last_login)}</span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="profile-section">
-            <h2>Hoạt động gần đây</h2>
-            <div className="activity-list">
-              <div className="activity-item">
-                <div className="activity-icon">📚</div>
-                <div className="activity-content">
-                  <p>Đã hoàn thành khóa học "JavaScript Cơ bản"</p>
-                  <span className="activity-time">2 ngày trước</span>
-                </div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-icon">📝</div>
-                <div className="activity-content">
-                  <p>Đã học 15 từ vựng mới</p>
-                  <span className="activity-time">1 tuần trước</span>
-                </div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-icon">❤️</div>
-                <div className="activity-content">
-                  <p>Đã thêm "React Advanced" vào danh sách yêu thích</p>
-                  <span className="activity-time">2 tuần trước</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Right Content Area */}
+        <div className="profile-content">{renderContent()}</div>
       </div>
     </div>
   );

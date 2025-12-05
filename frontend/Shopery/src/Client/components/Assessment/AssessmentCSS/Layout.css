@@ -1,0 +1,18 @@
+.assessment-layout {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.assessment-layout__left {
+  flex: 1;
+}
+
+.assessment-layout__right {
+  width: 280px;
+  flex-shrink: 0;
+}

@@ -2,12 +2,39 @@ const { User } = require("../../models");
 const { CourseEnrollment } = require("../../models");
 const { CourseWishlist } = require("../../models");
 const { UserWord } = require("../../models");
+const { EmailVerification } = require("../../models");
 const bcrypt = require("bcrypt");
+const {sendOtpEmail } = require("../../utils/sendEmail");
+
+// Sinh OTP ngẫu nhiên
+function generateOtp() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 
 // Lấy thông tin profile của user
 exports.getUserProfile = async (userId) => {
   try {
-    const user = await User.findById(userId);
+    console.log("getUserProfile - userId:", userId);
+    console.log("getUserProfile - User model:", User);
+    console.log("getUserProfile - User.findbyId:", typeof User.findbyId);
+    
+    if (!userId) {
+      console.error("getUserProfile - userId is null or undefined");
+      return {
+        EM: "User ID không hợp lệ",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Dùng findOne trực tiếp để tránh lỗi với findbyId
+    const user = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
+    console.log("getUserProfile - user result:", user ? "Found" : "Not found");
+    
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -17,6 +44,7 @@ exports.getUserProfile = async (userId) => {
     }
 
     const { password_hash, ...userWithoutPass } = user.toJSON();
+    console.log("getUserProfile - success, returning user data");
     return {
       EM: "Lấy thông tin profile thành công",
       EC: "0",
@@ -24,8 +52,10 @@ exports.getUserProfile = async (userId) => {
     };
   } catch (error) {
     console.error("Error in getUserProfile service:", error);
+    console.error("Error stack:", error.stack);
+    console.error("Error message:", error.message);
     return {
-      EM: "Lỗi hệ thống khi lấy thông tin profile",
+      EM: "Lỗi hệ thống khi lấy thông tin profile: " + error.message,
       EC: "-2",
       DT: null,
     };
@@ -35,7 +65,10 @@ exports.getUserProfile = async (userId) => {
 // Cập nhật thông tin profile
 exports.updateUserProfile = async (userId, updateData) => {
   try {
-    const user = await User.findById(userId);
+    const user = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -45,7 +78,7 @@ exports.updateUserProfile = async (userId, updateData) => {
     }
 
     // Chỉ cho phép cập nhật một số trường nhất định
-    const allowedFields = ['full_name', 'phone_number', 'avatar_url'];
+    const allowedFields = ['username', 'full_name', 'phone_number', 'avatar_url'];
     const updateFields = {};
     
     for (const field of allowedFields) {
@@ -57,7 +90,10 @@ exports.updateUserProfile = async (userId, updateData) => {
     await User.updateUser(userId, updateFields);
     
     // Lấy thông tin user đã cập nhật
-    const updatedUser = await User.findById(userId);
+    const updatedUser = await User.findOne({ 
+      where: { user_id: userId },
+      attributes: { exclude: ["password_hash"] }
+    });
     const { password_hash, ...userWithoutPass } = updatedUser.toJSON();
 
     return {
@@ -134,7 +170,8 @@ exports.getUserStats = async (userId) => {
 // Đổi mật khẩu
 exports.changePassword = async (userId, currentPassword, newPassword) => {
   try {
-    const user = await User.findById(userId);
+    // Cần password_hash nên không dùng findbyId (exclude password_hash)
+    const user = await User.findOne({ where: { user_id: userId } });
     if (!user) {
       return {
         EM: "Không tìm thấy user",
@@ -197,5 +234,103 @@ const calculateStudyStreak = async (userId) => {
   } catch (error) {
     console.error("Error calculating study streak:", error);
     return 0;
+  }
+};
+
+// Đổi email
+exports.changeEmail = async (userId, newEmail, currentPassword) => {
+  try {
+    // Cần password_hash nên không dùng findbyId (exclude password_hash)
+    const user = await User.findOne({ where: { user_id: userId } });
+    if (!user) {
+      return {
+        EM: "Không tìm thấy user",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Kiểm tra email hiện tại
+    if (user.email === newEmail) {
+      return {
+        EM: "Email mới trùng với email hiện tại",
+        EC: "2",
+        DT: null,
+      }; 
+    }
+    
+    // Kiểm tra mật khẩu hiện tại
+    const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password_hash);
+    if (!isCurrentPasswordValid) {
+      return {
+        EM: "Mật khẩu hiện tại không đúng",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Tạo OTP xác thực email mới
+    const otp = generateOtp();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 phút
+
+    await EmailVerification.createVerification({
+      user_id: userId,
+      email: newEmail,
+      verification_token: otp,
+      expires_at: expiresAt,
+    });
+
+    // Gửi OTP qua email
+    await sendOtpEmail(newEmail, otp);
+
+    return {
+      EM: "Vui lòng kiểm tra email để lấy OTP.",
+      EC: "0",
+      DT: { otp },
+    };
+  } catch (error) {
+    console.error("Lỗi trong changeEmail service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình đổi email",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// Xác thực OTP đổi email
+exports.verifyOtp = async (email, otp) => {
+  try {
+    const emailVerification = await EmailVerification.findValidVerification(
+      email,
+      otp
+    );  
+
+    if (!emailVerification) {
+      return {
+        EM: "Mã OTP không hợp lệ hoặc đã hết hạn",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Cập nhật email cho user với email mới từ verification record
+    await User.updateUser(emailVerification.user_id, { email: emailVerification.email });
+
+    // Đánh dấu đã xác thực
+    await EmailVerification.markAsVerified(emailVerification.verification_id);
+
+    return {
+      EM: "Xác thực thành công!",
+      EC: "0",
+      DT: null,
+    };
+  } catch (error) {
+    console.error("Lỗi trong verifyOtp service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình xác thực OTP",
+      EC: "-2",
+      DT: null,
+    };
   }
 };

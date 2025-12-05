@@ -1,0 +1,28 @@
+Dưỡng
++ Code chuẩn lại hết các phần CRUD course , CRUD exam 
++ 2 kĩ năng speak + writing , bảo Phong kết nội backend cho , đọc hiểu lại code 
++ luồng làm bài thi chưa chuẩn , questionNavigation chưa chuẩn -> hiển thị toàn bộ khi vào bài , Khi F5, back, reload, navigation phải pop up + nộp bài sớm
++ luồng xem chi tiết đáp án bài thi chưa có 
++ luồng thống kê part theo tags cũng chưa chuẩn
++ xem course + exam còn thêm chức năng gì không 
+
+
+Duy
++ Tìm hiểu nốt phần link động lesson theo khóa học 
++ Chỉnh sửa bảng lesson
++ setup mọi thứ bên backend + CSDL để tôi nhảy vào frontend thôi
++ lấy đủ dữ liệu cho course 
++ hỏi lại phần link google cloud để lưu video 
++ tích hợp vào 
++ tìm hiểu 2-3 khóa học đặc trưng [ Ngữ pháp , Từ Vựng , ... ]
+
+Phong 
++ có khả năng phải thêm bảng profile 
++ code chuẩn lại toàn bộ luồng USER + ROLE + PERMISSTION
++ Tìm hiểu phần phát âm từ 
++ hoàn thành flashCard 
+
+
+Payment =>> 
+
+

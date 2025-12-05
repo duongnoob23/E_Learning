@@ -4,7 +4,6 @@ import "./OTP.css";
 const OTP = ({ open, onClose, email, onSubmit }) => {
   const numberOTP = 6;
   const [otp, setOtp] = useState(Array(numberOTP).fill(""));
-  console.log("🚀 ~ OTP ~ otp:", otp);
 
   const inputsRef = useRef([]);
 

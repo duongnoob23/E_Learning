@@ -1,0 +1,76 @@
+.mycourses {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+    
+    .mycourses__title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    
+    .mycourses__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    
+    .mycourses__card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+    
+    .mycourses__card:hover {
+      transform: translateY(-3px);
+    }
+    
+    .mycourses__thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .mycourses__info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .mycourses__meta {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .btn {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+      background-color: #1ec28b;
+      color: white;
+    }
+    
+    .btn-outline {
+      background-color: white;
+      border: 2px solid #1ec28b;
+      color: #1ec28b;
+    }
+    
+    .btn-outline:hover {
+      background-color: #e8fff7;
+    }
+    

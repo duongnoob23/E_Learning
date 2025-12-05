@@ -19,7 +19,13 @@ export const courseApi = {
 
   // Lấy chi tiết khóa học
   getCourseById: async (courseId) => {
-    const response = await axiosInstance.get(`/course/${courseId}`);
+    const response = await axiosInstance.get(`/course/courses/${courseId}/preview`);
+    return response.data;
+  },
+
+  // Lấy cấu trúc khóa học
+  getCourseStructure: async (courseId) => {
+    const response = await axiosInstance.get(`/course/${courseId}/structure`);
     return response.data;
   },
 
@@ -64,4 +70,40 @@ export const courseApi = {
     const response = await axiosInstance.get(`/course/levels`);
     return response.data;
   },
+  // Đăng ký khóa học
+  enrollCourse: async (userId, courseId) => {
+    const response = await axiosInstance.post(`/course/${courseId}/enroll`, {
+      user_id: userId,
+    });
+    return response.data;
+  },  
+  // Lấy danh sách khóa học đã đăng ký
+  getUserCourses: async (userId) => {
+    const response = await axiosInstance.get(`/course/user/my-courses`, {
+      params: { user_id: userId },
+    });
+    return response.data;
+  },
+  // Lesson Progress
+  startLesson: async (data) => {
+    const res = await axiosInstance.post("/course/start", data);
+    return res.data;
+  },
+  updateLessonProgress: async (data) => {
+    const res = await axiosInstance.post("/course/update", data);
+    return res.data;
+  },
+  completeLesson: async (data) => {
+    const res = await axiosInstance.post("/course/complete", data);
+    return res.data;
+  },
+  getLessonProgress: async (lesson_id, user_id) => {
+    const res = await axiosInstance.get(`/course/lesson/${lesson_id}?user_id=${user_id}`);
+    return res.data;
+  },
+  getCourseProgress: async (course_id, user_id) => {
+    const res = await axiosInstance.get(`/course/course/${course_id}?user_id=${user_id}`);
+    return res.data;
+  },
+  
 };

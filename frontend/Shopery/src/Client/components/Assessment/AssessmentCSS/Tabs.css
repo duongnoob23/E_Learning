@@ -1,0 +1,100 @@
+.assessment-tabs {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px;
+  flex-direction: column;
+  display: flex;
+}
+
+.assessment-tabs__header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.assessment-tabs__btn {
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+  transition: 0.2s;
+}
+
+.assessment-tabs__btn--active {
+  background: #1677ff;
+  color: #fff;
+}
+
+.assessment-tabs__alert {
+  background: #eaf3ff;
+  border-left: 4px solid #1677ff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.assessment-tabs__parts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.assessment-tabs__part {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #444;
+  transition: 0.2s;
+}
+
+.assessment-tabs__part:hover {
+  border-color: #1677ff;
+}
+
+.assessment-tabs__part-title {
+  font-weight: 600;
+  color: #111;
+}
+
+.assessment-tabs__part-count {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.assessment-tabs__start-btn {
+  background: #1677ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.assessment-tabs__start-btn:hover {
+  background: #105ad1;
+}
+
+/* .assessment-tabs_content_fix {
+  margin-bottom: 100px;
+} */
+
+.assessment-banner__fullTest {
+  color: #855a1f;
+  background-color: #ffefd8;
+  border-color: #ffe8c8;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}

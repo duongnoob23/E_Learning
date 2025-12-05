@@ -1,0 +1,178 @@
+.sidebar {
+  width: 240px;
+  background-color: #f8f8f8; // ✅ Nền xám nhạt như ảnh
+  color: #111827; // ✅ Text màu tối
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+  border-right: 1px solid #e5e7eb; // ✅ Border nhạt
+
+  &__logo {
+    padding: 20px;
+    text-align: left; // ✅ Căn trái
+    border-bottom: 1px solid #e5e7eb; // ✅ Border nhạt
+    display: flex;
+    align-items: center;
+    gap: 12px; // ✅ Khoảng cách giữa logo và text
+  }
+
+  &__logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(
+      135deg,
+      #00acc1 0%,
+      #008ba3 100%
+    ); // ✅ Gradient xanh ngọc
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 172, 193, 0.2);
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #111827; // ✅ Text màu đen
+    margin: 0;
+  }
+
+  // ✅ Search bar
+  &__search {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #111827;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #00acc1;
+      box-shadow: 0 0 0 3px rgba(0, 172, 193, 0.1);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 16px 0;
+    overflow-y: auto;
+  }
+
+  // ✅ Section title (HOME, MANAGEMENT, OTHER)
+  &__section {
+    margin-bottom: 20px;
+  }
+
+  &__section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280; // ✅ Text xám
+    text-transform: uppercase; // ✅ Viết hoa
+    letter-spacing: 0.5px;
+    padding: 0 20px 8px;
+    margin-bottom: 8px;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    margin: 2px 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    color: #374151; // ✅ Text xám đậm
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative; // ✅ Để thêm thanh dọc
+    border-radius: 0; // ✅ Không bo góc mặc định
+
+    &:hover {
+      background-color: #f3f4f6; // ✅ Hover xám nhạt
+      color: #111827;
+    }
+
+    &--active {
+      background-color: #e0f7fa; // ✅ Nền xanh ngọc nhạt
+      color: #00acc1; // ✅ Text màu xanh ngọc
+
+      // ✅ Thanh dọc màu xanh bên trái
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #00acc1; // ✅ Màu xanh ngọc
+        border-radius: 0 2px 2px 0;
+      }
+
+      .sidebar__icon {
+        color: #00acc1; // ✅ Icon màu xanh
+      }
+
+      .sidebar__text {
+        color: #00acc1; // ✅ Text màu xanh
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__icon {
+    margin-right: 12px; // ✅ Tăng khoảng cách
+    font-size: 1.1rem;
+    color: #6b7280; // ✅ Icon màu xám
+    transition: color 0.2s;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: #374151; // ✅ Text màu xám đậm
+    transition: color 0.2s;
+  }
+}
+
+// ✅ Scrollbar styling
+.sidebar__nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar__nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar__nav::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+
+  &:hover {
+    background: #9ca3af;
+  }
+}

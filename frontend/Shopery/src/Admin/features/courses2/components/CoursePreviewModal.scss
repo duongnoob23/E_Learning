@@ -1,0 +1,377 @@
+// Admin Course Preview Modal - Prefix với admin- để tránh conflict với CoursePreview.css
+.admin-course-preview-modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.admin-course-preview-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 90vw;
+  max-width: 1200px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-course-preview-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.admin-course-preview-modal__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.admin-course-preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// Header Section
+.admin-course-preview-header {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.admin-course-preview-header__left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-course-preview-badge {
+  display: inline-block;
+  background: #e6e9fa;
+  color: #181818;
+  font-size: 0.95em;
+  border-radius: 6px;
+  padding: 4px 12px;
+  width: fit-content;
+}
+
+.admin-course-preview-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #181818;
+  margin: 0;
+}
+
+.admin-course-preview-desc {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.admin-course-preview-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.95em;
+  color: #6b7280;
+  flex-wrap: wrap;
+}
+
+.admin-course-preview-instructor {
+  font-size: 0.95em;
+  color: #374151;
+  font-weight: 500;
+}
+
+.admin-course-preview-header__right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.admin-course-preview-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.admin-course-preview-image {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Tabs
+.admin-course-preview-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-course-preview-tab {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #111827;
+  }
+
+  &--active {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+  }
+}
+
+.admin-course-preview-tab-content {
+  min-height: 200px;
+}
+
+// About Tab
+.admin-course-preview-about {
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+}
+
+.admin-course-preview-learn {
+  margin-bottom: 24px;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.6;
+
+      &::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #10b981;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.admin-course-preview-skills-req {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.admin-course-preview-skills {
+  flex: 1;
+  min-width: 250px;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+}
+
+.admin-course-preview-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-course-preview-skill-tag {
+  display: inline-block;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.admin-course-preview-requirements {
+  flex: 1;
+  min-width: 250px;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+// Curriculum Tab
+.admin-course-preview-curriculum {
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 20px;
+  }
+}
+
+.admin-curriculum-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-curriculum-accordion__item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.admin-curriculum-accordion__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f9fafb;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+.admin-curriculum-accordion__arrow {
+  font-size: 12px;
+  color: #6b7280;
+  margin-left: 12px;
+  transition: transform 0.2s;
+}
+
+.admin-curriculum-accordion__item--open .admin-curriculum-accordion__arrow {
+  transform: rotate(180deg);
+}
+
+.admin-curriculum-accordion__meta {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 400;
+  margin-left: 12px;
+}
+
+.admin-curriculum-accordion__content {
+  padding: 12px 20px;
+  background: #ffffff;
+}
+
+.admin-curriculum-accordion__lesson {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  i {
+    color: #2563eb;
+    font-size: 16px;
+  }
+}
+
+.admin-curriculum-accordion__lesson-time {
+  margin-left: auto;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.admin-btn-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+

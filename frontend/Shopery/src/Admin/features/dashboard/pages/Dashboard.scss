@@ -1,0 +1,351 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --main-bg: #ffffff;
+  --gray-bg: #f8fafc;
+  --text-main: #111827;
+  --text-secondary: #6b7280;
+  --card-border: #e5e7eb;
+  --link-main: #2563eb;
+  --calendar-active-bg: #e6eeff;
+  --blue-soft: #9ab8ff;
+  --gold-soft: #fde68a;
+  --danger-soft: #ef4444;
+  --yellow-soft: #facc15;
+  --deep-blue: #2a5bd7;
+}
+
+.dashboard-page-root {
+  font-family: "Inter", sans-serif;
+  min-height: 100%;
+  background: var(--gray-bg);
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+
+  .dashboard-center {
+    width: 1040px;
+    min-width: 0;
+    flex: 0 0 72%;
+    margin-right: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .dashboard-right {
+    width: 344px;
+    flex: 0 0 28%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb-row {
+  margin-bottom: 16px;
+  .breadcrumb {
+    font-size: 14px;
+    color: #9ca3af;
+    b {
+      color: #374151;
+      font-weight: 500;
+      font-size: 14px;
+      margin-left: 2px;
+    }
+  }
+}
+
+/* ===== TITLE ===== */
+.dashboard-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+/* ===== STATS CARDS ===== */
+.dashboard-stats-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 100px;
+  border-radius: 12px;
+  background: var(--main-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 16px 20px;
+
+  .stat-card-icon {
+    flex-shrink: 0;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stat-card-data {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    .stat-card-title {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .stat-card-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .stat-card-link {
+      margin-top: 7px;
+      font-size: 12px;
+      color: var(--link-main);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 500;
+      cursor: pointer;
+      .stat-card-link-icon {
+        font-size: 13px;
+        margin-left: 1px;
+      }
+    }
+  }
+}
+
+/* ===== CHART CARD ===== */
+.dashboard-chart-card {
+  margin-top: 0;
+  margin-bottom: 28px;
+  background: var(--main-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 24px 24px 30px 24px;
+  .chart-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+  }
+  .chart-wrapper {
+    height: 300px;
+    margin-top: 4px;
+  }
+}
+
+/* ===== RIGHT SIDEBAR ===== */
+.calendar-card {
+  background: var(--main-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .calendar-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .calendar-seeall {
+      font-size: 12px;
+      color: var(--link-main);
+      font-weight: 500;
+      text-decoration: none;
+      margin-left: 18px;
+    }
+  }
+  .calendar-days-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 6px;
+    margin: 18px 0 22px 0;
+    .calendar-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 32px;
+      height: 44px;
+      border-radius: 8px;
+      padding: 2px 0 2px 0;
+      .day-label {
+        font-size: 12px;
+        color: #9ca3af;
+        margin-bottom: 1px;
+        font-weight: 500;
+      }
+      .day-num {
+        font-size: 14px;
+        color: #374151;
+        font-weight: 600;
+      }
+      &.active {
+        background: var(--calendar-active-bg);
+        .day-num {
+          color: var(--link-main);
+        }
+      }
+    }
+  }
+  .calendar-events-list {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .event-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 8px 12px 8px 14px;
+      min-height: 56px;
+      border-left: 5px solid var(--card-border);
+      box-sizing: border-box;
+
+      .event-dot {
+        position: absolute;
+        left: 0;
+        top: 16px;
+        width: 6px;
+        height: 24px;
+        border-radius: 4px;
+      }
+      .event-info {
+        margin-left: 10px;
+        .event-title {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text-main);
+          margin-bottom: 2px;
+        }
+        .event-type-date {
+          font-size: 12px;
+          color: var(--text-secondary);
+          .event-type {
+          }
+          .event-date {
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ===== RECENT ACTIVITY TABLE ===== */
+.dashboard-activity-card {
+  background: var(--main-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  margin-bottom: 36px;
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .activity-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .activity-seeall {
+      font-size: 12px;
+      color: var(--link-main);
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    th,
+    td {
+      padding: 0 8px;
+      text-align: left;
+      background: none;
+      border: none;
+    }
+    thead th {
+      height: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: none;
+      border-bottom: 1px solid var(--card-border);
+    }
+    tbody tr {
+      height: 48px;
+      border-bottom: 1px solid var(--card-border);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    tbody td {
+      font-size: 14px;
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+    td.time {
+      color: #374151;
+      font-weight: 500;
+      width: 108px;
+    }
+    td.type {
+      color: var(--text-secondary);
+      font-weight: 500;
+      width: 155px;
+      &.primary {
+        color: var(--link-main);
+      }
+    }
+    td.msg {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1300px) {
+  .dashboard-page-root .dashboard-center {
+    width: 100vw;
+    margin-right: 0;
+    padding: 0 8px;
+  }
+  .dashboard-page-root .dashboard-right {
+    width: 100vw;
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-page-root {
+    flex-direction: column;
+    align-items: center;
+    .dashboard-center,
+    .dashboard-right {
+      width: 100vw;
+      margin: 0 auto;
+      padding: 0 6px;
+    }
+    .dashboard-right {
+      margin-top: 24px;
+    }
+  }
+  .dashboard-stats-row {
+    flex-direction: column;
+    gap: 18px;
+  }
+}

@@ -42,8 +42,82 @@ const CourseCoupon = require("./CourseCoupon")(sequelize, DataTypes);
 const CourseCertificate = require("./CourseCertificate")(sequelize, DataTypes);
 const CourseTag = require("./CourseTag")(sequelize, DataTypes);
 const CourseTagRelation = require("./CourseTagRelation")(sequelize, DataTypes);
+// Exam models
+const Test = require("./exam/Test")(sequelize, DataTypes);
+const Part = require("./exam/Part")(sequelize, DataTypes);
+const Question = require("./exam/Questions")(sequelize, DataTypes);
+const SpeakingResponse = require("./exam/SpeakingResponse")(sequelize, DataTypes);
+const WritingResponse = require("./exam/WritingResponse")(sequelize, DataTypes);
+const Choice = require("./exam/Choice")(sequelize, DataTypes);
+const ExamSession = require("./exam/ExamSession")(sequelize, DataTypes);
+const UserAnswer = require("./exam/UserAnswers")(sequelize, DataTypes);
+const UserExamStatistics = require("./exam/UserStatistics")(sequelize, DataTypes);
+const PartStatistics = require("./exam/PartStatistics")(sequelize, DataTypes);
+const ExamCategory = require("./exam/TestCategory")(sequelize, DataTypes);
+const TestCategoryRelation = require("./exam/TestCategoryRelation")(sequelize, DataTypes);
+const ExamTag = require("./exam/Tag")(sequelize, DataTypes);
+const QuestionTag = require("./exam/QuestionTag")(sequelize, DataTypes);
+const TestDiscussion = require("./exam/Discussion")(sequelize, DataTypes);
+const TestComment = require("./exam/Comment")(sequelize, DataTypes);
+
 
 // Associations
+
+
+// Exam Associations
+
+// Test -> User (created_by)
+Test.belongsTo(User, { as: "creator", foreignKey: "created_by" });
+
+// Test -> Parts
+Test.hasMany(Part, { as: "parts", foreignKey: "test_id" });
+Part.belongsTo(Test, { as: "test", foreignKey: "test_id" });
+
+// Part -> Questions
+Part.hasMany(Question, { as: "questions", foreignKey: "part_id" });
+Question.belongsTo(Part, { as: "part", foreignKey: "part_id" });
+
+// Question -> Choices
+Question.hasMany(Choice, { as: "choices", foreignKey: "question_id" });
+Choice.belongsTo(Question, { as: "question", foreignKey: "question_id" });
+
+// ExamSession -> User and Test
+ExamSession.belongsTo(User, { as: "user", foreignKey: "user_id" });
+ExamSession.belongsTo(Test, { as: "test", foreignKey: "test_id" });
+
+// ExamSession -> UserAnswers
+ExamSession.hasMany(UserAnswer, { as: "user_answers", foreignKey: "exam_session_id" });
+UserAnswer.belongsTo(ExamSession, { as: "session", foreignKey: "exam_session_id" });
+
+// UserAnswer -> Question and Choice
+UserAnswer.belongsTo(Question, { as: "question", foreignKey: "question_id" });
+UserAnswer.belongsTo(Choice, { as: "selected_choice", foreignKey: "selected_choice_id" });
+
+// Statistics
+UserExamStatistics.belongsTo(User, { as: "user", foreignKey: "user_id" });
+PartStatistics.belongsTo(User, { as: "user", foreignKey: "user_id" });
+PartStatistics.belongsTo(Part, { as: "part", foreignKey: "part_id" });
+
+// Categories and Tags
+TestCategoryRelation.belongsTo(Test, { as: "test", foreignKey: "test_id" });
+TestCategoryRelation.belongsTo(ExamCategory, { as: "category", foreignKey: "exam_category_id" });
+
+QuestionTag.belongsTo(Question, { as: "question", foreignKey: "question_id" });
+QuestionTag.belongsTo(ExamTag, { as: "examTag", foreignKey: "exam_tag_id" });
+
+// Reverse associations for tags
+Question.hasMany(QuestionTag, { as: "questionTags", foreignKey: "question_id" });
+ExamTag.hasMany(QuestionTag, { as: "questionTags", foreignKey: "exam_tag_id" });
+
+// Discussions and Comments
+TestDiscussion.belongsTo(Test, { as: "test", foreignKey: "test_id" });
+TestDiscussion.belongsTo(User, { as: "user", foreignKey: "user_id" });
+TestDiscussion.hasMany(TestComment, { as: "comments", foreignKey: "test_discussion_id" });
+
+TestComment.belongsTo(TestDiscussion, { as: "discussion", foreignKey: "test_discussion_id" });
+TestComment.belongsTo(User, { as: "user", foreignKey: "user_id" });
+TestComment.belongsTo(TestComment, { as: "parent", foreignKey: "parent_comment_id" });
+TestComment.hasMany(TestComment, { as: "replies", foreignKey: "parent_comment_id" });
 
 // Accounts
 UserRole.belongsTo(User, { foreignKey: "user_id" });
@@ -87,6 +161,11 @@ Course.belongsTo(Category, { foreignKey: "category_id" });
 Course.belongsTo(Level, { foreignKey: "level_id" });
 Course.belongsTo(Instructor, { foreignKey: "instructor_id" });
 
+
+Course.hasOne(CourseDetail, {
+  foreignKey: "course_id",
+  as: "detail"
+});
 CourseDetail.belongsTo(Course, { foreignKey: "course_id" });
 
 Module.belongsTo(Course, { foreignKey: "course_id" });
@@ -130,7 +209,7 @@ CourseTagRelation.belongsTo(CourseTag, { foreignKey: "tag_id" });
 Instructor.belongsTo(User, { foreignKey: "user_id" });
 
 // Export
-module.exports = {
+const db = {
   sequelize,
   // User & Authentication models
   User,
@@ -168,4 +247,27 @@ module.exports = {
   CourseCertificate,
   CourseTag,
   CourseTagRelation,
+  // Exam models
+  Test,
+  Part,
+  Question,
+  Choice,
+  ExamSession,
+  UserAnswer,
+  SpeakingResponse,
+  WritingResponse,
+  UserExamStatistics,
+  PartStatistics,
+  ExamCategory,
+  TestCategoryRelation,
+  ExamTag,
+  QuestionTag,
+  TestDiscussion,
+  TestComment,
 };
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+module.exports = db;

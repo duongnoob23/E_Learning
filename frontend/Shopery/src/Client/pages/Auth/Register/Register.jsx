@@ -118,13 +118,12 @@ const Register = () => {
         password: formData.password,
         confirmPassword: formData.confirmPassword,
       });
-      console.log(">>>", result);
       if (+result.data.EC === 0) {
         toast.success(result?.EM || "Đăng ký thành công");
         setShowOtpModal(true);
       }
     } catch (error) {
-      console.log(error.message);
+      error.message;
       toast.error(error?.EM || "Đăng kí tài khoản thất bại");
     } finally {
       setIsLoading(false);
@@ -134,11 +133,10 @@ const Register = () => {
   const verifyEmailMutation = useVerifyEmail();
 
   const handleOtpSubmit = async ({ message, code }) => {
-    console.log("🚀 OTP nhận được từ OTP.jsx:", message, code);
+    "🚀 OTP nhận được từ OTP.jsx:", message, code;
 
     if (message === "RESEND") {
       // TODO: Gọi API gửi lại OTP nếu cần
-      console.log("🚀 Người dùng bấm Gửi lại OTP");
       toast.info("Chức năng gửi lại OTP sẽ được phát triển");
       return;
     }
@@ -152,7 +150,6 @@ const Register = () => {
           email: formData.email,
           otp: code,
         });
-        console.log(result);
 
         if (result.data.EC === "0") {
           toast.success(result.EM || "Xác nhận OTP thành công");

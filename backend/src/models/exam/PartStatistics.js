@@ -1,0 +1,117 @@
+module.exports = (sequelize, DataTypes) => {
+    const PartStatistics = sequelize.define(
+        "PartStatistics",
+        {
+            part_stat_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            user_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
+                allowNull: false,
+            },
+            part_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
+                allowNull: false,
+            },
+            exam_session_id: {
+                type: DataTypes.BIGINT.UNSIGNED,
+                allowNull: false,
+            },
+            total_attempts: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            total_questions: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            correct_answers: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            accuracy_rate: {
+                type: DataTypes.DECIMAL(5, 2),
+                allowNull: false,
+                defaultValue: 0.00,
+            },
+            last_attempt: {
+                type: DataTypes.DATE,
+                allowNull: true,
+            },
+            created_at: { 
+                type: DataTypes.DATE, 
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
+            updated_at: { 
+                type: DataTypes.DATE, 
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
+        },
+        {
+            tableName: "part_statistics",
+            timestamps: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+        }
+    );
+
+    PartStatistics.findById = async (part_stat_id) =>
+        PartStatistics.findOne({ where: { part_stat_id } });
+
+    PartStatistics.findByUserId = async (user_id) =>
+        PartStatistics.findAll({ where: { user_id } });
+
+    PartStatistics.findByUserIdAndPartId = async (user_id, part_id) =>
+        PartStatistics.findOne({ where: { user_id, part_id } });
+
+    PartStatistics.createStatistics = async (data) => PartStatistics.create(data);
+
+    PartStatistics.updateStatistics = async (user_id, part_id, data) =>
+        PartStatistics.update(data, { where: { user_id, part_id } });
+    PartStatistics.deleteStatistics = async (user_id, part_id) =>
+        PartStatistics.destroy({ where: { user_id, part_id } });
+    PartStatistics.findByTestId = async (test_id) => {
+        const parts = await Part.findByTestId(test_id);
+        const partIds = parts.map((part) => part.part_id);
+        return PartStatistics.findAll({ where: { part_id: partIds } });
+    };
+    PartStatistics.updatePartPerformance = async (user_id, part_id, questionsAnswered, correctAnswers, exam_session_id) => {
+        const stats = await PartStatistics.findByUserIdAndPartId(user_id, part_id);
+        
+        if (stats) {
+            const newTotalQuestions = stats.total_questions + questionsAnswered;
+            const newCorrectAnswers = stats.correct_answers + correctAnswers;
+            const newAccuracyRate = (newTotalQuestions > 0) ? ((newCorrectAnswers / newTotalQuestions) * 100) : 0;
+
+            return PartStatistics.updateStatistics(user_id, part_id, {
+                exam_session_id: exam_session_id || stats.exam_session_id, // Giữ exam_session_id cũ nếu không có mới
+                total_attempts: stats.total_attempts + 1,
+                total_questions: newTotalQuestions,
+                correct_answers: newCorrectAnswers,
+                accuracy_rate: newAccuracyRate,
+                last_attempt: new Date()
+            });
+        } else {
+            const accuracyRate = questionsAnswered > 0 ? (correctAnswers / questionsAnswered) * 100 : 0;
+            return PartStatistics.createStatistics({
+                user_id,
+                part_id,
+                exam_session_id: exam_session_id, // ✅ Thêm exam_session_id khi tạo mới
+                total_attempts: 1,
+                total_questions: questionsAnswered,
+                correct_answers: correctAnswers,
+                accuracy_rate: accuracyRate,
+                last_attempt: new Date()
+            });
+        }
+    };
+
+    return PartStatistics;
+};

@@ -14,7 +14,7 @@ const validateRegister = (data) => {
   } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
     errors.email = ["Email không hợp lệ"];
   }
-
+ 
   if (!password) {
     errors.password = ["Password là bắt buộc"];
   } else if (password.length < 6) {
@@ -70,8 +70,6 @@ exports.verifyOtp = async (req, res, next) => {
   try {
     const type = req.params.type;
     const { email, otp } = req.body;
-    console.log("run1");
-
     const response = await authClientService.verifyOtp(email, otp, type);
     res.json(response);
   } catch (error) {

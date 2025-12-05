@@ -27,5 +27,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "modules", timestamps: false }
   );
+  Module.associate = (models) => {
+    Module.belongsTo(models.Course, {
+      foreignKey: "course_id",
+      as: "course",
+    });
+    Module.hasMany(models.Lesson, {
+      foreignKey: "module_id",
+      as: "lessons",
+    });
+  };
+  
   return Module;
 };

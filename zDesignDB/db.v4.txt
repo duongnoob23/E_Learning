@@ -1,8 +1,8 @@
 -- =============================================
 -- TẠO DATABASE VÀ SỬ DỤNG
 -- =============================================
-CREATE DATABASE IF NOT EXISTS e_learnning2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE e_learnning2;
+CREATE DATABASE IF NOT EXISTS e_learnning5 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE e_learnning5;
 
 -- =============================================
 -- DỌN DẸP SCHEMA CŨ (THEO THỨ TỰ KHÓA NGOẠI)
@@ -75,11 +75,6 @@ CREATE TABLE users (
     phone_number VARCHAR(20) COMMENT 'Số điện thoại',
     avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
     status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active/inactive/banned/pending_verification',
-    email_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực email',
-    phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực số điện thoại',
-    last_login DATETIME COMMENT 'Lần đăng nhập cuối',
-    failed_login_attempts INT DEFAULT 0 COMMENT 'Số lần đăng nhập sai',
-    locked_until DATETIME COMMENT 'Bị khóa đến',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
 ) ENGINE=InnoDB;
@@ -637,10 +632,13 @@ CREATE TABLE course_tag_relations (
     UNIQUE KEY uq_course_tag (course_id, tag_id)
 ) ENGINE=InnoDB;
 
+
+
+
 -- =============================================
 -- HOÀN THÀNH
 -- =============================================
-SELECT 'Schema e_learnning2 (Vocabulary + User + Security + Course) đã được tạo.' AS message;
+SELECT 'Schema e_learnning5 (Vocabulary + User + Security + Course) đã được tạo.' AS message;
 
 
 
@@ -648,7 +646,7 @@ SELECT 'Schema e_learnning2 (Vocabulary + User + Security + Course) đã đượ
 -- PHẦN: QUẢN LÝ TÀI KHOẢN (USERS, ROLES, PERMISSIONS)
 -- =============================================
 
-USE e_learnning2;
+USE e_learnning5;
 
 -- Tắt safe update mode để xóa toàn bộ không cần WHERE
 SET SQL_SAFE_UPDATES = 0;
@@ -795,7 +793,7 @@ SELECT COUNT(*) AS total_user_roles FROM user_roles;
 SELECT COUNT(*) AS total_role_permissions FROM role_permissions;
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Xóa dữ liệu cũ theo thứ tự phụ thuộc
@@ -861,7 +859,7 @@ SELECT COUNT(*) AS total_topics FROM topics;
 SELECT COUNT(*) AS total_words FROM words;
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Xóa dữ liệu cũ theo thứ tự phụ thuộc
@@ -919,7 +917,7 @@ SELECT COUNT(*) AS total_favorites FROM favorite_topics;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Xóa dữ liệu cũ theo thứ tự phụ thuộc
@@ -959,7 +957,7 @@ SELECT COUNT(*) AS total_import_details FROM import_details;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Xóa dữ liệu cũ
@@ -1020,7 +1018,7 @@ SELECT COUNT(*) AS total_password_reset_tokens FROM password_reset_tokens;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old data (by FK order)
@@ -1066,7 +1064,7 @@ SELECT 'E: categories/levels/instructors OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old
@@ -1166,7 +1164,7 @@ SELECT 'F: courses/details OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old data
@@ -1308,7 +1306,7 @@ SELECT 'Modules and lessons inserted successfully' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old
@@ -1359,7 +1357,7 @@ SELECT 'H: enrollments/progress OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old
@@ -1409,7 +1407,7 @@ SELECT 'H: enrollments/progress OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old
@@ -1446,7 +1444,7 @@ SELECT 'I: reviews/discussions/wishlist OK' AS message;
 
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old
@@ -1487,7 +1485,7 @@ SET SQL_SAFE_UPDATES = 1;
 SELECT 'J: coupons/mapping/certificates OK' AS message;
 
 
-USE e_learnning2;
+USE e_learnning5;
 SET SQL_SAFE_UPDATES = 0;
 
 -- Clear old

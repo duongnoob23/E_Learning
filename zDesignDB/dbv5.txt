@@ -1,0 +1,936 @@
+-- =============================================
+-- TẠO DATABASE VÀ SỬ DỤNG
+-- =============================================
+CREATE DATABASE IF NOT EXISTS e_learnning6 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE e_learnning6;
+
+-- =============================================
+-- DỌN DẸP SCHEMA CŨ (THEO THỨ TỰ KHÓA NGOẠI)
+-- =============================================
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Bỏ các bảng exam
+DROP TABLE IF EXISTS test_comments;
+DROP TABLE IF EXISTS test_discussions;
+DROP TABLE IF EXISTS question_tags;
+DROP TABLE IF EXISTS exam_tags;
+DROP TABLE IF EXISTS test_categories;
+DROP TABLE IF EXISTS part_statistics;
+DROP TABLE IF EXISTS user_exam_statistics;
+DROP TABLE IF EXISTS user_answers;
+DROP TABLE IF EXISTS exam_sessions;
+DROP TABLE IF EXISTS choices;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS parts;
+DROP TABLE IF EXISTS tests;
+DROP TABLE IF EXISTS exam_categories;
+
+-- Bỏ các bảng học/ôn/nhắc nhở/thống kê (nếu còn)
+DROP TABLE IF EXISTS learning_achievements;
+DROP TABLE IF EXISTS study_notifications;
+DROP TABLE IF EXISTS study_settings;
+DROP TABLE IF EXISTS learning_statistics;
+DROP TABLE IF EXISTS word_study_history;
+DROP TABLE IF EXISTS session_details;
+DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS word_learning_progress;
+
+-- Vocabulary core và bảo mật
+DROP TABLE IF EXISTS import_details;
+DROP TABLE IF EXISTS batch_imports;
+DROP TABLE IF EXISTS favorite_topics;
+DROP TABLE IF EXISTS user_word_status;
+DROP TABLE IF EXISTS user_words;
+DROP TABLE IF EXISTS words;
+DROP TABLE IF EXISTS topics;
+DROP TABLE IF EXISTS password_reset_tokens;
+DROP TABLE IF EXISTS login_history;
+DROP TABLE IF EXISTS email_verifications;
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS otp_codes;
+DROP TABLE IF EXISTS role_permissions;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS users;
+
+-- Khối Course
+DROP TABLE IF EXISTS course_tag_relations;
+DROP TABLE IF EXISTS course_tags;
+DROP TABLE IF EXISTS course_certificates;
+DROP TABLE IF EXISTS course_coupons;
+DROP TABLE IF EXISTS coupons;
+DROP TABLE IF EXISTS course_wishlist;
+DROP TABLE IF EXISTS course_discussions;
+DROP TABLE IF EXISTS course_reviews;
+DROP TABLE IF EXISTS lesson_progress;
+DROP TABLE IF EXISTS course_enrollments;
+DROP TABLE IF EXISTS lessons;
+DROP TABLE IF EXISTS modules;
+DROP TABLE IF EXISTS course_details;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS instructors;
+DROP TABLE IF EXISTS levels;
+DROP TABLE IF EXISTS categories;
+
+DROP TABLE IF EXISTS study_modes;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- =============================================
+-- KHỐI TÀI KHOẢN & PHÂN QUYỀN
+-- =============================================
+
+-- USERS: Hồ sơ tài khoản người dùng
+CREATE TABLE users (
+    user_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID người dùng',
+    username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên đăng nhập duy nhất',
+    password_hash VARCHAR(255) NOT NULL COMMENT 'Mật khẩu đã mã hóa',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email duy nhất',
+    full_name VARCHAR(100) COMMENT 'Họ tên đầy đủ',
+    phone_number VARCHAR(20) COMMENT 'Số điện thoại',
+    avatar_url VARCHAR(255) COMMENT 'Ảnh đại diện',
+    status VARCHAR(20) DEFAULT 'active' COMMENT 'Trạng thái: active/inactive/banned/pending_verification',
+    email_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực email',
+    phone_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực số điện thoại',
+    last_login DATETIME COMMENT 'Lần đăng nhập cuối',
+    failed_login_attempts INT DEFAULT 0 COMMENT 'Số lần đăng nhập sai',
+    locked_until DATETIME COMMENT 'Bị khóa đến',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật'
+) ENGINE=InnoDB;
+
+-- ROLES: Danh mục vai trò
+CREATE TABLE roles (
+    role_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID vai trò',
+    role_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên vai trò: Admin/Teacher/Student/Guest',
+    description TEXT COMMENT 'Mô tả vai trò',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- PERMISSIONS: Danh mục quyền
+CREATE TABLE permissions (
+    permission_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID quyền',
+    permission_name VARCHAR(100) NOT NULL UNIQUE COMMENT 'Tên quyền: /user/create ...',
+    description TEXT COMMENT 'Mô tả hành động',
+    resource VARCHAR(50) COMMENT 'Tài nguyên: user/role/topic/word/course...',
+    action VARCHAR(20) COMMENT 'Hành động: create/read/update/delete',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- USER_ROLES: Gán vai trò cho người dùng
+CREATE TABLE user_roles (
+    user_id BIGINT UNSIGNED,
+    role_id BIGINT UNSIGNED,
+    assigned_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm gán',
+    assigned_by BIGINT UNSIGNED COMMENT 'Người gán',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Còn hiệu lực',
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (assigned_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- ROLE_PERMISSIONS: Gán quyền cho vai trò
+CREATE TABLE role_permissions (
+    role_id BIGINT UNSIGNED,
+    permission_id BIGINT UNSIGNED,
+    granted_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm cấp',
+    granted_by BIGINT UNSIGNED COMMENT 'Người cấp',
+    PRIMARY KEY (role_id, permission_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES permissions(permission_id) ON DELETE CASCADE,
+    FOREIGN KEY (granted_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- =============================================
+-- KHỐI BẢO MẬT/XÁC THỰC
+-- =============================================
+
+-- OTP_CODES: Mã OTP cho xác thực/đổi mật khẩu/2FA
+CREATE TABLE otp_codes (
+    otp_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID OTP',
+    user_id BIGINT UNSIGNED COMMENT 'Người dùng',
+    email VARCHAR(100) COMMENT 'Email nhận OTP',
+    phone_number VARCHAR(20) COMMENT 'SĐT nhận OTP',
+    otp_code VARCHAR(6) NOT NULL COMMENT 'Mã OTP 6 số',
+    otp_type ENUM('email_verification','password_reset','login_2fa','phone_verification') NOT NULL COMMENT 'Loại OTP',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã dùng',
+    attempts INT DEFAULT 0 COMMENT 'Số lần nhập',
+    expires_at DATETIME NOT NULL COMMENT 'Hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- REFRESH_TOKENS: Refresh token theo thiết bị
+CREATE TABLE refresh_tokens (
+    token_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID token',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    token_hash VARCHAR(255) NOT NULL COMMENT 'Hash refresh token',
+    device_info TEXT COMMENT 'Thông tin thiết bị',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    is_revoked BOOLEAN DEFAULT FALSE COMMENT 'Đã thu hồi',
+    expires_at DATETIME NOT NULL COMMENT 'Hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- EMAIL_VERIFICATIONS: Token xác thực email
+CREATE TABLE email_verifications (
+    verification_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID xác thực',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    email VARCHAR(100) NOT NULL COMMENT 'Email cần xác thực',
+    verification_token VARCHAR(255) NOT NULL COMMENT 'Token xác thực',
+    is_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác thực',
+    verified_at DATETIME COMMENT 'Thời điểm xác thực',
+    expires_at DATETIME NOT NULL COMMENT 'Hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- LOGIN_HISTORY: Lịch sử đăng nhập
+CREATE TABLE login_history (
+    login_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID lịch sử đăng nhập',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    login_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm',
+    ip_address VARCHAR(45) COMMENT 'Địa chỉ IP',
+    user_agent TEXT COMMENT 'User agent',
+    login_status ENUM('success','failed','blocked','2fa_required') NOT NULL COMMENT 'Trạng thái',
+    failure_reason VARCHAR(255) COMMENT 'Lý do thất bại',
+    session_duration INT COMMENT 'Thời gian session (giây)',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- PASSWORD_RESET_TOKENS: Token reset mật khẩu
+CREATE TABLE password_reset_tokens (
+    reset_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID reset',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    reset_token VARCHAR(255) NOT NULL COMMENT 'Token reset',
+    is_used BOOLEAN DEFAULT FALSE COMMENT 'Đã dùng',
+    expires_at DATETIME NOT NULL COMMENT 'Hết hạn',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- =============================================
+-- KHỐI VOCABULARY (CHỦ ĐỀ & TỪ VỰNG)
+-- =============================================
+
+-- TOPICS: Chủ đề từ vựng
+CREATE TABLE topics (
+    topic_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chủ đề',
+    topic_name VARCHAR(255) NOT NULL COMMENT 'Tên chủ đề',
+    description TEXT COMMENT 'Mô tả',
+    image_url VARCHAR(255) COMMENT 'Ảnh chủ đề',
+    logo_url VARCHAR(255) COMMENT 'Logo (nếu có)',
+    topic_type ENUM('system','user_created') NOT NULL COMMENT 'Loại chủ đề',
+    created_by BIGINT UNSIGNED COMMENT 'Người tạo (nếu user_created)',
+    is_public BOOLEAN DEFAULT TRUE COMMENT 'Công khai',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    word_count INT DEFAULT 0 COMMENT 'Số lượng từ',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- WORDS: Từ vựng hệ thống
+CREATE TABLE words (
+    word_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID từ vựng',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm IPA',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Ví dụ EN',
+    example_vi TEXT COMMENT 'Ví dụ VI',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa',
+    notes TEXT COMMENT 'Ghi chú',
+    word_type ENUM('system','user_created') NOT NULL DEFAULT 'system' COMMENT 'Loại từ',
+    created_by BIGINT UNSIGNED COMMENT 'Người tạo',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- USER_WORDS: Từ vựng cá nhân của người dùng
+CREATE TABLE user_words (
+    user_word_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID từ cá nhân',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người sở hữu',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    word VARCHAR(255) NOT NULL COMMENT 'Từ tiếng Anh',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    meaning_vi TEXT NOT NULL COMMENT 'Nghĩa tiếng Việt',
+    example_en TEXT COMMENT 'Ví dụ EN',
+    example_vi TEXT COMMENT 'Ví dụ VI',
+    image_url VARCHAR(255) COMMENT 'Ảnh minh họa',
+    notes TEXT COMMENT 'Ghi chú cá nhân',
+    from_system_word_id BIGINT UNSIGNED COMMENT 'ID từ hệ thống gốc (nếu copy)',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (from_system_word_id) REFERENCES words(word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- USER_WORD_STATUS: Trạng thái học (đã thuộc/chưa thuộc) per-user-per-word
+CREATE TABLE user_word_status (
+    status_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID trạng thái',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người học',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    word_id BIGINT UNSIGNED NULL COMMENT 'Từ hệ thống',
+    user_word_id BIGINT UNSIGNED NULL COMMENT 'Từ cá nhân',
+    is_learned BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Đã thuộc',
+    marked_at DATETIME NULL COMMENT 'Thời điểm đánh dấu',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày tạo',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Ngày cập nhật',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (word_id) REFERENCES words(word_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_word_id) REFERENCES user_words(user_word_id) ON DELETE CASCADE,
+    UNIQUE KEY uq_user_word (user_id, word_id),
+    UNIQUE KEY uq_user_userword (user_id, user_word_id)
+) ENGINE=InnoDB;
+
+-- FAVORITE_TOPICS: Chủ đề yêu thích
+CREATE TABLE favorite_topics (
+    favorite_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID yêu thích',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề',
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày thêm',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    UNIQUE KEY uq_user_topic (user_id, topic_id)
+) ENGINE=InnoDB;
+
+-- Nhập khẩu dữ liệu từ vựng hàng loạt
+
+-- BATCH_IMPORTS: Phiên import
+CREATE TABLE batch_imports (
+    import_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID import',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người import',
+    topic_id BIGINT UNSIGNED NOT NULL COMMENT 'Chủ đề đích',
+    import_name VARCHAR(255) COMMENT 'Tên file',
+    total_words INT DEFAULT 0 COMMENT 'Tổng số từ',
+    success_count INT DEFAULT 0 COMMENT 'Số từ thành công',
+    error_count INT DEFAULT 0 COMMENT 'Số từ lỗi',
+    import_status ENUM('pending','processing','completed','failed') DEFAULT 'pending' COMMENT 'Trạng thái',
+    error_log TEXT COMMENT 'Log lỗi',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Bắt đầu',
+    completed_at DATETIME COMMENT 'Hoàn thành',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- IMPORT_DETAILS: Chi tiết từng dòng import
+CREATE TABLE import_details (
+    detail_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chi tiết',
+    import_id BIGINT UNSIGNED NOT NULL COMMENT 'Phiên import',
+    row_num INT COMMENT 'Số dòng',
+    word VARCHAR(255) COMMENT 'Từ',
+    meaning_vi TEXT COMMENT 'Nghĩa',
+    part_of_speech VARCHAR(50) COMMENT 'Loại từ',
+    pronunciation VARCHAR(255) COMMENT 'Phiên âm',
+    example_en TEXT COMMENT 'Ví dụ EN',
+    example_vi TEXT COMMENT 'Ví dụ VI',
+    notes TEXT COMMENT 'Ghi chú',
+    import_status ENUM('pending','success','error') DEFAULT 'pending' COMMENT 'Trạng thái dòng',
+    error_message TEXT COMMENT 'Lỗi (nếu có)',
+    created_word_id BIGINT UNSIGNED COMMENT 'ID user_words được tạo',
+    FOREIGN KEY (import_id) REFERENCES batch_imports(import_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_word_id) REFERENCES user_words(user_word_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- STUDY_MODES (tùy chọn): Định nghĩa chế độ học (để bật/tắt/A-B test nếu cần)
+CREATE TABLE study_modes (
+    mode_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chế độ học',
+    mode_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Tên chế độ: flashcard/list_view',
+    description TEXT COMMENT 'Mô tả',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Bật/tắt',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- =============================================
+-- KHỐI COURSE (KHÓA HỌC) - ĐỘC LẬP, FK VỀ USERS
+-- =============================================
+
+-- CATEGORIES: Danh mục khóa học
+CREATE TABLE categories (
+    category_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID danh mục',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên danh mục',
+    slug VARCHAR(100) NOT NULL UNIQUE COMMENT 'Slug duy nhất',
+    description TEXT COMMENT 'Mô tả',
+    icon VARCHAR(50) COMMENT 'Icon',
+    color VARCHAR(7) COMMENT 'Màu sắc',
+    image VARCHAR(255) COMMENT 'Ảnh đại diện',
+    sort_order INT DEFAULT 0 COMMENT 'Thứ tự hiển thị',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- LEVELS: Trình độ khóa học
+CREATE TABLE levels (
+    level_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID level',
+    name VARCHAR(50) NOT NULL COMMENT 'Tên level (Beginner/Intermediate/Expert)',
+    slug VARCHAR(50) NOT NULL UNIQUE COMMENT 'Slug',
+    description TEXT COMMENT 'Mô tả',
+    color VARCHAR(7) COMMENT 'Màu sắc',
+    sort_order INT DEFAULT 0 COMMENT 'Thứ tự hiển thị',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- INSTRUCTORS: Hồ sơ giảng viên (liên kết users)
+CREATE TABLE instructors (
+    instructor_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID giảng viên',
+    user_id BIGINT UNSIGNED COMMENT 'Tham chiếu users (nếu có tài khoản)',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên hiển thị',
+    avatar VARCHAR(255) COMMENT 'Ảnh',
+    bio TEXT COMMENT 'Tiểu sử',
+    experience_years INT COMMENT 'Số năm kinh nghiệm',
+    specializations TEXT COMMENT 'Chuyên môn',
+    education TEXT COMMENT 'Học vấn',
+    achievements TEXT COMMENT 'Thành tích',
+    social_links JSON COMMENT 'Liên kết MXH',
+    is_featured BOOLEAN DEFAULT FALSE COMMENT 'Nổi bật',
+    is_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã xác minh',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- COURSES: Khóa học
+CREATE TABLE courses (
+    course_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID khóa học',
+    title VARCHAR(200) NOT NULL COMMENT 'Tiêu đề',
+    slug VARCHAR(200) NOT NULL UNIQUE COMMENT 'Slug duy nhất',
+    short_description TEXT COMMENT 'Mô tả ngắn',
+    description TEXT COMMENT 'Mô tả chi tiết',
+    category_id BIGINT UNSIGNED COMMENT 'Danh mục',
+    level_id BIGINT UNSIGNED COMMENT 'Trình độ',
+    instructor_id BIGINT UNSIGNED COMMENT 'Giảng viên',
+    image VARCHAR(255) COMMENT 'Ảnh khóa học',
+    video_preview VARCHAR(255) COMMENT 'Video preview',
+    video_duration VARCHAR(20) COMMENT 'Thời lượng video preview',
+    video_progress DECIMAL(3,2) DEFAULT 0 COMMENT 'Tiến độ xem preview (0-1)',
+    total_lessons INT DEFAULT 0 COMMENT 'Tổng số bài học',
+    total_duration VARCHAR(50) COMMENT 'Tổng thời lượng hiển thị',
+    total_students INT DEFAULT 0 COMMENT 'Số học viên đã đăng ký',
+    rating DECIMAL(3,2) DEFAULT 0 COMMENT 'Điểm đánh giá TB',
+    rating_count INT DEFAULT 0 COMMENT 'Số lượt đánh giá',
+    price DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT 'Giá bán',
+    old_price DECIMAL(10,2) COMMENT 'Giá cũ',
+    discount_percent INT DEFAULT 0 COMMENT 'Phần trăm giảm',
+    is_free BOOLEAN DEFAULT FALSE COMMENT 'Miễn phí',
+    is_best_seller BOOLEAN DEFAULT FALSE COMMENT 'Gắn nhãn Best Seller',
+    is_featured BOOLEAN DEFAULT FALSE COMMENT 'Nổi bật',
+    status ENUM('draft','published','archived') DEFAULT 'draft' COMMENT 'Trạng thái',
+    published_at DATETIME COMMENT 'Ngày xuất bản',
+    meta_title VARCHAR(200) COMMENT 'SEO title',
+    meta_description TEXT COMMENT 'SEO description',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL,
+    FOREIGN KEY (level_id) REFERENCES levels(level_id) ON DELETE SET NULL,
+    FOREIGN KEY (instructor_id) REFERENCES instructors(instructor_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- COURSE_DETAILS: Nội dung bổ sung cho course
+CREATE TABLE course_details (
+    course_detail_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chi tiết khóa',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    about_content TEXT COMMENT 'Giới thiệu khóa học',
+    learning_outcomes JSON COMMENT 'Kết quả học tập',
+    skills_covered JSON COMMENT 'Kỹ năng đạt được',
+    requirements JSON COMMENT 'Yêu cầu đầu vào',
+    achievements JSON COMMENT 'Thành tựu kỳ vọng',
+    certificate_info TEXT COMMENT 'Thông tin chứng chỉ',
+    last_updated DATE COMMENT 'Ngày cập nhật nội dung',
+    language VARCHAR(50) DEFAULT 'Vietnamese' COMMENT 'Ngôn ngữ',
+    target_audience TEXT COMMENT 'Đối tượng mục tiêu',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- MODULES: Chương/Phần trong course
+CREATE TABLE modules (
+    module_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID module',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    title VARCHAR(200) NOT NULL COMMENT 'Tiêu đề module',
+    description TEXT COMMENT 'Mô tả',
+    sort_order INT NOT NULL COMMENT 'Thứ tự hiển thị',
+    total_lectures INT DEFAULT 0 COMMENT 'Tổng số bài giảng',
+    total_duration VARCHAR(50) COMMENT 'Tổng thời lượng module',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- LESSONS: Bài học trong module
+CREATE TABLE lessons (
+    lesson_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID bài học',
+    module_id BIGINT UNSIGNED NOT NULL COMMENT 'Module',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    title VARCHAR(200) NOT NULL COMMENT 'Tiêu đề bài học',
+    description TEXT COMMENT 'Mô tả',
+    content TEXT COMMENT 'Nội dung',
+    video_url VARCHAR(255) COMMENT 'Video bài giảng',
+    video_duration VARCHAR(20) COMMENT 'Thời lượng video',
+    file_attachment VARCHAR(255) COMMENT 'File đính kèm',
+    sort_order INT NOT NULL COMMENT 'Thứ tự',
+    lesson_type ENUM('video','document','quiz','assignment','live') DEFAULT 'video' COMMENT 'Loại bài học',
+    is_free BOOLEAN DEFAULT FALSE COMMENT 'Miễn phí',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    view_count INT DEFAULT 0 COMMENT 'Lượt xem',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (module_id) REFERENCES modules(module_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- COURSE_ENROLLMENTS: Đăng ký khóa học
+CREATE TABLE course_enrollments (
+    enrollment_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đăng ký',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Học viên',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    status ENUM('active','completed','cancelled','expired') DEFAULT 'active' COMMENT 'Trạng thái đăng ký',
+    enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày đăng ký',
+    completed_at DATETIME COMMENT 'Ngày hoàn thành',
+    expires_at DATETIME COMMENT 'Hạn dùng',
+    progress_percent DECIMAL(5,2) DEFAULT 0 COMMENT 'Tiến độ khóa (%)',
+    last_accessed_lesson_id BIGINT UNSIGNED COMMENT 'Bài học truy cập gần nhất',
+    last_accessed_at DATETIME COMMENT 'Thời điểm truy cập gần nhất',
+    payment_amount DECIMAL(10,2) COMMENT 'Số tiền thanh toán',
+    payment_method VARCHAR(50) COMMENT 'Phương thức thanh toán',
+    payment_status ENUM('pending','paid','failed','refunded') DEFAULT 'pending' COMMENT 'TT thanh toán',
+    transaction_id VARCHAR(100) COMMENT 'Mã giao dịch',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (last_accessed_lesson_id) REFERENCES lessons(lesson_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- LESSON_PROGRESS: Tiến độ học từng bài
+CREATE TABLE lesson_progress (
+    lesson_progress_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID tiến độ bài',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Học viên',
+    lesson_id BIGINT UNSIGNED NOT NULL COMMENT 'Bài học',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    status ENUM('not_started','in_progress','completed') DEFAULT 'not_started' COMMENT 'Trạng thái',
+    watched_duration INT DEFAULT 0 COMMENT 'Đã xem (giây)',
+    total_duration INT DEFAULT 0 COMMENT 'Tổng thời lượng (giây)',
+    completion_percent DECIMAL(5,2) DEFAULT 0 COMMENT '% hoàn thành',
+    started_at DATETIME COMMENT 'Bắt đầu',
+    completed_at DATETIME COMMENT 'Hoàn tất',
+    last_accessed_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Truy cập gần nhất',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(lesson_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- COURSE_REVIEWS: Đánh giá khóa học
+CREATE TABLE course_reviews (
+    review_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đánh giá',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người đánh giá',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    rating INT NOT NULL COMMENT 'Số sao (1-5)',
+    title VARCHAR(200) COMMENT 'Tiêu đề',
+    content TEXT COMMENT 'Nội dung',
+    is_verified BOOLEAN DEFAULT FALSE COMMENT 'Đã mua khóa',
+    status ENUM('pending','approved','rejected') DEFAULT 'pending' COMMENT 'Trạng thái duyệt',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- COURSE_DISCUSSIONS: Thảo luận khóa học
+CREATE TABLE course_discussions (
+    discussion_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thảo luận',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người đăng',
+    parent_id BIGINT UNSIGNED NULL COMMENT 'Bình luận cha',
+    title VARCHAR(200) COMMENT 'Tiêu đề',
+    content TEXT NOT NULL COMMENT 'Nội dung',
+    likes_count INT DEFAULT 0 COMMENT 'Lượt thích',
+    replies_count INT DEFAULT 0 COMMENT 'Số trả lời',
+    status ENUM('active','hidden','deleted') DEFAULT 'active' COMMENT 'Trạng thái',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES course_discussions(discussion_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- COURSE_WISHLIST: Danh sách yêu thích khóa học
+CREATE TABLE course_wishlist (
+    wishlist_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID wishlist',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    UNIQUE KEY uq_user_course_wishlist (user_id, course_id)
+) ENGINE=InnoDB;
+
+-- COUPONS: Mã giảm giá
+CREATE TABLE coupons (
+    coupon_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID coupon',
+    code VARCHAR(50) NOT NULL UNIQUE COMMENT 'Mã',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên',
+    description TEXT COMMENT 'Mô tả',
+    discount_type ENUM('percentage','fixed_amount') NOT NULL COMMENT 'Loại giảm',
+    discount_value DECIMAL(10,2) NOT NULL COMMENT 'Giá trị giảm',
+    minimum_amount DECIMAL(10,2) DEFAULT 0 COMMENT 'Đơn tối thiểu',
+    max_uses INT DEFAULT NULL COMMENT 'Số lần tối đa',
+    used_count INT DEFAULT 0 COMMENT 'Đã dùng',
+    max_uses_per_user INT DEFAULT 1 COMMENT 'Tối đa/user',
+    valid_from DATETIME NOT NULL COMMENT 'Hiệu lực từ',
+    valid_until DATETIME NOT NULL COMMENT 'Hiệu lực đến',
+    is_active BOOLEAN DEFAULT TRUE COMMENT 'Đang hoạt động',
+    applicable_courses JSON COMMENT 'Danh sách course áp dụng',
+    applicable_categories JSON COMMENT 'Danh sách category áp dụng',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- COURSE_COUPONS: Áp dụng coupon cho khóa học (tùy chọn)
+CREATE TABLE course_coupons (
+    course_coupon_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID liên kết',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    coupon_id BIGINT UNSIGNED NOT NULL COMMENT 'Coupon',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id) ON DELETE CASCADE,
+    UNIQUE KEY uq_course_coupon (course_id, coupon_id)
+) ENGINE=InnoDB;
+
+-- COURSE_CERTIFICATES: Chứng chỉ hoàn thành
+CREATE TABLE course_certificates (
+    certificate_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID chứng chỉ',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Học viên',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    enrollment_id BIGINT UNSIGNED NOT NULL COMMENT 'Đăng ký',
+    certificate_number VARCHAR(100) UNIQUE COMMENT 'Số chứng chỉ',
+    issued_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày cấp',
+    certificate_url VARCHAR(255) COMMENT 'Link chứng chỉ',
+    certificate_template VARCHAR(100) COMMENT 'Template sử dụng',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (enrollment_id) REFERENCES course_enrollments(enrollment_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- COURSE_TAGS: Danh mục tag
+CREATE TABLE course_tags (
+    tag_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID tag',
+    name VARCHAR(50) NOT NULL COMMENT 'Tên tag',
+    color VARCHAR(7) COMMENT 'Màu',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- COURSE_TAG_RELATIONS: Gán tag cho khóa học (n-n)
+CREATE TABLE course_tag_relations (
+    course_tag_relation_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID quan hệ',
+    course_id BIGINT UNSIGNED NOT NULL COMMENT 'Khóa học',
+    tag_id BIGINT UNSIGNED NOT NULL COMMENT 'Tag',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES course_tags(tag_id) ON DELETE CASCADE,
+    UNIQUE KEY uq_course_tag (course_id, tag_id)
+) ENGINE=InnoDB;
+
+-- =============================================
+-- KHỐI EXAM (THI TRẮC NGHIỆM TOEIC/IELTS/HSK)
+-- =============================================
+
+-- EXAM_CATEGORIES: Danh mục đề thi (riêng biệt với categories của Course)
+CREATE TABLE exam_categories (
+    exam_category_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID danh mục thi',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên danh mục: TOEIC, IELTS, HSK, THPT',
+    description TEXT COMMENT 'Mô tả',
+    icon VARCHAR(100) COMMENT 'Icon',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+) ENGINE=InnoDB;
+
+-- TESTS: Đề thi chính
+CREATE TABLE tests (
+    test_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đề thi',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề đề thi',
+    description TEXT COMMENT 'Mô tả',
+    exam_type ENUM('TOEIC', 'IELTS', 'HSK', 'THPT') NOT NULL COMMENT 'Loại đề thi',
+    total_duration INT NOT NULL COMMENT 'Tổng thời gian (phút)',
+    total_questions INT NOT NULL COMMENT 'Tổng số câu hỏi',
+    total_parts INT NOT NULL COMMENT 'Tổng số phần thi',
+    difficulty_level ENUM('EASY', 'MEDIUM', 'HARD') NOT NULL COMMENT 'Độ khó',
+    created_by BIGINT UNSIGNED COMMENT 'Người tạo',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL,
+    INDEX idx_exam_type (exam_type),
+    INDEX idx_difficulty (difficulty_level)
+) ENGINE=InnoDB;
+
+-- PARTS: Các phần trong đề thi (Part 1-7 của TOEIC)
+CREATE TABLE parts (
+    part_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID phần thi',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    part_number INT NOT NULL COMMENT 'Số thứ tự Part (1,2,3...)',
+    part_name VARCHAR(100) NOT NULL COMMENT 'Tên Part',
+    part_type ENUM('LISTENING', 'READING') NOT NULL COMMENT 'Loại: nghe/đọc',
+    question_count INT NOT NULL COMMENT 'Số câu hỏi',
+    duration_minutes INT NOT NULL COMMENT 'Thời lượng (phút)',
+    description TEXT COMMENT 'Mô tả',
+    display_template VARCHAR(50) COMMENT 'Template hiển thị: PHOTO_AUDIO, AUDIO_ONLY, TEXT_ONLY...',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_part_number (part_number),
+    INDEX idx_part_type (part_type)
+) ENGINE=InnoDB;
+
+-- QUESTIONS: Câu hỏi
+CREATE TABLE questions (
+    question_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID câu hỏi',
+    part_id BIGINT UNSIGNED NOT NULL COMMENT 'Phần thi',
+    question_number INT NOT NULL COMMENT 'Số thứ tự câu trong Part',
+    question_text TEXT NOT NULL COMMENT 'Nội dung câu hỏi',
+    question_type ENUM('MULTIPLE_CHOICE', 'FILL_BLANK', 'READING_COMPREHENSION') NOT NULL COMMENT 'Loại câu hỏi',
+    
+    -- Embedded resources (lưu trực tiếp cho nhanh)
+    audio_file VARCHAR(255) COMMENT 'File âm thanh',
+    image_file VARCHAR(255) COMMENT 'File hình ảnh',
+    transcript TEXT COMMENT 'Nội dung nghe/đọc gốc',
+    explanation TEXT COMMENT 'Giải thích đáp án',
+    grammar_notes TEXT COMMENT 'Ghi chú ngữ pháp',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (part_id) REFERENCES parts(part_id) ON DELETE CASCADE,
+    INDEX idx_part_id (part_id),
+    INDEX idx_question_number (question_number),
+    INDEX idx_question_type (question_type)
+) ENGINE=InnoDB;
+
+-- CHOICES: Đáp án lựa chọn
+CREATE TABLE choices (
+    choice_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID đáp án',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    choice_letter ENUM('A', 'B', 'C', 'D') NOT NULL COMMENT 'Ký hiệu đáp án',
+    choice_text TEXT NOT NULL COMMENT 'Nội dung đáp án',
+    choice_translation TEXT COMMENT 'Dịch nghĩa đáp án',
+    choice_explanation TEXT COMMENT 'Giải thích đáp án',
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Đáp án đúng',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    INDEX idx_question_id (question_id),
+    INDEX idx_choice_letter (choice_letter),
+    INDEX idx_is_correct (is_correct)
+) ENGINE=InnoDB;
+
+-- EXAM_SESSIONS: Phiên làm bài thi
+CREATE TABLE exam_sessions (
+    exam_session_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID phiên thi',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người làm bài',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    session_type ENUM('FULL_TEST', 'PRACTICE', 'REVIEW') NOT NULL COMMENT 'Loại: full/luyện tập/xem lại',
+    
+    -- Timing
+    start_time DATETIME NOT NULL COMMENT 'Bắt đầu',
+    end_time DATETIME NULL COMMENT 'Kết thúc',
+    duration_seconds INT NULL COMMENT 'Thời gian làm bài (giây)',
+    
+    -- Results
+    total_score INT DEFAULT 0 COMMENT 'Tổng điểm',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu đúng',
+    wrong_answers INT DEFAULT 0 COMMENT 'Số câu sai',
+    skipped_answers INT DEFAULT 0 COMMENT 'Số câu bỏ qua',
+    
+    -- Status
+    status ENUM('IN_PROGRESS', 'COMPLETED', 'ABANDONED') DEFAULT 'IN_PROGRESS' COMMENT 'Trạng thái',
+    
+    -- Practice mode
+    selected_parts JSON COMMENT 'Các Part được chọn khi practice',
+    time_limit_minutes INT COMMENT 'Giới hạn thời gian',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_status (status),
+    INDEX idx_start_time (start_time)
+) ENGINE=InnoDB;
+
+-- USER_ANSWERS: Câu trả lời của người dùng
+CREATE TABLE user_answers (
+    user_answer_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID câu trả lời',
+    exam_session_id BIGINT UNSIGNED NOT NULL COMMENT 'Phiên thi',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    selected_choice_id BIGINT UNSIGNED NULL COMMENT 'Đáp án đã chọn (NULL nếu bỏ qua)',
+    answer_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm trả lời',
+    is_correct BOOLEAN NULL COMMENT 'Đúng/sai (NULL nếu chưa chấm)',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (exam_session_id) REFERENCES exam_sessions(exam_session_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    FOREIGN KEY (selected_choice_id) REFERENCES choices(choice_id) ON DELETE SET NULL,
+    
+    UNIQUE KEY unique_session_question (exam_session_id, question_id),
+    INDEX idx_exam_session_id (exam_session_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_answer_time (answer_time)
+) ENGINE=InnoDB;
+
+-- USER_EXAM_STATISTICS: Thống kê tổng quan người dùng về thi
+CREATE TABLE user_exam_statistics (
+    user_exam_stat_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thống kê',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    total_tests_taken INT DEFAULT 0 COMMENT 'Tổng số đề đã làm',
+    total_questions_answered INT DEFAULT 0 COMMENT 'Tổng số câu đã làm',
+    total_correct_answers INT DEFAULT 0 COMMENT 'Tổng số câu đúng',
+    average_score DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Điểm trung bình',
+    best_score INT DEFAULT 0 COMMENT 'Điểm cao nhất',
+    total_study_time_seconds INT DEFAULT 0 COMMENT 'Tổng thời gian học (giây)',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_exam_stats (user_id),
+    INDEX idx_average_score (average_score),
+    INDEX idx_best_score (best_score)
+) ENGINE=InnoDB;
+
+-- PART_STATISTICS: Thống kê theo Part
+CREATE TABLE part_statistics (
+    part_stat_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thống kê Part',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người dùng',
+    part_id BIGINT UNSIGNED NOT NULL COMMENT 'Phần thi',
+    total_attempts INT DEFAULT 0 COMMENT 'Số lần làm',
+    total_questions INT DEFAULT 0 COMMENT 'Tổng số câu',
+    correct_answers INT DEFAULT 0 COMMENT 'Số câu đúng',
+    accuracy_rate DECIMAL(5,2) DEFAULT 0.00 COMMENT 'Tỷ lệ đúng (%)',
+    last_attempt DATETIME NULL COMMENT 'Lần làm gần nhất',
+    
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (part_id) REFERENCES parts(part_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_part (user_id, part_id),
+    INDEX idx_accuracy_rate (accuracy_rate),
+    INDEX idx_last_attempt (last_attempt)
+) ENGINE=InnoDB;
+
+-- TEST_CATEGORIES: Gán đề thi vào danh mục
+CREATE TABLE test_categories (
+    test_category_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID liên kết',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    exam_category_id BIGINT UNSIGNED NOT NULL COMMENT 'Danh mục thi',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_category_id) REFERENCES exam_categories(exam_category_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_test_category (test_id, exam_category_id),
+    INDEX idx_test_id (test_id),
+    INDEX idx_exam_category_id (exam_category_id)
+) ENGINE=InnoDB;
+
+-- EXAM_TAGS: Tag cho câu hỏi
+CREATE TABLE exam_tags (
+    exam_tag_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID tag',
+    name VARCHAR(100) NOT NULL COMMENT 'Tên tag: [Part 7] Câu hỏi suy luận...',
+    description TEXT COMMENT 'Mô tả',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_name (name)
+) ENGINE=InnoDB;
+
+-- QUESTION_TAGS: Gán tag cho câu hỏi
+CREATE TABLE question_tags (
+    question_tag_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID liên kết',
+    question_id BIGINT UNSIGNED NOT NULL COMMENT 'Câu hỏi',
+    exam_tag_id BIGINT UNSIGNED NOT NULL COMMENT 'Tag',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_tag_id) REFERENCES exam_tags(exam_tag_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_question_tag (question_id, exam_tag_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_exam_tag_id (exam_tag_id)
+) ENGINE=InnoDB;
+
+-- TEST_DISCUSSIONS: Thảo luận về đề thi
+CREATE TABLE test_discussions (
+    test_discussion_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID thảo luận',
+    test_id BIGINT UNSIGNED NOT NULL COMMENT 'Đề thi',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người đăng',
+    title VARCHAR(255) NOT NULL COMMENT 'Tiêu đề',
+    content TEXT NOT NULL COMMENT 'Nội dung',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_id) REFERENCES tests(test_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    INDEX idx_test_id (test_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB;
+
+-- TEST_COMMENTS: Bình luận trong thảo luận
+CREATE TABLE test_comments (
+    test_comment_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'PK - ID bình luận',
+    test_discussion_id BIGINT UNSIGNED NOT NULL COMMENT 'Thảo luận',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT 'Người bình luận',
+    content TEXT NOT NULL COMMENT 'Nội dung',
+    parent_comment_id BIGINT UNSIGNED NULL COMMENT 'Bình luận cha (để reply)',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (test_discussion_id) REFERENCES test_discussions(test_discussion_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_comment_id) REFERENCES test_comments(test_comment_id) ON DELETE CASCADE,
+    INDEX idx_test_discussion_id (test_discussion_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_parent_comment (parent_comment_id),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB;
+
+-- =============================================
+-- HOÀN THÀNH KHỞI TẠO SCHEMA
+-- =============================================
+
+
+
+
+
+
+
+

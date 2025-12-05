@@ -14,6 +14,7 @@ import Flashcard from "../pages/Flashcard/Flashcard";
 import Home from "../pages/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import InstructorDetail from "../pages/Instructor/InstructorDetail";
+import MyCourses from "../pages/MyCourses/MyCourses";
 
 // Auth Pages
 import Login from "../../Client/pages/Auth/Login/Login";
@@ -29,11 +30,14 @@ import ExamList from "../pages/Exam/ExamList/ExamList";
 import ExamResult from "../pages/Exam/ExamResult/ExamResult";
 import ExamTaking from "../pages/Exam/ExamTaking/ExamTaking";
 
+import Detail from "../components/Assessment/AssessmentJSX/Detail";
+import Result from "../components/Assessment/AssessmentJSX/Result";
+import AssessmentTest from "../components/AssessmentTest/AssessmentTestJSX/AssessmentTest";
+import Assessment from "../pages/Assessment/Assessment";
 import Lesson from "../pages/Lesson/Lesson";
 
 const ClientLayout = ({ children }) => (
   <div className="client-layout">
-    //
     <Header />
     <main className="client-main" style={{ padding: 0 }}>
       {children}
@@ -147,9 +151,18 @@ const ClientRoutes = () => {
           </PrivateRoute>
         }
       />
-
       <Route
-        path="/course/1"
+        path="/mycourses"
+        element={
+          <PrivateRoute>
+            <ClientLayout>
+              <MyCourses />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/course/:id"
         element={
           <PrivateRoute>
             <ClientLayout>
@@ -174,9 +187,49 @@ const ClientRoutes = () => {
       <Route
         path="/profile"
         element={
+          // <PrivateRoute requiredRole="client">
+          <ClientLayout>
+            <Profile />
+          </ClientLayout>
+          // </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessment"
+        element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>
-              <Profile />
+              <Assessment />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessment/:id"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Detail />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessmentTest"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <AssessmentTest />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/assessmentResult"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <Result />
             </ClientLayout>
           </PrivateRoute>
         }
@@ -236,7 +289,7 @@ const ClientRoutes = () => {
         }
       />
       <Route
-        path="/lesson"
+        path="/lesson/:id"
         element={
           <PrivateRoute requiredRole="client">
             <ClientLayout>

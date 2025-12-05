@@ -23,13 +23,13 @@ export const queryKeys = {
     lists: ["course", "list"],
     list: (filters) => ["course", "list", { filters }],
     details: ["course", "detail"],
-    detail: (id) => ["course", "detail", id],
-
+    detail: (id) => ["course", id],
+    structure: (id) => ["course", "structure", id],
     // Bổ sung các key bị thiếu
     byCategory: (categoryId) => ["course", "byCategory", categoryId],
     byLevel: (levelId) => ["course", "byLevel", levelId],
     byInstructor: (instructorId) => ["course", "byInstructor", instructorId],
-
+    userCourses: (userId) => ["course", "userCourses", userId],
     categories: () => ["course", "categories"],
     instructors: () => ["course", "instructors"],
     levels: () => ["course", "levels"],
@@ -41,5 +41,18 @@ export const queryKeys = {
     profile: ["user", "profile"],
     enrollments: ["user", "enrollments"],
     wishlist: ["user", "wishlist"],
+  },
+
+  // Thêm vào queryKeys object
+  assessment: {
+    all: ["assessment"],
+    lists: ["assessment", "list"],
+    list: (filters) => ["assessment", "list", { filters }],
+    details: ["assessment", "detail"],
+    detail: (id) => ["assessment", "detail", id],
+    statistics: () => ["assessment", "statistics"],
+    sessions: ["assessment", "sessions"],
+    session: (id) => ["assessment", "session", id],
+    discussions: (testId) => ["assessment", "discussions", testId],
   },
 };

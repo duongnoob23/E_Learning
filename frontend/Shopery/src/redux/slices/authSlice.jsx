@@ -77,17 +77,14 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await authApi.login(credentials);
       const { EM, EC, DT } = normalizeAuthResponse(res);
-      console.log("🚀 ~ DT:", DT);
-      console.log("🚀 ~ EM:", EM);
-      console.log("🚀 ~ EC:", EC);
+      
 
       if (EC !== "0" || !DT) {
         return rejectWithValue({ EM, EC, DT });
       }
 
       const { token, user } = DT || {};
-      console.log("🚀 ~ user:", user);
-      console.log("🚀 ~ access_token:", token);
+      
 
       if (!token || !user) {
         return rejectWithValue({
@@ -113,7 +110,6 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await authApi.register(userData);
       const { EM, EC, DT } = normalizeAuthResponse(response);
-      console.log(EM, EC, DT);
       if (EC !== "0" || !DT) {
         return rejectWithValue({ EM, EC, DT });
       }
@@ -131,7 +127,6 @@ export const logoutUser = createAsyncThunk(
     try {
       // await authApi.logout()
       // tạm thời không cần gọi api logout chỉ  cần xóa token thôi
-      console.log("🚀 ~ logout:");
       tokenHelper.removeTokens();
       return true;
     } catch (error) {
@@ -213,12 +208,10 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.isAuthenticated = true;
         state.error = null;
-        console.log("🚀 ~ action.payload:", action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        console.log("🚀 ~ action.payload:", action.payload);
         state.isAuthenticated = false;
       })
       // Register

@@ -1,0 +1,281 @@
+/* File: src/styles/toeicTest.css */
+/* BEM-style class names, Flexbox-based layout - avoid CSS Grid */
+:root {
+  --max-width: 1200px;
+  --side-width: 320px;
+  --muted: #777;
+  --accent: #3b82f6;
+  --answered-bg: #e6f4ea;
+  --answered-border: #34a853;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f8fafc;
+  color: #222;
+}
+
+.toeic {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.toeic__container {
+  display: flex;
+  width: 100%;
+  max-width: var(--max-width);
+  gap: 18px;
+}
+
+.toeic__left {
+  flex: 1 1 auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  min-height: 80vh;
+}
+
+.toeic__right {
+  width: var(--side-width);
+  min-width: var(--side-width);
+}
+
+/* Header */
+.toeic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.toeic-header__title {
+  font-weight: 700;
+  text-align: center;
+}
+
+.toeic-header__exit {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Audio */
+.toeic__audio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.audio__controls input[type="range"] {
+  width: 100%;
+}
+
+/* Tabs */
+.toeic__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.toeic__tab {
+  padding: 6px 12px;
+  border-radius: 18px;
+  border: 1px solid #e6e9ef;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.toeic__tab--active {
+  background: #e9f0ff;
+  border-color: var(--accent);
+}
+
+/* Left content - questions */
+.part {
+  margin-bottom: 26px;
+}
+
+.part__title {
+  font-size: 16px;
+  margin: 8px 0 12px 0;
+}
+
+.part__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.question {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 6px;
+  border-radius: 6px;
+  border: 1px solid #f0f2f5;
+}
+
+.question__left {
+  width: 56px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.question__num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eef3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.question__body {
+  flex: 1 1 auto;
+}
+
+.question__prompt {
+  margin-bottom: 8px;
+}
+
+.question__image {
+  max-width: 320px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.option {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.option input[type="radio"] {
+  transform: scale(1.05);
+}
+
+.option__label {
+  font-size: 14px;
+}
+
+/* Navigator (right column) */
+.navigator {
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e6edf8;
+}
+
+.navigator__top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.navigator__timer {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.navigator__time {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.navigator__submit {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: #fff;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.navigator__note {
+  margin-bottom: 8px;
+  color: #ff6b6b;
+  font-size: 13px;
+}
+
+.navigator__hint {
+  margin-top: 6px;
+  color: #f59e0b;
+  font-size: 13px;
+}
+
+.navigator__part {
+  margin-bottom: 12px;
+}
+
+.navigator__part-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.navigator__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.navigator__item {
+  width: calc((100% - 24px) / 4);
+  min-width: 40px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #9aa4b2;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navigator__item--answered {
+  background: var(--answered-bg);
+  border-color: var(--answered-border);
+}
+
+/* Misc */
+.passage__title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.passage__text {
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.conversation__header,
+.talk__header {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .toeic__container {
+    flex-direction: column;
+  }
+  .toeic__right {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* End of CSS */

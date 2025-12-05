@@ -12,7 +12,6 @@ export const useLogin = () => {
     mutationFn: authApi1.login,
     onSuccess: (data) => {
       const { EM, EC, DT } = data.data;
-      console.log(EC);
       if (+EC === 0) {
         // Lưu token vào localStorage
         if (DT?.token) {
@@ -51,11 +50,9 @@ export const useLogin = () => {
 };
 
 export const useRegister = () => {
-  console.log("run useRegister");
   return useMutation({
     mutationFn: authApi1.register,
     onSuccess: (data) => {
-      console.log(data.data);
       const { EM, EC, DT } = data.data;
       if (+EC === 0) {
         toast.success(EM || "Đăng ký thành công");

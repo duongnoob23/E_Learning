@@ -4,12 +4,10 @@ import "./OtpModal.css";
 const OtpModal = ({ open, onClose, onSubmit, email, isLoading, error }) => {
   const OTP_LENGTH = 6;
   const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(""));
-  console.log("🚀 ~ OtpModal ~ otp:", otp);
   const inputs = useRef([]);
 
   // Xử lý nhập số
   const handleChange = (e, idx) => {
-    console.log(e.target.value);
     const val = e.target.value.replace(/[^0-9]/g, ""); // lấy ra phần tử vừa nhập, nếu có khác số thì regex lại
     if (!val) return;
     const newOtp = [...otp]; // tạo một mảng mới từ otp hiện tại
