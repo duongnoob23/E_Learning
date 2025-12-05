@@ -1,0 +1,94 @@
+/* QuestionList.css - Format đơn giản như ảnh số 4 */
+.question-list-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.question-list-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #1f2937;
+}
+
+.question-list-part {
+  margin-bottom: 32px;
+}
+
+.question-list-part-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #374151;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.question-list-part-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 8px;
+}
+
+.question-list-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.question-list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.question-list-item__number {
+  font-weight: 600;
+  color: #3b82f6;
+  min-width: 24px;
+}
+
+.question-list-item__correct {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.question-list-item__separator {
+  color: #6b7280;
+}
+
+.question-list-item__selected {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.question-list-item__selected--wrong {
+  text-decoration: line-through;
+  color: #ef4444;
+}
+
+.question-list-item__detail-link {
+  color: #3b82f6;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+
+.question-list-item__detail-link:hover {
+  color: #2563eb;
+}
+
+.question-list-empty {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+}

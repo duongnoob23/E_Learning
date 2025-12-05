@@ -4,6 +4,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"] || req.headers["Authorization"]; // Bearer <token>
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.error(`[AUTH] 401 - Missing token | ${req.method} ${req.originalUrl}`);
       return res.status(401).json({
         EM: "Unauthorized",
         EC: "401",
@@ -13,6 +14,7 @@ const authMiddleware = (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
     if (!token) {
+      console.error(`[AUTH] 401 - Empty token | ${req.method} ${req.originalUrl}`);
       return res.status(401).json({
         EM: "Unauthorized",
         EC: "401",
@@ -27,6 +29,7 @@ const authMiddleware = (req, res, next) => {
     };
     next();
   } catch (error) {
+    console.error(`[AUTH] 401 - Invalid/expired token | ${req.method} ${req.originalUrl} | Error: ${error.message}`);
     return res.status(401).json({
       EM: "Invalid or expired token",
       EC: "401",
