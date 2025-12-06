@@ -79,6 +79,11 @@ const Header = () => {
                 My Courses
               </Link>
             </li>
+            <li className="header__nav-item">
+              <Link to="/test" className="header__nav-link">
+                Test
+              </Link>
+            </li>
             {/* <li className="header__nav-item">
               <Link to="/courses" className="header__nav-link">
                 Courses

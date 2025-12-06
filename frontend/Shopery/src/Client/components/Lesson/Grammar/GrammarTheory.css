@@ -1,0 +1,109 @@
+/* GrammarTheory.css */
+.grammar-theory-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.grammar-theory-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.grammar-theory-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grammar-theory-section {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.grammar-theory-section:last-child {
+  border-bottom: none;
+}
+
+.grammar-theory-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1ec28b;
+}
+
+.grammar-theory-section-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.grammar-theory-section-content p {
+  margin: 0 0 12px 0;
+}
+
+.grammar-theory-section-content ul,
+.grammar-theory-section-content ol {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.grammar-theory-section-content li {
+  margin: 8px 0;
+}
+
+.grammar-theory-section-content strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.grammar-theory-examples {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 4px solid #1ec28b;
+}
+
+.grammar-theory-examples-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
+.grammar-theory-example {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.grammar-theory-example:last-child {
+  margin-bottom: 0;
+}
+
+.grammar-theory-example-en {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.grammar-theory-example-vi {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.grammar-theory-example strong {
+  color: #1ec28b;
+  font-weight: 600;
+}
+
+
+

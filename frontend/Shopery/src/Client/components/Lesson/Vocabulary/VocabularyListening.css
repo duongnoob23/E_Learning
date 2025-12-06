@@ -1,0 +1,174 @@
+/* VocabularyListening.css */
+.vocabulary-listening-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.vocabulary-listening-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.vocabulary-listening-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.vocabulary-listening-audio-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.vocabulary-listening-instruction {
+  font-size: 16px;
+  color: #374151;
+  margin: 0 0 16px 0;
+}
+
+.vocabulary-listening-audio-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.vocabulary-listening-audio {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+}
+
+.vocabulary-listening-plays {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.vocabulary-listening-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.vocabulary-listening-cell {
+  aspect-ratio: 1;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+  position: relative;
+}
+
+.vocabulary-listening-cell:hover:not(.correct):not(.wrong) {
+  border-color: #1ec28b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-listening-cell.selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.vocabulary-listening-cell.correct {
+  border-color: #10b981;
+  background: #d1fae5;
+}
+
+.vocabulary-listening-cell.wrong {
+  border-color: #ef4444;
+  background: #fee2e2;
+}
+
+.vocabulary-listening-cell img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.vocabulary-listening-cell span {
+  font-size: 14px;
+  text-align: center;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.vocabulary-listening-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #10b981;
+  font-size: 20px;
+}
+
+.vocabulary-listening-times {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ef4444;
+  font-size: 20px;
+}
+
+.vocabulary-listening-submit {
+  width: 100%;
+  padding: 12px 24px;
+  background: #1ec28b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vocabulary-listening-submit:hover:not(:disabled) {
+  background: #16a085;
+}
+
+.vocabulary-listening-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-listening-result {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.vocabulary-listening-result.correct {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.vocabulary-listening-result.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.vocabulary-listening-result i {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.vocabulary-listening-result p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+
+

@@ -15,6 +15,7 @@ import Home from "../pages/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import InstructorDetail from "../pages/Instructor/InstructorDetail";
 import MyCourses from "../pages/MyCourses/MyCourses";
+import Test from "../pages/Test/Test";
 
 // Auth Pages
 import Login from "../../Client/pages/Auth/Login/Login";
@@ -157,6 +158,16 @@ const ClientRoutes = () => {
           <PrivateRoute>
             <ClientLayout>
               <MyCourses />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/test"
+        element={
+          <PrivateRoute>
+            <ClientLayout>
+              <Test />
             </ClientLayout>
           </PrivateRoute>
         }

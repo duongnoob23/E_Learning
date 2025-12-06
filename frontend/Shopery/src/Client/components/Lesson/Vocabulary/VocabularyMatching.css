@@ -1,0 +1,93 @@
+/* VocabularyMatching.css */
+.vocabulary-matching-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.vocabulary-matching-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.vocabulary-matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.vocabulary-matching-left h4,
+.vocabulary-matching-right h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #374151;
+  text-align: center;
+}
+
+.vocabulary-matching-cells {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.vocabulary-matching-cell {
+  aspect-ratio: 1;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.vocabulary-matching-cell:hover:not(.matched) {
+  border-color: #1ec28b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-matching-cell.selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.vocabulary-matching-cell.matched {
+  border-color: #10b981;
+  background: #d1fae5;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.vocabulary-matching-cell img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.vocabulary-matching-cell span {
+  font-size: 14px;
+  text-align: center;
+  color: #1f2937;
+}
+
+.vocabulary-matching-progress {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1ec28b;
+  padding: 16px;
+  background: #f0fdf4;
+  border-radius: 8px;
+}
+
+
+

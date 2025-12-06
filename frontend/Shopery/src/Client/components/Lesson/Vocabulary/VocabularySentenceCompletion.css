@@ -1,0 +1,149 @@
+/* VocabularySentenceCompletion.css */
+.vocabulary-sentence-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.vocabulary-sentence-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.vocabulary-sentence-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vocabulary-sentence-instruction {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.vocabulary-sentence-instruction p {
+  font-size: 16px;
+  color: #374151;
+  margin: 0;
+}
+
+.vocabulary-sentence-display {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  min-height: 100px;
+}
+
+.vocabulary-sentence-text {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #1f2937;
+}
+
+.sentence-blank {
+  display: inline-block;
+  min-width: 100px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 2px dashed #1ec28b;
+  border-radius: 4px;
+  background: #f0fdf4;
+  color: #1ec28b;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sentence-blank:hover {
+  background: #d1fae5;
+  border-color: #10b981;
+}
+
+.vocabulary-sentence-words {
+  margin-bottom: 24px;
+}
+
+.vocabulary-sentence-words h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #374151;
+}
+
+.vocabulary-sentence-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vocabulary-sentence-word {
+  padding: 12px 20px;
+  background: #fff;
+  border: 2px solid #1ec28b;
+  border-radius: 6px;
+  color: #1ec28b;
+  font-weight: 500;
+  cursor: grab;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.vocabulary-sentence-word:hover {
+  background: #f0fdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-sentence-word:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.vocabulary-sentence-submit {
+  width: 100%;
+  padding: 12px 24px;
+  background: #1ec28b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vocabulary-sentence-submit:hover {
+  background: #16a085;
+}
+
+.vocabulary-sentence-result {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.vocabulary-sentence-result.correct {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.vocabulary-sentence-result.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.vocabulary-sentence-result i {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.vocabulary-sentence-result p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+
+

@@ -1,0 +1,151 @@
+/* VocabularyTranslation.css */
+.vocabulary-translation-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.vocabulary-translation-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.vocabulary-translation-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vocabulary-translation-image {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.vocabulary-translation-image img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-translation-question {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.vocabulary-translation-vi {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.vocabulary-translation-hint {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.vocabulary-translation-input-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.vocabulary-translation-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.vocabulary-translation-input:focus {
+  outline: none;
+  border-color: #1ec28b;
+}
+
+.vocabulary-translation-input:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.vocabulary-translation-submit {
+  padding: 12px 24px;
+  background: #1ec28b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vocabulary-translation-submit:hover:not(:disabled) {
+  background: #16a085;
+}
+
+.vocabulary-translation-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-translation-result {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.vocabulary-translation-result.correct {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.vocabulary-translation-result.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.vocabulary-translation-result i {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.vocabulary-translation-result p {
+  margin: 8px 0;
+}
+
+.vocabulary-translation-hint-text {
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.vocabulary-translation-answer {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.vocabulary-translation-next {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.vocabulary-translation-stats {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+

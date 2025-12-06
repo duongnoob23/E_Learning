@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import "./Lesson.css";
 import { useParams } from "react-router-dom";
 import { useCourseStructure } from "../../services/Course/courseQueries";
+import { renderLessonComponent } from "../../components/Lesson/LessonComponentMapper";
 // import throttle from "lodash.throttle";
 // import ReactPlayer from "react-player";
 // ------------------------------- //
@@ -105,42 +106,30 @@ const Lesson = () => {
         <section className="lesson-page__layout">
           {/* ================= LEFT SIDE ================= */}
           <div className="lesson-page__layout-left">
-            {/* Video Player */}
-            <div className="lesson-page__video-panel">
-              <div className="lesson-page__video-wrapper">
-                <div className="lesson-page__player-shell">
-                  <div className="lesson-page__video-frame">
-                    {activeLesson ? (
-                      <iframe
-                        src={convertYoutubeUrlToEmbed(activeLesson.video_url)}
-                          
-                        title={activeLesson.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <div className="lesson-page__video-placeholder">
-                        Chọn bài học để bắt đầu
-                      </div>
-                    )}
-                  </div>
+            {/* Lesson Content - Render động theo lesson_type */}
+            {activeLesson ? (
+              <div className="lesson-page__lesson-content-wrapper">
+                <header className="lesson-page__course-header">
+                  <h2 className="lesson-page__lesson-title">
+                    {activeLesson.title}
+                  </h2>
+                  {activeLesson.description && (
+                    <p className="lesson-page__lesson-description">
+                      {activeLesson.description}
+                    </p>
+                  )}
+                </header>
+
+                {/* Render component dựa trên lesson_type */}
+                <div className="lesson-page__lesson-component">
+                  {renderLessonComponent(activeLesson)}
                 </div>
               </div>
-            </div>
-
-            {/* Course Header */}
-            <header className="lesson-page__course-header">
-              <h2 className="lesson-page__lesson-title">
-                {activeLesson?.title}
-              </h2>
-
-              <div className="lesson-page__lesson-content">
-                {activeLesson?.content?.split("\n").map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
+            ) : (
+              <div className="lesson-page__video-placeholder">
+                Chọn bài học để bắt đầu
               </div>
-            </header>
-
+            )}
           </div>
 
           {/* ================= RIGHT SIDE (SIDEBAR) ================= */}
@@ -215,13 +204,31 @@ const Lesson = () => {
                             <span className="lesson-page__lesson-name">{lesson.title}</span>
                         
                         
-                            {/* TYPE (video/quiz/assignment) */}
+                            {/* TYPE - Hiển thị tên loại bài tập */}
                             <span className="lesson-page__lesson-duration">
                               {lesson.lesson_type === "quiz"
                                 ? "Quiz"
                                 : lesson.lesson_type === "assignment"
                                 ? "Bài tập"
-                                : "Video"}
+                                : lesson.lesson_type === "vocabulary_list"
+                                ? "Danh sách từ"
+                                : lesson.lesson_type === "vocabulary_matching"
+                                ? "Tìm cặp"
+                                : lesson.lesson_type === "vocabulary_translation"
+                                ? "Dịch nghĩa"
+                                : lesson.lesson_type === "vocabulary_quiz"
+                                ? "Trắc nghiệm"
+                                : lesson.lesson_type === "vocabulary_listening"
+                                ? "Nghe từ"
+                                : lesson.lesson_type === "vocabulary_image_choice"
+                                ? "Chọn ảnh"
+                                : lesson.lesson_type === "vocabulary_sentence_completion"
+                                ? "Hoàn thiện câu"
+                                : lesson.lesson_type === "grammar_theory"
+                                ? "Lý thuyết"
+                                : lesson.video_url
+                                ? "Video"
+                                : "Bài học"}
                             </span>
                           </button>
                         );
