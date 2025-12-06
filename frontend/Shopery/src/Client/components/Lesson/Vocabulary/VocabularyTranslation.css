@@ -1,70 +1,77 @@
-/* VocabularyTranslation.css */
+/* VocabularyTranslation.css - Dịch nghĩa từ vựng */
 .vocabulary-translation-container {
-  padding: 24px;
+  padding: 32px;
   background: #fff;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.vocabulary-translation-container h3 {
-  margin: 0 0 24px 0;
-  font-size: 20px;
-  color: #1f2937;
-}
-
-.vocabulary-translation-content {
-  max-width: 600px;
+  border-radius: 12px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+/* Câu hỏi */
+.vocabulary-translation-question {
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 .vocabulary-translation-image {
   margin-bottom: 24px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.vocabulary-translation-image img {
-  max-width: 100%;
-  max-height: 300px;
-  border-radius: 8px;
+.vocabulary-translation-question-image {
+  max-width: 500px;
+  max-height: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.vocabulary-translation-question {
-  text-align: center;
-  margin-bottom: 24px;
+  object-fit: contain;
 }
 
 .vocabulary-translation-vi {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
   color: #1f2937;
-  margin: 0 0 8px 0;
+  margin: 0 0 20px 0;
 }
 
 .vocabulary-translation-hint {
-  font-size: 14px;
+  font-size: 16px;
   color: #6b7280;
   margin: 0;
 }
 
+/* Input group */
 .vocabulary-translation-input-group {
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .vocabulary-translation-input {
   flex: 1;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border: 2px solid #e5e7eb;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.2s;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .vocabulary-translation-input:focus {
   outline: none;
   border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
 }
 
 .vocabulary-translation-input:disabled {
@@ -72,20 +79,61 @@
   cursor: not-allowed;
 }
 
+/* Input đúng - Border xanh */
+.vocabulary-translation-input--correct {
+  border-color: #10b981 !important;
+  background: #d1fae5 !important;
+  animation: correctPulse 0.5s ease;
+}
+
+@keyframes correctPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Input sai - Shake animation */
+.vocabulary-translation-input--wrong {
+  border-color: #ef4444 !important;
+  background: #fee2e2 !important;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
 .vocabulary-translation-submit {
-  padding: 12px 24px;
+  padding: 14px 28px;
   background: #1ec28b;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .vocabulary-translation-submit:hover:not(:disabled) {
   background: #16a085;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .vocabulary-translation-submit:disabled {
@@ -93,58 +141,143 @@
   cursor: not-allowed;
 }
 
-.vocabulary-translation-result {
+/* Hiển thị đáp án khi sai */
+.vocabulary-translation-answer-display {
   padding: 16px;
   border-radius: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   text-align: center;
-}
-
-.vocabulary-translation-result.correct {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.vocabulary-translation-result.wrong {
   background: #fee2e2;
   color: #991b1b;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.vocabulary-translation-result i {
-  font-size: 32px;
+.vocabulary-translation-answer-display i {
+  font-size: 24px;
   margin-bottom: 8px;
+  display: block;
 }
 
-.vocabulary-translation-result p {
-  margin: 8px 0;
-}
-
-.vocabulary-translation-hint-text {
-  font-size: 14px;
-  font-style: italic;
-  margin-top: 8px;
-}
-
-.vocabulary-translation-answer {
-  margin-top: 12px;
+.vocabulary-translation-answer-display p {
+  margin: 0;
   font-size: 16px;
 }
 
-.vocabulary-translation-next {
-  margin-top: 12px;
-  padding: 8px 16px;
-  background: #10b981;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+.vocabulary-translation-answer-display strong {
+  font-size: 18px;
+  color: #dc2626;
 }
 
-.vocabulary-translation-stats {
-  text-align: center;
+/* Navigation */
+.vocabulary-translation-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.vocabulary-translation-nav-btn {
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
   font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocabulary-translation-nav-btn:hover:not(:disabled) {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-translation-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-translation-auto-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vocabulary-translation-auto-switch input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1ec28b;
+}
+
+.vocabulary-translation-auto-switch span {
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Danh sách số câu hỏi */
+.vocabulary-translation-question-list {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vocabulary-translation-question-list-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
   color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.vocabulary-translation-question-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vocabulary-translation-question-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vocabulary-translation-question-number:hover {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-translation-question-number--active {
+  border-color: #1ec28b;
+  background: #1ec28b;
+  color: #fff;
+}
+
+.vocabulary-translation-question-number--answered {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
 }
 
 

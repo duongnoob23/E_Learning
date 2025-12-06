@@ -1,0 +1,64 @@
+/* InlineEditor.css */
+.inline-editor {
+  margin-bottom: 12px;
+}
+
+.inline-editor-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.inline-editor-display {
+  padding: 8px 12px;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.inline-editor-display:hover {
+  background: #f3f4f6;
+  border-color: #1ec28b;
+  border-style: solid;
+}
+
+.inline-editor-display--empty {
+  color: #9ca3af;
+}
+
+.inline-editor-placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.inline-editor--editing {
+  margin-bottom: 12px;
+}
+
+.inline-editor-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #1ec28b;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.inline-editor-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
+}
+
+.inline-editor-input[type="number"] {
+  width: 80px;
+}
+
