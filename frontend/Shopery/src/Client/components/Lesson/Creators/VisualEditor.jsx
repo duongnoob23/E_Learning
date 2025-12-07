@@ -1,8 +1,11 @@
 // VisualEditor.jsx - Editor thông minh với inline editing và visual feedback
 import React, { useState } from "react";
 import ImageChoiceEditor from "./editors/ImageChoiceEditor";
+import ListeningEditor from "./editors/ListeningEditor";
 import MatchingEditor from "./editors/MatchingEditor";
+import QuizEditor from "./editors/QuizEditor";
 import SentenceCompletionEditor from "./editors/SentenceCompletionEditor";
+import TranslationEditor from "./editors/TranslationEditor";
 import InlineEditor from "./InlineEditor";
 import "./VisualEditor.css";
 
@@ -133,35 +136,11 @@ export default function VisualEditor({ lessonType, data, onChange }) {
       case "vocabulary_matching":
         return <MatchingEditor data={data} onChange={onChange} />;
       case "vocabulary_translation":
-        return (
-          <VocabularyTranslationEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-            onDuplicate={handleDuplicateItem}
-          />
-        );
+        return <TranslationEditor data={data} onChange={onChange} />;
       case "vocabulary_quiz":
-        return (
-          <VocabularyQuizEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-            onDuplicate={handleDuplicateItem}
-          />
-        );
+        return <QuizEditor data={data} onChange={onChange} />;
       case "vocabulary_listening":
-        return (
-          <VocabularyListeningEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-            onDuplicate={handleDuplicateItem}
-          />
-        );
+        return <ListeningEditor data={data} onChange={onChange} />;
       case "vocabulary_image_choice":
         return <ImageChoiceEditor data={data} onChange={onChange} />;
       case "vocabulary_sentence_completion":
