@@ -61,6 +61,100 @@
   font-weight: 600;
 }
 
+/* Table styles */
+.grammar-theory-section-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.grammar-theory-section-content table th,
+.grammar-theory-section-content table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.grammar-theory-section-content table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.grammar-theory-section-content table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.grammar-theory-section-content table tr:hover {
+  background: #f3f4f6;
+}
+
+/* Image styles */
+.grammar-theory-section-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Link styles */
+.grammar-theory-section-content a {
+  color: #3b82f6;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.grammar-theory-section-content a:hover {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+/* Headers */
+.grammar-theory-section-content h1,
+.grammar-theory-section-content h2,
+.grammar-theory-section-content h3,
+.grammar-theory-section-content h4,
+.grammar-theory-section-content h5,
+.grammar-theory-section-content h6 {
+  margin: 20px 0 12px 0;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.grammar-theory-section-content h1 {
+  font-size: 28px;
+}
+
+.grammar-theory-section-content h2 {
+  font-size: 24px;
+}
+
+.grammar-theory-section-content h3 {
+  font-size: 20px;
+}
+
+.grammar-theory-section-content h4 {
+  font-size: 18px;
+}
+
+/* Alignment */
+.grammar-theory-section-content .ql-align-center {
+  text-align: center;
+}
+
+.grammar-theory-section-content .ql-align-right {
+  text-align: right;
+}
+
+.grammar-theory-section-content .ql-align-justify {
+  text-align: justify;
+}
+
 .grammar-theory-examples {
   margin-top: 32px;
   padding: 24px;
@@ -104,6 +198,3 @@
   color: #1ec28b;
   font-weight: 600;
 }
-
-
-

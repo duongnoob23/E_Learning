@@ -10,6 +10,7 @@ import VocabularyListening from "./Vocabulary/VocabularyListening";
 import VocabularyImageChoice from "./Vocabulary/VocabularyImageChoice";
 import VocabularySentenceCompletion from "./Vocabulary/VocabularySentenceCompletion";
 import GrammarTheory from "./Grammar/GrammarTheory";
+import VideoLesson from "./Video/VideoLesson";
 
 // Video component (hiện tại)
 const VideoPlayer = ({ lesson }) => {
@@ -64,12 +65,15 @@ const VideoPlayer = ({ lesson }) => {
 
 // Component mapper
 export const LessonComponentMapper = {
-  // Loại cũ
+  // Loại cũ (giữ lại để backward compatibility)
   video: VideoPlayer,
   document: ({ lesson }) => <div>Document: {lesson.title}</div>,
   quiz: ({ lesson }) => <div>Quiz: {lesson.title}</div>,
   assignment: ({ lesson }) => <div>Assignment: {lesson.title}</div>,
   live: ({ lesson }) => <div>Live: {lesson.title}</div>,
+  
+  // Loại mới: Video Lesson
+  video_lesson: VideoLesson,
   
   // Loại mới: Vocabulary
   vocabulary_list: VocabularyList,

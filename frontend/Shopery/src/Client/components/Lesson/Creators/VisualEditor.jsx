@@ -1,11 +1,13 @@
 // VisualEditor.jsx - Editor thông minh với inline editing và visual feedback
 import React, { useState } from "react";
+import GrammarTheoryEditor from "./editors/GrammarTheoryEditor";
 import ImageChoiceEditor from "./editors/ImageChoiceEditor";
 import ListeningEditor from "./editors/ListeningEditor";
 import MatchingEditor from "./editors/MatchingEditor";
 import QuizEditor from "./editors/QuizEditor";
 import SentenceCompletionEditor from "./editors/SentenceCompletionEditor";
 import TranslationEditor from "./editors/TranslationEditor";
+import VideoLessonEditor from "./editors/VideoLessonEditor";
 import VocabularyListEditor from "./editors/VocabularyListEditor";
 import InlineEditor from "./InlineEditor";
 import "./VisualEditor.css";
@@ -139,6 +141,10 @@ export default function VisualEditor({ lessonType, data, onChange }) {
         return <ImageChoiceEditor data={data} onChange={onChange} />;
       case "vocabulary_sentence_completion":
         return <SentenceCompletionEditor data={data} onChange={onChange} />;
+      case "video_lesson":
+        return <VideoLessonEditor data={data} onChange={onChange} />;
+      case "grammar_theory":
+        return <GrammarTheoryEditor data={data} onChange={onChange} />;
       default:
         return <div>Chưa hỗ trợ editor cho loại này</div>;
     }

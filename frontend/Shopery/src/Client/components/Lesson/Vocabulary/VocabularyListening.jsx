@@ -34,10 +34,15 @@ export default function VocabularyListening({ lesson }) {
 
   // Reset khi chuyển câu
   useEffect(() => {
-    if (!playCounts[currentQuestionIndex]) {
-      setPlayCounts((prev) => ({ ...prev, [currentQuestionIndex]: 0 }));
-    }
-  }, [currentQuestionIndex, playCounts]);
+    setPlayCounts((prev) => {
+      // Chỉ set nếu chưa có giá trị cho questionIndex này
+      if (!prev[currentQuestionIndex]) {
+        return { ...prev, [currentQuestionIndex]: 0 };
+      }
+      return prev; // Không thay đổi nếu đã có
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentQuestionIndex]); // Bỏ playCounts khỏi dependency để tránh vòng lặp
 
   // Xử lý click vào ô
   const handleCellClick = useCallback(

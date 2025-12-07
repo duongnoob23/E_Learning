@@ -810,6 +810,19 @@ const TEST_LESSONS = [
   },
   {
     lesson_id: 8,
+    title: "Video Lesson: Giới thiệu",
+    description: "Bài học video mẫu",
+    lesson_type: "video_lesson",
+    lesson_data: {
+      type: "video_lesson",
+      video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      video_type: "youtube",
+      content:
+        "Đây là một bài học video mẫu.\n\nBạn có thể xem video và đọc nội dung mô tả bên dưới.",
+    },
+  },
+  {
+    lesson_id: 9,
     title: "Lý thuyết: Zero Conditional",
     description: "Tìm hiểu về Zero Conditional",
     lesson_type: "grammar_theory",
