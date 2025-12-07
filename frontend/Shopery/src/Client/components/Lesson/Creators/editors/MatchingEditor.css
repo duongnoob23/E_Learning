@@ -1,0 +1,240 @@
+/* MatchingEditor.css - Editor cho dạng bài Matching */
+.matching-editor {
+  padding: 20px;
+  max-width: 1000px;
+}
+
+/* Header */
+.me-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.me-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.me-add-btn {
+  padding: 10px 20px;
+  background: #1ec28b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.me-add-btn:hover {
+  background: #16a085;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(30, 194, 139, 0.3);
+}
+
+/* Empty state */
+.me-empty {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f9fafb;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+}
+
+/* Pairs list */
+.me-pairs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Pair card */
+.me-pair-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.me-pair-card:hover {
+  border-color: #1ec28b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.me-pair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.me-pair-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.me-pair-remove {
+  padding: 6px 12px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.me-pair-remove:hover {
+  background: #fecaca;
+  border-color: #f87171;
+}
+
+/* Pair content */
+.me-pair-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.me-pair-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.me-pair-field:last-child {
+  grid-column: 1 / -1; /* Image field chiếm full width */
+}
+
+.me-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.me-input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.me-input:focus {
+  outline: none;
+  border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
+}
+
+/* Image upload */
+.me-image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.me-file-input {
+  display: none;
+}
+
+.me-upload-btn {
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.me-upload-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.me-image-preview {
+  position: relative;
+  display: inline-block;
+  max-width: 200px;
+}
+
+.me-image-preview img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.me-image-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.me-image-remove:hover {
+  background: rgba(220, 38, 38, 1);
+  transform: scale(1.1);
+}
+
+/* Hint */
+.me-hint {
+  margin-top: 24px;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #1e40af;
+}
+
+.me-hint strong {
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .me-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .me-pair-content {
+    grid-template-columns: 1fr;
+  }
+
+  .me-pair-field:last-child {
+    grid-column: 1;
+  }
+}
+

@@ -1,7 +1,9 @@
 // VisualEditor.jsx - Editor thông minh với inline editing và visual feedback
 import React, { useState } from "react";
-import InlineEditor from "./InlineEditor";
+import ImageChoiceEditor from "./editors/ImageChoiceEditor";
+import MatchingEditor from "./editors/MatchingEditor";
 import SentenceCompletionEditor from "./editors/SentenceCompletionEditor";
+import InlineEditor from "./InlineEditor";
 import "./VisualEditor.css";
 
 export default function VisualEditor({ lessonType, data, onChange }) {
@@ -20,14 +22,14 @@ export default function VisualEditor({ lessonType, data, onChange }) {
         } else if (path.includes("cols")) {
           newGridSize.cols = parseInt(value) || 4;
         }
-        
+
         // Validate grid size
         const totalCells = newGridSize.rows * newGridSize.cols;
         if (totalCells % 2 !== 0) {
           alert("Grid size phải là số chẵn (rows × cols phải chia hết cho 2)");
           return;
         }
-        
+
         const maxPairs = totalCells / 2;
         const currentPairs = question.pairs?.length || 0;
         if (currentPairs > maxPairs) {
@@ -55,15 +57,24 @@ export default function VisualEditor({ lessonType, data, onChange }) {
       const question = data.questions?.[questionIndex];
       if (question && !validateAddPair(question)) {
         alert(
-          `Số cặp tối đa là ${(question.grid_size.rows * question.grid_size.cols) / 2}. Vui lòng tăng grid size trước.`
+          `Số cặp tối đa là ${
+            (question.grid_size.rows * question.grid_size.cols) / 2
+          }. Vui lòng tăng grid size trước.`
         );
         return;
       }
-    } else if (type === "word" && parentPath && parentPath.includes("questions")) {
+    } else if (
+      type === "word" &&
+      parentPath &&
+      parentPath.includes("questions")
+    ) {
       // Nếu thêm word vào question (sentence completion), cần tạo id mới
       const questionIndex = parseInt(parentPath.split(".")[1]);
       const question = data.questions?.[questionIndex];
-      const maxId = Math.max(...(question.shuffled_words || []).map(w => w.id || 0), 0);
+      const maxId = Math.max(
+        ...(question.shuffled_words || []).map((w) => w.id || 0),
+        0
+      );
       const newItem = {
         id: maxId + 1,
         text: "",
@@ -71,7 +82,11 @@ export default function VisualEditor({ lessonType, data, onChange }) {
       const newData = addItemToData(data, parentPath, newItem);
       onChange(newData);
       return;
-    } else if (type === "blank" && parentPath && parentPath.includes("questions")) {
+    } else if (
+      type === "blank" &&
+      parentPath &&
+      parentPath.includes("questions")
+    ) {
       // Nếu thêm blank vào question (sentence completion)
       const questionIndex = parseInt(parentPath.split(".")[1]);
       const question = data.questions?.[questionIndex];
@@ -116,15 +131,7 @@ export default function VisualEditor({ lessonType, data, onChange }) {
           />
         );
       case "vocabulary_matching":
-        return (
-          <VocabularyMatchingEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-            onDuplicate={handleDuplicateItem}
-          />
-        );
+        return <MatchingEditor data={data} onChange={onChange} />;
       case "vocabulary_translation":
         return (
           <VocabularyTranslationEditor
@@ -156,22 +163,9 @@ export default function VisualEditor({ lessonType, data, onChange }) {
           />
         );
       case "vocabulary_image_choice":
-        return (
-          <VocabularyImageChoiceEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-            onDuplicate={handleDuplicateItem}
-          />
-        );
+        return <ImageChoiceEditor data={data} onChange={onChange} />;
       case "vocabulary_sentence_completion":
-        return (
-          <SentenceCompletionEditor
-            data={data}
-            onChange={onChange}
-          />
-        );
+        return <SentenceCompletionEditor data={data} onChange={onChange} />;
       default:
         return <div>Chưa hỗ trợ editor cho loại này</div>;
     }
@@ -211,7 +205,10 @@ function VocabularyMatchingEditor({
         </div>
       ) : (
         questions.map((question, qIndex) => (
-          <div key={question.question_id} className="visual-editor-question-card">
+          <div
+            key={question.question_id}
+            className="visual-editor-question-card"
+          >
             <div className="visual-editor-question-header">
               <span className="visual-editor-question-number">
                 Câu {qIndex + 1}
@@ -239,7 +236,11 @@ function VocabularyMatchingEditor({
               <label>
                 Kích thước lưới:{" "}
                 <span className="visual-editor-hint">
-                  (Tối đa: {(question.grid_size?.rows || 4) * (question.grid_size?.cols || 4) / 2} cặp)
+                  (Tối đa:{" "}
+                  {((question.grid_size?.rows || 4) *
+                    (question.grid_size?.cols || 4)) /
+                    2}{" "}
+                  cặp)
                 </span>
               </label>
               <div className="visual-editor-inline-fields">
@@ -263,7 +264,11 @@ function VocabularyMatchingEditor({
               </div>
               {(question.pairs || []).length > 0 && (
                 <div className="visual-editor-validation">
-                  Đã có: {(question.pairs || []).length} / {(question.grid_size?.rows || 4) * (question.grid_size?.cols || 4) / 2} cặp
+                  Đã có: {(question.pairs || []).length} /{" "}
+                  {((question.grid_size?.rows || 4) *
+                    (question.grid_size?.cols || 4)) /
+                    2}{" "}
+                  cặp
                 </div>
               )}
             </div>
@@ -287,10 +292,7 @@ function VocabularyMatchingEditor({
               </div>
 
               {(question.pairs || []).map((pair, pIndex) => (
-                <div
-                  key={pair.pair_id}
-                  className="visual-editor-item-card"
-                >
+                <div key={pair.pair_id} className="visual-editor-item-card">
                   <div className="visual-editor-item-header">
                     <span>Cặp {pIndex + 1}</span>
                     <button
@@ -365,7 +367,10 @@ function VocabularyTranslationEditor({
         </div>
       ) : (
         questions.map((question, qIndex) => (
-          <div key={question.question_id} className="visual-editor-question-card">
+          <div
+            key={question.question_id}
+            className="visual-editor-question-card"
+          >
             <div className="visual-editor-question-header">
               <span className="visual-editor-question-number">
                 Câu {qIndex + 1}
@@ -427,7 +432,7 @@ function VocabularyTranslationEditor({
 // Vocabulary List Editor
 function VocabularyListEditor({ data, onEdit, onAdd, onRemove }) {
   const words = data.words || [];
-  
+
   return (
     <div className="visual-editor-questions">
       <div className="visual-editor-field-group">
@@ -435,13 +440,17 @@ function VocabularyListEditor({ data, onEdit, onAdd, onRemove }) {
         <select
           value={data.display_mode || "flashcard"}
           onChange={(e) => onEdit("display_mode", e.target.value)}
-          style={{ padding: "8px", borderRadius: "6px", border: "1px solid #d1d5db" }}
+          style={{
+            padding: "8px",
+            borderRadius: "6px",
+            border: "1px solid #d1d5db",
+          }}
         >
           <option value="flashcard">Flashcard</option>
           <option value="list">List</option>
         </select>
       </div>
-      
+
       <div className="visual-editor-field-group">
         <div className="visual-editor-field-group-header">
           <label>Danh sách từ:</label>
@@ -452,7 +461,7 @@ function VocabularyListEditor({ data, onEdit, onAdd, onRemove }) {
             + Thêm từ
           </button>
         </div>
-        
+
         {words.map((word, wIndex) => (
           <div key={word.word_id} className="visual-editor-item-card">
             <div className="visual-editor-item-header">
@@ -511,7 +520,7 @@ function VocabularyListEditor({ data, onEdit, onAdd, onRemove }) {
 // Vocabulary Quiz Editor
 function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
   const questions = data.questions || [];
-  
+
   return (
     <div className="visual-editor-questions">
       {questions.length === 0 ? (
@@ -520,9 +529,14 @@ function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
         </div>
       ) : (
         questions.map((question, qIndex) => (
-          <div key={question.question_id} className="visual-editor-question-card">
+          <div
+            key={question.question_id}
+            className="visual-editor-question-card"
+          >
             <div className="visual-editor-question-header">
-              <span className="visual-editor-question-number">Câu {qIndex + 1}</span>
+              <span className="visual-editor-question-number">
+                Câu {qIndex + 1}
+              </span>
               <div className="visual-editor-question-actions">
                 <button
                   className="visual-editor-action-btn"
@@ -540,50 +554,62 @@ function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
                 </button>
               </div>
             </div>
-            
+
             <div className="visual-editor-field-group">
               <label>Loại câu hỏi:</label>
               <select
                 value={question.question_type || "text"}
-                onChange={(e) => onEdit(`questions.${qIndex}.question_type`, e.target.value)}
-                style={{ padding: "8px", borderRadius: "6px", border: "1px solid #d1d5db" }}
+                onChange={(e) =>
+                  onEdit(`questions.${qIndex}.question_type`, e.target.value)
+                }
+                style={{
+                  padding: "8px",
+                  borderRadius: "6px",
+                  border: "1px solid #d1d5db",
+                }}
               >
                 <option value="text">Text</option>
                 <option value="image">Image</option>
                 <option value="audio">Audio</option>
               </select>
             </div>
-            
+
             {question.question_type === "text" && (
               <InlineEditor
                 type="text"
                 value={question.question_text || ""}
-                onChange={(value) => onEdit(`questions.${qIndex}.question_text`, value)}
+                onChange={(value) =>
+                  onEdit(`questions.${qIndex}.question_text`, value)
+                }
                 placeholder="Câu hỏi"
                 label="Câu hỏi *"
               />
             )}
-            
+
             {question.question_type === "image" && (
               <InlineEditor
                 type="url"
                 value={question.question_image_url || ""}
-                onChange={(value) => onEdit(`questions.${qIndex}.question_image_url`, value)}
+                onChange={(value) =>
+                  onEdit(`questions.${qIndex}.question_image_url`, value)
+                }
                 placeholder="Image URL"
                 label="Image URL *"
               />
             )}
-            
+
             {question.question_type === "audio" && (
               <InlineEditor
                 type="url"
                 value={question.question_audio_url || ""}
-                onChange={(value) => onEdit(`questions.${qIndex}.question_audio_url`, value)}
+                onChange={(value) =>
+                  onEdit(`questions.${qIndex}.question_audio_url`, value)
+                }
                 placeholder="Audio URL"
                 label="Audio URL *"
               />
             )}
-            
+
             <div className="visual-editor-field-group">
               <div className="visual-editor-field-group-header">
                 <label>Các lựa chọn:</label>
@@ -594,14 +620,16 @@ function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
                   + Thêm lựa chọn
                 </button>
               </div>
-              
+
               {(question.choices || []).map((choice, cIndex) => (
                 <div key={choice.choice_id} className="visual-editor-item-card">
                   <div className="visual-editor-item-header">
                     <span>Lựa chọn {cIndex + 1}</span>
                     <button
                       className="visual-editor-action-btn-small"
-                      onClick={() => onRemove(`questions.${qIndex}.choices.${cIndex}`)}
+                      onClick={() =>
+                        onRemove(`questions.${qIndex}.choices.${cIndex}`)
+                      }
                     >
                       ×
                     </button>
@@ -610,14 +638,24 @@ function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
                     <InlineEditor
                       type="text"
                       value={choice.text || ""}
-                      onChange={(value) => onEdit(`questions.${qIndex}.choices.${cIndex}.text`, value)}
+                      onChange={(value) =>
+                        onEdit(
+                          `questions.${qIndex}.choices.${cIndex}.text`,
+                          value
+                        )
+                      }
                       placeholder="Text"
                       label="Text *"
                     />
                     <InlineEditor
                       type="url"
                       value={choice.image_url || ""}
-                      onChange={(value) => onEdit(`questions.${qIndex}.choices.${cIndex}.image_url`, value)}
+                      onChange={(value) =>
+                        onEdit(
+                          `questions.${qIndex}.choices.${cIndex}.image_url`,
+                          value
+                        )
+                      }
                       placeholder="Image URL"
                       label="Image URL"
                     />
@@ -626,7 +664,12 @@ function VocabularyQuizEditor({ data, onEdit, onAdd, onRemove, onDuplicate }) {
                         <input
                           type="checkbox"
                           checked={choice.is_correct || false}
-                          onChange={(e) => onEdit(`questions.${qIndex}.choices.${cIndex}.is_correct`, e.target.checked)}
+                          onChange={(e) =>
+                            onEdit(
+                              `questions.${qIndex}.choices.${cIndex}.is_correct`,
+                              e.target.checked
+                            )
+                          }
                         />
                         <span>Đáp án đúng</span>
                       </label>
@@ -651,7 +694,7 @@ function VocabularyListeningEditor({
   onDuplicate,
 }) {
   const questions = data.questions || [];
-  
+
   return (
     <div className="visual-editor-questions">
       {questions.length === 0 ? (
@@ -660,9 +703,14 @@ function VocabularyListeningEditor({
         </div>
       ) : (
         questions.map((question, qIndex) => (
-          <div key={question.question_id} className="visual-editor-question-card">
+          <div
+            key={question.question_id}
+            className="visual-editor-question-card"
+          >
             <div className="visual-editor-question-header">
-              <span className="visual-editor-question-number">Câu {qIndex + 1}</span>
+              <span className="visual-editor-question-number">
+                Câu {qIndex + 1}
+              </span>
               <div className="visual-editor-question-actions">
                 <button
                   className="visual-editor-action-btn"
@@ -680,34 +728,40 @@ function VocabularyListeningEditor({
                 </button>
               </div>
             </div>
-            
+
             <InlineEditor
               type="url"
               value={question.audio_url || ""}
-              onChange={(value) => onEdit(`questions.${qIndex}.audio_url`, value)}
+              onChange={(value) =>
+                onEdit(`questions.${qIndex}.audio_url`, value)
+              }
               placeholder="Audio URL"
               label="Audio URL *"
             />
-            
+
             <div className="visual-editor-field-group">
               <label>Grid Size:</label>
               <div className="visual-editor-inline-fields">
                 <InlineEditor
                   type="number"
                   value={question.grid?.rows || 3}
-                  onChange={(value) => onEdit(`questions.${qIndex}.grid.rows`, value)}
+                  onChange={(value) =>
+                    onEdit(`questions.${qIndex}.grid.rows`, value)
+                  }
                   placeholder="Rows"
                 />
                 <span>×</span>
                 <InlineEditor
                   type="number"
                   value={question.grid?.cols || 3}
-                  onChange={(value) => onEdit(`questions.${qIndex}.grid.cols`, value)}
+                  onChange={(value) =>
+                    onEdit(`questions.${qIndex}.grid.cols`, value)
+                  }
                   placeholder="Cols"
                 />
               </div>
             </div>
-            
+
             <div className="visual-editor-field-group">
               <div className="visual-editor-field-group-header">
                 <label>Các cells:</label>
@@ -718,14 +772,16 @@ function VocabularyListeningEditor({
                   + Thêm cell
                 </button>
               </div>
-              
+
               {(question.grid?.cells || []).map((cell, cIndex) => (
                 <div key={cell.cell_id} className="visual-editor-item-card">
                   <div className="visual-editor-item-header">
                     <span>Cell {cIndex + 1}</span>
                     <button
                       className="visual-editor-action-btn-small"
-                      onClick={() => onRemove(`questions.${qIndex}.grid.cells.${cIndex}`)}
+                      onClick={() =>
+                        onRemove(`questions.${qIndex}.grid.cells.${cIndex}`)
+                      }
                     >
                       ×
                     </button>
@@ -734,14 +790,24 @@ function VocabularyListeningEditor({
                     <InlineEditor
                       type="text"
                       value={cell.vi_text || ""}
-                      onChange={(value) => onEdit(`questions.${qIndex}.grid.cells.${cIndex}.vi_text`, value)}
+                      onChange={(value) =>
+                        onEdit(
+                          `questions.${qIndex}.grid.cells.${cIndex}.vi_text`,
+                          value
+                        )
+                      }
                       placeholder="Vietnamese text"
                       label="Vietnamese Text *"
                     />
                     <InlineEditor
                       type="url"
                       value={cell.image_url || ""}
-                      onChange={(value) => onEdit(`questions.${qIndex}.grid.cells.${cIndex}.image_url`, value)}
+                      onChange={(value) =>
+                        onEdit(
+                          `questions.${qIndex}.grid.cells.${cIndex}.image_url`,
+                          value
+                        )
+                      }
                       placeholder="Image URL"
                       label="Image URL"
                     />
@@ -750,7 +816,12 @@ function VocabularyListeningEditor({
                         <input
                           type="checkbox"
                           checked={cell.is_correct || false}
-                          onChange={(e) => onEdit(`questions.${qIndex}.grid.cells.${cIndex}.is_correct`, e.target.checked)}
+                          onChange={(e) =>
+                            onEdit(
+                              `questions.${qIndex}.grid.cells.${cIndex}.is_correct`,
+                              e.target.checked
+                            )
+                          }
                         />
                         <span>Đáp án đúng</span>
                       </label>
@@ -775,7 +846,7 @@ function VocabularyImageChoiceEditor({
   onDuplicate,
 }) {
   const questions = data.questions || [];
-  
+
   return (
     <div className="visual-editor-questions">
       {questions.length === 0 ? (
@@ -784,9 +855,14 @@ function VocabularyImageChoiceEditor({
         </div>
       ) : (
         questions.map((question, qIndex) => (
-          <div key={question.question_id} className="visual-editor-question-card">
+          <div
+            key={question.question_id}
+            className="visual-editor-question-card"
+          >
             <div className="visual-editor-question-header">
-              <span className="visual-editor-question-number">Câu {qIndex + 1}</span>
+              <span className="visual-editor-question-number">
+                Câu {qIndex + 1}
+              </span>
               <div className="visual-editor-question-actions">
                 <button
                   className="visual-editor-action-btn"
@@ -804,39 +880,49 @@ function VocabularyImageChoiceEditor({
                 </button>
               </div>
             </div>
-            
+
             <div className="visual-editor-field-group">
               <label>Loại câu hỏi:</label>
               <select
                 value={question.question_type || "text"}
-                onChange={(e) => onEdit(`questions.${qIndex}.question_type`, e.target.value)}
-                style={{ padding: "8px", borderRadius: "6px", border: "1px solid #d1d5db" }}
+                onChange={(e) =>
+                  onEdit(`questions.${qIndex}.question_type`, e.target.value)
+                }
+                style={{
+                  padding: "8px",
+                  borderRadius: "6px",
+                  border: "1px solid #d1d5db",
+                }}
               >
                 <option value="text">Text</option>
                 <option value="audio">Audio</option>
               </select>
             </div>
-            
+
             {question.question_type === "text" && (
               <InlineEditor
                 type="text"
                 value={question.question_text || ""}
-                onChange={(value) => onEdit(`questions.${qIndex}.question_text`, value)}
+                onChange={(value) =>
+                  onEdit(`questions.${qIndex}.question_text`, value)
+                }
                 placeholder="Câu hỏi"
                 label="Câu hỏi *"
               />
             )}
-            
+
             {question.question_type === "audio" && (
               <InlineEditor
                 type="url"
                 value={question.question_audio_url || ""}
-                onChange={(value) => onEdit(`questions.${qIndex}.question_audio_url`, value)}
+                onChange={(value) =>
+                  onEdit(`questions.${qIndex}.question_audio_url`, value)
+                }
                 placeholder="Audio URL"
                 label="Audio URL *"
               />
             )}
-            
+
             <div className="visual-editor-field-group">
               <div className="visual-editor-field-group-header">
                 <label>Danh sách ảnh:</label>
@@ -847,14 +933,16 @@ function VocabularyImageChoiceEditor({
                   + Thêm ảnh
                 </button>
               </div>
-              
+
               {(question.images || []).map((image, imgIndex) => (
                 <div key={image.image_id} className="visual-editor-item-card">
                   <div className="visual-editor-item-header">
                     <span>Ảnh {imgIndex + 1}</span>
                     <button
                       className="visual-editor-action-btn-small"
-                      onClick={() => onRemove(`questions.${qIndex}.images.${imgIndex}`)}
+                      onClick={() =>
+                        onRemove(`questions.${qIndex}.images.${imgIndex}`)
+                      }
                     >
                       ×
                     </button>
@@ -863,7 +951,12 @@ function VocabularyImageChoiceEditor({
                     <InlineEditor
                       type="url"
                       value={image.image_url || ""}
-                      onChange={(value) => onEdit(`questions.${qIndex}.images.${imgIndex}.image_url`, value)}
+                      onChange={(value) =>
+                        onEdit(
+                          `questions.${qIndex}.images.${imgIndex}.image_url`,
+                          value
+                        )
+                      }
                       placeholder="Image URL"
                       label="Image URL *"
                     />
@@ -872,7 +965,12 @@ function VocabularyImageChoiceEditor({
                         <input
                           type="checkbox"
                           checked={image.is_correct || false}
-                          onChange={(e) => onEdit(`questions.${qIndex}.images.${imgIndex}.is_correct`, e.target.checked)}
+                          onChange={(e) =>
+                            onEdit(
+                              `questions.${qIndex}.images.${imgIndex}.is_correct`,
+                              e.target.checked
+                            )
+                          }
                         />
                         <span>Đáp án đúng</span>
                       </label>
@@ -888,13 +986,12 @@ function VocabularyImageChoiceEditor({
   );
 }
 
-
 // Helper functions
 function updateNestedData(data, path, value) {
   const keys = path.split(".");
   const newData = JSON.parse(JSON.stringify(data));
   let current = newData;
-  
+
   // Navigate to parent
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
@@ -911,7 +1008,7 @@ function updateNestedData(data, path, value) {
       current = current[key];
     }
   }
-  
+
   // Set value
   const lastKey = keys[keys.length - 1];
   const lastIndex = parseInt(lastKey);
@@ -920,7 +1017,7 @@ function updateNestedData(data, path, value) {
   } else {
     current[lastKey] = value;
   }
-  
+
   return newData;
 }
 
@@ -1134,4 +1231,3 @@ function validateAddPair(question) {
   const currentPairs = question.pairs?.length || 0;
   return currentPairs < maxPairs;
 }
-
