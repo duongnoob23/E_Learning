@@ -1,7 +1,26 @@
 // VocabularyMatching.jsx - Tìm cặp từ vựng (4x4 grid, 8 cặp)
 // Hỗ trợ: nhiều câu hỏi, chọn 2 ô cùng nghĩa, đúng->xanh+biến mất, sai->đỏ+rung, pháo hoa khi hoàn thành
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useMemo, useRef } from "react";
 import "./VocabularyMatching.css";
+
+// Hàm shuffle ổn định dựa trên seed
+function stableShuffle(array, seed) {
+  const shuffled = [...array];
+  let currentSeed = seed;
+  
+  // Simple seeded random
+  const seededRandom = () => {
+    currentSeed = (currentSeed * 9301 + 49297) % 233280;
+    return currentSeed / 233280;
+  };
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
+}
 
 export default function VocabularyMatching({ lesson }) {
   const lessonData = lesson?.lesson_data || {};
@@ -22,13 +41,28 @@ export default function VocabularyMatching({ lesson }) {
   const currentQuestion = questions[currentQuestionIndex];
   const currentPairs = currentQuestion?.pairs || [];
 
-  // Tạo mảng 16 ô từ 8 cặp
-  const createCells = useCallback(() => {
-    const cells = [];
+  // Tạo key ổn định từ pairs để cache cells
+  const pairsKey = useMemo(() => {
+    if (!currentPairs || currentPairs.length === 0) return "";
+    return JSON.stringify(
+      currentPairs.map((p) => ({
+        id: p.pair_id,
+        en: p.right?.text,
+        vi: p.left?.text,
+        img: p.left?.image || p.left?.image_url,
+      }))
+    );
+  }, [currentPairs]);
+
+  // Tạo mảng 16 ô từ 8 cặp - chỉ tạo lại khi pairsKey thay đổi
+  const cells = useMemo(() => {
+    if (currentPairs.length === 0) return [];
+
+    const cellsArray = [];
     currentPairs.forEach((pair) => {
       // Ô tiếng Việt + ảnh
       const leftImage = pair.left?.image || pair.left?.image_url || null;
-      cells.push({
+      cellsArray.push({
         id: `pair-${pair.pair_id}-vi`,
         pairId: pair.pair_id,
         type: "vi",
@@ -37,7 +71,7 @@ export default function VocabularyMatching({ lesson }) {
         en: pair.right?.text || "",
       });
       // Ô tiếng Anh
-      cells.push({
+      cellsArray.push({
         id: `pair-${pair.pair_id}-en`,
         pairId: pair.pair_id,
         type: "en",
@@ -46,21 +80,18 @@ export default function VocabularyMatching({ lesson }) {
         vi: pair.left?.text || "",
       });
     });
-    // Shuffle các ô
-    return cells.sort(() => Math.random() - 0.5);
-  }, [currentPairs]);
 
-  const [cells, setCells] = useState([]);
+    // Shuffle ổn định dựa trên question_id và pairsKey
+    const seed = currentQuestion?.question_id || pairsKey.length || 12345;
+    return stableShuffle(cellsArray, seed);
+  }, [pairsKey, currentPairs, currentQuestion]);
 
-  // Khởi tạo cells khi chuyển câu
+  // Reset state khi chuyển câu
   useEffect(() => {
-    if (currentPairs.length > 0) {
-      setCells(createCells());
-      setSelectedCells([]);
-      setMatchedPairs(new Set());
-      setWrongCells([]);
-    }
-  }, [currentQuestionIndex, createCells, currentPairs.length]);
+    setSelectedCells([]);
+    setMatchedPairs(new Set());
+    setWrongCells([]);
+  }, [currentQuestionIndex, pairsKey]);
 
   // Kiểm tra xem 2 ô có phải là cặp đúng không
   const checkMatch = useCallback(
