@@ -1,0 +1,140 @@
+/* JSONEditor.css */
+.json-editor-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.json-editor {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.json-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.json-editor-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.json-editor-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.json-editor-close:hover {
+  background: #e5e7eb;
+}
+
+.json-editor-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.json-editor-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.json-editor-btn {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.json-editor-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.json-editor-error {
+  padding: 12px;
+  background: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
+  color: #991b1b;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.json-editor-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f9fafb;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.json-editor-textarea:focus {
+  border-color: #1ec28b;
+  background: #fff;
+}
+
+.json-editor-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 2px solid #e5e7eb;
+}
+
+.json-editor-btn-cancel {
+  background: #f3f4f6;
+}
+
+.json-editor-btn-import {
+  background: #1ec28b;
+  color: white;
+  border-color: #1ec28b;
+}
+
+.json-editor-btn-import:hover {
+  background: #16a085;
+  border-color: #16a085;
+}
+

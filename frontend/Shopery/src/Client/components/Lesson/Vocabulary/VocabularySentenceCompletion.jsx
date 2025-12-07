@@ -145,7 +145,7 @@ export default function VocabularySentenceCompletion({ lesson }) {
           ...prev,
           [currentQuestionIndex]: newPositions,
         };
-      });
+  });
 
       // Reset kết quả kiểm tra cho ô này
       setCheckResults((prev) => {
@@ -275,7 +275,7 @@ export default function VocabularySentenceCompletion({ lesson }) {
   };
 
   if (!currentQuestion) {
-    return (
+  return (
       <div className="vocabulary-sentence-container">Không có câu hỏi</div>
     );
   }
@@ -289,14 +289,14 @@ export default function VocabularySentenceCompletion({ lesson }) {
   const renderSentence = () => {
     const parts = currentSentenceTemplate.split(/(\{[^}]+\})/);
     return parts.map((part, index) => {
-      const blankMatch = part.match(/\{([^}]+)\}/);
-      if (blankMatch) {
-        const blankId = blankMatch[1];
+              const blankMatch = part.match(/\{([^}]+)\}/);
+              if (blankMatch) {
+                const blankId = blankMatch[1];
         const blank = currentBlanks.find((b) => b.id === blankId);
-        if (!blank) return <span key={index}>{part}</span>;
-
+                if (!blank) return <span key={index}>{part}</span>;
+                
         const wordId = currentWordPositions[blankId];
-        const word = wordId ? getWordById(wordId) : null;
+                const word = wordId ? getWordById(wordId) : null;
         const isCorrect = currentCheckResults[blankId];
         const isHovered = hoveredBlank === blankId;
 
@@ -314,15 +314,15 @@ export default function VocabularySentenceCompletion({ lesson }) {
         if (isHovered) {
           blankClass += " sentence-blank--hovered";
         }
-
-        return (
-          <span
-            key={index}
+                
+                return (
+                  <span
+                    key={index}
             className={blankClass}
             onDrop={(e) => handleDrop(e, blankId)}
             onDragOver={(e) => handleDragOver(e, blankId)}
             onDragLeave={handleDragLeave}
-          >
+                  >
             {word ? (
               <>
                 <span className="sentence-blank-word">{word.text}</span>
@@ -340,10 +340,10 @@ export default function VocabularySentenceCompletion({ lesson }) {
             ) : (
               <span className="sentence-blank-placeholder">____</span>
             )}
-          </span>
-        );
-      }
-      return <span key={index}>{part}</span>;
+                  </span>
+                );
+              }
+              return <span key={index}>{part}</span>;
     });
   };
 
@@ -359,24 +359,24 @@ export default function VocabularySentenceCompletion({ lesson }) {
       {/* Câu tiếng Anh với các ô trống */}
       <div className="vocabulary-sentence-display">
         <div className="vocabulary-sentence-text">{renderSentence()}</div>
-      </div>
+        </div>
 
       {/* Danh sách từ để kéo thả */}
-      <div className="vocabulary-sentence-words">
-        <h4>Từ để chọn:</h4>
-        <div className="vocabulary-sentence-words-list">
-          {availableWords.map((word) => (
-            <div
-              key={word.id}
-              className="vocabulary-sentence-word"
+        <div className="vocabulary-sentence-words">
+          <h4>Từ để chọn:</h4>
+          <div className="vocabulary-sentence-words-list">
+            {availableWords.map((word) => (
+              <div
+                key={word.id}
+                className="vocabulary-sentence-word"
               draggable={!isChecking && !isAutoFilling}
-              onDragStart={(e) => handleDragStart(e, word.id)}
-            >
-              {word.text}
-            </div>
-          ))}
+                onDragStart={(e) => handleDragStart(e, word.id)}
+              >
+                {word.text}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
       {/* Nút Kiểm tra và Đáp án */}
       <div className="vocabulary-sentence-actions">
@@ -415,13 +415,13 @@ export default function VocabularySentenceCompletion({ lesson }) {
           <span>Tự động chuyển câu</span>
         </label>
 
-        <button
+          <button
           className="vocabulary-sentence-nav-btn"
           onClick={handleNext}
           disabled={currentQuestionIndex === questions.length - 1}
-        >
+          >
           Câu sau →
-        </button>
+          </button>
       </div>
 
       {/* Danh sách số câu hỏi */}
@@ -453,8 +453,8 @@ export default function VocabularySentenceCompletion({ lesson }) {
               );
             })}
           </div>
-        </div>
-      )}
+          </div>
+        )}
     </div>
   );
 }

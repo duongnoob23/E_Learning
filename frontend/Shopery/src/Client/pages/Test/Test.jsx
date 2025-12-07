@@ -857,6 +857,7 @@ const TEST_LESSONS = [
 
 const Test = () => {
   const [selectedLesson, setSelectedLesson] = useState(TEST_LESSONS[0]);
+  const [activeTab, setActiveTab] = useState("lesson"); // "lesson" hoặc "studio"
 
   return (
     <div className="test-page">
@@ -866,73 +867,94 @@ const Test = () => {
           Chọn một loại bài tập bên dưới để xem giao diện
         </p>
 
-        <div className="test-page__layout">
-          {/* Sidebar - Danh sách bài tập */}
-          <aside className="test-page__sidebar">
-            <h3 className="test-page__sidebar-title">Danh sách bài tập</h3>
-            <div className="test-page__lesson-list">
-              {TEST_LESSONS.map((lesson) => (
-                <button
-                  key={lesson.lesson_id}
-                  className={`test-page__lesson-item ${
-                    selectedLesson.lesson_id === lesson.lesson_id
-                      ? "test-page__lesson-item--active"
-                      : ""
-                  }`}
-                  onClick={() => setSelectedLesson(lesson)}
-                >
-                  <span className="test-page__lesson-icon">
-                    {lesson.lesson_type === "vocabulary_list" && "📚"}
-                    {lesson.lesson_type === "vocabulary_matching" && "🔗"}
-                    {lesson.lesson_type === "vocabulary_translation" && "✍️"}
-                    {lesson.lesson_type === "vocabulary_quiz" && "❓"}
-                    {lesson.lesson_type === "vocabulary_listening" && "🎧"}
-                    {lesson.lesson_type === "vocabulary_image_choice" && "🖼️"}
-                    {lesson.lesson_type === "vocabulary_sentence_completion" &&
-                      "📝"}
-                    {lesson.lesson_type === "grammar_theory" && "📖"}
-                  </span>
-                  <div className="test-page__lesson-info">
-                    <span className="test-page__lesson-name">
-                      {lesson.title}
-                    </span>
-                    <span className="test-page__lesson-type">
-                      {lesson.lesson_type.replace("_", " ")}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </aside>
-
-          {/* Main Content - Hiển thị bài tập */}
-          <main className="test-page__main">
-            <div className="test-page__lesson-header">
-              <h2 className="test-page__lesson-title">
-                {selectedLesson.title}
-              </h2>
-              <p className="test-page__lesson-description">
-                {selectedLesson.description}
-              </p>
-            </div>
-
-            {/* UI Tạo Lesson - Visual Studio */}
-            <div style={{ marginBottom: "32px" }}>
-              <LessonStudio
-                lessonType={selectedLesson.lesson_type}
-                initialData={selectedLesson.lesson_data}
-                onSave={(data) => {
-                  console.log("Saved lesson data:", data);
-                  alert("Lesson data đã được lưu! (Check console)");
-                }}
-              />
-            </div>
-
-            <div className="test-page__lesson-content">
-              {renderLessonComponent(selectedLesson)}
-            </div>
-          </main>
+        {/* Tab Navigation */}
+        <div className="test-page__tabs">
+          <button
+            className={`test-page__tab ${
+              activeTab === "lesson" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("lesson")}
+          >
+            📚 Bài Tập
+          </button>
+          <button
+            className={`test-page__tab ${
+              activeTab === "studio" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("studio")}
+          >
+            ✏️ Lesson Studio
+          </button>
         </div>
+
+        {activeTab === "studio" ? (
+          <div className="test-page__studio">
+            <LessonStudio
+              lessonType={selectedLesson.lesson_type}
+              initialData={selectedLesson.lesson_data}
+              onSave={(data) => {
+                console.log("Saved lesson data:", data);
+                alert("Lesson data đã được lưu! (Check console)");
+              }}
+            />
+          </div>
+        ) : (
+          <div className="test-page__layout">
+            {/* Sidebar - Danh sách bài tập */}
+            <aside className="test-page__sidebar">
+              <h3 className="test-page__sidebar-title">Danh sách bài tập</h3>
+              <div className="test-page__lesson-list">
+                {TEST_LESSONS.map((lesson) => (
+                  <button
+                    key={lesson.lesson_id}
+                    className={`test-page__lesson-item ${
+                      selectedLesson.lesson_id === lesson.lesson_id
+                        ? "test-page__lesson-item--active"
+                        : ""
+                    }`}
+                    onClick={() => setSelectedLesson(lesson)}
+                  >
+                    <span className="test-page__lesson-icon">
+                      {lesson.lesson_type === "vocabulary_list" && "📚"}
+                      {lesson.lesson_type === "vocabulary_matching" && "🔗"}
+                      {lesson.lesson_type === "vocabulary_translation" && "✍️"}
+                      {lesson.lesson_type === "vocabulary_quiz" && "❓"}
+                      {lesson.lesson_type === "vocabulary_listening" && "🎧"}
+                      {lesson.lesson_type === "vocabulary_image_choice" && "🖼️"}
+                      {lesson.lesson_type ===
+                        "vocabulary_sentence_completion" && "📝"}
+                      {lesson.lesson_type === "grammar_theory" && "📖"}
+                    </span>
+                    <div className="test-page__lesson-info">
+                      <span className="test-page__lesson-name">
+                        {lesson.title}
+                      </span>
+                      <span className="test-page__lesson-type">
+                        {lesson.lesson_type.replace("_", " ")}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </aside>
+
+            {/* Main Content - Hiển thị bài tập */}
+            <main className="test-page__main">
+              <div className="test-page__lesson-header">
+                <h2 className="test-page__lesson-title">
+                  {selectedLesson.title}
+                </h2>
+                <p className="test-page__lesson-description">
+                  {selectedLesson.description}
+                </p>
+              </div>
+
+              <div className="test-page__lesson-content">
+                {renderLessonComponent(selectedLesson)}
+              </div>
+            </main>
+          </div>
+        )}
       </div>
     </div>
   );

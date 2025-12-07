@@ -20,7 +20,49 @@
 .test-page__subtitle {
   font-size: 16px;
   color: #6b7280;
-  margin: 0 0 32px 0;
+  margin: 0 0 24px 0;
+}
+
+/* Tabs */
+.test-page__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  width: fit-content;
+}
+
+.test-page__tab {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.test-page__tab:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.test-page__tab.active {
+  background: #1ec28b;
+  color: white;
+}
+
+.test-page__studio {
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .test-page__layout {
@@ -174,4 +216,3 @@
     font-size: 24px;
   }
 }
-
