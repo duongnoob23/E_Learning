@@ -34,7 +34,11 @@ export const queryKeys = {
     instructors: () => ["course", "instructors"],
     levels: () => ["course", "levels"],
   },
-
+  // === PROGRESS KEYS ===
+  progress: {
+    lesson: (lessonId, userId) => ["progress", "lesson", lessonId, userId],
+    course: (courseId, userId) => ["progress", "course", courseId, userId],
+  },
   // User keys
   user: {
     all: ["user"],
@@ -54,5 +58,11 @@ export const queryKeys = {
     sessions: ["assessment", "sessions"],
     session: (id) => ["assessment", "session", id],
     discussions: (testId) => ["assessment", "discussions", testId],
+  },
+
+  // Dictionary keys
+  dictionary: {
+    all: ["dictionary"],
+    search: (word, type) => ["dictionary", "search", { word, type }],
   },
 };

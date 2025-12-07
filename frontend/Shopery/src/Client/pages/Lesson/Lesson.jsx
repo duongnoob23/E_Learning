@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import "./Lesson.css";
 import { useParams } from "react-router-dom";
 import { useCourseStructure } from "../../services/Course/courseQueries";
+import LessonExercise from "../../components/Lesson/LessonExercise/LessonExercise";
 // import throttle from "lodash.throttle";
 // import ReactPlayer from "react-player";
 // ------------------------------- //
@@ -105,40 +106,47 @@ const Lesson = () => {
         <section className="lesson-page__layout">
           {/* ================= LEFT SIDE ================= */}
           <div className="lesson-page__layout-left">
-            {/* Video Player */}
-            <div className="lesson-page__video-panel">
-              <div className="lesson-page__video-wrapper">
-                <div className="lesson-page__player-shell">
-                  <div className="lesson-page__video-frame">
-                    {activeLesson ? (
-                      <iframe
-                        src={convertYoutubeUrlToEmbed(activeLesson.video_url)}
-                          
-                        title={activeLesson.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <div className="lesson-page__video-placeholder">
-                        Chọn bài học để bắt đầu
-                      </div>
-                    )}
+            {/* Video Player - Chỉ hiển thị khi KHÔNG có bài tập */}
+            {activeLesson && !activeLesson.has_exercise && (
+              <div className="lesson-page__video-panel">
+                <div className="lesson-page__video-wrapper">
+                  <div className="lesson-page__player-shell">
+                    <div className="lesson-page__video-frame">
+                      {activeLesson.video_url ? (
+                        <iframe
+                          src={activeLesson.video_url}
+                          title={activeLesson.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <div className="lesson-page__video-placeholder">
+                          Chọn bài học để bắt đầu
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Course Header */}
-            <header className="lesson-page__course-header">
+            <header className={`lesson-page__course-header ${activeLesson?.has_exercise ? 'lesson-page__course-header--exercise' : ''}`}>
               <h2 className="lesson-page__lesson-title">
                 {activeLesson?.title}
               </h2>
 
-              <div className="lesson-page__lesson-content">
-                {activeLesson?.content?.split("\n").map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
-              </div>
+              {/* Content - Chỉ hiển thị khi KHÔNG có bài tập hoặc có content */}
+              {activeLesson?.content && !activeLesson?.has_exercise && (
+                <div className="lesson-page__lesson-content">
+                  {activeLesson.content.split("\n").map((line, idx) => (
+                    <p key={idx}>{line}</p>
+                  ))}
+                </div>
+              )}
+
+              {/* Hiển thị bài tập nếu có */}
+              {activeLesson && <LessonExercise lesson={activeLesson} />}
             </header>
 
           </div>
@@ -180,7 +188,8 @@ const Lesson = () => {
                   {/* Lesson list */}
                   {isOpen && (
                     <div className="lesson-page__lesson-list">
-                      {module.lessons.map((lesson) => {
+                      {module.lessons && module.lessons.length > 0 ? (
+                        module.lessons.map((lesson) => {
                         const isActiveLesson = activeLessonId === lesson.lesson_id;
                         const statusClass = getLessonModifier(lesson.lesson_id);
                         return (
@@ -225,8 +234,12 @@ const Lesson = () => {
                             </span>
                           </button>
                         );
-                        
-                      })}
+                      })
+                      ) : (
+                        <div className="lesson-page__lesson-empty">
+                          <p>Chưa có bài học nào trong module này.</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

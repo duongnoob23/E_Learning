@@ -105,5 +105,10 @@ export const courseApi = {
     const res = await axiosInstance.get(`/course/course/${course_id}?user_id=${user_id}`);
     return res.data;
   },
-  
+  createVnpayPayment: async (enrollment_id) => {
+    const res = await axiosInstance.post("/payment/vnpay/create_payment", {
+      enrollment_id,
+    });
+    return res.data;
+  },
 };

@@ -171,7 +171,10 @@ Lesson.belongsTo(Module, { foreignKey: "module_id" });
 Lesson.belongsTo(Course, { foreignKey: "course_id" });
 
 CourseEnrollment.belongsTo(User, { foreignKey: "user_id" });
-CourseEnrollment.belongsTo(Course, { foreignKey: "course_id" });
+CourseEnrollment.belongsTo(Course, { 
+  foreignKey: "course_id",
+  as: "course_detail"
+});
 CourseEnrollment.belongsTo(Lesson, {
   as: "lastLesson",
   foreignKey: "last_accessed_lesson_id",

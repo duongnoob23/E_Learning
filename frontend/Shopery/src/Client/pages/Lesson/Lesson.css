@@ -398,8 +398,9 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   border-top: 1px solid var(--lesson-color-border);
-  max-height: 480px;
-  overflow: hidden;
+  max-height: 600px;  /* ✅ Tăng để hiển thị nhiều lessons hơn */
+  overflow-y: auto;   /* ✅ Cho phép scroll khi quá dài */
+  overflow-x: hidden;
   transition: max-height var(--lesson-transition-base);
 }
 
@@ -556,6 +557,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  transition: all var(--lesson-transition-base);
+}
+
+/* ✅ Khi có bài tập, header sẽ full-width và đẹp hơn */
+.lesson-page__course-header--exercise {
+  padding: 32px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-top: 0;
 }
 
 .lesson-page__course-title {
@@ -1376,4 +1387,12 @@ body {
 
 .lesson-page__lesson-content li {
   margin-bottom: 8px;
+}
+
+/* Empty state cho lesson list */
+.lesson-page__lesson-empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--lesson-color-text-muted);
+  font-size: 14px;
 }

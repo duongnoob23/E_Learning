@@ -51,7 +51,7 @@ router.post("/start", authMiddleware, controller.startLesson);
 router.post("/update", authMiddleware, controller.updateProgress);
 router.post("/complete", authMiddleware, controller.completeLesson);
 
-router.get("/course/:course_id", authMiddleware, controller.getCourseProgress);
+router.get("/courseprogress/:course_id", authMiddleware, controller.getCourseProgress);
 router.get("/lesson/:lesson_id", authMiddleware, controller.getLessonProgress);
 
 module.exports = router;

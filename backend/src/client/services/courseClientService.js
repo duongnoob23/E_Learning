@@ -47,7 +47,14 @@ exports.getCourseStructure = async (user_id, course_id) => {
       include: [{
         model: Lesson,
         as: "lessons",
-        attributes: ["lesson_id", "title","content", "sort_order", "lesson_type", "is_free","video_url"],
+        where: { is_active: true },  // ✅ Chỉ lấy lessons đang active
+        required: false,  // LEFT JOIN để vẫn lấy module dù không có lesson
+        attributes: ["lesson_id", "title","content", "sort_order", "lesson_type", "is_free","video_url","has_exercise",
+            "exercise_type",
+            "exercise_data",
+            "exercise_duration",
+            "pass_score",
+            "max_score"],
         order: [["sort_order", "ASC"]]
       }]
     });
@@ -308,6 +315,7 @@ exports.enrollCourse = async (user_id, course_id) => {
         course_id,
         is_free: course.is_free,
         payment_status: enrollment.payment_status,
+        enrollment_id: enrollment.enrollment_id,
       }
     };
 
@@ -326,6 +334,7 @@ exports.getUserCourses = async (user_id) => {
       include: [
         {
           model: Course,
+          as: "course_detail",
           include: [
             { model: Instructor, attributes: ["name"] },
             { model: Category, attributes: ["name"] },
@@ -520,33 +529,95 @@ exports.completeLesson = async ({ user_id, lesson_id }) => {
   }
 };
 // ==================== GET COURSE PROGRESS ==================== //
-exports.getCourseProgress = async ({ user_id, course_id }) => {
+exports.getCourseProgress = async (user_id, course_id) => {
   try {
-    const lessons = await Lesson.findAll({ where: { course_id } });
+    const course = await Course.findByPk(course_id);
+    if (!course) {
+      return {
+        EM: "Không tìm thấy khóa học",
+        EC: "2",
+        DT: null
+      };
+    }
 
-    const progresses = await LessonProgress.findAll({
-      where: { user_id, course_id }
+    // 1️⃣ Lấy tổng số bài học thực tế
+    const totalLessons = await Lesson.count({ where: { course_id } });
+
+    // Nếu khóa học không có bài học
+    if (totalLessons === 0) {
+      return {
+        EM: "Khóa học chưa có bài học nào",
+        EC: "0",
+        DT: {
+          course_id,
+          completed_lessons: 0,
+          total_lessons: 0,
+          progress_percent: 0,
+          lessons: []
+        }
+      };
+    }
+
+    // 2️⃣ Lấy danh sách tiến độ của user
+    const progressList = await LessonProgress.findAll({
+      where: { user_id, course_id },
+      attributes: [
+        "lesson_id",
+        "status",
+        "watched_duration",
+        "total_duration",
+        "completion_percent",
+        "last_accessed_at"
+      ]
     });
 
-    const completed = progresses.filter(p => p.status === "completed").length;
-    const total = lessons.length;
+    // Nếu user chưa học bài nào → trả đúng format
+    if (!progressList || progressList.length === 0) {
+      return {
+        EM: "User chưa học bài nào",
+        EC: "0",
+        DT: {
+          course_id,
+          completed_lessons: 0,
+          total_lessons: totalLessons,
+          progress_percent: 0,
+          lessons: []
+        }
+      };
+    }
 
-    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    // 3️⃣ Tính số bài completed
+    const completedLessons = progressList.filter(
+      p => p.status === "completed"
+    ).length;
+
+    // 4️⃣ % progress
+    const progressPercent = Math.round(
+      (completedLessons / totalLessons) * 100
+    );
 
     return {
-      EM: "OK",
+      EM: "Lấy tiến độ khóa học thành công",
       EC: "0",
       DT: {
-        completed,
-        total,
-        progress_percent: percent,
-        lessons: progresses
+        course_id,
+        completed_lessons: completedLessons,
+        total_lessons: totalLessons,
+        progress_percent: progressPercent,
+        lessons: progressList
       }
     };
   } catch (err) {
-    return { EM: "Lỗi server", EC: "-1", DT: null };
+    console.error("getCourseProgress error:", err);
+    return {
+      EM: "Lỗi server",
+      EC: "-1",
+      DT: null
+    };
   }
 };
+
+
 
 exports.getLessonProgress = async ({ user_id, lesson_id }) => {
   const progress = await LessonProgress.findOne({

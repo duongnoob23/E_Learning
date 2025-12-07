@@ -37,5 +37,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "course_enrollments", timestamps: false }
   );
+  
+  
+  
   return CourseEnrollment;
 };

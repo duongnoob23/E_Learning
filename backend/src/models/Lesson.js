@@ -12,15 +12,53 @@ module.exports = (sequelize, DataTypes) => {
       title: { type: DataTypes.STRING(200), allowNull: false },
       description: { type: DataTypes.TEXT, allowNull: true },
       content: { type: DataTypes.TEXT, allowNull: true },
+
       video_url: { type: DataTypes.STRING(255), allowNull: true },
       video_duration: { type: DataTypes.STRING(20), allowNull: true },
+
       file_attachment: { type: DataTypes.STRING(255), allowNull: true },
       sort_order: { type: DataTypes.INTEGER, allowNull: false },
+
       lesson_type: {
-        type: DataTypes.ENUM("video", "document", "quiz", "assignment", "live"),
+        type: DataTypes.ENUM(
+          "video",
+          "document",
+          "quiz",
+          "assignment",
+          "live",
+          "exercise"       
+        ),
         allowNull: false,
         defaultValue: "video",
       },
+
+      
+      has_exercise: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      exercise_type: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      exercise_data: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      exercise_duration: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      pass_score: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      max_score: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+
       is_free: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -36,6 +74,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0,
       },
+
       created_at: { type: DataTypes.DATE },
       updated_at: { type: DataTypes.DATE },
     },
@@ -43,19 +82,19 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Lesson.findById = async (lesson_id) => {
-    return Lesson.findOne({where: {lesson_id}});
+    return Lesson.findOne({ where: { lesson_id } });
   };
 
-  // Add associations
-  Lesson.associate = function(models) {
+  Lesson.associate = function (models) {
     Lesson.belongsTo(models.Module, {
-      foreignKey: 'module_id',
-      as: 'module'
+      foreignKey: "module_id",
+      as: "module",
     });
     Lesson.belongsTo(models.Course, {
-      foreignKey: 'course_id', 
-      as: 'course'
+      foreignKey: "course_id",
+      as: "course",
     });
   };
+
   return Lesson;
 };

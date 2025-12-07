@@ -17,6 +17,7 @@ const CoursePreview = () => {
   const [activeTab, setActiveTab] = useState("about");
   const [openModuleIdx, setOpenModuleIdx] = useState(null);
   const [paymentOpen, setPaymentOpen] = useState(false);
+  const [currentEnrollment, setCurrentEnrollment] = useState(null);
 
   const { data, isLoading, error } = useCourseDetail(id);
   const course = data?.DT?.course;
@@ -31,17 +32,21 @@ const CoursePreview = () => {
   const handleEnrollCourse = async () => {
     try {
       const res = await courseApi.enrollCourse(userId, course.course_id);
-
+      console.log("DEBUG enrollCourse response:", res);
       if (res.EC === "0") {
-        const { payment_status, is_free } = res.DT;
-
-        // Free course → học ngay
+        const { payment_status, is_free, enrollment_id } = res.DT;
+  
+        setCurrentEnrollment({
+          enrollment_id,
+          payment_status,
+          course_detail: course
+        });
+  
         if (is_free || payment_status === "paid") {
           toast.success("Bạn đã đăng ký khóa học!");
           return navigate(`/lesson/${course.course_id}`);
         }
-
-        // Paid but pending
+  
         if (!is_free && payment_status === "pending") {
           toast.info("Khóa học cần thanh toán!");
           return setPaymentOpen(true);
@@ -54,6 +59,7 @@ const CoursePreview = () => {
       toast.error("Có lỗi khi đăng ký khóa học");
     }
   };
+  
 
   const handlePaymentSuccess = () => {
     toast.success("Thanh toán thành công!");
@@ -150,7 +156,7 @@ const CoursePreview = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src={convertYoutubeUrlToEmbed(course.video_preview)}
+                src={course.video_preview}
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="Course Preview Video"
@@ -376,11 +382,14 @@ const CoursePreview = () => {
 
       {/* ==================== PAYMENT MODAL ==================== */}
       <PaymentModal
-        isOpen={paymentOpen}
-        onClose={() => setPaymentOpen(false)}
-        course={course}
-        onPaymentSuccess={handlePaymentSuccess}
-      />
+      isOpen={paymentOpen}
+      onClose={() => setPaymentOpen(false)}
+      course={currentEnrollment?.course_detail}
+      enroll={currentEnrollment}
+      enrollmentId={currentEnrollment?.enrollment_id}
+      onPaymentSuccess={handlePaymentSuccess}
+    />
+    
     </div>
   );
 };

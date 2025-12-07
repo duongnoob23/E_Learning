@@ -13,6 +13,7 @@ import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
 import { queryClient } from "./lib/queryClient";
 import AppRoutes from "./routes/routes";
+import Dictionary from "./common/components/Dictionary";
 function App() {
   return (
     <Provider store={store}>
@@ -21,8 +22,11 @@ function App() {
           <div className="App">
             <AppRoutes />
             {/* <Lesson /> */}
+            <Dictionary />
+ 
           </div>
         </Router>
+        
       </QueryProvider>
 
       <ToastContainer
@@ -37,7 +41,9 @@ function App() {
         pauseOnHover
         theme="light"
       />
+      
     </Provider>
+    
   );
 }
 

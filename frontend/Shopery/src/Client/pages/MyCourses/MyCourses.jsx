@@ -34,7 +34,7 @@ const MyCourses = () => {
       ) : (
         <div className="mycourses__list">
           {courses.map((enroll) => {
-            const course = enroll.Course;
+            const course = enroll.course_detail;
             return (
               <div className="mycourses__card" key={course.id}>
                 <img
