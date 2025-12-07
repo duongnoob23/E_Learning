@@ -14,6 +14,7 @@ Hệ thống Exam có **2 luồng chính** để làm bài thi:
 ### **Cách hoạt động:**
 
 1. **Bắt đầu phiên thi:**
+
    ```
    POST /api/exam/exam-sessions/start
    Body: {
@@ -23,14 +24,17 @@ Hệ thống Exam có **2 luồng chính** để làm bài thi:
      time_limit_minutes: 120
    }
    ```
+
    → Tạo `exam_session` với `status = "IN_PROGRESS"`
 
 2. **Làm bài:**
+
    - User chọn đáp án cho từng câu hỏi
    - Lưu tạm trong state (frontend)
    - Chưa lưu vào database
 
 3. **Nộp bài:**
+
    ```
    POST /api/exam/exam-sessions/{session_id}/submit
    Body: {
@@ -42,7 +46,9 @@ Hệ thống Exam có **2 luồng chính** để làm bài thi:
      examId: 1
    }
    ```
+
    → Backend tự động:
+
    - So sánh `selected_choice_id` với `is_correct` trong bảng `choices`
    - Tính điểm: `correct_answers / total_questions * 100`
    - Lưu vào `user_answers` và cập nhật `exam_sessions`
@@ -59,6 +65,7 @@ Hệ thống Exam có **2 luồng chính** để làm bài thi:
    - Thời gian làm bài
 
 ### **Đặc điểm:**
+
 - ✅ Chấm điểm **tức thì** (không cần AI)
 - ✅ Kết quả có ngay sau khi submit
 - ✅ Không cần xử lý file audio/text
@@ -70,6 +77,7 @@ Hệ thống Exam có **2 luồng chính** để làm bài thi:
 ### **⚠️ LƯU Ý QUAN TRỌNG:**
 
 Hiện tại codebase có:
+
 - ✅ API upload audio cho Speaking
 - ✅ API chấm điểm Speaking
 - ✅ API chấm điểm Writing
@@ -80,6 +88,7 @@ Hiện tại codebase có:
 ## 🎤 LUỒNG SPEAKING (Chi tiết)
 
 ### **Bước 1: Bắt đầu phiên thi**
+
 ```
 POST /api/exam/exam-sessions/start
 Body: {
@@ -91,6 +100,7 @@ Body: {
 ```
 
 ### **Bước 2: Upload Audio cho từng câu hỏi**
+
 ```
 POST /api/exam/speaking/upload
 Headers:
@@ -103,6 +113,7 @@ Body (form-data):
 ```
 
 **Response:**
+
 ```json
 {
   "EM": "Tải lên tệp âm thanh thành công",
@@ -121,12 +132,14 @@ Body (form-data):
 ```
 
 **Backend xử lý:**
+
 1. Lưu file audio vào `backend/uploads/speaking_audio/`
 2. Gọi Whisper để transcribe audio (tùy chọn)
 3. Tạo record trong `speaking_responses` với `processing_status = "COMPLETED"`
 4. Trả về `response_id`
 
 ### **Bước 3: Chấm điểm Speaking**
+
 ```
 POST /api/exam/llmservice/score
 Headers:
@@ -142,6 +155,7 @@ Body:
 ```
 
 **Backend xử lý:**
+
 1. Gọi Python script `multiPA_score.py` với `type="SPEAKING"`
 2. Python script:
    - Load Whisper model (cached)
@@ -171,6 +185,7 @@ Body:
    ```
 
 **Response:**
+
 ```json
 {
   "EM": "Chấm bài Speaking thành công",
@@ -199,11 +214,13 @@ Body:
 ```
 
 ### **Bước 4: Xem kết quả Speaking**
+
 ```
 GET /api/exam/speaking/session/{session_id}/responses?status=COMPLETED
 ```
 
 **Response:**
+
 ```json
 {
   "EM": "Lấy danh sách phản hồi speaking thành công",
@@ -237,6 +254,7 @@ GET /api/exam/speaking/session/{session_id}/responses?status=COMPLETED
 Codebase **THIẾU** API để tạo `WritingResponse` trước khi chấm điểm. Cần bổ sung:
 
 ### **Bước 1: Bắt đầu phiên thi** (giống Speaking)
+
 ```
 POST /api/exam/exam-sessions/start
 ```
@@ -244,6 +262,7 @@ POST /api/exam/exam-sessions/start
 ### **Bước 2: Lưu bài viết** ⚠️ **THIẾU API NÀY**
 
 **Cần thêm:**
+
 ```
 POST /api/exam/writing/submit
 Body:
@@ -256,6 +275,7 @@ Body:
 ```
 
 **Backend cần:**
+
 1. Tạo record trong `writing_responses`:
    ```sql
    INSERT INTO writing_responses (
@@ -267,6 +287,7 @@ Body:
 2. Trả về `response_id`
 
 ### **Bước 3: Chấm điểm Writing**
+
 ```
 POST /api/exam/llmservice/score
 Body:
@@ -279,6 +300,7 @@ Body:
 ```
 
 **Backend xử lý:**
+
 1. Gọi Python script `multiPA_score.py` với `type="WRITING"`
 2. Python script:
    - Phân tích text theo 5 tiêu chí:
@@ -309,6 +331,7 @@ Body:
    ```
 
 **Response:**
+
 ```json
 {
   "EM": "Chấm bài Writing thành công",
@@ -351,6 +374,7 @@ Body:
 ### **Bước 4: Xem kết quả Writing**
 
 **Cần thêm API:**
+
 ```
 GET /api/exam/writing/session/{session_id}/responses?status=COMPLETED
 ```
@@ -359,16 +383,16 @@ GET /api/exam/writing/session/{session_id}/responses?status=COMPLETED
 
 ## 🔄 SO SÁNH 2 LUỒNG
 
-| Tiêu chí | Listening + Reading | Speaking + Writing |
-|----------|---------------------|-------------------|
-| **Chấm điểm** | Tự động (so sánh đáp án) | AI (MultiPA Python script) |
-| **Thời gian chấm** | Tức thì (< 1s) | Chậm (10-30s) |
-| **Cần upload file** | ❌ Không | ✅ Có (audio cho Speaking) |
-| **Cần Python** | ❌ Không | ✅ Có (Whisper + MultiPA) |
-| **API submit** | `POST /exam-sessions/{id}/submit` | `POST /speaking/upload` + `POST /llmservice/score` |
-| **API result** | `GET /exam-sessions/{id}/result` | `GET /speaking/session/{id}/responses` |
-| **Bảng lưu kết quả** | `user_answers` | `speaking_responses`, `writing_responses` |
-| **Điểm số** | `is_correct` (true/false/null) | `score` (0-100) + chi tiết từng tiêu chí |
+| Tiêu chí             | Listening + Reading               | Speaking + Writing                                 |
+| -------------------- | --------------------------------- | -------------------------------------------------- |
+| **Chấm điểm**        | Tự động (so sánh đáp án)          | AI (MultiPA Python script)                         |
+| **Thời gian chấm**   | Tức thì (< 1s)                    | Chậm (10-30s)                                      |
+| **Cần upload file**  | ❌ Không                          | ✅ Có (audio cho Speaking)                         |
+| **Cần Python**       | ❌ Không                          | ✅ Có (Whisper + MultiPA)                          |
+| **API submit**       | `POST /exam-sessions/{id}/submit` | `POST /speaking/upload` + `POST /llmservice/score` |
+| **API result**       | `GET /exam-sessions/{id}/result`  | `GET /speaking/session/{id}/responses`             |
+| **Bảng lưu kết quả** | `user_answers`                    | `speaking_responses`, `writing_responses`          |
+| **Điểm số**          | `is_correct` (true/false/null)    | `score` (0-100) + chi tiết từng tiêu chí           |
 
 ---
 
@@ -377,10 +401,12 @@ GET /api/exam/writing/session/{session_id}/responses?status=COMPLETED
 ### **1. THIẾU API cho Writing:**
 
 **Cần thêm:**
+
 - `POST /api/exam/writing/submit` - Lưu bài viết và tạo `WritingResponse`
 - `GET /api/exam/writing/session/{session_id}/responses` - Lấy danh sách bài viết đã chấm
 
 **File cần sửa:**
+
 - `backend/src/client/routes/examClientRoutes.js` - Thêm routes
 - `backend/src/client/controllers/examClientController.js` - Thêm controllers
 - `backend/src/client/services/examClientService.js` - Thêm services
@@ -388,12 +414,14 @@ GET /api/exam/writing/session/{session_id}/responses?status=COMPLETED
 ### **2. Frontend chưa tích hợp API chấm điểm:**
 
 **Cần thêm:**
+
 - Gọi `POST /api/exam/llmservice/score` sau khi upload audio (Speaking)
 - Gọi `POST /api/exam/llmservice/score` sau khi submit text (Writing)
 - Hiển thị loading khi đang chấm điểm
 - Hiển thị kết quả chi tiết
 
 **File cần sửa:**
+
 - `frontend/Shopery/src/Client/components/AssessmentTest/AssessmentTestJSX/TOEIC/Speaking/SpeakingPart.jsx`
 - `frontend/Shopery/src/Client/components/AssessmentTest/AssessmentTestJSX/TOEIC/Writing/WritingPart.jsx`
 - `frontend/Shopery/src/Client/api/Assessment/assessmentApi.js` - Thêm API calls
@@ -439,7 +467,7 @@ CREATE TABLE speaking_responses (
     audio_file_path VARCHAR(500) NOT NULL,
     transcription TEXT,
     processing_status ENUM('PENDING', 'PROCESSING', 'COMPLETED', 'FAILED') DEFAULT 'PENDING',
-    
+
     -- Điểm số
     score FLOAT,
     pronunciation_score FLOAT,
@@ -448,15 +476,15 @@ CREATE TABLE speaking_responses (
     grammar_score FLOAT,
     vocabulary_score FLOAT,
     coherence_score FLOAT,
-    
+
     -- Kết quả
     transcript TEXT,
     feedback TEXT,
     detailed_feedback JSON,
-    
+
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    
+
     FOREIGN KEY (session_id) REFERENCES exam_sessions(exam_session_id),
     FOREIGN KEY (question_id) REFERENCES questions(question_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -474,7 +502,7 @@ CREATE TABLE writing_responses (
     written_text TEXT NOT NULL,
     word_count INT,
     processing_status ENUM('PENDING', 'PROCESSING', 'COMPLETED', 'FAILED') DEFAULT 'PENDING',
-    
+
     -- Điểm số
     score FLOAT,
     grammar_score FLOAT,
@@ -482,15 +510,15 @@ CREATE TABLE writing_responses (
     coherence_score FLOAT,
     task_completion_score FLOAT,
     spelling_score FLOAT,
-    
+
     -- Kết quả
     feedback TEXT,
     detailed_feedback JSON,
     error_message TEXT,
-    
+
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    
+
     FOREIGN KEY (session_id) REFERENCES exam_sessions(exam_session_id),
     FOREIGN KEY (question_id) REFERENCES questions(question_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -502,6 +530,7 @@ CREATE TABLE writing_responses (
 ## 🐍 PYTHON DEPENDENCIES
 
 ### **Cài đặt:**
+
 ```bash
 pip install openai-whisper
 pip install torch
@@ -511,12 +540,14 @@ pip install numpy
 ```
 
 ### **Environment Variables:**
+
 ```bash
 # Đường dẫn đến MultiPA (nếu có)
 MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
 ```
 
 ### **Python Scripts:**
+
 - `backend/src/ai/multiPA_score.py` - Chấm điểm Speaking/Writing
 - `backend/src/ai/whisper_transcribe.py` - Transcribe audio (đã có, nhưng ít dùng)
 
@@ -527,13 +558,16 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
 ### **Test Speaking:**
 
 1. **Start session:**
+
    ```bash
    POST /api/exam/exam-sessions/start
    Body: { test_id: 1, session_type: "FULL_TEST", selected_parts: [3] }
    ```
+
    → Lấy `session_id`
 
 2. **Upload audio:**
+
    ```bash
    POST /api/exam/speaking/upload
    Form-data:
@@ -542,9 +576,11 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
      question_id: 45
      language: en
    ```
+
    → Lấy `response_id`
 
 3. **Chấm điểm:**
+
    ```bash
    POST /api/exam/llmservice/score
    Body: {
@@ -554,6 +590,7 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
      language: "en"
    }
    ```
+
    → Chờ 10-30 giây → Nhận kết quả
 
 4. **Xem kết quả:**
@@ -566,6 +603,7 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
 1. **Start session:** (giống Speaking)
 
 2. **Submit text:** ⚠️ **CẦN THÊM API NÀY**
+
    ```bash
    POST /api/exam/writing/submit
    Body: {
@@ -575,9 +613,11 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
      language: "en"
    }
    ```
+
    → Lấy `response_id`
 
 3. **Chấm điểm:**
+
    ```bash
    POST /api/exam/llmservice/score
    Body: {
@@ -587,6 +627,7 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
      language: "en"
    }
    ```
+
    → Chờ 5-10 giây → Nhận kết quả
 
 4. **Xem kết quả:** ⚠️ **CẦN THÊM API NÀY**
@@ -599,17 +640,20 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
 ## 📌 KẾT LUẬN
 
 ### **Speaking:**
+
 - ✅ Backend đã đầy đủ API
 - ✅ Python script hoạt động
 - ⚠️ Frontend cần tích hợp API chấm điểm
 
 ### **Writing:**
+
 - ❌ **THIẾU** API submit text
 - ✅ API chấm điểm đã có
 - ❌ **THIẾU** API lấy kết quả
 - ⚠️ Frontend cần tích hợp đầy đủ
 
 ### **Ưu tiên:**
+
 1. **Cao:** Thêm API submit text cho Writing
 2. **Cao:** Thêm API lấy kết quả Writing
 3. **Trung bình:** Tích hợp frontend cho Speaking
@@ -620,4 +664,3 @@ MULTIPA_DIR=D:\Code_PTIT\E_Learning-2\MultiPA
 **Tài liệu được tạo:** `2024-01-XX`  
 **Phiên bản:** `1.0.0`  
 **Cập nhật lần cuối:** `2024-01-XX`
-

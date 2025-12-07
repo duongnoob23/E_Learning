@@ -258,53 +258,117 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
 // GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
 exports.getSessionSpeakingResponses = async (req, res, next) => {
   try {
-        const { session_id } = req.params;
-        const { status, page, limit } = req.query;
+    const { session_id } = req.params;
+    const { status, page, limit } = req.query;
 
-        const response = await examClientService.getSessionSpeakingResponses(session_id, { status, page, limit });
-        res.json(response);
-    } catch (error) {
-        next(error);
-    }
+    const response = await examClientService.getSessionSpeakingResponses(
+      session_id,
+      { status, page, limit }
+    );
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // POST /api/llmservice/score - Chấm điểm speaking response using MultiPA
 exports.gradeExam = async (req, res, next) => {
-    try {
-        const {response_id, type, audio_file_path, text, language } = req.body;
-        const user_id = req.user.userId;
+  try {
+    const { response_id, type, audio_file_path, text, language } = req.body;
+    const user_id = req.user.userId;
 
-        if (!response_id || !type) {
-            return res.status(400).json({
-                EM: "Thiếu thông tin: response_id, type",
-                EC: "-1",
-                DT: null
-            });
-        }
+    if (!response_id || !type) {
+      return res.status(400).json({
+        EM: "Thiếu thông tin: response_id, type",
+        EC: "-1",
+        DT: null,
+      });
+    }
 
-        let response;
-        if (type === "WRITING") {
-            if (!text) {
-                return res.status(400).json({
-                    EM: "Thiếu text cho WRITING type",
-                    EC: "-1",
-                    DT: null
-                });
-            }
-            response = await examClientService.gradeWriting({response_id, user_id, text, language });
-        } else if (type === "SPEAKING") {
-            if (!audio_file_path) {
-                return res.status(400).json({
-                    EM: "Thiếu audio_file_path cho SPEAKING type",
-                    EC: "-1",
-                    DT: null
-                });
-            }
-            response = await examClientService.gradeSpeaking({response_id, user_id, audio_file_path, language });
-        } else {
-            return res.status(400).json({ EM: "Loại bài không hợp lệ (SPEAKING/WRITING)", EC: "-1", DT: null });
-        }
+    let response;
+    if (type === "WRITING") {
+      if (!text) {
+        return res.status(400).json({
+          EM: "Thiếu text cho WRITING type",
+          EC: "-1",
+          DT: null,
+        });
+      }
+      response = await examClientService.gradeWriting({
+        response_id,
+        user_id,
+        text,
+        language,
+      });
+    } else if (type === "SPEAKING") {
+      if (!audio_file_path) {
+        return res.status(400).json({
+          EM: "Thiếu audio_file_path cho SPEAKING type",
+          EC: "-1",
+          DT: null,
+        });
+      }
+      response = await examClientService.gradeSpeaking({
+        response_id,
+        user_id,
+        audio_file_path,
+        language,
+      });
+    } else {
+      return res
+        .status(400)
+        .json({
+          EM: "Loại bài không hợp lệ (SPEAKING/WRITING)",
+          EC: "-1",
+          DT: null,
+        });
+    }
 
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// --------- Writing Routes --------- //
+// POST /api/writing/submit - Lưu bài viết writing
+exports.submitWritingText = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+    const { session_id, question_id, written_text, language } = req.body;
+
+    if (!session_id || !question_id || !written_text) {
+      return res.status(400).json({
+        EM: "Thiếu thông tin: session_id, question_id, written_text",
+        EC: "-1",
+        DT: null,
+      });
+    }
+
+    const response = await examClientService.submitWritingText({
+      user_id,
+      session_id,
+      question_id,
+      written_text,
+      language,
+    });
+
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET /api/writing/session/{session_id}/responses - Lấy danh sách phản hồi writing của phiên thi
+exports.getSessionWritingResponses = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const { status, page, limit } = req.query;
+
+    const response = await examClientService.getSessionWritingResponses(
+      session_id,
+      { status, page, limit }
+    );
     res.json(response);
   } catch (error) {
     next(error);

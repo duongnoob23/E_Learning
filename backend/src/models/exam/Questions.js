@@ -23,7 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM(
           "MULTIPLE_CHOICE",
           "FILL_BLANK",
-          "READING_COMPREHENSION"
+          "READING_COMPREHENSION",
+          "SPEAKING",
+          "WRITING"
         ),
         allowNull: false,
       },

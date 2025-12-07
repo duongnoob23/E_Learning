@@ -1505,3 +1505,109 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
     };
   }
 };
+
+// POST /api/writing/submit - Lưu bài viết writing
+exports.submitWritingText = async (writingData) => {
+  try {
+    const {
+      user_id,
+      session_id,
+      question_id,
+      written_text,
+      language = "en",
+    } = writingData;
+
+    // Kiểm tra phiên thi có tồn tại không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    // Kiểm tra câu hỏi writing có tồn tại không
+    const writingQuestion = await Question.findById(question_id);
+    if (!writingQuestion || writingQuestion.question_type !== "WRITING") {
+      return {
+        EM: "Không tìm thấy câu hỏi writing",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // Tính số từ
+    const wordCount = written_text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+
+    // Tạo phản hồi writing mới
+    const writingResponse = await WritingResponse.create({
+      session_id,
+      question_id,
+      user_id,
+      written_text,
+      word_count: wordCount,
+      language,
+      processing_status: "PENDING",
+    });
+
+    return {
+      EM: "Lưu bài viết thành công",
+      EC: "0",
+      DT: writingResponse,
+    };
+  } catch (error) {
+    logError("submitWritingText", error, {
+      user_id,
+      session_id,
+      question_id,
+    });
+    return {
+      EM: `Có lỗi xảy ra: ${error.message}`,
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// GET /api/writing/session/{session_id}/responses - Lấy danh sách phản hồi writing của phiên thi
+exports.getSessionWritingResponses = async (session_id, options = {}) => {
+  try {
+    const { status, page = 1, limit = 10 } = options;
+    const offset = (page - 1) * limit;
+
+    const whereClause = { session_id };
+    if (status) whereClause.processing_status = status;
+
+    const { count, rows: responses } = await WritingResponse.findAndCountAll({
+      where: whereClause,
+      limit: parseInt(limit),
+      offset: offset,
+      order: [["created_at", "DESC"]],
+    });
+
+    return {
+      EM: "Lấy danh sách phản hồi writing thành công",
+      EC: "0",
+      DT: {
+        responses,
+        pagination: {
+          current_page: parseInt(page),
+          total_pages: Math.ceil(count / limit),
+          total_items: count,
+          items_per_page: parseInt(limit),
+        },
+      },
+    };
+  } catch (error) {
+    logError("getSessionWritingResponses", error, { session_id, options });
+    return {
+      EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi writing",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
