@@ -6,6 +6,7 @@ import MatchingEditor from "./editors/MatchingEditor";
 import QuizEditor from "./editors/QuizEditor";
 import SentenceCompletionEditor from "./editors/SentenceCompletionEditor";
 import TranslationEditor from "./editors/TranslationEditor";
+import VocabularyListEditor from "./editors/VocabularyListEditor";
 import InlineEditor from "./InlineEditor";
 import "./VisualEditor.css";
 
@@ -125,14 +126,7 @@ export default function VisualEditor({ lessonType, data, onChange }) {
   const renderEditor = () => {
     switch (lessonType) {
       case "vocabulary_list":
-        return (
-          <VocabularyListEditor
-            data={data}
-            onEdit={handleInlineEdit}
-            onAdd={handleAddItem}
-            onRemove={handleRemoveItem}
-          />
-        );
+        return <VocabularyListEditor data={data} onChange={onChange} />;
       case "vocabulary_matching":
         return <MatchingEditor data={data} onChange={onChange} />;
       case "vocabulary_translation":
@@ -404,94 +398,6 @@ function VocabularyTranslationEditor({
           </div>
         ))
       )}
-    </div>
-  );
-}
-
-// Vocabulary List Editor
-function VocabularyListEditor({ data, onEdit, onAdd, onRemove }) {
-  const words = data.words || [];
-
-  return (
-    <div className="visual-editor-questions">
-      <div className="visual-editor-field-group">
-        <label>Display Mode:</label>
-        <select
-          value={data.display_mode || "flashcard"}
-          onChange={(e) => onEdit("display_mode", e.target.value)}
-          style={{
-            padding: "8px",
-            borderRadius: "6px",
-            border: "1px solid #d1d5db",
-          }}
-        >
-          <option value="flashcard">Flashcard</option>
-          <option value="list">List</option>
-        </select>
-      </div>
-
-      <div className="visual-editor-field-group">
-        <div className="visual-editor-field-group-header">
-          <label>Danh sách từ:</label>
-          <button
-            className="visual-editor-add-btn-small"
-            onClick={() => onAdd("word", null)}
-          >
-            + Thêm từ
-          </button>
-        </div>
-
-        {words.map((word, wIndex) => (
-          <div key={word.word_id} className="visual-editor-item-card">
-            <div className="visual-editor-item-header">
-              <span>Từ {wIndex + 1}</span>
-              <button
-                className="visual-editor-action-btn-small"
-                onClick={() => onRemove(`words.${wIndex}`)}
-              >
-                ×
-              </button>
-            </div>
-            <div className="visual-editor-item-fields">
-              <InlineEditor
-                type="text"
-                value={word.en || ""}
-                onChange={(value) => onEdit(`words.${wIndex}.en`, value)}
-                placeholder="English"
-                label="English *"
-              />
-              <InlineEditor
-                type="text"
-                value={word.vi || ""}
-                onChange={(value) => onEdit(`words.${wIndex}.vi`, value)}
-                placeholder="Vietnamese"
-                label="Vietnamese *"
-              />
-              <InlineEditor
-                type="url"
-                value={word.image_url || ""}
-                onChange={(value) => onEdit(`words.${wIndex}.image_url`, value)}
-                placeholder="Image URL"
-                label="Image URL"
-              />
-              <InlineEditor
-                type="url"
-                value={word.audio_url || ""}
-                onChange={(value) => onEdit(`words.${wIndex}.audio_url`, value)}
-                placeholder="Audio URL"
-                label="Audio URL"
-              />
-              <InlineEditor
-                type="text"
-                value={word.example || ""}
-                onChange={(value) => onEdit(`words.${wIndex}.example`, value)}
-                placeholder="Example sentence"
-                label="Example"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
