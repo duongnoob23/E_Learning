@@ -9,7 +9,11 @@ import "./GrammarTheoryEditor.css";
 // Import quill-better-table
 import QuillBetterTable from "quill-better-table";
 import "quill-better-table/dist/quill-better-table.css";
-Quill.register({ "modules/better-table": QuillBetterTable }, true);
+
+// Register quill-better-table module (cần register trước khi sử dụng)
+if (typeof Quill !== "undefined") {
+  Quill.register("modules/better-table", QuillBetterTable, true);
+}
 
 export default function GrammarTheoryEditor({ data, onChange }) {
   const [sections, setSections] = useState([]); // [{ id, title, content }]
