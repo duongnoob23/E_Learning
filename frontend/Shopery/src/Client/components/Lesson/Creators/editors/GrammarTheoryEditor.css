@@ -14,6 +14,34 @@
   border-bottom: 2px solid #e5e7eb;
 }
 
+.gte-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gte-mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.gte-mode-btn {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.gte-mode-btn.active {
+  background: #1ec28b;
+  color: #fff;
+  border-color: #1ec28b;
+}
+
 .gte-title {
   margin: 0;
   font-size: 20px;
@@ -194,23 +222,115 @@
 }
 
 /* Quill wrapper */
-.gte-quill-wrapper {
-  background: white;
-  border-radius: 6px;
+.gte-tiptap-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
 }
 
-.gte-quill-wrapper .ql-container {
-  min-height: 200px;
+.gte-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.gte-toolbar-btn {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
   font-size: 14px;
+  transition: all 0.2s;
 }
 
-.gte-quill-wrapper .ql-editor {
+.gte-toolbar-btn:hover {
+  border-color: #1ec28b;
+  color: #1ec28b;
+}
+
+.gte-toolbar-btn.active {
+  background: #1ec28b;
+  color: #fff;
+  border-color: #1ec28b;
+}
+
+.gte-tiptap-editor {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  min-height: 220px;
+  padding: 12px;
+}
+
+.gte-tiptap-editor.page {
+  min-height: 360px;
+}
+
+.gte-tiptap-editor .tiptap {
   min-height: 200px;
+  outline: none;
+  line-height: 1.7;
 }
 
-.gte-quill-wrapper .ql-editor.ql-blank::before {
-  font-style: normal;
-  color: #9ca3af;
+.gte-tiptap-editor .tiptap h1,
+.gte-tiptap-editor .tiptap h2,
+.gte-tiptap-editor .tiptap h3,
+.gte-tiptap-editor .tiptap h4 {
+  margin: 12px 0;
+  font-weight: 700;
+  color: #111827;
+}
+
+.gte-tiptap-editor .tiptap p {
+  margin: 8px 0;
+  color: #1f2937;
+}
+
+.gte-tiptap-editor .tiptap ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.gte-tiptap-editor .tiptap ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.gte-tiptap-editor .tiptap a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.gte-tiptap-editor .tiptap table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  border: 1px solid #e5e7eb;
+}
+
+.gte-tiptap-editor .tiptap th,
+.gte-tiptap-editor .tiptap td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+.gte-tiptap-editor .tiptap img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.gte-tiptap-editor .tiptap .example-block {
+  background: #f3f4f6;
+  border-left: 4px solid #1ec28b;
+  padding: 12px 12px 12px 14px;
+  border-radius: 8px;
+  margin: 10px 0;
 }
 
 /* Examples */

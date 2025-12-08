@@ -823,45 +823,60 @@ const TEST_LESSONS = [
   },
   {
     lesson_id: 9,
-    title: "Lý thuyết: Zero Conditional",
-    description: "Tìm hiểu về Zero Conditional",
+    title: "Lý thuyết: Thì hiện tại tiếp diễn (Present Continuous)",
+    description: "Cấu trúc, cách dùng, dấu hiệu nhận biết",
     lesson_type: "grammar_theory",
     lesson_data: {
       type: "grammar_theory",
+      editable: true,
       sections: [
         {
-          title: "Định nghĩa",
+          title: "1. Khái niệm",
           content:
-            "<p>Zero Conditional được dùng để diễn tả một sự thật hiển nhiên, một quy luật tự nhiên, hoặc một thói quen luôn luôn đúng.</p>",
+            "<p>Thì hiện tại tiếp diễn (Present Continuous) diễn tả hành động đang xảy ra ngay lúc nói hoặc quanh thời điểm hiện tại.</p>",
           order: 1,
         },
         {
-          title: "Cấu trúc",
-          content:
-            "<p><strong>Cấu trúc:</strong> If + Present Simple, Present Simple</p><p>Ví dụ: If you heat water to 100°C, it boils.</p>",
+          title: "2. Công thức",
+          content: `
+            <table>
+              <tr><th>Khẳng định</th><th>Phủ định</th><th>Nghi vấn</th></tr>
+              <tr>
+                <td>S + am/is/are + V-ing</td>
+                <td>S + am/is/are + not + V-ing</td>
+                <td>Am/Is/Are + S + V-ing ?</td>
+              </tr>
+            </table>
+            <p><strong>Ví dụ:</strong> She <em>is studying</em> now.</p>
+          `,
           order: 2,
         },
         {
-          title: "Cách dùng",
-          content:
-            "<ul><li>Diễn tả sự thật hiển nhiên</li><li>Diễn tả quy luật tự nhiên</li><li>Diễn tả thói quen</li></ul>",
+          title: "3. Cách dùng",
+          content: `
+            <ul>
+              <li>Hành động đang diễn ra lúc nói: <em>I am talking to you.</em></li>
+              <li>Hành động tạm thời: <em>He is living with his friend this month.</em></li>
+              <li>Kế hoạch đã sắp xếp cho tương lai gần: <em>We are meeting at 8pm.</em></li>
+            </ul>
+          `,
           order: 3,
         },
         {
-          title: "Ví dụ",
+          title: "4. Dấu hiệu nhận biết",
           content:
-            "<ul><li>If you heat water to 100°C, it boils.</li><li>If people don't sleep enough, they get tired.</li><li>If it rains, the ground gets wet.</li></ul>",
+            "<p>now, right now, at the moment, at present, currently, look!, listen!, today, this week, this month</p>",
           order: 4,
         },
       ],
       examples: [
         {
-          en: "If you heat water to 100°C, it boils.",
-          vi: "Nếu bạn đun nước đến 100°C, nó sôi.",
+          en: "She is working on a new project this week.",
+          vi: "Cô ấy đang làm một dự án mới trong tuần này.",
         },
         {
-          en: "If people don't sleep enough, they get tired.",
-          vi: "Nếu người ta không ngủ đủ, họ sẽ mệt mỏi.",
+          en: "They are having dinner at the moment.",
+          vi: "Họ đang ăn tối ngay lúc này.",
         },
       ],
     },

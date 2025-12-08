@@ -61,6 +61,42 @@
   font-weight: 600;
 }
 
+.grammar-theory-content table,
+.grammar-theory-section-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.grammar-theory-content table th,
+.grammar-theory-content table td,
+.grammar-theory-section-content table th,
+.grammar-theory-section-content table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.grammar-theory-content table th,
+.grammar-theory-section-content table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.grammar-theory-content table tr:nth-child(even),
+.grammar-theory-section-content table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.grammar-theory-content table tr:hover,
+.grammar-theory-section-content table tr:hover {
+  background: #f3f4f6;
+}
+
 /* Table styles */
 .grammar-theory-section-content table {
   width: 100%;

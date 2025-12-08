@@ -5,9 +5,9 @@ import {
   useResultByTags,
   useReviewExamSession,
 } from "../../../services/Assessment/assessmentQueries";
-import QuestionList from "./QuestionList";
-import QuestionDetailModal from "./QuestionDetailModal";
 import "../AssessmentCSS/Result.css";
+import QuestionDetailModal from "./QuestionDetailModal";
+import QuestionList from "./QuestionList";
 const MOCK_DATA = {
   testId: "T2025-NE01",
   testTitle: "New Economy TOEIC Full Test 1",
