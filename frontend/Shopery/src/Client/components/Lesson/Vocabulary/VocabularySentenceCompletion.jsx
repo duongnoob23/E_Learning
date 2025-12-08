@@ -73,6 +73,17 @@ export default function VocabularySentenceCompletion({ lesson }) {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("wordId", wordId);
     e.dataTransfer.setData("sourceBlankId", sourceBlankId || "");
+    // Khi người dùng bắt đầu kéo, nếu đã check thì reset trạng thái để cho phép làm lại
+    setIsChecking(false);
+    setCheckResults((prev) => ({
+      ...prev,
+      [currentQuestionIndex]: {},
+    }));
+    setAnsweredQuestions((prev) => {
+      const next = new Set(prev);
+      next.delete(currentQuestionIndex);
+      return next;
+    });
   }, []);
 
   // Xử lý kéo qua ô trống
@@ -93,49 +104,52 @@ export default function VocabularySentenceCompletion({ lesson }) {
       e.preventDefault();
       setHoveredBlank(null);
 
-      if (isChecking || isAutoFilling) return;
+      if (isAutoFilling) return;
 
       const wordId = parseInt(e.dataTransfer.getData("wordId"));
       const sourceBlankId = e.dataTransfer.getData("sourceBlankId");
 
       if (!wordId) return;
 
-      // CHỈ cho phép kéo từ danh sách vào ô, KHÔNG cho kéo từ ô này sang ô khác
-      if (!sourceBlankId) {
-        // Kéo từ danh sách vào ô
-        setWordPositions((prev) => {
-          const questionPositions = prev[currentQuestionIndex] || {};
-          return {
-            ...prev,
-            [currentQuestionIndex]: {
-              ...questionPositions,
-              [blankId]: wordId,
-            },
-          };
-        });
+      // Cho phép kéo từ danh sách hoặc từ ô khác sang ô hiện tại
+      setWordPositions((prev) => {
+        const questionPositions = prev[currentQuestionIndex] || {};
+        const newPositions = { ...questionPositions };
 
-        // Reset kết quả kiểm tra khi thay đổi
-        setCheckResults((prev) => {
-          const questionResults = prev[currentQuestionIndex] || {};
-          const newResults = { ...questionResults };
-          delete newResults[blankId];
-          return {
-            ...prev,
-            [currentQuestionIndex]: newResults,
-          };
-        });
-      }
+        // Nếu kéo từ ô khác, bỏ ô cũ
+        if (sourceBlankId) {
+          delete newPositions[sourceBlankId];
+        }
+        newPositions[blankId] = wordId;
+
+        return {
+          ...prev,
+          [currentQuestionIndex]: newPositions,
+        };
+      });
+
+      // Reset kết quả kiểm tra khi thay đổi
+      setCheckResults((prev) => ({
+        ...prev,
+        [currentQuestionIndex]: {},
+      }));
+      setIsChecking(false);
+      setAnsweredQuestions((prev) => {
+        const next = new Set(prev);
+        next.delete(currentQuestionIndex);
+        return next;
+      });
 
       setDraggedWord(null);
     },
-    [currentQuestionIndex, isChecking, isAutoFilling]
+    [currentQuestionIndex, isAutoFilling]
   );
 
   // Xử lý xóa từ khỏi ô (dấu X) - chỉ xóa khi click vào dấu X
   const handleRemoveWord = useCallback(
     (e, blankId) => {
       e.stopPropagation(); // Ngăn chặn event bubble
-      if (isChecking || isAutoFilling) return;
+      if (isAutoFilling) return;
 
       setWordPositions((prev) => {
         const questionPositions = prev[currentQuestionIndex] || {};
@@ -149,16 +163,19 @@ export default function VocabularySentenceCompletion({ lesson }) {
 
       // Reset kết quả kiểm tra cho ô này
       setCheckResults((prev) => {
-        const questionResults = prev[currentQuestionIndex] || {};
-        const newResults = { ...questionResults };
+        const newResults = { ...(prev[currentQuestionIndex] || {}) };
         delete newResults[blankId];
-        return {
-          ...prev,
-          [currentQuestionIndex]: newResults,
-        };
+        return { ...prev, [currentQuestionIndex]: newResults };
+      });
+
+      setIsChecking(false);
+      setAnsweredQuestions((prev) => {
+        const next = new Set(prev);
+        next.delete(currentQuestionIndex);
+        return next;
       });
     },
-    [currentQuestionIndex, isChecking, isAutoFilling]
+    [currentQuestionIndex, isAutoFilling]
   );
 
   // Xử lý kiểm tra
@@ -326,7 +343,7 @@ export default function VocabularySentenceCompletion({ lesson }) {
             {word ? (
               <>
                 <span className="sentence-blank-word">{word.text}</span>
-                {!isChecking && !isAutoFilling && (
+                {!isAutoFilling && (
                   <button
                     className="sentence-blank-remove"
                     onClick={(e) => handleRemoveWord(e, blankId)}
@@ -353,7 +370,7 @@ export default function VocabularySentenceCompletion({ lesson }) {
       {currentViText && (
         <div className="vocabulary-sentence-vi">
           <p>{currentViText}</p>
-        </div>
+          </div>
       )}
 
       {/* Câu tiếng Anh với các ô trống */}

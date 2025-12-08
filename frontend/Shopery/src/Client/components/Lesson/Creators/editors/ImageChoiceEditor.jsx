@@ -3,137 +3,195 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./ImageChoiceEditor.css";
 
 export default function ImageChoiceEditor({ data, onChange }) {
-  const [questionType, setQuestionType] = useState("text"); // "text" | "audio" | "image"
-  const [questionText, setQuestionText] = useState("");
-  const [questionAudioUrl, setQuestionAudioUrl] = useState("");
-  const [questionImageUrl, setQuestionImageUrl] = useState("");
-  const [viText, setViText] = useState(""); // Đáp án tiếng Việt
-  const [images, setImages] = useState([]); // [{ id, url, isCorrect }]
+  const genId = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  const [questions, setQuestions] = useState([]);
+  const [activeQuestionId, setActiveQuestionId] = useState(null);
+
   const fileInputRef = useRef(null);
   const questionImageInputRef = useRef(null);
   const questionAudioInputRef = useRef(null);
-  const isInitialMount = useRef(true);
+  const isInternalUpdate = useRef(false);
 
   // Load data từ props
   useEffect(() => {
-    if (!data || !data.questions || data.questions.length === 0) {
-      if (isInitialMount.current) {
-        setQuestionText("");
-        setQuestionAudioUrl("");
-        setQuestionImageUrl("");
-        setViText("");
-        setImages([]);
-        setQuestionType("text");
-        isInitialMount.current = false;
-      }
+    if (isInternalUpdate.current) {
+      isInternalUpdate.current = false;
       return;
     }
 
-    const question = data.questions[0];
-
-    // Load vi_text
-    setViText(question.vi_text || "");
-
-    // Xác định question type
-    if (question.question_image_url) {
-      setQuestionType("image");
-      setQuestionImageUrl(question.question_image_url);
-    } else if (question.question_audio_url) {
-      setQuestionType("audio");
-      setQuestionAudioUrl(question.question_audio_url);
+    if (data?.questions?.length) {
+      const seen = new Set();
+      const qs = data.questions.map((q, idx) => {
+        let qid = q.question_id || genId();
+        if (seen.has(qid)) qid = genId();
+        seen.add(qid);
+        const derivedType = q.question_type
+          ? q.question_type
+          : q.question_image_url
+          ? "image"
+          : q.question_audio_url
+          ? "audio"
+          : "text";
+        return {
+          question_id: qid,
+          vi_text: q.vi_text || "",
+          question_type: derivedType,
+          question_text: q.question_text || "",
+          question_audio_url: q.question_audio_url || "",
+          question_image_url: q.question_image_url || "",
+          images: (q.images || []).map((img, i) => ({
+            id: img.image_id || img.id || `img_${i + 1}`,
+            url: img.image_url || img.url || "",
+            isCorrect: !!img.is_correct,
+          })),
+        };
+      });
+      setQuestions(qs);
+      if (
+        !activeQuestionId ||
+        !qs.some((q) => q.question_id === activeQuestionId)
+      ) {
+        setActiveQuestionId(qs[0]?.question_id || null);
+      }
     } else {
-      setQuestionType("text");
-      setQuestionText(question.question_text || "");
+      const firstId = genId();
+      setQuestions([
+        {
+          question_id: firstId,
+          vi_text: "",
+          question_type: "text",
+          question_text: "",
+          question_audio_url: "",
+          question_image_url: "",
+          images: [],
+        },
+      ]);
+      setActiveQuestionId(firstId);
     }
+  }, [data, activeQuestionId]);
 
-    // Load images
-    if (question.images && Array.isArray(question.images)) {
-      const loadedImages = question.images.map((img, index) => ({
-        id: img.image_id || img.id || `img_${index + 1}`,
-        url: img.image_url || img.url || "",
-        isCorrect: img.is_correct || false,
-      }));
-      setImages(loadedImages);
-    }
+  const updateData = useCallback(
+    (qs) => {
+      isInternalUpdate.current = true;
+      onChange({
+        type: "vocabulary_image_choice",
+        questions: qs.map((q) => ({
+          question_id: q.question_id || Date.now(),
+          vi_text: q.vi_text || "",
+          question_type: q.question_type || "text",
+          question_text:
+            q.question_type === "text" ? q.question_text : undefined,
+          question_audio_url:
+            q.question_type === "audio" ? q.question_audio_url : undefined,
+          question_image_url:
+            q.question_type === "image" ? q.question_image_url : undefined,
+          images: (q.images || []).map((img) => ({
+            image_id: img.id,
+            image_url: img.url,
+            is_correct: img.isCorrect,
+          })),
+        })),
+      });
+    },
+    [onChange]
+  );
 
-    isInitialMount.current = false;
-  }, [data]);
-
-  // Update data và gửi lên parent (dùng useCallback để tránh re-render)
-  const updateData = useCallback(() => {
-    // Không update nếu đang trong quá trình load data
-    if (isInitialMount.current) return;
-
-    const questionId = data?.questions?.[0]?.question_id || Date.now();
-
-    const questionObj = {
-      question_id: questionId,
-      vi_text: viText,
-    };
-
-    if (questionType === "text") {
-      questionObj.question_text = questionText;
-    } else if (questionType === "audio") {
-      questionObj.question_audio_url = questionAudioUrl;
-    } else if (questionType === "image") {
-      questionObj.question_image_url = questionImageUrl;
-    }
-
-    const imagesData = images.map((img) => ({
-      image_id: img.id,
-      image_url: img.url,
-      is_correct: img.isCorrect,
-    }));
-
-    questionObj.images = imagesData;
-
-    onChange({
-      type: "vocabulary_image_choice",
-      questions: [questionObj],
+  const updateActiveQuestion = (updater) => {
+    setQuestions((prev) => {
+      const idx = prev.findIndex((q) => q.question_id === activeQuestionId);
+      if (idx === -1) return prev;
+      const next = [...prev];
+      next[idx] = updater(prev[idx]);
+      updateData(next);
+      return next;
     });
-  }, [
-    questionType,
-    questionText,
-    questionAudioUrl,
-    questionImageUrl,
-    viText,
-    images,
-    data,
-    onChange,
-  ]);
+  };
 
-  // Debounce updateData để tránh gọi quá nhiều
-  useEffect(() => {
-    if (isInitialMount.current) return;
+  const handleAddQuestion = () => {
+    setQuestions((prev) => {
+      const newId = genId();
+      const next = [
+        ...prev,
+        {
+          question_id: newId,
+          vi_text: "",
+          question_type: "text",
+          question_text: "",
+          question_audio_url: "",
+          question_image_url: "",
+          images: [],
+        },
+      ];
+      updateData(next);
+      setActiveQuestionId(newId);
+      return next;
+    });
+  };
 
-    const timer = setTimeout(() => {
-      updateData();
-    }, 150);
+  const handleRemoveQuestion = (idx) => {
+    setQuestions((prev) => {
+      const next = prev.filter((_, i) => i !== idx);
+      updateData(next);
 
-    return () => clearTimeout(timer);
-  }, [
-    questionText,
-    questionAudioUrl,
-    questionImageUrl,
-    viText,
-    images,
-    questionType,
-    updateData,
-  ]);
+      if (!next.length) {
+        const firstId = genId();
+        const fallback = [
+          {
+            question_id: firstId,
+            vi_text: "",
+            question_type: "text",
+            question_text: "",
+            question_audio_url: "",
+            question_image_url: "",
+            images: [],
+          },
+        ];
+        updateData(fallback);
+        setActiveQuestionId(firstId);
+        return fallback;
+      }
+
+      if (prev[idx]?.question_id === activeQuestionId) {
+        const nextIdx = Math.min(idx, next.length - 1);
+        setActiveQuestionId(next[nextIdx].question_id);
+      }
+
+      return next.length ? next : prev;
+    });
+  };
+
+  const activeIndex = questions.findIndex(
+    (q) => q.question_id === activeQuestionId
+  );
+  const resolvedIndex = activeIndex >= 0 ? activeIndex : 0;
+  const activeQ = questions[resolvedIndex] || {};
+  const questionType = activeQ.question_type || "text";
+  const questionText = activeQ.question_text || "";
+  const questionAudioUrl = activeQ.question_audio_url || "";
+  const questionImageUrl = activeQ.question_image_url || "";
+  const viText = activeQ.vi_text || "";
+  const images = activeQ.images || [];
 
   // Handle question type change - chỉ set state, không block
   const handleQuestionTypeChange = (type) => {
-    setQuestionType(type);
+    updateActiveQuestion((q) => ({
+      ...q,
+      question_type: type,
+      question_text: type === "text" ? q.question_text : "",
+      question_audio_url: type === "audio" ? q.question_audio_url : "",
+      question_image_url: type === "image" ? q.question_image_url : "",
+      // reset images when switching type? giữ lại để user không mất đáp án
+    }));
   };
 
   // Handle question text change
   const handleQuestionTextChange = (e) => {
-    setQuestionText(e.target.value);
+    updateActiveQuestion((q) => ({ ...q, question_text: e.target.value }));
   };
 
   // Handle vi_text change
   const handleViTextChange = (e) => {
-    setViText(e.target.value);
+    updateActiveQuestion((q) => ({ ...q, vi_text: e.target.value }));
   };
 
   // Handle question audio upload
@@ -147,7 +205,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
     }
 
     const url = URL.createObjectURL(file);
-    setQuestionAudioUrl(url);
+    updateActiveQuestion((q) => ({ ...q, question_audio_url: url }));
   };
 
   // Handle question image upload
@@ -161,7 +219,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
     }
 
     const url = URL.createObjectURL(file);
-    setQuestionImageUrl(url);
+    updateActiveQuestion((q) => ({ ...q, question_image_url: url }));
   };
 
   // Handle multiple images upload
@@ -183,32 +241,68 @@ export default function ImageChoiceEditor({ data, onChange }) {
       };
     });
 
-    setImages((prev) => [...prev, ...newImages]);
+    updateActiveQuestion((q) => ({
+      ...q,
+      images: [...(q.images || []), ...newImages],
+    }));
   };
 
   // Handle click chọn đáp án đúng
   const handleToggleCorrect = (imageId) => {
-    setImages((prev) =>
-      prev.map((img) => ({
+    updateActiveQuestion((q) => ({
+      ...q,
+      images: (q.images || []).map((img) => ({
         ...img,
         isCorrect: img.id === imageId, // Chỉ cho phép 1 đáp án đúng
-      }))
-    );
+      })),
+    }));
   };
 
   // Handle remove image
   const handleRemoveImage = (imageId) => {
-    setImages((prev) => prev.filter((img) => img.id !== imageId));
+    updateActiveQuestion((q) => ({
+      ...q,
+      images: (q.images || []).filter((img) => img.id !== imageId),
+    }));
   };
 
   return (
     <div className="image-choice-editor">
+      {/* Tabs câu hỏi */}
+      <div className="ice-question-tabs">
+        <div className="ice-question-list">
+          {questions.map((q, idx) => (
+            <button
+              key={q.question_id || idx}
+              className={`ice-question-tab ${
+                q.question_id === activeQuestionId ? "active" : ""
+              }`}
+              onClick={() => setActiveQuestionId(q.question_id)}
+            >
+              Câu {idx + 1}
+            </button>
+          ))}
+          <button className="ice-add-question" onClick={handleAddQuestion}>
+            + Thêm câu
+          </button>
+        </div>
+        {questions.length > 1 && (
+          <button
+            className="ice-remove-question"
+            onClick={() => handleRemoveQuestion(activeIndex)}
+            title="Xóa câu hiện tại"
+          >
+            🗑 Xóa câu này
+          </button>
+        )}
+      </div>
+
       {/* Câu tiếng Việt */}
       <div className="ice-field">
         <label className="ice-label">Đáp án tiếng Việt *</label>
         <input
           type="text"
-          value={viText}
+          value={activeQ.vi_text || ""}
           onChange={handleViTextChange}
           className="ice-input"
           placeholder="Ví dụ: Táo"

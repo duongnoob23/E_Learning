@@ -3,6 +3,70 @@
   padding: 0;
 }
 
+/* Tabs câu hỏi */
+.sce-question-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.sce-question-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sce-question-tab {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sce-question-tab.active {
+  background: #1ec28b;
+  color: #fff;
+  border-color: #1ec28b;
+}
+
+.sce-add-question,
+.sce-remove-question {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sce-add-question:hover,
+.sce-question-tab:hover,
+.sce-remove-question:hover {
+  border-color: #1ec28b;
+  color: #1ec28b;
+}
+
+.sce-remove-question {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.sce-remove-question:hover {
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
 .sce-step {
   margin-bottom: 32px;
   padding: 24px;

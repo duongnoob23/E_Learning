@@ -1,78 +1,117 @@
 // SentenceCompletionEditor.jsx - Editor theo flow mới: bôi đen → tạo blank
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SentenceCompletionEditor.css";
 
 export default function SentenceCompletionEditor({ data, onChange }) {
-  const [sentenceText, setSentenceText] = useState("");
-  const [blanks, setBlanks] = useState([]); // [{ id, answer, start, end }]
-  const [wordBank, setWordBank] = useState([]); // ["word1", "word2", ...]
-  const [newWordInput, setNewWordInput] = useState("");
+  const genId = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  const [questions, setQuestions] = useState([]);
+  const [activeQuestionId, setActiveQuestionId] = useState(null);
   const [selectedText, setSelectedText] = useState(null); // { start, end, text }
   const [isBlankMode, setIsBlankMode] = useState(false);
+  const [newWordInput, setNewWordInput] = useState("");
+
   const textareaRef = useRef(null);
+  const isInternalUpdate = useRef(false);
 
   // Load data từ props
   useEffect(() => {
-    // Không khởi tạo lại nếu đã có data hợp lệ
-    if (!data || !data.questions || data.questions.length === 0) {
-      // Chỉ set state rỗng, không gọi onChange để tránh vòng lặp
-      setSentenceText("");
-      setBlanks([]);
-      setWordBank([]);
+    if (isInternalUpdate.current) {
+      // Bỏ qua khi chính editor gọi onChange để tránh reset activeIndex
+      isInternalUpdate.current = false;
       return;
     }
 
-    const question = data.questions[0];
-    
-    // Nếu có sentence_template, parse nó
-    if (question.sentence_template && question.sentence_template.trim() !== "") {
-      // Parse sentence_template để lấy text và blanks
-      const template = question.sentence_template;
-      const parts = template.split(/(\{[^}]+\})/);
-      let fullText = "";
-      const newBlanks = [];
+    if (data?.questions?.length) {
+      const seen = new Set();
+      const qs = data.questions.map((q) => {
+        let qid = q.question_id || genId();
+        if (seen.has(qid)) qid = genId();
+        seen.add(qid);
 
-      parts.forEach((part) => {
-        if (part.match(/\{([^}]+)\}/)) {
-          const blankId = part.match(/\{([^}]+)\}/)[1];
-          const blank = question.blanks?.find((b) => b.id === blankId);
-          const word = question.shuffled_words?.find(
-            (w) => w.id === blank?.correct_word_id
-          );
-          if (word) {
-            newBlanks.push({
-              id: blankId,
-              answer: word.text,
-              start: fullText.length,
-              end: fullText.length + word.text.length,
-            });
-            fullText += word.text;
-          }
-        } else {
-          fullText += part;
+        if (!q.sentence_template) {
+          return {
+            vi_text: q.vi_text || "",
+            sentence_text: "",
+            blanks: [],
+            word_bank: [],
+            question_id: qid,
+          };
         }
+        // parse template to text/blanks
+        const parts = q.sentence_template.split(/(\{[^}]+\})/);
+        let fullText = "";
+        const newBlanks = [];
+        parts.forEach((part) => {
+          const m = part.match(/\{([^}]+)\}/);
+          if (m) {
+            const blankId = m[1];
+            const blank = q.blanks?.find((b) => b.id === blankId);
+            const word = q.shuffled_words?.find(
+              (w) => w.id === blank?.correct_word_id
+            );
+            if (word) {
+              newBlanks.push({
+                id: blankId,
+                answer: word.text,
+                start: fullText.length,
+                end: fullText.length + word.text.length,
+              });
+              fullText += word.text;
+            }
+          } else {
+            fullText += part;
+          }
+        });
+        const answerWords = newBlanks.map((b) => b.answer);
+        const allWords = q.shuffled_words?.map((w) => w.text) || [];
+        const wordBankWords = allWords.filter((w) => !answerWords.includes(w));
+        return {
+          vi_text: q.vi_text || "",
+          sentence_text: fullText,
+          blanks: newBlanks,
+          word_bank: wordBankWords,
+          question_id: qid,
+        };
       });
-
-      setSentenceText(fullText);
-      setBlanks(newBlanks);
-      
-      // Word bank = tất cả words trừ answers (để tránh duplicate)
-      const answerWords = newBlanks.map((b) => b.answer);
-      const allWords = question.shuffled_words?.map((w) => w.text) || [];
-      const wordBankWords = allWords.filter((w) => !answerWords.includes(w));
-      setWordBank(wordBankWords);
+      setQuestions(qs);
+      // giữ tab theo question_id; nếu không tồn tại thì chọn câu đầu tiên
+      if (
+        !activeQuestionId ||
+        !qs.some((q) => q.question_id === activeQuestionId)
+      ) {
+        setActiveQuestionId(qs[0]?.question_id || null);
+      }
     } else {
-      // Nếu chưa có sentence_template, khởi tạo rỗng
-      setSentenceText("");
-      setBlanks([]);
-      setWordBank([]);
+      // init one empty question
+      const firstId = genId();
+      setQuestions([
+        {
+          vi_text: "",
+          sentence_text: "",
+          blanks: [],
+          word_bank: [],
+          question_id: firstId,
+        },
+      ]);
+      setActiveQuestionId(firstId);
     }
-  }, [data]);
+  }, [data, activeQuestionId]);
+
+  // Derived fields for active question
+  const activeIndex = questions.findIndex(
+    (q) => q.question_id === activeQuestionId
+  );
+  const resolvedIndex = activeIndex >= 0 ? activeIndex : 0;
+  const activeQ = questions[resolvedIndex] || {};
+  const sentenceText = activeQ.sentence_text || "";
+  const blanks = activeQ.blanks || [];
+  const wordBank = activeQ.word_bank || [];
+  const currentViText = activeQ.vi_text || "";
 
   // Handle text selection
   const handleTextSelection = () => {
     if (!isBlankMode) return;
-    
+
     const textarea = textareaRef.current;
     if (!textarea) return;
 
@@ -114,45 +153,40 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       end,
     };
 
-    const newBlanks = [...blanks, newBlank].sort((a, b) => a.start - b.start);
-    setBlanks(newBlanks);
+    updateActiveQuestion((q) => {
+      const newBlanks = [...q.blanks, newBlank].sort(
+        (a, b) => a.start - b.start
+      );
+      const newWordBank = q.word_bank.includes(text.trim())
+        ? q.word_bank
+        : [...q.word_bank, text.trim()];
+      return { ...q, blanks: newBlanks, word_bank: newWordBank };
+    });
     setSelectedText(null);
-
-    // Auto thêm answer vào word bank nếu chưa có
-    if (!wordBank.includes(text.trim())) {
-      setWordBank([...wordBank, text.trim()]);
-      updateData(sentenceText, newBlanks, [...wordBank, text.trim()]);
-    } else {
-      updateData(sentenceText, newBlanks, wordBank);
-    }
   };
 
   // Xóa blank
   const handleRemoveBlank = (blankId) => {
-    const blank = blanks.find((b) => b.id === blankId);
-    if (!blank) return;
-
-    const newBlanks = blanks.filter((b) => b.id !== blankId);
-    setBlanks(newBlanks);
-    
-    // Không xóa answer khỏi word bank (giữ lại để có thể dùng lại)
-    updateData(sentenceText, newBlanks, wordBank);
+    updateActiveQuestion((q) => ({
+      ...q,
+      blanks: q.blanks.filter((b) => b.id !== blankId),
+    }));
   };
 
   // Sửa đáp án blank
   const handleEditBlankAnswer = (blankId, newAnswer) => {
-    const newBlanks = blanks.map((b) =>
-      b.id === blankId ? { ...b, answer: newAnswer } : b
-    );
-    setBlanks(newBlanks);
-    
-    // Auto thêm answer mới vào word bank nếu chưa có
-    if (!wordBank.includes(newAnswer.trim()) && newAnswer.trim()) {
-      setWordBank([...wordBank, newAnswer.trim()]);
-      updateData(sentenceText, newBlanks, [...wordBank, newAnswer.trim()]);
-    } else {
-      updateData(sentenceText, newBlanks, wordBank);
-    }
+    const trimmed = newAnswer.trim();
+    updateActiveQuestion((q) => {
+      const newBlanks = q.blanks.map((b) =>
+        b.id === blankId ? { ...b, answer: trimmed } : b
+      );
+      const needAdd =
+        trimmed &&
+        !q.word_bank.includes(trimmed) &&
+        !q.blanks.some((b) => b.answer === trimmed);
+      const newWordBank = needAdd ? [...q.word_bank, trimmed] : q.word_bank;
+      return { ...q, blanks: newBlanks, word_bank: newWordBank };
+    });
   };
 
   // Thêm từ vào word bank
@@ -160,179 +194,217 @@ export default function SentenceCompletionEditor({ data, onChange }) {
     const word = newWordInput.trim();
     if (!word) return;
 
-    if (!wordBank.includes(word)) {
-      const newWordBank = [...wordBank, word];
-      setWordBank(newWordBank);
-      updateData(sentenceText, blanks, newWordBank);
-    }
+    updateActiveQuestion((q) => {
+      if (q.word_bank.includes(word)) return q;
+      return { ...q, word_bank: [...q.word_bank, word] };
+    });
     setNewWordInput("");
   };
 
   // Xóa từ khỏi word bank
   const handleRemoveWord = (word) => {
     // Không cho xóa nếu từ đó là đáp án của blank
-    const isAnswer = blanks.some((b) => b.answer === word);
+    const isAnswer = (activeQ.blanks || []).some((b) => b.answer === word);
     if (isAnswer) {
       alert("Không thể xóa từ này vì nó là đáp án của một blank.");
       return;
     }
 
-    const newWordBank = wordBank.filter((w) => w !== word);
-    setWordBank(newWordBank);
-    updateData(sentenceText, blanks, newWordBank);
+    updateActiveQuestion((q) => ({
+      ...q,
+      word_bank: q.word_bank.filter((w) => w !== word),
+    }));
   };
 
   // Render sentence với blanks để preview
   const renderSentenceWithBlanks = () => {
     if (!sentenceText) return [];
-
     const parts = [];
     let lastIndex = 0;
-
-    // Sort blanks by start position
     const sortedBlanks = [...blanks].sort((a, b) => a.start - b.start);
-
     sortedBlanks.forEach((blank) => {
-      // Text trước blank
       if (blank.start > lastIndex) {
         parts.push({
           type: "text",
           content: sentenceText.substring(lastIndex, blank.start),
         });
       }
-
-      // Blank
       parts.push({
         type: "blank",
         id: blank.id,
         answer: blank.answer,
       });
-
       lastIndex = blank.end;
     });
-
-    // Text sau blank cuối
     if (lastIndex < sentenceText.length) {
       parts.push({
         type: "text",
         content: sentenceText.substring(lastIndex),
       });
     }
-
-    // Nếu không có blank nào, trả về toàn bộ text
     if (parts.length === 0) {
       parts.push({
         type: "text",
         content: sentenceText,
       });
     }
-
     return parts;
   };
 
   // Update data và gửi lên parent
-  const updateData = (text, blanksList, words) => {
-    // Tạo sentence_template
-    let template = text;
-    const sortedBlanks = [...blanksList].sort((a, b) => b.start - a.start);
-
-    // Thay thế từ cuối lên đầu để không bị lệch index
-    sortedBlanks.forEach((blank) => {
-      const before = template.substring(0, blank.start);
-      const after = template.substring(blank.end);
-      template = before + `{${blank.id}}` + after;
-    });
-
-    // Tạo shuffled_words (gộp answers và word bank, loại bỏ duplicate)
-    const allWords = [
-      ...blanksList.map((b) => b.answer),
-      ...words,
-    ].filter((word, index, self) => self.indexOf(word) === index);
-
-    const shuffledWords = allWords.map((word, index) => ({
-      id: index + 1,
-      text: word,
-    }));
-
-    // Tạo blanks với correct_word_id
-    const blanksData = blanksList.map((blank) => {
-      const wordId = shuffledWords.find((w) => w.text === blank.answer)?.id;
-      return {
-        id: blank.id,
-        correct_word_id: wordId || 1,
-      };
-    });
-
-    // Giữ lại vi_text từ data hiện tại
-    const currentViText = data?.questions?.[0]?.vi_text || "";
-    const currentQuestionId = data?.questions?.[0]?.question_id || Date.now();
-
-    const questionData = {
-      question_id: currentQuestionId,
-      vi_text: currentViText,
-      sentence_template: template,
-      shuffled_words: shuffledWords,
-      blanks: blanksData,
-    };
-
+  const updateData = (qs) => {
+    isInternalUpdate.current = true;
     onChange({
       type: "vocabulary_sentence_completion",
-      questions: [questionData],
+      questions: qs.map((q) => {
+        // build template
+        let template = q.sentence_text || "";
+        const sortedBlanks = [...q.blanks].sort((a, b) => b.start - a.start);
+        sortedBlanks.forEach((blank) => {
+          const before = template.substring(0, blank.start);
+          const after = template.substring(blank.end);
+          template = before + `{${blank.id}}` + after;
+        });
+        const allWords = [
+          ...q.blanks.map((b) => b.answer),
+          ...q.word_bank,
+        ].filter((word, idx, self) => self.indexOf(word) === idx);
+        const shuffledWords = allWords.map((word, idx) => ({
+          id: idx + 1,
+          text: word,
+        }));
+        const blanksData = q.blanks.map((blank) => {
+          const wordId = shuffledWords.find((w) => w.text === blank.answer)?.id;
+          return { id: blank.id, correct_word_id: wordId || 1 };
+        });
+        return {
+          question_id: q.question_id || genId(),
+          vi_text: q.vi_text || "",
+          sentence_template: template,
+          shuffled_words: shuffledWords,
+          blanks: blanksData,
+        };
+      }),
     });
+  };
+
+  const updateActiveQuestion = (updater) => {
+    setQuestions((prev) => {
+      const idx = prev.findIndex((q) => q.question_id === activeQuestionId);
+      if (idx === -1) return prev;
+      const next = [...prev];
+      next[idx] = updater(prev[idx]);
+      updateData(next);
+      return next;
+    });
+  };
+
+  const handleViTextChange = (e) => {
+    const viText = e.target.value;
+    updateActiveQuestion((q) => ({ ...q, vi_text: viText }));
   };
 
   // Handle sentence text change
   const handleSentenceChange = (e) => {
     const newText = e.target.value;
-    setSentenceText(newText);
-    
-    // Khi text thay đổi, cần điều chỉnh blank positions
-    // Nếu text bị xóa/cắt ngắn, có thể cần xóa blanks nằm ngoài text
-    const adjustedBlanks = blanks.filter((blank) => blank.end <= newText.length);
-    
-    // Nếu có blanks bị mất, cập nhật lại
-    if (adjustedBlanks.length !== blanks.length) {
-      setBlanks(adjustedBlanks);
-      updateData(newText, adjustedBlanks, wordBank);
-    } else {
-      updateData(newText, blanks, wordBank);
-    }
-  };
-  
-  // Thêm input cho câu tiếng Việt
-  const handleViTextChange = (e) => {
-    const viText = e.target.value;
-    
-    // Đảm bảo có question để update
-    const currentQuestionId = data?.questions?.[0]?.question_id || Date.now();
-    const currentTemplate = data?.questions?.[0]?.sentence_template || "";
-    const currentShuffledWords = data?.questions?.[0]?.shuffled_words || [];
-    const currentBlanks = data?.questions?.[0]?.blanks || [];
-    
-    const questionData = {
-      question_id: currentQuestionId,
-      vi_text: viText,
-      sentence_template: currentTemplate,
-      shuffled_words: currentShuffledWords,
-      blanks: currentBlanks,
-    };
-    
-    onChange({
-      type: "vocabulary_sentence_completion",
-      questions: [questionData],
+    updateActiveQuestion((q) => {
+      const adjustedBlanks = q.blanks.filter((b) => b.end <= newText.length);
+      return { ...q, sentence_text: newText, blanks: adjustedBlanks };
     });
   };
 
+  // Add new question
+  const handleAddQuestion = () => {
+    setQuestions((prev) => {
+      const newId = genId();
+      const next = [
+        ...prev,
+        {
+          vi_text: "",
+          sentence_text: "",
+          blanks: [],
+          word_bank: [],
+          question_id: newId,
+        },
+      ];
+      updateData(next);
+      setActiveQuestionId(newId);
+      return next;
+    });
+  };
+
+  // Remove question
+  const handleRemoveQuestion = (idx) => {
+    setQuestions((prev) => {
+      const next = prev.filter((_, i) => i !== idx);
+      updateData(next);
+      if (!next.length) {
+        const firstId = genId();
+        const fallback = [
+          {
+            vi_text: "",
+            sentence_text: "",
+            blanks: [],
+            word_bank: [],
+            question_id: firstId,
+          },
+        ];
+        updateData(fallback);
+        setActiveQuestionId(firstId);
+        return fallback;
+      }
+
+      if (prev[idx]?.question_id === activeQuestionId) {
+        const nextIdx = Math.min(idx, next.length - 1);
+        setActiveQuestionId(next[nextIdx].question_id);
+      }
+
+      return next.length ? next : prev;
+    });
+  };
   const sentenceParts = renderSentenceWithBlanks();
-  const currentViText = data?.questions?.[0]?.vi_text || "";
 
   return (
     <div className="sentence-completion-editor">
+      {/* Tabs câu hỏi */}
+      <div className="sce-question-tabs">
+        <div className="sce-question-list">
+          {questions.map((q, idx) => (
+            <button
+              key={q.question_id || idx}
+              className={`sce-question-tab ${
+                q.question_id === activeQuestionId ? "active" : ""
+              }`}
+              onClick={() => {
+                setActiveQuestionId(q.question_id);
+                setSelectedText(null);
+                setIsBlankMode(false);
+              }}
+            >
+              Câu {idx + 1}
+            </button>
+          ))}
+          <button className="sce-add-question" onClick={handleAddQuestion}>
+            + Thêm câu
+          </button>
+        </div>
+        {questions.length > 1 && (
+          <button
+            className="sce-remove-question"
+            onClick={() => handleRemoveQuestion(activeIndex)}
+            title="Xóa câu hiện tại"
+          >
+            🗑 Xóa câu này
+          </button>
+        )}
+      </div>
+
       {/* Câu tiếng Việt */}
       <div className="sce-step">
         <label className="sce-label">Câu tiếng Việt *</label>
         <input
           type="text"
+          key={`vi-${activeIndex}`}
           value={currentViText}
           onChange={handleViTextChange}
           className="sce-input"
@@ -346,6 +418,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
         <textarea
           ref={textareaRef}
           className="sce-textarea"
+          key={`en-${activeIndex}`}
           value={sentenceText}
           onChange={handleSentenceChange}
           onSelect={handleTextSelection}
@@ -353,7 +426,8 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           rows={4}
         />
         <p className="sce-hint">
-          💡 Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để tạo blanks.
+          💡 Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để tạo
+          blanks.
         </p>
       </div>
 
@@ -363,7 +437,9 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           <div className="sce-step-header">
             <label className="sce-label">Tạo chỗ trống</label>
             <button
-              className={`sce-btn ${isBlankMode ? "sce-btn-active" : "sce-btn-primary"}`}
+              className={`sce-btn ${
+                isBlankMode ? "sce-btn-active" : "sce-btn-primary"
+              }`}
               onClick={() => {
                 setIsBlankMode(!isBlankMode);
                 setSelectedText(null);
@@ -463,7 +539,8 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       <div className="sce-step">
         <label className="sce-label">Danh sách từ kéo thả (Word Bank)</label>
         <p className="sce-hint">
-          💡 Các đáp án đúng sẽ tự động được thêm vào word bank. Bạn chỉ cần thêm các từ nhiễu.
+          💡 Các đáp án đúng sẽ tự động được thêm vào word bank. Bạn chỉ cần
+          thêm các từ nhiễu.
         </p>
         <div className="sce-word-bank-input">
           <input

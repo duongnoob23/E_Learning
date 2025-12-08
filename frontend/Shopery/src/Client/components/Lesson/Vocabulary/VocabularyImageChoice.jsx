@@ -1,38 +1,105 @@
 // VocabularyImageChoice.jsx - Chọn ảnh (en -> image)
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./VocabularyImageChoice.css";
 
 export default function VocabularyImageChoice({ lesson }) {
   const lessonData = lesson?.lesson_data || {};
-  const question = lessonData.question || {};
-  const images = lessonData.images || [];
+  const questions = useMemo(() => {
+    if (lessonData.questions && Array.isArray(lessonData.questions)) return lessonData.questions;
+    if (lessonData.question) return [lessonData.question];
+    return [];
+  }, [lessonData]);
+
   const layout = lessonData.layout || "grid";
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [showResult, setShowResult] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedMap, setSelectedMap] = useState({}); // {questionIndex: imageId}
+  const [showResultMap, setShowResultMap] = useState({}); // {questionIndex: boolean}
+
+  const currentQuestion = questions[currentIndex] || {};
+  const images =
+    currentQuestion.images ||
+    currentQuestion.images?.map?.((img) => ({
+      id: img.image_id || img.id,
+      url: img.image_url || img.url,
+      is_correct: img.is_correct,
+    })) ||
+    lessonData.images ||
+    [];
 
   const handleSelect = (imageId) => {
-    if (showResult) return;
-    setSelectedImage(imageId);
+    if (showResultMap[currentIndex]) return;
+    setSelectedMap((prev) => ({ ...prev, [currentIndex]: imageId }));
   };
 
   const handleSubmit = () => {
-    if (selectedImage === null) return;
-    const selected = images.find(img => img.id === selectedImage);
-    setShowResult(selected?.is_correct || false);
+    const selectedImage = selectedMap[currentIndex];
+    if (selectedImage == null) return;
+    const selected = images.find((img) => img.id === selectedImage);
+    setShowResultMap((prev) => ({
+      ...prev,
+      [currentIndex]: selected?.is_correct || false,
+    }));
   };
 
-  const isCorrect = images.find(img => img.id === selectedImage)?.is_correct || false;
+  const isCorrect =
+    images.find((img) => img.id === selectedMap[currentIndex])?.is_correct || false;
+
+  const handleNext = () => {
+    setCurrentIndex((i) => Math.min(i + 1, questions.length - 1));
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((i) => Math.max(0, i - 1));
+  };
+
+  if (!questions.length && !(lessonData.images || []).length) {
+    return <div className="vocabulary-image-choice-container">Không có dữ liệu</div>;
+  }
 
   return (
     <div className="vocabulary-image-choice-container">
       <h3>{lesson.title}</h3>
       
+      {questions.length > 1 && (
+        <div className="vocabulary-image-choice-nav">
+          <button
+            className="vocabulary-image-choice-nav-btn"
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+          >
+            ← Câu trước
+          </button>
+          <div className="vocabulary-image-choice-qnums">
+            {questions.map((_, idx) => (
+              <button
+                key={idx}
+                className={`vocabulary-image-choice-qnum ${
+                  idx === currentIndex ? "active" : ""
+                } ${
+                  showResultMap[idx] ? "done" : ""
+                }`}
+                onClick={() => setCurrentIndex(idx)}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
+          <button
+            className="vocabulary-image-choice-nav-btn"
+            onClick={handleNext}
+            disabled={currentIndex === questions.length - 1}
+          >
+            Câu sau →
+          </button>
+        </div>
+      )}
+      
       <div className="vocabulary-image-choice-content">
         <div className="vocabulary-image-choice-question">
-          <h2>{question.en}</h2>
-          {question.audio_url && (
+          <h2>{currentQuestion.en}</h2>
+          {currentQuestion.audio_url && (
             <audio controls className="vocabulary-image-choice-audio">
-              <source src={question.audio_url} type="audio/mpeg" />
+              <source src={currentQuestion.audio_url} type="audio/mpeg" />
             </audio>
           )}
           <p className="vocabulary-image-choice-instruction">
@@ -42,10 +109,10 @@ export default function VocabularyImageChoice({ lesson }) {
 
         <div className={`vocabulary-image-choice-images vocabulary-image-choice-${layout}`}>
           {images.map((image) => {
-            const isSelected = selectedImage === image.id;
+            const isSelected = selectedMap[currentIndex] === image.id;
             let imageClass = "vocabulary-image-choice-item";
             
-            if (showResult) {
+            if (showResultMap[currentIndex]) {
               if (image.is_correct) {
                 imageClass += " correct";
               } else if (isSelected && !image.is_correct) {
@@ -62,12 +129,12 @@ export default function VocabularyImageChoice({ lesson }) {
                 onClick={() => handleSelect(image.id)}
               >
                 <img src={image.url} alt={`Option ${image.id}`} />
-                {showResult && image.is_correct && (
+                {showResultMap[currentIndex] && image.is_correct && (
                   <div className="vocabulary-image-choice-overlay">
                     <i className="fa fa-check-circle"></i>
                   </div>
                 )}
-                {showResult && isSelected && !image.is_correct && (
+                {showResultMap[currentIndex] && isSelected && !image.is_correct && (
                   <div className="vocabulary-image-choice-overlay wrong">
                     <i className="fa fa-times-circle"></i>
                   </div>
@@ -77,17 +144,17 @@ export default function VocabularyImageChoice({ lesson }) {
           })}
         </div>
 
-        {!showResult && (
+        {!showResultMap[currentIndex] && (
           <button
             onClick={handleSubmit}
-            disabled={selectedImage === null}
+            disabled={selectedMap[currentIndex] == null}
             className="vocabulary-image-choice-submit"
           >
             Xác nhận
           </button>
         )}
 
-        {showResult && (
+        {showResultMap[currentIndex] !== undefined && (
           <div className={`vocabulary-image-choice-result ${isCorrect ? "correct" : "wrong"}`}>
             {isCorrect ? (
               <>
