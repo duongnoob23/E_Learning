@@ -95,7 +95,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       ]);
       setActiveQuestionId(firstId);
     }
-  }, [data, activeQuestionId]);
+  }, [data]);
 
   // Derived fields for active question
   const activeIndex = questions.findIndex(

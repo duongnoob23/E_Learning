@@ -68,7 +68,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
       ]);
       setActiveQuestionId(firstId);
     }
-  }, [data, activeQuestionId]);
+  }, [data]);
 
   const updateData = useCallback(
     (qs) => {
