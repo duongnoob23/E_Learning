@@ -13,6 +13,78 @@ const {
 } = require("../../models");
 
 // ======================= //
+// 🔍 HELPER FUNCTIONS //
+// ======================= //
+
+// Helper function: Validate lesson_data theo lesson_type
+const validateLessonData = (lesson_type, lesson_data) => {
+  if (!lesson_data) return { valid: true, error: null };
+
+  // Các lesson_type không cần lesson_data
+  const typesWithoutData = ["video", "document", "assignment", "live"];
+  if (typesWithoutData.includes(lesson_type)) {
+    return { valid: true, error: null };
+  }
+
+  // Các lesson_type cần lesson_data với format cụ thể
+  const vocabularyTypes = [
+    "vocabulary_list",
+    "vocabulary_matching",
+    "vocabulary_translation",
+    "vocabulary_quiz",
+    "vocabulary_listening",
+    "vocabulary_image_choice",
+    "vocabulary_sentence_completion",
+  ];
+
+  if (vocabularyTypes.includes(lesson_type) || lesson_type === "grammar_theory") {
+    if (typeof lesson_data !== "object") {
+      return {
+        valid: false,
+        error: `lesson_data phải là object cho lesson_type: ${lesson_type}`,
+      };
+    }
+
+    // Kiểm tra format cơ bản
+    if (lesson_type === "vocabulary_list" && !lesson_data.words) {
+      return {
+        valid: false,
+        error: "vocabulary_list cần lesson_data.words (array)",
+      };
+    }
+
+    if (
+      [
+        "vocabulary_matching",
+        "vocabulary_translation",
+        "vocabulary_quiz",
+        "vocabulary_listening",
+        "vocabulary_image_choice",
+        "vocabulary_sentence_completion",
+      ].includes(lesson_type) &&
+      !lesson_data.questions
+    ) {
+      return {
+        valid: false,
+        error: `${lesson_type} cần lesson_data.questions (array)`,
+      };
+    }
+
+    if (lesson_type === "grammar_theory") {
+      // grammar_theory có thể có mode: "page" hoặc "structured"
+      if (!lesson_data.mode) {
+        return {
+          valid: false,
+          error: "grammar_theory cần lesson_data.mode ('page' hoặc 'structured')",
+        };
+      }
+    }
+  }
+
+  return { valid: true, error: null };
+};
+
+// ======================= //
 // 🎓 GIẢNG VIÊN - KHÓA HỌC //
 // ======================= //
 
@@ -451,13 +523,55 @@ exports.createCourseWithDetails = async (user_id, data) => {
           };
         }
 
-        if (!lessonData.videoUrl || !lessonData.videoUrl.trim()) {
+        // Validate video URL chỉ khi lesson_type là video
+        const lessonType = lessonData.lessonType || "video";
+        if (lessonType === "video" && (!lessonData.videoUrl || !lessonData.videoUrl.trim())) {
           await transaction.rollback();
           return {
-            EM: `Lesson "${lessonData.title}" video URL is required`,
+            EM: `Lesson "${lessonData.title}" video URL is required for video type`,
             EC: "-1",
             DT: null,
           };
+        }
+
+        // Lấy lesson_data từ payload (nếu có)
+        // lesson_data có thể là object hoặc JSON string
+        let lessonDataJson = null;
+        if (lessonData.lesson_data) {
+          if (typeof lessonData.lesson_data === 'string') {
+            try {
+              lessonDataJson = JSON.parse(lessonData.lesson_data);
+            } catch (e) {
+              lessonDataJson = lessonData.lesson_data;
+            }
+          } else {
+            lessonDataJson = lessonData.lesson_data;
+          }
+        }
+
+        // Validate lesson_data theo lesson_type
+        const validation = validateLessonData(lessonType, lessonDataJson);
+        if (!validation.valid) {
+          await transaction.rollback();
+          return {
+            EM: `Lesson "${lessonData.title}": ${validation.error}`,
+            EC: "-1",
+            DT: null,
+          };
+        }
+
+        // Lấy metadata từ payload (nếu có)
+        let metadataJson = null;
+        if (lessonData.metadata) {
+          if (typeof lessonData.metadata === 'string') {
+            try {
+              metadataJson = JSON.parse(lessonData.metadata);
+            } catch (e) {
+              metadataJson = lessonData.metadata;
+            }
+          } else {
+            metadataJson = lessonData.metadata;
+          }
         }
 
         await Lesson.create(
@@ -467,10 +581,12 @@ exports.createCourseWithDetails = async (user_id, data) => {
             title: lessonData.title.trim(),
             description: lessonData.description || null,
             content: lessonData.content || null,
-            video_url: lessonData.videoUrl.trim(),
+            video_url: lessonData.videoUrl || null,
             video_duration: lessonData.videoDuration || null,
             sort_order: lessonIndex + 1,
-            lesson_type: lessonData.lessonType || "video",
+            lesson_type: lessonType,
+            lesson_data: lessonDataJson,
+            metadata: metadataJson,
             is_free: !!lessonData.isFree,
             created_at: new Date(),
             updated_at: new Date(),
@@ -706,17 +822,60 @@ exports.addLesson = async (user_id, module_id, data) => {
       video_duration,
       sort_order,
       lesson_type,
+      lesson_data,
+      metadata,
       is_free,
     } = data;
+
+    // Parse lesson_data nếu là string
+    let lessonDataJson = null;
+    if (lesson_data) {
+      if (typeof lesson_data === 'string') {
+        try {
+          lessonDataJson = JSON.parse(lesson_data);
+        } catch (e) {
+          lessonDataJson = lesson_data;
+        }
+      } else {
+        lessonDataJson = lesson_data;
+      }
+    }
+
+    // Validate lesson_data theo lesson_type
+    const lessonType = lesson_type || "video";
+    const validation = validateLessonData(lessonType, lessonDataJson);
+    if (!validation.valid) {
+      return {
+        EM: validation.error,
+        EC: "-1",
+        DT: null,
+      };
+    }
+
+    // Parse metadata nếu là string
+    let metadataJson = null;
+    if (metadata) {
+      if (typeof metadata === 'string') {
+        try {
+          metadataJson = JSON.parse(metadata);
+        } catch (e) {
+          metadataJson = metadata;
+        }
+      } else {
+        metadataJson = metadata;
+      }
+    }
 
     const newLesson = await Lesson.create({
       module_id,
       course_id: module.course_id,
       title,
-      video_url,
+      video_url: video_url || null,
       video_duration: video_duration || null,
       sort_order: sort_order || 1,
       lesson_type: lesson_type || "video",
+      lesson_data: lessonDataJson,
+      metadata: metadataJson,
       is_free: !!is_free,
       created_at: new Date(),
       updated_at: new Date(),
@@ -750,10 +909,62 @@ exports.updateLesson = async (instructor_id, lesson_id, data) => {
     // if (!course || course.instructor_id !== instructor_id)
     //   return { EM: "Không có quyền chỉnh sửa bài học này", EC: "3", DT: null };
 
+    // Parse lesson_data nếu có
+    let lessonDataJson = undefined;
+    if (data.lesson_data !== undefined) {
+      if (data.lesson_data === null) {
+        lessonDataJson = null;
+      } else if (typeof data.lesson_data === 'string') {
+        try {
+          lessonDataJson = JSON.parse(data.lesson_data);
+        } catch (e) {
+          lessonDataJson = data.lesson_data;
+        }
+      } else {
+        lessonDataJson = data.lesson_data;
+      }
+    }
+
+    // Validate lesson_data theo lesson_type (nếu có thay đổi)
+    const newLessonType = data.lesson_type ?? lesson.lesson_type;
+    if (lessonDataJson !== undefined || data.lesson_type) {
+      const validation = validateLessonData(newLessonType, lessonDataJson !== undefined ? lessonDataJson : lesson.lesson_data);
+      if (!validation.valid) {
+        return {
+          EM: validation.error,
+          EC: "-1",
+          DT: null,
+        };
+      }
+    }
+
+    // Parse metadata nếu có
+    let metadataJson = undefined;
+    if (data.metadata !== undefined) {
+      if (data.metadata === null) {
+        metadataJson = null;
+      } else if (typeof data.metadata === 'string') {
+        try {
+          metadataJson = JSON.parse(data.metadata);
+        } catch (e) {
+          metadataJson = data.metadata;
+        }
+      } else {
+        metadataJson = data.metadata;
+      }
+    }
+
     await lesson.update({
       title: data.title ?? lesson.title,
-      video_url: data.video_url ?? lesson.video_url,
-      video_duration: data.video_duration ?? lesson.video_duration,
+      description: data.description !== undefined ? data.description : lesson.description,
+      content: data.content !== undefined ? data.content : lesson.content,
+      video_url: data.video_url !== undefined ? data.video_url : lesson.video_url,
+      video_duration: data.video_duration !== undefined ? data.video_duration : lesson.video_duration,
+      lesson_type: data.lesson_type ?? lesson.lesson_type,
+      lesson_data: lessonDataJson !== undefined ? lessonDataJson : lesson.lesson_data,
+      metadata: metadataJson !== undefined ? metadataJson : lesson.metadata,
+      is_free: data.is_free !== undefined ? !!data.is_free : lesson.is_free,
+      sort_order: data.sort_order ?? lesson.sort_order,
       updated_at: new Date(),
     });
 

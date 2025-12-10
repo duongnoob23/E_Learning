@@ -1352,6 +1352,50 @@ body {
   line-height: 1.4;
 }
 
+/* ✅ NEW: Wrapper cho lesson content */
+.lesson-page__lesson-content-wrapper {
+  width: 100%;
+}
+
+.lesson-page__lesson-component {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--lesson-color-surface);
+  border-radius: var(--lesson-radius-md);
+  box-shadow: var(--lesson-shadow-sm);
+  min-height: 400px;
+}
+
+.lesson-page__lesson-description {
+  color: var(--lesson-color-text-muted);
+  font-size: 14px;
+  margin: 8px 0 0 0;
+}
+
+/* Video container cho VideoPlayer component */
+.lesson-video-container {
+  width: 100%;
+}
+
+.lesson-video-iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: var(--lesson-radius-md);
+}
+
+.lesson-video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lesson-color-surface-muted);
+  border-radius: var(--lesson-radius-md);
+  color: var(--lesson-color-text-muted);
+  font-size: 16px;
+}
+
 /* ===== LESSON CONTENT ===== */
 .lesson-page__lesson-content {
   padding: 14px 0 0 0;

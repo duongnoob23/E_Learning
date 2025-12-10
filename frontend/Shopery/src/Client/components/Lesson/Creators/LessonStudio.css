@@ -1,0 +1,195 @@
+/* LessonStudio.css - Hệ thống tạo lesson thông minh */
+.lesson-studio {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+}
+
+/* Tabs */
+.lesson-studio-tabs {
+  display: flex;
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.lesson-studio-tab {
+  flex: 1;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lesson-studio-tab:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.lesson-studio-tab.active {
+  color: #1ec28b;
+  border-bottom-color: #1ec28b;
+  background: #fff;
+}
+
+/* Toolbar */
+.lesson-studio-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+  gap: 16px;
+}
+
+.lesson-studio-toolbar-left,
+.lesson-studio-toolbar-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lesson-studio-import-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.lesson-studio-info-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-studio-info-btn:hover {
+  background: #bfdbfe;
+  border-color: #93c5fd;
+}
+
+.lesson-studio-toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.lesson-studio-btn {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lesson-studio-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.lesson-studio-btn-primary {
+  background: #1ec28b;
+  color: white;
+  border-color: #1ec28b;
+}
+
+.lesson-studio-btn-primary:hover {
+  background: #16a085;
+  border-color: #16a085;
+}
+
+.lesson-studio-btn-save {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.lesson-studio-btn-save:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+
+/* Content Area */
+.lesson-studio-content {
+  min-height: 600px;
+}
+
+.lesson-studio-editor,
+.lesson-studio-preview {
+  padding: 24px;
+  min-height: 600px;
+}
+
+/* Preview */
+.lesson-studio-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.lesson-studio-preview-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.lesson-studio-preview-badge {
+  padding: 4px 12px;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lesson-studio-preview-content {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 400px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .lesson-studio-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .lesson-studio-editor.split-view,
+  .lesson-studio-preview.split-view {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .lesson-studio-content {
+    flex-direction: column;
+  }
+}
+

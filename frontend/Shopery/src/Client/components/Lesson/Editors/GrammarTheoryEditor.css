@@ -1,0 +1,130 @@
+.gt-editor-container {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.gt-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.gt-editor-btn {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.gt-editor-btn:hover {
+  border-color: #1ec28b;
+  color: #1ec28b;
+}
+
+.gt-editor-btn.active {
+  background: #1ec28b;
+  color: #fff;
+  border-color: #1ec28b;
+}
+
+.gt-editor {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  min-height: 260px;
+  padding: 16px;
+}
+
+.gt-editor .tiptap {
+  min-height: 220px;
+  outline: none;
+  line-height: 1.7;
+}
+
+.gt-editor .tiptap h1,
+.gt-editor .tiptap h2,
+.gt-editor .tiptap h3,
+.gt-editor .tiptap h4 {
+  margin: 12px 0;
+  font-weight: 700;
+  color: #111827;
+}
+
+.gt-editor .tiptap p {
+  margin: 8px 0;
+  color: #1f2937;
+}
+
+.gt-editor .tiptap ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.gt-editor .tiptap ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.gt-editor .tiptap a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.gt-editor .tiptap table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  border: 1px solid #e5e7eb;
+}
+
+.gt-editor .tiptap th,
+.gt-editor .tiptap td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+.gt-editor .tiptap img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.gt-examples {
+  margin-top: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.gt-example {
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.gt-example:last-child {
+  border-bottom: none;
+}
+
+.gt-html-preview {
+  margin-top: 16px;
+}
+
+.gt-html-box {
+  border: 1px dashed #e5e7eb;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+  max-height: 260px;
+  overflow: auto;
+}
+

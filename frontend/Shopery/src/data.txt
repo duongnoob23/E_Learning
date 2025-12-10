@@ -1,0 +1,26 @@
+{
+  "type": "vocabulary_quiz",
+  "questions": [
+    {
+      "question_id": 1,
+      "question_type": "text",
+      "question_text": "What does 'happy' mean?",
+      "question_image_url": "",
+      "question_audio_url": "",
+      "choices": [
+        {
+          "choice_id": 1,
+          "text": "vui mừng",
+          "image_url": "",
+          "is_correct": true
+        },
+        {
+          "choice_id": 2,
+          "text": "buồn",
+          "image_url": "",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

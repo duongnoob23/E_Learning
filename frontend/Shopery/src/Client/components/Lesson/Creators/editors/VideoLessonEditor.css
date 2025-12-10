@@ -1,0 +1,249 @@
+/* VideoLessonEditor.css - Editor cho Video Lesson */
+.video-lesson-editor {
+  padding: 20px;
+  max-width: 1000px;
+}
+
+/* Header */
+.vle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.vle-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Preview button */
+.vle-preview-btn {
+  padding: 10px 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vle-preview-btn:hover:not(.disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.vle-preview-btn.disabled {
+  background: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Errors */
+.vle-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: 4px;
+}
+
+.vle-error {
+  font-size: 13px;
+  color: #92400e;
+}
+
+/* Sections */
+.vle-section {
+  margin-bottom: 24px;
+}
+
+.vle-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.vle-input,
+.vle-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.vle-input:focus,
+.vle-textarea:focus {
+  outline: none;
+  border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
+}
+
+.vle-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.vle-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Radio group */
+.vle-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.vle-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.vle-radio-label:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.vle-radio {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.vle-radio-label:has(.vle-radio:checked) {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+/* Examples */
+.vle-examples {
+  margin-top: 32px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.vle-examples-title {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.vle-examples-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vle-example-item {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.vle-example-item strong {
+  color: #374151;
+  margin-right: 8px;
+}
+
+.vle-example-item code {
+  display: block;
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  color: #1f2937;
+  word-break: break-all;
+}
+
+/* Preview container */
+.vle-preview-container {
+  margin-top: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vle-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.vle-close-preview {
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.vle-close-preview:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.vle-preview-content {
+  padding: 20px;
+  background: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vle-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .vle-radio-group {
+    gap: 8px;
+  }
+}
+

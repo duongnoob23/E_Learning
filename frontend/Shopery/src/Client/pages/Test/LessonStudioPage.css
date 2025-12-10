@@ -1,0 +1,59 @@
+/* LessonStudioPage.css */
+.lesson-studio-page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding: 32px;
+}
+
+.lesson-studio-page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.lesson-studio-page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.lesson-studio-page-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 32px 0;
+}
+
+.lesson-studio-page-selector {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+}
+
+.lesson-studio-page-selector label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.lesson-studio-page-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1f2937;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.lesson-studio-page-select:focus {
+  outline: none;
+  border-color: #1ec28b;
+}
+

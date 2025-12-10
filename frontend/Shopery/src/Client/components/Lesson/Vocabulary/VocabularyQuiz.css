@@ -1,0 +1,274 @@
+/* VocabularyQuiz.css - Trắc nghiệm từ vựng */
+.vocabulary-quiz-container {
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Câu hỏi */
+.vocabulary-quiz-question {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.vocabulary-quiz-question-image {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-quiz-question-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+}
+
+.vocabulary-quiz-audio {
+  width: 100%;
+  max-width: 400px;
+  height: 48px;
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+/* Đáp án - Grid 2x2 */
+.vocabulary-quiz-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .vocabulary-quiz-choices {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vocabulary-quiz-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 16px;
+  min-height: 180px;
+  position: relative;
+}
+
+.vocabulary-quiz-choice:hover:not(:disabled) {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-quiz-choice--selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+/* Đáp án đúng - Xanh */
+.vocabulary-quiz-choice--correct {
+  border-color: #10b981 !important;
+  background: #d1fae5 !important;
+  animation: correctPulse 0.5s ease;
+}
+
+@keyframes correctPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Đáp án sai - Đỏ + Shake */
+.vocabulary-quiz-choice--wrong {
+  border-color: #ef4444 !important;
+  background: #fee2e2 !important;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.vocabulary-quiz-choice:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.vocabulary-quiz-choice-letter {
+  font-weight: 600;
+  color: #1ec28b;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.vocabulary-quiz-choice-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-quiz-choice-text {
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.vocabulary-quiz-choice-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+}
+
+.vocabulary-quiz-choice-icon--correct {
+  color: #10b981;
+}
+
+.vocabulary-quiz-choice-icon--wrong {
+  color: #ef4444;
+}
+
+/* Navigation */
+.vocabulary-quiz-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.vocabulary-quiz-nav-btn {
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocabulary-quiz-nav-btn:hover:not(:disabled) {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-quiz-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-quiz-auto-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vocabulary-quiz-auto-switch input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1ec28b;
+}
+
+.vocabulary-quiz-auto-switch span {
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Danh sách số câu hỏi */
+.vocabulary-quiz-question-list {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vocabulary-quiz-question-list-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.vocabulary-quiz-question-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vocabulary-quiz-question-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vocabulary-quiz-question-number:hover {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-quiz-question-number--active {
+  border-color: #1ec28b;
+  background: #1ec28b;
+  color: #fff;
+}
+
+.vocabulary-quiz-question-number--answered {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+
+

@@ -1,0 +1,428 @@
+/* VocabularySentenceCompletion.css - Hoàn thiện câu */
+.vocabulary-sentence-container {
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vocabulary-sentence-container h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+/* Câu tiếng Việt - Căn giữa */
+.vocabulary-sentence-vi {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.vocabulary-sentence-vi p {
+  font-size: 20px;
+  color: #374151;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Câu tiếng Anh với các ô trống */
+.vocabulary-sentence-display {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+  min-height: 120px;
+}
+
+.vocabulary-sentence-text {
+  font-size: 22px;
+  line-height: 2;
+  color: #1f2937;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Ô trống */
+.sentence-blank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  min-height: 50px;
+  padding: 12px 16px;
+  margin: 4px;
+  border: 2px solid #9ca3af;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Ô trống rỗng - Màu xám */
+.sentence-blank--empty {
+  border-color: #9ca3af;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Ô trống đã điền - Màu xám (chưa kiểm tra) */
+.sentence-blank--filled {
+  border-color: #9ca3af;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Ô trống khi hover (đang kéo từ vào) */
+.sentence-blank--hovered {
+  background: #d1fae5 !important;
+  border-color: #10b981 !important;
+  border-style: solid !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(30, 194, 139, 0.3);
+}
+
+.sentence-blank-placeholder {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+.sentence-blank-word {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  padding-right: 28px;
+}
+
+/* Dấu X để xóa - Góc trên cùng bên phải */
+.sentence-blank-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  z-index: 10;
+}
+
+.sentence-blank-remove:hover {
+  background: #dc2626;
+  transform: scale(1.15);
+}
+
+/* Ô trống đúng - Xanh lá cây */
+.sentence-blank--correct {
+  background: #d1fae5 !important;
+  border-color: #10b981 !important;
+  border-style: solid !important;
+  color: #065f46 !important;
+  animation: correctPulse 0.5s ease;
+}
+
+@keyframes correctPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sentence-blank--correct .sentence-blank-word {
+  color: #065f46;
+}
+
+/* Ô trống sai - Đỏ */
+.sentence-blank--wrong {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  border-style: solid !important;
+  color: #991b1b !important;
+  animation: wrongShake 0.5s ease;
+}
+
+@keyframes wrongShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.sentence-blank--wrong .sentence-blank-word {
+  color: #991b1b;
+}
+
+/* Danh sách từ để kéo thả */
+.vocabulary-sentence-words {
+  margin-bottom: 32px;
+}
+
+.vocabulary-sentence-words h4 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.vocabulary-sentence-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.vocabulary-sentence-word {
+  padding: 12px 24px;
+  background: #fff;
+  border: 2px solid #1ec28b;
+  border-radius: 8px;
+  color: #1ec28b;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: grab;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+}
+
+.vocabulary-sentence-word:hover {
+  background: #f0fdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-sentence-word:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.vocabulary-sentence-word:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Nút Kiểm tra và Đáp án */
+.vocabulary-sentence-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.vocabulary-sentence-check-btn,
+.vocabulary-sentence-answer-btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-sentence-check-btn {
+  background: linear-gradient(135deg, #1ec28b 0%, #16a085 100%);
+  color: white;
+}
+
+.vocabulary-sentence-check-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 194, 139, 0.4);
+}
+
+.vocabulary-sentence-answer-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.vocabulary-sentence-answer-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.vocabulary-sentence-check-btn:disabled,
+.vocabulary-sentence-answer-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Navigation */
+.vocabulary-sentence-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.vocabulary-sentence-nav-btn {
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocabulary-sentence-nav-btn:hover:not(:disabled) {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-sentence-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-sentence-auto-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vocabulary-sentence-auto-switch input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1ec28b;
+}
+
+.vocabulary-sentence-auto-switch span {
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Danh sách số câu hỏi */
+.vocabulary-sentence-question-list {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vocabulary-sentence-question-list-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.vocabulary-sentence-question-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vocabulary-sentence-question-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vocabulary-sentence-question-number:hover {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-sentence-question-number--active {
+  border-color: #1ec28b;
+  background: #1ec28b;
+  color: #fff;
+}
+
+.vocabulary-sentence-question-number--answered {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vocabulary-sentence-container {
+    padding: 16px;
+  }
+
+  .vocabulary-sentence-text {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .sentence-blank {
+    min-width: 100px;
+    min-height: 45px;
+    padding: 10px 14px;
+  }
+
+  .vocabulary-sentence-actions {
+    flex-direction: column;
+  }
+
+  .vocabulary-sentence-check-btn,
+  .vocabulary-sentence-answer-btn {
+    width: 100%;
+  }
+
+  .vocabulary-sentence-navigation {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

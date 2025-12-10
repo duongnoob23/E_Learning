@@ -10,6 +10,7 @@ const authorize = (requiredPermissions) => {
     try {
       // Kiểm tra user đã được authenticate
       if (!req.user || !req.user.userId) {
+        console.error(`[AUTH] 401 - Missing user in request | ${req.method} ${req.originalUrl}`);
         return res.status(401).json({
           EM: "Unauthorized - Vui lòng đăng nhập",
           EC: "-1",
@@ -32,6 +33,7 @@ const authorize = (requiredPermissions) => {
       });
 
       if (!user) {
+        console.error(`[AUTH] 401 - User ${userId} không tồn tại | ${req.method} ${req.originalUrl}`);
         return res.status(401).json({
           EM: "User không tồn tại",
           EC: "-1",
@@ -41,6 +43,7 @@ const authorize = (requiredPermissions) => {
 
       // Nếu user không có role nào
       if (!user.roles || user.roles.length === 0) {
+        console.error(`[AUTH] 403 - User ${userId} không có role | ${req.method} ${req.originalUrl}`);
         return res.status(403).json({
           EM: "Forbidden - User không có quyền hạn",
           EC: "-1",
@@ -77,6 +80,7 @@ const authorize = (requiredPermissions) => {
       );
 
       if (!hasPermission) {
+        console.error(`[AUTH] 403 - User ${userId} có permissions [${userPermissions.join(", ")}] nhưng cần [${permissionsToCheck.join(", ")}] | ${req.method} ${req.originalUrl}`);
         return res.status(403).json({
           EM: `Forbidden - Bạn không có quyền: ${permissionsToCheck.join(", ")}`,
           EC: "-1",
@@ -90,7 +94,8 @@ const authorize = (requiredPermissions) => {
 
       next();
     } catch (error) {
-      console.error("Authorization error:", error);
+      console.error(`[AUTH] 500 - Authorization error | ${req.method} ${req.originalUrl} | ${error.message}`);
+      console.error(error.stack);
       return res.status(500).json({
         EM: "Lỗi kiểm tra quyền hạn",
         EC: "-2",
@@ -109,6 +114,7 @@ const authorizeByRole = (requiredRoles) => {
   return async (req, res, next) => {
     try {
       if (!req.user || !req.user.userId) {
+        console.error(`[AUTH] 401 - Missing user in request (authorizeByRole) | ${req.method} ${req.originalUrl}`);
         return res.status(401).json({
           EM: "Unauthorized - Vui lòng đăng nhập",
           EC: "-1",
@@ -130,6 +136,7 @@ const authorizeByRole = (requiredRoles) => {
       });
 
       if (!user || !user.roles || user.roles.length === 0) {
+        console.error(`[AUTH] 403 - User ${userId} không có role | ${req.method} ${req.originalUrl}`);
         return res.status(403).json({
           EM: "Forbidden - User không có role",
           EC: "-1",
@@ -145,6 +152,7 @@ const authorizeByRole = (requiredRoles) => {
       const hasRole = rolesToCheck.some((role) => userRoles.includes(role));
 
       if (!hasRole) {
+        console.error(`[AUTH] 403 - User ${userId} có roles [${userRoles.join(", ")}] nhưng cần [${rolesToCheck.join(", ")}] | ${req.method} ${req.originalUrl}`);
         return res.status(403).json({
           EM: `Forbidden - Bạn cần role: ${rolesToCheck.join(", ")}`,
           EC: "-1",
@@ -155,7 +163,8 @@ const authorizeByRole = (requiredRoles) => {
       req.user.roles = userRoles;
       next();
     } catch (error) {
-      console.error("Role authorization error:", error);
+      console.error(`[AUTH] 500 - Role authorization error | ${req.method} ${req.originalUrl} | ${error.message}`);
+      console.error(error.stack);
       return res.status(500).json({
         EM: "Lỗi kiểm tra role",
         EC: "-2",

@@ -1,0 +1,315 @@
+/* VocabularyMatching.css - Tìm cặp từ vựng */
+.vocabulary-matching-container {
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Grid 4x4 */
+.vocabulary-matching-grid-4x4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .vocabulary-matching-grid-4x4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Ô trong grid */
+.vocabulary-matching-cell {
+  aspect-ratio: 1;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fff;
+  position: relative;
+  min-height: 120px;
+}
+
+.vocabulary-matching-cell:hover:not(.vocabulary-matching-cell--correct) {
+  border-color: #1ec28b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ô được chọn - Xám đậm + background xám nhẹ */
+.vocabulary-matching-cell--selected {
+  border-color: #6b7280 !important;
+  background: #f3f4f6 !important;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.2);
+}
+
+/* Ô đúng - Xanh lá + biến mất */
+.vocabulary-matching-cell--correct {
+  border-color: #10b981 !important;
+  background: #d1fae5 !important;
+  animation: correctFadeOut 0.6s ease forwards;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes correctFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Ô sai - Đỏ + rung */
+.vocabulary-matching-cell--wrong {
+  border-color: #ef4444 !important;
+  background: #fee2e2 !important;
+  animation: wrongShake 0.5s ease;
+}
+
+@keyframes wrongShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-8px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(8px);
+  }
+}
+
+.vocabulary-matching-cell-image {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  max-height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-matching-cell-text {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+/* Progress */
+.vocabulary-matching-progress {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1ec28b;
+  padding: 16px;
+  background: #f0fdf4;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* Navigation */
+.vocabulary-matching-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.vocabulary-matching-nav-btn {
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocabulary-matching-nav-btn:hover:not(:disabled) {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-matching-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vocabulary-matching-auto-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vocabulary-matching-auto-switch input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1ec28b;
+}
+
+.vocabulary-matching-auto-switch span {
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Danh sách số câu hỏi */
+.vocabulary-matching-question-list {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vocabulary-matching-question-list-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.vocabulary-matching-question-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vocabulary-matching-question-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vocabulary-matching-question-number:hover {
+  border-color: #1ec28b;
+  background: #f0fdf4;
+  color: #1ec28b;
+}
+
+.vocabulary-matching-question-number--active {
+  border-color: #1ec28b;
+  background: #1ec28b;
+  color: #fff;
+}
+
+.vocabulary-matching-question-number--answered {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+/* Pháo hoa */
+.vocabulary-matching-fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: firework 1s ease-out forwards;
+}
+
+.firework:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  background: #ff6b6b;
+  animation-delay: 0s;
+}
+
+.firework:nth-child(2) {
+  top: 20%;
+  left: 80%;
+  background: #4ecdc4;
+  animation-delay: 0.1s;
+}
+
+.firework:nth-child(3) {
+  top: 50%;
+  left: 50%;
+  background: #ffe66d;
+  animation-delay: 0.2s;
+}
+
+.firework:nth-child(4) {
+  top: 80%;
+  left: 20%;
+  background: #95e1d3;
+  animation-delay: 0.3s;
+}
+
+.firework:nth-child(5) {
+  top: 80%;
+  left: 80%;
+  background: #f38181;
+  animation-delay: 0.4s;
+}
+
+@keyframes firework {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+    box-shadow: 0 0 20px 10px currentColor,
+      0 0 40px 20px currentColor,
+      0 0 60px 30px currentColor;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+    box-shadow: 0 0 40px 20px currentColor,
+      0 0 80px 40px currentColor,
+      0 0 120px 60px currentColor;
+  }
+}

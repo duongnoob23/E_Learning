@@ -20,6 +20,17 @@ const { Op } = require("sequelize");
 const { transcribeAudio } = require("./whisperService");
 const { scoreResponse } = require("./multiPAService");
 
+// Helper function để log lỗi một cách nhất quán
+const logError = (functionName, error, context = {}) => {
+  console.error(`[EXAM_SERVICE] ${functionName} | ${error.message}`);
+  if (Object.keys(context).length > 0) {
+    console.error(`  Context:`, context);
+  }
+  if (error.stack && process.env.NODE_ENV === "development") {
+    console.error(`  Stack:`, error.stack.split("\n").slice(0, 3).join("\n"));
+  }
+};
+
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (filters = {}) => {
   try {
@@ -60,7 +71,7 @@ exports.getTests = async (filters = {}) => {
       },
     };
   } catch (error) {
-    console.error("Error in getTests service:", error);
+    logError("getTests", error, { filters });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách đề thi",
       EC: "-2",
@@ -88,7 +99,7 @@ exports.getTestDetail = async (test_id) => {
       DT: test,
     };
   } catch (error) {
-    console.error("Error in getTestDetail service:", error);
+    logError("getTestDetail", error, { test_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy chi tiết đề thi",
       EC: "-2",
@@ -116,7 +127,7 @@ exports.getTestParts = async (test_id) => {
       DT: parts,
     };
   } catch (error) {
-    console.error("Error in getTestParts service:", error);
+    logError("getTestParts", error, { test_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách phần thi",
       EC: "-2",
@@ -146,7 +157,7 @@ exports.getPracticeTestResult = async (test_id, user_id) => {
       DT: examSessions,
     };
   } catch (error) {
-    console.error("Error in getPracticeTestResult service:", error);
+    logError("getPracticeTestResult", error, { test_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy kết quả thi",
       EC: "-2",
@@ -174,7 +185,7 @@ exports.getPartQuestions = async (part_id) => {
       DT: questions,
     };
   } catch (error) {
-    console.error("Error in getPartQuestions service:", error);
+    logError("getPartQuestions", error, { part_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách câu hỏi",
       EC: "-2",
@@ -231,7 +242,7 @@ exports.startExamSession = async (sessionData) => {
       DT: examSession,
     };
   } catch (error) {
-    console.error("Error in startExamSession service:", error);
+    logError("startExamSession", error, { user_id, test_id, session_type });
     return {
       EM: "Có lỗi xảy ra trong quá trình bắt đầu phiên thi",
       EC: "-2",
@@ -695,7 +706,11 @@ exports.submitExamSession = async (session_id, user_id, answers) => {
     const updatedSession = await ExamSession.findById(session_id);
     return { EM: "Nộp bài thi thành công", EC: "0", DT: updatedSession };
   } catch (error) {
-    console.error("Error in submitExamSession service:", error);
+    logError("submitExamSession", error, {
+      session_id,
+      user_id,
+      answersCount: answers?.length,
+    });
     return {
       EM: "Có lỗi xảy ra trong quá trình nộp bài thi",
       EC: "-2",
@@ -737,7 +752,7 @@ exports.getExamResult = async (session_id, user_id) => {
       },
     };
   } catch (error) {
-    console.error("Error in getExamResult service:", error);
+    logError("getExamResult", error, { session_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy kết quả thi",
       EC: "-2",
@@ -793,7 +808,7 @@ exports.reviewExamSession = async (session_id, user_id) => {
       },
     };
   } catch (error) {
-    console.error("Error in reviewExamSession service:", error);
+    logError("reviewExamSession", error, { session_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình xem lại bài thi",
       EC: "-2",
@@ -862,7 +877,7 @@ exports.retryWrongAnswers = async (session_id, user_id) => {
       },
     };
   } catch (error) {
-    console.error("Error in retryWrongAnswers service:", error);
+    logError("retryWrongAnswers", error, { session_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình tạo phiên làm lại câu sai",
       EC: "-2",
@@ -893,7 +908,7 @@ exports.getUserStatistics = async (user_id) => {
       },
     };
   } catch (error) {
-    console.error("Error in getUserStatistics service:", error);
+    logError("getUserStatistics", error, { user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy thống kê người dùng",
       EC: "-2",
@@ -949,7 +964,7 @@ exports.getTestDiscussions = async (test_id, options = {}) => {
       },
     };
   } catch (error) {
-    console.error("Error in getTestDiscussions service:", error);
+    logError("getTestDiscussions", error, { test_id, options });
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy thảo luận",
       EC: "-2",
@@ -999,7 +1014,7 @@ exports.createDiscussion = async (discussionData) => {
       DT: discussionWithUser,
     };
   } catch (error) {
-    console.error("Error in createDiscussion service:", error);
+    logError("createDiscussion", error, { test_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình tạo thảo luận",
       EC: "-2",
@@ -1062,7 +1077,7 @@ exports.addComment = async (commentData) => {
       DT: commentWithUser,
     };
   } catch (error) {
-    console.error("Error in addComment service:", error);
+    logError("addComment", error, { test_discussion_id, user_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình thêm bình luận",
       EC: "-2",
@@ -1119,7 +1134,12 @@ exports.updateUserStatistics = async (
       );
     }
   } catch (error) {
-    console.error("Error updating user statistics:", error);
+    logError("updateUserStatistics", error, {
+      user_id,
+      score,
+      total_questions,
+      correct_answers,
+    });
   }
 };
 
@@ -1269,7 +1289,7 @@ exports.getResultByTags = async (session_id, user_id) => {
       },
     };
   } catch (error) {
-    console.error("Error in getResultByTags service:", error);
+    logError("getResultByTags", error, { session_id, user_id });
     return {
       EM: "Lỗi server khi lấy kết quả phân tích theo tag",
       EC: "1",
@@ -1278,197 +1298,316 @@ exports.getResultByTags = async (session_id, user_id) => {
   }
 };
 
-
-
 // --------- Speaking and Writing Routes --------- //
 
 // POST /api/speaking/upload - Tải lên tệp âm thanh speaking
 exports.uploadSpeakingAudio = async (audioData) => {
-    try {
-        const { user_id, session_id, question_id, audio_file_path, language } = audioData;
+  try {
+    const { user_id, session_id, question_id, audio_file_path, language } =
+      audioData;
 
-        // Kiểm tra phiên thi có tồn tại không
-        const examSession = await ExamSession.findById(session_id);
-        if (!examSession) {
-            return {
-                EM: "Không tìm thấy phiên thi",
-                EC: "2",
-                DT: null,
-            };
-        }
-
-        // Kiểm tra câu hỏi speaking có tồn tại không
-        const speakingQuestion = await Question.findById(question_id);
-        if (!speakingQuestion || speakingQuestion.question_type !== 'SPEAKING') {
-            return {
-                EM: "Không tìm thấy câu hỏi speaking",
-                EC: "3",
-                DT: null,
-            };
-        }
-
-        // Transcribe audio
-        let transcription = "";
-        try {
-            transcription = await transcribeAudio(audio_file_path, language);
-        } catch (transcribeError) {
-            console.error("Transcription error:", transcribeError.message);
-            return {
-                EM: `Lỗi xử lý âm thanh: ${transcribeError.message}`,
-                EC: "-3",
-                DT: null,
-            };
-        }
-
-        // Tạo phản hồi speaking mới
-        const speakingResponse = await SpeakingResponse.create({
-            session_id,
-            question_id,
-            user_id,
-            audio_file_path,
-            transcription,
-            language,
-            processing_status: 'COMPLETED'
-        });
-
-        return {
-            EM: "Tải lên tệp âm thanh thành công",
-            EC: "0",
-            DT: speakingResponse,
-        };
-    } catch (error) {
-        console.error("Error in uploadSpeakingAudio service:", error);
-        return {
-            EM: `Có lỗi xảy ra: ${error.message}`,
-            EC: "-2",
-            DT: null,
-        };
+    // Kiểm tra phiên thi có tồn tại không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
     }
-}
+
+    // Kiểm tra câu hỏi speaking có tồn tại không
+    const speakingQuestion = await Question.findById(question_id);
+    if (!speakingQuestion || speakingQuestion.question_type !== "SPEAKING") {
+      return {
+        EM: "Không tìm thấy câu hỏi speaking",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // Transcribe audio
+    let transcription = "";
+    try {
+      transcription = await transcribeAudio(audio_file_path, language);
+    } catch (transcribeError) {
+      logError("uploadSpeakingAudio.transcribe", transcribeError, {
+        audio_file_path,
+        language,
+      });
+      return {
+        EM: `Lỗi xử lý âm thanh: ${transcribeError.message}`,
+        EC: "-3",
+        DT: null,
+      };
+    }
+
+    // Tạo phản hồi speaking mới
+    const speakingResponse = await SpeakingResponse.create({
+      session_id,
+      question_id,
+      user_id,
+      audio_file_path,
+      transcription,
+      language,
+      processing_status: "COMPLETED",
+    });
+
+    return {
+      EM: "Tải lên tệp âm thanh thành công",
+      EC: "0",
+      DT: speakingResponse,
+    };
+  } catch (error) {
+    logError("uploadSpeakingAudio", error, {
+      user_id,
+      session_id,
+      question_id,
+    });
+    return {
+      EM: `Có lỗi xảy ra: ${error.message}`,
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
 
 // GET /api/speaking/session/{session_id}/responses - Lấy danh sách phản hồi speaking của phiên thi
 exports.getSessionSpeakingResponses = async (session_id, options = {}) => {
-    try {
-        const { status, page = 1, limit = 10 } = options;
-        const offset = (page - 1) * limit;
+  try {
+    const { status, page = 1, limit = 10 } = options;
+    const offset = (page - 1) * limit;
 
-        const whereClause = { session_id };
-        if (status) whereClause.processing_status = status;
-        
-        const { count, rows: responses } = await SpeakingResponse.findAndCountAll({
-            where: whereClause,
-            limit: parseInt(limit),
-            offset: offset,
-            order: [['created_at', 'DESC']]
-        });
+    const whereClause = { session_id };
+    if (status) whereClause.processing_status = status;
 
-        return {
-            EM: "Lấy danh sách phản hồi speaking thành công",
-            EC: "0",
-            DT: {
-                responses,
-                pagination: {
-                    current_page: parseInt(page),
-                    total_pages: Math.ceil(count / limit),
-                    total_items: count,
-                    items_per_page: parseInt(limit)
-                }
+    const { count, rows: responses } = await SpeakingResponse.findAndCountAll({
+      where: whereClause,
+      limit: parseInt(limit),
+      offset: offset,
+      order: [["created_at", "DESC"]],
+    });
 
-                
-            },
-        };
-    } catch (error) {
-        console.error("Error in getSessionSpeakingResponses service:", error);
-        return {
-            EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi speaking",
-            EC: "-2",
-            DT: null,
-        };
-    }
-}
-
+    return {
+      EM: "Lấy danh sách phản hồi speaking thành công",
+      EC: "0",
+      DT: {
+        responses,
+        pagination: {
+          current_page: parseInt(page),
+          total_pages: Math.ceil(count / limit),
+          total_items: count,
+          items_per_page: parseInt(limit),
+        },
+      },
+    };
+  } catch (error) {
+    logError("getSessionSpeakingResponses", error, { session_id, options });
+    return {
+      EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi speaking",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
 
 // Chấm điểm speaking response using MultiPA
 // Chấm điểm speaking response using MultiPA (Multi-task Pronunciation Assessment)
-exports.gradeSpeaking = async ({response_id, user_id, audio_file_path, language }) => {
-     try {
-        if (!audio_file_path) {
-            return {
-                EM: "Thiếu audio_file_path",
-                EC: "-1",
-                DT: null
-            };
-        }
-
-        const result = await scoreResponse(audio_file_path, "SPEAKING", language);
-
-        // Cập nhật điểm chi tiết và feedback cho response
-        await SpeakingResponse.update({
-            score: result.score,
-            pronunciation_score: result.pronunciation_score,
-            fluency_score: result.fluency_score,
-            prosody_score: result.prosody_score,
-            transcript: result.transcript,
-            feedback: result.feedback,
-            detailed_feedback: result.detailed_feedback,
-            processing_status: 'COMPLETED'
-        }, {
-            where: { response_id, user_id }
-        });
-        return {
-            EM: "Chấm bài Speaking thành công",
-            EC: "0",
-            DT: result
-        };
-    } catch (error) {
-        console.error("Error in gradeSpeaking:", error);
-        return {
-            EM: `Có lỗi xảy ra khi chấm Speaking: ${error.message}`,
-            EC: "-2",
-            DT: null
-        };
+exports.gradeSpeaking = async ({
+  response_id,
+  user_id,
+  audio_file_path,
+  language,
+}) => {
+  try {
+    if (!audio_file_path) {
+      return {
+        EM: "Thiếu audio_file_path",
+        EC: "-1",
+        DT: null,
+      };
     }
-}
+
+    const result = await scoreResponse(audio_file_path, "SPEAKING", language);
+
+    // Cập nhật điểm chi tiết và feedback cho response
+    await SpeakingResponse.update(
+      {
+        score: result.score,
+        pronunciation_score: result.pronunciation_score,
+        fluency_score: result.fluency_score,
+        prosody_score: result.prosody_score,
+        transcript: result.transcript,
+        feedback: result.feedback,
+        detailed_feedback: result.detailed_feedback,
+        processing_status: "COMPLETED",
+      },
+      {
+        where: { response_id, user_id },
+      }
+    );
+    return {
+      EM: "Chấm bài Speaking thành công",
+      EC: "0",
+      DT: result,
+    };
+  } catch (error) {
+    logError("gradeSpeaking", error, { response_id, user_id });
+    return {
+      EM: `Có lỗi xảy ra khi chấm Speaking: ${error.message}`,
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
 
 // Chấm điểm writing response
 exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
-    try {
-        if (!text) {
-            return {
-                EM: "Thiếu text cho Writing assessment",
-                EC: "-1",
-                DT: null
-            };
-        }
-
-        // Score writing using multiPAService
-        const result = await scoreResponse(text, "WRITING", language);
-
-        // Update WritingResponse in database
-        await WritingResponse.update({
-            score: result.score,
-            grammar_score: result.grammar_score,
-            vocabulary_score: result.vocabulary_score,
-            coherence_score: result.coherence_score,
-            task_completion_score: result.task_completion_score,
-            spelling_score: result.spelling_score,
-            feedback: result.feedback,
-            detailed_feedback: result.detailed_feedback,
-            processing_status: 'COMPLETED'
-        }, { where: { response_id, user_id } });
-
-        return {
-            EM: "Chấm bài Writing thành công",
-            EC: "0",
-            DT: result
-        };
+  try {
+    if (!text) {
+      return {
+        EM: "Thiếu text cho Writing assessment",
+        EC: "-1",
+        DT: null,
+      };
     }
-    catch (error) {
-        console.error("Error in gradeWriting:", error);
-        return {
-            EM: `Có lỗi xảy ra khi chấm Writing: ${error.message}`,
-            EC: "-2",
-            DT: null
-        };
+
+    // Score writing using multiPAService
+    const result = await scoreResponse(text, "WRITING", language);
+
+    // Update WritingResponse in database
+    await WritingResponse.update(
+      {
+        score: result.score,
+        grammar_score: result.grammar_score,
+        vocabulary_score: result.vocabulary_score,
+        coherence_score: result.coherence_score,
+        task_completion_score: result.task_completion_score,
+        spelling_score: result.spelling_score,
+        feedback: result.feedback,
+        detailed_feedback: result.detailed_feedback,
+        processing_status: "COMPLETED",
+      },
+      { where: { response_id, user_id } }
+    );
+
+    return {
+      EM: "Chấm bài Writing thành công",
+      EC: "0",
+      DT: result,
+    };
+  } catch (error) {
+    logError("gradeWriting", error, { response_id, user_id });
+    return {
+      EM: `Có lỗi xảy ra khi chấm Writing: ${error.message}`,
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// POST /api/writing/submit - Lưu bài viết writing
+exports.submitWritingText = async (writingData) => {
+  try {
+    const {
+      user_id,
+      session_id,
+      question_id,
+      written_text,
+      language = "en",
+    } = writingData;
+
+    // Kiểm tra phiên thi có tồn tại không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
     }
-}
+
+    // Kiểm tra câu hỏi writing có tồn tại không
+    const writingQuestion = await Question.findById(question_id);
+    if (!writingQuestion || writingQuestion.question_type !== "WRITING") {
+      return {
+        EM: "Không tìm thấy câu hỏi writing",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // Tính số từ
+    const wordCount = written_text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+
+    // Tạo phản hồi writing mới
+    const writingResponse = await WritingResponse.create({
+      session_id,
+      question_id,
+      user_id,
+      written_text,
+      word_count: wordCount,
+      language,
+      processing_status: "PENDING",
+    });
+
+    return {
+      EM: "Lưu bài viết thành công",
+      EC: "0",
+      DT: writingResponse,
+    };
+  } catch (error) {
+    logError("submitWritingText", error, {
+      user_id,
+      session_id,
+      question_id,
+    });
+    return {
+      EM: `Có lỗi xảy ra: ${error.message}`,
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// GET /api/writing/session/{session_id}/responses - Lấy danh sách phản hồi writing của phiên thi
+exports.getSessionWritingResponses = async (session_id, options = {}) => {
+  try {
+    const { status, page = 1, limit = 10 } = options;
+    const offset = (page - 1) * limit;
+
+    const whereClause = { session_id };
+    if (status) whereClause.processing_status = status;
+
+    const { count, rows: responses } = await WritingResponse.findAndCountAll({
+      where: whereClause,
+      limit: parseInt(limit),
+      offset: offset,
+      order: [["created_at", "DESC"]],
+    });
+
+    return {
+      EM: "Lấy danh sách phản hồi writing thành công",
+      EC: "0",
+      DT: {
+        responses,
+        pagination: {
+          current_page: parseInt(page),
+          total_pages: Math.ceil(count / limit),
+          total_items: count,
+          items_per_page: parseInt(limit),
+        },
+      },
+    };
+  } catch (error) {
+    logError("getSessionWritingResponses", error, { session_id, options });
+    return {
+      EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi writing",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};

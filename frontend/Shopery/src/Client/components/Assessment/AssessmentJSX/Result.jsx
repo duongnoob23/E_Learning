@@ -1,8 +1,13 @@
 // Result.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useResultByTags } from "../../../services/Assessment/assessmentQueries";
+import {
+  useResultByTags,
+  useReviewExamSession,
+} from "../../../services/Assessment/assessmentQueries";
 import "../AssessmentCSS/Result.css";
+import QuestionDetailModal from "./QuestionDetailModal";
+import QuestionList from "./QuestionList";
 const MOCK_DATA = {
   testId: "T2025-NE01",
   testTitle: "New Economy TOEIC Full Test 1",
@@ -644,6 +649,7 @@ function ResultAnalysis({ data, activePart, setActivePart, onQuestionClick }) {
 // export default function Result({ resultData = MOCK_DATA }) {
 export default function Result() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   // ✅ Cách 1: Lấy state trực tiếp
   const { sessionId, testId, testTitle } = location.state || {};
@@ -667,7 +673,13 @@ export default function Result() {
   }, []);
 
   const { data: realData, isLoading, error } = useResultByTags(sessionId);
+  const { data: reviewData, isLoading: reviewLoading } = useReviewExamSession(
+    sessionId,
+    !!sessionId
+  );
+
   console.log("🚀 ~ Result ~ realData:", JSON.stringify(realData, null, 2));
+  console.log("🚀 ~ Result ~ reviewData:", JSON.stringify(reviewData, null, 2));
 
   // Transform dữ liệu
   const resultData = useMemo(() => {
@@ -675,7 +687,27 @@ export default function Result() {
     return transformRealDataToMockFormat(realData, testInfo);
   }, [realData, testInfo]);
 
-  if (isLoading) {
+  // ✅ Lấy danh sách câu hỏi từ reviewData
+  const questionsList = useMemo(() => {
+    if (!reviewData?.DT?.detailed_answers) return [];
+    return reviewData.DT.detailed_answers;
+  }, [reviewData]);
+
+  // ✅ State cho modal chi tiết
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleQuestionDetailClick = (questionData) => {
+    setSelectedQuestion(questionData);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedQuestion(null);
+  };
+
+  if (isLoading || reviewLoading) {
     return <div className="assessment-result">Đang tải kết quả...</div>;
   }
 
@@ -700,7 +732,6 @@ export default function Result() {
   };
 
   const handleBackToAssessment = () => {
-    const navigate = useNavigate();
     navigate("/assessment");
   };
 
@@ -724,6 +755,19 @@ export default function Result() {
           activePart={activePart}
           setActivePart={setActivePart}
           onQuestionClick={handleQuestionClick}
+        />
+
+        {questionsList.length > 0 && (
+          <QuestionList
+            questions={questionsList}
+            onQuestionClick={handleQuestionDetailClick}
+          />
+        )}
+
+        <QuestionDetailModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          questionData={selectedQuestion}
         />
       </div>
     </div>

@@ -47,7 +47,7 @@ exports.getCourseStructure = async (user_id, course_id) => {
       include: [{
         model: Lesson,
         as: "lessons",
-        attributes: ["lesson_id", "title","content", "sort_order", "lesson_type", "is_free","video_url"],
+        attributes: ["lesson_id", "title","content", "sort_order", "lesson_type", "lesson_data", "metadata", "is_free","video_url"],
         order: [["sort_order", "ASC"]]
       }]
     });
