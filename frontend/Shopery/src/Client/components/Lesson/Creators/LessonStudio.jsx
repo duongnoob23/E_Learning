@@ -1,30 +1,41 @@
 // LessonStudio.jsx - Hệ thống tạo lesson (chỉ Editor, không có Preview)
 import React, { useState } from "react";
-import TemplateLibrary from "./TemplateLibrary";
-import VisualEditor from "./VisualEditor";
 import ImportGuide from "./ImportGuide";
 import JSONEditor from "./JSONEditor";
 import "./LessonStudio.css";
+import TemplateLibrary from "./TemplateLibrary";
+import VisualEditor from "./VisualEditor";
 
 export default function LessonStudio({ lessonType, initialData, onSave }) {
-  const [lessonData, setLessonData] = useState(initialData || getDefaultData(lessonType));
+  // Khởi tạo dữ liệu lesson
+  const [lessonData, setLessonData] = useState(
+    initialData || getDefaultData(lessonType)
+  );
+
+  // console.log("JSON-LESSON_DATA", JSON.stringify(lessonData, null, 2));
+  // State hiển thị templates
   const [showTemplates, setShowTemplates] = useState(false);
+  // State hiển thị hướng dẫn import
   const [showImportGuide, setShowImportGuide] = useState(false);
+  // State hiển thị editor JSON
   const [showJSONEditor, setShowJSONEditor] = useState(false);
 
+  // Cập nhật dữ liệu lesson
   const handleDataChange = (newData) => {
     setLessonData(newData);
   };
 
+  // Sử dụng template
   const handleUseTemplate = (template) => {
     setLessonData(template.data);
     setShowTemplates(false);
   };
 
+  // Import dữ liệu JSON mở Modal
   const handleImportJSON = () => {
     setShowJSONEditor(true);
   };
-
+  // Import dữ liệu từ file JSON
   const handleImportFromFile = () => {
     const input = document.createElement("input");
     input.type = "file";
@@ -32,7 +43,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
     input.onchange = (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      
+
       const reader = new FileReader();
       reader.onload = (event) => {
         try {
@@ -47,7 +58,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
     };
     input.click();
   };
-
+  // Import dữ liệu JSON
   const handleImportData = (imported) => {
     // Validate imported data
     if (validateImportedData(imported, lessonType)) {
@@ -58,7 +69,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
       setShowImportGuide(true);
     }
   };
-
+  // Export dữ liệu JSON
   const handleExportJSON = () => {
     const dataStr = JSON.stringify(lessonData, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
@@ -70,10 +81,8 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
     URL.revokeObjectURL(url);
   };
 
-
   return (
     <div className="lesson-studio">
-
       {/* Toolbar */}
       <div className="lesson-studio-toolbar">
         <div className="lesson-studio-toolbar-left">
@@ -166,7 +175,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
   );
 }
 
-// Validate imported data
+// Validate dữ liệu import
 function validateImportedData(data, lessonType) {
   if (!data || !data.type || data.type !== lessonType) {
     return false;
@@ -183,18 +192,12 @@ function validateImportedData(data, lessonType) {
 
     case "vocabulary_translation":
       if (!data.questions || !Array.isArray(data.questions)) return false;
-      return data.questions.every(
-        (q) => q.vi_text && q.correct_answer
-      );
+      return data.questions.every((q) => q.vi_text && q.correct_answer);
 
     case "vocabulary_sentence_completion":
       if (!data.questions || !Array.isArray(data.questions)) return false;
       return data.questions.every(
-        (q) =>
-          q.vi_text &&
-          q.sentence_template &&
-          q.shuffled_words &&
-          q.blanks
+        (q) => q.vi_text && q.sentence_template && q.shuffled_words && q.blanks
       );
 
     default:
@@ -202,7 +205,7 @@ function validateImportedData(data, lessonType) {
   }
 }
 
-// Helper functions
+// Lấy dữ liệu khởi tạo mặc định nếu initData rỗng
 function getDefaultData(lessonType) {
   const defaults = {
     vocabulary_list: {

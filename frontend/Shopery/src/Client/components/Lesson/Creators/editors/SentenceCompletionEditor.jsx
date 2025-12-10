@@ -1,80 +1,113 @@
 // SentenceCompletionEditor.jsx - Editor theo flow mới: bôi đen → tạo blank
+// Editor này cho phép tạo bài tập "Hoàn thiện câu" bằng cách:
+// 1. Nhập câu tiếng Anh đầy đủ
+// 2. Bôi đen từ/cụm từ → tạo blank
+// 3. Quản lý word bank (từ để kéo thả)
 import React, { useEffect, useRef, useState } from "react";
 import "./SentenceCompletionEditor.css";
 
 export default function SentenceCompletionEditor({ data, onChange }) {
+  // Hàm tạo ID unique cho câu hỏi và blank
   const genId = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+  // State quản lý danh sách câu hỏi (mỗi câu hỏi có thể có nhiều blank)
   const [questions, setQuestions] = useState([]);
+
+  // State lưu ID của câu hỏi đang được chỉnh sửa
   const [activeQuestionId, setActiveQuestionId] = useState(null);
-  const [selectedText, setSelectedText] = useState(null); // { start, end, text }
+
+  // State lưu thông tin text đã bôi đen: { start: vị trí bắt đầu, end: vị trí kết thúc, text: nội dung }
+  const [selectedText, setSelectedText] = useState(null);
+
+  // State bật/tắt chế độ tạo blank (khi bật, user có thể bôi đen text để tạo blank)
   const [isBlankMode, setIsBlankMode] = useState(false);
+
+  // State lưu input khi thêm từ mới vào word bank
   const [newWordInput, setNewWordInput] = useState("");
 
+  // Ref đến textarea để lấy vị trí cursor (selectionStart, selectionEnd)
   const textareaRef = useRef(null);
+
+  // Flag để tránh vòng lặp update: khi editor tự gọi onChange, không reload lại từ props
   const isInternalUpdate = useRef(false);
 
-  // Load data từ props
+  // Load dữ liệu từ props khi component mount hoặc data thay đổi
+  // Chuyển đổi từ format database (có sentence_template) sang format nội bộ (có sentence_text + blanks với start/end)
   useEffect(() => {
+    // Nếu đang update nội bộ (editor tự gọi onChange), bỏ qua để tránh reset activeIndex
     if (isInternalUpdate.current) {
-      // Bỏ qua khi chính editor gọi onChange để tránh reset activeIndex
       isInternalUpdate.current = false;
       return;
     }
 
+    // Nếu có dữ liệu từ parent
     if (data?.questions?.length) {
-      const seen = new Set();
+      const seen = new Set(); // Set để tránh trùng question_id
       const qs = data.questions.map((q) => {
+        // Tạo hoặc lấy question_id, đảm bảo không trùng
         let qid = q.question_id || genId();
         if (seen.has(qid)) qid = genId();
         seen.add(qid);
 
+        // Nếu không có sentence_template → tạo câu hỏi rỗng
         if (!q.sentence_template) {
           return {
             vi_text: q.vi_text || "",
-            sentence_text: "",
-            blanks: [],
-            word_bank: [],
+            sentence_text: "", // Câu đầy đủ (format nội bộ)
+            blanks: [], // Mảng các blank
+            word_bank: [], // Từ nhiễu (không phải đáp án)
             question_id: qid,
           };
         }
-        // parse template to text/blanks
+
+        // Parse sentence_template: "I am {blank1} happy {blank2}"
+        // Kết quả: ["I am ", "{blank1}", " happy ", "{blank2}"]
         const parts = q.sentence_template.split(/(\{[^}]+\})/);
-        let fullText = "";
+        let fullText = ""; // Câu đầy đủ: "I am happy"
         const newBlanks = [];
+
         parts.forEach((part) => {
-          const m = part.match(/\{([^}]+)\}/);
+          const m = part.match(/\{([^}]+)\}/); // Tìm {blank1}
           if (m) {
-            const blankId = m[1];
+            // Đây là blank
+            const blankId = m[1]; // "blank1"
             const blank = q.blanks?.find((b) => b.id === blankId);
+            // Tìm word tương ứng với correct_word_id
             const word = q.shuffled_words?.find(
               (w) => w.id === blank?.correct_word_id
             );
             if (word) {
+              // Thêm blank vào mảng với vị trí start/end
               newBlanks.push({
                 id: blankId,
-                answer: word.text,
-                start: fullText.length,
-                end: fullText.length + word.text.length,
+                answer: word.text, // "happy"
+                start: fullText.length, // Vị trí bắt đầu trong câu
+                end: fullText.length + word.text.length, // Vị trí kết thúc
               });
-              fullText += word.text;
+              fullText += word.text; // Thêm từ vào câu đầy đủ
             }
           } else {
+            // Đây là text thường
             fullText += part;
           }
         });
+
+        // Tách word bank: từ không phải đáp án
         const answerWords = newBlanks.map((b) => b.answer);
         const allWords = q.shuffled_words?.map((w) => w.text) || [];
         const wordBankWords = allWords.filter((w) => !answerWords.includes(w));
+
         return {
           vi_text: q.vi_text || "",
-          sentence_text: fullText,
-          blanks: newBlanks,
-          word_bank: wordBankWords,
+          sentence_text: fullText, // "I am happy"
+          blanks: newBlanks, // [{ id: "blank1", answer: "happy", start: 5, end: 9 }]
+          word_bank: wordBankWords, // ["sad", "rainy"]
           question_id: qid,
         };
       });
       setQuestions(qs);
-      // giữ tab theo question_id; nếu không tồn tại thì chọn câu đầu tiên
+
+      // Giữ tab theo question_id; nếu không tồn tại thì chọn câu đầu tiên
       if (
         !activeQuestionId ||
         !qs.some((q) => q.question_id === activeQuestionId)
@@ -82,7 +115,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
         setActiveQuestionId(qs[0]?.question_id || null);
       }
     } else {
-      // init one empty question
+      // Khởi tạo một câu hỏi rỗng nếu không có dữ liệu
       const firstId = genId();
       setQuestions([
         {
@@ -97,48 +130,65 @@ export default function SentenceCompletionEditor({ data, onChange }) {
     }
   }, [data]);
 
-  // Derived fields for active question
+  // Lấy thông tin câu hỏi đang active
   const activeIndex = questions.findIndex(
     (q) => q.question_id === activeQuestionId
   );
   const resolvedIndex = activeIndex >= 0 ? activeIndex : 0;
   const activeQ = questions[resolvedIndex] || {};
-  const sentenceText = activeQ.sentence_text || "";
-  const blanks = activeQ.blanks || [];
-  const wordBank = activeQ.word_bank || [];
-  const currentViText = activeQ.vi_text || "";
+  const sentenceText = activeQ.sentence_text || ""; // Câu đầy đủ
+  const blanks = activeQ.blanks || []; // Mảng các blank
+  const wordBank = activeQ.word_bank || []; // Từ nhiễu
+  const currentViText = activeQ.vi_text || ""; // Câu tiếng Việt
 
-  // Handle text selection
+  // Xử lý khi user bôi đen text trong textarea
+  // Hàm này được gọi khi user chọn text (onSelect event)
   const handleTextSelection = () => {
-    if (!isBlankMode) return;
+    // Chỉ hoạt động khi bật Blank Mode
+    if (!isBlankMode) {
+      setSelectedText(null); // Reset nếu không ở blank mode
+      return;
+    }
 
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selected = sentenceText.substring(start, end);
+    // Lấy vị trí bắt đầu và kết thúc của text đã chọn
+    const start = textarea.selectionStart; // Vị trí cursor bắt đầu
+    const end = textarea.selectionEnd; // Vị trí cursor kết thúc
 
+    // Kiểm tra xem có text được chọn không (start !== end)
+    if (start === end) {
+      setSelectedText(null); // Không có text được chọn
+      return;
+    }
+
+    const selected = sentenceText.substring(start, end); // Text đã chọn
+
+    // Lưu thông tin text đã chọn để hiển thị và tạo blank
     if (selected.trim()) {
       setSelectedText({ start, end, text: selected });
+      // Ví dụ: { start: 5, end: 9, text: "happy" }
     } else {
       setSelectedText(null);
     }
   };
 
-  // Tạo blank từ text đã chọn
+  // Tạo blank từ text đã bôi đen
+  // Hàm này được gọi khi user click nút "Tạo Blank"
   const handleCreateBlank = () => {
     if (!selectedText) return;
 
     const { start, end, text } = selectedText;
-    const blankId = `blank${Date.now()}`;
+    const blankId = `blank${Date.now()}`; // Tạo ID unique cho blank
 
     // Kiểm tra xem có overlap với blank khác không
+    // Không cho tạo blank trùng với blank đã có
     const hasOverlap = blanks.some(
       (blank) =>
-        (start >= blank.start && start < blank.end) ||
-        (end > blank.start && end <= blank.end) ||
-        (start <= blank.start && end >= blank.end)
+        (start >= blank.start && start < blank.end) || // Bắt đầu trong blank cũ
+        (end > blank.start && end <= blank.end) || // Kết thúc trong blank cũ
+        (start <= blank.start && end >= blank.end) // Bao trùm blank cũ
     );
 
     if (hasOverlap) {
@@ -146,64 +196,107 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       return;
     }
 
+    // Tạo blank mới với thông tin: id, answer (đáp án), start, end (vị trí)
     const newBlank = {
       id: blankId,
-      answer: text.trim(),
-      start,
-      end,
+      answer: text.trim(), // Đáp án đúng
+      start, // Vị trí bắt đầu trong câu
+      end, // Vị trí kết thúc trong câu
     };
 
+    // Cập nhật câu hỏi hiện tại
     updateActiveQuestion((q) => {
+      // Thêm blank mới và sắp xếp theo vị trí start
       const newBlanks = [...q.blanks, newBlank].sort(
         (a, b) => a.start - b.start
       );
+
+      // Tự động thêm từ vào word bank nếu chưa có
       const newWordBank = q.word_bank.includes(text.trim())
         ? q.word_bank
         : [...q.word_bank, text.trim()];
+
       return { ...q, blanks: newBlanks, word_bank: newWordBank };
     });
+
+    // Reset selection sau khi tạo blank nhưng giữ nguyên isBlankMode
+    // Để user có thể tiếp tục bôi đen và tạo blank mới
     setSelectedText(null);
+
+    // Đảm bảo textarea vẫn focus để có thể tiếp tục bôi đen
+    setTimeout(() => {
+      const textarea = textareaRef.current;
+      if (textarea) {
+        textarea.focus();
+      }
+    }, 100);
   };
 
-  // Xóa blank
+  // Xóa một blank cụ thể
+  // Hàm này được gọi khi user click nút "Xóa" ở bảng quản lý blank
   const handleRemoveBlank = (blankId) => {
     updateActiveQuestion((q) => ({
       ...q,
-      blanks: q.blanks.filter((b) => b.id !== blankId),
+      blanks: q.blanks.filter((b) => b.id !== blankId), // Lọc bỏ blank có id trùng
     }));
   };
 
-  // Sửa đáp án blank
+  // Xóa toàn bộ blank của câu hỏi hiện tại
+  // Hàm này được gọi khi user click nút "Xóa toàn bộ blank"
+  // Cho phép user chỉnh sửa lại câu khi đã tạo blank
+  const handleRemoveAllBlanks = () => {
+    if (blanks.length === 0) return;
+
+    updateActiveQuestion((q) => ({
+      ...q,
+      blanks: [], // Xóa toàn bộ blank
+    }));
+    setSelectedText(null); // Reset selection
+    setIsBlankMode(false); // Tắt blank mode
+  };
+
+  // Sửa đáp án của blank
+  // Hàm này được gọi khi user thay đổi input trong bảng quản lý blank
   const handleEditBlankAnswer = (blankId, newAnswer) => {
     const trimmed = newAnswer.trim();
     updateActiveQuestion((q) => {
+      // Cập nhật answer của blank có id trùng
       const newBlanks = q.blanks.map((b) =>
         b.id === blankId ? { ...b, answer: trimmed } : b
       );
+
+      // Nếu từ mới chưa có trong word bank và không phải đáp án của blank khác
+      // Thì tự động thêm vào word bank
       const needAdd =
         trimmed &&
         !q.word_bank.includes(trimmed) &&
         !q.blanks.some((b) => b.answer === trimmed);
+
       const newWordBank = needAdd ? [...q.word_bank, trimmed] : q.word_bank;
+
       return { ...q, blanks: newBlanks, word_bank: newWordBank };
     });
   };
 
-  // Thêm từ vào word bank
+  // Thêm từ vào word bank (từ nhiễu)
+  // Hàm này được gọi khi user nhập từ và click "Thêm" hoặc nhấn Enter
   const handleAddWord = () => {
     const word = newWordInput.trim();
     if (!word) return;
 
     updateActiveQuestion((q) => {
+      // Nếu từ đã có trong word bank thì bỏ qua
       if (q.word_bank.includes(word)) return q;
       return { ...q, word_bank: [...q.word_bank, word] };
     });
-    setNewWordInput("");
+    setNewWordInput(""); // Reset input sau khi thêm
   };
 
   // Xóa từ khỏi word bank
+  // Hàm này được gọi khi user click nút "×" trên tag từ
   const handleRemoveWord = (word) => {
     // Không cho xóa nếu từ đó là đáp án của blank
+    // Vì đáp án của blank phải có trong word bank để học viên có thể kéo thả
     const isAnswer = (activeQ.blanks || []).some((b) => b.answer === word);
     if (isAnswer) {
       alert("Không thể xóa từ này vì nó là đáp án của một blank.");
@@ -212,108 +305,187 @@ export default function SentenceCompletionEditor({ data, onChange }) {
 
     updateActiveQuestion((q) => ({
       ...q,
-      word_bank: q.word_bank.filter((w) => w !== word),
+      word_bank: q.word_bank.filter((w) => w !== word), // Lọc bỏ từ
     }));
   };
 
-  // Render sentence với blanks để preview
+  // Render câu với blanks để preview
+  // Hàm này tách câu thành các phần: text → blank → text → blank → ...
+  // Ví dụ: "I am happy today" với blank ở "happy" → ["I am ", blank, " today"]
   const renderSentenceWithBlanks = () => {
     if (!sentenceText) return [];
+
     const parts = [];
     let lastIndex = 0;
-    const sortedBlanks = [...blanks].sort((a, b) => a.start - b.start);
+    const sortedBlanks = [...blanks].sort((a, b) => a.start - b.start); // Sắp xếp theo vị trí
+
     sortedBlanks.forEach((blank) => {
+      // Text trước blank
       if (blank.start > lastIndex) {
         parts.push({
           type: "text",
           content: sentenceText.substring(lastIndex, blank.start),
         });
       }
+
+      // Blank
       parts.push({
         type: "blank",
         id: blank.id,
         answer: blank.answer,
       });
+
       lastIndex = blank.end;
     });
+
+    // Text sau blank cuối cùng
     if (lastIndex < sentenceText.length) {
       parts.push({
         type: "text",
         content: sentenceText.substring(lastIndex),
       });
     }
+
+    // Nếu không có blank, trả về toàn bộ text
     if (parts.length === 0) {
       parts.push({
         type: "text",
         content: sentenceText,
       });
     }
+
     return parts;
+    // Kết quả: [
+    //   { type: "text", content: "I am " },
+    //   { type: "blank", id: "blank1", answer: "happy" },
+    //   { type: "text", content: " today" }
+    // ]
   };
 
-  // Update data và gửi lên parent
+  // Chuyển đổi dữ liệu từ format nội bộ sang format database và gửi lên parent
+  // Format nội bộ: sentence_text + blanks (có start/end)
+  // Format database: sentence_template + blanks (có correct_word_id)
   const updateData = (qs) => {
-    isInternalUpdate.current = true;
+    isInternalUpdate.current = true; // Đánh dấu đang update nội bộ
+
     onChange({
       type: "vocabulary_sentence_completion",
       questions: qs.map((q) => {
-        // build template
+        // Bước 1: Build sentence_template từ sentence_text + blanks
+        // Ví dụ: "I am happy today" + blank ở "happy" → "I am {blank1} today"
         let template = q.sentence_text || "";
-        const sortedBlanks = [...q.blanks].sort((a, b) => b.start - a.start);
+        const sortedBlanks = [...q.blanks].sort((a, b) => b.start - a.start); // Sắp xếp ngược để thay thế từ cuối lên đầu
+
         sortedBlanks.forEach((blank) => {
           const before = template.substring(0, blank.start);
           const after = template.substring(blank.end);
           template = before + `{${blank.id}}` + after;
         });
+
+        // Bước 2: Tạo shuffled_words (tất cả từ: đáp án + word bank)
         const allWords = [
-          ...q.blanks.map((b) => b.answer),
-          ...q.word_bank,
-        ].filter((word, idx, self) => self.indexOf(word) === idx);
+          ...q.blanks.map((b) => b.answer), // Đáp án của các blank
+          ...q.word_bank, // Từ nhiễu
+        ].filter((word, idx, self) => self.indexOf(word) === idx); // Loại bỏ trùng
+
         const shuffledWords = allWords.map((word, idx) => ({
-          id: idx + 1,
+          id: idx + 1, // ID bắt đầu từ 1
           text: word,
         }));
+
+        // Bước 3: Tạo blanks với correct_word_id (tham chiếu đến shuffled_words)
         const blanksData = q.blanks.map((blank) => {
           const wordId = shuffledWords.find((w) => w.text === blank.answer)?.id;
           return { id: blank.id, correct_word_id: wordId || 1 };
         });
+
         return {
           question_id: q.question_id || genId(),
           vi_text: q.vi_text || "",
-          sentence_template: template,
-          shuffled_words: shuffledWords,
-          blanks: blanksData,
+          sentence_template: template, // "I am {blank1} today"
+          shuffled_words: shuffledWords, // [{ id: 1, text: "happy" }, ...]
+          blanks: blanksData, // [{ id: "blank1", correct_word_id: 1 }]
         };
       }),
     });
   };
 
+  // Cập nhật câu hỏi đang active
+  // Hàm này nhận một updater function để cập nhật câu hỏi
   const updateActiveQuestion = (updater) => {
     setQuestions((prev) => {
+      // Tìm index của câu hỏi đang active
       const idx = prev.findIndex((q) => q.question_id === activeQuestionId);
       if (idx === -1) return prev;
+
       const next = [...prev];
+      // Cập nhật câu hỏi tại index đó bằng updater function
       next[idx] = updater(prev[idx]);
+
+      // Tự động save lên parent
       updateData(next);
+
       return next;
     });
   };
 
+  // Xử lý thay đổi câu tiếng Việt
   const handleViTextChange = (e) => {
     const viText = e.target.value;
     updateActiveQuestion((q) => ({ ...q, vi_text: viText }));
   };
 
-  // Handle sentence text change
+  // Xử lý thay đổi câu hoàn chỉnh (Tiếng Anh)
+  // QUAN TRỌNG: Khi đã có blank, không cho phép thay đổi câu vì sẽ làm lệch vị trí blank
+  // Nhưng vẫn cho phép bôi đen để tạo blank mới
   const handleSentenceChange = (e) => {
+    // Nếu đang có blank, không cho phép thay đổi text
+    if (blanks.length > 0) {
+      // Giữ nguyên giá trị cũ, không cho thay đổi
+      e.target.value = sentenceText;
+      return;
+    }
+
     const newText = e.target.value;
     updateActiveQuestion((q) => {
+      // Xóa các blank nằm ngoài độ dài câu mới (nếu có)
       const adjustedBlanks = q.blanks.filter((b) => b.end <= newText.length);
       return { ...q, sentence_text: newText, blanks: adjustedBlanks };
     });
   };
 
-  // Add new question
+  // Xử lý khi user nhấn phím trong textarea
+  // Ngăn chặn việc nhập text khi đã có blank (nhưng vẫn cho phép select)
+  const handleKeyDown = (e) => {
+    // Nếu đang có blank, chỉ cho phép một số phím đặc biệt (như Arrow keys, Delete khi select)
+    if (blanks.length > 0) {
+      // Cho phép các phím điều hướng và phím đặc biệt
+      const allowedKeys = [
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+        "Tab",
+      ];
+
+      // Cho phép Ctrl/Cmd + A (select all), Ctrl/Cmd + C (copy)
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === "a" || e.key === "c" || e.key === "x") {
+          return; // Cho phép
+        }
+      }
+
+      // Nếu không phải phím được phép, ngăn chặn
+      if (!allowedKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  // Thêm câu hỏi mới
+  // Hàm này được gọi khi user click nút "+ Thêm câu"
   const handleAddQuestion = () => {
     setQuestions((prev) => {
       const newId = genId();
@@ -327,17 +499,20 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           question_id: newId,
         },
       ];
-      updateData(next);
-      setActiveQuestionId(newId);
+      updateData(next); // Save lên parent
+      setActiveQuestionId(newId); // Chuyển sang câu mới
       return next;
     });
   };
 
-  // Remove question
+  // Xóa câu hỏi
+  // Hàm này được gọi khi user click nút "Xóa câu này"
   const handleRemoveQuestion = (idx) => {
     setQuestions((prev) => {
-      const next = prev.filter((_, i) => i !== idx);
+      const next = prev.filter((_, i) => i !== idx); // Lọc bỏ câu hỏi tại index
       updateData(next);
+
+      // Nếu xóa hết, tạo một câu hỏi rỗng
       if (!next.length) {
         const firstId = genId();
         const fallback = [
@@ -354,6 +529,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
         return fallback;
       }
 
+      // Nếu xóa câu đang active, chuyển sang câu khác
       if (prev[idx]?.question_id === activeQuestionId) {
         const nextIdx = Math.min(idx, next.length - 1);
         setActiveQuestionId(next[nextIdx].question_id);
@@ -422,13 +598,35 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           value={sentenceText}
           onChange={handleSentenceChange}
           onSelect={handleTextSelection}
+          onKeyDown={handleKeyDown}
           placeholder="Nhập câu hoàn chỉnh, ví dụ: I am learning English every day"
           rows={4}
+          readOnly={blanks.length > 0} // ReadOnly khi đã có blank (vẫn select được nhưng không type được)
         />
-        <p className="sce-hint">
-          💡 Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để tạo
-          blanks.
-        </p>
+        {/* Hiển thị cảnh báo khi đã có blank */}
+        {blanks.length > 0 && (
+          <div
+            className="sce-warning"
+            style={{
+              marginTop: "8px",
+              padding: "12px",
+              backgroundColor: "#fff3cd",
+              border: "1px solid #ffc107",
+              borderRadius: "4px",
+              color: "#856404",
+            }}
+          >
+            <strong>⚠️ Lưu ý:</strong> Bạn đã tạo {blanks.length} blank. Để
+            chỉnh sửa câu hoàn chỉnh, vui lòng xóa toàn bộ blank trước bằng nút
+            "Xóa toàn bộ blank" ở bảng quản lý bên dưới.
+          </div>
+        )}
+        {blanks.length === 0 && (
+          <p className="sce-hint">
+            💡 Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để
+            tạo blanks.
+          </p>
+        )}
       </div>
 
       {/* STEP 2: Tạo blank */}
@@ -494,7 +692,23 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       {/* STEP 3: Bảng quản lý Blank */}
       {blanks.length > 0 && (
         <div className="sce-step">
-          <label className="sce-label">Quản lý Blanks</label>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "12px",
+            }}
+          >
+            <label className="sce-label">Quản lý Blanks</label>
+            <button
+              className="sce-btn sce-btn-danger"
+              onClick={handleRemoveAllBlanks}
+              style={{ fontSize: "14px" }}
+            >
+              🗑️ Xóa toàn bộ blank
+            </button>
+          </div>
           <table className="sce-blanks-table">
             <thead>
               <tr>
