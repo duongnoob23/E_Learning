@@ -1,6 +1,6 @@
 // MatchingEditor.jsx - Editor theo flow mới: thêm cặp (pair), không phải từng ô
 // Hỗ trợ nhiều bài tập (questions), mỗi bài tập 4x4 (8 cặp)
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyMatching from "../../Vocabulary/VocabularyMatching";
 import "./MatchingEditor.css";
 
@@ -15,6 +15,31 @@ export default function MatchingEditor({ data, onChange }) {
   const [jsonError, setJsonError] = useState(null);
   const fileInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu khi edit
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => ({
+        id: q.question_id || `q_${idx}_${Date.now()}`,
+        pairs: (q.pairs || []).map((p, pidx) => ({
+          id: p.pair_id || `pair_${idx}_${pidx}_${Date.now()}`,
+          vi: p.left?.text || "",
+          en: p.right?.text || "",
+          imageUrl: p.left?.image || "",
+        })),
+      }));
+      setQuestions(mapped);
+      setCurrentQuestionIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo question mới
   useEffect(() => {
@@ -61,7 +86,7 @@ export default function MatchingEditor({ data, onChange }) {
   // Debounce updateData
   useEffect(() => {
     if (isInitialMount.current) return;
-    
+
     const timer = setTimeout(() => {
       updateData();
     }, 150);
@@ -90,7 +115,7 @@ export default function MatchingEditor({ data, onChange }) {
     // Kiểm tra các cặp phải khác nhau (không trùng EN hoặc VI)
     const enValues = currentPairs.map((p) => p.en.trim().toLowerCase());
     const viValues = currentPairs.map((p) => p.vi.trim().toLowerCase());
-    
+
     const hasDuplicateEn = new Set(enValues).size !== enValues.length;
     const hasDuplicateVi = new Set(viValues).size !== viValues.length;
 
@@ -100,7 +125,9 @@ export default function MatchingEditor({ data, onChange }) {
   // Lấy thông báo lỗi chi tiết
   const getPreviewError = () => {
     if (!currentPairs || currentPairs.length !== MAX_PAIRS) {
-      return `Cần đủ ${MAX_PAIRS} cặp. Hiện tại có ${currentPairs?.length || 0} cặp.`;
+      return `Cần đủ ${MAX_PAIRS} cặp. Hiện tại có ${
+        currentPairs?.length || 0
+      } cặp.`;
     }
 
     const missingContent = currentPairs.filter(
@@ -112,14 +139,14 @@ export default function MatchingEditor({ data, onChange }) {
 
     const enValues = currentPairs.map((p) => p.en.trim().toLowerCase());
     const viValues = currentPairs.map((p) => p.vi.trim().toLowerCase());
-    
+
     const enSet = new Set(enValues);
     const viSet = new Set(viValues);
-    
+
     if (enSet.size !== enValues.length) {
       return "Có các từ tiếng Anh trùng lặp. Mỗi cặp phải có từ tiếng Anh khác nhau.";
     }
-    
+
     if (viSet.size !== viValues.length) {
       return "Có các từ tiếng Việt trùng lặp. Mỗi cặp phải có từ tiếng Việt khác nhau.";
     }
@@ -285,7 +312,7 @@ export default function MatchingEditor({ data, onChange }) {
       const pairs = q.pairs.map((pair, idx) => {
         const left = pair.left || {};
         const right = pair.right || {};
-        
+
         return {
           id: pair.pair_id || Date.now() + idx,
           vi: left.text || "",
@@ -306,7 +333,7 @@ export default function MatchingEditor({ data, onChange }) {
       setCurrentQuestionIndex(updated.length - 1);
       return updated;
     });
-    
+
     setShowImportJSON(false);
     setJsonInput("");
     setJsonError(null);
@@ -320,7 +347,7 @@ export default function MatchingEditor({ data, onChange }) {
     }
 
     setQuestions((prev) => prev.filter((_, idx) => idx !== questionIndex));
-    
+
     // Điều chỉnh currentQuestionIndex
     if (currentQuestionIndex >= questions.length - 1) {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
@@ -337,7 +364,10 @@ export default function MatchingEditor({ data, onChange }) {
   const handleTogglePreview = () => {
     if (!canPreview()) {
       const errorMsg = getPreviewError();
-      alert(errorMsg || `Vui lòng nhập đủ ${MAX_PAIRS} cặp và đảm bảo mỗi cặp có cả English và Vietnamese, và các cặp phải khác nhau.`);
+      alert(
+        errorMsg ||
+          `Vui lòng nhập đủ ${MAX_PAIRS} cặp và đảm bảo mỗi cặp có cả English và Vietnamese, và các cặp phải khác nhau.`
+      );
       return;
     }
     setShowPreview(!showPreview);
@@ -383,15 +413,20 @@ export default function MatchingEditor({ data, onChange }) {
             {questions.map((q, idx) => (
               <button
                 key={q.id}
-                className={`me-tab ${idx === currentQuestionIndex ? "active" : ""}`}
+                className={`me-tab ${
+                  idx === currentQuestionIndex ? "active" : ""
+                }`}
                 onClick={() => handleSwitchQuestion(idx)}
               >
                 Bài tập {idx + 1}
                 {idx === currentQuestionIndex && (
-                  <span className="me-tab-remove" onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemoveQuestion(idx);
-                  }}>
+                  <span
+                    className="me-tab-remove"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveQuestion(idx);
+                    }}
+                  >
                     ×
                   </span>
                 )}
@@ -452,13 +487,13 @@ export default function MatchingEditor({ data, onChange }) {
             </span>
             {!canPreview() && (
               <span className="me-warning">
-                ⚠️ {getPreviewError() || `Cần đủ ${MAX_PAIRS} cặp và đảm bảo mỗi cặp có đủ nội dung, không trùng lặp`}
+                ⚠️{" "}
+                {getPreviewError() ||
+                  `Cần đủ ${MAX_PAIRS} cặp và đảm bảo mỗi cặp có đủ nội dung, không trùng lặp`}
               </span>
             )}
             {canPreview() && (
-              <span className="me-success">
-                ✅ Đã sẵn sàng preview
-              </span>
+              <span className="me-success">✅ Đã sẵn sàng preview</span>
             )}
           </div>
 
@@ -505,7 +540,9 @@ export default function MatchingEditor({ data, onChange }) {
                       <input
                         type="text"
                         value={pair.en}
-                        onChange={(e) => handleEnChange(pair.id, e.target.value)}
+                        onChange={(e) =>
+                          handleEnChange(pair.id, e.target.value)
+                        }
                         className="me-input"
                         placeholder="Ví dụ: happy"
                       />
@@ -517,7 +554,9 @@ export default function MatchingEditor({ data, onChange }) {
                       <input
                         type="text"
                         value={pair.vi}
-                        onChange={(e) => handleViChange(pair.id, e.target.value)}
+                        onChange={(e) =>
+                          handleViChange(pair.id, e.target.value)
+                        }
                         className="me-input"
                         placeholder="Ví dụ: vui mừng"
                       />
@@ -537,7 +576,9 @@ export default function MatchingEditor({ data, onChange }) {
                         {!pair.imageUrl ? (
                           <button
                             className="me-upload-btn"
-                            onClick={() => fileInputRefs.current[pair.id]?.click()}
+                            onClick={() =>
+                              fileInputRefs.current[pair.id]?.click()
+                            }
                           >
                             📤 Upload image
                           </button>
@@ -564,8 +605,9 @@ export default function MatchingEditor({ data, onChange }) {
           {/* Hint */}
           {currentPairs.length > 0 && (
             <div className="me-hint">
-              💡 <strong>Lưu ý:</strong> Mỗi bài tập cần đủ {MAX_PAIRS} cặp (16 ô) để tạo ma trận 4x4.
-              Hệ thống sẽ tự động trộn các ô cho học viên.
+              💡 <strong>Lưu ý:</strong> Mỗi bài tập cần đủ {MAX_PAIRS} cặp (16
+              ô) để tạo ma trận 4x4. Hệ thống sẽ tự động trộn các ô cho học
+              viên.
             </div>
           )}
         </>
@@ -624,9 +666,15 @@ export default function MatchingEditor({ data, onChange }) {
             </div>
 
             <div style={{ marginBottom: "16px" }}>
-              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
-                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài tập cần có{" "}
-                <strong>pairs</strong> (array các cặp từ), mỗi cặp có{" "}
+              <p
+                style={{
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
+                }}
+              >
+                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài
+                tập cần có <strong>pairs</strong> (array các cặp từ), mỗi cặp có{" "}
                 <strong>left</strong> (tiếng Việt, có thể có image) và{" "}
                 <strong>right</strong> (tiếng Anh).
               </p>

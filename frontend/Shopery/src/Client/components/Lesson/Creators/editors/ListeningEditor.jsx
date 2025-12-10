@@ -16,6 +16,33 @@ export default function ListeningEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu khi edit
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => ({
+        id: q.question_id || `q_${idx}_${Date.now()}`,
+        audioUrl: q.audio_url || "",
+        playCount: q.play_count || 3,
+        cells: (q.grid?.cells || []).map((cell, cidx) => ({
+          id: cell.id || `cell_${idx}_${cidx}_${Date.now()}`,
+          text: cell.text || "",
+          imageUrl: cell.image || "",
+          is_correct: !!cell.is_correct,
+        })),
+      }));
+      setQuestions(mapped);
+      setCurrentQuestionIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo question mới
   useEffect(() => {
@@ -178,7 +205,7 @@ export default function ListeningEditor({ data, onChange }) {
       setCurrentQuestionIndex(updated.length - 1);
       return updated;
     });
-    
+
     setShowImportJSON(false);
     setJsonInput("");
     setJsonError(null);
@@ -635,13 +662,20 @@ export default function ListeningEditor({ data, onChange }) {
             </div>
 
             <div style={{ marginBottom: "16px" }}>
-              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
-                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài tập cần có{" "}
-                <strong>audio_url</strong> (URL audio), <strong>grid</strong> với{" "}
-                <strong>cells</strong> (array 9 ô), mỗi cell có{" "}
-                <strong>vi_text</strong> (tiếng Việt), <strong>image_url</strong> (URL ảnh), và{" "}
-                <strong>is_correct</strong> (true/false). Chỉ có 1 cell được đánh dấu{" "}
-                <strong>is_correct: true</strong>.
+              <p
+                style={{
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
+                }}
+              >
+                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài
+                tập cần có <strong>audio_url</strong> (URL audio),{" "}
+                <strong>grid</strong> với <strong>cells</strong> (array 9 ô),
+                mỗi cell có <strong>vi_text</strong> (tiếng Việt),{" "}
+                <strong>image_url</strong> (URL ảnh), và{" "}
+                <strong>is_correct</strong> (true/false). Chỉ có 1 cell được
+                đánh dấu <strong>is_correct: true</strong>.
               </p>
               <details style={{ marginTop: "12px" }}>
                 <summary

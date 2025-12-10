@@ -14,6 +14,41 @@ export default function QuizEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu từ props (khi edit)
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => {
+        let questionType = "text";
+        if (q.image_url) questionType = "image";
+        else if (q.audio_url) questionType = "audio";
+        return {
+          id: q.question_id || `q_${idx}_${Date.now()}`,
+          questionType,
+          questionText: q.en || "",
+          questionImageUrl: q.image_url || "",
+          questionAudioUrl: q.audio_url || "",
+          choices: (q.choices || []).map((c, cidx) => ({
+            id: c.id || `choice_${idx}_${cidx}_${Date.now()}`,
+            text: c.text || "",
+            imageUrl: c.image_url || "",
+            is_correct: !!c.is_correct,
+          })),
+          shuffleChoices: !!q.shuffle_choices,
+        };
+      });
+      setQuestions(mapped);
+      setCurrentQuestionIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo question mới
   useEffect(() => {

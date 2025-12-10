@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useAdminCourseDetail, useAdminCourseStructure } from "../hooks/useCoursesAdminQueries";
+import React, { useState } from "react";
+import {
+  useAdminCourseDetail,
+  useAdminCourseStructure,
+} from "../hooks/useCoursesAdminQueries";
 import "./CoursePreviewModal.scss";
 
 const convertYoutubeUrlToEmbed = (url) => {
@@ -46,24 +49,25 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
   const [activeTab, setActiveTab] = useState("about");
   const [openModuleIdx, setOpenModuleIdx] = useState(null);
 
-  const { data: courseDetailRes, isLoading, error } = useAdminCourseDetail(
-    courseId,
-    open && !!courseId
-  );
-  
+  const {
+    data: courseDetailRes,
+    isLoading,
+    error,
+  } = useAdminCourseDetail(courseId, open && !!courseId);
+
   // Fetch structure riêng cho tab curriculum (modules + lessons)
   const { data: courseStructureRes } = useAdminCourseStructure(
     courseId,
     open && !!courseId && activeTab === "curriculum"
   );
-  
+
   // Client API trả về format: { DT: { course: {...} } }
   const course = courseDetailRes?.DT?.course || courseDetailRes?.DT || null;
-  
+
   // Lấy modules từ structure API nếu có, nếu không thì từ course object
   const courseStructure = courseStructureRes?.DT || null;
   const modules = courseStructure?.modules || course?.modules || [];
-  
+
   // Merge course data với modules từ structure
   const courseWithModules = course ? { ...course, modules } : null;
 
@@ -183,7 +187,9 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
               <div className="admin-course-preview-tabs">
                 <button
                   className={`admin-course-preview-tab ${
-                    activeTab === "about" ? "admin-course-preview-tab--active" : ""
+                    activeTab === "about"
+                      ? "admin-course-preview-tab--active"
+                      : ""
                   }`}
                   onClick={() => setActiveTab("about")}
                 >
@@ -225,7 +231,10 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
                           <h3>Kỹ năng đạt được</h3>
                           <div className="admin-course-preview-skills-list">
                             {course.details.skills.map((s, i) => (
-                              <span key={i} className="admin-course-preview-skill-tag">
+                              <span
+                                key={i}
+                                className="admin-course-preview-skill-tag"
+                              >
                                 {s}
                               </span>
                             ))}
@@ -313,4 +322,3 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
     </div>
   );
 }
-
