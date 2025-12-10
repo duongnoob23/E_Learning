@@ -25,6 +25,11 @@ export default function SentenceCompletionEditor({ data, onChange }) {
   // State lưu input khi thêm từ mới vào word bank
   const [newWordInput, setNewWordInput] = useState("");
 
+  // State hiển thị modal import JSON
+  const [showImportJSON, setShowImportJSON] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonError, setJsonError] = useState(null);
+
   // Ref đến textarea để lấy vị trí cursor (selectionStart, selectionEnd)
   const textareaRef = useRef(null);
 
@@ -501,8 +506,158 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       ];
       updateData(next); // Save lên parent
       setActiveQuestionId(newId); // Chuyển sang câu mới
+      // Reset các state liên quan khi chuyển sang câu mới
+      setSelectedText(null);
+      setIsBlankMode(false);
       return next;
     });
+  };
+
+  // Mở modal import JSON
+  const handleOpenImportJSON = () => {
+    setShowImportJSON(true);
+    setJsonInput("");
+    setJsonError(null);
+  };
+
+  // Paste JSON từ clipboard
+  const handlePasteJSON = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setJsonInput(text);
+      setJsonError(null);
+    } catch (err) {
+      setJsonError("Không thể đọc clipboard: " + err.message);
+    }
+  };
+
+  // Validate và parse JSON
+  const validateJSON = (jsonText) => {
+    try {
+      const parsed = JSON.parse(jsonText);
+      return { success: true, data: parsed, error: null };
+    } catch (e) {
+      return { success: false, data: null, error: "Lỗi JSON: " + e.message };
+    }
+  };
+
+  // Thêm câu hỏi từ JSON
+  // Hàm này nhận JSON của một câu hỏi hoặc array câu hỏi và thêm vào danh sách
+  const handleAddQuestionFromJSON = () => {
+    if (!jsonInput.trim()) {
+      setJsonError("Vui lòng nhập JSON");
+      return;
+    }
+
+    const result = validateJSON(jsonInput);
+    if (!result.success) {
+      setJsonError(result.error);
+      return;
+    }
+
+    const jsonData = result.data;
+    let questionsToAdd = [];
+
+    // Nếu là array, thêm tất cả
+    if (Array.isArray(jsonData)) {
+      questionsToAdd = jsonData;
+    }
+    // Nếu là object đơn lẻ, thêm vào array
+    else if (typeof jsonData === "object") {
+      questionsToAdd = [jsonData];
+    } else {
+      setJsonError("JSON phải là object hoặc array");
+      return;
+    }
+
+    // Validate từng câu hỏi
+    const validQuestions = [];
+    for (const q of questionsToAdd) {
+      // Validate format câu hỏi sentence completion
+      if (
+        q.vi_text &&
+        q.sentence_template &&
+        Array.isArray(q.shuffled_words) &&
+        Array.isArray(q.blanks)
+      ) {
+        validQuestions.push(q);
+      } else {
+        setJsonError(
+          "Câu hỏi thiếu các trường bắt buộc: vi_text, sentence_template, shuffled_words, blanks"
+        );
+        return;
+      }
+    }
+
+    // Thêm các câu hỏi hợp lệ vào danh sách
+    setQuestions((prev) => {
+      const newQuestions = [...prev];
+      questionsToAdd.forEach((q) => {
+        // Tạo question_id mới nếu chưa có hoặc bị trùng
+        let newQid = q.question_id || genId();
+        while (
+          newQuestions.some((existing) => existing.question_id === newQid)
+        ) {
+          newQid = genId();
+        }
+
+        // Parse sentence_template để chuyển sang format nội bộ
+        const parts = q.sentence_template.split(/(\{[^}]+\})/);
+        let fullText = "";
+        const newBlanks = [];
+
+        parts.forEach((part) => {
+          const m = part.match(/\{([^}]+)\}/);
+          if (m) {
+            const blankId = m[1];
+            const blank = q.blanks?.find((b) => b.id === blankId);
+            const word = q.shuffled_words?.find(
+              (w) => w.id === blank?.correct_word_id
+            );
+            if (word) {
+              newBlanks.push({
+                id: blankId,
+                answer: word.text,
+                start: fullText.length,
+                end: fullText.length + word.text.length,
+              });
+              fullText += word.text;
+            }
+          } else {
+            fullText += part;
+          }
+        });
+
+        // Tách word bank
+        const answerWords = newBlanks.map((b) => b.answer);
+        const allWords = q.shuffled_words?.map((w) => w.text) || [];
+        const wordBankWords = allWords.filter((w) => !answerWords.includes(w));
+
+        // Thêm câu hỏi mới vào danh sách
+        newQuestions.push({
+          vi_text: q.vi_text || "",
+          sentence_text: fullText,
+          blanks: newBlanks,
+          word_bank: wordBankWords,
+          question_id: newQid,
+        });
+      });
+
+      updateData(newQuestions);
+      // Chuyển sang câu hỏi mới được thêm cuối cùng
+      if (newQuestions.length > 0) {
+        setActiveQuestionId(newQuestions[newQuestions.length - 1].question_id);
+      }
+      setSelectedText(null);
+      setIsBlankMode(false);
+
+      return newQuestions;
+    });
+
+    // Đóng modal và reset
+    setShowImportJSON(false);
+    setJsonInput("");
+    setJsonError(null);
   };
 
   // Xóa câu hỏi
@@ -563,6 +718,14 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           <button className="sce-add-question" onClick={handleAddQuestion}>
             + Thêm câu
           </button>
+          <button
+            className="sce-add-question"
+            onClick={handleOpenImportJSON}
+            style={{ marginLeft: "8px", backgroundColor: "#28a745" }}
+            title="Thêm câu hỏi từ JSON"
+          >
+            📝 Import JSON
+          </button>
         </div>
         {questions.length > 1 && (
           <button
@@ -574,6 +737,155 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           </button>
         )}
       </div>
+
+      {/* Modal Import JSON */}
+      {showImportJSON && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowImportJSON(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "8px",
+              padding: "24px",
+              width: "90%",
+              maxWidth: "600px",
+              maxHeight: "80vh",
+              overflow: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
+              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm câu hỏi</h3>
+              <button
+                onClick={() => setShowImportJSON(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: "12px" }}>
+              <p style={{ margin: "0 0 8px 0", color: "#666" }}>
+                Paste JSON của một câu hỏi hoặc array câu hỏi. Format:
+              </p>
+              <pre
+                style={{
+                  backgroundColor: "#f5f5f5",
+                  padding: "12px",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  overflow: "auto",
+                }}
+              >
+                {`{
+  "vi_text": "Tôi vui mừng",
+  "sentence_template": "I am {blank1} today",
+  "shuffled_words": [
+    { "id": 1, "text": "happy" },
+    { "id": 2, "text": "sad" }
+  ],
+  "blanks": [
+    { "id": "blank1", "correct_word_id": 1 }
+  ]
+}`}
+              </pre>
+            </div>
+
+            <div style={{ marginBottom: "12px" }}>
+              <button
+                className="sce-btn sce-btn-primary"
+                onClick={handlePasteJSON}
+                style={{ marginRight: "8px" }}
+              >
+                📋 Paste từ Clipboard
+              </button>
+            </div>
+
+            {jsonError && (
+              <div
+                style={{
+                  backgroundColor: "#f8d7da",
+                  color: "#721c24",
+                  padding: "12px",
+                  borderRadius: "4px",
+                  marginBottom: "12px",
+                }}
+              >
+                {jsonError}
+              </div>
+            )}
+
+            <textarea
+              value={jsonInput}
+              onChange={(e) => {
+                setJsonInput(e.target.value);
+                setJsonError(null);
+              }}
+              placeholder="Paste JSON ở đây..."
+              style={{
+                width: "100%",
+                minHeight: "200px",
+                padding: "12px",
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                fontFamily: "monospace",
+                fontSize: "14px",
+                marginBottom: "12px",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "8px",
+              }}
+            >
+              <button
+                className="sce-btn"
+                onClick={() => {
+                  setShowImportJSON(false);
+                  setJsonInput("");
+                  setJsonError(null);
+                }}
+              >
+                Hủy
+              </button>
+              <button
+                className="sce-btn sce-btn-primary"
+                onClick={handleAddQuestionFromJSON}
+              >
+                ✅ Thêm câu hỏi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Câu tiếng Việt */}
       <div className="sce-step">
@@ -809,7 +1121,8 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       </div>
 
       {/* STEP 5: Preview nhanh (UI học viên) */}
-      {sentenceParts && sentenceParts.length > 0 && wordBank.length > 0 && (
+      {/* Hiển thị preview khi có blanks (không cần chờ word bank) */}
+      {sentenceParts && sentenceParts.length > 0 && blanks.length > 0 && (
         <div className="sce-step">
           <label className="sce-label">Preview (UI học viên sẽ thấy)</label>
           <div className="sce-preview-box">
@@ -826,13 +1139,26 @@ export default function SentenceCompletionEditor({ data, onChange }) {
                 }
               })}
             </div>
-            <div className="sce-preview-words">
-              {wordBank.map((word, index) => (
-                <span key={index} className="sce-preview-word">
-                  {word}
-                </span>
-              ))}
-            </div>
+            {/* Hiển thị word bank nếu có */}
+            {wordBank.length > 0 && (
+              <div className="sce-preview-words">
+                {wordBank.map((word, index) => (
+                  <span key={index} className="sce-preview-word">
+                    {word}
+                  </span>
+                ))}
+              </div>
+            )}
+            {/* Hiển thị thông báo nếu chưa có word bank */}
+            {wordBank.length === 0 && (
+              <div
+                className="sce-preview-hint"
+                style={{ marginTop: "12px", color: "#666", fontSize: "14px" }}
+              >
+                💡 Bạn chưa thêm từ vào word bank. Hãy thêm các từ nhiễu để học
+                viên có thể kéo thả.
+              </div>
+            )}
           </div>
         </div>
       )}
