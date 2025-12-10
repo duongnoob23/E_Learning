@@ -26,3 +26,17 @@ Phong
 Payment =>> 
 
 
+1. Sau khi làm xong toàn bộ của phần các thể loại lesson và lesson editor thì sẽ quay sang chỉnh sửa modal của bên admin để thêm được nhiều loại lesson khác nhau
+(Xong editor ở đây là các chức năng hoạt  động được hêt, thêm câu hỏi thông minh, thêm được nhiều câu hỏi , preview được , thêm json được ,import được )
+2. preview được toàn bộ khóa học sẽ như nào 
+3. check lại các api xem thêm khóa học như nào, có đủ để cập nhật toàn bộ lesson không 
+4. kiểm tra phần check json nhưu thể nào 
+5. sau khi thêm khóa học thành công thì css lại toàn bộ giao diện các modal, editor , danh sách course ở bên client + khóa học lúc người dùng học
+6. liên kết vào payment của Phong 
+7. xong thì tì m hiểu khóa học Ngữ pháp + Toeic để clone về 
+
+
+
+Tìm hiểu xem khóa học Ngữ pháp + Toeic có những dạng bài gì ⇒ mục đích là clone khóa học toeic về luôn 
+Có nhiều loại bài tập khác so với loại hiện tại khoog  
+
