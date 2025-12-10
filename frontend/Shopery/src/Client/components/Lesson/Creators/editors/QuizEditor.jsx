@@ -1,6 +1,6 @@
 // QuizEditor.jsx - Editor cho dạng bài Vocabulary Quiz
 // Question (text/image/audio) + Choices (text hoặc image+text), click để chọn đáp án đúng
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyQuiz from "../../Vocabulary/VocabularyQuiz";
 import "./QuizEditor.css";
 
@@ -8,6 +8,9 @@ export default function QuizEditor({ data, onChange }) {
   const [questions, setQuestions] = useState([]); // [{ id, questionType, questionText, questionImageUrl, questionAudioUrl, choices: [...], shuffleChoices }]
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showPreview, setShowPreview] = useState(false);
+  const [showImportJSON, setShowImportJSON] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonError, setJsonError] = useState(null);
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
@@ -23,8 +26,18 @@ export default function QuizEditor({ data, onChange }) {
           questionImageUrl: "",
           questionAudioUrl: "",
           choices: [
-            { id: `choice_${Date.now()}_0`, text: "", imageUrl: "", is_correct: false },
-            { id: `choice_${Date.now()}_1`, text: "", imageUrl: "", is_correct: false },
+            {
+              id: `choice_${Date.now()}_0`,
+              text: "",
+              imageUrl: "",
+              is_correct: false,
+            },
+            {
+              id: `choice_${Date.now()}_1`,
+              text: "",
+              imageUrl: "",
+              is_correct: false,
+            },
           ],
           shuffleChoices: false,
         },
@@ -79,13 +92,14 @@ export default function QuizEditor({ data, onChange }) {
     return () => clearTimeout(timer);
   }, [questions, updateData]);
 
-  const currentQuestion = questions[currentQuestionIndex] || questions[0] || null;
+  const currentQuestion =
+    questions[currentQuestionIndex] || questions[0] || null;
   const currentChoices = currentQuestion?.choices || [];
 
   // Validate question
   const validateQuestion = (q) => {
     const errors = [];
-    
+
     // Check question content
     if (q.questionType === "text" && !q.questionText.trim()) {
       errors.push("Thiếu nội dung câu hỏi (text)");
@@ -100,7 +114,9 @@ export default function QuizEditor({ data, onChange }) {
       errors.push("Cần ít nhất 2 đáp án");
     }
 
-    const validChoices = currentChoices.filter((c) => c.text.trim() || c.imageUrl);
+    const validChoices = currentChoices.filter(
+      (c) => c.text.trim() || c.imageUrl
+    );
     if (validChoices.length < 2) {
       errors.push("Cần ít nhất 2 đáp án có nội dung");
     }
@@ -122,13 +138,96 @@ export default function QuizEditor({ data, onChange }) {
       questionImageUrl: "",
       questionAudioUrl: "",
       choices: [
-        { id: `choice_${Date.now()}_0`, text: "", imageUrl: "", is_correct: false },
-        { id: `choice_${Date.now()}_1`, text: "", imageUrl: "", is_correct: false },
+        {
+          id: `choice_${Date.now()}_0`,
+          text: "",
+          imageUrl: "",
+          is_correct: false,
+        },
+        {
+          id: `choice_${Date.now()}_1`,
+          text: "",
+          imageUrl: "",
+          is_correct: false,
+        },
       ],
       shuffleChoices: false,
     };
     setQuestions((prev) => [...prev, newQuestion]);
     setCurrentQuestionIndex(questions.length);
+  };
+
+  // Import JSON - Paste từ clipboard
+  const handlePasteJSON = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setJsonInput(text);
+      setJsonError(null);
+    } catch (err) {
+      setJsonError("Không thể đọc clipboard: " + err.message);
+    }
+  };
+
+  // Thêm câu hỏi từ JSON
+  const handleAddQuestionFromJSON = () => {
+    if (!jsonInput.trim()) {
+      setJsonError("Vui lòng nhập JSON");
+      return;
+    }
+
+    let jsonData;
+    try {
+      jsonData = JSON.parse(jsonInput);
+    } catch (e) {
+      setJsonError("Lỗi JSON: " + e.message);
+      return;
+    }
+
+    // Hỗ trợ cả object đơn lẻ và array
+    let questionsToAdd = Array.isArray(jsonData) ? jsonData : [jsonData];
+
+    // Validate và thêm từng câu hỏi
+    const newQuestions = [];
+    for (const q of questionsToAdd) {
+      if (!q.choices || !Array.isArray(q.choices)) {
+        setJsonError("Câu hỏi thiếu trường 'choices' (array)");
+        return;
+      }
+
+      // Xác định question type
+      let questionType = "text";
+      if (q.question_audio_url) questionType = "audio";
+      else if (q.question_image_url) questionType = "image";
+
+      // Convert choices
+      const choices = q.choices.map((choice, idx) => ({
+        id: choice.id || `choice_${Date.now()}_${idx}`,
+        text: choice.text || "",
+        imageUrl: choice.image_url || "",
+        is_correct: choice.is_correct || false,
+      }));
+
+      newQuestions.push({
+        id: q.question_id || Date.now() + Math.random(),
+        questionType: questionType,
+        questionText: q.question_text || q.en || "",
+        questionImageUrl: q.question_image_url || "",
+        questionAudioUrl: q.question_audio_url || q.audio_url || "",
+        choices: choices,
+        shuffleChoices: q.shuffle_choices || false,
+      });
+    }
+
+    // Thêm vào danh sách
+    setQuestions((prev) => {
+      const updated = [...prev, ...newQuestions];
+      setCurrentQuestionIndex(updated.length - 1);
+      return updated;
+    });
+
+    setShowImportJSON(false);
+    setJsonInput("");
+    setJsonError(null);
   };
 
   // Xóa question
@@ -169,9 +268,7 @@ export default function QuizEditor({ data, onChange }) {
   // Update question text
   const handleQuestionTextChange = (questionId, value) => {
     setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId ? { ...q, questionText: value } : q
-      )
+      prev.map((q) => (q.id === questionId ? { ...q, questionText: value } : q))
     );
   };
 
@@ -350,12 +447,15 @@ export default function QuizEditor({ data, onChange }) {
       choices: currentQuestion.choices.map((choice) => ({
         id: choice.id,
         text: choice.text.trim(),
+        vi: choice.text.trim(), // VocabularyQuiz.jsx tìm vi hoặc en
+        en: choice.text.trim(),
         image_url: choice.imageUrl || "",
         is_correct: choice.is_correct,
       })),
     };
 
     if (currentQuestion.questionType === "text") {
+      questionData.question_text = currentQuestion.questionText.trim();
       questionData.en = currentQuestion.questionText.trim();
     } else if (currentQuestion.questionType === "image") {
       questionData.image_url = currentQuestion.questionImageUrl;
@@ -383,7 +483,9 @@ export default function QuizEditor({ data, onChange }) {
             {questions.map((q, idx) => (
               <button
                 key={q.id}
-                className={`qe-tab ${idx === currentQuestionIndex ? "active" : ""}`}
+                className={`qe-tab ${
+                  idx === currentQuestionIndex ? "active" : ""
+                }`}
                 onClick={() => handleSwitchQuestion(idx)}
               >
                 Bài tập {idx + 1}
@@ -403,11 +505,25 @@ export default function QuizEditor({ data, onChange }) {
             <button className="qe-add-question-btn" onClick={handleAddQuestion}>
               + Thêm bài tập
             </button>
+            <button
+              className="qe-add-question-btn"
+              onClick={() => setShowImportJSON(true)}
+              style={{
+                marginLeft: "8px",
+                backgroundColor: "#17a2b8",
+                borderColor: "#17a2b8",
+              }}
+              title="Thêm bài tập từ JSON"
+            >
+              📝 Import JSON
+            </button>
           </div>
         </div>
         <div className="qe-header-right">
           <button
-            className={`qe-preview-btn ${errors.length === 0 ? "" : "disabled"}`}
+            className={`qe-preview-btn ${
+              errors.length === 0 ? "" : "disabled"
+            }`}
             onClick={handleTogglePreview}
             disabled={errors.length > 0}
           >
@@ -504,7 +620,8 @@ export default function QuizEditor({ data, onChange }) {
                 <div className="qe-image-upload">
                   <input
                     ref={(el) =>
-                      (fileInputRefs.current[`question_${currentQuestion.id}`] = el)
+                      (fileInputRefs.current[`question_${currentQuestion.id}`] =
+                        el)
                     }
                     type="file"
                     accept="image/*"
@@ -517,7 +634,9 @@ export default function QuizEditor({ data, onChange }) {
                     <button
                       className="qe-upload-btn"
                       onClick={() =>
-                        fileInputRefs.current[`question_${currentQuestion.id}`]?.click()
+                        fileInputRefs.current[
+                          `question_${currentQuestion.id}`
+                        ]?.click()
                       }
                     >
                       📤 Upload image
@@ -551,7 +670,9 @@ export default function QuizEditor({ data, onChange }) {
                 <div className="qe-audio-upload">
                   <input
                     ref={(el) =>
-                      (fileInputRefs.current[`question_audio_${currentQuestion.id}`] = el)
+                      (fileInputRefs.current[
+                        `question_audio_${currentQuestion.id}`
+                      ] = el)
                     }
                     type="file"
                     accept="audio/*"
@@ -564,7 +685,9 @@ export default function QuizEditor({ data, onChange }) {
                     <button
                       className="qe-upload-btn"
                       onClick={() =>
-                        fileInputRefs.current[`question_audio_${currentQuestion.id}`]?.click()
+                        fileInputRefs.current[
+                          `question_audio_${currentQuestion.id}`
+                        ]?.click()
                       }
                     >
                       📤 Upload audio
@@ -658,9 +781,7 @@ export default function QuizEditor({ data, onChange }) {
 
                     <div className="qe-choice-image">
                       <input
-                        ref={(el) =>
-                          (imageInputRefs.current[choice.id] = el)
-                        }
+                        ref={(el) => (imageInputRefs.current[choice.id] = el)}
                         type="file"
                         accept="image/*"
                         onChange={(e) =>
@@ -675,7 +796,9 @@ export default function QuizEditor({ data, onChange }) {
                       {!choice.imageUrl ? (
                         <button
                           className="qe-upload-btn-small"
-                          onClick={() => imageInputRefs.current[choice.id]?.click()}
+                          onClick={() =>
+                            imageInputRefs.current[choice.id]?.click()
+                          }
                         >
                           📤 Ảnh (tùy chọn)
                         </button>
@@ -717,7 +840,8 @@ export default function QuizEditor({ data, onChange }) {
 
           {/* Hint */}
           <div className="qe-hint">
-            💡 <strong>Lưu ý:</strong> Câu hỏi có thể là text, image hoặc audio. Mỗi đáp án có thể có text và/hoặc image. Chỉ có 1 đáp án đúng.
+            💡 <strong>Lưu ý:</strong> Câu hỏi có thể là text, image hoặc audio.
+            Mỗi đáp án có thể có text và/hoặc image. Chỉ có 1 đáp án đúng.
           </div>
         </>
       ) : (
@@ -725,7 +849,230 @@ export default function QuizEditor({ data, onChange }) {
           <p>Đang tải...</p>
         </div>
       )}
+
+      {/* Modal Import JSON */}
+      {showImportJSON && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowImportJSON(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "8px",
+              padding: "24px",
+              width: "90%",
+              maxWidth: "700px",
+              maxHeight: "85vh",
+              overflow: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
+              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm bài tập</h3>
+              <button
+                onClick={() => setShowImportJSON(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: "#666",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: "16px" }}>
+              <p
+                style={{
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
+                }}
+              >
+                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài
+                tập cần có <strong>choices</strong> (array các lựa chọn), và có
+                thể có <strong>question_text</strong> (text),{" "}
+                <strong>question_image_url</strong> (image), hoặc{" "}
+                <strong>question_audio_url</strong> (audio). Mỗi choice cần có{" "}
+                <strong>text</strong>, <strong>image_url</strong> (tùy chọn), và{" "}
+                <strong>is_correct</strong> (true/false).
+              </p>
+              <details style={{ marginTop: "12px" }}>
+                <summary
+                  style={{
+                    cursor: "pointer",
+                    color: "#007bff",
+                    fontWeight: "500",
+                    marginBottom: "8px",
+                  }}
+                >
+                  📋 Xem format mẫu
+                </summary>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: "16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    overflow: "auto",
+                    marginTop: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                >
+                  {`// Bài tập với question text
+{
+  "question_id": "123",
+  "question_text": "What does 'happy' mean?",
+  "choices": [
+    {
+      "id": 1,
+      "text": "vui mừng",
+      "image_url": "https://example.com/happy.jpg",
+      "is_correct": true
+    },
+    {
+      "id": 2,
+      "text": "buồn bã",
+      "image_url": "https://example.com/sad.jpg",
+      "is_correct": false
+    },
+    {
+      "id": 3,
+      "text": "tức giận",
+      "image_url": "",
+      "is_correct": false
+    },
+    {
+      "id": 4,
+      "text": "sợ hãi",
+      "image_url": "",
+      "is_correct": false
+    }
+  ],
+  "shuffle_choices": false
+}
+
+`}
+                </pre>
+              </details>
+            </div>
+
+            <div style={{ marginBottom: "12px" }}>
+              <button
+                onClick={handlePasteJSON}
+                style={{
+                  padding: "8px 16px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                📋 Paste từ Clipboard
+              </button>
+            </div>
+
+            {jsonError && (
+              <div
+                style={{
+                  backgroundColor: "#f8d7da",
+                  color: "#721c24",
+                  padding: "12px",
+                  borderRadius: "4px",
+                  marginBottom: "12px",
+                }}
+              >
+                {jsonError}
+              </div>
+            )}
+
+            <textarea
+              value={jsonInput}
+              onChange={(e) => {
+                setJsonInput(e.target.value);
+                setJsonError(null);
+              }}
+              placeholder="Paste JSON ở đây..."
+              style={{
+                width: "100%",
+                minHeight: "250px",
+                padding: "12px",
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                fontFamily: "monospace",
+                fontSize: "14px",
+                marginBottom: "12px",
+                resize: "vertical",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "8px",
+              }}
+            >
+              <button
+                onClick={() => {
+                  setJsonInput("");
+                  setJsonError(null);
+                  setShowImportJSON(false);
+                }}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#6c757d",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                Hủy
+              </button>
+              <button
+                onClick={handleAddQuestionFromJSON}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                ✅ Thêm bài tập
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-

@@ -721,7 +721,11 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           <button
             className="sce-add-question"
             onClick={handleOpenImportJSON}
-            style={{ marginLeft: "8px", backgroundColor: "#28a745" }}
+            style={{
+              marginLeft: "8px",
+              backgroundColor: "#17a2b8",
+              borderColor: "#17a2b8",
+            }}
             title="Thêm câu hỏi từ JSON"
           >
             📝 Import JSON
@@ -789,31 +793,62 @@ export default function SentenceCompletionEditor({ data, onChange }) {
               </button>
             </div>
 
-            <div style={{ marginBottom: "12px" }}>
-              <p style={{ margin: "0 0 8px 0", color: "#666" }}>
-                Paste JSON của một câu hỏi hoặc array câu hỏi. Format:
-              </p>
-              <pre
+            <div style={{ marginBottom: "16px" }}>
+              <p
                 style={{
-                  backgroundColor: "#f5f5f5",
-                  padding: "12px",
-                  borderRadius: "4px",
-                  fontSize: "12px",
-                  overflow: "auto",
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
                 }}
               >
-                {`{
-  "vi_text": "Tôi vui mừng",
-  "sentence_template": "I am {blank1} today",
+                Paste JSON của một câu hỏi hoặc array câu hỏi. Format: mỗi câu
+                hỏi cần có <strong>vi_text</strong> (câu tiếng Việt),{" "}
+                <strong>sentence_template</strong> (câu tiếng Anh với{" "}
+                {"{blank1}"}, {"{blank2}"}, ...),{" "}
+                <strong>shuffled_words</strong> (array các từ), và{" "}
+                <strong>blanks</strong> (array các blank với correct_word_id
+                tham chiếu đến shuffled_words).
+              </p>
+              <details style={{ marginTop: "12px" }}>
+                <summary
+                  style={{
+                    cursor: "pointer",
+                    color: "#007bff",
+                    fontWeight: "500",
+                    marginBottom: "8px",
+                  }}
+                >
+                  📋 Xem format mẫu
+                </summary>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: "16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    overflow: "auto",
+                    marginTop: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                >
+                  {`{
+  "vi_text": "Tôi vui mừng khi gặp bạn",
+  "sentence_template": "I am {blank1} to {blank2} you",
   "shuffled_words": [
     { "id": 1, "text": "happy" },
-    { "id": 2, "text": "sad" }
+    { "id": 2, "text": "meet" },
+    { "id": 3, "text": "sad" },
+    { "id": 4, "text": "see" },
+    { "id": 5, "text": "angry" },
+    { "id": 6, "text": "greet" }
   ],
   "blanks": [
-    { "id": "blank1", "correct_word_id": 1 }
+    { "id": "blank1", "correct_word_id": 1 },
+    { "id": "blank2", "correct_word_id": 2 }
   ]
 }`}
-              </pre>
+                </pre>
+              </details>
             </div>
 
             <div style={{ marginBottom: "12px" }}>
@@ -849,13 +884,14 @@ export default function SentenceCompletionEditor({ data, onChange }) {
               placeholder="Paste JSON ở đây..."
               style={{
                 width: "100%",
-                minHeight: "200px",
+                minHeight: "250px",
                 padding: "12px",
                 border: "1px solid #ddd",
                 borderRadius: "4px",
                 fontFamily: "monospace",
                 fontSize: "14px",
                 marginBottom: "12px",
+                resize: "vertical",
               }}
             />
 

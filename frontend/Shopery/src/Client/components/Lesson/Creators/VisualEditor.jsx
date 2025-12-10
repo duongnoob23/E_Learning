@@ -191,36 +191,41 @@ function getDefaultItem(lessonType, type) {
     };
   }
   if (type === "word") {
+    // Lấy ảnh ngẫu nhiên từ Unsplash
+    const unsplashId = Math.floor(Math.random() * 1000);
     return {
       word_id: Date.now(),
       en: "",
       vi: "",
-      image_url: "",
+      image_url: `https://source.unsplash.com/400x400/?nature,${unsplashId}`,
       audio_url: "",
       example: "",
     };
   }
   if (type === "choice") {
+    const unsplashId = Math.floor(Math.random() * 1000);
     return {
       choice_id: Date.now(),
       text: "",
-      image_url: "",
+      image_url: `https://source.unsplash.com/400x400/?object,${unsplashId}`,
       is_correct: false,
     };
   }
   if (type === "cell") {
+    const unsplashId = Math.floor(Math.random() * 1000);
     return {
       cell_id: Date.now(),
       vi_text: "",
-      image_url: "",
+      image_url: `https://source.unsplash.com/400x400/?emotion,${unsplashId}`,
       is_correct: false,
       position: { row: 0, col: 0 },
     };
   }
   if (type === "image") {
+    const unsplashId = Math.floor(Math.random() * 1000);
     return {
       image_id: Date.now(),
-      image_url: "",
+      image_url: `https://source.unsplash.com/400x400/?item,${unsplashId}`,
       is_correct: false,
     };
   }

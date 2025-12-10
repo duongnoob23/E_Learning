@@ -199,21 +199,37 @@ export default function GrammarTheoryEditor({ data, onChange }) {
       Array.isArray(data.sections) &&
       data.sections.length > 0
     ) {
-      const loadedSections = data.sections.map((section, index) => ({
-        id: section.id || Date.now() + index,
-        title: section.title || "",
-        content: section.content || "",
-        order: section.order || index + 1,
-      }));
+      const seenSectionIds = new Set();
+      const loadedSections = data.sections.map((section, index) => {
+        let id = section.id || Date.now() + index + Math.random();
+        while (seenSectionIds.has(id)) {
+          id = Date.now() + index + Math.random();
+        }
+        seenSectionIds.add(id);
+        return {
+          id: id,
+          title: section.title || "",
+          content: section.content || "",
+          order: section.order || index + 1,
+        };
+      });
       setSections(loadedSections);
     }
     if (data && data.examples && Array.isArray(data.examples)) {
+      const seenExampleIds = new Set();
       setExamples(
-        data.examples.map((ex, index) => ({
-          id: ex.id || Date.now() + index + 1000,
-          en: ex.en || "",
-          vi: ex.vi || "",
-        }))
+        data.examples.map((ex, index) => {
+          let id = ex.id || Date.now() + index + 1000 + Math.random();
+          while (seenExampleIds.has(id)) {
+            id = Date.now() + index + 1000 + Math.random();
+          }
+          seenExampleIds.add(id);
+          return {
+            id: id,
+            en: ex.en || "",
+            vi: ex.vi || "",
+          };
+        })
       );
     }
     isInitialMount.current = false;

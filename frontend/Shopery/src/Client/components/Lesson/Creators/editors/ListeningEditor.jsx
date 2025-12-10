@@ -10,6 +10,9 @@ export default function ListeningEditor({ data, onChange }) {
   const [questions, setQuestions] = useState([]); // [{ id, audioUrl, cells: [...], playCount }]
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showPreview, setShowPreview] = useState(false);
+  const [showImportJSON, setShowImportJSON] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonError, setJsonError] = useState(null);
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
@@ -109,6 +112,76 @@ export default function ListeningEditor({ data, onChange }) {
     };
     setQuestions((prev) => [...prev, newQuestion]);
     setCurrentQuestionIndex(questions.length);
+  };
+
+  // Import JSON - Paste từ clipboard
+  const handlePasteJSON = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setJsonInput(text);
+      setJsonError(null);
+    } catch (err) {
+      setJsonError("Không thể đọc clipboard: " + err.message);
+    }
+  };
+
+  // Thêm câu hỏi từ JSON
+  const handleAddQuestionFromJSON = () => {
+    if (!jsonInput.trim()) {
+      setJsonError("Vui lòng nhập JSON");
+      return;
+    }
+
+    let jsonData;
+    try {
+      jsonData = JSON.parse(jsonInput);
+    } catch (e) {
+      setJsonError("Lỗi JSON: " + e.message);
+      return;
+    }
+
+    // Hỗ trợ cả object đơn lẻ và array
+    let questionsToAdd = Array.isArray(jsonData) ? jsonData : [jsonData];
+
+    // Validate và thêm từng câu hỏi
+    const newQuestions = [];
+    for (const q of questionsToAdd) {
+      if (!q.audio_url) {
+        setJsonError("Câu hỏi thiếu trường 'audio_url'");
+        return;
+      }
+
+      if (!q.grid || !q.grid.cells || !Array.isArray(q.grid.cells)) {
+        setJsonError("Câu hỏi thiếu trường 'grid.cells' (array)");
+        return;
+      }
+
+      // Convert cells từ format database sang format nội bộ
+      const cells = q.grid.cells.map((cell, idx) => ({
+        id: cell.id || `cell_${Date.now()}_${idx}`,
+        text: cell.vi_text || cell.text || "",
+        imageUrl: cell.image_url || cell.image || "",
+        is_correct: cell.is_correct || false,
+      }));
+
+      newQuestions.push({
+        id: q.question_id || Date.now() + Math.random(),
+        audioUrl: q.audio_url,
+        cells: cells,
+        playCount: q.play_count || 3,
+      });
+    }
+
+    // Thêm vào danh sách
+    setQuestions((prev) => {
+      const updated = [...prev, ...newQuestions];
+      setCurrentQuestionIndex(updated.length - 1);
+      return updated;
+    });
+    
+    setShowImportJSON(false);
+    setJsonInput("");
+    setJsonError(null);
   };
 
   // Xóa question
@@ -252,8 +325,8 @@ export default function ListeningEditor({ data, onChange }) {
               cols: 3,
               cells: currentQuestion.cells.map((cell) => ({
                 id: cell.id,
-                text: cell.text.trim(),
-                image: cell.imageUrl || "",
+                vi_text: cell.text.trim(),
+                image_url: cell.imageUrl || "",
                 is_correct: cell.is_correct,
               })),
             },
@@ -297,6 +370,18 @@ export default function ListeningEditor({ data, onChange }) {
             ))}
             <button className="le-add-question-btn" onClick={handleAddQuestion}>
               + Thêm bài tập
+            </button>
+            <button
+              className="le-add-question-btn"
+              onClick={() => setShowImportJSON(true)}
+              style={{
+                marginLeft: "8px",
+                backgroundColor: "#17a2b8",
+                borderColor: "#17a2b8",
+              }}
+              title="Thêm bài tập từ JSON"
+            >
+              📝 Import JSON
             </button>
           </div>
         </div>
@@ -494,6 +579,254 @@ export default function ListeningEditor({ data, onChange }) {
       ) : (
         <div className="le-empty">
           <p>Đang tải...</p>
+        </div>
+      )}
+
+      {/* Modal Import JSON */}
+      {showImportJSON && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowImportJSON(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "8px",
+              padding: "24px",
+              width: "90%",
+              maxWidth: "700px",
+              maxHeight: "85vh",
+              overflow: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
+              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm bài tập</h3>
+              <button
+                onClick={() => setShowImportJSON(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: "#666",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: "16px" }}>
+              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
+                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài tập cần có{" "}
+                <strong>audio_url</strong> (URL audio), <strong>grid</strong> với{" "}
+                <strong>cells</strong> (array 9 ô), mỗi cell có{" "}
+                <strong>vi_text</strong> (tiếng Việt), <strong>image_url</strong> (URL ảnh), và{" "}
+                <strong>is_correct</strong> (true/false). Chỉ có 1 cell được đánh dấu{" "}
+                <strong>is_correct: true</strong>.
+              </p>
+              <details style={{ marginTop: "12px" }}>
+                <summary
+                  style={{
+                    cursor: "pointer",
+                    color: "#007bff",
+                    fontWeight: "500",
+                    marginBottom: "8px",
+                  }}
+                >
+                  📋 Xem format mẫu
+                </summary>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: "16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    overflow: "auto",
+                    marginTop: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                >
+                  {`{
+  "question_id": "123",
+  "audio_url": "https://example.com/audio.mp3",
+  "grid": {
+    "rows": 3,
+    "cols": 3,
+    "cells": [
+      {
+        "id": 1,
+        "vi_text": "vui mừng",
+        "image_url": "https://example.com/happy.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "vi_text": "buồn bã",
+        "image_url": "https://example.com/sad.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "vi_text": "tức giận",
+        "image_url": "https://example.com/angry.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "vi_text": "sợ hãi",
+        "image_url": "https://example.com/scared.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "vi_text": "ngạc nhiên",
+        "image_url": "https://example.com/surprised.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "vi_text": "bối rối",
+        "image_url": "https://example.com/confused.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "vi_text": "phấn khích",
+        "image_url": "https://example.com/excited.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "vi_text": "thất vọng",
+        "image_url": "https://example.com/disappointed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "vi_text": "tự hào",
+        "image_url": "https://example.com/proud.jpg",
+        "is_correct": false
+      }
+    ]
+  },
+  "play_count": 3
+}`}
+                </pre>
+              </details>
+            </div>
+
+            <div style={{ marginBottom: "12px" }}>
+              <button
+                onClick={handlePasteJSON}
+                style={{
+                  padding: "8px 16px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                📋 Paste từ Clipboard
+              </button>
+            </div>
+
+            {jsonError && (
+              <div
+                style={{
+                  backgroundColor: "#f8d7da",
+                  color: "#721c24",
+                  padding: "12px",
+                  borderRadius: "4px",
+                  marginBottom: "12px",
+                }}
+              >
+                {jsonError}
+              </div>
+            )}
+
+            <textarea
+              value={jsonInput}
+              onChange={(e) => {
+                setJsonInput(e.target.value);
+                setJsonError(null);
+              }}
+              placeholder="Paste JSON ở đây..."
+              style={{
+                width: "100%",
+                minHeight: "250px",
+                padding: "12px",
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                fontFamily: "monospace",
+                fontSize: "14px",
+                marginBottom: "12px",
+                resize: "vertical",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "8px",
+              }}
+            >
+              <button
+                onClick={() => {
+                  setJsonInput("");
+                  setJsonError(null);
+                  setShowImportJSON(false);
+                }}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#6c757d",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                Hủy
+              </button>
+              <button
+                onClick={handleAddQuestionFromJSON}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                ✅ Thêm bài tập
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

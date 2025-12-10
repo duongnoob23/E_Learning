@@ -8,6 +8,9 @@ export default function TranslationEditor({ data, onChange }) {
   const [items, setItems] = useState([]); // [{ id, vi, imageUrl, answers: [...] }]
   const [showPreview, setShowPreview] = useState(false);
   const [previewIndex, setPreviewIndex] = useState(0);
+  const [showImportJSON, setShowImportJSON] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonError, setJsonError] = useState(null);
   const fileInputRefs = useRef({});
   const answerInputRefs = useRef({});
   const isInitialMount = useRef(true);
@@ -246,6 +249,71 @@ export default function TranslationEditor({ data, onChange }) {
     }
   };
 
+  // Import JSON - Paste từ clipboard
+  const handlePasteJSON = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setJsonInput(text);
+      setJsonError(null);
+    } catch (err) {
+      setJsonError("Không thể đọc clipboard: " + err.message);
+    }
+  };
+
+  // Thêm câu hỏi từ JSON
+  const handleAddQuestionFromJSON = () => {
+    if (!jsonInput.trim()) {
+      setJsonError("Vui lòng nhập JSON");
+      return;
+    }
+
+    let jsonData;
+    try {
+      jsonData = JSON.parse(jsonInput);
+    } catch (e) {
+      setJsonError("Lỗi JSON: " + e.message);
+      return;
+    }
+
+    // Hỗ trợ cả object đơn lẻ và array
+    let questionsToAdd = Array.isArray(jsonData) ? jsonData : [jsonData];
+
+    // Validate và thêm từng câu hỏi
+    const newItems = [];
+    for (const q of questionsToAdd) {
+      if (!q.vi_text || !q.correct_answer) {
+        setJsonError(
+          "Câu hỏi thiếu các trường bắt buộc: vi_text, correct_answer"
+        );
+        return;
+      }
+
+      // Tách đáp án (có thể có nhiều đáp án cách nhau dấu phẩy)
+      const answers = q.correct_answer
+        .split(",")
+        .map((a) => a.trim())
+        .filter((a) => a);
+
+      if (answers.length === 0) {
+        setJsonError("Đáp án không được để trống");
+        return;
+      }
+
+      newItems.push({
+        id: Date.now() + Math.random(),
+        vi: q.vi_text,
+        imageUrl: q.image_url || "",
+        answers: answers,
+      });
+    }
+
+    // Thêm vào danh sách
+    setItems((prev) => [...prev, ...newItems]);
+    setShowImportJSON(false);
+    setJsonInput("");
+    setJsonError(null);
+  };
+
   const validItems = items.filter((item) => validateItem(item).length === 0);
 
   return (
@@ -256,6 +324,18 @@ export default function TranslationEditor({ data, onChange }) {
           <h3 className="te-title">Vocabulary Translation</h3>
           <button className="te-add-btn" onClick={handleAddItem}>
             + Thêm từ mới
+          </button>
+          <button
+            className="te-add-btn"
+            onClick={() => setShowImportJSON(true)}
+            style={{
+              marginLeft: "8px",
+              backgroundColor: "#17a2b8",
+              borderColor: "#17a2b8",
+            }}
+            title="Thêm từ mới từ JSON"
+          >
+            📝 Import JSON
           </button>
         </div>
         <div className="te-header-right">
@@ -463,6 +543,192 @@ export default function TranslationEditor({ data, onChange }) {
             </div>
           )}
         </>
+      )}
+
+      {/* Modal Import JSON */}
+      {showImportJSON && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowImportJSON(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "8px",
+              padding: "24px",
+              width: "90%",
+              maxWidth: "700px",
+              maxHeight: "85vh",
+              overflow: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
+              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm từ mới</h3>
+              <button
+                onClick={() => setShowImportJSON(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: "#666",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: "16px" }}>
+              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
+                Paste JSON của một từ hoặc array từ. Format: mỗi từ cần có{" "}
+                <strong>vi_text</strong> (từ tiếng Việt),{" "}
+                <strong>image_url</strong> (URL ảnh, có thể để trống), và{" "}
+                <strong>correct_answer</strong> (đáp án tiếng Anh, có thể nhiều đáp án cách nhau dấu phẩy - hệ thống sẽ tự động tách và chấp nhận bất kỳ đáp án nào trong danh sách).
+              </p>
+              <details style={{ marginTop: "12px" }}>
+                <summary
+                  style={{
+                    cursor: "pointer",
+                    color: "#007bff",
+                    fontWeight: "500",
+                    marginBottom: "8px",
+                  }}
+                >
+                  📋 Xem format mẫu
+                </summary>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: "16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    overflow: "auto",
+                    marginTop: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                >
+                  {`{
+  "vi_text": "hạnh phúc",
+  "image_url": "https://example.com/happy.jpg",
+  "correct_answer": "happy, joyful, cheerful"
+}`}
+                </pre>
+              </details>
+            </div>
+
+            <div style={{ marginBottom: "12px" }}>
+              <button
+                onClick={handlePasteJSON}
+                style={{
+                  padding: "8px 16px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                📋 Paste từ Clipboard
+              </button>
+            </div>
+
+            {jsonError && (
+              <div
+                style={{
+                  backgroundColor: "#f8d7da",
+                  color: "#721c24",
+                  padding: "12px",
+                  borderRadius: "4px",
+                  marginBottom: "12px",
+                }}
+              >
+                {jsonError}
+              </div>
+            )}
+
+            <textarea
+              value={jsonInput}
+              onChange={(e) => {
+                setJsonInput(e.target.value);
+                setJsonError(null);
+              }}
+              placeholder="Paste JSON ở đây..."
+              style={{
+                width: "100%",
+                minHeight: "250px",
+                padding: "12px",
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                fontFamily: "monospace",
+                fontSize: "14px",
+                marginBottom: "12px",
+                resize: "vertical",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "8px",
+              }}
+            >
+              <button
+                onClick={() => {
+                  setJsonInput("");
+                  setJsonError(null);
+                  setShowImportJSON(false);
+                }}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#6c757d",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                Hủy
+              </button>
+              <button
+                onClick={handleAddQuestionFromJSON}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                ✅ Thêm từ
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

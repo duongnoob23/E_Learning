@@ -269,3 +269,45 @@
     width: 100%;
   }
 }
+
+/* Preview */
+.ice-preview-container {
+  margin-top: 20px;
+  border: 2px solid #1ec28b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ice-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #1ec28b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.ice-close-preview {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ice-preview-content {
+  padding: 20px;
+  background: #fff;
+}
+
+.ice-add-question.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
