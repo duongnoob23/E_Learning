@@ -34,7 +34,7 @@ router.post("/topics/sets", middleware, authorizeByRole("student"), controller.c
 router.get("/flashcard/set/:set_id", middleware, authorizeByRole("student"), controller.getSetDetail);
 router.patch("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.patchWordToUser);
 router.delete("/flashcard/user/:user_word_id", middleware, authorizeByRole("student"), controller.deleteWordToUser);
-router.post("/flashcard/set/item", middleware, authorizeByRole("student"), controller.postWordToUser);
+router.post("/flashcard/set/item", middleware, controller.postWordToUser);
 router.get("/flashcard/set/:set_id/words", middleware, authorizeByRole("student"), controller.getWordsBySet);
 
 /**
@@ -45,7 +45,7 @@ router.get("/flashcard/set/:set_id/words", middleware, authorizeByRole("student"
  */
 router.get("/learning/today", middleware, authorizeByRole("student"), controller.getTodayWords);
 router.get("/learning/next", middleware, authorizeByRole("student"), controller.getNextWord);
-router.post("/learning/:word_id/feedback", middleware, authorizeByRole("student"), controller.submitFeedback);
+router.post("/learning/:word_id/feedback", middleware, controller.submitFeedback);
 
 /**
  * =============================
@@ -68,8 +68,24 @@ router.get("/progress/daily", middleware, authorizeByRole("student"), controller
  * =============================
  *  PRONUNCIATION ASSESSMENT
  * =============================
+ *
+ * POST /pronunciation/assess
+ *   - Đánh giá phát âm của user
+ *   - Body (form-data):
+ *     + word_id: ID của từ cần đánh giá (required)
+ *     + audioFile: File audio ghi âm của user (required, max 10MB, formats: mp3, wav, ogg, webm)
+ *   - Response: { score, feedback, word_id, ... }
+ *
+ * GET /pronunciation/history/:word_id
+ *   - Lấy lịch sử đánh giá phát âm của user cho 1 từ cụ thể
+ *   - Params: word_id
+ *   - Response: Array các lần đánh giá trước đó
+ *
+ * GET /pronunciation/stats
+ *   - Lấy thống kê tổng quan về phát âm của user
+ *   - Response: { total_assessments, average_score, ... }
  */
-router.post("/pronunciation/assess", middleware, authorizeByRole("student"), upload.single("audio"), controller.assessPronunciation);
+router.post("/pronunciation/assess", middleware, upload.single("audioFile"), controller.assessPronunciation);
 router.get("/pronunciation/history/:word_id", middleware, authorizeByRole("student"), controller.getPronunciationHistory);
 router.get("/pronunciation/stats", middleware, authorizeByRole("student"), controller.getPronunciationStats);
 
