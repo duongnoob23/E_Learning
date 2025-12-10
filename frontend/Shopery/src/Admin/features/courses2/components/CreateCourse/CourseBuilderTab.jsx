@@ -1,32 +1,6 @@
 import React, { useState } from "react";
 import "./CourseBuilderTab.scss";
-import LessonStudioModal from "./LessonStudioModal";
-import LessonTypeSelectionModal from "./LessonTypeSelectionModal";
-
-// Mapping lesson types to icons
-const LESSON_TYPE_ICONS = {
-  video: "🎥",
-  vocabulary_list: "📝",
-  vocabulary_matching: "🔗",
-  vocabulary_translation: "🔄",
-  vocabulary_quiz: "❓",
-  vocabulary_listening: "👂",
-  vocabulary_image_choice: "🖼️",
-  vocabulary_sentence_completion: "✏️",
-  grammar_theory: "📚",
-};
-
-const LESSON_TYPE_NAMES = {
-  video: "Video",
-  vocabulary_list: "Vocabulary List",
-  vocabulary_matching: "Matching",
-  vocabulary_translation: "Translation",
-  vocabulary_quiz: "Quiz",
-  vocabulary_listening: "Listening",
-  vocabulary_image_choice: "Image Choice",
-  vocabulary_sentence_completion: "Sentence",
-  grammar_theory: "Grammar",
-};
+import LessonFormModal from "./LessonFormModal";
 
 export default function CourseBuilderTab({
   modules = [],
@@ -36,10 +10,8 @@ export default function CourseBuilderTab({
 }) {
   const [editingModule, setEditingModule] = useState(null);
   const [editingLesson, setEditingLesson] = useState(null);
-  const [showLessonTypeModal, setShowLessonTypeModal] = useState(false);
-  const [showLessonStudioModal, setShowLessonStudioModal] = useState(false);
+  const [showLessonModal, setShowLessonModal] = useState(false);
   const [selectedModuleId, setSelectedModuleId] = useState(null);
-  const [selectedLessonType, setSelectedLessonType] = useState(null);
 
   const handleAddModule = () => {
     const newModule = {
@@ -73,87 +45,40 @@ export default function CourseBuilderTab({
   const handleAddLesson = (moduleId) => {
     setSelectedModuleId(moduleId);
     setEditingLesson(null);
-    setSelectedLessonType(null);
-    setShowLessonTypeModal(true);
-  };
-
-  const handleSelectLessonType = (lessonType) => {
-    console.log("handleSelectLessonType called with:", lessonType);
-    // Set selectedLessonType trước
-    setSelectedLessonType(lessonType);
-    // Đóng modal chọn loại
-    setShowLessonTypeModal(false);
-    // Mở modal studio - dùng setTimeout để đảm bảo state được set
-    setTimeout(() => {
-      setShowLessonStudioModal(true);
-      console.log("Opening LessonStudioModal for:", lessonType);
-    }, 50);
+    setShowLessonModal(true);
   };
 
   const handleEditLesson = (moduleId, lesson) => {
-    console.log("handleEditLesson called with lesson:", lesson);
     setSelectedModuleId(moduleId);
     setEditingLesson(lesson);
-
-    const lessonType = lesson.lessonType || lesson.lesson_type || "video";
-    setSelectedLessonType(lessonType);
-
-    // Tất cả lesson types đều dùng LessonStudioModal
-    setShowLessonStudioModal(true);
+    setShowLessonModal(true);
   };
 
   const handleSaveLesson = (lessonData) => {
-    console.log("handleSaveLesson called with:", lessonData);
-
     const updatedModules = modules.map((module) => {
       if (module.id === selectedModuleId) {
         if (editingLesson) {
           // Update existing lesson
           return {
             ...module,
-            lessons: module.lessons.map((l) => {
-              if (l.id === editingLesson.id) {
-                const updatedLesson = {
-                  ...l,
-                  ...lessonData,
-                  // Đảm bảo có lessonType
-                  lessonType: lessonData.lessonType || l.lessonType || "video",
-                  // Đảm bảo lesson_data được lưu
-                  lesson_data: lessonData.lesson_data || l.lesson_data || null,
-                };
-                console.log("Updating lesson:", updatedLesson);
-                return updatedLesson;
-              }
-              return l;
-            }),
+            lessons: module.lessons.map((l) =>
+              l.id === editingLesson.id ? { ...l, ...lessonData } : l
+            ),
           };
         } else {
           // Add new lesson
-          const newLesson = {
-            id: Date.now(),
-            ...lessonData,
-            // Đảm bảo có lessonType
-            lessonType: lessonData.lessonType || selectedLessonType || "video",
-            // Đảm bảo lesson_data được lưu
-            lesson_data: lessonData.lesson_data || null,
-          };
-          console.log("Adding new lesson:", newLesson);
-
           return {
             ...module,
-            lessons: [...module.lessons, newLesson],
+            lessons: [...module.lessons, { id: Date.now(), ...lessonData }],
           };
         }
       }
       return module;
     });
-
-    console.log("Updated modules:", updatedModules);
     onChange(updatedModules);
-    setShowLessonStudioModal(false);
+    setShowLessonModal(false);
     setEditingLesson(null);
     setSelectedModuleId(null);
-    setSelectedLessonType(null);
   };
 
   const handleDeleteLesson = (moduleId, lessonId) => {
@@ -321,55 +246,15 @@ export default function CourseBuilderTab({
                     <div key={lesson.id} className="course-builder-tab__lesson">
                       <div className="course-builder-tab__lesson-drag">⋮⋮</div>
                       <div className="course-builder-tab__lesson-content">
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px",
-                          }}
+                        <h4
+                          className={`course-builder-tab__lesson-title ${
+                            lessonTitleErrorMsg
+                              ? "course-builder-tab__lesson-title--error"
+                              : ""
+                          }`}
                         >
-                          <h4
-                            className={`course-builder-tab__lesson-title ${
-                              lessonTitleErrorMsg
-                                ? "course-builder-tab__lesson-title--error"
-                                : ""
-                            }`}
-                          >
-                            {lesson.title || "Untitled Lesson"}
-                          </h4>
-                          {lesson.lessonType || lesson.lesson_type ? (
-                            <span
-                              style={{
-                                fontSize: "11px",
-                                padding: "2px 8px",
-                                backgroundColor: "#e0f2fe",
-                                color: "#0369a1",
-                                borderRadius: "12px",
-                                fontWeight: "500",
-                              }}
-                            >
-                              {LESSON_TYPE_ICONS[
-                                lesson.lessonType || lesson.lesson_type
-                              ] || "📄"}{" "}
-                              {LESSON_TYPE_NAMES[
-                                lesson.lessonType || lesson.lesson_type
-                              ] || "Lesson"}
-                            </span>
-                          ) : (
-                            <span
-                              style={{
-                                fontSize: "11px",
-                                padding: "2px 8px",
-                                backgroundColor: "#e0f2fe",
-                                color: "#0369a1",
-                                borderRadius: "12px",
-                                fontWeight: "500",
-                              }}
-                            >
-                              🎥 Video
-                            </span>
-                          )}
-                        </div>
+                          {lesson.title || "Untitled Lesson"}
+                        </h4>
                         {lessonTitleErrorMsg && (
                           <div
                             className="course-builder-tab__error"
@@ -400,22 +285,9 @@ export default function CourseBuilderTab({
                           </p>
                         )}
                         <div className="course-builder-tab__lesson-meta">
-                          {lesson.lessonType === "video" ||
-                          !lesson.lessonType ? (
-                            <span className="course-builder-tab__lesson-source">
-                              {lesson.videoSource}
-                            </span>
-                          ) : (
-                            <span className="course-builder-tab__lesson-source">
-                              {lesson.lesson_data
-                                ? `${
-                                    Object.keys(lesson.lesson_data).length > 0
-                                      ? "Đã có nội dung"
-                                      : "Chưa có nội dung"
-                                  }`
-                                : "Chưa có nội dung"}
-                            </span>
-                          )}
+                          <span className="course-builder-tab__lesson-source">
+                            {lesson.videoSource}
+                          </span>
                         </div>
                       </div>
                       <div className="course-builder-tab__lesson-actions">
@@ -461,45 +333,16 @@ export default function CourseBuilderTab({
 
       {/* Validation Errors - Đã xử lý ở trên, không cần render lại */}
 
-      {/* Lesson Type Selection Modal */}
-      {showLessonTypeModal && (
-        <LessonTypeSelectionModal
-          open={showLessonTypeModal}
+      {/* Lesson Form Modal */}
+      {showLessonModal && (
+        <LessonFormModal
+          open={showLessonModal}
           onClose={() => {
-            setShowLessonTypeModal(false);
-            // Không reset selectedLessonType ở đây vì nó cần cho LessonStudioModal
-            // setSelectedModuleId(null);
-            // setSelectedLessonType(null);
-          }}
-          onSelect={handleSelectLessonType}
-        />
-      )}
-
-      {/* Lesson Studio Modal (cho tất cả lesson types) */}
-      {showLessonStudioModal && selectedLessonType && (
-        <LessonStudioModal
-          key={`${selectedLessonType}-${editingLesson?.id || "new"}`}
-          open={showLessonStudioModal}
-          onClose={() => {
-            setShowLessonStudioModal(false);
+            setShowLessonModal(false);
             setEditingLesson(null);
             setSelectedModuleId(null);
-            setSelectedLessonType(null);
           }}
-          lessonType={selectedLessonType}
-          initialData={
-            editingLesson
-              ? {
-                  title: editingLesson.title || "",
-                  lesson_data: editingLesson.lesson_data || null,
-                  description: editingLesson.description || "",
-                  content: editingLesson.content || "",
-                  videoUrl: editingLesson.videoUrl || "",
-                  videoSource: editingLesson.videoSource || "",
-                  isFree: editingLesson.isFree || false,
-                }
-              : null
-          }
+          lesson={editingLesson}
           onSave={handleSaveLesson}
         />
       )}

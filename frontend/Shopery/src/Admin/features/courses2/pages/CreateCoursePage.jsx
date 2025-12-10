@@ -225,34 +225,12 @@ export default function CreateCoursePage({ onClose, onSave }) {
                 moduleIndex + 1
               } title is required`;
             }
-
-            const lessonType =
-              lesson.lessonType || lesson.lesson_type || "video";
-
-            // Validate theo lesson_type
-            if (lessonType === "video") {
-              // Video lesson: yêu cầu videoUrl hoặc lesson_data.video_url
-              const videoUrl =
-                lesson.videoUrl || lesson.lesson_data?.video_url || "";
-              if (!videoUrl.trim()) {
-                validationErrors[
-                  `lesson_${moduleIndex}_${lessonIndex}_videoUrl`
-                ] = `Lesson ${lessonIndex + 1} in Module ${
-                  moduleIndex + 1
-                } video URL is required`;
-              }
-            } else {
-              // Các lesson khác: yêu cầu lesson_data
-              if (
-                !lesson.lesson_data ||
-                Object.keys(lesson.lesson_data).length === 0
-              ) {
-                validationErrors[
-                  `lesson_${moduleIndex}_${lessonIndex}_lesson_data`
-                ] = `Lesson ${lessonIndex + 1} in Module ${
-                  moduleIndex + 1
-                } cần có nội dung bài học (lesson_data)`;
-              }
+            if (!lesson.videoUrl || !lesson.videoUrl.trim()) {
+              validationErrors[
+                `lesson_${moduleIndex}_${lessonIndex}_videoUrl`
+              ] = `Lesson ${lessonIndex + 1} in Module ${
+                moduleIndex + 1
+              } video URL is required`;
             }
           });
         }
@@ -516,42 +494,16 @@ export default function CreateCoursePage({ onClose, onSave }) {
           title: module.title || module.name,
           description: module.description || null,
           sort_order: moduleIndex + 1,
-          lessons: (module.lessons || []).map((lesson, lessonIndex) => {
-            const lessonType =
-              lesson.lessonType || lesson.lesson_type || "video";
-            const payload = {
-              title: lesson.title,
-              description: lesson.description || null,
-              content: lesson.content || null,
-              lessonType: lessonType,
-              isFree: lesson.isFree || false,
-              sort_order: lessonIndex + 1,
-            };
-
-            // Nếu có lesson_data, thêm vào payload
-            if (lesson.lesson_data) {
-              payload.lesson_data = lesson.lesson_data;
-            }
-
-            // Backward compatibility: Nếu là video lesson và có videoUrl (từ form cũ), thêm vào
-            if (lessonType === "video") {
-              // Nếu có lesson_data.video_url thì dùng, nếu không thì dùng videoUrl cũ
-              if (lesson.lesson_data?.video_url) {
-                payload.videoUrl = lesson.lesson_data.video_url;
-                payload.videoDuration = lesson.videoDuration || null;
-              } else if (lesson.videoUrl) {
-                payload.videoUrl = lesson.videoUrl;
-                payload.videoDuration = lesson.videoDuration || null;
-              }
-            }
-
-            // Thêm metadata nếu có
-            if (lesson.metadata) {
-              payload.metadata = lesson.metadata;
-            }
-
-            return payload;
-          }),
+          lessons: (module.lessons || []).map((lesson, lessonIndex) => ({
+            title: lesson.title,
+            description: lesson.description || null,
+            content: lesson.content || null,
+            videoUrl: lesson.videoUrl,
+            videoDuration: lesson.videoDuration || null,
+            lessonType: lesson.lessonType || "video",
+            isFree: lesson.isFree || false,
+            sort_order: lessonIndex + 1,
+          })),
         })),
       };
 
