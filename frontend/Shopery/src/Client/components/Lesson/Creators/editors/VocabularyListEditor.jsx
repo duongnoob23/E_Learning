@@ -1,6 +1,6 @@
 // VocabularyListEditor.jsx - Editor cho dạng bài Vocabulary List
 // Danh sách từ vựng với flashcard mode
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import VocabularyList from "../../Vocabulary/VocabularyList";
 import "./VocabularyListEditor.css";
 
@@ -14,53 +14,26 @@ export default function VocabularyListEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
-  const hasLoadedData = useRef(false);
 
-  // Load dữ liệu từ data prop khi có (khi edit)
+  // Khởi tạo: không load data có sẵn, tạo word mới
   useEffect(() => {
-    if (
-      data?.words &&
-      Array.isArray(data.words) &&
-      data.words.length > 0 &&
-      !hasLoadedData.current
-    ) {
-      console.log("VocabularyListEditor: Loading words from data:", data.words);
-      // Chuyển đổi từ format database sang format editor
-      const loadedWords = data.words.map((w) => ({
-        id: w.word_id || Date.now() + Math.random(),
-        en: w.en || "",
-        vi: w.vi || "",
-        pronunciation: w.pronunciation || "",
-        audioUrl: w.audio_url || "",
-        imageUrl: w.image_url || "",
-        example: w.example || "",
-      }));
-      setWords(loadedWords);
-      hasLoadedData.current = true;
-
-      // Load display_mode nếu có
-      if (data.display_mode) {
-        setDisplayMode(data.display_mode);
-      }
-    } else if (!data?.words && words.length === 0 && isInitialMount.current) {
-      // Nếu không có data, tạo word mới
-      setWords([
-        {
-          id: Date.now(),
-          en: "",
-          vi: "",
-          pronunciation: "",
-          audioUrl: "",
-          imageUrl: "",
-          example: "",
-        },
-      ]);
-    }
-
     if (isInitialMount.current) {
+      if (words.length === 0) {
+        setWords([
+          {
+            id: Date.now(),
+            en: "",
+            vi: "",
+            pronunciation: "",
+            audioUrl: "",
+            imageUrl: "",
+            example: "",
+          },
+        ]);
+      }
       isInitialMount.current = false;
     }
-  }, [data]); // Chạy khi data thay đổi
+  }, []); // Chỉ chạy 1 lần khi mount
 
   // Update data và gửi lên parent
   const updateData = useCallback(() => {
@@ -299,9 +272,7 @@ export default function VocabularyListEditor({ data, onChange }) {
             </select>
           </div>
           <button
-            className={`vle-preview-btn ${
-              validWords.length > 0 ? "" : "disabled"
-            }`}
+            className={`vle-preview-btn ${validWords.length > 0 ? "" : "disabled"}`}
             onClick={handleTogglePreview}
             disabled={validWords.length === 0}
           >
@@ -314,9 +285,7 @@ export default function VocabularyListEditor({ data, onChange }) {
         /* Preview mode */
         <div className="vle-preview-container">
           <div className="vle-preview-header">
-            <span>
-              Preview: {displayMode === "list" ? "Danh sách" : "Flashcard"}
-            </span>
+            <span>Preview: {displayMode === "list" ? "Danh sách" : "Flashcard"}</span>
             <button
               className="vle-close-preview"
               onClick={() => setShowPreview(false)}
@@ -414,11 +383,7 @@ export default function VocabularyListEditor({ data, onChange }) {
                       type="text"
                       value={word.pronunciation}
                       onChange={(e) =>
-                        handleWordChange(
-                          word.id,
-                          "pronunciation",
-                          e.target.value
-                        )
+                        handleWordChange(word.id, "pronunciation", e.target.value)
                       }
                       className="vle-input"
                       placeholder="Ví dụ: /ˈhæpi/"
@@ -439,9 +404,7 @@ export default function VocabularyListEditor({ data, onChange }) {
                       {!word.audioUrl ? (
                         <button
                           className="vle-upload-btn"
-                          onClick={() =>
-                            fileInputRefs.current[word.id]?.click()
-                          }
+                          onClick={() => fileInputRefs.current[word.id]?.click()}
                         >
                           📤 Upload audio
                         </button>
@@ -452,9 +415,7 @@ export default function VocabularyListEditor({ data, onChange }) {
                           </audio>
                           <button
                             className="vle-audio-remove"
-                            onClick={() =>
-                              handleWordChange(word.id, "audioUrl", "")
-                            }
+                            onClick={() => handleWordChange(word.id, "audioUrl", "")}
                           >
                             ×
                           </button>
@@ -477,9 +438,7 @@ export default function VocabularyListEditor({ data, onChange }) {
                       {!word.imageUrl ? (
                         <button
                           className="vle-upload-btn"
-                          onClick={() =>
-                            imageInputRefs.current[word.id]?.click()
-                          }
+                          onClick={() => imageInputRefs.current[word.id]?.click()}
                         >
                           📤 Upload image
                         </button>
@@ -521,9 +480,9 @@ export default function VocabularyListEditor({ data, onChange }) {
       {/* Hint */}
       {words.length > 0 && !showPreview && (
         <div className="vle-hint">
-          💡 <strong>Lưu ý:</strong> Mỗi từ cần có English word và Vietnamese
-          meaning (bắt buộc). Các trường khác (pronunciation, audio, image,
-          example) là tùy chọn nhưng sẽ làm phong phú nội dung học tập.
+          💡 <strong>Lưu ý:</strong> Mỗi từ cần có English word và Vietnamese meaning (bắt buộc).
+          Các trường khác (pronunciation, audio, image, example) là tùy chọn nhưng sẽ làm phong phú
+          nội dung học tập.
         </div>
       )}
 
@@ -580,17 +539,10 @@ export default function VocabularyListEditor({ data, onChange }) {
             </div>
 
             <div style={{ marginBottom: "16px" }}>
-              <p
-                style={{
-                  margin: "0 0 8px 0",
-                  color: "#666",
-                  lineHeight: "1.6",
-                }}
-              >
+              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
                 Paste JSON của một từ hoặc array từ. Format: mỗi từ cần có{" "}
-                <strong>en</strong> (từ tiếng Anh) và <strong>vi</strong> (nghĩa
-                tiếng Việt). Các trường khác như <strong>pronunciation</strong>,{" "}
-                <strong>audio_url</strong>, <strong>image_url</strong>,{" "}
+                <strong>en</strong> (từ tiếng Anh) và <strong>vi</strong> (nghĩa tiếng Việt). Các trường khác như{" "}
+                <strong>pronunciation</strong>, <strong>audio_url</strong>, <strong>image_url</strong>,{" "}
                 <strong>example</strong> là tùy chọn.
               </p>
               <details style={{ marginTop: "12px" }}>
@@ -726,3 +678,4 @@ export default function VocabularyListEditor({ data, onChange }) {
     </div>
   );
 }
+

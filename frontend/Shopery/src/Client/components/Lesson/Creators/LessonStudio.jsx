@@ -1,5 +1,5 @@
 // LessonStudio.jsx - Hệ thống tạo lesson (chỉ Editor, không có Preview)
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import ImportGuide from "./ImportGuide";
 import JSONEditor from "./JSONEditor";
 import "./LessonStudio.css";
@@ -11,26 +11,6 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
   const [lessonData, setLessonData] = useState(
     initialData || getDefaultData(lessonType)
   );
-
-  // Cập nhật lessonData khi initialData thay đổi (khi edit)
-  // Sử dụng ref để tránh reset khi đang edit
-  const prevInitialDataRef = useRef(null);
-
-  useEffect(() => {
-    // Chỉ cập nhật nếu initialData thực sự thay đổi (không phải cùng reference)
-    if (initialData && initialData !== prevInitialDataRef.current) {
-      console.log(
-        "LessonStudio: Updating lessonData from initialData:",
-        initialData
-      );
-      setLessonData(initialData);
-      prevInitialDataRef.current = initialData;
-    } else if (!initialData && prevInitialDataRef.current !== null) {
-      // Nếu không có initialData và trước đó có, reset về default
-      setLessonData(getDefaultData(lessonType));
-      prevInitialDataRef.current = null;
-    }
-  }, [initialData, lessonType]);
 
   // console.log("JSON-LESSON_DATA", JSON.stringify(lessonData, null, 2));
   // State hiển thị templates
@@ -187,11 +167,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
           <VisualEditor
             lessonType={lessonType}
             data={lessonData}
-            onChange={(newData) => {
-              handleDataChange(newData);
-              // Tự động gọi onSave khi có thay đổi để sync với parent
-              onSave?.(newData);
-            }}
+            onChange={handleDataChange}
           />
         </div>
       </div>
@@ -260,16 +236,6 @@ function getDefaultData(lessonType) {
     vocabulary_sentence_completion: {
       type: "vocabulary_sentence_completion",
       questions: [],
-    },
-    video_lesson: {
-      type: "video_lesson",
-      video_url: "",
-      video_type: "youtube",
-      content: "",
-    },
-    grammar_theory: {
-      type: "grammar_theory",
-      sections: [],
     },
   };
   return defaults[lessonType] || {};
