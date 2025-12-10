@@ -125,6 +125,8 @@ exports.getCourseDetail = async (course_id) => {
                 "title",
                 "description",
                 "lesson_type",
+                "lesson_data",
+                "metadata",
                 "video_url",
                 "video_duration",
                 "is_free",

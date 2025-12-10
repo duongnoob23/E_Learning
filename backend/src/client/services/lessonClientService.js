@@ -6,6 +6,9 @@ const lessonClientService = {
   findById: async (lessonId) => {
     return await Lesson.findOne({
       where: { lesson_id: lessonId, is_active: true },
+      attributes: {
+        include: ["lesson_data", "metadata"], // Thêm lesson_data và metadata vào attributes
+      },
       include: [
         {
           model: Module,
@@ -35,7 +38,7 @@ const lessonClientService = {
       offset: offset,
       attributes: [
         "lesson_id", "title", "description", "video_duration", 
-        "lesson_type", "is_free", "view_count", "sort_order"
+        "lesson_type", "lesson_data", "metadata", "is_free", "view_count", "sort_order"
       ]
     });
 
@@ -58,6 +61,9 @@ const lessonClientService = {
       where: { 
         course_id: courseId, 
         is_active: true 
+      },
+      attributes: {
+        include: ["lesson_data", "metadata"], // Thêm lesson_data và metadata
       },
       include: [
         {

@@ -17,9 +17,33 @@ module.exports = (sequelize, DataTypes) => {
       file_attachment: { type: DataTypes.STRING(255), allowNull: true },
       sort_order: { type: DataTypes.INTEGER, allowNull: false },
       lesson_type: {
-        type: DataTypes.ENUM("video", "document", "quiz", "assignment", "live"),
+        type: DataTypes.ENUM(
+          "video",
+          "document",
+          "quiz",
+          "assignment",
+          "live",
+          "vocabulary_list",
+          "vocabulary_matching",
+          "vocabulary_translation",
+          "vocabulary_quiz",
+          "vocabulary_listening",
+          "vocabulary_image_choice",
+          "vocabulary_sentence_completion",
+          "grammar_theory"
+        ),
         allowNull: false,
         defaultValue: "video",
+      },
+      lesson_data: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        comment: "Dữ liệu động theo lesson_type (vocabulary, grammar, quiz...)",
+      },
+      metadata: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        comment: "Metadata bổ sung (tags, difficulty, etc.)",
       },
       is_free: {
         type: DataTypes.BOOLEAN,
