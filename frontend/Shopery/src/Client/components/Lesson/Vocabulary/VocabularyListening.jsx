@@ -195,6 +195,10 @@ export default function VocabularyListening({ lesson }) {
           // Disable nếu đã trả lời đúng
           const isDisabled = isAnswered;
 
+          // Hỗ trợ nhiều format: image_url hoặc image, vi_text hoặc text
+          const cellImageUrl = cell.image_url || cell.image || "";
+          const cellText = cell.text || cell.vi_text || "";
+          
           return (
             <div
               key={cell.id}
@@ -202,24 +206,26 @@ export default function VocabularyListening({ lesson }) {
               className={cellClass}
               onClick={() => !isDisabled && handleCellClick(cell.id)}
             >
-              {cell.image_url && (
+              {cellImageUrl && (
                 <img
-                  src={cell.image_url}
-                  alt={cell.vi_text || ""}
+                  src={cellImageUrl}
+                  alt={cellText}
                   className="vocabulary-listening-cell-image"
                 />
               )}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <span className="vocabulary-listening-cell-text">
-                  {cell.vi_text}
-                </span>
-              </div>
+              {cellText && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <span className="vocabulary-listening-cell-text">
+                    {cellText}
+                  </span>
+                </div>
+              )}
 
               {/* Icon check/x */}
               {isCorrect && (

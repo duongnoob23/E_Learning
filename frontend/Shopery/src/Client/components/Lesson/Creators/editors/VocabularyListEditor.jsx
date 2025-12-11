@@ -11,6 +11,7 @@ import {
   HiXMark,
 } from "react-icons/hi2";
 import VocabularyList from "../../Vocabulary/VocabularyList";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./VocabularyListEditor.css";
 
 export default function VocabularyListEditor({ data, onChange }) {
@@ -213,7 +214,7 @@ export default function VocabularyListEditor({ data, onChange }) {
   };
 
   // Upload image
-  const handleImageUpload = (wordId, e) => {
+  const handleImageUpload = async (wordId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -222,8 +223,16 @@ export default function VocabularyListEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    handleWordChange(wordId, "imageUrl", url);
+    try {
+      // Upload ảnh lên server
+      const serverUrl = await uploadImage(file);
+      
+      // Cập nhật state với server URL
+      handleWordChange(wordId, "imageUrl", serverUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      alert("Lỗi khi upload ảnh: " + (error.message || "Vui lòng thử lại"));
+    }
   };
 
   // Remove image

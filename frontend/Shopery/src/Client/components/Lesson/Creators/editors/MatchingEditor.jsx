@@ -2,6 +2,7 @@
 // Hỗ trợ nhiều bài tập (questions), mỗi bài tập 4x4 (8 cặp)
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyMatching from "../../Vocabulary/VocabularyMatching";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./MatchingEditor.css";
 
 const MAX_PAIRS = 8; // 4x4 = 16 ô = 8 cặp
@@ -222,7 +223,7 @@ export default function MatchingEditor({ data, onChange }) {
   };
 
   // Upload image cho pair
-  const handleImageUpload = (pairId, e) => {
+  const handleImageUpload = async (pairId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -231,19 +232,27 @@ export default function MatchingEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q, idx) =>
-        idx === currentQuestionIndex
-          ? {
-              ...q,
-              pairs: q.pairs.map((p) =>
-                p.id === pairId ? { ...p, imageUrl: url } : p
-              ),
-            }
-          : q
-      )
-    );
+    try {
+      // Upload ảnh lên server
+      const serverUrl = await uploadImage(file);
+      
+      // Cập nhật state với server URL
+      setQuestions((prev) =>
+        prev.map((q, idx) =>
+          idx === currentQuestionIndex
+            ? {
+                ...q,
+                pairs: q.pairs.map((p) =>
+                  p.id === pairId ? { ...p, imageUrl: serverUrl } : p
+                ),
+              }
+            : q
+        )
+      );
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      alert("Lỗi khi upload ảnh: " + (error.message || "Vui lòng thử lại"));
+    }
   };
 
   // Xóa ảnh
