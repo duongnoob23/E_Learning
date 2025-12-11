@@ -115,6 +115,11 @@ export default function VocabularyList({ lesson }) {
             >
               {/* Front - Từ tiếng Anh */}
               <div className="vocabulary-flashcard-front">
+                {currentWord.image_url && (
+                  <div className="vocabulary-word-image">
+                    <img src={currentWord.image_url} alt={currentWord.en} />
+                  </div>
+                )}
                 <div className="vocabulary-word-section">
                   <h2 className="vocabulary-word">{currentWord.en}</h2>
                 </div>
@@ -150,12 +155,17 @@ export default function VocabularyList({ lesson }) {
 
               {/* Back - Nghĩa tiếng Việt */}
               <div className="vocabulary-flashcard-back">
-                <h3 className="vocabulary-definition-title">Định nghĩa:</h3>
-                <p className="vocabulary-definition">{currentWord.vi}</p>
+                {currentWord.image_url && (
+                  <div className="vocabulary-word-image">
+                    <img src={currentWord.image_url} alt={currentWord.en} />
+                  </div>
+                )}
+                <h2 className="vocabulary-definition">{currentWord.vi}</h2>
                 {currentWord.example && (
                   <>
-                    <h4 className="vocabulary-example-title">Ví dụ:</h4>
                     <div className="vocabulary-example">
+                      <p className="vocabulary-example-title">Example: </p>
+                      <div></div>
                       <p className="vocabulary-example-en">
                         {currentWord.example}
                       </p>
@@ -167,11 +177,11 @@ export default function VocabularyList({ lesson }) {
           </div>
 
           {/* Hình ảnh */}
-          {currentWord.image_url && (
+          {/* {currentWord.image_url && (
             <div className="vocabulary-word-image">
               <img src={currentWord.image_url} alt={currentWord.en} />
             </div>
-          )}
+          )} */}
 
           {/* Controls */}
           <div className="vocabulary-flashcard-controls">
@@ -200,7 +210,7 @@ export default function VocabularyList({ lesson }) {
           </div>
 
           {/* Action Buttons - Đánh giá mức độ quen thuộc */}
-          <div className="vocabulary-word-actions">
+          {/* <div className="vocabulary-word-actions">
             <button
               className="vocabulary-action-btn easy-btn"
               onClick={() => handleRating("easy")}
@@ -225,7 +235,7 @@ export default function VocabularyList({ lesson }) {
             >
               ↪️ Đã biết, loại khỏi danh sách ôn tập
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     );

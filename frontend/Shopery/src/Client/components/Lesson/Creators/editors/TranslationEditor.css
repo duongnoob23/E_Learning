@@ -420,7 +420,7 @@
 }
 
 .te-preview-content {
-  padding: 20px;
+  padding: 0px;
   background: white;
 }
 
@@ -440,4 +440,3 @@
     grid-column: 1;
   }
 }
-
