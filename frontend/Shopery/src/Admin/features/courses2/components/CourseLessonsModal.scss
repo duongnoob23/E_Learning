@@ -95,11 +95,10 @@
 
 .admin-course-lessons-dynamic-wrapper {
   width: 100%;
-  background: #ffffff; // 动态题型白底
-  border: 1px solid #e5e7eb; // 细边框
-  border-radius: 12px; // 圆角
-  padding: 16px; // 内边距
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04); // 轻微阴影
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   overflow: hidden;
 }
 
@@ -277,7 +276,8 @@
   margin-left: auto;
 }
 
-.admin-course-lessons-lesson-item--active .admin-course-lessons-lesson-duration {
+.admin-course-lessons-lesson-item--active
+  .admin-course-lessons-lesson-duration {
   color: #2563eb;
 }
 
@@ -306,7 +306,8 @@
   }
 }
 
-.admin-course-lessons-lesson-item-wrapper:hover .admin-course-lessons-lesson-edit-btn {
+.admin-course-lessons-lesson-item-wrapper:hover
+  .admin-course-lessons-lesson-edit-btn {
   opacity: 1;
 }
 
@@ -334,4 +335,3 @@
     background: #f3f4f6;
   }
 }
-

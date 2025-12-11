@@ -1,68 +1,38 @@
-import React, { useMemo, useState } from "react"; // 引入React及hooks，管理状态和缓存
+import React, { useMemo, useState } from "react"; // Dùng React và hooks quản lý trạng thái
 import { HiXMark } from "react-icons/hi2"; // React Icons
-import { renderLessonComponent } from "../../../../Client/components/Lesson/LessonComponentMapper"; // 引入客户端已验证的lesson渲染器，复用9种类型UI
-import { useAdminCourseStructure } from "../hooks/useCoursesAdminQueries"; // 引入获取课程结构的自定义hook
-import "./CourseLessonsModal.scss"; // 引入样式
-import EditLessonModal from "./EditLessonModal"; // 引入编辑lesson弹窗
-
-const convertYoutubeUrlToEmbed = (url) => {
-  if (!url) return null; // 无URL则返回空
-  try {
-    const urlObj = new URL(url); // 解析URL
-    let videoId = ""; // 视频ID
-    let listId = urlObj.searchParams.get("list"); // 播放列表ID
-
-    if (urlObj.searchParams.get("v")) {
-      videoId = urlObj.searchParams.get("v"); // 标准watch参数
-    } else if (urlObj.hostname === "youtu.be") {
-      videoId = urlObj.pathname.replace("/", ""); // 短链形式
-    } else if (urlObj.pathname.startsWith("/embed/")) {
-      videoId = urlObj.pathname.split("/embed/")[1]; // embed形式
-    } else if (urlObj.pathname.startsWith("/shorts/")) {
-      videoId = urlObj.pathname.split("/shorts/")[1]; // shorts形式
-    } else if (urlObj.pathname.startsWith("/live/")) {
-      videoId = urlObj.pathname.split("/live/")[1]; // live形式
-    }
-
-    if (!videoId) return null; // 未识别到ID
-
-    let embedUrl = `https://www.youtube.com/embed/${videoId}`; // 基础embed
-    if (listId) {
-      embedUrl += `?list=${listId}`; // 附加播放列表
-    }
-    return embedUrl; // 返回embed链接
-  } catch (error) {
-    return null; // 解析失败则返回空
-  }
-};
+import { renderLessonComponent } from "../../../../Client/components/Lesson/LessonComponentMapper"; // Dùng renderer bên client cho 9 loại lesson
+import VideoLesson from "../../../../Client/components/Lesson/Video/VideoLesson"; // Component hiển thị video lesson
+import { useAdminCourseStructure } from "../hooks/useCoursesAdminQueries"; // Hook lấy cấu trúc khóa học
+import "./CourseLessonsModal.scss"; // Style
+import EditLessonModal from "./EditLessonModal"; // Modal chỉnh sửa lesson
 
 const lessonTypeLabel = (lesson) => {
-  if (!lesson) return "Bài học"; // 空时默认
-  const type = lesson.lesson_type; // 读取lesson类型
+  if (!lesson) return "Bài học"; // Mặc định
+  const type = lesson.lesson_type; // Đọc loại bài
   switch (type) {
     case "quiz":
-      return "Quiz"; // 小测验
+      return "Quiz"; // Trắc nghiệm
     case "assignment":
-      return "Bài tập"; // 作业
+      return "Bài tập";
     case "vocabulary_list":
-      return "Danh sách từ"; // 词汇列表
+      return "Danh sách từ";
     case "vocabulary_matching":
-      return "Tìm cặp"; // 匹配
+      return "Tìm cặp";
     case "vocabulary_translation":
-      return "Dịch nghĩa"; // 翻译
+      return "Dịch nghĩa";
     case "vocabulary_quiz":
-      return "Trắc nghiệm"; // 词汇选择
+      return "Trắc nghiệm";
     case "vocabulary_listening":
-      return "Nghe từ"; // 听力
+      return "Nghe từ";
     case "vocabulary_image_choice":
-      return "Chọn ảnh"; // 图选
+      return "Chọn ảnh";
     case "vocabulary_sentence_completion":
-      return "Hoàn thiện câu"; // 句子补全
+      return "Hoàn thiện câu";
     case "grammar_theory":
-      return "Lý thuyết"; // 语法
+      return "Lý thuyết";
     case "video":
     default:
-      return "Video"; // 默认视频
+      return "Video";
   }
 };
 
@@ -70,29 +40,35 @@ const LessonContent = ({ lesson }) => {
   if (!lesson) {
     return (
       <div className="admin-course-lessons-video-placeholder">
-        Chọn bài học để xem{/* 选择课程占位 */}
+        Chọn bài học để xem
       </div>
     );
   }
 
+  // Với video lesson, sử dụng VideoLesson component để hỗ trợ cả YouTube và Google Cloud Storage
   if (lesson.lesson_type === "video") {
-    const embed = convertYoutubeUrlToEmbed(lesson.video_url); // 转换视频URL
-    return embed ? (
-      <div className="admin-course-lessons-video-frame">
-        <iframe
-          src={embed}
-          title={lesson.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-    ) : (
-      <div className="admin-course-lessons-video-placeholder">
-        Video không hợp lệ{/* 视频无效占位 */}
+    // Đảm bảo lesson có đầy đủ dữ liệu cho VideoLesson component
+    const lessonForVideo = {
+      ...lesson,
+      lesson_data: lesson.lesson_data || {
+        video_url: lesson.video_url || "",
+        video_type:
+          lesson.lesson_data?.video_type ||
+          (lesson.video_url?.includes("youtube.com") ||
+          lesson.video_url?.includes("youtu.be")
+            ? "youtube"
+            : "direct"),
+      },
+    };
+
+    return (
+      <div className="admin-course-lessons-video-wrapper">
+        <VideoLesson lesson={lessonForVideo} />
       </div>
     );
   }
 
+  // Các lesson type khác sử dụng renderLessonComponent
   return (
     <div className="admin-course-lessons-dynamic-wrapper">
       {renderLessonComponent(lesson)}
@@ -101,49 +77,81 @@ const LessonContent = ({ lesson }) => {
 };
 
 export default function CourseLessonsModal({ open, onClose, courseId }) {
-  const [activeModuleId, setActiveModuleId] = useState(null); // 当前展开的module
-  const [activeLessonId, setActiveLessonId] = useState(null); // 当前选中的lesson
-  const [editingLesson, setEditingLesson] = useState(null); // 正在编辑的lesson
+  const [activeModuleId, setActiveModuleId] = useState(null); // Module đang mở
+  const [activeLessonId, setActiveLessonId] = useState(null); // Lesson đang chọn
+  const [editingLesson, setEditingLesson] = useState(null); // Lesson đang chỉnh sửa
 
   const {
     data: courseStructureRes,
     isLoading,
     error,
-  } = useAdminCourseStructure(courseId, open && !!courseId); // 请求课程结构
-  const courseStructure = courseStructureRes?.DT || null; // 解析数据DT
-  const course = courseStructure?.course || {}; // 课程信息
-  const modules = courseStructure?.modules || []; // 模块列表
+  } = useAdminCourseStructure(courseId, open && !!courseId); // Lấy cấu trúc khóa học
+  const courseStructure = courseStructureRes?.DT || null; // Dữ liệu khóa học
+  const course = courseStructure?.course || {}; // Thông tin khóa
+  const modules = courseStructure?.modules || []; // Danh sách module
 
   React.useEffect(() => {
     if (open && modules.length > 0 && !activeModuleId) {
-      const firstModule = modules[0]; // 默认取第一个模块
-      setActiveModuleId(firstModule.module_id); // 设置激活模块
+      const firstModule = modules[0]; // Chọn module đầu
+      setActiveModuleId(firstModule.module_id); // Đặt module active
       if (firstModule.lessons && firstModule.lessons.length > 0) {
-        setActiveLessonId(firstModule.lessons[0].lesson_id); // 设置激活lesson
+        setActiveLessonId(firstModule.lessons[0].lesson_id); // Đặt lesson active
       }
     }
-  }, [open, modules, activeModuleId]); // 依赖打开状态和数据
+  }, [open, modules, activeModuleId]); // Phụ thuộc trạng thái mở và dữ liệu
 
   const activeModule = useMemo(
     () => modules.find((m) => m.module_id === activeModuleId) || modules[0],
     [modules, activeModuleId]
-  ); // 计算当前模块
+  );
 
   const activeLesson = useMemo(() => {
-    if (!activeModule) return null; // 无模块返回空
-    return (
+    if (!activeModule) return null;
+    const lesson =
       activeModule.lessons?.find((l) => l.lesson_id === activeLessonId) ||
-      activeModule.lessons?.[0]
-    ); // 找到激活lesson或第一个
+      activeModule.lessons?.[0];
+
+    if (!lesson) return null;
+
+    // QUAN TRỌNG: Parse lesson_data nếu là string JSON
+    let parsedLessonData = lesson.lesson_data;
+    if (parsedLessonData && typeof parsedLessonData === "string") {
+      try {
+        parsedLessonData = JSON.parse(parsedLessonData);
+      } catch (e) {
+        console.error("Error parsing lesson_data:", e);
+        parsedLessonData = null;
+      }
+    }
+
+    // Debug: Log lesson_data để kiểm tra (chỉ log một lần khi lesson thay đổi)
+    // Đã comment để tránh log liên tục, uncomment nếu cần debug
+    // if (lesson.lesson_type !== "video") {
+    //   console.log("CourseLessonsModal - Lesson data:", {
+    //     lesson_type: lesson.lesson_type,
+    //     lesson_id: lesson.lesson_id,
+    //     title: lesson.title,
+    //     raw_lesson_data: lesson.lesson_data,
+    //     parsed_lesson_data: parsedLessonData,
+    //     has_questions: parsedLessonData?.questions?.length > 0,
+    //     has_pairs: parsedLessonData?.pairs?.length > 0,
+    //   });
+    // }
+
+    // Trả về lesson với lesson_data đã được parse
+    return {
+      ...lesson,
+      lesson_data: parsedLessonData,
+    };
   }, [activeModule, activeLessonId]);
 
   const handleToggleModule = (moduleId) => {
-    setActiveModuleId((prev) => (prev === moduleId ? null : moduleId)); // 切换展开/收起
+    setActiveModuleId((prev) => (prev === moduleId ? null : moduleId));
   };
 
   const handleSelectLesson = (moduleId, lesson) => {
-    setActiveModuleId(moduleId); // 切换模块
-    setActiveLessonId(lesson.lesson_id); // 设定选中lesson
+    setActiveModuleId(moduleId);
+    setActiveLessonId(lesson.lesson_id);
   };
 
   if (!open) return null;
@@ -163,13 +171,11 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
           <div>
             <div style={{ fontWeight: 600, fontSize: "18px" }}>
               {course?.title || "Course Lessons"}
-              {/* 标题 */}
             </div>
             <div
               style={{ fontSize: "14px", color: "#6b7280", marginTop: "4px" }}
             >
               {modules.length} modules • {course?.total_lessons || 0} lessons
-              {/* 统计 */}
             </div>
           </div>
           <button className="admin-btn-close" onClick={onClose}>
@@ -187,7 +193,7 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
                 padding: "40px",
               }}
             >
-              Loading...{/* 加载态 */}
+              Loading...
             </div>
           ) : error ? (
             <div
@@ -224,15 +230,13 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
                 </div>
 
                 {/* Lesson Info */}
-                <header className="admin-course-lessons-course-header">
+                {/* <header className="admin-course-lessons-course-header">
                   <h2 className="admin-course-lessons-lesson-title">
                     {activeLesson?.title || "Chưa chọn bài học"}
-                    {/* 标题 */}
                   </h2>
                   <div className="admin-course-lessons-lesson-meta">
                     <span className="admin-course-lessons-lesson-badge">
                       {lessonTypeLabel(activeLesson)}
-                      {/* 类型徽标 */}
                     </span>
                   </div>
                   {activeLesson?.content && (
@@ -247,7 +251,7 @@ export default function CourseLessonsModal({ open, onClose, courseId }) {
                       <p>{activeLesson.description}</p>
                     </div>
                   )}
-                </header>
+                </header> */}
               </div>
 
               {/* Right Side - Sidebar */}

@@ -1,9 +1,9 @@
 /* VocabularyListening.css - Nghe từ vựng */
 .vocabulary-listening-container {
-  padding: 32px;
+  padding: 8px;
   background: #fff;
   border-radius: 12px;
-  max-width: 900px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -64,19 +64,18 @@
 
 /* Cell trong grid */
 .vocabulary-listening-cell {
+  padding: 8px;
   aspect-ratio: 1;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 16px;
+  justify-content: space-between;
   cursor: pointer;
   transition: all 0.3s ease;
   background: #fff;
   position: relative;
-  min-height: 140px;
 }
 
 .vocabulary-listening-cell:hover:not(.vocabulary-listening-cell--correct):not(
@@ -145,8 +144,9 @@
 }
 
 .vocabulary-listening-cell-image {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 12px;
@@ -154,10 +154,10 @@
 }
 
 .vocabulary-listening-cell-text {
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   color: #1f2937;
-  font-weight: 500;
+  font-weight: 600;
   word-break: break-word;
 }
 
@@ -181,8 +181,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding: 16px;
+  padding: 8px;
   background: #f9fafb;
   border-radius: 8px;
 }

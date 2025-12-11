@@ -1,7 +1,6 @@
 // GrammarTheory.jsx - Lý thuyết ngữ pháp
-import React from "react";
-import "./GrammarTheory.css";
 import GrammarTheoryEditor from "../Editors/GrammarTheoryEditor";
+import "./GrammarTheory.css";
 
 export default function GrammarTheory({ lesson }) {
   const lessonData = lesson?.lesson_data || {};
@@ -14,7 +13,6 @@ export default function GrammarTheory({ lesson }) {
   if (!editable && contentHtml) {
     return (
       <div className="grammar-theory-container">
-        <h3>{lesson.title}</h3>
         <div
           className="grammar-theory-content"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
@@ -37,7 +35,6 @@ export default function GrammarTheory({ lesson }) {
   if (editable) {
     return (
       <div className="grammar-theory-container">
-        <h3>{lesson.title}</h3>
         <GrammarTheoryEditor
           initialContent={initialHtml || "<p>Nhập nội dung lý thuyết...</p>"}
           examples={examples}
@@ -48,8 +45,6 @@ export default function GrammarTheory({ lesson }) {
 
   return (
     <div className="grammar-theory-container">
-      <h3>{lesson.title}</h3>
-
       <div className="grammar-theory-content">
         {sections.map((section, index) => (
           <div key={index} className="grammar-theory-section">

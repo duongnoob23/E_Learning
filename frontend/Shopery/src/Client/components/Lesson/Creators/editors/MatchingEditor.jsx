@@ -81,7 +81,8 @@ export default function MatchingEditor({ data, onChange }) {
       type: "vocabulary_matching",
       questions: questionsData,
     });
-  }, [questions, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questions]); // Bỏ onChange khỏi dependencies để tránh vòng lặp re-render
 
   // Debounce updateData
   useEffect(() => {
@@ -665,6 +666,81 @@ export default function MatchingEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_matching.
+              Mẫu này có đủ 8 cặp để phù hợp bài yêu cầu 8 ô (4x4).
+            */}
+            {(() => {
+              const sampleMatchingJSON = `{
+  "question_id": "match_01",
+  "pairs": [
+    {
+      "pair_id": 1,
+      "left": { "type": "text_vi", "text": "vui mừng", "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "happy" }
+    },
+    {
+      "pair_id": 2,
+      "left": { "type": "text_vi", "text": "buồn bã", "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "sad" }
+    },
+    {
+      "pair_id": 3,
+      "left": { "type": "text_vi", "text": "tức giận", "image": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "angry" }
+    },
+    {
+      "pair_id": 4,
+      "left": { "type": "text_vi", "text": "sợ hãi", "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "scared" }
+    },
+    {
+      "pair_id": 5,
+      "left": { "type": "text_vi", "text": "ngạc nhiên", "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "surprised" }
+    },
+    {
+      "pair_id": 6,
+      "left": { "type": "text_vi", "text": "phấn khích", "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "excited" }
+    },
+    {
+      "pair_id": 7,
+      "left": { "type": "text_vi", "text": "thất vọng", "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "disappointed" }
+    },
+    {
+      "pair_id": 8,
+      "left": { "type": "text_vi", "text": "tự hào", "image": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "proud" }
+    }
+  ],
+  "grid_size": { "rows": 4, "cols": 4 }
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleMatchingJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -701,109 +777,50 @@ export default function MatchingEditor({ data, onChange }) {
                   }}
                 >
                   {`{
-  "question_id": "123",
+  "question_id": "match_01",
   "pairs": [
     {
       "pair_id": 1,
-      "left": {
-        "type": "text_vi",
-        "text": "vui mừng",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "happy"
-      }
+      "left": { "type": "text_vi", "text": "vui mừng", "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "happy" }
     },
     {
       "pair_id": 2,
-      "left": {
-        "type": "text_vi",
-        "text": "buồn bã",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "sad"
-      }
+      "left": { "type": "text_vi", "text": "buồn bã", "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "sad" }
     },
     {
       "pair_id": 3,
-      "left": {
-        "type": "text_vi",
-        "text": "tức giận",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "angry"
-      }
+      "left": { "type": "text_vi", "text": "tức giận", "image": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "angry" }
     },
     {
       "pair_id": 4,
-      "left": {
-        "type": "text_vi",
-        "text": "sợ hãi",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "scared"
-      }
+      "left": { "type": "text_vi", "text": "sợ hãi", "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "scared" }
     },
     {
       "pair_id": 5,
-      "left": {
-        "type": "text_vi",
-        "text": "ngạc nhiên",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "surprised"
-      }
+      "left": { "type": "text_vi", "text": "ngạc nhiên", "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "surprised" }
     },
     {
       "pair_id": 6,
-      "left": {
-        "type": "text_vi",
-        "text": "phấn khích",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "excited"
-      }
+      "left": { "type": "text_vi", "text": "phấn khích", "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "excited" }
     },
     {
       "pair_id": 7,
-      "left": {
-        "type": "text_vi",
-        "text": "thất vọng",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "disappointed"
-      }
+      "left": { "type": "text_vi", "text": "thất vọng", "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "disappointed" }
     },
     {
       "pair_id": 8,
-      "left": {
-        "type": "text_vi",
-        "text": "tự hào",
-        "image": ""
-      },
-      "right": {
-        "type": "text",
-        "text": "proud"
-      }
+      "left": { "type": "text_vi", "text": "tự hào", "image": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80" },
+      "right": { "type": "text", "text": "proud" }
     }
   ],
-  "grid_size": {
-    "rows": 4,
-    "cols": 4
-  }
+  "grid_size": { "rows": 4, "cols": 4 }
 }`}
                 </pre>
               </details>

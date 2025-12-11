@@ -638,6 +638,43 @@ export default function VocabularyListEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_list.
+            */}
+            {(() => {
+              const sampleListJSON = `{
+  "word_id": 1,
+  "en": "happy",
+  "vi": "vui mừng",
+  "pronunciation": "/ˈhæpi/",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+  "example": "I am very happy today"
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleListJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -686,8 +723,8 @@ export default function VocabularyListEditor({ data, onChange }) {
   "en": "happy",
   "vi": "vui mừng",
   "pronunciation": "/ˈhæpi/",
-  "audio_url": "https://example.com/happy.mp3",
-  "image_url": "https://example.com/happy.jpg",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
   "example": "I am very happy today"
 }`}
                 </pre>

@@ -1,6 +1,6 @@
 /* MatchingEditor.css - Editor cho dạng bài Matching */
 .matching-editor {
-  padding: 20px;
+  padding: 6px;
   max-width: 1200px;
 }
 
@@ -9,10 +9,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  padding-bottom: 8px;
   border-bottom: 2px solid #e5e7eb;
-  gap: 20px;
+  gap: 4px;
 }
 
 .me-header-left {
@@ -26,7 +25,7 @@
 }
 
 .me-title {
-  margin: 0 0 16px 0;
+  margin: 0 0 4px 0;
   font-size: 20px;
   font-weight: 600;
   color: #1f2937;
@@ -183,7 +182,7 @@
 
 /* Preview container */
 .me-preview-container {
-  margin-top: 20px;
+  margin-top: 8px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
@@ -193,7 +192,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 4px 8px;
   background: #f3f4f6;
   border-bottom: 1px solid #e5e7eb;
   font-size: 14px;
@@ -218,7 +217,6 @@
 }
 
 .me-preview-content {
-  padding: 20px;
   background: white;
 }
 
@@ -420,4 +418,3 @@
     grid-column: 1;
   }
 }
-

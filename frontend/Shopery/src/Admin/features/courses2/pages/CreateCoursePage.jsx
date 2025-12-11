@@ -531,23 +531,25 @@ export default function CreateCoursePage({ onClose, onSave }) {
           description: module.description || null,
           sort_order: moduleIndex + 1,
           lessons: (module.lessons || []).map((lesson, lessonIndex) => {
+            // QUAN TRỌNG: Lấy lesson_type từ lesson, không default "video"
             const lessonType =
               lesson.lessonType || lesson.lesson_type || "video";
+            
             const payload = {
               title: lesson.title,
               description: lesson.description || null,
               content: lesson.content || null,
-              lessonType: lessonType,
+              lessonType: lessonType, // QUAN TRỌNG: Gửi đúng lesson_type
               isFree: lesson.isFree || false,
               sort_order: lessonIndex + 1,
             };
 
-            // Nếu có lesson_data, thêm vào payload
+            // QUAN TRỌNG: Luôn gửi lesson_data nếu có (cho tất cả các loại lesson)
             if (lesson.lesson_data) {
               payload.lesson_data = lesson.lesson_data;
             }
 
-            // Backward compatibility: Nếu là video lesson và có videoUrl (từ form cũ), thêm vào
+            // Xử lý video lesson: thêm videoUrl và videoDuration
             if (lessonType === "video") {
               // Nếu có lesson_data.video_url thì dùng, nếu không thì dùng videoUrl cũ
               if (lesson.lesson_data?.video_url) {

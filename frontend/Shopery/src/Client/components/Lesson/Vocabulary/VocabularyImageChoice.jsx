@@ -1,11 +1,12 @@
 // VocabularyImageChoice.jsx - Chọn ảnh (en -> image)
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./VocabularyImageChoice.css";
 
 export default function VocabularyImageChoice({ lesson }) {
   const lessonData = lesson?.lesson_data || {};
   const questions = useMemo(() => {
-    if (lessonData.questions && Array.isArray(lessonData.questions)) return lessonData.questions;
+    if (lessonData.questions && Array.isArray(lessonData.questions))
+      return lessonData.questions;
     if (lessonData.question) return [lessonData.question];
     return [];
   }, [lessonData]);
@@ -17,11 +18,10 @@ export default function VocabularyImageChoice({ lesson }) {
 
   const currentQuestion = questions[currentIndex] || {};
   const images =
-    currentQuestion.images ||
-    currentQuestion.images?.map?.((img) => ({
-      id: img.image_id || img.id,
-      url: img.image_url || img.url,
-      is_correct: img.is_correct,
+    (currentQuestion.images || []).map((img, idx) => ({
+      id: img.image_id || img.id || `img_${idx + 1}`, // 生成唯一id
+      url: img.image_url || img.url || "", // 优先image_url
+      is_correct: !!img.is_correct, // 标记正确
     })) ||
     lessonData.images ||
     [];
@@ -42,7 +42,8 @@ export default function VocabularyImageChoice({ lesson }) {
   };
 
   const isCorrect =
-    images.find((img) => img.id === selectedMap[currentIndex])?.is_correct || false;
+    images.find((img) => img.id === selectedMap[currentIndex])?.is_correct ||
+    false;
 
   const handleNext = () => {
     setCurrentIndex((i) => Math.min(i + 1, questions.length - 1));
@@ -53,13 +54,13 @@ export default function VocabularyImageChoice({ lesson }) {
   };
 
   if (!questions.length && !(lessonData.images || []).length) {
-    return <div className="vocabulary-image-choice-container">Không có dữ liệu</div>;
+    return (
+      <div className="vocabulary-image-choice-container">Không có dữ liệu</div>
+    );
   }
 
   return (
     <div className="vocabulary-image-choice-container">
-      <h3>{lesson.title}</h3>
-      
       {questions.length > 1 && (
         <div className="vocabulary-image-choice-nav">
           <button
@@ -75,9 +76,7 @@ export default function VocabularyImageChoice({ lesson }) {
                 key={idx}
                 className={`vocabulary-image-choice-qnum ${
                   idx === currentIndex ? "active" : ""
-                } ${
-                  showResultMap[idx] ? "done" : ""
-                }`}
+                } ${showResultMap[idx] ? "done" : ""}`}
                 onClick={() => setCurrentIndex(idx)}
               >
                 {idx + 1}
@@ -93,7 +92,7 @@ export default function VocabularyImageChoice({ lesson }) {
           </button>
         </div>
       )}
-      
+
       <div className="vocabulary-image-choice-content">
         <div className="vocabulary-image-choice-question">
           <h2>{currentQuestion.en}</h2>
@@ -107,11 +106,13 @@ export default function VocabularyImageChoice({ lesson }) {
           </p>
         </div>
 
-        <div className={`vocabulary-image-choice-images vocabulary-image-choice-${layout}`}>
+        <div
+          className={`vocabulary-image-choice-images vocabulary-image-choice-${layout}`}
+        >
           {images.map((image) => {
             const isSelected = selectedMap[currentIndex] === image.id;
             let imageClass = "vocabulary-image-choice-item";
-            
+
             if (showResultMap[currentIndex]) {
               if (image.is_correct) {
                 imageClass += " correct";
@@ -134,11 +135,13 @@ export default function VocabularyImageChoice({ lesson }) {
                     <i className="fa fa-check-circle"></i>
                   </div>
                 )}
-                {showResultMap[currentIndex] && isSelected && !image.is_correct && (
-                  <div className="vocabulary-image-choice-overlay wrong">
-                    <i className="fa fa-times-circle"></i>
-                  </div>
-                )}
+                {showResultMap[currentIndex] &&
+                  isSelected &&
+                  !image.is_correct && (
+                    <div className="vocabulary-image-choice-overlay wrong">
+                      <i className="fa fa-times-circle"></i>
+                    </div>
+                  )}
               </div>
             );
           })}
@@ -155,7 +158,11 @@ export default function VocabularyImageChoice({ lesson }) {
         )}
 
         {showResultMap[currentIndex] !== undefined && (
-          <div className={`vocabulary-image-choice-result ${isCorrect ? "correct" : "wrong"}`}>
+          <div
+            className={`vocabulary-image-choice-result ${
+              isCorrect ? "correct" : "wrong"
+            }`}
+          >
             {isCorrect ? (
               <>
                 <i className="fa fa-check-circle"></i>
@@ -173,6 +180,3 @@ export default function VocabularyImageChoice({ lesson }) {
     </div>
   );
 }
-
-
-

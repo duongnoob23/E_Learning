@@ -513,10 +513,11 @@ export default function CourseBuilderTab({
             editingLesson
               ? {
                   title: editingLesson.title || "",
-                  lesson_data: editingLesson.lesson_data || null,
+                  lessonType: editingLesson.lessonType || editingLesson.lesson_type || "video", // QUAN TRỌNG: Truyền lessonType
+                  lesson_data: editingLesson.lesson_data || null, // QUAN TRỌNG: Truyền lesson_data
                   description: editingLesson.description || "",
                   content: editingLesson.content || "",
-                  videoUrl: editingLesson.videoUrl || "",
+                  videoUrl: editingLesson.videoUrl || editingLesson.lesson_data?.video_url || "",
                   videoSource: editingLesson.videoSource || "",
                   isFree: editingLesson.isFree || false,
                 }

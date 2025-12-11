@@ -661,6 +661,54 @@ export default function ListeningEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_listening.
+            */}
+            {(() => {
+              const sampleListeningJSON = `{
+  "question_id": "listen_01",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+  "grid": {
+    "rows": 3,
+    "cols": 3,
+    "cells": [
+      { "id": 1, "vi_text": "vui mừng", "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+      { "id": 2, "vi_text": "buồn bã", "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 3, "vi_text": "tức giận", "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 4, "vi_text": "sợ hãi", "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 5, "vi_text": "ngạc nhiên", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 6, "vi_text": "bối rối", "image_url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 7, "vi_text": "phấn khích", "image_url": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 8, "vi_text": "thất vọng", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 9, "vi_text": "tự hào", "image_url": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80", "is_correct": false }
+    ]
+  },
+  "play_count": 3
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleListeningJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -700,66 +748,21 @@ export default function ListeningEditor({ data, onChange }) {
                   }}
                 >
                   {`{
-  "question_id": "123",
-  "audio_url": "https://example.com/audio.mp3",
+  "question_id": "listen_01",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   "grid": {
     "rows": 3,
     "cols": 3,
     "cells": [
-      {
-        "id": 1,
-        "vi_text": "vui mừng",
-        "image_url": "https://example.com/happy.jpg",
-        "is_correct": true
-      },
-      {
-        "id": 2,
-        "vi_text": "buồn bã",
-        "image_url": "https://example.com/sad.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 3,
-        "vi_text": "tức giận",
-        "image_url": "https://example.com/angry.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 4,
-        "vi_text": "sợ hãi",
-        "image_url": "https://example.com/scared.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 5,
-        "vi_text": "ngạc nhiên",
-        "image_url": "https://example.com/surprised.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 6,
-        "vi_text": "bối rối",
-        "image_url": "https://example.com/confused.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 7,
-        "vi_text": "phấn khích",
-        "image_url": "https://example.com/excited.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 8,
-        "vi_text": "thất vọng",
-        "image_url": "https://example.com/disappointed.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 9,
-        "vi_text": "tự hào",
-        "image_url": "https://example.com/proud.jpg",
-        "is_correct": false
-      }
+      { "id": 1, "vi_text": "vui mừng", "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+      { "id": 2, "vi_text": "buồn bã", "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 3, "vi_text": "tức giận", "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 4, "vi_text": "sợ hãi", "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 5, "vi_text": "ngạc nhiên", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 6, "vi_text": "bối rối", "image_url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 7, "vi_text": "phấn khích", "image_url": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 8, "vi_text": "thất vọng", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 9, "vi_text": "tự hào", "image_url": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80", "is_correct": false }
     ]
   },
   "play_count": 3

@@ -937,6 +937,68 @@ export default function QuizEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu: dùng ảnh thật từ Unsplash để xem trước.
+              sampleQuizJSON giữ nguyên cấu trúc hợp lệ cho vocabulary_quiz.
+            */}
+            {(() => {
+              const sampleQuizJSON = `// Bài tập với question text
+{
+  "question_id": "quiz_01",
+  "question_text": "What does 'happy' mean?",
+  "choices": [
+    {
+      "id": 1,
+      "text": "vui mừng",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+      "is_correct": true
+    },
+    {
+      "id": 2,
+      "text": "buồn bã",
+      "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    },
+    {
+      "id": 3,
+      "text": "tức giận",
+      "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    },
+    {
+      "id": 4,
+      "text": "sợ hãi",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    }
+  ],
+  "shuffle_choices": false
+}
+`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleQuizJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -977,31 +1039,31 @@ export default function QuizEditor({ data, onChange }) {
                 >
                   {`// Bài tập với question text
 {
-  "question_id": "123",
+  "question_id": "quiz_01",
   "question_text": "What does 'happy' mean?",
   "choices": [
     {
       "id": 1,
       "text": "vui mừng",
-      "image_url": "https://example.com/happy.jpg",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
       "is_correct": true
     },
     {
       "id": 2,
       "text": "buồn bã",
-      "image_url": "https://example.com/sad.jpg",
+      "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     },
     {
       "id": 3,
       "text": "tức giận",
-      "image_url": "",
+      "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     },
     {
       "id": 4,
       "text": "sợ hãi",
-      "image_url": "",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     }
   ],

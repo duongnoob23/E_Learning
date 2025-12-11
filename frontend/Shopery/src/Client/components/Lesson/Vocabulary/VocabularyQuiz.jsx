@@ -1,6 +1,6 @@
 // VocabularyQuiz.jsx - Trắc nghiệm từ vựng
 // Hỗ trợ: câu hỏi (en/vi/image/audio), đáp án (text/image+text), click sai->đỏ+vibrate, đúng->xanh+auto next
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./VocabularyQuiz.css";
 
 export default function VocabularyQuiz({ lesson }) {
@@ -141,9 +141,9 @@ export default function VocabularyQuiz({ lesson }) {
 
         {/* English word */}
         {currentQuestion.en && (
-          <h2 className="vocabulary-quiz-question-text">
+          <h3 className="vocabulary-quiz-question-text">
             {currentQuestion.en}
-          </h2>
+          </h3>
         )}
 
         {/* Vietnamese word */}
@@ -191,10 +191,6 @@ export default function VocabularyQuiz({ lesson }) {
         onClick={() => handleChoiceClick(choice.id)}
         disabled={isDisabled}
       >
-        <span className="vocabulary-quiz-choice-letter">
-          {String.fromCharCode(65 + index)}.
-        </span>
-
         {/* Đáp án có thể là: image + text, hoặc chỉ text */}
         {choice.image_url && (
           <img
@@ -204,10 +200,14 @@ export default function VocabularyQuiz({ lesson }) {
           />
         )}
 
-        <span className="vocabulary-quiz-choice-text">
-          {choice.vi || choice.en}
-        </span>
-
+        <div style={{ flexDirection: "row" }}>
+          <span className="vocabulary-quiz-choice-letter">
+            {String.fromCharCode(65 + index)}.
+          </span>
+          <span className="vocabulary-quiz-choice-text">
+            {choice.vi || choice.en}
+          </span>
+        </div>
         {/* Icon check/x */}
         {isCorrect && (
           <i className="fa fa-check vocabulary-quiz-choice-icon vocabulary-quiz-choice-icon--correct"></i>

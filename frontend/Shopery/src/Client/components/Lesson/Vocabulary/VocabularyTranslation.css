@@ -24,12 +24,12 @@
 
 .vocabulary-translation-question-image {
   max-width: 400px;
-  max-height: 500px;
+  max-height: 300px;
   width: 100%;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .vocabulary-translation-vi {

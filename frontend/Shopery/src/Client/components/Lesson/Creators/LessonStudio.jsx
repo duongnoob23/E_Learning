@@ -1,5 +1,5 @@
 // LessonStudio.jsx - Hệ thống tạo lesson (chỉ Editor, không có Preview)
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./LessonStudio.css";
 import VisualEditor from "./VisualEditor";
 
@@ -12,14 +12,11 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
   // Cập nhật lessonData khi initialData thay đổi (khi edit)
   // Sử dụng ref để tránh reset khi đang edit
   const prevInitialDataRef = useRef(null);
+  const saveTimeoutRef = useRef(null);
 
   useEffect(() => {
     // Chỉ cập nhật nếu initialData thực sự thay đổi (không phải cùng reference)
     if (initialData && initialData !== prevInitialDataRef.current) {
-      console.log(
-        "LessonStudio: Updating lessonData from initialData:",
-        initialData
-      );
       setLessonData(initialData);
       prevInitialDataRef.current = initialData;
     } else if (!initialData && prevInitialDataRef.current !== null) {
@@ -29,9 +26,36 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
     }
   }, [initialData, lessonType]);
 
+  // QUAN TRỌNG: Debounce onSave để tránh gọi liên tục gây re-render
+  const debouncedOnSave = useCallback(
+    (newData) => {
+      // Clear timeout trước đó
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+
+      // Set timeout mới - chỉ gọi onSave sau 300ms không có thay đổi
+      saveTimeoutRef.current = setTimeout(() => {
+        onSave?.(newData);
+      }, 300);
+    },
+    [onSave]
+  );
+
+  // Cleanup timeout khi unmount
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Cập nhật dữ liệu lesson
   const handleDataChange = (newData) => {
     setLessonData(newData);
+    // Gọi debounced onSave thay vì gọi trực tiếp
+    debouncedOnSave(newData);
   };
 
   return (
@@ -42,11 +66,7 @@ export default function LessonStudio({ lessonType, initialData, onSave }) {
           <VisualEditor
             lessonType={lessonType}
             data={lessonData}
-            onChange={(newData) => {
-              handleDataChange(newData);
-              // Tự động gọi onSave khi có thay đổi để sync với parent
-              onSave?.(newData);
-            }}
+            onChange={handleDataChange}
           />
         </div>
       </div>

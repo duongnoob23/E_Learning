@@ -702,6 +702,46 @@ export default function ImageChoiceEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_image_choice.
+            */}
+            {(() => {
+              const sampleImageChoiceJSON = `{
+  "question_id": "img_choice_01",
+  "vi_text": "Chọn ảnh mô tả 'happy'",
+  "question_type": "text",
+  "question_text": "Which image shows 'happy'?",
+  "images": [
+    { "image_id": 1, "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+    { "image_id": 2, "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 3, "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 4, "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false }
+  ]
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleImageChoiceJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
                 Paste JSON của một câu hỏi hoặc array câu hỏi. Format: mỗi câu hỏi cần có{" "}
@@ -734,31 +774,15 @@ export default function ImageChoiceEditor({ data, onChange }) {
                   }}
                 >
                   {`{
-  "question_id": "123",
+  "question_id": "img_choice_01",
   "vi_text": "Chọn ảnh mô tả 'happy'",
   "question_type": "text",
   "question_text": "Which image shows 'happy'?",
   "images": [
-    {
-      "image_id": 1,
-      "image_url": "https://example.com/happy.jpg",
-      "is_correct": true
-    },
-    {
-      "image_id": 2,
-      "image_url": "https://example.com/sad.jpg",
-      "is_correct": false
-    },
-    {
-      "image_id": 3,
-      "image_url": "https://example.com/angry.jpg",
-      "is_correct": false
-    },
-    {
-      "image_id": 4,
-      "image_url": "https://example.com/excited.jpg",
-      "is_correct": false
-    }
+    { "image_id": 1, "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+    { "image_id": 2, "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 3, "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 4, "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false }
   ]
 }`}
                 </pre>
