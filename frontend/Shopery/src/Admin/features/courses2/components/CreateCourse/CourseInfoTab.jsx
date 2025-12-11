@@ -1,4 +1,5 @@
 import React, { useEffect, forwardRef } from "react";
+import { HiInformationCircle } from "react-icons/hi2";
 import "./CourseInfoTab.scss";
 
 const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, register }, ref) => {
@@ -48,7 +49,7 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
           maxLength={200}
         />
         <div className="course-info-tab__helper">
-          <span className="course-info-tab__helper-icon">ℹ️</span>
+          <HiInformationCircle className="course-info-tab__helper-icon" />
           Title should be at least 3 characters and less than 200 characters.
         </div>
         {errors.title && (
@@ -70,7 +71,7 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
           onChange={(e) => handleChange("slug", e.target.value)}
         />
         <div className="course-info-tab__helper">
-          <span className="course-info-tab__helper-icon">ℹ️</span>
+          <HiInformationCircle className="course-info-tab__helper-icon" />
           Permalink: https://yourdomain.com/{slug || "new-course"}
         </div>
         {errors.slug && (
@@ -92,7 +93,7 @@ const CourseInfoTab = forwardRef(({ data, onChange, errors = {}, refs = {}, regi
           rows={6}
         />
         <div className="course-info-tab__helper">
-          <span className="course-info-tab__helper-icon">ℹ️</span>
+          <HiInformationCircle className="course-info-tab__helper-icon" />
           HTML or plain text allowed. No emoji. This field is used for search,
           so please be descriptive! (At least 10 characters)
         </div>

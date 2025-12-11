@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { HiXMark } from "react-icons/hi2";
 import LessonStudio from "../../../../../Client/components/Lesson/Creators/LessonStudio";
 import "./LessonStudioModal.scss";
 
@@ -220,7 +221,7 @@ export default function LessonStudioModal({
             onClick={onClose}
             title="Đóng (dữ liệu sẽ được lưu tạm)"
           >
-            ×
+            <HiXMark />
           </button>
         </div>
 

@@ -5,12 +5,11 @@
   background: #f8fafc;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  // padding: 24px;
-  // max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
+  height: 100%; // Chiếm 100% chiều cao của parent (AdminLayout__content) thay vì viewport
+  overflow: hidden; // Loại bỏ scrollbar trang
+  margin: 0;
+  padding: 0;
 }
 
 .course-page2__breadcrumb {
@@ -18,7 +17,8 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 400;
-  margin-bottom: 5px;
+  margin-bottom: 8px; // Giảm margin
+  padding: 0 4px; // Thêm padding nhỏ
 
   span {
     b {
@@ -33,10 +33,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 12px; // Giảm margin từ 24px xuống 12px
+  padding: 0 4px; // Thêm padding nhỏ
 
   .course-page2__title {
-    font-size: 24px;
+    font-size: 22px; // Giảm font size từ 24px xuống 22px
     font-weight: 600;
     color: #0f172a;
   }
@@ -45,34 +46,40 @@
 .course-page2__stats-row {
   width: 100%;
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 10px; // Giảm gap từ 16px xuống 10px để sát nhau hơn
+  margin-bottom: 12px; // Giảm margin từ 24px xuống 12px
+  padding: 0 4px; // Thêm padding nhỏ
 
   .course-page2__stat-card {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px; // Giảm gap từ 16px xuống 12px
     background: #ffffff;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-    padding: 18px;
+    border-radius: 8px; // Giảm border-radius từ 12px xuống 8px
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); // Giảm shadow
+    padding: 12px 14px; // Giảm padding từ 18px xuống 12px 14px
     transition: transform 0.2s, box-shadow 0.2s;
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px); // Giảm transform từ -4px xuống -2px
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Giảm shadow
     }
 
     .course-page2__stat-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 8px;
+      width: 36px; // Giảm từ 46px xuống 36px
+      height: 36px; // Giảm từ 46px xuống 36px
+      border-radius: 6px; // Giảm từ 8px xuống 6px
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+
+      svg {
+        width: 16px; // Giảm icon size
+        height: 16px;
+      }
     }
 
     .course-page2__stat-data {
@@ -81,31 +88,31 @@
       flex: 1;
 
       .course-page2__stat-title {
-        font-size: 14px;
+        font-size: 12px; // Giảm từ 14px xuống 12px
         font-weight: 500;
         color: #64748b;
-        margin-bottom: 4px;
+        margin-bottom: 2px; // Giảm margin
       }
 
       .course-page2__stat-value {
-        font-size: 22px;
+        font-size: 18px; // Giảm từ 22px xuống 18px
         font-weight: 700;
         color: #0f172a;
-        margin-bottom: 4px;
+        margin-bottom: 2px; // Giảm margin
       }
 
       .course-page2__stat-link {
-        font-size: 12px;
+        font-size: 11px; // Giảm từ 12px xuống 11px
         font-weight: 500;
         color: #64748b;
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px; // Giảm gap
         cursor: pointer;
         transition: color 0.2s;
 
         .course-page2__stat-link-arrow {
-          font-size: 14px;
+          font-size: 12px; // Giảm từ 14px xuống 12px
         }
 
         &:hover {
@@ -122,14 +129,19 @@
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  padding: 20px;
+  padding: 16px; // Giảm padding từ 20px xuống 16px
   margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Ngăn scrollbar xuất hiện ở wrapper
+  // Không dùng flex: 1 để table không chiếm hết không gian, giữ chiều cao cố định
 
   .course-page2__table-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px; // Giảm margin từ 16px xuống 12px
+    flex-shrink: 0; // Không shrink header
 
     .course-page2__table-title {
       font-size: 18px;
@@ -265,24 +277,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 10px 14px; // Giảm padding
     background: #f8fafb;
     border-radius: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 12px; // Giảm margin
     font-size: 14px;
     color: #0f172a;
+    flex-shrink: 0; // Không shrink
   }
 }
 
 .course-page2__table-scroll {
-  max-height: 450px;
-  overflow-y: auto;
+  height: 380px; // Chiều cao cố định (khoảng 7-8 rows, mỗi row ~56px)
+  overflow-y: auto; // Cho phép scroll nội dung khi vượt quá height
   overflow-x: auto;
   border-top: 1px solid #e6eaf0;
   border-bottom: 1px solid #e6eaf0;
 
-  scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 #f1f5f9;
+  // Ẩn scrollbar nhưng vẫn cho phép scroll
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE và Edge
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
 }
 
 .course-page2__table {
@@ -447,12 +465,13 @@
 
 .course-page2__table-pagination {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: 5px; // Giảm margin từ 16px xuống 12px
+  padding-top: 12px; // Giảm padding từ 16px xuống 12px
   border-top: 1px solid #e6eaf0;
+  flex-shrink: 0; // Không shrink pagination
 
   .course-page2__pagination-btn {
     padding: 8px 16px;
@@ -669,25 +688,29 @@
 
 .course-modal2__wrapper {
   width: 100%;
-  max-width: 1600px;
-  max-height: 95vh;
+  max-width: 1200px; // Giảm từ 1600px xuống 1200px để hài hòa hơn
+  max-height: 90vh; // Giảm từ 95vh xuống 90vh
   background: #ffffff;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  padding: 15px 30px;
+  padding: 12px 20px; // Giảm padding từ 15px 30px xuống 12px 20px
 }
 
 .course-modal2__header {
-  padding: 16px 20px;
+  padding: 12px 16px; // Giảm padding từ 16px 20px xuống 12px 16px
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
   flex-shrink: 0;
+
+  div {
+    font-size: 16px !important; // Giảm font-size từ 18px xuống 16px
+  }
 }
 
 .course-modal2__btn-close {
@@ -704,6 +727,11 @@
   justify-content: center;
   border-radius: 4px;
   transition: background 0.2s;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 
   &:hover {
     background: #f3f4f6;

@@ -1,19 +1,31 @@
 import React, { useState } from "react";
+// React Icons
+import {
+  HiVideoCamera,
+  HiDocumentText,
+  HiLink,
+  HiArrowPath,
+  HiQuestionMarkCircle,
+  HiSpeakerWave,
+  HiPhoto,
+  HiPencil,
+  HiBookOpen,
+} from "react-icons/hi2";
 import "./CourseBuilderTab.scss";
 import LessonStudioModal from "./LessonStudioModal";
 import LessonTypeSelectionModal from "./LessonTypeSelectionModal";
 
 // Mapping lesson types to icons
 const LESSON_TYPE_ICONS = {
-  video: "🎥",
-  vocabulary_list: "📝",
-  vocabulary_matching: "🔗",
-  vocabulary_translation: "🔄",
-  vocabulary_quiz: "❓",
-  vocabulary_listening: "👂",
-  vocabulary_image_choice: "🖼️",
-  vocabulary_sentence_completion: "✏️",
-  grammar_theory: "📚",
+  video: HiVideoCamera,
+  vocabulary_list: HiDocumentText,
+  vocabulary_matching: HiLink,
+  vocabulary_translation: HiArrowPath,
+  vocabulary_quiz: HiQuestionMarkCircle,
+  vocabulary_listening: HiSpeakerWave,
+  vocabulary_image_choice: HiPhoto,
+  vocabulary_sentence_completion: HiPencil,
+  grammar_theory: HiBookOpen,
 };
 
 const LESSON_TYPE_NAMES = {
@@ -346,11 +358,17 @@ export default function CourseBuilderTab({
                                 color: "#0369a1",
                                 borderRadius: "12px",
                                 fontWeight: "500",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "4px",
                               }}
                             >
-                              {LESSON_TYPE_ICONS[
-                                lesson.lessonType || lesson.lesson_type
-                              ] || "📄"}{" "}
+                              {React.createElement(
+                                LESSON_TYPE_ICONS[
+                                  lesson.lessonType || lesson.lesson_type
+                                ] || HiDocumentText,
+                                { style: { width: "14px", height: "14px" } }
+                              )}
                               {LESSON_TYPE_NAMES[
                                 lesson.lessonType || lesson.lesson_type
                               ] || "Lesson"}
@@ -364,9 +382,13 @@ export default function CourseBuilderTab({
                                 color: "#0369a1",
                                 borderRadius: "12px",
                                 fontWeight: "500",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "4px",
                               }}
                             >
-                              🎥 Video
+                              <HiVideoCamera style={{ width: "14px", height: "14px" }} />
+                              Video
                             </span>
                           )}
                         </div>

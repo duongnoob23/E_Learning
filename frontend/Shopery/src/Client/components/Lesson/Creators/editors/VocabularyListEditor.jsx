@@ -1,6 +1,15 @@
 // VocabularyListEditor.jsx - Editor cho dạng bài Vocabulary List
 // Danh sách từ vựng với flashcard mode
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  HiCheck,
+  HiClipboardDocument,
+  HiDocumentText,
+  HiEye,
+  HiPlus,
+  HiTrash,
+  HiXMark,
+} from "react-icons/hi2";
 import VocabularyList from "../../Vocabulary/VocabularyList";
 import "./VocabularyListEditor.css";
 
@@ -271,7 +280,10 @@ export default function VocabularyListEditor({ data, onChange }) {
         <div className="vle-header-left">
           <h3 className="vle-title">Vocabulary List</h3>
           <button className="vle-add-btn" onClick={handleAddWord}>
-            + Thêm từ mới
+            <HiPlus
+              style={{ marginRight: "6px", width: "16px", height: "16px" }}
+            />
+            Thêm từ mới
           </button>
           <button
             className="vle-add-btn"
@@ -283,7 +295,10 @@ export default function VocabularyListEditor({ data, onChange }) {
             }}
             title="Thêm từ mới từ JSON"
           >
-            📝 Import JSON
+            <HiDocumentText
+              style={{ marginRight: "6px", width: "16px", height: "16px" }}
+            />
+            Import JSON
           </button>
         </div>
         <div className="vle-header-right">
@@ -294,8 +309,8 @@ export default function VocabularyListEditor({ data, onChange }) {
               onChange={(e) => setDisplayMode(e.target.value)}
               className="vle-select"
             >
-              <option value="list">📋 Danh sách</option>
-              <option value="flashcard">🃏 Flashcard</option>
+              <option value="list">Danh sách</option>
+              <option value="flashcard">Flashcard</option>
             </select>
           </div>
           <button
@@ -305,7 +320,21 @@ export default function VocabularyListEditor({ data, onChange }) {
             onClick={handleTogglePreview}
             disabled={validWords.length === 0}
           >
-            {showPreview ? "✕ Đóng Preview" : "👁 Preview"}
+            {showPreview ? (
+              <>
+                <HiXMark
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Đóng Preview
+              </>
+            ) : (
+              <>
+                <HiEye
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Preview
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -321,7 +350,7 @@ export default function VocabularyListEditor({ data, onChange }) {
               className="vle-close-preview"
               onClick={() => setShowPreview(false)}
             >
-              ✕
+              <HiXMark />
             </button>
           </div>
           <div className="vle-preview-content">
@@ -352,14 +381,31 @@ export default function VocabularyListEditor({ data, onChange }) {
               >
                 <div className="vle-word-header">
                   <span className="vle-word-number">
-                    Từ #{index + 1} {isValid && "✅"}
+                    Từ #{index + 1}{" "}
+                    {isValid && (
+                      <HiCheck
+                        style={{
+                          marginLeft: "6px",
+                          width: "16px",
+                          height: "16px",
+                          color: "#10b981",
+                        }}
+                      />
+                    )}
                   </span>
                   <button
                     className="vle-word-remove"
                     onClick={() => handleRemoveWord(word.id)}
                     title="Xóa từ"
                   >
-                    🗑️ Xóa
+                    <HiTrash
+                      style={{
+                        marginRight: "6px",
+                        width: "16px",
+                        height: "16px",
+                      }}
+                    />
+                    Xóa
                   </button>
                 </div>
 
@@ -564,7 +610,17 @@ export default function VocabularyListEditor({ data, onChange }) {
                 marginBottom: "16px",
               }}
             >
-              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm từ mới</h3>
+              <h3
+                style={{
+                  margin: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <HiDocumentText style={{ width: "20px", height: "20px" }} />
+                Import JSON - Thêm từ mới
+              </h3>
               <button
                 onClick={() => setShowImportJSON(false)}
                 style={{
@@ -573,9 +629,12 @@ export default function VocabularyListEditor({ data, onChange }) {
                   fontSize: "24px",
                   cursor: "pointer",
                   color: "#666",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                ×
+                <HiXMark style={{ width: "24px", height: "24px" }} />
               </button>
             </div>
 
@@ -602,7 +661,14 @@ export default function VocabularyListEditor({ data, onChange }) {
                     marginBottom: "8px",
                   }}
                 >
-                  📋 Xem format mẫu
+                  <HiClipboardDocument
+                    style={{
+                      marginRight: "6px",
+                      width: "16px",
+                      height: "16px",
+                    }}
+                  />
+                  Xem format mẫu
                 </summary>
                 <pre
                   style={{
@@ -641,7 +707,10 @@ export default function VocabularyListEditor({ data, onChange }) {
                   fontSize: "14px",
                 }}
               >
-                📋 Paste từ Clipboard
+                <HiClipboardDocument
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Paste từ Clipboard
               </button>
             </div>
 

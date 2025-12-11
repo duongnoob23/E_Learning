@@ -130,16 +130,15 @@
   border-color: #2563eb;
 }
 
-
 /* Content Area */
 .lesson-studio-content {
-  min-height: 600px;
+  min-height: 400px;
 }
 
 .lesson-studio-editor,
 .lesson-studio-preview {
-  padding: 24px;
-  min-height: 600px;
+  padding: 6px 8px;
+  min-height: 400px;
 }
 
 /* Preview */
@@ -192,4 +191,3 @@
     flex-direction: column;
   }
 }
-

@@ -1,6 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 .admin-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100%;
   background-color: #f8f9fa;
 
   &__main {
@@ -45,8 +49,13 @@
   }
 
   &__content {
+    padding: 5px 0px;
+    padding-right: 5px;
     flex: 1;
-    padding: 0 10px;
     background-color: #f8f9fa;
+    overflow: hidden; // Ngăn scrollbar xuất hiện
+    display: flex;
+    flex-direction: column;
+    min-height: 0; // Quan trọng để flex child có thể shrink
   }
 }

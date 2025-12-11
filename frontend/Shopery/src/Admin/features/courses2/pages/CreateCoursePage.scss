@@ -3,15 +3,15 @@
 .course-create-page {
   font-family: "Inter", sans-serif;
   background: #f8fafc;
-  min-height: 100vh;
-  padding: 24px;
+  min-height: auto; // Bỏ min-height 100vh
+  padding: 16px; // Giảm padding từ 24px xuống 16px
 }
 
 .course-create-page__container {
-  max-width: 1400px;
+  max-width: 100%; // Bỏ max-width cố định
   margin: 0 auto;
   display: flex;
-  gap: 24px;
+  gap: 16px; // Giảm gap từ 24px xuống 16px
 }
 
 .course-create-page__left {
@@ -62,6 +62,14 @@
   font-size: 20px;
   font-weight: 700;
   color: #14b8a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .course-create-page__content {
@@ -69,8 +77,8 @@
   border-radius: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
-  padding: 32px;
-  min-height: 500px;
+  padding: 20px; // Giảm padding từ 32px xuống 20px
+  min-height: 400px; // Giảm min-height từ 500px xuống 400px
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -128,7 +136,7 @@
 }
 
 .course-create-page__right {
-  width: 320px;
+  width: 280px; // Giảm width từ 320px xuống 280px
   flex-shrink: 0;
 }
 
@@ -137,10 +145,10 @@
   border-left: 4px solid #a78bfa;
   border-top: 4px solid #a78bfa;
   border-radius: 12px;
-  padding: 24px;
+  padding: 16px; // Giảm padding từ 24px xuống 16px
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   position: sticky;
-  top: 24px;
+  top: 16px; // Giảm top từ 24px xuống 16px
 }
 
 .course-create-page__tips-title {
@@ -170,10 +178,10 @@
 
 .course-create-page__tips-check {
   color: #10b981;
-  font-weight: 700;
-  font-size: 16px;
   flex-shrink: 0;
   margin-top: 2px;
+  width: 16px;
+  height: 16px;
 }
 
 @media (max-width: 1024px) {

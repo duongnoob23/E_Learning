@@ -1,6 +1,6 @@
 // VocabularyList.jsx - Danh sách từ vựng (list/flashcard mode)
 // Hỗ trợ: 2 chế độ (danh sách và flashcard), phát âm UK/US, đánh giá mức độ quen thuộc
-import React, { useState } from "react";
+import { useState } from "react";
 import "./VocabularyList.css";
 
 export default function VocabularyList({ lesson }) {
@@ -74,12 +74,12 @@ export default function VocabularyList({ lesson }) {
     return (
       <div className="vocabulary-list-container vocabulary-flashcard-mode">
         {/* Header */}
-        <div className="vocabulary-list-header">
+        {/* <div className="vocabulary-list-header">
           <h3>{lesson.title}</h3>
           <div className="vocabulary-progress">
             {currentIndex + 1} / {words.length}
           </div>
-        </div>
+        </div> */}
 
         {/* Study Mode Toggle */}
         <div className="vocabulary-study-mode-toggle">
@@ -235,9 +235,9 @@ export default function VocabularyList({ lesson }) {
   return (
     <div className="vocabulary-list-container vocabulary-list-mode">
       {/* Header */}
-      <div className="vocabulary-list-header">
+      {/* <div className="vocabulary-list-header">
         <h3>{lesson.title}</h3>
-      </div>
+      </div> */}
 
       {/* Study Mode Toggle */}
       <div className="vocabulary-study-mode-toggle">
@@ -263,7 +263,10 @@ export default function VocabularyList({ lesson }) {
       <div className="vocabulary-word-list-container">
         <div className="vocabulary-word-list">
           {words.map((word, index) => (
-            <div key={word.word_id || index} className="vocabulary-word-list-item">
+            <div
+              key={word.word_id || index}
+              className="vocabulary-word-list-item"
+            >
               <div className="vocabulary-word-list-number">{index + 1}</div>
               <div className="vocabulary-word-list-content">
                 <div className="vocabulary-word-list-text">

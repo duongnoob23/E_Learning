@@ -1,6 +1,6 @@
 /* VocabularyListEditor.css - Editor cho dạng bài Vocabulary List */
 .vocabulary-list-editor {
-  padding: 20px;
+  padding: 0 5px;
   max-width: 1200px;
 }
 
@@ -9,8 +9,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
   border-bottom: 2px solid #e5e7eb;
   gap: 20px;
   flex-wrap: wrap;
@@ -24,7 +24,7 @@
 
 .vle-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #1f2937;
 }
@@ -39,6 +39,9 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .vle-add-btn:hover {
@@ -60,7 +63,7 @@
 }
 
 .vle-select {
-  padding: 8px 12px;
+  padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 14px;
@@ -86,6 +89,9 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .vle-preview-btn:hover:not(.disabled) {
@@ -108,6 +114,7 @@
   border: 2px dashed #d1d5db;
   border-radius: 8px;
   color: #6b7280;
+  font-size: 14px;
 }
 
 /* Words list */
@@ -146,7 +153,7 @@
 }
 
 .vle-word-number {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #1f2937;
 }
@@ -157,10 +164,13 @@
   color: #dc2626;
   border: 1px solid #fecaca;
   border-radius: 6px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .vle-word-remove:hover {
@@ -181,7 +191,7 @@
 }
 
 .vle-error {
-  font-size: 13px;
+  font-size: 14px;
   color: #92400e;
 }
 
@@ -206,6 +216,9 @@
   font-weight: 600;
   color: #374151;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .required {
@@ -250,6 +263,9 @@
   cursor: pointer;
   transition: all 0.2s;
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .vle-upload-btn:hover {
@@ -284,7 +300,7 @@
   color: white;
   border: none;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -329,7 +345,7 @@
   color: white;
   border: none;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -350,7 +366,7 @@
   background: #eff6ff;
   border-left: 4px solid #3b82f6;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 14px;
   color: #1e40af;
 }
 
@@ -387,6 +403,9 @@
   cursor: pointer;
   border-radius: 4px;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vle-close-preview:hover {
@@ -395,7 +414,7 @@
 }
 
 .vle-preview-content {
-  padding: 20px;
+  padding: 8px;
   background: white;
 }
 
@@ -415,4 +434,3 @@
     grid-column: 1;
   }
 }
-

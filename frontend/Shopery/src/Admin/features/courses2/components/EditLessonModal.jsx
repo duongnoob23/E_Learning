@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HiXMark } from "react-icons/hi2";
 import { useUpdateLesson } from "../hooks/useCoursesAdminMutations";
 import "./EditLessonModal.scss";
 
@@ -139,7 +140,7 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
         <div className="admin-edit-lesson-modal__header">
           <h3>Edit Lesson</h3>
           <button className="admin-btn-close" onClick={onClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
 
