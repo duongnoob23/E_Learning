@@ -2,6 +2,7 @@
 // Audio + Grid 3x3 (9 ô) với VI text + Image, click để chọn đáp án đúng
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyListening from "../../Vocabulary/VocabularyListening";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./ListeningEditor.css";
 
 const GRID_SIZE = 9; // 3x3 = 9 ô
@@ -16,6 +17,33 @@ export default function ListeningEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu khi edit
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => ({
+        id: q.question_id || `q_${idx}_${Date.now()}`,
+        audioUrl: q.audio_url || "",
+        playCount: q.play_count || 3,
+        cells: (q.grid?.cells || []).map((cell, cidx) => ({
+          id: cell.id || `cell_${idx}_${cidx}_${Date.now()}`,
+          text: cell.text || "",
+          imageUrl: cell.image || "",
+          is_correct: !!cell.is_correct,
+        })),
+      }));
+      setQuestions(mapped);
+      setCurrentQuestionIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo question mới
   useEffect(() => {
@@ -39,11 +67,8 @@ export default function ListeningEditor({ data, onChange }) {
     }
   }, [questions.length]);
 
-  // Update data và gửi lên parent
-  const updateData = useCallback(() => {
-    if (isInitialMount.current) return;
-
-    const questionsData = questions.map((q) => ({
+  const mapQuestionsToData = (qs) =>
+    qs.map((q) => ({
       question_id: q.id,
       audio_url: q.audioUrl,
       grid: {
@@ -59,11 +84,19 @@ export default function ListeningEditor({ data, onChange }) {
       play_count: q.playCount || 3,
     }));
 
+  const pushChange = (nextQuestions) => {
+    const questionsData = mapQuestionsToData(nextQuestions);
     onChange({
       type: "vocabulary_listening",
       questions: questionsData,
     });
-  }, [questions, onChange]);
+  };
+
+  // Update data và gửi lên parent
+  const updateData = useCallback(() => {
+    if (isInitialMount.current) return;
+    pushChange(questions);
+  }, [questions]);
 
   // Debounce updateData
   useEffect(() => {
@@ -178,7 +211,7 @@ export default function ListeningEditor({ data, onChange }) {
       setCurrentQuestionIndex(updated.length - 1);
       return updated;
     });
-    
+
     setShowImportJSON(false);
     setJsonInput("");
     setJsonError(null);
@@ -235,7 +268,7 @@ export default function ListeningEditor({ data, onChange }) {
   };
 
   // Upload cell image
-  const handleCellImageUpload = (questionId, cellId, e) => {
+  const handleCellImageUpload = async (questionId, cellId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -244,19 +277,26 @@ export default function ListeningEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId
-          ? {
-              ...q,
-              cells: q.cells.map((c) =>
-                c.id === cellId ? { ...c, imageUrl: url } : c
-              ),
-            }
-          : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId
+            ? {
+                ...q,
+                cells: q.cells.map((c) =>
+                  c.id === cellId ? { ...c, imageUrl: serverUrl } : c
+                ),
+              }
+            : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh ô lưới:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Remove cell image
@@ -634,14 +674,69 @@ export default function ListeningEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_listening.
+            */}
+            {(() => {
+              const sampleListeningJSON = `{
+  "question_id": "listen_01",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+  "grid": {
+    "rows": 3,
+    "cols": 3,
+    "cells": [
+      { "id": 1, "vi_text": "vui mừng", "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+      { "id": 2, "vi_text": "buồn bã", "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 3, "vi_text": "tức giận", "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 4, "vi_text": "sợ hãi", "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 5, "vi_text": "ngạc nhiên", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 6, "vi_text": "bối rối", "image_url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 7, "vi_text": "phấn khích", "image_url": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 8, "vi_text": "thất vọng", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 9, "vi_text": "tự hào", "image_url": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80", "is_correct": false }
+    ]
+  },
+  "play_count": 3
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleListeningJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
-              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
-                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài tập cần có{" "}
-                <strong>audio_url</strong> (URL audio), <strong>grid</strong> với{" "}
-                <strong>cells</strong> (array 9 ô), mỗi cell có{" "}
-                <strong>vi_text</strong> (tiếng Việt), <strong>image_url</strong> (URL ảnh), và{" "}
-                <strong>is_correct</strong> (true/false). Chỉ có 1 cell được đánh dấu{" "}
-                <strong>is_correct: true</strong>.
+              <p
+                style={{
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
+                }}
+              >
+                Paste JSON của một bài tập hoặc array bài tập. Format: mỗi bài
+                tập cần có <strong>audio_url</strong> (URL audio),{" "}
+                <strong>grid</strong> với <strong>cells</strong> (array 9 ô),
+                mỗi cell có <strong>vi_text</strong> (tiếng Việt),{" "}
+                <strong>image_url</strong> (URL ảnh), và{" "}
+                <strong>is_correct</strong> (true/false). Chỉ có 1 cell được
+                đánh dấu <strong>is_correct: true</strong>.
               </p>
               <details style={{ marginTop: "12px" }}>
                 <summary
@@ -666,66 +761,21 @@ export default function ListeningEditor({ data, onChange }) {
                   }}
                 >
                   {`{
-  "question_id": "123",
-  "audio_url": "https://example.com/audio.mp3",
+  "question_id": "listen_01",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   "grid": {
     "rows": 3,
     "cols": 3,
     "cells": [
-      {
-        "id": 1,
-        "vi_text": "vui mừng",
-        "image_url": "https://example.com/happy.jpg",
-        "is_correct": true
-      },
-      {
-        "id": 2,
-        "vi_text": "buồn bã",
-        "image_url": "https://example.com/sad.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 3,
-        "vi_text": "tức giận",
-        "image_url": "https://example.com/angry.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 4,
-        "vi_text": "sợ hãi",
-        "image_url": "https://example.com/scared.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 5,
-        "vi_text": "ngạc nhiên",
-        "image_url": "https://example.com/surprised.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 6,
-        "vi_text": "bối rối",
-        "image_url": "https://example.com/confused.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 7,
-        "vi_text": "phấn khích",
-        "image_url": "https://example.com/excited.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 8,
-        "vi_text": "thất vọng",
-        "image_url": "https://example.com/disappointed.jpg",
-        "is_correct": false
-      },
-      {
-        "id": 9,
-        "vi_text": "tự hào",
-        "image_url": "https://example.com/proud.jpg",
-        "is_correct": false
-      }
+      { "id": 1, "vi_text": "vui mừng", "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+      { "id": 2, "vi_text": "buồn bã", "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 3, "vi_text": "tức giận", "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 4, "vi_text": "sợ hãi", "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 5, "vi_text": "ngạc nhiên", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 6, "vi_text": "bối rối", "image_url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 7, "vi_text": "phấn khích", "image_url": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 8, "vi_text": "thất vọng", "image_url": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+      { "id": 9, "vi_text": "tự hào", "image_url": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80", "is_correct": false }
     ]
   },
   "play_count": 3

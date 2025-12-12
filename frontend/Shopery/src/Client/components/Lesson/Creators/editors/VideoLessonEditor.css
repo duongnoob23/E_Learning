@@ -1,7 +1,5 @@
 /* VideoLessonEditor.css - Editor cho Video Lesson */
 .video-lesson-editor {
-  padding: 20px;
-  max-width: 1000px;
 }
 
 /* Header */
@@ -16,7 +14,7 @@
 
 .vle-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   color: #1f2937;
 }
@@ -59,7 +57,7 @@
 }
 
 .vle-error {
-  font-size: 13px;
+  font-size: 14px;
   color: #92400e;
 }
 
@@ -105,7 +103,7 @@
 
 .vle-hint {
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: #6b7280;
   font-style: italic;
 }
@@ -171,7 +169,7 @@
 }
 
 .vle-example-item {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
 }
 
@@ -188,7 +186,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 14px;
   color: #1f2937;
   word-break: break-all;
 }
@@ -217,7 +215,7 @@
   padding: 4px 8px;
   background: transparent;
   border: none;
-  font-size: 18px;
+  font-size: 14px;
   color: #6b7280;
   cursor: pointer;
   border-radius: 4px;
@@ -230,7 +228,7 @@
 }
 
 .vle-preview-content {
-  padding: 20px;
+  padding: 8px;
   background: white;
 }
 
@@ -246,4 +244,3 @@
     gap: 8px;
   }
 }
-

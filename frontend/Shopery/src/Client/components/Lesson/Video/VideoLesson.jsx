@@ -46,27 +46,50 @@ export default function VideoLesson({ lesson }) {
     }
   };
 
+  // Kiểm tra xem URL có phải Google Cloud Storage không
+  const isGoogleCloudStorageUrl = (url) => {
+    if (!url) return false;
+    try {
+      const urlObj = new URL(url);
+      return (
+        urlObj.hostname.includes("storage.googleapis.com") ||
+        urlObj.hostname.includes("googleapis.com") ||
+        urlObj.hostname.includes("cloud.google.com")
+      );
+    } catch {
+      // Kiểm tra extension nếu không parse được URL
+      return url.match(/\.(mp4|webm|ogg|mov|avi)$/i) !== null;
+    }
+  };
+
   // Xác định video type và URL
   const getVideoSource = () => {
     if (!videoUrl) return null;
 
-    // Nếu video_type là "youtube" hoặc URL là YouTube
-    if (videoType === "youtube" || isYouTubeUrl(videoUrl)) {
+    // Ưu tiên 1: Nếu video_type được chỉ định trong lesson_data
+    if (videoType === "youtube") {
       const embedUrl = convertYoutubeUrlToEmbed(videoUrl);
-      return { type: "youtube", url: embedUrl };
+      return embedUrl ? { type: "youtube", url: embedUrl } : null;
     }
-
-    // Nếu là direct video (Google Cloud Storage hoặc URL trực tiếp)
     if (videoType === "direct") {
       return { type: "direct", url: videoUrl };
     }
 
-    // Auto-detect: nếu là YouTube thì dùng embed, không thì direct
+    // Ưu tiên 2: Auto-detect từ URL
     if (isYouTubeUrl(videoUrl)) {
       const embedUrl = convertYoutubeUrlToEmbed(videoUrl);
-      return { type: "youtube", url: embedUrl };
+      return embedUrl ? { type: "youtube", url: embedUrl } : null;
+    }
+    if (isGoogleCloudStorageUrl(videoUrl)) {
+      return { type: "direct", url: videoUrl };
     }
 
+    // Ưu tiên 3: Nếu có extension video, coi như direct
+    if (videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+      return { type: "direct", url: videoUrl };
+    }
+
+    // Mặc định: coi như direct video
     return { type: "direct", url: videoUrl };
   };
 

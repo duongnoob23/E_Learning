@@ -1,5 +1,6 @@
 // TemplateLibrary.jsx - Thư viện template cho từng loại lesson
 import React from "react";
+import { HiBookOpen, HiXMark } from "react-icons/hi2";
 import "./TemplateLibrary.css";
 
 const TEMPLATES = {
@@ -77,9 +78,12 @@ export default function TemplateLibrary({ lessonType, onSelect, onClose }) {
     <div className="template-library-overlay" onClick={onClose}>
       <div className="template-library" onClick={(e) => e.stopPropagation()}>
         <div className="template-library-header">
-          <h3>📚 Template Library</h3>
+          <h3>
+            <HiBookOpen style={{ marginRight: "8px", width: "20px", height: "20px", display: "inline-block", verticalAlign: "middle" }} />
+            Template Library
+          </h3>
           <button className="template-library-close" onClick={onClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
         <div className="template-library-content">

@@ -793,6 +793,40 @@ export default function SentenceCompletionEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu cho vocabulary_sentence_completion.
+            */}
+            {(() => {
+              const sampleSentenceJSON = `{
+  "vi_text": "Tôi vui mừng khi gặp bạn",
+  "sentence_template": "I am {blank1} to {blank2} you",
+  "shuffled_words": [
+    { "id": 1, "text": "happy" },
+    { "id": 2, "text": "meet" },
+    { "id": 3, "text": "see" },
+    { "id": 4, "text": "sad" }
+  ],
+  "blanks": [
+    { "id": "blank1", "correct_word_id": 1 },
+    { "id": "blank2", "correct_word_id": 2 }
+  ]
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    className="sce-btn sce-btn-success"
+                    onClick={() => {
+                      setJsonInput(sampleSentenceJSON);
+                      setJsonError(null);
+                    }}
+                    style={{ marginRight: "8px" }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -837,10 +871,8 @@ export default function SentenceCompletionEditor({ data, onChange }) {
   "shuffled_words": [
     { "id": 1, "text": "happy" },
     { "id": 2, "text": "meet" },
-    { "id": 3, "text": "sad" },
-    { "id": 4, "text": "see" },
-    { "id": 5, "text": "angry" },
-    { "id": 6, "text": "greet" }
+    { "id": 3, "text": "see" },
+    { "id": 4, "text": "sad" }
   ],
   "blanks": [
     { "id": "blank1", "correct_word_id": 1 },

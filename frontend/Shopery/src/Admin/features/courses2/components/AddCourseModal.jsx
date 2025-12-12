@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { HiXMark } from "react-icons/hi2";
 import "./AddCourseModal.scss";
 
 export default function AddCourseModal({ open, onClose, onSave }) {
@@ -87,7 +88,7 @@ export default function AddCourseModal({ open, onClose, onSave }) {
             Add New Course
           </div>
           <button className="course-modal2__btn-close" onClick={handleClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
 

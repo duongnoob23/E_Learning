@@ -9,25 +9,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 12px; // Giảm từ 20px xuống 12px
+  padding-bottom: 10px; // Giảm từ 16px xuống 10px
+  border-bottom: 1px solid #e5e7eb; // Giảm từ 2px xuống 1px
 }
 
 .visual-editor-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 15px; // Giảm từ 18px xuống 15px
   font-weight: 600;
   color: #1f2937;
 }
 
 .visual-editor-add-btn {
-  padding: 8px 16px;
+  padding: 6px 12px; // Giảm từ 8px 16px xuống 6px 12px
   background: #1ec28b;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 4px; // Giảm từ 6px xuống 4px
+  font-size: 12px; // Giảm từ 14px xuống 12px
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
@@ -45,20 +45,21 @@
 .visual-editor-questions {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px; // Giảm từ 20px xuống 12px
 }
 
 .visual-editor-empty {
   text-align: center;
-  padding: 60px 20px;
+  padding: 30px 16px; // Giảm từ 60px 20px xuống 30px 16px
   color: #6b7280;
+  font-size: 13px; // Thêm font-size nhỏ hơn
 }
 
 .visual-editor-question-card {
   background: #f9fafb;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
+  border: 1px solid #e5e7eb; // Giảm từ 2px xuống 1px
+  border-radius: 6px; // Giảm từ 8px xuống 6px
+  padding: 12px 14px; // Giảm từ 20px xuống 12px 14px
   transition: all 0.2s;
 }
 
@@ -71,13 +72,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  margin-bottom: 10px; // Giảm từ 16px xuống 10px
+  padding-bottom: 8px; // Giảm từ 12px xuống 8px
   border-bottom: 1px solid #e5e7eb;
 }
 
 .visual-editor-question-number {
-  font-size: 14px;
+  font-size: 12px; // Giảm từ 14px xuống 12px
   font-weight: 600;
   color: #1ec28b;
 }
@@ -108,18 +109,18 @@
 }
 
 .visual-editor-field-group {
-  margin-bottom: 20px;
+  margin-bottom: 12px; // Giảm từ 20px xuống 12px
 }
 
 .visual-editor-field-group-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px; // Giảm từ 12px xuống 8px
 }
 
 .visual-editor-field-group label {
-  font-size: 14px;
+  font-size: 11px; // Giảm từ 14px xuống 11px
   font-weight: 600;
   color: #374151;
 }
@@ -143,17 +144,17 @@
 .visual-editor-item-card {
   background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 12px;
-  margin-bottom: 12px;
+  border-radius: 4px; // Giảm từ 6px xuống 4px
+  padding: 8px 10px; // Giảm từ 12px xuống 8px 10px
+  margin-bottom: 8px; // Giảm từ 12px xuống 8px
 }
 
 .visual-editor-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-  font-size: 12px;
+  margin-bottom: 6px; // Giảm từ 8px xuống 6px
+  font-size: 10px; // Giảm từ 12px xuống 10px
   font-weight: 600;
   color: #6b7280;
 }
@@ -171,21 +172,21 @@
 .visual-editor-item-fields {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px; // Giảm từ 8px xuống 6px
 }
 
 .visual-editor-hint {
-  font-size: 12px;
+  font-size: 10px; // Giảm từ 12px xuống 10px
   font-weight: normal;
   color: #6b7280;
 }
 
 .visual-editor-validation {
-  margin-top: 8px;
-  padding: 8px 12px;
+  margin-top: 6px; // Giảm từ 8px xuống 6px
+  padding: 6px 10px; // Giảm từ 8px 12px xuống 6px 10px
   background: #dbeafe;
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: 4px; // Giảm từ 6px xuống 4px
+  font-size: 10px; // Giảm từ 12px xuống 10px
   color: #1e40af;
 }
 

@@ -1,5 +1,12 @@
 // QuickActions.jsx - Quick actions toolbar
 import React, { useState } from "react";
+import {
+  HiPlus,
+  HiClipboardDocument,
+  HiArrowDownTray,
+  HiArrowUpTray,
+  HiBolt,
+} from "react-icons/hi2";
 import "./QuickActions.css";
 
 export default function QuickActions({
@@ -13,26 +20,26 @@ export default function QuickActions({
     {
       id: "add_question",
       label: "Thêm câu hỏi",
-      icon: "➕",
+      icon: HiPlus,
       action: () => onAction("add_question"),
     },
     {
       id: "duplicate_last",
       label: "Nhân đôi câu cuối",
-      icon: "📋",
+      icon: HiClipboardDocument,
       action: () => onAction("duplicate_question", { index: questionsCount - 1 }),
       disabled: questionsCount === 0,
     },
     {
       id: "import_json",
       label: "Import JSON",
-      icon: "📥",
+      icon: HiArrowDownTray,
       action: () => onAction("import_json"),
     },
     {
       id: "export_json",
       label: "Export JSON",
-      icon: "📤",
+      icon: HiArrowUpTray,
       action: () => onAction("export_json"),
     },
   ];
@@ -44,7 +51,8 @@ export default function QuickActions({
         onClick={() => setShowMenu(!showMenu)}
         title="Quick Actions"
       >
-        ⚡ Quick Actions
+        <HiBolt style={{ marginRight: "6px", width: "16px", height: "16px" }} />
+        Quick Actions
       </button>
       {showMenu && (
         <div className="quick-actions-menu">
@@ -62,7 +70,9 @@ export default function QuickActions({
               }}
               disabled={action.disabled}
             >
-              <span className="quick-actions-icon">{action.icon}</span>
+              <span className="quick-actions-icon">
+                {React.createElement(action.icon, { style: { width: "18px", height: "18px" } })}
+              </span>
               <span>{action.label}</span>
             </button>
           ))}

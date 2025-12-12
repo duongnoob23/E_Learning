@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { HiXMark } from "react-icons/hi2";
 import LessonStudio from "../../../../../Client/components/Lesson/Creators/LessonStudio";
 import "./LessonStudioModal.scss";
 
@@ -13,8 +14,11 @@ export default function LessonStudioModal({
   const [lessonTitle, setLessonTitle] = useState("");
   const [errors, setErrors] = useState({});
 
+  // QUAN TRỌNG: Ưu tiên lessonType từ initialData nếu có, nếu không thì dùng từ props
+  const actualLessonType = initialData?.lessonType || initialData?.lesson_type || lessonType || "video";
+  
   // Map "video" thành "video_lesson" cho VisualEditor
-  const mappedLessonType = lessonType === "video" ? "video_lesson" : lessonType;
+  const mappedLessonType = actualLessonType === "video" ? "video_lesson" : actualLessonType;
 
   useEffect(() => {
     if (open) {
@@ -22,9 +26,11 @@ export default function LessonStudioModal({
 
       if (initialData) {
         console.log("Loading initialData:", initialData);
+        const dataLessonType = initialData.lessonType || initialData.lesson_type || lessonType || "video";
+        
         // Nếu là video lesson và có videoUrl từ form cũ, chuyển đổi sang format mới
         if (
-          lessonType === "video" &&
+          dataLessonType === "video" &&
           initialData.videoUrl &&
           !initialData.lesson_data
         ) {
@@ -36,7 +42,7 @@ export default function LessonStudioModal({
             content: initialData.content || "",
           });
         } else {
-          // Load lesson_data từ initialData
+          // Load lesson_data từ initialData (cho tất cả các loại lesson)
           console.log("Loading lesson_data:", initialData.lesson_data);
           setLessonData(initialData.lesson_data || null);
         }
@@ -54,11 +60,12 @@ export default function LessonStudioModal({
     if (open) {
       console.log("LessonStudioModal opened with:", {
         lessonType,
+        actualLessonType,
         mappedLessonType,
         initialData,
       });
     }
-  }, [open, lessonType, mappedLessonType, initialData]);
+  }, [open, lessonType, actualLessonType, mappedLessonType, initialData]);
 
   if (!open) return null;
 
@@ -76,7 +83,7 @@ export default function LessonStudioModal({
     }
 
     // Validate lesson_data theo lesson_type
-    if (lessonType === "video") {
+    if (actualLessonType === "video") {
       // Video lesson: cần video_url trong lesson_data
       if (!lessonData || !lessonData.video_url?.trim()) {
         newErrors.lesson_data = "Vui lòng nhập video URL";
@@ -154,15 +161,15 @@ export default function LessonStudioModal({
     // Tạo payload để lưu
     const payload = {
       title: lessonTitle.trim(),
-      lessonType: lessonType,
-      lesson_data: lessonData,
+      lessonType: actualLessonType, // QUAN TRỌNG: Dùng actualLessonType thay vì lessonType từ props
+      lesson_data: lessonData, // QUAN TRỌNG: Luôn gửi lesson_data cho tất cả các loại lesson
       description: initialData?.description || "",
       content: initialData?.content || "",
       isFree: initialData?.isFree || false,
     };
 
     // Backward compatibility: nếu là video, thêm videoUrl và videoSource
-    if (lessonType === "video" && lessonData) {
+    if (actualLessonType === "video" && lessonData) {
       payload.videoUrl = lessonData.video_url || "";
       payload.videoSource =
         lessonData.video_type === "direct" ? "Google Drive" : "YouTube";
@@ -220,7 +227,7 @@ export default function LessonStudioModal({
             onClick={onClose}
             title="Đóng (dữ liệu sẽ được lưu tạm)"
           >
-            ×
+            <HiXMark />
           </button>
         </div>
 

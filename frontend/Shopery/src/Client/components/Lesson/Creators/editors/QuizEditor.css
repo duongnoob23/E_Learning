@@ -9,8 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
   border-bottom: 2px solid #e5e7eb;
   gap: 20px;
 }
@@ -544,7 +543,7 @@
 }
 
 .qe-preview-content {
-  padding: 20px;
+  padding: 4px;
   background: white;
 }
 
@@ -562,4 +561,3 @@
     gap: 12px;
   }
 }
-

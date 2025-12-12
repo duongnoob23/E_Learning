@@ -1,7 +1,17 @@
 // VocabularyListEditor.jsx - Editor cho dạng bài Vocabulary List
 // Danh sách từ vựng với flashcard mode
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  HiCheck,
+  HiClipboardDocument,
+  HiDocumentText,
+  HiEye,
+  HiPlus,
+  HiTrash,
+  HiXMark,
+} from "react-icons/hi2";
 import VocabularyList from "../../Vocabulary/VocabularyList";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./VocabularyListEditor.css";
 
 export default function VocabularyListEditor({ data, onChange }) {
@@ -204,7 +214,7 @@ export default function VocabularyListEditor({ data, onChange }) {
   };
 
   // Upload image
-  const handleImageUpload = (wordId, e) => {
+  const handleImageUpload = async (wordId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -213,8 +223,16 @@ export default function VocabularyListEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    handleWordChange(wordId, "imageUrl", url);
+    try {
+      // Upload ảnh lên server
+      const serverUrl = await uploadImage(file);
+      
+      // Cập nhật state với server URL
+      handleWordChange(wordId, "imageUrl", serverUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      alert("Lỗi khi upload ảnh: " + (error.message || "Vui lòng thử lại"));
+    }
   };
 
   // Remove image
@@ -271,7 +289,10 @@ export default function VocabularyListEditor({ data, onChange }) {
         <div className="vle-header-left">
           <h3 className="vle-title">Vocabulary List</h3>
           <button className="vle-add-btn" onClick={handleAddWord}>
-            + Thêm từ mới
+            <HiPlus
+              style={{ marginRight: "6px", width: "16px", height: "16px" }}
+            />
+            Thêm từ mới
           </button>
           <button
             className="vle-add-btn"
@@ -283,7 +304,10 @@ export default function VocabularyListEditor({ data, onChange }) {
             }}
             title="Thêm từ mới từ JSON"
           >
-            📝 Import JSON
+            <HiDocumentText
+              style={{ marginRight: "6px", width: "16px", height: "16px" }}
+            />
+            Import JSON
           </button>
         </div>
         <div className="vle-header-right">
@@ -294,8 +318,8 @@ export default function VocabularyListEditor({ data, onChange }) {
               onChange={(e) => setDisplayMode(e.target.value)}
               className="vle-select"
             >
-              <option value="list">📋 Danh sách</option>
-              <option value="flashcard">🃏 Flashcard</option>
+              <option value="list">Danh sách</option>
+              <option value="flashcard">Flashcard</option>
             </select>
           </div>
           <button
@@ -305,7 +329,21 @@ export default function VocabularyListEditor({ data, onChange }) {
             onClick={handleTogglePreview}
             disabled={validWords.length === 0}
           >
-            {showPreview ? "✕ Đóng Preview" : "👁 Preview"}
+            {showPreview ? (
+              <>
+                <HiXMark
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Đóng Preview
+              </>
+            ) : (
+              <>
+                <HiEye
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Preview
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -321,7 +359,7 @@ export default function VocabularyListEditor({ data, onChange }) {
               className="vle-close-preview"
               onClick={() => setShowPreview(false)}
             >
-              ✕
+              <HiXMark />
             </button>
           </div>
           <div className="vle-preview-content">
@@ -352,14 +390,31 @@ export default function VocabularyListEditor({ data, onChange }) {
               >
                 <div className="vle-word-header">
                   <span className="vle-word-number">
-                    Từ #{index + 1} {isValid && "✅"}
+                    Từ #{index + 1}{" "}
+                    {isValid && (
+                      <HiCheck
+                        style={{
+                          marginLeft: "6px",
+                          width: "16px",
+                          height: "16px",
+                          color: "#10b981",
+                        }}
+                      />
+                    )}
                   </span>
                   <button
                     className="vle-word-remove"
                     onClick={() => handleRemoveWord(word.id)}
                     title="Xóa từ"
                   >
-                    🗑️ Xóa
+                    <HiTrash
+                      style={{
+                        marginRight: "6px",
+                        width: "16px",
+                        height: "16px",
+                      }}
+                    />
+                    Xóa
                   </button>
                 </div>
 
@@ -564,7 +619,17 @@ export default function VocabularyListEditor({ data, onChange }) {
                 marginBottom: "16px",
               }}
             >
-              <h3 style={{ margin: 0 }}>📝 Import JSON - Thêm từ mới</h3>
+              <h3
+                style={{
+                  margin: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <HiDocumentText style={{ width: "20px", height: "20px" }} />
+                Import JSON - Thêm từ mới
+              </h3>
               <button
                 onClick={() => setShowImportJSON(false)}
                 style={{
@@ -573,11 +638,51 @@ export default function VocabularyListEditor({ data, onChange }) {
                   fontSize: "24px",
                   cursor: "pointer",
                   color: "#666",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                ×
+                <HiXMark style={{ width: "24px", height: "24px" }} />
               </button>
             </div>
+
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_list.
+            */}
+            {(() => {
+              const sampleListJSON = `{
+  "word_id": 1,
+  "en": "happy",
+  "vi": "vui mừng",
+  "pronunciation": "/ˈhæpi/",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+  "example": "I am very happy today"
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleListJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
 
             <div style={{ marginBottom: "16px" }}>
               <p
@@ -602,7 +707,14 @@ export default function VocabularyListEditor({ data, onChange }) {
                     marginBottom: "8px",
                   }}
                 >
-                  📋 Xem format mẫu
+                  <HiClipboardDocument
+                    style={{
+                      marginRight: "6px",
+                      width: "16px",
+                      height: "16px",
+                    }}
+                  />
+                  Xem format mẫu
                 </summary>
                 <pre
                   style={{
@@ -620,8 +732,8 @@ export default function VocabularyListEditor({ data, onChange }) {
   "en": "happy",
   "vi": "vui mừng",
   "pronunciation": "/ˈhæpi/",
-  "audio_url": "https://example.com/happy.mp3",
-  "image_url": "https://example.com/happy.jpg",
+  "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
   "example": "I am very happy today"
 }`}
                 </pre>
@@ -641,7 +753,10 @@ export default function VocabularyListEditor({ data, onChange }) {
                   fontSize: "14px",
                 }}
               >
-                📋 Paste từ Clipboard
+                <HiClipboardDocument
+                  style={{ marginRight: "6px", width: "16px", height: "16px" }}
+                />
+                Paste từ Clipboard
               </button>
             </div>
 

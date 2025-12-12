@@ -1,59 +1,72 @@
 import React from "react";
+// React Icons
+import {
+  HiVideoCamera,
+  HiDocumentText,
+  HiLink,
+  HiArrowPath,
+  HiQuestionMarkCircle,
+  HiSpeakerWave,
+  HiPhoto,
+  HiPencil,
+  HiBookOpen,
+  HiXMark,
+} from "react-icons/hi2";
 import "./LessonTypeSelectionModal.scss";
 
 const LESSON_TYPES = [
   {
     id: "video",
     name: "Video Lesson",
-    icon: "🎥",
+    icon: HiVideoCamera,
     description: "Video bài giảng từ YouTube, Vimeo, hoặc upload",
   },
   {
     id: "vocabulary_list",
     name: "Vocabulary List",
-    icon: "📝",
+    icon: HiDocumentText,
     description: "Danh sách từ vựng với hình ảnh, audio, ví dụ",
   },
   {
     id: "vocabulary_matching",
     name: "Vocabulary Matching",
-    icon: "🔗",
+    icon: HiLink,
     description: "Nối từ tiếng Việt với tiếng Anh",
   },
   {
     id: "vocabulary_translation",
     name: "Vocabulary Translation",
-    icon: "🔄",
+    icon: HiArrowPath,
     description: "Dịch từ tiếng Việt sang tiếng Anh",
   },
   {
     id: "vocabulary_quiz",
     name: "Vocabulary Quiz",
-    icon: "❓",
+    icon: HiQuestionMarkCircle,
     description: "Trắc nghiệm từ vựng với nhiều lựa chọn",
   },
   {
     id: "vocabulary_listening",
     name: "Vocabulary Listening",
-    icon: "👂",
+    icon: HiSpeakerWave,
     description: "Nghe và chọn đáp án đúng",
   },
   {
     id: "vocabulary_image_choice",
     name: "Image Choice",
-    icon: "🖼️",
+    icon: HiPhoto,
     description: "Chọn hình ảnh đúng theo câu hỏi",
   },
   {
     id: "vocabulary_sentence_completion",
     name: "Sentence Completion",
-    icon: "✏️",
+    icon: HiPencil,
     description: "Điền từ vào chỗ trống trong câu",
   },
   {
     id: "grammar_theory",
     name: "Grammar Theory",
-    icon: "📚",
+    icon: HiBookOpen,
     description: "Lý thuyết ngữ pháp với ví dụ",
   },
 ];
@@ -88,7 +101,7 @@ export default function LessonTypeSelectionModal({ open, onClose, onSelect }) {
             className="lesson-type-selection-modal__close"
             onClick={onClose}
           >
-            ×
+            <HiXMark />
           </button>
         </div>
 
@@ -101,7 +114,7 @@ export default function LessonTypeSelectionModal({ open, onClose, onSelect }) {
                 onClick={() => handleSelect(type.id)}
               >
                 <div className="lesson-type-selection-modal__icon">
-                  {type.icon}
+                  {React.createElement(type.icon, { style: { width: "32px", height: "32px" } })}
                 </div>
                 <h4 className="lesson-type-selection-modal__name">
                   {type.name}

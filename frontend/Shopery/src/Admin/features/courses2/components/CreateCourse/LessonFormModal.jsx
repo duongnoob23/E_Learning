@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HiXMark } from "react-icons/hi2";
 import "./LessonFormModal.scss";
 
 const VIDEO_SOURCES = ["YouTube", "Vimeo", "Google Drive", "Local Upload"];
@@ -81,7 +82,7 @@ export default function LessonFormModal({ open, onClose, lesson, onSave }) {
         <div className="lesson-form-modal__header">
           <h3>{lesson ? "Edit Lesson" : "Add New Lesson"}</h3>
           <button className="lesson-form-modal__close" onClick={onClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
 

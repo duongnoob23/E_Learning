@@ -1,5 +1,6 @@
 // JSONEditor.jsx - Component để nhập/paste JSON trực tiếp
 import React, { useState } from "react";
+import { HiDocumentText, HiXMark, HiClipboardDocument, HiSparkles } from "react-icons/hi2";
 import "./JSONEditor.css";
 
 export default function JSONEditor({ lessonType, currentData, onImport, onClose }) {
@@ -44,18 +45,23 @@ export default function JSONEditor({ lessonType, currentData, onImport, onClose 
     <div className="json-editor-overlay" onClick={onClose}>
       <div className="json-editor" onClick={(e) => e.stopPropagation()}>
         <div className="json-editor-header">
-          <h3>📝 Nhập JSON</h3>
+          <h3>
+            <HiDocumentText style={{ marginRight: "8px", width: "20px", height: "20px", display: "inline-block", verticalAlign: "middle" }} />
+            Nhập JSON
+          </h3>
           <button className="json-editor-close" onClick={onClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
         <div className="json-editor-content">
           <div className="json-editor-actions">
             <button className="json-editor-btn" onClick={handlePaste}>
-              📋 Paste từ Clipboard
+              <HiClipboardDocument style={{ marginRight: "6px", width: "16px", height: "16px" }} />
+              Paste từ Clipboard
             </button>
             <button className="json-editor-btn" onClick={handleFormat}>
-              ✨ Format JSON
+              <HiSparkles style={{ marginRight: "6px", width: "16px", height: "16px" }} />
+              Format JSON
             </button>
           </div>
           {error && <div className="json-editor-error">{error}</div>}

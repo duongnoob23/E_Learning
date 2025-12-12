@@ -1,7 +1,8 @@
 // TranslationEditor.jsx - Editor cho dạng bài Vocabulary Translation
 // Nhập theo list từ, 1 card = 1 từ, hỗ trợ nhiều đáp án đúng
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyTranslation from "../../Vocabulary/VocabularyTranslation";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./TranslationEditor.css";
 
 export default function TranslationEditor({ data, onChange }) {
@@ -14,6 +15,30 @@ export default function TranslationEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const answerInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu khi edit
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => ({
+        id: q.question_id || `q_${idx}_${Date.now()}`,
+        vi: q.vi_text || "",
+        imageUrl: q.image_url || "",
+        answers: q.correct_answer
+          ? q.correct_answer.split(",").map((a) => a.trim())
+          : [""],
+      }));
+      setItems(mapped);
+      setPreviewIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo item mới
   useEffect(() => {
@@ -32,7 +57,10 @@ export default function TranslationEditor({ data, onChange }) {
     // Convert items sang format của component
     // VocabularyTranslation hỗ trợ nhiều đáp án cách nhau dấu phẩy
     const questions = items
-      .filter((item) => item.vi.trim() && item.imageUrl && item.answers.some((a) => a.trim()))
+      .filter(
+        (item) =>
+          item.vi.trim() && item.imageUrl && item.answers.some((a) => a.trim())
+      )
       .map((item) => ({
         question_id: item.id,
         vi_text: item.vi.trim(),
@@ -83,8 +111,8 @@ export default function TranslationEditor({ data, onChange }) {
     );
   };
 
-  // Upload image
-  const handleImageUpload = (itemId, e) => {
+  // Upload image lên server
+  const handleImageUpload = async (itemId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -93,16 +121,25 @@ export default function TranslationEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setItems((prev) =>
-      prev.map((item) => (item.id === itemId ? { ...item, imageUrl: url } : item))
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setItems((prev) =>
+        prev.map((item) =>
+          item.id === itemId ? { ...item, imageUrl: serverUrl } : item
+        )
+      );
+    } catch (error) {
+      console.error("Lỗi upload ảnh:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Xóa ảnh
   const handleRemoveImage = (itemId) => {
     setItems((prev) =>
-      prev.map((item) => (item.id === itemId ? { ...item, imageUrl: "" } : item))
+      prev.map((item) =>
+        item.id === itemId ? { ...item, imageUrl: "" } : item
+      )
     );
   };
 
@@ -110,9 +147,7 @@ export default function TranslationEditor({ data, onChange }) {
   const handleAddAnswer = (itemId) => {
     setItems((prev) =>
       prev.map((item) =>
-        item.id === itemId
-          ? { ...item, answers: [...item.answers, ""] }
-          : item
+        item.id === itemId ? { ...item, answers: [...item.answers, ""] } : item
       )
     );
   };
@@ -180,12 +215,14 @@ export default function TranslationEditor({ data, onChange }) {
   const handleAnswerKeyDown = (itemId, answerIndex, e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      const currentAnswer = items.find((i) => i.id === itemId)?.answers[answerIndex] || "";
+      const currentAnswer =
+        items.find((i) => i.id === itemId)?.answers[answerIndex] || "";
       if (currentAnswer.trim()) {
         handleAddAnswer(itemId);
         // Focus vào input mới sau khi render
         setTimeout(() => {
-          const nextInput = answerInputRefs.current[`${itemId}-${answerIndex + 1}`];
+          const nextInput =
+            answerInputRefs.current[`${itemId}-${answerIndex + 1}`];
           if (nextInput) nextInput.focus();
         }, 0);
       }
@@ -206,7 +243,9 @@ export default function TranslationEditor({ data, onChange }) {
   const handleTogglePreview = () => {
     const validItems = items.filter((item) => validateItem(item).length === 0);
     if (validItems.length === 0) {
-      alert("Vui lòng nhập ít nhất 1 từ đầy đủ (VI + Image + Answer) để preview");
+      alert(
+        "Vui lòng nhập ít nhất 1 từ đầy đủ (VI + Image + Answer) để preview"
+      );
       return;
     }
     setShowPreview(!showPreview);
@@ -218,7 +257,8 @@ export default function TranslationEditor({ data, onChange }) {
   // Tạo lesson data cho preview
   const getPreviewLessonData = () => {
     const validItems = items.filter((item) => validateItem(item).length === 0);
-    if (validItems.length === 0 || previewIndex >= validItems.length) return null;
+    if (validItems.length === 0 || previewIndex >= validItems.length)
+      return null;
 
     const item = validItems[previewIndex];
     return {
@@ -340,7 +380,9 @@ export default function TranslationEditor({ data, onChange }) {
         </div>
         <div className="te-header-right">
           <button
-            className={`te-preview-btn ${validItems.length > 0 ? "" : "disabled"}`}
+            className={`te-preview-btn ${
+              validItems.length > 0 ? "" : "disabled"
+            }`}
             onClick={handleTogglePreview}
             disabled={validItems.length === 0}
           >
@@ -434,7 +476,9 @@ export default function TranslationEditor({ data, onChange }) {
                         <input
                           type="text"
                           value={item.vi}
-                          onChange={(e) => handleViChange(item.id, e.target.value)}
+                          onChange={(e) =>
+                            handleViChange(item.id, e.target.value)
+                          }
                           className="te-input"
                           placeholder="Ví dụ: hạnh phúc"
                         />
@@ -456,7 +500,9 @@ export default function TranslationEditor({ data, onChange }) {
                           {!item.imageUrl ? (
                             <button
                               className="te-upload-btn"
-                              onClick={() => fileInputRefs.current[item.id]?.click()}
+                              onClick={() =>
+                                fileInputRefs.current[item.id]?.click()
+                              }
                             >
                               📤 Upload image
                             </button>
@@ -481,7 +527,8 @@ export default function TranslationEditor({ data, onChange }) {
                           Correct English answer(s){" "}
                           <span className="required">*</span>
                           <span className="te-hint">
-                            (Enter để thêm đáp án, paste nhiều đáp án cách nhau dấu phẩy)
+                            (Enter để thêm đáp án, paste nhiều đáp án cách nhau
+                            dấu phẩy)
                           </span>
                         </label>
                         <div className="te-answers-list">
@@ -496,7 +543,11 @@ export default function TranslationEditor({ data, onChange }) {
                                 type="text"
                                 value={answer}
                                 onChange={(e) =>
-                                  handleAnswerChange(item.id, ansIndex, e.target.value)
+                                  handleAnswerChange(
+                                    item.id,
+                                    ansIndex,
+                                    e.target.value
+                                  )
                                 }
                                 onPaste={(e) =>
                                   handleAnswerPaste(item.id, ansIndex, e)
@@ -538,8 +589,9 @@ export default function TranslationEditor({ data, onChange }) {
           {/* Hint */}
           {items.length > 0 && (
             <div className="te-hint-box">
-              💡 <strong>Mẹo:</strong> Nhấn Enter trong ô đáp án để thêm đáp án mới. Paste
-              nhiều đáp án cách nhau dấu phẩy để tự động tách thành nhiều đáp án.
+              💡 <strong>Mẹo:</strong> Nhấn Enter trong ô đáp án để thêm đáp án
+              mới. Paste nhiều đáp án cách nhau dấu phẩy để tự động tách thành
+              nhiều đáp án.
             </div>
           )}
         </>
@@ -597,12 +649,53 @@ export default function TranslationEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_translation.
+            */}
+            {(() => {
+              const sampleTranslationJSON = `{
+  "vi_text": "hạnh phúc",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+  "correct_answer": "happy, joyful, cheerful"
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleTranslationJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
-              <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
+              <p
+                style={{
+                  margin: "0 0 8px 0",
+                  color: "#666",
+                  lineHeight: "1.6",
+                }}
+              >
                 Paste JSON của một từ hoặc array từ. Format: mỗi từ cần có{" "}
                 <strong>vi_text</strong> (từ tiếng Việt),{" "}
                 <strong>image_url</strong> (URL ảnh, có thể để trống), và{" "}
-                <strong>correct_answer</strong> (đáp án tiếng Anh, có thể nhiều đáp án cách nhau dấu phẩy - hệ thống sẽ tự động tách và chấp nhận bất kỳ đáp án nào trong danh sách).
+                <strong>correct_answer</strong> (đáp án tiếng Anh, có thể nhiều
+                đáp án cách nhau dấu phẩy - hệ thống sẽ tự động tách và chấp
+                nhận bất kỳ đáp án nào trong danh sách).
               </p>
               <details style={{ marginTop: "12px" }}>
                 <summary
@@ -628,7 +721,7 @@ export default function TranslationEditor({ data, onChange }) {
                 >
                   {`{
   "vi_text": "hạnh phúc",
-  "image_url": "https://example.com/happy.jpg",
+  "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
   "correct_answer": "happy, joyful, cheerful"
 }`}
                 </pre>
@@ -733,4 +826,3 @@ export default function TranslationEditor({ data, onChange }) {
     </div>
   );
 }
-

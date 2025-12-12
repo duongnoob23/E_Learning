@@ -12,61 +12,11 @@ import VocabularySentenceCompletion from "./Vocabulary/VocabularySentenceComplet
 import GrammarTheory from "./Grammar/GrammarTheory";
 import VideoLesson from "./Video/VideoLesson";
 
-// Video component (hiện tại)
-const VideoPlayer = ({ lesson }) => {
-  const convertYoutubeUrlToEmbed = (url) => {
-    if (!url) return null;
-    try {
-      const urlObj = new URL(url);
-      let videoId = "";
-      
-      if (urlObj.searchParams.get("v")) {
-        videoId = urlObj.searchParams.get("v");
-      } else if (urlObj.hostname === "youtu.be") {
-        videoId = urlObj.pathname.replace("/", "");
-      } else if (urlObj.pathname.startsWith("/embed/")) {
-        videoId = urlObj.pathname.split("/embed/")[1];
-      }
-      
-      if (!videoId) return null;
-      return `https://www.youtube.com/embed/${videoId}`;
-    } catch (error) {
-      return null;
-    }
-  };
-
-  const embedUrl = convertYoutubeUrlToEmbed(lesson.video_url);
-  
-  return (
-    <div className="lesson-video-container">
-      {embedUrl ? (
-        <iframe
-          src={embedUrl}
-          title={lesson.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="lesson-video-iframe"
-        />
-      ) : (
-        <div className="lesson-video-placeholder">
-          Video không khả dụng
-        </div>
-      )}
-      {lesson.content && (
-        <div className="lesson-content">
-          {lesson.content.split("\n").map((line, idx) => (
-            <p key={idx}>{line}</p>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
 // Component mapper
 export const LessonComponentMapper = {
   // Loại cũ (giữ lại để backward compatibility)
-  video: VideoPlayer,
+  // Sử dụng VideoLesson để hỗ trợ cả YouTube và Google Cloud Storage
+  video: VideoLesson,
   document: ({ lesson }) => <div>Document: {lesson.title}</div>,
   quiz: ({ lesson }) => <div>Quiz: {lesson.title}</div>,
   assignment: ({ lesson }) => <div>Assignment: {lesson.title}</div>,

@@ -14,9 +14,46 @@ export default function VideoLessonEditor({ data, onChange }) {
   // Load data từ props
   useEffect(() => {
     if (data) {
-      setVideoUrl(data.video_url || data.lesson_data?.video_url || "");
-      setVideoType(data.video_type || data.lesson_data?.video_type || "youtube");
-      setContent(data.content || data.lesson_data?.content || "");
+      const videoUrlFromData = data.video_url || data.lesson_data?.video_url || "";
+      const videoTypeFromData = data.video_type || data.lesson_data?.video_type;
+      const contentFromData = data.content || data.lesson_data?.content || "";
+      
+      setVideoUrl(videoUrlFromData);
+      setContent(contentFromData);
+      
+      // Nếu có video_type trong data, dùng nó; nếu không, auto-detect từ URL
+      if (videoTypeFromData) {
+        setVideoType(videoTypeFromData);
+      } else if (videoUrlFromData) {
+        // Auto-detect từ URL
+        try {
+          const urlObj = new URL(videoUrlFromData);
+          const isYouTube =
+            urlObj.hostname.includes("youtube.com") ||
+            urlObj.hostname.includes("youtu.be");
+          const isGoogleCloud =
+            urlObj.hostname.includes("storage.googleapis.com") ||
+            urlObj.hostname.includes("googleapis.com") ||
+            videoUrlFromData.match(/\.(mp4|webm|ogg|mov|avi)$/i);
+          
+          if (isYouTube) {
+            setVideoType("youtube");
+          } else if (isGoogleCloud) {
+            setVideoType("direct");
+          } else {
+            setVideoType("youtube"); // Default
+          }
+        } catch {
+          // Invalid URL, kiểm tra extension
+          if (videoUrlFromData.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+            setVideoType("direct");
+          } else {
+            setVideoType("youtube"); // Default
+          }
+        }
+      } else {
+        setVideoType("youtube"); // Default khi không có URL
+      }
     }
     isInitialMount.current = false;
   }, [data]);
@@ -49,21 +86,31 @@ export default function VideoLessonEditor({ data, onChange }) {
   const handleVideoUrlChange = (value) => {
     setVideoUrl(value);
 
-    // Auto-detect: nếu URL là YouTube thì set type là youtube
+    // Auto-detect: nếu URL là YouTube thì set type là youtube, Google Cloud thì direct
     if (value) {
       try {
         const urlObj = new URL(value);
         const isYouTube =
           urlObj.hostname.includes("youtube.com") ||
           urlObj.hostname.includes("youtu.be");
+        const isGoogleCloud =
+          urlObj.hostname.includes("storage.googleapis.com") ||
+          urlObj.hostname.includes("googleapis.com") ||
+          value.match(/\.(mp4|webm|ogg|mov|avi)$/i);
+        
         if (isYouTube) {
           setVideoType("youtube");
-        } else if (videoType === "youtube") {
+        } else if (isGoogleCloud) {
+          setVideoType("direct");
+        } else if (videoType === "youtube" && !isYouTube) {
           // Nếu đang là youtube nhưng URL không phải YouTube, chuyển sang direct
           setVideoType("direct");
         }
       } catch {
-        // Invalid URL, giữ nguyên type
+        // Invalid URL hoặc không parse được, kiểm tra extension
+        if (value.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+          setVideoType("direct");
+        }
       }
     }
   };

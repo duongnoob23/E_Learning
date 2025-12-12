@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useAdminCourseDetail, useAdminCourseStructure } from "../hooks/useCoursesAdminQueries";
+import React, { useEffect, useState } from "react";
+import { HiXMark } from "react-icons/hi2";
+import { renderLessonComponent } from "../../../../Client/components/Lesson/LessonComponentMapper";
+import {
+  useAdminCourseDetail,
+  useAdminCourseStructure,
+} from "../hooks/useCoursesAdminQueries";
 import "./CoursePreviewModal.scss";
 
 const convertYoutubeUrlToEmbed = (url) => {
@@ -45,27 +50,48 @@ const convertYoutubeUrlToEmbed = (url) => {
 export default function CoursePreviewModal({ open, onClose, courseId }) {
   const [activeTab, setActiveTab] = useState("about");
   const [openModuleIdx, setOpenModuleIdx] = useState(null);
+  const [selectedLesson, setSelectedLesson] = useState(null);
 
-  const { data: courseDetailRes, isLoading, error } = useAdminCourseDetail(
-    courseId,
-    open && !!courseId
-  );
-  
+  const {
+    data: courseDetailRes,
+    isLoading,
+    error,
+  } = useAdminCourseDetail(courseId, open && !!courseId);
+
   // Fetch structure riêng cho tab curriculum (modules + lessons)
   const { data: courseStructureRes } = useAdminCourseStructure(
     courseId,
     open && !!courseId && activeTab === "curriculum"
   );
-  
+
   // Client API trả về format: { DT: { course: {...} } }
   const course = courseDetailRes?.DT?.course || courseDetailRes?.DT || null;
-  
+
   // Lấy modules từ structure API nếu có, nếu không thì từ course object
   const courseStructure = courseStructureRes?.DT || null;
   const modules = courseStructure?.modules || course?.modules || [];
-  
+
   // Merge course data với modules từ structure
   const courseWithModules = course ? { ...course, modules } : null;
+
+  const normalizeLessonType = (lesson) => {
+    if (!lesson) return null;
+    const t =
+      lesson.lesson_data?.type ||
+      lesson.lesson_type ||
+      lesson.lesson_data?.lesson_type;
+    if (t === "video_lesson") return "video";
+    return t;
+  };
+
+  // Chọn lesson đầu tiên khi dữ liệu modules thay đổi
+  useEffect(() => {
+    if (modules && modules.length > 0) {
+      const firstLesson = modules[0]?.lessons?.[0] || null;
+      setSelectedLesson(firstLesson);
+      setOpenModuleIdx(0);
+    }
+  }, [modules]);
 
   if (!open) return null;
 
@@ -94,7 +120,7 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
             </div>
           </div>
           <button className="admin-btn-close" onClick={onClose}>
-            ×
+            <HiXMark />
           </button>
         </div>
 
@@ -160,7 +186,14 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
                   )}
                 </div>
                 <div className="admin-course-preview-header__right">
-                  {course.video_preview ? (
+                  {selectedLesson ? (
+                    <div className="admin-course-preview-lesson-render">
+                      {renderLessonComponent({
+                        ...selectedLesson,
+                        lesson_type: normalizeLessonType(selectedLesson),
+                      })}
+                    </div>
+                  ) : course.video_preview ? (
                     <div className="admin-course-preview-video">
                       <iframe
                         width="100%"
@@ -183,7 +216,9 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
               <div className="admin-course-preview-tabs">
                 <button
                   className={`admin-course-preview-tab ${
-                    activeTab === "about" ? "admin-course-preview-tab--active" : ""
+                    activeTab === "about"
+                      ? "admin-course-preview-tab--active"
+                      : ""
                   }`}
                   onClick={() => setActiveTab("about")}
                 >
@@ -225,7 +260,10 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
                           <h3>Kỹ năng đạt được</h3>
                           <div className="admin-course-preview-skills-list">
                             {course.details.skills.map((s, i) => (
-                              <span key={i} className="admin-course-preview-skill-tag">
+                              <span
+                                key={i}
+                                className="admin-course-preview-skill-tag"
+                              >
                                 {s}
                               </span>
                             ))}
@@ -281,20 +319,46 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
                               module.lessons &&
                               module.lessons.length > 0 && (
                                 <div className="admin-curriculum-accordion__content">
-                                  {module.lessons.map((lesson) => (
-                                    <div
-                                      key={lesson.lesson_id}
-                                      className="admin-curriculum-accordion__lesson"
-                                    >
-                                      <i className="fa fa-play-circle"></i>
-                                      {lesson.title}
-                                      {lesson.duration && (
-                                        <span className="admin-curriculum-accordion__lesson-time">
-                                          {lesson.duration}
+                                  {module.lessons.map((lesson) => {
+                                    const isActive =
+                                      selectedLesson &&
+                                      selectedLesson.lesson_id ===
+                                        lesson.lesson_id;
+                                    const displayLessonType =
+                                      normalizeLessonType(lesson);
+                                    return (
+                                      <div
+                                        key={lesson.lesson_id}
+                                        className={`admin-curriculum-accordion__lesson ${
+                                          isActive
+                                            ? "admin-curriculum-accordion__lesson--active"
+                                            : ""
+                                        }`}
+                                        onClick={() =>
+                                          setSelectedLesson(lesson)
+                                        }
+                                      >
+                                        <span className="admin-curriculum-accordion__lesson-icon">
+                                          🎯
                                         </span>
-                                      )}
-                                    </div>
-                                  ))}
+                                        <div className="admin-curriculum-accordion__lesson-body">
+                                          <div className="admin-curriculum-accordion__lesson-title">
+                                            {lesson.title}
+                                          </div>
+                                          <div className="admin-curriculum-accordion__lesson-meta">
+                                            <span className="lesson-badge">
+                                              {displayLessonType}
+                                            </span>
+                                            {lesson.video_duration && (
+                                              <span className="admin-curriculum-accordion__lesson-time">
+                                                {lesson.video_duration}
+                                              </span>
+                                            )}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
                               )}
                           </div>
@@ -313,4 +377,3 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
     </div>
   );
 }
-

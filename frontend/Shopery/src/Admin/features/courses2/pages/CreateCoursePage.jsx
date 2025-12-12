@@ -1,5 +1,19 @@
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+// React Icons - Đa dạng và chuyên nghiệp
+import {
+  HiDocumentText,
+  HiVideoCamera,
+  HiBookOpen,
+  HiInformationCircle,
+  HiPlus,
+  HiMinus,
+  HiArrowRight,
+  HiEye,
+  HiArrowPath,
+  HiXMark,
+} from "react-icons/hi2";
+import { FaCheck } from "react-icons/fa";
 import AdditionalInformationTab from "../components/CreateCourse/AdditionalInformationTab";
 import CourseBuilderTab from "../components/CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "../components/CreateCourse/CourseInfoTab";
@@ -517,23 +531,25 @@ export default function CreateCoursePage({ onClose, onSave }) {
           description: module.description || null,
           sort_order: moduleIndex + 1,
           lessons: (module.lessons || []).map((lesson, lessonIndex) => {
+            // QUAN TRỌNG: Lấy lesson_type từ lesson, không default "video"
             const lessonType =
               lesson.lessonType || lesson.lesson_type || "video";
+            
             const payload = {
               title: lesson.title,
               description: lesson.description || null,
               content: lesson.content || null,
-              lessonType: lessonType,
+              lessonType: lessonType, // QUAN TRỌNG: Gửi đúng lesson_type
               isFree: lesson.isFree || false,
               sort_order: lessonIndex + 1,
             };
 
-            // Nếu có lesson_data, thêm vào payload
+            // QUAN TRỌNG: Luôn gửi lesson_data nếu có (cho tất cả các loại lesson)
             if (lesson.lesson_data) {
               payload.lesson_data = lesson.lesson_data;
             }
 
-            // Backward compatibility: Nếu là video lesson và có videoUrl (từ form cũ), thêm vào
+            // Xử lý video lesson: thêm videoUrl và videoDuration
             if (lessonType === "video") {
               // Nếu có lesson_data.video_url thì dùng, nếu không thì dùng videoUrl cũ
               if (lesson.lesson_data?.video_url) {
@@ -604,10 +620,10 @@ export default function CreateCoursePage({ onClose, onSave }) {
   };
 
   const tabs = [
-    { id: 0, name: "Course Info", icon: "📝" },
-    { id: 1, name: "Course Intro Video", icon: "🎥" },
-    { id: 2, name: "Course Builder", icon: "📚" },
-    { id: 3, name: "Additional Information", icon: "ℹ️" },
+    { id: 0, name: "Course Info", icon: HiDocumentText },
+    { id: 1, name: "Course Intro Video", icon: HiVideoCamera },
+    { id: 2, name: "Course Builder", icon: HiBookOpen },
+    { id: 3, name: "Additional Information", icon: HiInformationCircle },
   ];
 
   return (
@@ -628,11 +644,18 @@ export default function CreateCoursePage({ onClose, onSave }) {
                   onClick={() => handleTabClick(tab.id)}
                 >
                   <div className="course-create-page__accordion-header">
-                    <span className="course-create-page__accordion-title">
-                      {tab.name}
-                    </span>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      {React.createElement(tab.icon, { style: { width: "18px", height: "18px", color: "#14b8a6" } })}
+                      <span className="course-create-page__accordion-title">
+                        {tab.name}
+                      </span>
+                    </div>
                     <span className="course-create-page__accordion-icon">
-                      {activeTab === tab.id ? "−" : "+"}
+                      {activeTab === tab.id ? (
+                        <HiMinus />
+                      ) : (
+                        <HiPlus />
+                      )}
                     </span>
                   </div>
                 </div>
@@ -709,21 +732,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
               type="button"
             >
               Reset All
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{ marginLeft: "8px" }}
-              >
-                <path
-                  d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v5h-5M3 21a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 16M21 21v-5h-5"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <HiArrowPath style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
             </button>
             <button
               className="course-create-page__btn course-create-page__btn--preview"
@@ -731,28 +740,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
               type="button"
             >
               Preview
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{ marginLeft: "8px" }}
-              >
-                <path
-                  d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-              </svg>
+              <HiEye style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
             </button>
             <button
               className="course-create-page__btn course-create-page__btn--create"
@@ -761,21 +749,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
               disabled={isCreating}
             >
               {isCreating ? "Creating..." : "Create Course"}
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{ marginLeft: "8px" }}
-              >
-                <path
-                  d="M5 12h14M12 5l7 7-7 7"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <HiArrowRight style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
             </button>
           </div>
         </div>
@@ -788,32 +762,32 @@ export default function CreateCoursePage({ onClose, onSave }) {
             </h3>
             <ul className="course-create-page__tips-list">
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Set the Course Price option or make it free.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Standard size for the course thumbnail is 700x430.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Video section controls the course overview video.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Course Builder is where you create & organize content.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Add Topics inside Course Builder for lessons, quizzes, and
                 assignments.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Prerequisites define courses required before this course.
               </li>
               <li className="course-create-page__tips-item">
-                <span className="course-create-page__tips-check">✓</span>
+                <FaCheck className="course-create-page__tips-check" />
                 Additional Data shows on the course single page.
               </li>
             </ul>

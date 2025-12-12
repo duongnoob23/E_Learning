@@ -1,6 +1,7 @@
 // ImageChoiceEditor.jsx - Editor đơn giản: nhập câu hỏi → upload ảnh → click chọn đáp án
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyImageChoice from "../../Vocabulary/VocabularyImageChoice";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./ImageChoiceEditor.css";
 
 export default function ImageChoiceEditor({ data, onChange }) {
@@ -347,7 +348,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
   };
 
   // Handle question image upload
-  const handleQuestionImageUpload = (e) => {
+  const handleQuestionImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -356,12 +357,17 @@ export default function ImageChoiceEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    updateActiveQuestion((q) => ({ ...q, question_image_url: url }));
+    try {
+      const serverUrl = await uploadImage(file);
+      updateActiveQuestion((q) => ({ ...q, question_image_url: serverUrl }));
+    } catch (error) {
+      console.error("Lỗi upload ảnh câu hỏi:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Handle multiple images upload
-  const handleImagesUpload = (e) => {
+  const handleImagesUpload = async (e) => {
     const files = Array.from(e.target.files).filter((file) =>
       file.type.startsWith("image/")
     );
@@ -370,19 +376,23 @@ export default function ImageChoiceEditor({ data, onChange }) {
       return;
     }
 
-    const newImages = files.map((file, index) => {
-      const id = `img_${Date.now()}_${index}`;
-      return {
-        id,
-        url: URL.createObjectURL(file),
-        isCorrect: false,
-      };
-    });
+    try {
+      const uploaded = await Promise.all(
+        files.map(async (file, index) => {
+          const id = `img_${Date.now()}_${index}`;
+          const url = await uploadImage(file);
+          return { id, url, isCorrect: false };
+        })
+      );
 
-    updateActiveQuestion((q) => ({
-      ...q,
-      images: [...(q.images || []), ...newImages],
-    }));
+      updateActiveQuestion((q) => ({
+        ...q,
+        images: [...(q.images || []), ...uploaded],
+      }));
+    } catch (error) {
+      console.error("Lỗi upload ảnh đáp án:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Handle click chọn đáp án đúng
@@ -702,6 +712,46 @@ export default function ImageChoiceEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu với ảnh thật từ Unsplash cho vocabulary_image_choice.
+            */}
+            {(() => {
+              const sampleImageChoiceJSON = `{
+  "question_id": "img_choice_01",
+  "vi_text": "Chọn ảnh mô tả 'happy'",
+  "question_type": "text",
+  "question_text": "Which image shows 'happy'?",
+  "images": [
+    { "image_id": 1, "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+    { "image_id": 2, "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 3, "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 4, "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false }
+  ]
+}`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleImageChoiceJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p style={{ margin: "0 0 8px 0", color: "#666", lineHeight: "1.6" }}>
                 Paste JSON của một câu hỏi hoặc array câu hỏi. Format: mỗi câu hỏi cần có{" "}
@@ -734,31 +784,15 @@ export default function ImageChoiceEditor({ data, onChange }) {
                   }}
                 >
                   {`{
-  "question_id": "123",
+  "question_id": "img_choice_01",
   "vi_text": "Chọn ảnh mô tả 'happy'",
   "question_type": "text",
   "question_text": "Which image shows 'happy'?",
   "images": [
-    {
-      "image_id": 1,
-      "image_url": "https://example.com/happy.jpg",
-      "is_correct": true
-    },
-    {
-      "image_id": 2,
-      "image_url": "https://example.com/sad.jpg",
-      "is_correct": false
-    },
-    {
-      "image_id": 3,
-      "image_url": "https://example.com/angry.jpg",
-      "is_correct": false
-    },
-    {
-      "image_id": 4,
-      "image_url": "https://example.com/excited.jpg",
-      "is_correct": false
-    }
+    { "image_id": 1, "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", "is_correct": true },
+    { "image_id": 2, "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 3, "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80", "is_correct": false },
+    { "image_id": 4, "image_url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80", "is_correct": false }
   ]
 }`}
                 </pre>

@@ -1,6 +1,6 @@
 // VocabularyQuiz.jsx - Trắc nghiệm từ vựng
 // Hỗ trợ: câu hỏi (en/vi/image/audio), đáp án (text/image+text), click sai->đỏ+vibrate, đúng->xanh+auto next
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./VocabularyQuiz.css";
 
 export default function VocabularyQuiz({ lesson }) {
@@ -127,37 +127,46 @@ export default function VocabularyQuiz({ lesson }) {
 
   // Render câu hỏi
   const renderQuestion = () => {
-    // Câu hỏi có thể là: en, vi, image, audio
+    // Câu hỏi có thể là: en, vi, question_text, image, audio
+    // Hỗ trợ nhiều format: en, question_text, vi, vi_text
+    const questionText = currentQuestion.en || 
+                        currentQuestion.question_text || 
+                        currentQuestion.text || 
+                        "";
+    const questionViText = currentQuestion.vi || 
+                          currentQuestion.vi_text || 
+                          "";
+    
     return (
       <div className="vocabulary-quiz-question">
         {/* Image */}
-        {currentQuestion.image_url && (
+        {(currentQuestion.image_url || currentQuestion.question_image_url) && (
           <img
-            src={currentQuestion.image_url}
+            src={currentQuestion.image_url || currentQuestion.question_image_url}
             alt="Question"
             className="vocabulary-quiz-question-image"
           />
         )}
 
-        {/* English word */}
-        {currentQuestion.en && (
-          <h2 className="vocabulary-quiz-question-text">
-            {currentQuestion.en}
-          </h2>
+        {/* English word / Question text */}
+        {questionText && (
+          <h3 className="vocabulary-quiz-question-text">
+            {questionText}
+          </h3>
         )}
 
         {/* Vietnamese word */}
-        {currentQuestion.vi && (
+        {questionViText && (
           <h2 className="vocabulary-quiz-question-text">
-            {currentQuestion.vi}
+            {questionViText}
           </h2>
         )}
 
         {/* Audio */}
-        {currentQuestion.audio_url && (
+        {(currentQuestion.audio_url || currentQuestion.question_audio_url) && (
           <audio controls className="vocabulary-quiz-audio">
-            <source src={currentQuestion.audio_url} type="audio/mpeg" />
-            <source src={currentQuestion.audio_url} type="audio/wav" />
+            <source src={currentQuestion.audio_url || currentQuestion.question_audio_url} type="audio/mpeg" />
+            <source src={currentQuestion.audio_url || currentQuestion.question_audio_url} type="audio/wav" />
             Trình duyệt không hỗ trợ audio.
           </audio>
         )}
@@ -167,6 +176,7 @@ export default function VocabularyQuiz({ lesson }) {
 
   // Render đáp án
   const renderChoice = (choice, index) => {
+    console.log("JSON", JSON.stringify(choice, null, 2));
     const isSelected = selectedChoiceId === choice.id;
     const isWrong = wrongChoiceIds.includes(choice.id);
     const isCorrect = choice.is_correct && isSelected;
@@ -191,10 +201,6 @@ export default function VocabularyQuiz({ lesson }) {
         onClick={() => handleChoiceClick(choice.id)}
         disabled={isDisabled}
       >
-        <span className="vocabulary-quiz-choice-letter">
-          {String.fromCharCode(65 + index)}.
-        </span>
-
         {/* Đáp án có thể là: image + text, hoặc chỉ text */}
         {choice.image_url && (
           <img
@@ -204,10 +210,14 @@ export default function VocabularyQuiz({ lesson }) {
           />
         )}
 
-        <span className="vocabulary-quiz-choice-text">
-          {choice.vi || choice.en}
-        </span>
-
+        <div style={{ flexDirection: "row" }}>
+          <span className="vocabulary-quiz-choice-letter">
+            {String.fromCharCode(65 + index)}.
+          </span>
+          <span className="vocabulary-quiz-choice-text">
+            {choice.text || choice.vi || choice.vi_text || choice.en || choice.en_text || ""}
+          </span>
+        </div>
         {/* Icon check/x */}
         {isCorrect && (
           <i className="fa fa-check vocabulary-quiz-choice-icon vocabulary-quiz-choice-icon--correct"></i>

@@ -2,6 +2,7 @@
 // Question (text/image/audio) + Choices (text hoặc image+text), click để chọn đáp án đúng
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyQuiz from "../../Vocabulary/VocabularyQuiz";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./QuizEditor.css";
 
 export default function QuizEditor({ data, onChange }) {
@@ -14,6 +15,41 @@ export default function QuizEditor({ data, onChange }) {
   const fileInputRefs = useRef({});
   const imageInputRefs = useRef({});
   const isInitialMount = useRef(true);
+  const hasLoadedInitialData = useRef(false);
+
+  // Load dữ liệu từ props (khi edit)
+  useEffect(() => {
+    if (
+      data?.questions &&
+      Array.isArray(data.questions) &&
+      data.questions.length > 0 &&
+      !hasLoadedInitialData.current
+    ) {
+      const mapped = data.questions.map((q, idx) => {
+        let questionType = "text";
+        if (q.image_url) questionType = "image";
+        else if (q.audio_url) questionType = "audio";
+        return {
+          id: q.question_id || `q_${idx}_${Date.now()}`,
+          questionType,
+          questionText: q.en || "",
+          questionImageUrl: q.image_url || "",
+          questionAudioUrl: q.audio_url || "",
+          choices: (q.choices || []).map((c, cidx) => ({
+            id: c.id || `choice_${idx}_${cidx}_${Date.now()}`,
+            text: c.text || "",
+            imageUrl: c.image_url || "",
+            is_correct: !!c.is_correct,
+          })),
+          shuffleChoices: !!q.shuffle_choices,
+        };
+      });
+      setQuestions(mapped);
+      setCurrentQuestionIndex(0);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }, [data]);
 
   // Khởi tạo: không load data có sẵn, tạo question mới
   useEffect(() => {
@@ -46,12 +82,9 @@ export default function QuizEditor({ data, onChange }) {
     }
   }, [questions.length]);
 
-  // Update data và gửi lên parent
-  const updateData = useCallback(() => {
-    if (isInitialMount.current) return;
-
-    const questionsData = questions.map((q) => {
-      // Convert question format
+  // Convert state -> payload
+  const mapQuestionsToData = (qs) => {
+    return qs.map((q) => {
       let questionData = {
         question_id: q.id,
         choices: q.choices.map((choice) => ({
@@ -62,7 +95,6 @@ export default function QuizEditor({ data, onChange }) {
         })),
       };
 
-      // Add question content based on type
       if (q.questionType === "text") {
         questionData.en = q.questionText.trim();
       } else if (q.questionType === "image") {
@@ -70,16 +102,24 @@ export default function QuizEditor({ data, onChange }) {
       } else if (q.questionType === "audio") {
         questionData.audio_url = q.questionAudioUrl;
       }
-
       return questionData;
     });
+  };
 
+  const pushChange = (nextQuestions) => {
+    const questionsData = mapQuestionsToData(nextQuestions);
     onChange({
       type: "vocabulary_quiz",
       questions: questionsData,
-      shuffle_choices: questions[0]?.shuffleChoices || false,
+      shuffle_choices: nextQuestions[0]?.shuffleChoices || false,
     });
-  }, [questions, onChange]);
+  };
+
+  // Update data và gửi lên parent (debounced)
+  const updateData = useCallback(() => {
+    if (isInitialMount.current) return;
+    pushChange(questions);
+  }, [questions]);
 
   // Debounce updateData
   useEffect(() => {
@@ -273,7 +313,7 @@ export default function QuizEditor({ data, onChange }) {
   };
 
   // Upload question image
-  const handleQuestionImageUpload = (questionId, e) => {
+  const handleQuestionImageUpload = async (questionId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -282,12 +322,19 @@ export default function QuizEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId ? { ...q, questionImageUrl: url } : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId ? { ...q, questionImageUrl: serverUrl } : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh câu hỏi:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Upload question audio
@@ -361,7 +408,7 @@ export default function QuizEditor({ data, onChange }) {
   };
 
   // Upload choice image
-  const handleChoiceImageUpload = (questionId, choiceId, e) => {
+  const handleChoiceImageUpload = async (questionId, choiceId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -370,19 +417,26 @@ export default function QuizEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId
-          ? {
-              ...q,
-              choices: q.choices.map((c) =>
-                c.id === choiceId ? { ...c, imageUrl: url } : c
-              ),
-            }
-          : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId
+            ? {
+                ...q,
+                choices: q.choices.map((c) =>
+                  c.id === choiceId ? { ...c, imageUrl: serverUrl } : c
+                ),
+              }
+            : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh đáp án:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Remove choice image
@@ -902,6 +956,68 @@ export default function QuizEditor({ data, onChange }) {
               </button>
             </div>
 
+            {/*
+              🌟 Nút dán nhanh format mẫu: dùng ảnh thật từ Unsplash để xem trước.
+              sampleQuizJSON giữ nguyên cấu trúc hợp lệ cho vocabulary_quiz.
+            */}
+            {(() => {
+              const sampleQuizJSON = `// Bài tập với question text
+{
+  "question_id": "quiz_01",
+  "question_text": "What does 'happy' mean?",
+  "choices": [
+    {
+      "id": 1,
+      "text": "vui mừng",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+      "is_correct": true
+    },
+    {
+      "id": 2,
+      "text": "buồn bã",
+      "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    },
+    {
+      "id": 3,
+      "text": "tức giận",
+      "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    },
+    {
+      "id": 4,
+      "text": "sợ hãi",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+      "is_correct": false
+    }
+  ],
+  "shuffle_choices": false
+}
+`;
+              return (
+                <div style={{ marginBottom: "12px" }}>
+                  <button
+                    onClick={() => {
+                      setJsonInput(sampleQuizJSON);
+                      setJsonError(null);
+                    }}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#10b981",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    📥 Dán format mẫu
+                  </button>
+                </div>
+              );
+            })()}
+
             <div style={{ marginBottom: "16px" }}>
               <p
                 style={{
@@ -942,31 +1058,31 @@ export default function QuizEditor({ data, onChange }) {
                 >
                   {`// Bài tập với question text
 {
-  "question_id": "123",
+  "question_id": "quiz_01",
   "question_text": "What does 'happy' mean?",
   "choices": [
     {
       "id": 1,
       "text": "vui mừng",
-      "image_url": "https://example.com/happy.jpg",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
       "is_correct": true
     },
     {
       "id": 2,
       "text": "buồn bã",
-      "image_url": "https://example.com/sad.jpg",
+      "image_url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     },
     {
       "id": 3,
       "text": "tức giận",
-      "image_url": "",
+      "image_url": "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     },
     {
       "id": 4,
       "text": "sợ hãi",
-      "image_url": "",
+      "image_url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
       "is_correct": false
     }
   ],

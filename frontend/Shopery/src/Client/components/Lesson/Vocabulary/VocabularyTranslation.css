@@ -1,6 +1,6 @@
 /* VocabularyTranslation.css - Dịch nghĩa từ vựng */
 .vocabulary-translation-container {
-  padding: 32px;
+  padding: 8px;
   background: #fff;
   border-radius: 12px;
   max-width: 900px;
@@ -10,11 +10,11 @@
 /* Câu hỏi */
 .vocabulary-translation-question {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: px;
 }
 
 .vocabulary-translation-image {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -23,21 +23,20 @@
 }
 
 .vocabulary-translation-question-image {
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 400px;
+  max-height: 300px;
   width: 100%;
   height: auto;
   border-radius: 12px;
-  margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .vocabulary-translation-vi {
   font-size: 36px;
   font-weight: 700;
   color: #1f2937;
-  margin: 0 0 20px 0;
+  margin: 0 0 8px 0;
 }
 
 .vocabulary-translation-hint {
@@ -49,8 +48,8 @@
 /* Input group */
 .vocabulary-translation-input-group {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 12px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -58,11 +57,12 @@
 
 .vocabulary-translation-input {
   flex: 1;
-  padding: 14px 18px;
+  padding: 8px 12px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   font-size: 18px;
-  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -106,13 +106,21 @@
 }
 
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-5px);
   }
-  20%, 40%, 60%, 80% {
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(5px);
   }
 }
@@ -143,6 +151,8 @@
 
 /* Hiển thị đáp án khi sai */
 .vocabulary-translation-answer-display {
+  display: flex;
+  flex-direction: row;
   padding: 16px;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -152,6 +162,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
 }
 
 .vocabulary-translation-answer-display i {
@@ -175,8 +186,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding: 16px;
+  margin-bottom: 8px;
+  padding: 8px;
   background: #f9fafb;
   border-radius: 8px;
 }
@@ -279,6 +290,3 @@
   border-color: #10b981;
   color: #065f46;
 }
-
-
-

@@ -102,6 +102,35 @@ app.get("/uploads/avatars/:filename", (req, res) => {
   });
 });
 
+// Route riêng để serve lesson images
+app.get("/uploads/images/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "../uploads/images", filename);
+
+  // Set CORS headers
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
+  // Disable cache để test
+  res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.set("Pragma", "no-cache");
+  res.set("Expires", "0");
+
+  console.log(`Serving lesson image file: ${filename}`);
+  console.log(`File path: ${filePath}`);
+
+  // Send file
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error("Error serving file:", err);
+      res.status(404).json({ error: "File not found" });
+    } else {
+      console.log(`Successfully served: ${filename}`);
+    }
+  });
+});
+
 // Test endpoint
 app.get("/test-avatar", (req, res) => {
   res.json({

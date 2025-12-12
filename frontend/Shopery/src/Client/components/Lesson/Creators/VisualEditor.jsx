@@ -1,5 +1,4 @@
 // VisualEditor.jsx - Editor thông minh với inline editing và visual feedback
-import React from "react";
 import GrammarTheoryEditor from "./editors/GrammarTheoryEditor";
 import ImageChoiceEditor from "./editors/ImageChoiceEditor";
 import ListeningEditor from "./editors/ListeningEditor";
@@ -108,7 +107,7 @@ export default function VisualEditor({ lessonType, data, onChange }) {
   return (
     <div className="visual-editor">
       <div className="visual-editor-header">
-        <h3>Visual Editor</h3>
+        {/* <h3>Visual Editor</h3>
         <button
           className="visual-editor-add-btn"
           onClick={() => {
@@ -117,7 +116,7 @@ export default function VisualEditor({ lessonType, data, onChange }) {
           }}
         >
           + Thêm câu hỏi
-        </button>
+        </button> */}
       </div>
       <div className="visual-editor-content">{renderEditor()}</div>
     </div>

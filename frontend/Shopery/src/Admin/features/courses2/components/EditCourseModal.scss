@@ -47,6 +47,11 @@
   border-radius: 4px;
   transition: all 0.2s;
 
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
   &:hover {
     background: #f3f4f6;
     color: #111827;

@@ -1,6 +1,6 @@
 // VocabularyListening.jsx - Nghe từ vựng (audio + 3x3 matrix)
 // Hỗ trợ: nhiều câu hỏi, audio mp3, grid 3x3 (tiếng Việt + ảnh), sai->rung, đúng->xanh+auto next
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./VocabularyListening.css";
 
 export default function VocabularyListening({ lesson }) {
@@ -155,7 +155,7 @@ export default function VocabularyListening({ lesson }) {
       {/* Audio Section */}
       <div className="vocabulary-listening-audio-section">
         <p className="vocabulary-listening-instruction">
-          Nghe audio và chọn đáp án đúng trong lưới 3x3
+          Nghe audio và chọn đáp án đúng trong bảng
         </p>
         {currentAudioUrl && (
           <div className="vocabulary-listening-audio-wrapper">
@@ -195,6 +195,10 @@ export default function VocabularyListening({ lesson }) {
           // Disable nếu đã trả lời đúng
           const isDisabled = isAnswered;
 
+          // Hỗ trợ nhiều format: image_url hoặc image, vi_text hoặc text
+          const cellImageUrl = cell.image_url || cell.image || "";
+          const cellText = cell.text || cell.vi_text || "";
+          
           return (
             <div
               key={cell.id}
@@ -202,16 +206,26 @@ export default function VocabularyListening({ lesson }) {
               className={cellClass}
               onClick={() => !isDisabled && handleCellClick(cell.id)}
             >
-              {cell.image_url && (
+              {cellImageUrl && (
                 <img
-                  src={cell.image_url}
-                  alt={cell.vi_text || ""}
+                  src={cellImageUrl}
+                  alt={cellText}
                   className="vocabulary-listening-cell-image"
                 />
               )}
-              <span className="vocabulary-listening-cell-text">
-                {cell.vi_text}
-              </span>
+              {cellText && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <span className="vocabulary-listening-cell-text">
+                    {cellText}
+                  </span>
+                </div>
+              )}
 
               {/* Icon check/x */}
               {isCorrect && (

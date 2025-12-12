@@ -1,7 +1,7 @@
 .sidebar {
   width: 240px;
-  background-color: #f8f8f8; // ✅ Nền xám nhạt như ảnh
-  color: #111827; // ✅ Text màu tối
+  background-color: #ffffff; // Nền trắng như design
+  color: #111827;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,10 +9,11 @@
   left: 0;
   top: 0;
   transition: all 0.3s ease;
-  border-right: 1px solid #e5e7eb; // ✅ Border nhạt
+  border-right: 1px solid #e5e7eb;
+  overflow: hidden; // Ngăn scrollbar xuất hiện
 
   &__logo {
-    padding: 20px;
+    padding: 10px;
     text-align: left; // ✅ Căn trái
     border-bottom: 1px solid #e5e7eb; // ✅ Border nhạt
     display: flex;
@@ -34,6 +35,13 @@
     justify-content: center;
     font-size: 18px;
     box-shadow: 0 2px 4px rgba(0, 172, 193, 0.2);
+    color: #ffffff; // Màu trắng cho icon
+    flex-shrink: 0;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &__title {
@@ -74,7 +82,15 @@
   &__nav {
     flex: 1;
     padding: 16px 0;
-    overflow-y: auto;
+    overflow-y: auto; // Cho phép scroll nội dung nếu cần
+    overflow-x: hidden;
+    // Ẩn scrollbar nhưng vẫn cho phép scroll
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE và Edge
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, Opera
+    }
   }
 
   // ✅ Section title (HOME, MANAGEMENT, OTHER)
@@ -150,29 +166,22 @@
     font-size: 1.1rem;
     color: #6b7280; // ✅ Icon màu xám
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__text {
     font-size: 0.95rem;
     color: #374151; // ✅ Text màu xám đậm
     transition: color 0.2s;
-  }
-}
-
-// ✅ Scrollbar styling
-.sidebar__nav::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sidebar__nav::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.sidebar__nav::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-
-  &:hover {
-    background: #9ca3af;
   }
 }

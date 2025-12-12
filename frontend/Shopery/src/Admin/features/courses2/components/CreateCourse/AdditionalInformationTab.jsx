@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { HiCalendar } from "react-icons/hi2";
 import "./AdditionalInformationTab.scss";
 
 const LANGUAGES = [
@@ -52,7 +53,7 @@ const AdditionalInformationTab = forwardRef(({ data, onChange, errors = {}, refs
                 onChange={(e) => handleChange("startDate", e.target.value)}
                 placeholder="dd/mm/yyyy"
               />
-              <span className="additional-info-tab__date-icon">📅</span>
+              <HiCalendar className="additional-info-tab__date-icon" />
             </div>
             {errors.startDate && (
               <div className="additional-info-tab__error">

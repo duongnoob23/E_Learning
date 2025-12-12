@@ -1,9 +1,8 @@
 /* VocabularySentenceCompletion.css - Hoàn thiện câu */
 .vocabulary-sentence-container {
-  padding: 32px;
   background: #fff;
   border-radius: 12px;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -16,8 +15,8 @@
 /* Câu tiếng Việt - Căn giữa */
 .vocabulary-sentence-vi {
   text-align: center;
-  margin-bottom: 32px;
-  padding: 20px;
+  margin-bottom: 8px;
+  padding: 10px;
   background: #f9fafb;
   border-radius: 12px;
 }
@@ -31,17 +30,19 @@
 
 /* Câu tiếng Anh với các ô trống */
 .vocabulary-sentence-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #f9fafb;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
   min-height: 120px;
 }
 
 .vocabulary-sentence-text {
   font-size: 22px;
-  line-height: 2;
+  line-height: 1;
   color: #1f2937;
   display: flex;
   flex-wrap: wrap;
@@ -190,7 +191,7 @@
 
 /* Danh sách từ để kéo thả */
 .vocabulary-sentence-words {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .vocabulary-sentence-words h4 {
@@ -242,7 +243,7 @@
   display: flex;
   gap: 16px;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 .vocabulary-sentence-check-btn,
@@ -290,8 +291,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding: 16px;
+  padding: 8px;
   background: #f9fafb;
   border-radius: 8px;
 }

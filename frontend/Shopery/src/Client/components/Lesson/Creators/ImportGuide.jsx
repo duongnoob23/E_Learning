@@ -1,5 +1,6 @@
 // ImportGuide.jsx - Hướng dẫn format JSON cho từng lesson type
 import React from "react";
+import { HiXMark, HiClipboardDocument } from "react-icons/hi2";
 import "./ImportGuide.css";
 
 const JSON_EXAMPLES = {
@@ -197,7 +198,7 @@ export default function ImportGuide({ lessonType, onClose }) {
           <div className="import-guide-header">
             <h3>Hướng dẫn Import JSON</h3>
             <button className="import-guide-close" onClick={onClose}>
-              ×
+              <HiXMark />
             </button>
           </div>
           <div className="import-guide-content">
@@ -212,7 +213,10 @@ export default function ImportGuide({ lessonType, onClose }) {
     <div className="import-guide-overlay" onClick={onClose}>
       <div className="import-guide" onClick={(e) => e.stopPropagation()}>
         <div className="import-guide-header">
-          <h3>📋 Hướng dẫn Format JSON - {lessonType}</h3>
+          <h3 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <HiClipboardDocument style={{ width: "20px", height: "20px" }} />
+            Hướng dẫn Format JSON - {lessonType}
+          </h3>
           <button className="import-guide-close" onClick={onClose}>
             ×
           </button>
@@ -249,7 +253,8 @@ export default function ImportGuide({ lessonType, onClose }) {
                 alert("Đã copy vào clipboard!");
               }}
             >
-              📋 Copy ví dụ
+              <HiClipboardDocument style={{ marginRight: "6px", width: "16px", height: "16px" }} />
+              Copy ví dụ
             </button>
           </div>
         </div>
