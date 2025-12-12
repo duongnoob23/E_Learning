@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/authMiddleware");
 const instructorController = require("../controllers/instructorClientController");
+const uploadImage = require("../../middleware/uploadImageMiddleware");
 
 // Lấy danh sách khóa học của giảng viên
 router.get(
@@ -83,6 +84,14 @@ router.get(
   "/courses/:id/reviews",
   authMiddleware,
   instructorController.getCourseReviewsByInstructor
+);
+
+// Upload image cho lesson
+router.post(
+  "/lessons/upload-image",
+  authMiddleware,
+  uploadImage.single("image"),
+  instructorController.uploadLessonImage
 );
 
 module.exports = router;

@@ -241,3 +241,31 @@ exports.getCourseReviewsByInstructor = async (req, res, next) => {
     next(error);
   }
 };
+
+// ✅ Upload image cho lesson
+exports.uploadLessonImage = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        EM: "Không có file ảnh được upload",
+        EC: "1",
+        DT: null,
+      });
+    }
+
+    // Tạo URL đơn giản (tương tự như avatar)
+    const imageUrl = `/uploads/images/${req.file.filename}`;
+    
+    res.json({
+      EM: "Upload ảnh thành công",
+      EC: "0",
+      DT: {
+        image_url: imageUrl,
+        filename: req.file.filename,
+      },
+    });
+  } catch (error) {
+    console.error("Lỗi trong uploadLessonImage controller:", error);
+    next(error);
+  }
+};

@@ -2,6 +2,7 @@
 // Audio + Grid 3x3 (9 ô) với VI text + Image, click để chọn đáp án đúng
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyListening from "../../Vocabulary/VocabularyListening";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./ListeningEditor.css";
 
 const GRID_SIZE = 9; // 3x3 = 9 ô
@@ -66,11 +67,8 @@ export default function ListeningEditor({ data, onChange }) {
     }
   }, [questions.length]);
 
-  // Update data và gửi lên parent
-  const updateData = useCallback(() => {
-    if (isInitialMount.current) return;
-
-    const questionsData = questions.map((q) => ({
+  const mapQuestionsToData = (qs) =>
+    qs.map((q) => ({
       question_id: q.id,
       audio_url: q.audioUrl,
       grid: {
@@ -86,11 +84,19 @@ export default function ListeningEditor({ data, onChange }) {
       play_count: q.playCount || 3,
     }));
 
+  const pushChange = (nextQuestions) => {
+    const questionsData = mapQuestionsToData(nextQuestions);
     onChange({
       type: "vocabulary_listening",
       questions: questionsData,
     });
-  }, [questions, onChange]);
+  };
+
+  // Update data và gửi lên parent
+  const updateData = useCallback(() => {
+    if (isInitialMount.current) return;
+    pushChange(questions);
+  }, [questions]);
 
   // Debounce updateData
   useEffect(() => {
@@ -262,7 +268,7 @@ export default function ListeningEditor({ data, onChange }) {
   };
 
   // Upload cell image
-  const handleCellImageUpload = (questionId, cellId, e) => {
+  const handleCellImageUpload = async (questionId, cellId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -271,19 +277,26 @@ export default function ListeningEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId
-          ? {
-              ...q,
-              cells: q.cells.map((c) =>
-                c.id === cellId ? { ...c, imageUrl: url } : c
-              ),
-            }
-          : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId
+            ? {
+                ...q,
+                cells: q.cells.map((c) =>
+                  c.id === cellId ? { ...c, imageUrl: serverUrl } : c
+                ),
+              }
+            : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh ô lưới:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Remove cell image

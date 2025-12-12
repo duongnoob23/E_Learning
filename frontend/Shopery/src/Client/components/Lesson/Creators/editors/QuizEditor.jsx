@@ -2,6 +2,7 @@
 // Question (text/image/audio) + Choices (text hoặc image+text), click để chọn đáp án đúng
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyQuiz from "../../Vocabulary/VocabularyQuiz";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./QuizEditor.css";
 
 export default function QuizEditor({ data, onChange }) {
@@ -81,12 +82,9 @@ export default function QuizEditor({ data, onChange }) {
     }
   }, [questions.length]);
 
-  // Update data và gửi lên parent
-  const updateData = useCallback(() => {
-    if (isInitialMount.current) return;
-
-    const questionsData = questions.map((q) => {
-      // Convert question format
+  // Convert state -> payload
+  const mapQuestionsToData = (qs) => {
+    return qs.map((q) => {
       let questionData = {
         question_id: q.id,
         choices: q.choices.map((choice) => ({
@@ -97,7 +95,6 @@ export default function QuizEditor({ data, onChange }) {
         })),
       };
 
-      // Add question content based on type
       if (q.questionType === "text") {
         questionData.en = q.questionText.trim();
       } else if (q.questionType === "image") {
@@ -105,16 +102,24 @@ export default function QuizEditor({ data, onChange }) {
       } else if (q.questionType === "audio") {
         questionData.audio_url = q.questionAudioUrl;
       }
-
       return questionData;
     });
+  };
 
+  const pushChange = (nextQuestions) => {
+    const questionsData = mapQuestionsToData(nextQuestions);
     onChange({
       type: "vocabulary_quiz",
       questions: questionsData,
-      shuffle_choices: questions[0]?.shuffleChoices || false,
+      shuffle_choices: nextQuestions[0]?.shuffleChoices || false,
     });
-  }, [questions, onChange]);
+  };
+
+  // Update data và gửi lên parent (debounced)
+  const updateData = useCallback(() => {
+    if (isInitialMount.current) return;
+    pushChange(questions);
+  }, [questions]);
 
   // Debounce updateData
   useEffect(() => {
@@ -308,7 +313,7 @@ export default function QuizEditor({ data, onChange }) {
   };
 
   // Upload question image
-  const handleQuestionImageUpload = (questionId, e) => {
+  const handleQuestionImageUpload = async (questionId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -317,12 +322,19 @@ export default function QuizEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId ? { ...q, questionImageUrl: url } : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId ? { ...q, questionImageUrl: serverUrl } : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh câu hỏi:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Upload question audio
@@ -396,7 +408,7 @@ export default function QuizEditor({ data, onChange }) {
   };
 
   // Upload choice image
-  const handleChoiceImageUpload = (questionId, choiceId, e) => {
+  const handleChoiceImageUpload = async (questionId, choiceId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -405,19 +417,26 @@ export default function QuizEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === questionId
-          ? {
-              ...q,
-              choices: q.choices.map((c) =>
-                c.id === choiceId ? { ...c, imageUrl: url } : c
-              ),
-            }
-          : q
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setQuestions((prev) => {
+        const next = prev.map((q) =>
+          q.id === questionId
+            ? {
+                ...q,
+                choices: q.choices.map((c) =>
+                  c.id === choiceId ? { ...c, imageUrl: serverUrl } : c
+                ),
+              }
+            : q
+        );
+        pushChange(next);
+        return next;
+      });
+    } catch (error) {
+      console.error("Lỗi upload ảnh đáp án:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Remove choice image

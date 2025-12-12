@@ -2,6 +2,7 @@
 // Nhập theo list từ, 1 card = 1 từ, hỗ trợ nhiều đáp án đúng
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyTranslation from "../../Vocabulary/VocabularyTranslation";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./TranslationEditor.css";
 
 export default function TranslationEditor({ data, onChange }) {
@@ -110,8 +111,8 @@ export default function TranslationEditor({ data, onChange }) {
     );
   };
 
-  // Upload image
-  const handleImageUpload = (itemId, e) => {
+  // Upload image lên server
+  const handleImageUpload = async (itemId, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -120,12 +121,17 @@ export default function TranslationEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === itemId ? { ...item, imageUrl: url } : item
-      )
-    );
+    try {
+      const serverUrl = await uploadImage(file);
+      setItems((prev) =>
+        prev.map((item) =>
+          item.id === itemId ? { ...item, imageUrl: serverUrl } : item
+        )
+      );
+    } catch (error) {
+      console.error("Lỗi upload ảnh:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Xóa ảnh

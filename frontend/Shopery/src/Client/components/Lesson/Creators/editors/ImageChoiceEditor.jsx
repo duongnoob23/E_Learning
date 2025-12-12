@@ -1,6 +1,7 @@
 // ImageChoiceEditor.jsx - Editor đơn giản: nhập câu hỏi → upload ảnh → click chọn đáp án
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VocabularyImageChoice from "../../Vocabulary/VocabularyImageChoice";
+import { uploadImage } from "@/lib/uploadImageHelper";
 import "./ImageChoiceEditor.css";
 
 export default function ImageChoiceEditor({ data, onChange }) {
@@ -347,7 +348,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
   };
 
   // Handle question image upload
-  const handleQuestionImageUpload = (e) => {
+  const handleQuestionImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -356,12 +357,17 @@ export default function ImageChoiceEditor({ data, onChange }) {
       return;
     }
 
-    const url = URL.createObjectURL(file);
-    updateActiveQuestion((q) => ({ ...q, question_image_url: url }));
+    try {
+      const serverUrl = await uploadImage(file);
+      updateActiveQuestion((q) => ({ ...q, question_image_url: serverUrl }));
+    } catch (error) {
+      console.error("Lỗi upload ảnh câu hỏi:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Handle multiple images upload
-  const handleImagesUpload = (e) => {
+  const handleImagesUpload = async (e) => {
     const files = Array.from(e.target.files).filter((file) =>
       file.type.startsWith("image/")
     );
@@ -370,19 +376,23 @@ export default function ImageChoiceEditor({ data, onChange }) {
       return;
     }
 
-    const newImages = files.map((file, index) => {
-      const id = `img_${Date.now()}_${index}`;
-      return {
-        id,
-        url: URL.createObjectURL(file),
-        isCorrect: false,
-      };
-    });
+    try {
+      const uploaded = await Promise.all(
+        files.map(async (file, index) => {
+          const id = `img_${Date.now()}_${index}`;
+          const url = await uploadImage(file);
+          return { id, url, isCorrect: false };
+        })
+      );
 
-    updateActiveQuestion((q) => ({
-      ...q,
-      images: [...(q.images || []), ...newImages],
-    }));
+      updateActiveQuestion((q) => ({
+        ...q,
+        images: [...(q.images || []), ...uploaded],
+      }));
+    } catch (error) {
+      console.error("Lỗi upload ảnh đáp án:", error);
+      alert("Upload ảnh thất bại, vui lòng thử lại");
+    }
   };
 
   // Handle click chọn đáp án đúng
