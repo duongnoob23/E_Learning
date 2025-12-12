@@ -6,7 +6,7 @@ const API_BASE_URL = "http://localhost:5000";
 // Tạo axios instance
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 300000, // 5 phút (300 giây) - đủ cho upload audio và scoring
   headers: {
     "Content-Type": "application/json",
   },

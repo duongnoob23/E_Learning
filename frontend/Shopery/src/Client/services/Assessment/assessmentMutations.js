@@ -146,7 +146,7 @@ export const useSubmitWritingText = () => {
     onSuccess: (data) => {
       const { EM, EC, DT } = data;
       if (EC === "0") {
-        toast.success(EM || "Lưu bài viết thành công!");
+        // toast.success(EM || "Lưu bài viết thành công!"); // Suppress for individual questions
         queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
       } else {
         toast.error(EM || "Lưu bài viết thất bại!");
@@ -168,7 +168,7 @@ export const useScoreWriting = () => {
     onSuccess: (data) => {
       const { EM, EC, DT } = data;
       if (EC === "0") {
-        toast.success(EM || "Chấm điểm thành công!");
+        // toast.success(EM || "Chấm điểm thành công!"); // Suppress for individual questions
         queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
       } else {
         toast.error(EM || "Chấm điểm thất bại!");
@@ -176,6 +176,52 @@ export const useScoreWriting = () => {
     },
     onError: (error) => {
       console.error("Score writing error:", error);
+      toast.error("Có lỗi xảy ra khi chấm điểm");
+    },
+  });
+};
+
+// ========== SPEAKING MUTATIONS ==========
+
+// Mutation để upload audio file cho speaking
+export const useSubmitSpeakingAudio = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (formData) => assessmentApi.submitSpeakingAudio(formData),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0") {
+        // toast.success(EM || "Tải lên audio thành công!"); // Suppress for individual questions
+        queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
+      } else {
+        toast.error(EM || "Tải lên audio thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Submit speaking audio error:", error);
+      toast.error("Có lỗi xảy ra khi tải lên audio");
+    },
+  });
+};
+
+// Mutation để chấm điểm speaking
+export const useScoreSpeaking = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data) => assessmentApi.scoreSpeaking(data),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0") {
+        // toast.success(EM || "Chấm điểm thành công!"); // Suppress for individual questions
+        queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
+      } else {
+        toast.error(EM || "Chấm điểm thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Score speaking error:", error);
       toast.error("Có lỗi xảy ra khi chấm điểm");
     },
   });

@@ -148,7 +148,29 @@ export const assessmentApi = {
 
   // POST /exam/llmservice/score - Chấm điểm writing
   scoreWriting: async (data) => {
-    const response = await axiosInstance.post("/exam/llmservice/score", data);
+    const response = await axiosInstance.post("/exam/llmservice/score", data, {
+      timeout: 300000, // 5 phút cho scoring
+    });
+    return response.data;
+  },
+
+  // ========== SPEAKING APIs ==========
+  // POST /exam/speaking/upload - Upload audio file cho speaking
+  submitSpeakingAudio: async (formData) => {
+    const response = await axiosInstance.post("/exam/speaking/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      timeout: 300000, // 5 phút cho upload và transcription
+    });
+    return response.data;
+  },
+
+  // POST /exam/llmservice/score - Chấm điểm speaking
+  scoreSpeaking: async (data) => {
+    const response = await axiosInstance.post("/exam/llmservice/score", data, {
+      timeout: 300000, // 5 phút cho scoring
+    });
     return response.data;
   },
 

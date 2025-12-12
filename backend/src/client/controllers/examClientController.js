@@ -435,8 +435,28 @@ exports.gradeExam = async (req, res, next) => {
     console.log("Response:", {
       EM: response.EM,
       EC: response.EC,
+      hasDT: !!response.DT,
       score: response.DT?.score,
+      DT_keys: response.DT ? Object.keys(response.DT) : null,
     });
+    
+    // Đảm bảo response có đúng format
+    if (!response.DT && response.score) {
+      // Nếu có score ở top level nhưng không có DT, tạo lại DT
+      console.warn("⚠️ Response missing DT, reconstructing from top-level fields");
+      response.DT = {
+        score: response.score,
+        pronunciation_score: response.pronunciation_score,
+        fluency_score: response.fluency_score,
+        prosody_score: response.prosody_score,
+        transcript: response.transcript,
+        feedback: response.feedback,
+        detailed_feedback: response.detailed_feedback,
+        word_accuracy: response.word_accuracy,
+        word_feedback: response.word_feedback,
+      };
+    }
+    
     res.json(response);
   } catch (error) {
     console.error("❌ Error in gradeExam controller:", error);

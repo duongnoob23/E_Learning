@@ -11,8 +11,10 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
 import {
+  useScoreSpeaking,
   useScoreWriting,
   useSubmitExamSession,
+  useSubmitSpeakingAudio,
   useSubmitWritingText,
 } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentTestCSS/AssessmentTest.css";
@@ -164,6 +166,14 @@ export default function AssessmentTest() {
   const { mutateAsync: scoreWriting, isPending: isScoringWriting } =
     useScoreWriting();
 
+  // Hook để nộp bài speaking
+  const { mutateAsync: submitSpeakingAudio, isPending: isSubmittingSpeaking } =
+    useSubmitSpeakingAudio();
+
+  // Hook để chấm điểm speaking
+  const { mutateAsync: scoreSpeaking, isPending: isScoringSpeaking } =
+    useScoreSpeaking();
+
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;
   }
@@ -289,10 +299,147 @@ export default function AssessmentTest() {
   // ✅ XỬ LÝ NỘP BÀI
   const handleSubmit = async () => {
     try {
-      // ✅ PHÂN BIỆT WRITING vs LISTENING/READING
+      // ✅ PHÂN BIỆT WRITING, SPEAKING vs LISTENING/READING
       const isWriting = skill === "writing" || skill === "speaking_writing";
+      const isSpeaking = skill === "speaking" || skill === "speaking_writing";
 
-      if (isWriting) {
+      if (isSpeaking && !isWriting) {
+        // ========== XỬ LÝ SPEAKING (CHỈ SPEAKING) ==========
+        console.log("🎤 [Speaking] Starting submit process...");
+
+        // Lấy tất cả questions để tìm SPEAKING questions
+        const allQuestions = Object.values(questionsData).flatMap(
+          (partQuestions) => {
+            return Array.isArray(partQuestions)
+              ? partQuestions.map((q) => ({
+                  question_id: q.question_id,
+                  question_type: q.question_type,
+                }))
+              : [];
+          }
+        );
+
+        // Filter chỉ SPEAKING questions
+        const speakingQuestions = allQuestions.filter(
+          (q) => q.question_type === "SPEAKING"
+        );
+
+        console.log(
+          "🎤 [Speaking] Found speaking questions:",
+          speakingQuestions
+        );
+
+        if (speakingQuestions.length === 0) {
+          alert("Không tìm thấy câu hỏi Speaking để nộp bài");
+          return;
+        }
+
+        // Kiểm tra xem có câu nào chưa làm không
+        const unansweredSpeaking = speakingQuestions.filter(
+          (q) => !answers[q.question_id] || !answers[q.question_id].recording
+        );
+
+        if (unansweredSpeaking.length > 0) {
+          const confirmSubmit = window.confirm(
+            `Bạn còn ${unansweredSpeaking.length} câu Speaking chưa làm. Bạn có chắc muốn nộp bài sớm không?`
+          );
+          if (!confirmSubmit) return;
+        }
+
+        // ✅ Helper function để convert blob URL thành File
+        const blobUrlToFile = async (blobUrl, filename) => {
+          const response = await fetch(blobUrl);
+          const blob = await response.blob();
+          return new File([blob], filename, { type: blob.type });
+        };
+
+        // ✅ Gửi tất cả submitSpeakingAudio cùng lúc (parallel)
+        const submitPromises = speakingQuestions
+          .filter((q) => {
+            const answerData = answers[q.question_id];
+            return answerData?.recording?.url || answerData?.recording?.blob;
+          })
+          .map(async (question) => {
+            const answerData = answers[question.question_id];
+            const recording = answerData?.recording;
+
+            if (!recording) {
+              console.warn(
+                `⚠️ [Speaking] No recording for question ${question.question_id}`
+              );
+              return null;
+            }
+
+            try {
+              // Convert blob URL thành File
+              const audioFile = await blobUrlToFile(
+                recording.url || recording.blob,
+                `speaking_${question.question_id}.${recording.type || "webm"}`
+              );
+
+              // Tạo FormData
+              const formData = new FormData();
+              formData.append("session_id", sessionData.exam_session_id);
+              formData.append("question_id", question.question_id);
+              formData.append("language", "en");
+              formData.append("audio_file", audioFile);
+
+              const submitResult = await submitSpeakingAudio(formData);
+
+              if (submitResult.EC !== "0") {
+                console.error(
+                  `❌ [Speaking] Submit failed for question ${question.question_id}:`,
+                  submitResult
+                );
+                return null;
+              }
+
+              const responseId = submitResult.DT?.response_id;
+              const audioFilePath = submitResult.DT?.audio_file_path;
+              if (!responseId || !audioFilePath) {
+                console.error(
+                  `❌ [Speaking] No response_id or audio_file_path returned for question ${question.question_id}`
+                );
+                return null;
+              }
+
+              return {
+                question_id: question.question_id,
+                response_id: responseId,
+                audio_file_path: audioFilePath,
+                transcription: submitResult.DT?.transcription || "",
+              };
+            } catch (error) {
+              console.error(
+                `❌ [Speaking] Error submitting question ${question.question_id}:`,
+                error
+              );
+              return null;
+            }
+          });
+
+        // Chờ tất cả submit hoàn thành
+        const submittedResponses = (await Promise.all(submitPromises)).filter(
+          (r) => r !== null
+        );
+
+        console.log(
+          `✅ [Speaking] Submitted ${submittedResponses.length}/${speakingQuestions.length} questions`
+        );
+
+        // Navigate ngay đến SpeakingResult với submitted responses (chưa chấm điểm)
+        navigate("/speakingResult", {
+          state: {
+            sessionId: sessionData.exam_session_id,
+            testId: sessionData.test_id,
+            testTitle: sessionData.test?.title || "Speaking Test",
+            submittedResponses: submittedResponses, // Chưa chấm điểm
+            questionsData: questionsData,
+            answers: answers,
+            allSpeakingQuestions: speakingQuestions, // Để biết tổng số câu
+          },
+        });
+      } else if (isWriting) {
         // ========== XỬ LÝ WRITING ==========
         console.log("📝 [Writing] Starting submit process...");
 
@@ -588,7 +735,11 @@ export default function AssessmentTest() {
             onJump={handleJump}
             onSubmit={handleSubmit}
             isSubmitting={
-              isSubmitting || isSubmittingWriting || isScoringWriting
+              isSubmitting ||
+              isSubmittingWriting ||
+              isScoringWriting ||
+              isSubmittingSpeaking ||
+              isScoringSpeaking
             }
             onNavigate={handleNavigate}
           />
