@@ -1420,7 +1420,11 @@ exports.gradeSpeaking = async ({
   language,
 }) => {
   try {
+    console.log("=== gradeSpeaking Service ===");
+    console.log("Input:", { response_id, user_id, audio_file_path, language });
+
     if (!audio_file_path) {
+      console.log("❌ Missing audio_file_path for Speaking assessment");
       return {
         EM: "Thiếu audio_file_path",
         EC: "-1",
@@ -1428,10 +1432,25 @@ exports.gradeSpeaking = async ({
       };
     }
 
+    // Score speaking using multiPAService
+    console.log("🔄 Calling Python MultiPA service for SPEAKING...");
+    const startTime = Date.now();
     const result = await scoreResponse(audio_file_path, "SPEAKING", language);
+    const duration = Date.now() - startTime;
+    console.log(`✅ Python service completed in ${duration}ms`);
+    console.log("Python result:", {
+      score: result.score,
+      pronunciation_score: result.pronunciation_score,
+      fluency_score: result.fluency_score,
+      prosody_score: result.prosody_score,
+      has_transcript: !!result.transcript,
+      has_feedback: !!result.feedback,
+      has_detailed_feedback: !!result.detailed_feedback,
+    });
 
     // Cập nhật điểm chi tiết và feedback cho response
-    await SpeakingResponse.update(
+    console.log("💾 Updating SpeakingResponse in database...");
+    const updateResult = await SpeakingResponse.update(
       {
         score: result.score,
         pronunciation_score: result.pronunciation_score,
@@ -1446,12 +1465,19 @@ exports.gradeSpeaking = async ({
         where: { response_id, user_id },
       }
     );
+    console.log("✅ Database updated:", {
+      response_id,
+      user_id,
+      rows_affected: updateResult[0],
+    });
+
     return {
       EM: "Chấm bài Speaking thành công",
       EC: "0",
       DT: result,
     };
   } catch (error) {
+    console.error("❌ Error in gradeSpeaking service:", error);
     logError("gradeSpeaking", error, { response_id, user_id });
     return {
       EM: `Có lỗi xảy ra khi chấm Speaking: ${error.message}`,
@@ -1464,7 +1490,16 @@ exports.gradeSpeaking = async ({
 // Chấm điểm writing response
 exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
   try {
+    console.log("=== gradeWriting Service ===");
+    console.log("Input:", {
+      response_id,
+      user_id,
+      text_length: text?.length,
+      language,
+    });
+
     if (!text) {
+      console.log("❌ Missing text for Writing assessment");
       return {
         EM: "Thiếu text cho Writing assessment",
         EC: "-1",
@@ -1473,10 +1508,25 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
     }
 
     // Score writing using multiPAService
+    console.log("🔄 Calling Python MultiPA service for WRITING...");
+    const startTime = Date.now();
     const result = await scoreResponse(text, "WRITING", language);
+    const duration = Date.now() - startTime;
+    console.log(`✅ Python service completed in ${duration}ms`);
+    console.log("Python result:", {
+      score: result.score,
+      grammar_score: result.grammar_score,
+      vocabulary_score: result.vocabulary_score,
+      coherence_score: result.coherence_score,
+      task_completion_score: result.task_completion_score,
+      spelling_score: result.spelling_score,
+      has_feedback: !!result.feedback,
+      has_detailed_feedback: !!result.detailed_feedback,
+    });
 
     // Update WritingResponse in database
-    await WritingResponse.update(
+    console.log("💾 Updating WritingResponse in database...");
+    const updateResult = await WritingResponse.update(
       {
         score: result.score,
         grammar_score: result.grammar_score,
@@ -1490,6 +1540,11 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       },
       { where: { response_id, user_id } }
     );
+    console.log("✅ Database updated:", {
+      response_id,
+      user_id,
+      rows_affected: updateResult[0],
+    });
 
     return {
       EM: "Chấm bài Writing thành công",
@@ -1497,6 +1552,7 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       DT: result,
     };
   } catch (error) {
+    console.error("❌ Error in gradeWriting service:", error);
     logError("gradeWriting", error, { response_id, user_id });
     return {
       EM: `Có lỗi xảy ra khi chấm Writing: ${error.message}`,
@@ -1517,9 +1573,20 @@ exports.submitWritingText = async (writingData) => {
       language = "en",
     } = writingData;
 
+    console.log("=== submitWritingText Service ===");
+    console.log("Input data:", {
+      user_id,
+      session_id,
+      question_id,
+      language,
+      written_text_length: written_text?.length,
+    });
+
     // Kiểm tra phiên thi có tồn tại không
     const examSession = await ExamSession.findById(session_id);
+    console.log("ExamSession lookup:", { session_id, found: !!examSession });
     if (!examSession) {
+      console.log("❌ ExamSession not found for session_id:", session_id);
       return {
         EM: "Không tìm thấy phiên thi",
         EC: "2",
@@ -1528,8 +1595,78 @@ exports.submitWritingText = async (writingData) => {
     }
 
     // Kiểm tra câu hỏi writing có tồn tại không
+    console.log("Question lookup:", {
+      question_id,
+      question_id_type: typeof question_id,
+    });
     const writingQuestion = await Question.findById(question_id);
-    if (!writingQuestion || writingQuestion.question_type !== "WRITING") {
+    console.log("Question found:", {
+      found: !!writingQuestion,
+      question_id: writingQuestion?.question_id,
+      question_type: writingQuestion?.question_type,
+      question_type_expected: "WRITING",
+      question_type_match: writingQuestion?.question_type === "WRITING",
+      part_id: writingQuestion?.part_id,
+    });
+
+    if (!writingQuestion) {
+      console.log("❌ Question not found for question_id:", question_id);
+      return {
+        EM: "Không tìm thấy câu hỏi writing",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // DEBUG: Nếu question_type không phải WRITING, tìm tất cả WRITING questions trong cùng part
+    if (writingQuestion.question_type !== "WRITING") {
+      console.log("❌ Question type mismatch:", {
+        question_id,
+        expected: "WRITING",
+        actual: writingQuestion.question_type,
+        part_id: writingQuestion.part_id,
+      });
+
+      // Tìm tất cả WRITING questions trong cùng part để gợi ý
+      try {
+        const allQuestionsInPart = await Question.findAll({
+          where: { part_id: writingQuestion.part_id },
+          attributes: ["question_id", "question_number", "question_type"],
+          order: [["question_number", "ASC"]],
+        });
+        console.log(`📋 All questions in part_id ${writingQuestion.part_id}:`);
+        allQuestionsInPart.forEach((q) => {
+          const marker = q.question_id === question_id ? " ⬅️ (this one)" : "";
+          console.log(
+            `  - Question ${q.question_number}: ID=${q.question_id}, Type=${q.question_type}${marker}`
+          );
+        });
+        const writingQuestions = allQuestionsInPart.filter(
+          (q) => q.question_type === "WRITING"
+        );
+        if (writingQuestions.length > 0) {
+          console.log(
+            `✅ Found ${writingQuestions.length} WRITING question(s) in part ${writingQuestion.part_id}:`,
+            writingQuestions.map((q) => ({
+              question_id: q.question_id,
+              question_number: q.question_number,
+            }))
+          );
+          console.log(
+            `💡 Suggestion: Use question_id ${writingQuestions[0].question_id} instead of ${question_id}`
+          );
+        } else {
+          console.log(
+            `⚠️ No WRITING questions found in part ${writingQuestion.part_id}`
+          );
+        }
+      } catch (debugError) {
+        console.log(
+          "⚠️ Could not fetch questions for debugging:",
+          debugError.message
+        );
+      }
+
       return {
         EM: "Không tìm thấy câu hỏi writing",
         EC: "3",
@@ -1607,6 +1744,80 @@ exports.getSessionWritingResponses = async (session_id, options = {}) => {
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách phản hồi writing",
       EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// Update exam session (for writing completion)
+exports.updateExamSession = async ({
+  session_id,
+  user_id,
+  status,
+  total_score,
+  correct_answers,
+  wrong_answers,
+}) => {
+  try {
+    console.log("=== updateExamSession Service ===");
+    console.log("Session ID:", session_id);
+    console.log("User ID:", user_id);
+    console.log("Update data:", {
+      status,
+      total_score,
+      correct_answers,
+      wrong_answers,
+    });
+
+    // Tìm session
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "-1",
+        DT: null,
+      };
+    }
+
+    // Kiểm tra quyền sở hữu
+    if (examSession.user_id !== user_id) {
+      return {
+        EM: "Bạn không có quyền cập nhật phiên thi này",
+        EC: "-2",
+        DT: null,
+      };
+    }
+
+    // Tính toán thời gian
+    const endTime = new Date();
+    const durationSeconds = Math.floor(
+      (endTime - new Date(examSession.start_time)) / 1000
+    );
+
+    // Cập nhật session
+    await ExamSession.updateSession(session_id, {
+      end_time: endTime,
+      duration_seconds: durationSeconds,
+      total_score: total_score || 0,
+      correct_answers: correct_answers || 0,
+      wrong_answers: wrong_answers || 0,
+      status: status || "COMPLETED",
+    });
+
+    // Lấy session đã cập nhật
+    const updatedSession = await ExamSession.findById(session_id);
+
+    console.log("✅ Session updated successfully");
+    return {
+      EM: "Cập nhật phiên thi thành công",
+      EC: "0",
+      DT: updatedSession,
+    };
+  } catch (error) {
+    logError("updateExamSession", error, { session_id, user_id });
+    return {
+      EM: "Có lỗi xảy ra khi cập nhật phiên thi",
+      EC: "-3",
       DT: null,
     };
   }

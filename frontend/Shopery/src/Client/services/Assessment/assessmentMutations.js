@@ -134,3 +134,49 @@ export const useAddComment = () => {
     },
   });
 };
+
+// ========== WRITING MUTATIONS ==========
+
+// Mutation để nộp bài writing
+export const useSubmitWritingText = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data) => assessmentApi.submitWritingText(data),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0") {
+        toast.success(EM || "Lưu bài viết thành công!");
+        queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
+      } else {
+        toast.error(EM || "Lưu bài viết thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Submit writing text error:", error);
+      toast.error("Có lỗi xảy ra khi lưu bài viết");
+    },
+  });
+};
+
+// Mutation để chấm điểm writing
+export const useScoreWriting = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data) => assessmentApi.scoreWriting(data),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0") {
+        toast.success(EM || "Chấm điểm thành công!");
+        queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
+      } else {
+        toast.error(EM || "Chấm điểm thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Score writing error:", error);
+      toast.error("Có lỗi xảy ra khi chấm điểm");
+    },
+  });
+};

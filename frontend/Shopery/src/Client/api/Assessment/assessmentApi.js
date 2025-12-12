@@ -138,4 +138,26 @@ export const assessmentApi = {
     );
     return response.data;
   },
+
+  // ========== WRITING APIs ==========
+  // POST /exam/writing/submit - Nộp bài viết writing
+  submitWritingText: async (data) => {
+    const response = await axiosInstance.post("/exam/writing/submit", data);
+    return response.data;
+  },
+
+  // POST /exam/llmservice/score - Chấm điểm writing
+  scoreWriting: async (data) => {
+    const response = await axiosInstance.post("/exam/llmservice/score", data);
+    return response.data;
+  },
+
+  // PATCH /exam/exam-sessions/:session_id/update - Cập nhật exam session
+  updateExamSession: async (sessionId, data) => {
+    const response = await axiosInstance.patch(
+      `/exam/exam-sessions/${sessionId}/update`,
+      data
+    );
+    return response.data;
+  },
 };

@@ -1,0 +1,209 @@
+{
+  "base_url": "http://localhost:5000",
+
+  "1_login": {
+    "url": "http://localhost:5000/auth/login",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "student@example.com",
+      "password": "your_password"
+    }
+  },
+
+  "2_speaking_upload": {
+    "url": "http://localhost:5000/exam/speaking/upload",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer <YOUR_TOKEN_HERE>"
+    },
+    "note": "⚠️ QUAN TRỌNG: Phải dùng form-data (multipart/form-data), KHÔNG dùng JSON!",
+    "body_type": "form-data",
+    "form_data_fields": {
+      "session_id": "1",
+      "question_id": "5",
+      "language": "en",
+      "audio_file": "[Chọn file MP3/WAV/WEBM/OGG của bạn]"
+    },
+    "postman_instructions": {
+      "step1": "Chọn tab 'Body'",
+      "step2": "Chọn radio button 'form-data' (KHÔNG chọn raw!)",
+      "step3": "Thêm các fields sau:",
+      "fields": [
+        {
+          "key": "session_id",
+          "type": "Text",
+          "value": "1",
+          "description": "ID của exam session"
+        },
+        {
+          "key": "question_id",
+          "type": "Text",
+          "value": "5",
+          "description": "ID của câu hỏi speaking"
+        },
+        {
+          "key": "language",
+          "type": "Text",
+          "value": "en",
+          "description": "Mã ngôn ngữ (en, vi, etc.)"
+        },
+        {
+          "key": "audio_file",
+          "type": "File",
+          "value": "[Chọn file audio]",
+          "description": "File audio (MP3, WAV, WEBM, OGG, M4A) - tối đa 50MB"
+        }
+      ],
+      "step4": "KHÔNG thêm header 'Content-Type' - Postman sẽ tự động set 'multipart/form-data'",
+      "step5": "Click 'Send' và lưu response_id và audio_file_path từ response"
+    },
+    "response_example": {
+      "EM": "Tải lên tệp âm thanh thành công",
+      "EC": "0",
+      "DT": {
+        "response_id": 123,
+        "session_id": 1,
+        "question_id": 5,
+        "audio_file_path": "backend/src/uploads/speaking_audio/1234567890-123456789.wav",
+        "transcription": "Hello, this is my speaking response...",
+        "language": "en"
+      }
+    }
+  },
+
+  "3_writing_submit": {
+    "url": "http://localhost:5000/exam/writing/submit",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer <YOUR_TOKEN_HERE>",
+      "Content-Type": "application/json"
+    },
+    "note": "⚠️ QUAN TRỌNG: Phải dùng raw JSON, KHÔNG dùng form-data!",
+    "body": {
+      "session_id": 1,
+      "question_id": 6,
+      "written_text": "In today's modern world, technology plays a crucial role in our daily lives. It has transformed the way we communicate, work, and learn. For example, smartphones allow us to stay connected with friends and family around the globe. Additionally, online learning platforms have made education more accessible to people everywhere. However, we must also be mindful of the potential drawbacks, such as reduced face-to-face interaction and privacy concerns. Overall, while technology brings many benefits, it is important to use it responsibly.",
+      "language": "en"
+    },
+    "postman_instructions": {
+      "step1": "Chọn tab 'Body'",
+      "step2": "Chọn radio button 'raw' (KHÔNG chọn form-data!)",
+      "step3": "Ở dropdown bên phải, chọn 'JSON'",
+      "step4": "Paste JSON body ở trên vào",
+      "step5": "Đảm bảo Header có 'Content-Type: application/json'"
+    }
+  },
+
+  "4_score_speaking": {
+    "url": "http://localhost:5000/exam/llmservice/score",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer <YOUR_TOKEN_HERE>",
+      "Content-Type": "application/json"
+    },
+    "note": "⚠️ QUAN TRỌNG: Phải dùng raw JSON, KHÔNG dùng form-data!",
+    "body_type": "raw_json",
+    "body": {
+      "response_id": 123,
+      "type": "SPEAKING",
+      "audio_file_path": "backend/src/uploads/speaking_audio/1234567890-123456789.wav",
+      "language": "en"
+    },
+    "postman_instructions": {
+      "step1": "Chọn tab 'Body'",
+      "step2": "Chọn radio button 'raw' (KHÔNG chọn form-data!)",
+      "step3": "Ở dropdown bên phải, chọn 'JSON'",
+      "step4": "Paste JSON body ở trên vào",
+      "step5": "Đảm bảo Header có 'Content-Type: application/json'",
+      "step6": "response_id và audio_file_path lấy từ response của API '2_speaking_upload'"
+    },
+    "response_example": {
+      "EM": "Chấm bài Speaking thành công",
+      "EC": "0",
+      "DT": {
+        "score": 85.5,
+        "pronunciation_score": 90.0,
+        "fluency_score": 82.0,
+        "prosody_score": 84.5,
+        "transcript": "Hello, this is my speaking response...",
+        "feedback": "Good pronunciation overall...",
+        "detailed_feedback": {
+          "pronunciation": "...",
+          "fluency": "...",
+          "prosody": "..."
+        }
+      }
+    },
+    "luong_hoan_chinh": {
+      "buoc1": "Gọi API '2_speaking_upload' với form-data (upload file audio)",
+      "buoc2": "Lưu response_id và audio_file_path từ response",
+      "buoc3": "Gọi API '4_score_speaking' với raw JSON, dùng response_id và audio_file_path vừa lấy",
+      "buoc4": "Nhận kết quả chấm điểm với các scores chi tiết"
+    }
+  },
+
+  "5_score_writing": {
+    "url": "http://localhost:5000/exam/llmservice/score",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer <YOUR_TOKEN_HERE>",
+      "Content-Type": "application/json"
+    },
+    "note": "⚠️ QUAN TRỌNG: Phải dùng raw JSON, KHÔNG dùng form-data!",
+    "body_type": "raw_json",
+    "body": {
+      "response_id": 124,
+      "type": "WRITING",
+      "text": "In today's modern world, technology plays a crucial role in our daily lives. It has transformed the way we communicate, work, and learn. For example, smartphones allow us to stay connected with friends and family around the globe. Additionally, online learning platforms have made education more accessible to people everywhere. However, we must also be mindful of the potential drawbacks, such as reduced face-to-face interaction and privacy concerns. Overall, while technology brings many benefits, it is important to use it responsibly.",
+      "language": "en"
+    },
+    "postman_instructions": {
+      "step1": "Chọn tab 'Body'",
+      "step2": "Chọn radio button 'raw' (KHÔNG chọn form-data!)",
+      "step3": "Ở dropdown bên phải, chọn 'JSON'",
+      "step4": "Paste JSON body ở trên vào",
+      "step5": "Đảm bảo Header có 'Content-Type: application/json'",
+      "step6": "response_id lấy từ response của API '3_writing_submit'"
+    },
+    "response_example": {
+      "EM": "Chấm bài Writing thành công",
+      "EC": "0",
+      "DT": {
+        "score": 83.2,
+        "grammar_score": 80,
+        "vocabulary_score": 96,
+        "coherence_score": 80,
+        "task_completion_score": 70,
+        "spelling_score": 90,
+        "feedback": "Grammar: 8.0/10, Vocabulary: 9.6/10...",
+        "detailed_feedback": {
+          "grammar": "...",
+          "vocabulary": "...",
+          "coherence": "...",
+          "task_completion": "...",
+          "spelling": "..."
+        }
+      }
+    },
+    "luong_hoan_chinh": {
+      "buoc1": "Gọi API '3_writing_submit' với raw JSON (submit text)",
+      "buoc2": "Lưu response_id từ response",
+      "buoc3": "Gọi API '5_score_writing' với raw JSON, dùng response_id và text vừa submit",
+      "buoc4": "Nhận kết quả chấm điểm với các scores chi tiết"
+    }
+  },
+
+  "tom_tat_luong": {
+    "speaking": {
+      "buoc1": "POST /exam/speaking/upload - form-data (upload file audio) → Nhận response_id và audio_file_path",
+      "buoc2": "POST /exam/llmservice/score - raw JSON với response_id và audio_file_path → Nhận điểm số"
+    },
+    "writing": {
+      "buoc1": "POST /exam/writing/submit - raw JSON (submit text) → Nhận response_id",
+      "buoc2": "POST /exam/llmservice/score - raw JSON với response_id và text → Nhận điểm số"
+    }
+  }
+}

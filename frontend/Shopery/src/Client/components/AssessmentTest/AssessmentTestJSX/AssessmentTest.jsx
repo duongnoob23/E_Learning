@@ -1,6 +1,6 @@
 // components/AssessmentTest/AssessmentTestJSX/AssessmentTest.jsx
 
-import React, {
+import {
   Suspense,
   useCallback,
   useEffect,
@@ -10,7 +10,11 @@ import React, {
 } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
-import { useSubmitExamSession } from "../../../services/Assessment/assessmentMutations";
+import {
+  useScoreWriting,
+  useSubmitExamSession,
+  useSubmitWritingText,
+} from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentTestCSS/AssessmentTest.css";
 import { getQuestionComponent } from "./QuestionComponentMapper";
 import QuestionNavigator from "./QuestionNavigator";
@@ -152,6 +156,14 @@ export default function AssessmentTest() {
   const { mutateAsync: submitExam, isPending: isSubmitting } =
     useSubmitExamSession();
 
+  // Hook để nộp bài writing
+  const { mutateAsync: submitWritingText, isPending: isSubmittingWriting } =
+    useSubmitWritingText();
+
+  // Hook để chấm điểm writing
+  const { mutateAsync: scoreWriting, isPending: isScoringWriting } =
+    useScoreWriting();
+
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;
   }
@@ -277,57 +289,172 @@ export default function AssessmentTest() {
   // ✅ XỬ LÝ NỘP BÀI
   const handleSubmit = async () => {
     try {
-      const totalQuestions = Object.values(questionsData).reduce(
-        (sum, partQuestions) => {
-          // ✅ Đảm bảo partQuestions là array
-          return (
-            sum + (Array.isArray(partQuestions) ? partQuestions.length : 0)
-          );
-        },
-        0
-      );
+      // ✅ PHÂN BIỆT WRITING vs LISTENING/READING
+      const isWriting = skill === "writing" || skill === "speaking_writing";
 
-      const answeredCount = Object.keys(answers).length;
-      const unansweredCount = totalQuestions - answeredCount;
+      if (isWriting) {
+        // ========== XỬ LÝ WRITING ==========
+        console.log("📝 [Writing] Starting submit process...");
 
-      if (unansweredCount > 0) {
-        const confirmSubmit = window.confirm(
-          `Bạn còn ${unansweredCount} câu chưa làm. Bạn có chắc muốn nộp bài sớm không?`
+        // Lấy tất cả questions để tìm WRITING questions
+        const allQuestions = Object.values(questionsData).flatMap(
+          (partQuestions) => {
+            return Array.isArray(partQuestions)
+              ? partQuestions.map((q) => ({
+                  question_id: q.question_id,
+                  question_type: q.question_type,
+                }))
+              : [];
+          }
         );
-        if (!confirmSubmit) return;
-      }
 
-      const allQuestions = Object.values(questionsData).flatMap(
-        (partQuestions) => {
-          // ✅ Đảm bảo partQuestions là array
-          return Array.isArray(partQuestions)
-            ? partQuestions.map((q) => q.question_id)
-            : [];
+        // Filter chỉ WRITING questions
+        const writingQuestions = allQuestions.filter(
+          (q) => q.question_type === "WRITING"
+        );
+
+        console.log("📝 [Writing] Found writing questions:", writingQuestions);
+
+        if (writingQuestions.length === 0) {
+          alert("Không tìm thấy câu hỏi Writing để nộp bài");
+          return;
         }
-      );
 
-      const answersArray = allQuestions.map((questionId) => ({
-        question_id: questionId,
-        selected_choice_id: answers[questionId] ?? null,
-      }));
+        // Kiểm tra xem có câu nào chưa làm không
+        const unansweredWriting = writingQuestions.filter(
+          (q) => !answers[q.question_id] || !answers[q.question_id].essay
+        );
 
-      const result = await submitExam({
-        sessionId: sessionData.exam_session_id,
-        answers: answersArray,
-        examId: sessionData.test_id,
-      });
+        if (unansweredWriting.length > 0) {
+          const confirmSubmit = window.confirm(
+            `Bạn còn ${unansweredWriting.length} câu Writing chưa làm. Bạn có chắc muốn nộp bài sớm không?`
+          );
+          if (!confirmSubmit) return;
+        }
 
-      if (result && +result.EC === 0) {
-        navigate("/assessmentResult", {
+        // ✅ Gửi tất cả submitWritingText cùng lúc (parallel)
+        const submitPromises = writingQuestions
+          .filter((q) => {
+            const answerData = answers[q.question_id];
+            const writtenText = answerData?.essay || "";
+            return writtenText.trim().length > 0;
+          })
+          .map(async (question) => {
+            const answerData = answers[question.question_id];
+            const writtenText = answerData?.essay || "";
+
+            try {
+              const submitResult = await submitWritingText({
+                session_id: sessionData.exam_session_id,
+                question_id: question.question_id,
+                written_text: writtenText,
+                language: "en",
+              });
+
+              if (submitResult.EC !== "0") {
+                console.error(
+                  `❌ [Writing] Submit failed for question ${question.question_id}:`,
+                  submitResult
+                );
+                return null;
+              }
+
+              const responseId = submitResult.DT?.response_id;
+              if (!responseId) {
+                console.error(
+                  `❌ [Writing] No response_id returned for question ${question.question_id}`
+                );
+                return null;
+              }
+
+              return {
+                question_id: question.question_id,
+                response_id: responseId,
+                written_text: writtenText,
+              };
+            } catch (error) {
+              console.error(
+                `❌ [Writing] Error submitting question ${question.question_id}:`,
+                error
+              );
+              return null;
+            }
+          });
+
+        // Chờ tất cả submit hoàn thành
+        const submittedResponses = (await Promise.all(submitPromises)).filter(
+          (r) => r !== null
+        );
+
+        console.log(
+          `✅ [Writing] Submitted ${submittedResponses.length}/${writingQuestions.length} questions`
+        );
+
+        // Navigate ngay đến WritingResult với submitted responses (chưa chấm điểm)
+        navigate("/writingResult", {
           state: {
             sessionId: sessionData.exam_session_id,
-            testId: "2",
-            testTitle: "New Economy TOEIC Full Test 1",
+            testId: sessionData.test_id,
+            testTitle: sessionData.test?.title || "Writing Test",
+            submittedResponses: submittedResponses, // Chưa chấm điểm
+            questionsData: questionsData,
+            answers: answers,
+            allWritingQuestions: writingQuestions, // Để biết tổng số câu
           },
         });
+      } else {
+        // ========== XỬ LÝ LISTENING/READING (LOGIC CŨ) ==========
+        const totalQuestions = Object.values(questionsData).reduce(
+          (sum, partQuestions) => {
+            return (
+              sum + (Array.isArray(partQuestions) ? partQuestions.length : 0)
+            );
+          },
+          0
+        );
+
+        const answeredCount = Object.keys(answers).length;
+        const unansweredCount = totalQuestions - answeredCount;
+
+        if (unansweredCount > 0) {
+          const confirmSubmit = window.confirm(
+            `Bạn còn ${unansweredCount} câu chưa làm. Bạn có chắc muốn nộp bài sớm không?`
+          );
+          if (!confirmSubmit) return;
+        }
+
+        const allQuestions = Object.values(questionsData).flatMap(
+          (partQuestions) => {
+            return Array.isArray(partQuestions)
+              ? partQuestions.map((q) => q.question_id)
+              : [];
+          }
+        );
+
+        const answersArray = allQuestions.map((questionId) => ({
+          question_id: questionId,
+          selected_choice_id: answers[questionId] ?? null,
+        }));
+
+        const result = await submitExam({
+          sessionId: sessionData.exam_session_id,
+          answers: answersArray,
+          examId: sessionData.test_id,
+        });
+
+        if (result && +result.EC === 0) {
+          navigate("/assessmentResult", {
+            state: {
+              sessionId: sessionData.exam_session_id,
+              testId: "2",
+              testTitle: "New Economy TOEIC Full Test 1",
+            },
+          });
+        }
       }
     } catch (error) {
       console.error("Error submitting exam:", error);
+      alert("Có lỗi xảy ra khi nộp bài: " + (error.message || "Unknown error"));
     }
   };
 
@@ -460,7 +587,9 @@ export default function AssessmentTest() {
             answers={answers}
             onJump={handleJump}
             onSubmit={handleSubmit}
-            isSubmitting={isSubmitting}
+            isSubmitting={
+              isSubmitting || isSubmittingWriting || isScoringWriting
+            }
             onNavigate={handleNavigate}
           />
         </div>

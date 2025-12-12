@@ -17,11 +17,19 @@ const storage = multer.diskStorage({
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
+    console.log("📁 Multer destination:", uploadDir);
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+    const filename = uniqueSuffix + path.extname(file.originalname);
+    console.log(
+      "📝 Multer filename:",
+      filename,
+      "Original:",
+      file.originalname
+    );
+    cb(null, filename);
   },
 });
 
@@ -40,10 +48,23 @@ const upload = multer({
       "audio/webm",
       "audio/ogg",
     ];
-    console.log("File MIME type:", file.mimetype);
+    console.log("🔍 File filter check:", {
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      size: file.size
+        ? (file.size / (1024 * 1024)).toFixed(2) + " MB"
+        : "unknown",
+      isAllowed: allowedMimes.includes(file.mimetype),
+    });
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
+      console.error(
+        "❌ Invalid file type:",
+        file.mimetype,
+        "for file:",
+        file.originalname
+      );
       cb(new Error("Invalid audio format"));
     }
   },
@@ -126,6 +147,14 @@ router.get(
   authorizeByRole("student"),
   ExamClientController.getResultByTags
 ); // New
+
+// Update exam session (for writing completion)
+router.patch(
+  "/exam-sessions/:session_id/update",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.updateExamSession
+);
 // Discussion Routes
 router.get(
   "/discussions/test/:test_id",

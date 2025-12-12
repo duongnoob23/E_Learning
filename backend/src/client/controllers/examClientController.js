@@ -1,5 +1,14 @@
 const examClientService = require("../services/examClientService");
 const { TestDiscussion } = require("../../models");
+const { transcribeAudio } = require("../services/whisperService");
+
+// Helper function để log lỗi
+const logError = (functionName, error, context = {}) => {
+  console.error(`[EXAM_CONTROLLER] ${functionName} | ${error.message}`);
+  if (Object.keys(context).length > 0) {
+    console.error("Context:", context);
+  }
+};
 
 // GET /api/tests - Lấy danh sách đề thi
 exports.getTests = async (req, res, next) => {
@@ -227,20 +236,87 @@ exports.getResultByTags = async (req, res, next) => {
 // --------- Speaking Routes --------- //
 // POST /api/speaking/upload - Tải lên tệp âm thanh speaking
 exports.uploadSpeakingAudio = async (req, res, next) => {
+  const startTime = Date.now();
   try {
-    const user_id = req.user.userId;
-    const { session_id, question_id, language } = req.body;
-    const audio_file_path = req.file.path;
-
-    console.log("=== uploadSpeakingAudio ===");
-    console.log("File path from multer:", audio_file_path);
-    console.log("File info:", {
-      filename: req.file.filename,
-      originalname: req.file.originalname,
-      mimetype: req.file.mimetype,
-      size: req.file.size,
+    console.log("=== uploadSpeakingAudio Controller ===");
+    console.log("Request received at:", new Date().toISOString());
+    console.log("Request headers:", {
+      "content-type": req.headers["content-type"],
+      "content-length": req.headers["content-length"],
+      authorization: req.headers["authorization"] ? "Present" : "Missing",
     });
 
+    const user_id = req.user.userId;
+    const { session_id, question_id, language } = req.body;
+
+    console.log("Form data:", { session_id, question_id, language });
+    console.log(
+      "File info:",
+      req.file
+        ? {
+            fieldname: req.file.fieldname,
+            originalname: req.file.originalname,
+            encoding: req.file.encoding,
+            mimetype: req.file.mimetype,
+            size: req.file.size,
+            size_mb: (req.file.size / (1024 * 1024)).toFixed(2) + " MB",
+            destination: req.file.destination,
+            filename: req.file.filename,
+            path: req.file.path,
+          }
+        : "NO FILE RECEIVED"
+    );
+
+    if (!req.file) {
+      console.error("❌ No file received in request");
+      return res.status(400).json({
+        EM: "Không có file audio được upload",
+        EC: "-1",
+        DT: null,
+      });
+    }
+
+    const audio_file_path = req.file.path;
+    const uploadDuration = Date.now() - startTime;
+    console.log(
+      `✅ File uploaded successfully in ${uploadDuration}ms (${(uploadDuration / 1000).toFixed(2)}s)`
+    );
+    console.log("File path from multer:", audio_file_path);
+
+    // Transcribe audio
+    console.log("🔄 Starting transcription...");
+    const transcribeStartTime = Date.now();
+    let transcription = "";
+    try {
+      transcription = await transcribeAudio(audio_file_path, language);
+      const transcribeDuration = Date.now() - transcribeStartTime;
+      console.log(
+        `✅ Transcription completed in ${transcribeDuration}ms (${(transcribeDuration / 1000).toFixed(2)}s)`
+      );
+      console.log(
+        "Transcription preview:",
+        transcription.substring(0, 100) + "..."
+      );
+    } catch (transcribeError) {
+      const transcribeDuration = Date.now() - transcribeStartTime;
+      console.error(
+        `❌ Transcription failed after ${transcribeDuration}ms:`,
+        transcribeError.message
+      );
+      logError("uploadSpeakingAudio.transcribe", transcribeError, {
+        audio_file_path,
+        language,
+      });
+      return res.status(500).json({
+        EM: `Lỗi xử lý âm thanh: ${transcribeError.message}`,
+        EC: "-3",
+        DT: null,
+      });
+    }
+
+    // Create response
+    console.log("💾 Creating SpeakingResponse in database...");
+    const dbStartTime = Date.now();
     const response = await examClientService.uploadSpeakingAudio({
       user_id,
       session_id,
@@ -248,9 +324,23 @@ exports.uploadSpeakingAudio = async (req, res, next) => {
       audio_file_path,
       language,
     });
+    const dbDuration = Date.now() - dbStartTime;
+    console.log(`✅ Database operation completed in ${dbDuration}ms`);
+
+    const totalDuration = Date.now() - startTime;
+    console.log(
+      `✅ Total request time: ${totalDuration}ms (${(totalDuration / 1000).toFixed(2)}s)`
+    );
+    console.log("Response:", {
+      EM: response.EM,
+      EC: response.EC,
+      response_id: response.DT?.response_id,
+    });
 
     res.json(response);
   } catch (error) {
+    const totalDuration = Date.now() - startTime;
+    console.error(`❌ Error after ${totalDuration}ms:`, error);
     next(error);
   }
 };
@@ -277,7 +367,20 @@ exports.gradeExam = async (req, res, next) => {
     const { response_id, type, audio_file_path, text, language } = req.body;
     const user_id = req.user.userId;
 
+    console.log("=== gradeExam Controller ===");
+    console.log("Request body:", {
+      response_id,
+      type,
+      audio_file_path: audio_file_path
+        ? audio_file_path.substring(0, 50) + "..."
+        : null,
+      text: text ? text.substring(0, 100) + "..." : null,
+      language,
+    });
+    console.log("User ID:", user_id);
+
     if (!response_id || !type) {
+      console.log("❌ Validation failed - Missing response_id or type");
       return res.status(400).json({
         EM: "Thiếu thông tin: response_id, type",
         EC: "-1",
@@ -288,12 +391,14 @@ exports.gradeExam = async (req, res, next) => {
     let response;
     if (type === "WRITING") {
       if (!text) {
+        console.log("❌ Validation failed - Missing text for WRITING");
         return res.status(400).json({
           EM: "Thiếu text cho WRITING type",
           EC: "-1",
           DT: null,
         });
       }
+      console.log("📝 Grading WRITING response...");
       response = await examClientService.gradeWriting({
         response_id,
         user_id,
@@ -302,12 +407,16 @@ exports.gradeExam = async (req, res, next) => {
       });
     } else if (type === "SPEAKING") {
       if (!audio_file_path) {
+        console.log(
+          "❌ Validation failed - Missing audio_file_path for SPEAKING"
+        );
         return res.status(400).json({
           EM: "Thiếu audio_file_path cho SPEAKING type",
           EC: "-1",
           DT: null,
         });
       }
+      console.log("🎤 Grading SPEAKING response...");
       response = await examClientService.gradeSpeaking({
         response_id,
         user_id,
@@ -315,17 +424,22 @@ exports.gradeExam = async (req, res, next) => {
         language,
       });
     } else {
-      return res
-        .status(400)
-        .json({
-          EM: "Loại bài không hợp lệ (SPEAKING/WRITING)",
-          EC: "-1",
-          DT: null,
-        });
+      console.log("❌ Invalid type:", type);
+      return res.status(400).json({
+        EM: "Loại bài không hợp lệ (SPEAKING/WRITING)",
+        EC: "-1",
+        DT: null,
+      });
     }
 
+    console.log("Response:", {
+      EM: response.EM,
+      EC: response.EC,
+      score: response.DT?.score,
+    });
     res.json(response);
   } catch (error) {
+    console.error("❌ Error in gradeExam controller:", error);
     next(error);
   }
 };
@@ -337,7 +451,17 @@ exports.submitWritingText = async (req, res, next) => {
     const user_id = req.user.userId;
     const { session_id, question_id, written_text, language } = req.body;
 
+    console.log("=== submitWritingText Controller ===");
+    console.log("Request body:", {
+      session_id,
+      question_id,
+      written_text: written_text?.substring(0, 50) + "...",
+      language,
+    });
+    console.log("User ID:", user_id);
+
     if (!session_id || !question_id || !written_text) {
+      console.log("❌ Validation failed - Missing required fields");
       return res.status(400).json({
         EM: "Thiếu thông tin: session_id, question_id, written_text",
         EC: "-1",
@@ -353,8 +477,10 @@ exports.submitWritingText = async (req, res, next) => {
       language,
     });
 
+    console.log("Response:", { EM: response.EM, EC: response.EC });
     res.json(response);
   } catch (error) {
+    console.error("❌ Error in submitWritingText controller:", error);
     next(error);
   }
 };
@@ -370,6 +496,38 @@ exports.getSessionWritingResponses = async (req, res, next) => {
       { status, page, limit }
     );
     res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// PATCH /api/exam-sessions/:session_id/update - Cập nhật exam session (cho writing)
+exports.updateExamSession = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+    const { status, total_score, correct_answers, wrong_answers } = req.body;
+
+    console.log("=== updateExamSession ===");
+    console.log("Session ID:", session_id);
+    console.log("User ID:", user_id);
+    console.log("Update data:", {
+      status,
+      total_score,
+      correct_answers,
+      wrong_answers,
+    });
+
+    const result = await examClientService.updateExamSession({
+      session_id: parseInt(session_id),
+      user_id,
+      status,
+      total_score,
+      correct_answers,
+      wrong_answers,
+    });
+
+    res.json(result);
   } catch (error) {
     next(error);
   }

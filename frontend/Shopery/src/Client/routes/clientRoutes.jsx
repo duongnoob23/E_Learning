@@ -35,6 +35,7 @@ import Detail from "../components/Assessment/AssessmentJSX/Detail";
 import Result from "../components/Assessment/AssessmentJSX/Result";
 import AssessmentTest from "../components/AssessmentTest/AssessmentTestJSX/AssessmentTest";
 import Assessment from "../pages/Assessment/Assessment";
+import WritingResult from "../pages/Assessment/WritingResult/WritingResult";
 import Lesson from "../pages/Lesson/Lesson";
 
 const ClientLayout = ({ children }) => (
@@ -241,6 +242,16 @@ const ClientRoutes = () => {
           <PrivateRoute requiredRole="client">
             <ClientLayout>
               <Result />
+            </ClientLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/writingResult"
+        element={
+          <PrivateRoute requiredRole="client">
+            <ClientLayout>
+              <WritingResult />
             </ClientLayout>
           </PrivateRoute>
         }
