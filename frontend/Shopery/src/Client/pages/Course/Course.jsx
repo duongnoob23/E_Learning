@@ -54,7 +54,7 @@ function Course() {
   const filters = useMemo(() => {
     // Limit khác nhau cho grid và list
     const itemsPerPage = view === "grid" ? 6 : 4;
-    
+
     const apiFilters = {
       page: currentPage,
       limit: itemsPerPage,
@@ -568,35 +568,35 @@ function Course() {
 
             <div className="filter-group">
               <h4>Ratings</h4>
-                {reviewOptions.map((star) => {
-                  // Đếm từ allCourses, không phải courses đã filter
-                  const count = allCourses.filter(
-                    (c) => Math.round(c.rating || 0) === star
-                  ).length;
-                  
-                  return (
-                    <label
-                      key={star}
-                      className={`custom-checkbox star-checkbox ${
-                        selectedReview.includes(star) ? "checked" : ""
-                      }`}
-                      onClick={() => handleReview(star)}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedReview.includes(star)}
-                        readOnly
-                      />
-                      <span className="checkmark"></span>
-                      <span className="star-rating">
-                        {[...Array(star)].map((_, i) => (
-                          <i key={i} className="fa fa-star"></i>
-                        ))}
-                      </span>
-                      <span className="filter-count">{count}</span>
-                    </label>
-                  );
-                })}
+              {reviewOptions.map((star) => {
+                // Đếm từ allCourses, không phải courses đã filter
+                const count = allCourses.filter(
+                  (c) => Math.round(c.rating || 0) === star
+                ).length;
+
+                return (
+                  <label
+                    key={star}
+                    className={`custom-checkbox star-checkbox ${
+                      selectedReview.includes(star) ? "checked" : ""
+                    }`}
+                    onClick={() => handleReview(star)}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedReview.includes(star)}
+                      readOnly
+                    />
+                    <span className="checkmark"></span>
+                    <span className="star-rating">
+                      {[...Array(star)].map((_, i) => (
+                        <i key={i} className="fa fa-star"></i>
+                      ))}
+                    </span>
+                    <span className="filter-count">{count}</span>
+                  </label>
+                );
+              })}
             </div>
 
             <div className="filter-group filter-group-price">
@@ -610,9 +610,7 @@ function Course() {
                 />
                 <span className="radiomark"></span>
                 All
-                <span className="filter-count">
-                  {allCourses.length}
-                </span>
+                <span className="filter-count">{allCourses.length}</span>
               </label>
               <label className="custom-radio">
                 <input
@@ -685,8 +683,38 @@ function Course() {
 
             {courses.map((course) => (
               <div className="course-card" key={course.id}>
+                {/* Header Image - hiển thị thumbnail thật */}
                 <div className="course-card-img">
-                  <img src={course.image} alt={course.title} />
+                  {/* Hình ảnh course - hiển thị rõ ràng */}
+                  <img
+                    src={
+                      course.image ||
+                      "https://via.placeholder.com/400x225/9b87f5/ffffff?text=Course+Image"
+                    }
+                    alt={course.title}
+                    className="course-card-thumbnail"
+                    onError={(e) => {
+                      e.target.src =
+                        "https://via.placeholder.com/400x225/9b87f5/ffffff?text=Course+Image";
+                    }}
+                  />
+                  {/* Badges ở dưới header */}
+                  <div className="course-card-badges">
+                    <div className="course-badge">
+                      <i className="fa fa-book"></i>
+                      <span>{course.lessons || 12} Class</span>
+                    </div>
+                    <div className="course-badge">
+                      <i className="fa fa-video-camera"></i>
+                      <span>
+                        {course.lessons ? course.lessons * 2 : 25} Videos
+                      </span>
+                    </div>
+                    <div className="course-badge">
+                      <i className="fa fa-users"></i>
+                      <span>{course.students || 50} Enroll Students</span>
+                    </div>
+                  </div>
                   {course.discount > 0 && (
                     <div className="course-card-discount-badge">
                       -{course.discount}% Off
@@ -697,25 +725,33 @@ function Course() {
                   </button>
                 </div>
                 <div className="course-card-content">
-                  <div className="course-card-rating">
-                    <span className="stars">
-                      {[...Array(5)].map((_, i) => (
-                        <i
-                          key={i}
-                          className="fa fa-star"
-                          style={{
-                            color:
-                              i < Math.round(course.rating)
-                                ? "#FBBF24"
-                                : "#E5E7EB",
-                          }}
-                        ></i>
-                      ))}
-                    </span>
-                    <span className="reviews">
-                      ({course.reviews.toLocaleString()} Reviews)
-                    </span>
-                  </div>
+                  {/* Rating - chỉ hiển thị khi có reviews */}
+                  {course.reviews > 0 && (
+                    <div className="course-card-rating">
+                      <span className="stars">
+                        {[...Array(5)].map((_, i) => (
+                          <i
+                            key={i}
+                            className="fa fa-star"
+                            style={{
+                              color:
+                                i < Math.round(course.rating)
+                                  ? "#FBBF24"
+                                  : "#E5E7EB",
+                            }}
+                          ></i>
+                        ))}
+                      </span>
+                      <span className="reviews">
+                        ({course.reviews.toLocaleString()} Reviews)
+                      </span>
+                    </div>
+                  )}
+                  {course.reviews === 0 && (
+                    <div className="course-card-rating">
+                      <span className="reviews">(0 Reviews)</span>
+                    </div>
+                  )}
                   <h3 className="course-card-title">{course.title}</h3>
                   <div className="course-card-stats">
                     <span className="course-stat-item">
@@ -728,7 +764,7 @@ function Course() {
                     </span>
                   </div>
                   <div className="course-card-desc">{course.desc}</div>
-                  <div className="course-card-instructor-info">
+                  {/* <div className="course-card-instructor-info">
                     <img
                       src={
                         course.instructorAvatar ||
@@ -739,9 +775,9 @@ function Course() {
                     />
                     <span>
                       By <strong>{course.instructor}</strong> In{" "}
-                      <strong>{course.category || "Development"}</strong>
+                      <strong>{course.category && course.category !== "Unknown" ? course.category : "Uncategorized"}</strong>
                     </span>
-                  </div>
+                  </div> */}
                   <div className="course-card-footer">
                     <div className="course-card-price">
                       {course.isFree ? (
