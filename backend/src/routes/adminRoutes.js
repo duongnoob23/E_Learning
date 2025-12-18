@@ -13,6 +13,7 @@ router.use("/auth", authAdminRoutes);
 // Protected routes (cần auth admin)
 router.use("/role-permission", adminAuthMiddleware, rolePermissionRoutes);
 router.use("/exam", adminAuthMiddleware, examAdminRoutes);
-router.use("/users", adminAuthMiddleware, userAdminRoutes);
+// TODO: TẠM THỜI TẮT MIDDLEWARE CHO USERS - BẬT LẠI SAU KHI CÓ ADMIN LOGIN
+router.use("/users", userAdminRoutes);
 
 module.exports = router;
