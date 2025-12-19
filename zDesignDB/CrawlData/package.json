@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "mysql2": "^3.15.3",
-    "puppeteer": "^24.31.0"
+    "puppeteer": "^24.33.0",
+    "puppeteer-extra": "^3.3.6"
   }
 }
