@@ -1,97 +1,47 @@
 // Client/pages/Flashcard/Flashcard.jsx
-import React, { useState } from "react";
-import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTabs";
+import { useState } from "react";
+import CreateTopicModal from "../../components/Flashcard/CreateTopicModal/CreateTopicModal";
 import FlashcardCard from "../../components/Flashcard/FlashcardCard/FlashcardCard";
 import FlashcardDetail from "../../components/Flashcard/FlashcardDetail/FlashcardDetail";
+import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTabs";
+import { useCreateSet } from "../../services/Word/wordMutations";
+import {
+  usePublicTopics,
+  useUserTopics,
+  useWordOverview,
+} from "../../services/Word/wordQueries";
 import "./Flashcard.css";
 
 const Flashcard = () => {
   const [activeTab, setActiveTab] = useState("explore");
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [showCreateTopicModal, setShowCreateTopicModal] = useState(false);
 
-  // Dữ liệu fake cho tab "Khám phá"
-  const exploreTopics = [
-    {
-      id: 1,
-      title: "Từ vựng tiếng Anh văn phòng",
-      description: "Bộ từ vựng cơ bản cho môi trường công sở",
-      wordCount: 536,
-      viewCount: 23598,
-      logo: "/images/study4-logo.png",
-      category: "business",
-      difficulty: "intermediate",
-    },
-    {
-      id: 2,
-      title: "Từ vựng tiếng Anh giao tiếp trung cấp",
-      description: "Từ vựng cần thiết cho giao tiếp hàng ngày",
-      wordCount: 798,
-      viewCount: 14835,
-      logo: "/images/study4-logo.png",
-      category: "communication",
-      difficulty: "intermediate",
-    },
-    {
-      id: 3,
-      title: "Từ vựng Tiếng Anh giao tiếp cơ bản",
-      description: "Những từ vựng cơ bản nhất cho người mới bắt đầu",
-      wordCount: 993,
-      viewCount: 37563,
-      logo: "/images/study4-logo.png",
-      category: "communication",
-      difficulty: "beginner",
-    },
-    {
-      id: 4,
-      title: "900 từ TOEFL (có ảnh)",
-      description: "Bộ từ vựng TOEFL với hình ảnh minh họa",
-      wordCount: 899,
-      viewCount: 6801,
-      logo: "/images/study4-logo.png",
-      category: "exam",
-      difficulty: "advanced",
-    },
-    {
-      id: 5,
-      title: "900 từ IELTS (có ảnh)",
-      description: "Từ vựng IELTS với hình ảnh trực quan",
-      wordCount: 899,
-      viewCount: 29427,
-      logo: "/images/study4-logo.png",
-      category: "exam",
-      difficulty: "advanced",
-    },
-    {
-      id: 6,
-      title: "900 từ SAT (có ảnh)",
-      description: "Từ vựng SAT cho học sinh trung học",
-      wordCount: 860,
-      viewCount: 2781,
-      logo: "/images/study4-logo.png",
-      category: "exam",
-      difficulty: "advanced",
-    },
-    {
-      id: 7,
-      title: "GRE-GMAT Vocabulary List",
-      description: "Từ vựng chuyên ngành cho GRE và GMAT",
-      wordCount: 868,
-      viewCount: 693,
-      logo: "/images/study4-logo.png",
-      category: "exam",
-      difficulty: "advanced",
-    },
-    {
-      id: 8,
-      title: "Academic word list",
-      description: "Từ vựng học thuật cho nghiên cứu",
-      wordCount: 570,
-      viewCount: 3471,
-      logo: "/images/study4-logo.png",
-      category: "academic",
-      difficulty: "advanced",
-    },
-  ];
+  // Fetch data từ API
+  const { data: publicTopicsData, isLoading: isLoadingPublic } =
+    usePublicTopics(activeTab === "explore");
+  const { data: userTopicsData, isLoading: isLoadingUser } = useUserTopics(
+    activeTab === "my-lists" || activeTab === "learning"
+  );
+  const { data: learningOverviewData } = useWordOverview(
+    activeTab === "learning"
+  );
+
+  // Mutations
+  const createSetMutation = useCreateSet();
+
+  // Transform data từ API sang format component
+  const transformTopicData = (topic, topicType = "system") => ({
+    id: topic.topic_id,
+    title: topic.topic_name,
+    description: topic.description || "",
+    wordCount: topic.word_count || 0,
+    viewCount: 0,
+    logo: topic.image_url || topic.logo_url || "/images/study4-logo.png",
+    category: "general",
+    difficulty: "intermediate",
+    topicType: topicType,
+  });
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
@@ -102,12 +52,16 @@ const Flashcard = () => {
     setSelectedTopic(topic);
   };
 
-  const handlePractice = () => {
-    console.log("Practice mode for topic:", selectedTopic.id);
-  };
-
-  const handleStudy = () => {
-    console.log("Study mode for topic:", selectedTopic.id);
+  const handleCreateTopic = async (formData) => {
+    try {
+      await createSetMutation.mutateAsync({
+        topic_name: formData.title,
+        description: formData.description,
+      });
+      setShowCreateTopicModal(false);
+    } catch (error) {
+      console.error("Error creating topic:", error);
+    }
   };
 
   const handleBack = () => {
@@ -117,25 +71,56 @@ const Flashcard = () => {
   const getCurrentTopics = () => {
     switch (activeTab) {
       case "explore":
-        return exploreTopics;
+        // Topics hệ thống
+        if (publicTopicsData?.EC === "0" && publicTopicsData?.DT) {
+          return publicTopicsData.DT.map((topic) =>
+            transformTopicData(topic, "system")
+          );
+        }
+        return [];
       case "my-lists":
+        // Topics cá nhân
+        if (userTopicsData?.EC === "0" && userTopicsData?.DT) {
+          return userTopicsData.DT.map((topic) =>
+            transformTopicData(topic, "user_created")
+          );
+        }
         return [];
       case "learning":
-        return [];
+        // Topics đang học - lấy từ cả hệ thống và cá nhân có từ đang học
+        const learningTopics = [];
+        // Lấy topics hệ thống có từ đang học
+        if (publicTopicsData?.EC === "0" && publicTopicsData?.DT) {
+          publicTopicsData.DT.forEach((topic) => {
+            // TODO: Filter topics có từ đang học (cần check UserWordStatus)
+            // Tạm thời hiển thị tất cả topics hệ thống
+            learningTopics.push(transformTopicData(topic, "system"));
+          });
+        }
+        // Lấy topics cá nhân có từ đang học
+        if (userTopicsData?.EC === "0" && userTopicsData?.DT) {
+          userTopicsData.DT.forEach((topic) => {
+            // TODO: Filter topics có từ đang học
+            learningTopics.push(transformTopicData(topic, "user_created"));
+          });
+        }
+        return learningTopics;
       default:
         return [];
     }
   };
 
   const currentTopics = getCurrentTopics();
+  const isLoading =
+    (activeTab === "explore" && isLoadingPublic) ||
+    ((activeTab === "my-lists" || activeTab === "learning") && isLoadingUser);
 
   if (selectedTopic) {
     return (
       <FlashcardDetail
         topic={selectedTopic}
         onBack={handleBack}
-        onPractice={handlePractice}
-        onStudy={handleStudy}
+        topicType={selectedTopic.topicType || "system"}
       />
     );
   }
@@ -159,40 +144,86 @@ const Flashcard = () => {
         </div>
 
         {/* Content based on active tab */}
-        {activeTab === "explore" && (
+        {isLoading && (
+          <div className="topics-section">
+            <p>Đang tải...</p>
+          </div>
+        )}
+
+        {!isLoading && activeTab === "explore" && (
           <div className="topics-section">
             <h3>Khám phá các chủ đề:</h3>
-            <div className="topics-grid">
-              {currentTopics.map((topic) => (
-                <FlashcardCard
-                  key={topic.id}
-                  topic={topic}
-                  onClick={handleTopicClick}
-                  showUserInfo={false}
-                />
-              ))}
-            </div>
+            {currentTopics.length > 0 ? (
+              <div className="topics-grid">
+                {currentTopics.map((topic) => (
+                  <FlashcardCard
+                    key={topic.id}
+                    topic={topic}
+                    onClick={handleTopicClick}
+                    showUserInfo={false}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="empty-learning">
+                <p>Không có chủ đề nào.</p>
+              </div>
+            )}
           </div>
         )}
 
-        {activeTab === "my-lists" && (
+        {!isLoading && activeTab === "my-lists" && (
           <div className="topics-section">
-            <h3>List từ đã tạo:</h3>
-            <div className="empty-learning">
-              <p>Chưa có list từ nào được tạo.</p>
+            <div className="section-header">
+              <h3>List từ đã tạo:</h3>
             </div>
+            <div className="topics-grid">
+              {/* Card tạo topic mới */}
+              <FlashcardCard
+                isCreateCard={true}
+                onClick={() => setShowCreateTopicModal(true)}
+              />
+              {/* Danh sách topics */}
+              {currentTopics.length > 0 &&
+                currentTopics.map((topic) => (
+                  <FlashcardCard
+                    key={topic.id}
+                    topic={topic}
+                    onClick={handleTopicClick}
+                    showUserInfo={true}
+                  />
+                ))}
+            </div>
+            {currentTopics.length === 0 && (
+              <div className="empty-learning">
+                <p>Chưa có list từ nào được tạo. Nhấn vào nút + để tạo mới.</p>
+              </div>
+            )}
           </div>
         )}
 
-        {activeTab === "learning" && (
+        {!isLoading && activeTab === "learning" && (
           <div className="topics-section">
             <h3>Đang học:</h3>
-            <div className="empty-learning">
-              <p>
-                Bạn chưa học list từ nào. Khám phá ngay hoặc bắt đầu tạo các
-                list từ mới.
-              </p>
-            </div>
+            {currentTopics.length > 0 ? (
+              <div className="topics-grid">
+                {currentTopics.map((topic) => (
+                  <FlashcardCard
+                    key={topic.id}
+                    topic={topic}
+                    onClick={handleTopicClick}
+                    showUserInfo={topic.topicType === "user_created"}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="empty-learning">
+                <p>
+                  Bạn chưa học list từ nào. Khám phá ngay hoặc bắt đầu tạo các
+                  list từ mới.
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -203,6 +234,13 @@ const Flashcard = () => {
           </div>
         )}
       </div>
+
+      {/* Create Topic Modal */}
+      <CreateTopicModal
+        isOpen={showCreateTopicModal}
+        onClose={() => setShowCreateTopicModal(false)}
+        onSubmit={handleCreateTopic}
+      />
     </div>
   );
 };

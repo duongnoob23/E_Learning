@@ -1,4 +1,10 @@
-const { Word, Topic, UserWord, UserWordStatus, PronunciationAssessment } = require("../../models");
+const {
+  Word,
+  Topic,
+  UserWord,
+  UserWordStatus,
+  PronunciationAssessment,
+} = require("../../models");
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
@@ -9,7 +15,7 @@ const { spawn } = require("child_process");
 // Lấy danh sách từ vựng theo topic + tìm kiếm
 exports.getWordsByTopic = async (filters) => {
   try {
-    const { topicId,q, page = 1, limit = 10 } = filters;
+    const { topicId, q, page = 1, limit = 10 } = filters;
     const offset = (page - 1) * limit;
 
     const whereConditions = {};
@@ -24,7 +30,7 @@ exports.getWordsByTopic = async (filters) => {
       where: whereConditions,
       limit: limit,
       offset: offset,
-    }); 
+    });
 
     return {
       EM: "Truy vấn thành công",
@@ -55,7 +61,7 @@ exports.getTopicPublic = async (topic_type) => {
     const topics = await Topic.findAll({
       where: {
         is_active: true,
-        topic_type : "system",
+        topic_type: "system",
       },
       attributes: ["topic_id", "topic_name", "description", "image_url"],
     });
@@ -63,10 +69,9 @@ exports.getTopicPublic = async (topic_type) => {
     return {
       EM: "Lấy danh sách chủ đề thành công",
       EC: "0",
-      DT: topics, 
+      DT: topics,
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getTopic service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình truy vấn",
@@ -164,7 +169,7 @@ const generateAudioFile = async (word) => {
       const pythonProcess = spawn("python", [
         path.join(__dirname, "../../../scripts/generate_audio.py"),
         word,
-        filepath
+        filepath,
       ]);
 
       let errorOutput = "";
@@ -193,14 +198,26 @@ const generateAudioFile = async (word) => {
 // Tao du tu vung moi ca nhan
 exports.postWordToUser = async (data) => {
   try {
-    const { user_id, topic_id, word, part_of_speech, pronunciation, meaning_vi, example_en, example_vi, image_url, from_system_word_id, notes } = data;
+    const {
+      user_id,
+      topic_id,
+      word,
+      part_of_speech,
+      pronunciation,
+      meaning_vi,
+      example_en,
+      example_vi,
+      image_url,
+      from_system_word_id,
+      notes,
+    } = data;
     // ===== Step 1: Kiểm tra từ hệ thống ===== //
     const systemWord = await Word.findByWord(data.word);
-    if(systemWord){
+    if (systemWord) {
       const alreadySaved = await UserWord.findByWord(
         data.user_id,
         systemWord.word_id
-      )
+      );
 
       if (alreadySaved) {
         return {
@@ -416,7 +433,6 @@ exports.deleteWordToUser = async (userWordId) => {
   }
 };
 
-
 // Đánh dấu đã học
 exports.markLearned = async (userId, word_id, topic_id) => {
   try {
@@ -454,7 +470,6 @@ exports.unmarkLearned = async (userId, word_id, topic_id) => {
     };
   }
 };
-
 
 // ----- Flashcard Routes ----- //
 
@@ -502,7 +517,7 @@ exports.createSet = async (userId, topic_name, description) => {
       EC: "0",
       DT: newSet,
     };
-  }catch (error) {
+  } catch (error) {
     console.error("Lỗi trong createSet service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình tạo set",
@@ -527,8 +542,7 @@ exports.getSetDetail = async (set_id) => {
       EC: "0",
       DT: set,
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getSetDetail service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy chi tiết set",
@@ -537,7 +551,6 @@ exports.getSetDetail = async (set_id) => {
     };
   }
 };
-
 
 // Lấy danh sách từ vựng trong set theo id
 exports.getWordsBySet = async (set_id) => {
@@ -548,12 +561,12 @@ exports.getWordsBySet = async (set_id) => {
         is_active: true,
       },
     });
-    if(set.topic_type === "system"){
+    if (set.topic_type === "system") {
       const words = await Word.findAll({
         where: {
           topic_id: set_id,
           is_active: true,
-        }
+        },
       });
       return {
         EM: "Lấy danh sách từ vựng trong set thành công",
@@ -565,7 +578,7 @@ exports.getWordsBySet = async (set_id) => {
         where: {
           topic_id: set_id,
           is_active: true,
-        }
+        },
       });
       return {
         EM: "Lấy danh sách từ vựng trong set thành công",
@@ -573,11 +586,200 @@ exports.getWordsBySet = async (set_id) => {
         DT: words,
       };
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getWordsBySet service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách từ vựng trong set",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// Lấy flashcard tiếp theo trong set
+exports.getNextFlashcard = async (userId, set_id) => {
+  try {
+    if (!set_id) {
+      return {
+        EM: "Thiếu set_id",
+        EC: "-1",
+        DT: null,
+      };
+    }
+
+    // Lấy set để kiểm tra type
+    const set = await Topic.findOne({
+      where: {
+        topic_id: set_id,
+        is_active: true,
+      },
+    });
+
+    if (!set) {
+      return {
+        EM: "Không tìm thấy set",
+        EC: "1",
+        DT: null,
+      };
+    }
+
+    // Lấy từ vựng trong set
+    let words = [];
+    if (set.topic_type === "system") {
+      words = await Word.findAll({
+        where: {
+          topic_id: set_id,
+          is_active: true,
+        },
+        order: [["word_id", "ASC"]],
+      });
+    } else {
+      words = await UserWord.findAll({
+        where: {
+          topic_id: set_id,
+          user_id: userId,
+          is_active: true,
+        },
+        order: [["user_word_id", "ASC"]],
+      });
+    }
+
+    if (words.length === 0) {
+      return {
+        EM: "Set không có từ vựng nào",
+        EC: "1",
+        DT: null,
+      };
+    }
+
+    // Lấy từ vựng tiếp theo dựa trên UserWordStatus (nếu có)
+    // Nếu chưa có status, trả về từ đầu tiên
+    const statuses = await UserWordStatus.findAll({
+      where: {
+        user_id: userId,
+        topic_id: set_id,
+      },
+      order: [["next_review", "ASC"]],
+    });
+
+    let nextWord = null;
+    if (statuses.length > 0) {
+      // Tìm từ có next_review sớm nhất
+      const nextStatus = statuses[0];
+      if (set.topic_type === "system" && nextStatus.word_id) {
+        nextWord = words.find((w) => w.word_id === nextStatus.word_id);
+      } else if (set.topic_type === "user_created" && nextStatus.user_word_id) {
+        nextWord = words.find(
+          (w) => w.user_word_id === nextStatus.user_word_id
+        );
+      }
+    }
+
+    // Nếu không tìm thấy, lấy từ đầu tiên
+    if (!nextWord) {
+      nextWord = words[0];
+    }
+
+    return {
+      EM: "Lấy flashcard tiếp theo thành công",
+      EC: "0",
+      DT: {
+        word: nextWord,
+        total_words: words.length,
+        current_index:
+          words.findIndex(
+            (w) =>
+              (set.topic_type === "system" && w.word_id === nextWord.word_id) ||
+              (set.topic_type === "user_created" &&
+                w.user_word_id === nextWord.user_word_id)
+          ) + 1,
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi trong getNextFlashcard service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình lấy flashcard tiếp theo",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+// Tiến độ học theo topic
+exports.getProgressByTopic = async (userId, topicId) => {
+  try {
+    // Tổng số từ trong topic
+    const systemWords = await Word.count({
+      where: { topic_id: topicId, is_active: true },
+    });
+    const userWords = await UserWord.count({
+      where: { topic_id: topicId, user_id: userId, is_active: true },
+    });
+    const totalWords = systemWords + userWords;
+
+    // Số từ đã học
+    const learnedCount = await UserWordStatus.count({
+      where: {
+        user_id: userId,
+        topic_id: topicId,
+        is_learned: true,
+      },
+    });
+
+    // Số từ cần review hôm nay
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const dueToday = await UserWordStatus.count({
+      where: {
+        user_id: userId,
+        topic_id: topicId,
+        next_review: { [Op.lte]: today },
+      },
+    });
+
+    // Số từ đã review hôm nay
+    const reviewedToday = await UserWordStatus.count({
+      where: {
+        user_id: userId,
+        topic_id: topicId,
+        last_reviewed: { [Op.gte]: today },
+      },
+    });
+
+    // Thống kê theo review_count
+    const statuses = await UserWordStatus.findAll({
+      where: {
+        user_id: userId,
+        topic_id: topicId,
+      },
+    });
+
+    const newCount = statuses.filter((s) => s.review_count === 0).length;
+    const learningCount = statuses.filter(
+      (s) => s.review_count > 0 && s.review_count < 5
+    ).length;
+    const masteredCount = statuses.filter((s) => s.review_count >= 5).length;
+
+    return {
+      EM: "Lấy tiến độ học theo topic thành công",
+      EC: "0",
+      DT: {
+        topic_id: topicId,
+        total_words: totalWords,
+        learned_count: learnedCount,
+        new_count: newCount,
+        learning_count: learningCount,
+        mastered_count: masteredCount,
+        due_today: dueToday,
+        reviewed_today: reviewedToday,
+        progress_percentage:
+          totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0,
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi trong getProgressByTopic service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình lấy tiến độ học theo topic",
       EC: "-2",
       DT: null,
     };
@@ -593,20 +795,19 @@ exports.getTodayWords = async (userId) => {
     const words = await UserWordStatus.findAll({
       where: {
         user_id: userId,
-        next_review: { [Op.lte]: today }
+        next_review: { [Op.lte]: today },
       },
       include: [
         { model: UserWord, as: "user_words" },
-        { model: Word, as: "words" }
-      ]
+        { model: Word, as: "words" },
+      ],
     });
     return {
       EM: "Lấy danh sách từ vựng hôm nay thành công",
       EC: "0",
       DT: words,
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getTodayWords service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy danh sách từ vựng hôm nay",
@@ -623,16 +824,16 @@ exports.getNextWord = async (userId) => {
     let nextWord = await UserWordStatus.findOne({
       where: {
         user_id: userId,
-        next_review: { [Op.lte]: now }
+        next_review: { [Op.lte]: now },
       },
       order: [["next_review", "ASC"]],
       include: [
         { model: UserWord, as: "user_words" },
-        { model: Word, as: "words" }
-      ]
+        { model: Word, as: "words" },
+      ],
     });
 
-    if(!nextWord){
+    if (!nextWord) {
       nextWord = await UserWordStatus.findOne({
         where: {
           user_id: userId,
@@ -640,12 +841,12 @@ exports.getNextWord = async (userId) => {
         order: [["next_review", "ASC"]],
         include: [
           { model: UserWord, as: "user_words" },
-          { model: Word, as: "words" }
-        ]
+          { model: Word, as: "words" },
+        ],
       });
     }
 
-    if(!nextWord){
+    if (!nextWord) {
       return {
         EM: "Không có từ vựng nào để học",
         EC: "1",
@@ -657,8 +858,7 @@ exports.getNextWord = async (userId) => {
       EC: "0",
       DT: nextWord,
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getNextWord service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình lấy từ vựng tiếp theo",
@@ -723,14 +923,16 @@ exports.submitFeedback = async (userId, word_id, feedback) => {
     }
 
     const now = new Date();
-    const next_review = new Date(now.getTime() + intervall * 24 * 60 * 60 * 1000);
+    const next_review = new Date(
+      now.getTime() + intervall * 24 * 60 * 60 * 1000
+    );
 
     await status.update({
       review_count,
       intervall,
       ease_factor,
       last_reviewed: now,
-      next_review
+      next_review,
     });
 
     return {
@@ -738,11 +940,10 @@ exports.submitFeedback = async (userId, word_id, feedback) => {
       EC: "0",
       DT: {
         last_reviewed: now,
-        next_review: next_review
+        next_review: next_review,
       },
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong submitFeedback service:", error);
     return {
       EM: "Có lỗi xảy ra trong quá trình gửi feedback",
@@ -752,7 +953,6 @@ exports.submitFeedback = async (userId, word_id, feedback) => {
   }
 };
 
-
 //------------ PROGRESS (TIẾN ĐỘ HỌC) ------------//
 
 // Lấy tổng quan tiến độ học
@@ -761,11 +961,13 @@ exports.getOverview = async (user_id) => {
     const totalWords = await UserWord.count({ where: { user_id } });
 
     const statusCount = await UserWordStatus.findAll({
-      where: { user_id }
+      where: { user_id },
     });
-    const newCount = statusCount.filter(s => s.review_count === 0).length;
-    const learningCount = statusCount.filter(s => s.review_count > 0 && s.review_count < 5).length;
-    const masteredCount = statusCount.filter(s => s.review_count >= 5).length;
+    const newCount = statusCount.filter((s) => s.review_count === 0).length;
+    const learningCount = statusCount.filter(
+      (s) => s.review_count > 0 && s.review_count < 5
+    ).length;
+    const masteredCount = statusCount.filter((s) => s.review_count >= 5).length;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -773,35 +975,35 @@ exports.getOverview = async (user_id) => {
     const dueToday = await UserWordStatus.count({
       where: {
         user_id,
-        next_review: { [Op.lte]: today }
-      }
+        next_review: { [Op.lte]: today },
+      },
     });
 
     const reviewedToday = await UserWordStatus.count({
       where: {
         user_id,
-        last_reviewed: { [Op.gte]: today }
-      }
+        last_reviewed: { [Op.gte]: today },
+      },
     });
 
     return {
-      "EM": "Lấy tổng quan tiến độ học thành công",
-      "EC": "0",
-      "DT": {
-        "totalWords": totalWords,
-        "newCount": newCount,
-        "learningCount": learningCount,
-        "masteredCount": masteredCount,
-        "dueToday": dueToday,
-        "reviewedToday": reviewedToday
-      }
+      EM: "Lấy tổng quan tiến độ học thành công",
+      EC: "0",
+      DT: {
+        totalWords: totalWords,
+        newCount: newCount,
+        learningCount: learningCount,
+        masteredCount: masteredCount,
+        dueToday: dueToday,
+        reviewedToday: reviewedToday,
+      },
     };
   } catch (error) {
     console.error("Lỗi trong getOverview service:", error);
     return {
-      "EM": "Có lỗi xảy ra trong quá trình lấy tổng quan tiến độ học",
-      "EC": "-2",
-      "DT": null
+      EM: "Có lỗi xảy ra trong quá trình lấy tổng quan tiến độ học",
+      EC: "-2",
+      DT: null,
     };
   }
 };
@@ -810,68 +1012,67 @@ exports.getOverview = async (user_id) => {
 exports.getDailyProgress = async (user_id) => {
   try {
     const today = new Date();
-  today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
 
-  // Từ thêm hôm nay
-  const addedToday = await UserWord.count({
-    where: {
-      user_id,
-      created_at: { [Op.gte]: today }
-    }
-  });
-
-  // Từ review hôm nay
-  const reviewedToday = await UserWordStatus.count({
-    where: {
-      user_id,
-      last_reviewed: { [Op.gte]: today }
-    }
-  });
-
-  // Biểu đồ 7 ngày
-  const result = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setHours(0,0,0,0);
-    d.setDate(d.getDate() - i);
-    const nextDay = new Date(d.getTime() + 86400000);
-
-    const learned = await UserWord.count({
+    // Từ thêm hôm nay
+    const addedToday = await UserWord.count({
       where: {
         user_id,
-        created_at: { [Op.gte]: d, [Op.lt]: nextDay }
-      }
+        created_at: { [Op.gte]: today },
+      },
     });
 
-    const reviewed = await UserWordStatus.count({
+    // Từ review hôm nay
+    const reviewedToday = await UserWordStatus.count({
       where: {
         user_id,
-        last_reviewed: { [Op.gte]: d, [Op.lt]: nextDay }
-      }
+        last_reviewed: { [Op.gte]: today },
+      },
     });
 
-    result.push({
-      date: d.toISOString().slice(0, 10),
-      learned,
-      reviewed
-    });
-  }
+    // Biểu đồ 7 ngày
+    const result = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() - i);
+      const nextDay = new Date(d.getTime() + 86400000);
+
+      const learned = await UserWord.count({
+        where: {
+          user_id,
+          created_at: { [Op.gte]: d, [Op.lt]: nextDay },
+        },
+      });
+
+      const reviewed = await UserWordStatus.count({
+        where: {
+          user_id,
+          last_reviewed: { [Op.gte]: d, [Op.lt]: nextDay },
+        },
+      });
+
+      result.push({
+        date: d.toISOString().slice(0, 10),
+        learned,
+        reviewed,
+      });
+    }
     return {
-      "EM": "Lấy tiến độ học theo ngày thành công",
-      "EC": "0",
-      "DT": {
+      EM: "Lấy tiến độ học theo ngày thành công",
+      EC: "0",
+      DT: {
         addedToday,
         reviewedToday,
-        history7days: result
-      }
+        history7days: result,
+      },
     };
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Lỗi trong getDailyProgress service:", error);
     return {
-      "EM": "Có lỗi xảy ra trong quá trình lấy tiến độ học theo ngày",
-      "EC": "-2",
-      "DT": null
+      EM: "Có lỗi xảy ra trong quá trình lấy tiến độ học theo ngày",
+      EC: "-2",
+      DT: null,
     };
   }
 };
@@ -891,21 +1092,21 @@ exports.generateQuiz = async (user_id, topic_id) => {
 
     // 2. Lấy từ cá nhân của user có cùng topic
     const userWords = await UserWord.findAll({
-      where: { user_id, topic_id }
+      where: { user_id, topic_id },
     });
     console.log(`[generateQuiz] userWords count: ${userWords.length}`);
 
     const allWords = [
-      ...systemWords.map(w => ({ ...w.dataValues, is_user: false })),
-      ...userWords.map(u => ({ ...u.dataValues, is_user: true }))
+      ...systemWords.map((w) => ({ ...w.dataValues, is_user: false })),
+      ...userWords.map((u) => ({ ...u.dataValues, is_user: true })),
     ];
     console.log(`[generateQuiz] allWords count: ${allWords.length}`);
 
     if (allWords.length === 0) {
       return {
-        "EM": "Không có từ vựng nào trong chủ đề này",
-        "EC": "1",
-        "DT": null
+        EM: "Không có từ vựng nào trong chủ đề này",
+        EC: "1",
+        DT: null,
       };
     }
 
@@ -920,10 +1121,10 @@ exports.generateQuiz = async (user_id, topic_id) => {
 
       // Lấy tối đa 3 đáp án sai
       const wrongOptions = allWords
-        .filter(w => w.word_id !== word.word_id)
+        .filter((w) => w.word_id !== word.word_id)
         .sort(() => 0.5 - Math.random())
         .slice(0, 3)
-        .map(w => w.meaning_vi);
+        .map((w) => w.meaning_vi);
 
       // Nếu không đủ 3 đáp án sai, bỏ qua câu này
       if (wrongOptions.length === 0) continue;
@@ -934,29 +1135,29 @@ exports.generateQuiz = async (user_id, topic_id) => {
         word: word.word,
         audio_url: word.audio_url || null,
         correct_answer: word.meaning_vi,
-        options: shuffle([word.meaning_vi, ...wrongOptions])
+        options: shuffle([word.meaning_vi, ...wrongOptions]),
       });
     }
 
     if (questions.length === 0) {
       return {
-        "EM": "Không thể tạo quiz với các từ hiện có",
-        "EC": "1",
-        "DT": null
+        EM: "Không thể tạo quiz với các từ hiện có",
+        EC: "1",
+        DT: null,
       };
     }
 
     return {
-      "EM": "Tạo quiz thành công",
-      "EC": "0",
-      "DT": questions
+      EM: "Tạo quiz thành công",
+      EC: "0",
+      DT: questions,
     };
   } catch (error) {
     console.error("Lỗi trong generateQuiz service:", error);
     return {
-      "EM": error.message || "Có lỗi xảy ra trong quá trình tạo quiz",
-      "EC": "-2",
-      "DT": null
+      EM: error.message || "Có lỗi xảy ra trong quá trình tạo quiz",
+      EC: "-2",
+      DT: null,
     };
   }
 };
@@ -969,25 +1170,25 @@ function shuffle(arr) {
 // Nộp bài quiz
 exports.submitQuiz = async (user_id, answers) => {
   try {
-    const correct = answers.filter(a => a.is_correct).length;
+    const correct = answers.filter((a) => a.is_correct).length;
     const wrong = answers.length - correct;
 
-    const score = correct; 
+    const score = correct;
     return {
-      "EM": "Nộp bài quiz thành công",
-      "EC": "0",
-      "DT": {
+      EM: "Nộp bài quiz thành công",
+      EC: "0",
+      DT: {
         correct,
         wrong,
-        score
-      }
+        score,
+      },
     };
-    } catch (error) {
+  } catch (error) {
     console.error("Lỗi trong submitQuiz service:", error);
     return {
-      "EM": "Có lỗi xảy ra trong quá trình nộp bài quiz",
-      "EC": "-2",
-      "DT": null
+      EM: "Có lỗi xảy ra trong quá trình nộp bài quiz",
+      EC: "-2",
+      DT: null,
     };
   }
 };
@@ -1007,7 +1208,7 @@ exports.assessPronunciation = async (userId, wordId, audioFile) => {
       return {
         EM: "Từ không tồn tại",
         EC: "1",
-        DT: null
+        DT: null,
       };
     }
 
@@ -1027,11 +1228,15 @@ exports.assessPronunciation = async (userId, wordId, audioFile) => {
       feedback: pronunciationScore.feedback,
       audio_url: audioFile.url || null,
       created_at: new Date(),
-      updated_at: new Date()
+      updated_at: new Date(),
     });
 
     // 4. Cập nhật UserWordStatus
-    await updateUserWordStatusByPronunciation(userId, wordId, pronunciationScore.score);
+    await updateUserWordStatusByPronunciation(
+      userId,
+      wordId,
+      pronunciationScore.score
+    );
 
     return {
       EM: "Chấm điểm thành công",
@@ -1041,15 +1246,15 @@ exports.assessPronunciation = async (userId, wordId, audioFile) => {
         score: pronunciationScore.score,
         pronunciation_score: pronunciationScore.pronunciation_score,
         fluency_score: pronunciationScore.fluency_score,
-        feedback: pronunciationScore.feedback
-      }
+        feedback: pronunciationScore.feedback,
+      },
     };
   } catch (error) {
     console.error("Lỗi trong assessPronunciation:", error);
     return {
       EM: error.message || "Có lỗi xảy ra trong quá trình chấm điểm",
       EC: "-2",
-      DT: null
+      DT: null,
     };
   }
 };
@@ -1059,21 +1264,21 @@ exports.getPronunciationHistory = async (userId, wordId) => {
   try {
     const history = await PronunciationAssessment.findAll({
       where: { user_id: userId, word_id: wordId },
-      order: [['created_at', 'DESC']],
-      limit: 10
+      order: [["created_at", "DESC"]],
+      limit: 10,
     });
 
     return {
       EM: "Lấy lịch sử thành công",
       EC: "0",
-      DT: history
+      DT: history,
     };
   } catch (error) {
     console.error("Lỗi trong getPronunciationHistory:", error);
     return {
       EM: error.message,
       EC: "-2",
-      DT: null
+      DT: null,
     };
   }
 };
@@ -1086,26 +1291,29 @@ exports.getPronunciationStats = async (userId, topicId = null) => {
     if (topicId) {
       const userWords = await UserWord.findAll({
         where: { user_id: userId, topic_id: topicId },
-        attributes: ['user_word_id']
+        attributes: ["user_word_id"],
       });
-      const userWordIds = userWords.map(w => w.user_word_id);
+      const userWordIds = userWords.map((w) => w.user_word_id);
       whereClause.user_word_id = { [Op.in]: userWordIds };
     }
 
     const assessments = await PronunciationAssessment.findAll({
-      where: whereClause
+      where: whereClause,
     });
 
     const totalAssessments = assessments.length;
-    const avgScore = totalAssessments > 0
-      ? (assessments.reduce((sum, a) => sum + a.score, 0) / totalAssessments).toFixed(2)
-      : 0;
+    const avgScore =
+      totalAssessments > 0
+        ? (
+            assessments.reduce((sum, a) => sum + a.score, 0) / totalAssessments
+          ).toFixed(2)
+        : 0;
 
     const scoreDistribution = {
-      excellent: assessments.filter(a => a.score >= 90).length,
-      good: assessments.filter(a => a.score >= 80 && a.score < 90).length,
-      average: assessments.filter(a => a.score >= 70 && a.score < 80).length,
-      poor: assessments.filter(a => a.score < 70).length
+      excellent: assessments.filter((a) => a.score >= 90).length,
+      good: assessments.filter((a) => a.score >= 80 && a.score < 90).length,
+      average: assessments.filter((a) => a.score >= 70 && a.score < 80).length,
+      poor: assessments.filter((a) => a.score < 70).length,
     };
 
     return {
@@ -1114,15 +1322,15 @@ exports.getPronunciationStats = async (userId, topicId = null) => {
       DT: {
         totalAssessments,
         avgScore,
-        scoreDistribution
-      }
+        scoreDistribution,
+      },
     };
   } catch (error) {
     console.error("Lỗi trong getPronunciationStats:", error);
     return {
       EM: error.message,
       EC: "-2",
-      DT: null
+      DT: null,
     };
   }
 };
@@ -1131,11 +1339,12 @@ exports.getPronunciationStats = async (userId, topicId = null) => {
 const callMultiPAService = async (audioFile, referenceText) => {
   try {
     const formData = new FormData();
-    formData.append('audio', audioFile);
-    formData.append('reference_text', referenceText);
+    formData.append("audio", audioFile);
+    formData.append("reference_text", referenceText);
 
     const response = await axios.post(
-      process.env.MULTIPA_SERVICE_URL || 'http://localhost:5001/api/pronunciation/assess',
+      process.env.MULTIPA_SERVICE_URL ||
+        "http://localhost:5001/api/pronunciation/assess",
       formData,
       { headers: formData.getHeaders() }
     );
@@ -1144,7 +1353,7 @@ const callMultiPAService = async (audioFile, referenceText) => {
       score: response.data.score || 0,
       pronunciation_score: response.data.pronunciation_score || 0,
       fluency_score: response.data.fluency_score || 0,
-      feedback: response.data.feedback || {}
+      feedback: response.data.feedback || {},
     };
   } catch (error) {
     console.error("Lỗi gọi MultiPA service:", error);
@@ -1153,10 +1362,14 @@ const callMultiPAService = async (audioFile, referenceText) => {
 };
 
 // Cập nhật UserWordStatus dựa trên điểm phát âm
-const updateUserWordStatusByPronunciation = async (userId, wordId, pronunciationScore) => {
+const updateUserWordStatusByPronunciation = async (
+  userId,
+  wordId,
+  pronunciationScore
+) => {
   try {
     const userWordStatus = await UserWordStatus.findOne({
-      where: { user_id: userId, word_id: wordId }
+      where: { user_id: userId, word_id: wordId },
     });
 
     if (!userWordStatus) return;
@@ -1179,10 +1392,9 @@ const updateUserWordStatusByPronunciation = async (userId, wordId, pronunciation
       ease_factor: newEaseFactor,
       intervall: newInterval,
       last_reviewed: new Date(),
-      next_review: new Date(Date.now() + newInterval * 24 * 60 * 60 * 1000)
+      next_review: new Date(Date.now() + newInterval * 24 * 60 * 60 * 1000),
     });
   } catch (error) {
     console.error("Lỗi cập nhật UserWordStatus:", error);
   }
 };
-
