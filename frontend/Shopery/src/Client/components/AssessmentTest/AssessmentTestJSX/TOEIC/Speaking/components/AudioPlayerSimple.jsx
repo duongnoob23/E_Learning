@@ -10,11 +10,12 @@ export default function AudioPlayerSimple({
   src,
   autoPlay = false,
   onTimeUpdate,
+  duration: propDuration, // ✅ Nhận duration từ props nếu có (từ recording)
 }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(propDuration || 0); // ✅ Khởi tạo với propDuration nếu có
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -26,7 +27,11 @@ export default function AudioPlayerSimple({
     };
 
     const updateDuration = () => {
-      setDuration(audio.duration);
+      // ✅ Chỉ set duration khi nó là số hợp lệ (finite và không phải NaN)
+      // ✅ Và chỉ update nếu propDuration không có (ưu tiên propDuration)
+      if (!propDuration && audio.duration && isFinite(audio.duration) && !isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
     };
 
     const handlePlay = () => setIsPlaying(true);
@@ -35,6 +40,7 @@ export default function AudioPlayerSimple({
 
     audio.addEventListener("timeupdate", updateTime);
     audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("durationchange", updateDuration); // ✅ Thêm để catch khi duration thay đổi
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
     audio.addEventListener("ended", handleEnded);
@@ -42,6 +48,7 @@ export default function AudioPlayerSimple({
     return () => {
       audio.removeEventListener("timeupdate", updateTime);
       audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("durationchange", updateDuration);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("ended", handleEnded);
@@ -49,7 +56,8 @@ export default function AudioPlayerSimple({
   }, [onTimeUpdate]);
 
   const formatTime = (seconds) => {
-    if (isNaN(seconds)) return "00:00";
+    // ✅ Check cả NaN và Infinity
+    if (isNaN(seconds) || !isFinite(seconds)) return "00:00";
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins.toString().padStart(2, "0")}:${secs
@@ -137,7 +145,7 @@ export default function AudioPlayerSimple({
           textAlign: "right",
         }}
       >
-        {formatTime(currentTime)} / {formatTime(duration)}
+        {formatTime(currentTime)} / {formatTime(propDuration || duration)}
       </div>
     </div>
   );

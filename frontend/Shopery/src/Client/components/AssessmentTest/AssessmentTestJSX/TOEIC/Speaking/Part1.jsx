@@ -291,6 +291,12 @@ export default function Part1({
                     recordings[question.question_id]?.url ||
                     null
                   }
+                  initialDuration={
+                    // ✅ Pass duration từ answers để hiển thị chính xác
+                    answers[question.question_id]?.recording?.duration ||
+                    recordings[question.question_id]?.duration ||
+                    null
+                  }
                   onNotesChange={handleNotesChange}
                   onRecordStart={handleRecordStart}
                   onRecordStop={handleRecordStop}

@@ -37,10 +37,19 @@
   }
 
   .part__content {
-    display: grid;
-    grid-template-columns: 65% 35%;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     margin-bottom: 32px;
+    width: 100%;
+  }
+
+  .part__question {
+    width: 100%;
+  }
+
+  .part__answer {
+    width: 100%;
   }
 
   .part__question {

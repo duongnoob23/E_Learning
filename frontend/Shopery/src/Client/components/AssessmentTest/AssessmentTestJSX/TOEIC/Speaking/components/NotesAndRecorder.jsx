@@ -10,6 +10,7 @@ export default function NotesAndRecorder({
   questionNumber,
   initialNotes = "",
   initialRecordingUrl = null,
+  initialDuration = null, // ✅ Thêm prop để nhận duration từ answers
   onNotesChange,
   onRecordStart,
   onRecordStop,
@@ -108,10 +109,12 @@ export default function NotesAndRecorder({
         display: "flex",
         flexDirection: "column",
         gap: "16px",
-        padding: "16px",
+        padding: "20px",
         background: "#fff",
         borderRadius: "8px",
         border: "1px solid #e0e0e0",
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
       {/* Question Number */}
@@ -235,7 +238,10 @@ export default function NotesAndRecorder({
           <div style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>
             Phát lại:
           </div>
-          <AudioPlayerSimple src={currentRecordingUrl} />
+          <AudioPlayerSimple 
+            src={currentRecordingUrl} 
+            duration={initialDuration || duration} // ✅ Ưu tiên initialDuration (từ answers), fallback về duration (từ recording hiện tại)
+          />
         </div>
       )}
     </div>

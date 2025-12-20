@@ -20,6 +20,8 @@ export default function QuestionCard({ question, questionNumber }) {
         borderRadius: "8px",
         border: "1px solid #e0e0e0",
         lineHeight: 1.6,
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
       <h3
