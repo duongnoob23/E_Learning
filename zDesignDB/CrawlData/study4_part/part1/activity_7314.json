@@ -1,0 +1,403 @@
+{
+  "activity_id": 7314,
+  "activity_url": "https://study4.com/courses/28/complete-toeic/learn/activities/7314/",
+  "total_questions": 22,
+  "questions": [
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "C",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening/image13.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/Test1_q6_fixed.mp3",
+      "transcript": "(A) A rug is being unrolled.(B) A potted plant has been placed on top of a shelf.(C) Bulletin boards have been mounted to the wall.(D) Some tiles have been removed from the floor.",
+      "explanation": "Đáp án đúng: C\n                                        Dịch nghĩa từng đáp án:(A) Một tấm thảm đang được trải ra.(B) Một chậu cây đã được đặt trên kệ.(C) Bảng thông báo đã được gắn vào tường.(D) Một số viên gạch đã được lấy ra khỏi sàn.Nhìn vào bức tranh → chọn đáp án C"
+    },
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening/image24.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619509313.mp3",
+      "transcript": "(A) Some floor tiles are in a pattern.(B) Some elevator doors are open.(C) There's a mirror on a cabinet.(D) There's a sofa on a patio.",
+      "explanation": "Đáp án đúng: A\n                                        Dịch nghĩa của từng đáp án:(A) Một số gạch lát sàn có hoa văn.(B) Một vài cửa thang máy đang mở.(C) Có một chiếc gương trên tủ.(D) Có một chiếc ghế sofa ở trên sân nhà.Nhìn vào bức tranh → chọn đáp án A."
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening/image26.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578327.mp3",
+      "transcript": "(A) A fan has been turned to face a wall.(B) A plant has been placed on a bookshelf.(C) Some cushions are piled up on the floor.(D) Some magazines are scattered on a rug.",
+      "explanation": "Đáp án đúng: A\n                                        Dịch nghĩa từng đáp án:(A) Một chiếc quạt đã bị quay mặt vào tường.(B) Một cái cây được đặt trên một giá sách.(C) Một vài cái đệm được chất đống trên sàn.(D) Một số tạp chí nằm rải rác trên một tấm thảm.Nhìn vào bức tranh → chọn đáp án A"
+    },
+    {
+      "problem_id": null,
+      "qnum": "2",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening/image2.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619592590.mp3",
+      "transcript": "(A) Some bicycles are parked outside.(B) Some umbrellas are being installed.(C) A building is being painted.(D) A walkway is covered with leaves.",
+      "explanation": "Đáp án đúng: A\n                                        Dịch nghĩa từng đáp án:(A) Một số xe đạp đang đậu bên ngoài.(B) Một số ô đang được lắp đặt.(C) Một tòa nhà đang được sơn.(D) Một lối đi trải đầy lá.Nhìn vào bức tranh → chọn đáp án A"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "D",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening/image21.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619592906.mp3",
+      "transcript": "(A) Some chairs are occupied.(B) Some curtains are closed.(C) A plant's been placed on top of a desk.(D) A patterned rug's been placed over a floor.",
+      "explanation": "Đáp án đúng: D\n                                        Dịch nghĩa từng đáp án:(A) Một số ghế đã có người ngồi.(B) Một vài chiếc rèm cửa được đóng lại.(C) Một cái cây được đặt trên bàn làm việc.(D) Một tấm thảm có hoa văn đã được trải trên sàn nhà.Nhìn vào bức tranh → chọn đáp án D"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "D",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image2.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_5.mp3",
+      "transcript": "(A) An armchair has been placed under a window.(B) Some reading materials have fallen on the floor.(C) Some flowers are being watered.(D) Some picture frames are hanging on a wall.",
+      "explanation": "Đáp án đúng: D\n                                        (A) Một cái ghế tựa đã được đặt dưới cửa sổ. => không có cửa sổ nào => loại(B) Một vài thứ để đọc đã rơi trên sàn. => không có gì trên sàn => loại(C) Một vài bông hoa đang được tưới nước. => cấu trúc being + VPII => loại(D) Một vài khung tranh đang treo trên tường. => đúng=> đáp án (D)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "B",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image8.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_2_5.mp3",
+      "transcript": "(A) Some chairs are stacked in the corner.(B) Some light fixtures are mounted on the walls.(C) Some tables are covered with tablecloths.(D) Some furniture is on display in a window.",
+      "explanation": "Đáp án đúng: B\n                                        (A) Vài cái ghế được xếp chồng ở trong góc. => có ghế nhưng không xếp chồng => loại(B) Vài cái đèn được lắp trên tường => đúng(C) Vài cái bàn được phủ khăn trải bàn. => không có khăn trải bàn => loại(D) Vài đồ nội thất được trưng bày trong cửa sổ. => không liên quan đến tranh => loại => đáp án (B)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "D",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image6.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_5_5.mp3",
+      "transcript": "(A) A house overlooks a fishing pier.(B) Ducks are swimming in a lake.(C) A bridge crosses over a river.(D) Some trees border a pond.",
+      "explanation": "Đáp án đúng: D\n                                        (A) Một ngôi nhà nhìn ra một cái cầu tàu. => không có cầu tàu => loại(B) Vịt đang bơi trong một cái hồ. => không có vịt => loại(C) Một cây cầu bắc ngang một con sông. => không liên quan => loại(D) Một vài cái cây bao quanh một cái ao. => đúng=> đáp án (D)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image10.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_7_5.mp3",
+      "transcript": "(A) Some pillows have been placed on a bed.(B) Some lamps are hanging from the ceiling.(C) Some bed linens are piled on the floor.(D) Some chairs are next to a nightstand.",
+      "explanation": "Đáp án đúng: A\n                                        (A)  Vài cái gối đã được đặt trên giường. => đúng(B) Vài cái đèn đang treo trên trần nhà => đèn trên tường => loại(C) Đồ ga giường xếp đống trên sàn => không có trên sàn => loại(D) Vài cái ghế ở cạnh tủ đầu giường => ghế bên ngoài ban công => loại=> đáp án (A)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "B",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image5.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_5.mp3",
+      "transcript": "(A) Some leaves have been swept into a pile.(B) Some furniture has been stacked near a fence.(C) An umbrella has fallen on the ground.(D) A bicycle has been chained to a pole.",
+      "explanation": "Đáp án đúng: B\n                                        (A) Lá đã được quét thành đống. => không liên quan => loại(B) Vài đồ nội thất đã được xếp chồng cạnh hàng rào => đúng(C) Một cái ô đã rơi xuống đất => không có => loại(D) Một cái xe đạp đã được khoá vào một cái cột => không có => loại=> đáp án (B)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "4",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/listening_p1/image4.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_9_4.mp3",
+      "transcript": "(A) A car has been parked beside a building.(B) A door has been propped open.(C) There's a sign posted on a fence.(D) Some plants have been arranged in a row.",
+      "explanation": "Đáp án đúng: A\n                                        (A) Một xe ô tô đã được đỗ bên cạnh toà nhà. => đúng(B) Một cái cửa đã được dựng lên và để mở. => cửa đóng => loại(C) Có một biển báo trên hàng rào. => không có biển báo => loại(D) Vài cái cây đã được xếp thành một hàng. => không có hàng cây => loại=> đáp án (A)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "4",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image12.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_4.mp3",
+      "transcript": "(A) Some clothing has been hung up.(B) Some boxes are stacked on a cart.(C) A bag has fallen on the floor.(D) A chair has been pushed under a desk.",
+      "explanation": "Đáp án đúng: A\n                                        (A) Một số quần áo đã được treo lên.(B) Một số hộp được xếp trên xe đẩy.(C) Một chiếc túi đã rơi trên sàn.(D) Một chiếc ghế đã được đẩy xuống dưới bàn.Câu hỏi này dễ bị phân tâm vì nhiều đối tượng trong bức tranh.Cần rèn luyện kỹ năng nghe và loại trừ những câu sai do vị trí của câu đọc khác với trong bức tranh. Đáp án A đúng vì có trong hình, đáp án B không có ‘boxes’, đáp án C sai vì dưới sàn không có ‘bag’, đáp án D sai vì ghế không được đẩy xuống dưới bàn. Do đó chọn A."
+    },
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "C",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image15.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_2_6.mp3",
+      "transcript": "(A) A banner is suspended from a window.(B) An umbrella has been opened to provide shade.(C) Some potted plants have been placed in a courtyard.(D) Some leaves have fallen on a walkway.",
+      "explanation": "Đáp án đúng: C\n                                        (A) Một biểu ngữ được treo trên cửa sổ.(B) Một chiếc ô đã được mở ra để tạo bóng mát.(C) Một số chậu cây đã được đặt ở sân trong.(D) Một số chiếc lá đã rơi trên lối đi.Đây là một câu khó với bức ảnh không có người. Đáp án C: “Một số chậu cây đã được đặt trong sân.” phù hợp với hình. Không có banner nào treo ở cửa sổ nên loại A, Chiếc ô không được mở, loại B, Trên lối đi cũng không có chiếc lá nào rơi nên loại D. Chọn C."
+    },
+    {
+      "problem_id": null,
+      "qnum": "3",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image21.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_3_3.mp3",
+      "transcript": "(A) A rug is being rolled up.(B) A door is being installed.(C) A floor is being mopped.(D) A wall is being torn down.",
+      "explanation": "Đáp án đúng: A\n                                        (A) Một tấm thảm đang được cuộn lại.(B) Một cánh cửa đang được lắp đặt.(C) Một sàn nhà đang được lau.(D) Một bức tường đang bị phá bỏ.Đây là câu hỏi tả tranh, nhìn hình thì 2 người này đang chạm vào một cái thảm. Ở đáp án A, nghe được key word: \"A rug\"(một tấm thảm) và ‘rolled up’ phù hợp với hành động, nên chọn A."
+    },
+    {
+      "problem_id": null,
+      "qnum": "4",
+      "correct": "D",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image19.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_3_4.mp3",
+      "transcript": "(A) Some flowers are being planted.(B) Some leaves have been raked into a pile.(C) Some stairs are being repaired.(D) Some fruit has been stacked in a bin.",
+      "explanation": "Đáp án đúng: D\n                                        (A) Một số bông hoa đang được trồng.(B) Một số lá đã được cào thành một đống.(C) Một số cầu thang đang được sửa chữa.(D) Một số trái cây đã được xếp vào thùng.Đây là tranh tả vật, câu A loại vì tranh không có ‘flowers’, B loại vì ‘leaves’ không ‘raked into a pile’, C loại vì không có ai sửa thang. D đúng vì có ‘fruit’ và ‘bin’, do đó chọn D."
+    },
+    {
+      "problem_id": null,
+      "qnum": "4",
+      "correct": "B",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image22.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_4_4.mp3",
+      "transcript": "(A) Some posters are scattered on the floor.(B) Some papers are posted on a bulletin board.(C) Some magazine racks are being emptied.(D) Some containers are being carried to a corner.",
+      "explanation": "Đáp án đúng: B\n                                        (A) Một số áp phích nằm rải rác trên sàn.(B) Một số giấy tờ được đăng trên bảng thông báo.(C) Một số giá tạp chí đang được dọn sạch.(D) Một số thùng chứa đang được chuyển vào một góc.Đây là câu hỏi yêu cầu tả các vật có trong hình. Loại A vì không có ‘posters’ trên ‘floor’, đáp án B đúng vì trên bảng có dán giấy, đáp án C loại vì các giá tạp chí không ‘emptied’, loại D vì không có hành động chuyển ‘containers’. Từ đó chọn B."
+    },
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "B",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image23.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_4_6.mp3",
+      "transcript": "(A) Some trucks are driving on a street.(B) Some trees are lining a walkway.(C) Some vehicles are stuck in traffic.(D) Some benches are being installed in a park.",
+      "explanation": "Đáp án đúng: B\n                                        (A) Một số xe tải đang chạy trên đường.(B) Một số cây đang xếp dọc lối đi.(C) Một số phương tiện bị kẹt xe.(D) Một số băng ghế đang được lắp đặt trong công viên.Đây là một câu hỏi tả vật, đáp án A loại vì không có ‘trucks’, đáp án C loại vì không có ‘stuck in traffic’, đáp án D loại vì trên ảnh không có ‘benches’, đáp án B phù hợp vì trong ảnh cây được trồng thành hàng. Chọn B."
+    },
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "D",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image25.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_5_6.mp3",
+      "transcript": "(A) A tile is being replaced.(B) A stairway railing is being fixed.(C) Some cabinet doors have been left open.(D) Some plants have been placed near a desk.",
+      "explanation": "Đáp án đúng: D\n                                        (A) Một viên gạch đang được thay thế.(B) Lan can cầu thang đang được sửa chữa.(C) Một số cửa tủ vẫn mở.(D) Một số cây được đặt gần bàn làm việc.Đây là câu hỏi tả tranh. Loại 2 đáp án A và B vì không có hành động sửa chữa, C loại vì không có ‘cabinet door’, D phù hợp vì có cây ở quanh bàn làm việc. Do vậy chọn D."
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "C",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image27.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_6_5.mp3",
+      "transcript": "(A) The curtain has been closed.(B) Some photos are displayed on a desk.(C) A travel bag has been set on a chair.(D) A light is hanging from the ceiling.",
+      "explanation": "Đáp án đúng: C\n                                        Câu này buộc phải nghe được để chọn đúng đáp án. Trong các đáp án khác, rèm cửa vẫn đang mở; trên bàn không có bức tranh nào; cái đèn thì đang để trên sàn nhà nên loại A, B, DCái túi du lịch đúng là đang đặt trên ghế, chọn C."
+    },
+    {
+      "problem_id": null,
+      "qnum": "5",
+      "correct": "C",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image2.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_8_5.mp3",
+      "transcript": "(A) A clock has been left on the ground.(B) Some cabinets are being painted.(C) Several brooms have been placed next to a plastic bin.(D) Boxes are being loaded onto a truck.",
+      "explanation": "Đáp án đúng: C\n                                        (A) Một chiếc đồng hồ đã bị bỏ lại trên mặt đất.(B) Một số tủ đang được sơn.(C) Một số cây chổi đã được đặt cạnh một thùng nhựa.(D) Những chiếc hộp đang được chất lên xe tải.Đây là câu hỏi về tranh tả vật, đáp án A loại vì tranh không có ‘clock’, loại B vì tranh không có ‘cabinet’, C đúng vì trong tranh có chổi để cạnh các thùng, có cả ‘brooms’ và ‘plastic bin’, C loại vì tranh không có ‘truck’. Chọn C."
+    },
+    {
+      "problem_id": null,
+      "qnum": "4",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image5.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_9_4.mp3",
+      "transcript": "(A) Some ladders have been set up in a work space.(B) Some chairs have been lined up against a wall.(C) Some plants have been placed on the ground.(D) Some cabinet drawers have been left open.",
+      "explanation": "Đáp án đúng: A\n                                        (A) Một số thang đã được lắp đặt trong không gian làm việc.(B) Một số ghế đã được xếp sát vào tường.(C) Một số cây đã được đặt trên mặt đất.(D) Một số ngăn kéo tủ bị bỏ ngỏ.Đây là câu tả tranh, đáp án A đúng vì các key words: \"Ladders\", work space\" có trong hình, loại B vì trong hình không có ‘chairs’, C loại vì ‘plants’ đúng nhưng ‘on the ground’ sai, D loại cì ‘cabinet drawers’ không ‘open’. Chọn A."
+    },
+    {
+      "problem_id": null,
+      "qnum": "6",
+      "correct": "A",
+      "question_text": "",
+      "images": [
+        "/media/toeic_course_problems/extra4/image6.png"
+      ],
+      "answers": [
+        "A.",
+        "B.",
+        "C.",
+        "D."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_9_6.mp3",
+      "transcript": "(A) A bridge crosses over a waterway.(B) A dock is crowded with tourists.(C) Some boats are sailing in the ocean.(D) Some ropes are piled on top of a box.",
+      "explanation": "Đáp án đúng: A\n                                        (A) Một cây cầu bắc qua đường thủy.(B) Bến tàu đông đúc khách du lịch.(C) Một số chiếc thuyền đang đi trên biển.(D) Một số sợi dây được xếp chồng lên nhau trên một chiếc hộp.Đây là câu hỏi tả tranh, trong đáp án A các key words: \"bridge\", \"cross\", \"waterway\" phù hợp, chú ý tránh chọn nhầm đáp án C vì C có từ khoá ‘sailing’ và ‘ocean’ sai, B và D không có trong hình. Chọn A."
+    }
+  ]
+}

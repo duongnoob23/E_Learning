@@ -1,0 +1,58 @@
+{
+  "activity_id": 7383,
+  "activity_url": "https://study4.com/courses/28/complete-toeic/learn/activities/7383/",
+  "total_questions": 3,
+  "questions": [
+    {
+      "qnum": "127",
+      "correct": "D",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "Saul's Pizzeria changed its menu options after receiving _____ negative customer feedback.",
+      "question_html": "<p><span>Saul's Pizzeria changed its menu options after receiving _____ negative customer feedback.</span></p>",
+      "images": [],
+      "answers": [
+        "A. increase",
+        "B. increases",
+        "C. to increase",
+        "D. increasingly"
+      ],
+      "explanation": "Đáp án đúng: D\n                                        Giải thích: chỗ trống cần có 1 trạng từ để bổ nghĩa cho tính từ \"negative\". Chọn đáp án D.Dịch: Saul's Pizzeria đã thay đổi các lựa chọn thực đơn sau việc nhận được phản hồi ngày càng tiêu cực của khách hàng.Từ vựng: - negative (adj): tiêu cực- feedback (n) phản hồi- option (n): sự lựa chọn"
+    },
+    {
+      "qnum": "101",
+      "correct": "C",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "Mr. Ashburton has been _____ recommended by all three of his references.",
+      "question_html": "<p><span>Mr. Ashburton has been _____ recommended by all three of his references.</span></p>",
+      "images": [],
+      "answers": [
+        "A. high",
+        "B. higher",
+        "C. highly",
+        "D. highest"
+      ],
+      "explanation": "Đáp án đúng: C\n                                        Giải thích: Câu này cần tìm từ loại thích hợp. Ở đây cần 1 trạng từ bổ sung ý nghĩa cho động từ \"recommend\" nên đáp án đúng là C \"highly\".Dịch: Mr. Ashburton đã được tiến cử một cách nhiệt tình bởi cả ba người giới thiệu của anh ấy.Từ vựng:- recommend (v): giới thiệu, tiến cử- reference (n): người giới thiệu, người chứng nhận (lý lịch, tư cách, công tác...)"
+    },
+    {
+      "qnum": "105",
+      "correct": "A",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "Please submit each reimbursement request _____ according to its category, as outlined in last month's memo.",
+      "question_html": "<p><span>Please submit each reimbursement request _____ according to its category, as outlined in last month's memo.</span></p>",
+      "images": [],
+      "answers": [
+        "A. separately",
+        "B. separateness",
+        "C. separates",
+        "D. separate"
+      ],
+      "explanation": "Đáp án đúng: A\n                                        Phân tích: Câu này đã đầy đủ các thành phần ngữ pháp của câu (chủ ngữ, động từ chính, tân ngữ cho động từ), nên chỉ cần điền trạng từ để bổ sung ý nghĩa cho động từ chính mà thôi --> chọn \"separately\".Dịch: Vui lòng nộp mỗi yêu cầu hoàn tiền một cách riêng rẽ theo phân loại, như đã được liệt kê ra trong ghi chú của tháng trước."
+    }
+  ]
+}

@@ -1,11 +1,101 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+const path = require("path");
 
-const URL =
-  "https://study4.com/courses/28/complete-toeic/learn/activities/7385/";
+/* ================= CONFIG ================= */
+const OUTPUT_DIR = "./study4_part/part7";
+const LESSON_IDS = [
+  6552,
+  6553,
+  6554,
+  6555,
+  6556,
+  6557,
+  6558,
+  6559,
+  6945,
+  6946,
+  6948,
+  6949,
+  6950
+];
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+const LESSON_URL_TEMPLATE =
+  "https://study4.com/courses/28/complete-toeic/learn/activities/{ID}/";
+
+
+/* ============ PREPARE FOLDER ============== */
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  console.log("📁 Created study4_data folder");
+}
+/* ========================================= */
+
+/* ============ LOAD COOKIES ================ */
+async function loadCookies(page) {
+  const cookies = JSON.parse(fs.readFileSync("cookies.json", "utf8"));
+  for (const ck of cookies) {
+    await page.setCookie({
+      name: ck.name,
+      value: ck.value,
+      domain: ck.domain,
+      path: ck.path,
+      httpOnly: ck.httpOnly,
+      secure: ck.secure,
+      sameSite: ck.sameSite || "Lax"
+    });
+  }
+  console.log("🍪 Cookies loaded");
+}
+/* ========================================= */
+
+/* ============ CRAWL LESSON CONTENT ========= */
+async function crawlLessonContent(page) {
+  return await page.evaluate(() => {
+    const block = document.querySelector(".contentblock");
+    if (!block) return null;
+
+    const title = block.querySelector("h1")?.innerText.trim() || "";
+
+    // clone để giữ nguyên HTML
+    const clone = block.cloneNode(true);
+
+    // remove script (an toàn)
+    clone.querySelectorAll("script").forEach(e => e.remove());
+
+    return {
+      title,
+      content_html: clone.innerHTML.trim()
+    };
+  });
+}
+/* ========================================= */
+
+/* ============ CRAWL YOUTUBE IFRAME ========= */
+async function crawlYoutubeIframe(page) {
+  return await page.evaluate(() => {
+    const iframe = document.querySelector('iframe[src*="youtube.com/embed"]');
+    if (!iframe) return null;
+
+    const src = iframe.getAttribute("src") || "";
+    const match = src.match(/embed\/([^?]+)/);
+    const videoId = match ? match[1] : "";
+
+    return {
+      type: "youtube",
+      video_id: videoId,
+      embed_url: `https://www.youtube.com/embed/${videoId}`,
+      watch_url: `https://www.youtube.com/watch?v=${videoId}`,
+      title: iframe.getAttribute("title") || "",
+      width: iframe.getAttribute("width") || "",
+      height: iframe.getAttribute("height") || ""
+    };
+  });
+}
+/* ========================================= */
+
+/* ================= MAIN =================== */
 (async () => {
   const browser = await puppeteer.launch({
     headless: false,
@@ -13,75 +103,54 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   });
 
   const page = await browser.newPage();
-  page.setDefaultNavigationTimeout(0);
+  await loadCookies(page);
 
-  // 🍪 Load cookies
-  if (fs.existsSync("cookies.json")) {
-    const cookies = JSON.parse(fs.readFileSync("cookies.json"));
-    await page.setCookie(...cookies);
-    console.log("🍪 Cookies loaded");
-  }
+  for (const lessonId of LESSON_IDS) {
+    const lessonUrl = LESSON_URL_TEMPLATE.replace("{ID}", lessonId);
+    console.log(`🌐 Crawling lesson ${lessonId}...`);
 
-  // 🚀 Load page
-  await page.goto(URL, { waitUntil: "domcontentloaded" });
+    try {
+      await page.goto(lessonUrl, {
+        waitUntil: "networkidle2",
+        timeout: 60000
+      });
 
-  // ⏳ Chờ danh sách câu hỏi (PAGE CHA)
-  await page.waitForSelector(".problemset-problem-number.jqchange-problem", {
-    timeout: 60000
-  });
+      const lesson = await crawlLessonContent(page);
+      if (!lesson) {
+        console.log(`⚠️ Lesson ${lessonId}: Không tìm thấy .contentblock`);
+        continue;
+      }
 
-  const buttons = await page.$$(".problemset-problem-number.jqchange-problem");
-  console.log("🔢 Total questions:", buttons.length);
+      const video = await crawlYoutubeIframe(page);
 
-  const results = [];
-
-  for (let i = 0; i < buttons.length; i++) {
-    console.log(`➡ Crawling question ${i + 1}`);
-
-    // 👉 Click câu hỏi
-    await buttons[i].click();
-
-    // ⏳ Chờ iframe có src
-    await page.waitForFunction(() => {
-      const iframe = document.querySelector("iframe.problem-iframe");
-      return iframe && iframe.src && iframe.src.length > 10;
-    }, { timeout: 60000 });
-
-    // 🎯 Lấy iframe
-    const iframeHandle = await page.$("iframe.problem-iframe");
-    const frame = await iframeHandle.contentFrame();
-
-    // ⏳ Chờ nội dung câu hỏi TRONG iframe
-    await frame.waitForSelector(".problem-mcq-question", { timeout: 60000 });
-
-    const data = await frame.evaluate(() => {
-      const root = document.querySelector(".problem-mcq-question");
-      if (!root) return null;
-
-      return {
-        question_id: root.dataset.qnum,
-        correct: root.dataset.correct,
-        question: root.querySelector(".problem-mcq-context span")?.innerText,
-        answers: [...root.querySelectorAll(".problem-mcq-answer label")].map(l => ({
-          key: l.innerText.trim()[0],
-          text: l.innerText.trim().slice(3)
-        })),
-        explanation:
-          root.querySelector(".problem-mcq-explanation")?.innerText || ""
+      const result = {
+        lesson_id: lessonId,
+        url: lessonUrl,
+        title: lesson.title,
+        content_html: lesson.content_html,
+        video
       };
-    });
 
-    if (data) results.push(data);
+      const safeName = lesson.title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_|_$/g, "");
 
-    await sleep(300);
+      const outFile = path.join(
+        OUTPUT_DIR,
+        `lesson_${lessonId}_${safeName}.json`
+      );
+
+      fs.writeFileSync(outFile, JSON.stringify(result, null, 2), "utf8");
+      console.log(`✅ Saved → ${outFile}`);
+
+    } catch (err) {
+      console.log(`❌ Lỗi lesson ${lessonId}:`, err.message);
+    }
   }
 
-  fs.writeFileSync(
-    "study4_activity.json",
-    JSON.stringify(results, null, 2),
-    "utf8"
-  );
-
-  console.log("✅ DONE – Crawl thành công toàn bộ");
   await browser.close();
 })();
+

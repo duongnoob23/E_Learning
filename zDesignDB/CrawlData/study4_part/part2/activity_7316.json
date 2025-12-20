@@ -1,0 +1,337 @@
+{
+  "activity_id": 7316,
+  "activity_url": "https://study4.com/courses/28/complete-toeic/learn/activities/7316/",
+  "total_questions": 22,
+  "questions": [
+    {
+      "problem_id": null,
+      "qnum": "7",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619407464_1619421014.mp3",
+      "transcript": "What color should we paint the waiting room?(A) Let's paint it blue.(B) Tomorrow should work.(C) Yes, I filled the prescription.",
+      "explanation": "Đáp án đúng: A\n                                        Chúng ta nên sơn màu gì cho phòng chờ?(A) Hãy sơn nó màu xanh lam.(B) Ngày mai nó nên có hiệu quả .(C) Có, tôi đã mua thuốc theo toa.Dựa vào nghĩa của từng đáp án→ chọn đáp án A (câu hỏi what về việc nên sơn màu gì → đáp án A nhắc đến “blue” - màu xanh)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "20",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_20.mp3",
+      "transcript": "Which photograph did you want me to edit for the magazine?(A) My new camera.(B) The photo of the sunset.(C) OK, thanks for the update.",
+      "explanation": "Đáp án đúng: B\n                                        Bạn muốn tôi chỉnh sửa bức ảnh nào cho tờ tạp chí?Máy ảnh mới của tôiBức ảnh hoàng hônOK, cảm ơn vì đã thông báo→ Chọn B (câu hỏi Which nghĩa là cần chọn một đáp án liên quan đến điều được nhắc đến ở câu hỏi - “picture” là “bức ảnh”)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "13",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619509817.mp3",
+      "transcript": "What's the best way to get to the shopping center?(A) I really like Amy's clothing store.(B) Take the East Highway.(C) Yes, she shipped it yesterday.",
+      "explanation": "Đáp án đúng: B\n                                        Cách tốt nhất để đến trung tâm mua sắm là gì?(A) Tôi thực sự thích cửa hàng quần áo của Amy.(B) Đi theo đại lộ phía Đông.(C) Vâng, cô ấy đã vận chuyển nó ngày hôm qua.Dựa vào nghĩa của từng đáp án→ chọn đáp án B (câu hỏi về tìm hướng → câu trả lời có nhắc đến đại lộ về hướng Đông)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "9",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578635.mp3",
+      "transcript": "What kind of cake are you making?(A) Yes, I did.(B) It's chocolate.(C) A new bakery.",
+      "explanation": "Đáp án đúng: B\n                                        Các bạn đang làm loại bánh gì?(A) Vâng, tôi đã làm.(B) Đó là sô cô la.(C) Một tiệm bánh mới.Dựa vào nghĩa của từng đáp án (hỏi về loại bánh → đáp án ghi bánh sô cô la)→ chọn đáp án B"
+    },
+    {
+      "problem_id": null,
+      "qnum": "25",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619579869.mp3",
+      "transcript": "What should I do to prepare our booth at the career fair?(A) David was in charge of it last year.(B) The taxi fare wasn't expensive.(C) Yes, I'll take both, please.",
+      "explanation": "Đáp án đúng: A\n                                        Tôi nên làm gì để chuẩn bị cho gian hàng của chúng tôi tại hội chợ việc làm?(A) David đã phụ trách nó vào năm ngoái.(B) Giá đi taxi không đắt.(C) Vâng, tôi sẽ lấy cả hai, làm ơn.Dựa vào nghĩa của từng đáp án→ chọn đáp án A (cụ thể, người nói không trả lời trực tiếp mà nói rằng ‘David đã phụ trách nó vào năm ngoái’ nhằm ngụ ý với người hỏi rằng anh/cô ấy có thể đến gặp David và hỏi về việc chuẩn bị)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "19",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619594042.mp3",
+      "transcript": "What's on the agenda for today's meeting?(A) Didn't you get the memo from Julia?(B) No, in the conference room.(C) Generally they do.",
+      "explanation": "Đáp án đúng: A\n                                        Lịch trình cho cuộc họp hôm nay là gì?(A) Bạn không nhận được bản ghi nhớ từ Julia à?(B) Không, trong phòng họp.(C) Nói chung là họ làm.Dựa vào nghĩa của từng đáp án→ chọn đáp án A (người nghe đã đáp lại câu hỏi bằng 1 câu hỏi khác nhằm ngụ ý rằng Julia đã gửi bản ghi nhớ về lịch trình cuộc họp cho ngày hôm nay)"
+    },
+    {
+      "problem_id": null,
+      "qnum": "7",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619659104.mp3",
+      "transcript": "What are your store hours today?(A) In the storage room.(B) Nine A.M. to six P.M.(C) Walnut Avenue.",
+      "explanation": "Đáp án đúng: B\n                                        Hôm nay cửa hàng của bạn hoạt động vào giờ nào?(A) Trong phòng lưu trữ.(B) Từ chín giờ sáng đến sáu giờ chiều(C) Đại lộ WalnutVì câu hỏi hỏi về thời gian→ chọn đáp án B"
+    },
+    {
+      "problem_id": null,
+      "qnum": "12",
+      "correct": "C",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619659396.mp3",
+      "transcript": "What's the average age of the residents in this apartment complex?(A) Across the river in Doverville.(B) It takes a lot of training.(C) About 40 years old.",
+      "explanation": "Đáp án đúng: C\n                                        Độ tuổi trung bình của cư dân trong khu chung cư này là bao nhiêu?(A) Bên kia sông ở Doverville.(B) Cần phải đào tạo rất nhiều.(C) Khoảng 40 tuổi.Vì câu hỏi hỏi về tuổi → đáp án có thể sẽ đề cập đến 1 con số→ chọn đáp án C"
+    },
+    {
+      "problem_id": null,
+      "qnum": "16",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_16.mp3",
+      "transcript": "What's the total cost of the repair work?(A) It's free because of the warranty.(B) I have some boxes you can use.(C) In a couple of hours.",
+      "explanation": "Đáp án đúng: A\n                                        Tổng chi phí sửa chữa là bao nhiêu? => câu hỏi về chi phí nên cần 1 đáp án nói về số tiền. (A) Miễn phí vì có bảo hiểm => nói về phí, chọn.(B) Tôi có một vài cái hộp mà anh có thể dùng => nói về vật, loại.(C)Trong một vài giờ nữa => nói về thời gian, loại."
+    },
+    {
+      "problem_id": null,
+      "qnum": "11",
+      "correct": "C",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_2_11.mp3",
+      "transcript": "What's the best way for us to get to the conference center?(A) I haven't heard from her, either.(B) It was a great presentation.(C) Let's take a look at the train schedule.",
+      "explanation": "Đáp án đúng: C\n                                        Cách tốt nhất để chúng ta đến trung tâm hội nghị là gì? => cần tìm đáp án về vấn đề phương tiện đi lại như thế nào.(A) Tôi cũng chưa nghe được gì từ cô ấy => không liên quan đến vấn đề đi lại, loại(B) Đó là một phần thuyết trình tốt => nói về việc thuyết trình, không liên quan đến vấn đề đi lại, loại(C) Hãy xem thử lịch trình của tàu hỏa => nói về lịch trình của tàu hỏa  để chọn chuyến tốt nhất để đi, chọn."
+    },
+    {
+      "problem_id": null,
+      "qnum": "17",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619510527.mp3",
+      "transcript": "What's the cost estimate for the renovation work?(A) About 5,000 dollars.(B) Sure, I'll send it in.(C) Yes, some new appliances.",
+      "explanation": "Đáp án đúng: A\n                                        Dự tính chi phí cho công việc cải tạo là bao nhiêu?(A) Khoảng 5.000 đô la.(B) Chắc chắn rồi, tôi sẽ gửi nó.(C) Có, một số thiết bị mới.Vì câu hỏi hỏi về chi phí → câu trả lời cần 1 con số, 1 số tiền→ chọn đáp án A"
+    },
+    {
+      "problem_id": null,
+      "qnum": "21",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_21.mp3",
+      "transcript": "Which seat is mine?(A) It's a comfortable chair.(B) Please sit anywhere.(C) Keep that in mind.",
+      "explanation": "Đáp án đúng: B\n                                        Chỗ ngồi nào là của tôi?(A) Đó là một chiếc ghế thoải mái.(B) Hãy ngồi ở bất cứ đâu.(C) Hãy ghi nhớ điều đó.Câu hỏi này không có đáp án trực tiếp về chỗ ngồi của người hỏi, chọn câu trả lời gián tiếp là ‘Please sit anywhere’, chọn B."
+    },
+    {
+      "problem_id": null,
+      "qnum": "14",
+      "correct": "C",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_14.mp3",
+      "transcript": "What do you think about our new television advertisement?(A) I watched the show yesterday.(B) Through the advertising agency.(C) It's very eye-catching.",
+      "explanation": "Đáp án đúng: C\n                                        Bạn nghĩ gì về quảng cáo TV mới của chúng tôi?(A) Tôi đã xem chương trình ngày hôm qua. => có từ \"show\" liên quan đến \"television\", tuy nhiên ý nghĩa cả câu không liên quan => loại(B) Thông qua công ty quảng cáo. => có từ \"advertising\" liên quan đến \"advertisement\" để bẫy, ý nghĩa cả câu không liên quan => loại(C) Nó rất bắt mắt. => chọn"
+    },
+    {
+      "problem_id": null,
+      "qnum": "22",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_22.mp3",
+      "transcript": "What's the address of our Hong Kong buyer?(A) Check the client database.(B) From the shipping company.(C) Fragile contents.",
+      "explanation": "Đáp án đúng: A\n                                        Địa chỉ của người mua ở Hồng Kông của chúng ta là gì thế?(A) Kiểm tra cơ sở dữ liệu khách hàng ấy. => chọn(B) Từ công ty vận chuyển. => nội dung không liên quan => loại(C) Hàng dễ vỡ. => nội dung không liên quan => loại"
+    },
+    {
+      "problem_id": null,
+      "qnum": "28",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_28.mp3",
+      "transcript": "What kind of ink does the printer use?(A) He's a world-famous sprinter.(B) Consult the manual.(C) It's very kind of you to say so.",
+      "explanation": "Đáp án đúng: B\n                                        Máy in sử dụng loại mực gì?(A) Anh ấy là vận động viên chạy nước rút nổi tiếng thế giới. => có từ \"sprinter\" nghe gần giống \"printer\" để bẫy, ý nghĩa không hề liên quan => loại(B) Tham khảo sách hướng dẫn xem. => chọn(C) Bạn thật tử tế khi nói như vậy. => cũng có từ \"kind\" nhưng nội dung không hề liên quan => loại"
+    },
+    {
+      "problem_id": null,
+      "qnum": "10",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_10.mp3",
+      "transcript": "Which road is fastest?(A) Why don't I drive?(B) Take the highway.(C) Slow down.",
+      "explanation": "Đáp án đúng: B\n                                        Đường nào là nhanh nhất?(A) Tại sao tôi không lái xe? => có từ \"drive\" liên quan đến \"road\", tuy nhiên ý nghĩa cả câu không liên quan => loại(B) Đi đường cao tốc ấy. => chọn(C) Chậm lại. => nội dung không liên quan => loại"
+    },
+    {
+      "problem_id": null,
+      "qnum": "20",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q20.mp3",
+      "transcript": "Which shirt did you decide to buy for your sister?(A) I decided to hire more employees.(B) Actually, I bought a scarf instead.(C) How much is it?",
+      "explanation": "Đáp án đúng: B\n                                        Dịch: Bạn quyết định mua chiếc áo nào cho em gái thế?A) Tôi quyết định thuê thêm nhân viên => bẫy vì cũng có “decide” nhưng nội dung không liên quan => loạiB) Thực ra tôi đã chuyển sang mua khăn quàng cổ => chọnC) Nó bao nhiêu tiền? => nội dung không liên quan => loại"
+    },
+    {
+      "problem_id": null,
+      "qnum": "10",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q10.mp3",
+      "transcript": "Which theater is the movie showing at?(A) He's a famous actor.(B) Well, I'll have to check.(C) She's over there.",
+      "explanation": "Đáp án đúng: B\n                                        Dịch câu hỏi:Phim đang chiếu ở rạp nào?(A) Anh ấy là một diễn viên nổi tiếng.(B) Chà, tôi sẽ phải kiểm tra.(C) Cô ấy ở đằng kia.Do đây là câu hỏi về rạp phim, nên đáp án không thể là A hay C. B là cách trả lời gián tiếp nên đáp án này đúng."
+    },
+    {
+      "problem_id": null,
+      "qnum": "12",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q12.mp3",
+      "transcript": "What should I bring on the camping trip?(A) You'll need hiking boots.(B) He's on a business trip with his colleague.(C) Yes, we should.",
+      "explanation": "Đáp án đúng: A\n                                        Dịch câu hỏi:Tôi nên mang gì trong chuyến đi cắm trại?(A) Bạn sẽ cần ủng đi bộ đường dài.(B) Anh ấy đang đi công tác với đồng nghiệp của mình.(C) Vâng, chúng ta nên.Do câu hỏi What mà sau what không có danh từ, nên cần tập trung vào vế sau của câu hỏi. Đáp án thích hợp là tên một đồ vật mà người đó muốn giới thiệu, do vậy chọn đáp án A."
+    },
+    {
+      "problem_id": null,
+      "qnum": "31",
+      "correct": "A",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q31.mp3",
+      "transcript": "What did the tennis instructor say?(A) She said to practice more.(B) Have you decided on a date?(C) I told you so.",
+      "explanation": "Đáp án đúng: A\n                                        Huấn luyện viên quần vợt nói gì?(A) Cô ấy nói hãy luyện tập nhiều hơn.(B) Bạn đã quyết định hẹn hò chưa?(C) Tôi đã nói với bạn như vậy.Câu hỏi thuộc dạng câu hỏi what này có đáp án trả lời trực tiếp là A, từ the tennis instructor say có phần trả lời tương ứng là ‘She said’. Các đáp án B và C không phù hợp với câu hỏi về nội dung lời nói."
+    },
+    {
+      "problem_id": null,
+      "qnum": "15",
+      "correct": "C",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q15.mp3",
+      "transcript": "Which paint would be best for these walls?(A) Probably three or four cans.(B) Yes, we ordered it already.(C) Light blue would look nice.",
+      "explanation": "Đáp án đúng: C\n                                        Dịch: Loại sơn nào phù hợp nhất với mấy bức tường này?(A) Có lẽ là ba hoặc bốn lọ. => hỏi “which” chứ không phải “how many” => loại(B) Vâng, chúng tôi đã đặt hàng rồi. => câu hỏi Which chứ không phải Yes/No => loại(C) Màu xanh nhạt trông sẽ đẹp đấy. => chọn"
+    },
+    {
+      "problem_id": null,
+      "qnum": "30",
+      "correct": "B",
+      "question_text": "",
+      "images": [],
+      "answers": [
+        "A.",
+        "B.",
+        "C."
+      ],
+      "audio": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q30.mp3",
+      "transcript": "What is needed to apply for this job?(A) Yes, she starts on Monday.(B) A bachelor's degree or higher in engineering.(C) The rule doesn't apply to children under 8.",
+      "explanation": "Đáp án đúng: B\n                                        Dịch: Muốn ứng tuyển công việc này cần có gì?A) Vâng, cô ấy bắt đầu vào thứ Hai. => câu hỏi What chứ không phải Yes/No => loại(B) Bằng cử nhân hoặc cao hơn thuộc ngành kĩ thuật. => chọn(C) Quy tắc này không áp dụng cho trẻ em dưới 8 tuổi. => có từ “apply” nhưng nghĩa khác, nội dung cũng không liên quan => loại"
+    }
+  ]
+}

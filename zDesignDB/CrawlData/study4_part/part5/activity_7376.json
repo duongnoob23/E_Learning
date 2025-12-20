@@ -1,0 +1,58 @@
+{
+  "activity_id": 7376,
+  "activity_url": "https://study4.com/courses/28/complete-toeic/learn/activities/7376/",
+  "total_questions": 3,
+  "questions": [
+    {
+      "qnum": "128",
+      "correct": "A",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "Marliet Marketing can help any business _____ its products through multimedia advertising packages.",
+      "question_html": "<p><span>Marliet Marketing can help any business _____ its products through multimedia advertising packages.</span></p>",
+      "images": [],
+      "answers": [
+        "A. promote",
+        "B. promoted",
+        "C. promotable",
+        "D. promoter"
+      ],
+      "explanation": "Đáp án đúng: A\n                                        Giải thích: Trong câu có sử dụng cấu trúc \"help somebody do something\" có nghĩa là \"giúp ai đó làm điều gì\". → Chọn đáp án ADịch: Marliet Marketing có thể giúp bất kỳ doanh nghiệp nào quảng bá sản phẩm của mình thông qua các gói quảng cáo đa phương tiện.Từ vựng:- through (prep): thông qua, xuyên suốt- multimedia (n, adj): đa phương tiện- advertising (n): quảng cáo"
+    },
+    {
+      "qnum": "122",
+      "correct": "D",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "A successful digital marketing campaign has helped Fossler Electronics _____ its profit margins.",
+      "question_html": "<p><span>A successful digital marketing campaign has helped Fossler Electronics _____ its profit margins.</span></p>",
+      "images": [],
+      "answers": [
+        "A. stabilized",
+        "B. stability",
+        "C. stabilizing",
+        "D. stabilize"
+      ],
+      "explanation": "Đáp án đúng: D\n                                        Đây là câu hỏi tìm dạng phù hợp của động từ. Nhìn trong câu có cấu trúc \"help sb do sth\" nên ở đây thiếu một động từ nguyên mẫu. Chọn D) stabilizeDịch nghĩa:Một chiến dịch tiếp thị kỹ thuật số thành công đã giúp Fossler Electronics ổn định tỷ suất lợi nhuận của nó."
+    },
+    {
+      "qnum": "108",
+      "correct": "D",
+      "audio": null,
+      "transcript": null,
+      "translation": null,
+      "question_text": "The head chef has the restaurant manager ------- the order for the ingredients every evening.",
+      "question_html": "<p><span>The head chef has the restaurant manager ------- the order for the ingredients every evening.</span></p>",
+      "images": [],
+      "answers": [
+        "A. authoritative",
+        "B. authority",
+        "C. authorities",
+        "D. authorize"
+      ],
+      "explanation": "Đáp án đúng: D\n                                        Ta có công thức: have somebody do something = yêu cầu, nhờ vả, ra lệnh… ai đó làm gì cho mình. => Chọn D vì D là động từDịch: Bếp trưởng yêu cầu quản lý nhà hàng phê duyệt đơn hàng mua nguyên liệu mỗi tối."
+    }
+  ]
+}
