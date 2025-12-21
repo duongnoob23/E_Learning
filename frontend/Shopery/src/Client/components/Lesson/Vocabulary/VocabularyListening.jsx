@@ -1,7 +1,133 @@
 // VocabularyListening.jsx - Nghe từ vựng (audio + 3x3 matrix)
 // Hỗ trợ: nhiều câu hỏi, audio mp3, grid 3x3 (tiếng Việt + ảnh), sai->rung, đúng->xanh+auto next
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./VocabularyListening.css";
+
+// Component AudioPlayer riêng để force re-mount mỗi lần src thay đổi
+function AudioPlayer({ src, onPlay, questionId, questionIndex }) {
+  const audioRef = useRef(null);
+  const previousSrcRef = useRef(null);
+  const previousQuestionIndexRef = useRef(null);
+
+  // Log khi component mount hoặc khi questionIndex thay đổi
+  useEffect(() => {
+    if (previousQuestionIndexRef.current !== questionIndex) {
+      console.log("🎧 AudioPlayer - MOUNT/REMOUNT:", {
+        questionIndex,
+        questionId,
+        audioUrl: src,
+        previousQuestionIndex: previousQuestionIndexRef.current,
+      });
+      previousQuestionIndexRef.current = questionIndex;
+    }
+  }, [questionIndex, questionId, src]);
+
+  useEffect(() => {
+    // Force load audio khi src thay đổi
+    if (audioRef.current && src) {
+      // Chỉ reload nếu src thực sự thay đổi
+      if (previousSrcRef.current !== src) {
+        console.log("🔊 AudioPlayer - Loading new audio:", {
+          questionId,
+          questionIndex,
+          audioUrl: src,
+          previousUrl: previousSrcRef.current,
+        });
+
+        // Pause và reset trước khi load audio mới
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+
+          // Xóa src cũ và set src mới để force reload
+          audioRef.current.src = "";
+          audioRef.current.load();
+
+          // Set src mới sau một tick để đảm bảo reset hoàn toàn
+          setTimeout(() => {
+            if (audioRef.current && src) {
+              audioRef.current.src = src;
+              audioRef.current.load();
+              previousSrcRef.current = src;
+
+              console.log("✅ AudioPlayer - Audio loaded successfully:", {
+                questionId,
+                questionIndex,
+                audioUrl: src,
+                audioElementSrc: audioRef.current.src,
+                audioElementCurrentSrc: audioRef.current.currentSrc,
+              });
+            }
+          }, 50);
+        }
+      }
+    }
+  }, [src, questionId, questionIndex]);
+
+  // Xử lý khi click play
+  const handlePlay = (e) => {
+    console.log("▶️ AudioPlayer - PLAY BUTTON CLICKED:", {
+      questionId,
+      questionIndex,
+      expectedAudioUrl: src,
+      audioElementSrc: audioRef.current?.src,
+      audioElementCurrentSrc: audioRef.current?.currentSrc,
+      audioElementReadyState: audioRef.current?.readyState,
+      audioElementNetworkState: audioRef.current?.networkState,
+    });
+
+    // Đảm bảo audio element đang sử dụng đúng URL
+    if (audioRef.current && src) {
+      const currentSrc =
+        audioRef.current.src || audioRef.current.currentSrc || "";
+      const expectedSrc = src;
+
+      // So sánh URL (bỏ qua query params và hash)
+      const normalizeUrl = (url) => {
+        try {
+          const u = new URL(url);
+          return u.origin + u.pathname;
+        } catch {
+          return url.split("?")[0].split("#")[0];
+        }
+      };
+
+      const normalizedCurrent = normalizeUrl(currentSrc);
+      const normalizedExpected = normalizeUrl(expectedSrc);
+
+      if (normalizedCurrent !== normalizedExpected && currentSrc) {
+        console.warn("⚠️ AudioPlayer - URL MISMATCH! Fixing:", {
+          expected: expectedSrc,
+          actual: currentSrc,
+          normalizedExpected,
+          normalizedCurrent,
+        });
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.src = src;
+        audioRef.current.load();
+      }
+    }
+
+    if (onPlay) {
+      onPlay(e);
+    }
+  };
+
+  return (
+    <audio
+      ref={audioRef}
+      controls
+      className="vocabulary-listening-audio"
+      onPlay={handlePlay}
+      preload="auto"
+    >
+      <source src={src} type="audio/mpeg" />
+      <source src={src} type="audio/mp3" />
+      Trình duyệt không hỗ trợ audio.
+    </audio>
+  );
+}
 
 export default function VocabularyListening({ lesson }) {
   const lessonData = lesson?.lesson_data || {};
@@ -31,6 +157,26 @@ export default function VocabularyListening({ lesson }) {
   const currentAudioUrl = currentQuestion?.audio_url;
   const currentPlayCount = playCounts[currentQuestionIndex] || 0;
   const maxPlayCount = currentQuestion?.play_count || 3;
+
+  // Log audio URL ngay khi chuyển question để debug
+  useEffect(() => {
+    console.log("═══════════════════════════════════════════════════");
+    console.log("🔄 VocabularyListening - CHUYỂN QUESTION:", {
+      "Câu hỏi số": currentQuestionIndex + 1,
+      "Question ID": currentQuestion?.question_id || "N/A",
+      "Audio URL": currentAudioUrl || "KHÔNG CÓ AUDIO",
+      "Tổng số câu hỏi": questions.length,
+    });
+    console.log("📋 Danh sách tất cả questions:");
+    questions.forEach((q, idx) => {
+      console.log(
+        `  [${idx + 1}] ID: ${q.question_id || "N/A"}, Audio: ${
+          q.audio_url || "KHÔNG CÓ"
+        }`
+      );
+    });
+    console.log("═══════════════════════════════════════════════════");
+  }, [currentQuestionIndex]); // Chỉ log khi currentQuestionIndex thay đổi
 
   // Reset khi chuyển câu
   useEffect(() => {
@@ -111,31 +257,70 @@ export default function VocabularyListening({ lesson }) {
 
   // Xử lý phát audio
   const handlePlayAudio = useCallback(() => {
+    console.log("🎵 VocabularyListening - handlePlayAudio called:", {
+      questionIndex: currentQuestionIndex,
+      questionId: currentQuestion?.question_id,
+      audioUrl: currentAudioUrl,
+      currentPlayCount,
+      maxPlayCount,
+    });
+
     if (currentPlayCount < maxPlayCount) {
       setPlayCounts((prev) => ({
         ...prev,
         [currentQuestionIndex]: (prev[currentQuestionIndex] || 0) + 1,
       }));
+    } else {
+      console.warn(
+        "⚠️ VocabularyListening - Max play count reached for question:",
+        {
+          questionIndex: currentQuestionIndex,
+          questionId: currentQuestion?.question_id,
+        }
+      );
     }
-  }, [currentPlayCount, maxPlayCount, currentQuestionIndex]);
+  }, [
+    currentPlayCount,
+    maxPlayCount,
+    currentQuestionIndex,
+    currentQuestion,
+    currentAudioUrl,
+  ]);
 
   // Chuyển câu trước
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex((prev) => prev - 1);
+      const newIndex = currentQuestionIndex - 1;
+      console.log("⬅️ Chuyển sang câu trước:", {
+        từ: currentQuestionIndex + 1,
+        sang: newIndex + 1,
+        audioUrl: questions[newIndex]?.audio_url || "KHÔNG CÓ",
+      });
+      setCurrentQuestionIndex(newIndex);
     }
   };
 
   // Chuyển câu sau
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+      const newIndex = currentQuestionIndex + 1;
+      console.log("➡️ Chuyển sang câu sau:", {
+        từ: currentQuestionIndex + 1,
+        sang: newIndex + 1,
+        audioUrl: questions[newIndex]?.audio_url || "KHÔNG CÓ",
+      });
+      setCurrentQuestionIndex(newIndex);
     }
   };
 
   // Chuyển đến câu cụ thể
   const handleJumpToQuestion = (index) => {
     if (index >= 0 && index < questions.length) {
+      console.log("🔀 Chuyển đến câu hỏi:", {
+        từ: currentQuestionIndex + 1,
+        sang: index + 1,
+        audioUrl: questions[index]?.audio_url || "KHÔNG CÓ",
+      });
       setCurrentQuestionIndex(index);
     }
   };
@@ -159,15 +344,17 @@ export default function VocabularyListening({ lesson }) {
         </p>
         {currentAudioUrl && (
           <div className="vocabulary-listening-audio-wrapper">
-            <audio
-              controls
-              className="vocabulary-listening-audio"
+            {/* Tạo audio element mới hoàn toàn mỗi lần chuyển question bằng key unique */}
+            {/* Key bao gồm questionIndex để force remount khi chuyển question */}
+            <AudioPlayer
+              key={`audio-${currentQuestionIndex}-${
+                currentQuestion?.question_id || "no-id"
+              }-${currentAudioUrl.substring(0, 50)}`}
+              src={currentAudioUrl}
               onPlay={handlePlayAudio}
-            >
-              <source src={currentAudioUrl} type="audio/mpeg" />
-              <source src={currentAudioUrl} type="audio/mp3" />
-              Trình duyệt không hỗ trợ audio.
-            </audio>
+              questionId={currentQuestion?.question_id}
+              questionIndex={currentQuestionIndex}
+            />
             <p className="vocabulary-listening-plays">
               Số lần nghe còn lại: {maxPlayCount - currentPlayCount} /{" "}
               {maxPlayCount}
@@ -198,7 +385,7 @@ export default function VocabularyListening({ lesson }) {
           // Hỗ trợ nhiều format: image_url hoặc image, vi_text hoặc text
           const cellImageUrl = cell.image_url || cell.image || "";
           const cellText = cell.text || cell.vi_text || "";
-          
+
           return (
             <div
               key={cell.id}

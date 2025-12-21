@@ -1,8 +1,8 @@
 // ListeningEditor.jsx - Editor cho dạng bài Vocabulary Listening
 // Audio + Grid 3x3 (9 ô) với VI text + Image, click để chọn đáp án đúng
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import VocabularyListening from "../../Vocabulary/VocabularyListening";
 import { uploadImage } from "@/lib/uploadImageHelper";
+import { useCallback, useEffect, useRef, useState } from "react";
+import VocabularyListening from "../../Vocabulary/VocabularyListening";
 import "./ListeningEditor.css";
 
 const GRID_SIZE = 9; // 3x3 = 9 ô
@@ -113,6 +113,31 @@ export default function ListeningEditor({ data, onChange }) {
     questions[currentQuestionIndex] || questions[0] || null;
   const currentCells = currentQuestion?.cells || [];
 
+  // Log khi currentQuestion thay đổi và force reload audio element
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (currentQuestion) {
+      console.log("📌 ListeningEditor - Current question updated:", {
+        questionIndex: currentQuestionIndex,
+        questionId: currentQuestion.id,
+        audioUrl: currentQuestion.audioUrl || "KHÔNG CÓ",
+        cellsCount: currentQuestion.cells?.length || 0,
+      });
+
+      // Force reload audio element khi chuyển question
+      if (audioRef.current && currentQuestion.audioUrl) {
+        console.log("🔄 ListeningEditor - Reloading audio element:", {
+          questionIndex: currentQuestionIndex,
+          audioUrl: currentQuestion.audioUrl,
+        });
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.load();
+      }
+    }
+  }, [currentQuestionIndex, currentQuestion?.id, currentQuestion?.audioUrl]);
+
   // Validate question
   const validateQuestion = (q) => {
     const errors = [];
@@ -197,17 +222,57 @@ export default function ListeningEditor({ data, onChange }) {
         is_correct: cell.is_correct || false,
       }));
 
-      newQuestions.push({
-        id: q.question_id || Date.now() + Math.random(),
-        audioUrl: q.audio_url,
+      const newQuestion = {
+        id: q.question_id || `q_${Date.now()}_${Math.random()}`,
+        audioUrl: q.audio_url || "", // Đảm bảo lấy đúng audio_url của từng question
         cells: cells,
         playCount: q.play_count || 3,
-      });
+      };
+
+      // Log từng question khi import
+      console.log(
+        `📝 ListeningEditor - Processing question ${newQuestions.length + 1}:`,
+        {
+          questionId: newQuestion.id,
+          audioUrl: newQuestion.audioUrl,
+          audioUrlFromJSON: q.audio_url,
+          cellsCount: newQuestion.cells.length,
+          playCount: newQuestion.playCount,
+        }
+      );
+
+      newQuestions.push(newQuestion);
     }
+
+    // Debug: Log chi tiết để kiểm tra audio_url của từng question
+    console.log("═══════════════════════════════════════════════════");
+    console.log("📥 ListeningEditor - Import JSON thành công!");
+    console.log("📊 Số lượng questions được import:", newQuestions.length);
+    console.log("📋 Chi tiết từng question:");
+    newQuestions.forEach((q, idx) => {
+      console.log(
+        `  [${idx + 1}] ID: ${q.id}, Audio URL: ${q.audioUrl || "KHÔNG CÓ"}`
+      );
+    });
+    console.log("📋 Questions hiện tại trong state (trước khi thêm):");
+    questions.forEach((q, idx) => {
+      console.log(
+        `  [${idx + 1}] ID: ${q.id}, Audio URL: ${q.audioUrl || "KHÔNG CÓ"}`
+      );
+    });
+    console.log("═══════════════════════════════════════════════════");
 
     // Thêm vào danh sách
     setQuestions((prev) => {
       const updated = [...prev, ...newQuestions];
+      console.log("✅ ListeningEditor - Đã thêm questions vào state:", {
+        sốLượngCũ: prev.length,
+        sốLượngMới: updated.length,
+        questionsMới: newQuestions.map((q) => ({
+          id: q.id,
+          audioUrl: q.audioUrl,
+        })),
+      });
       setCurrentQuestionIndex(updated.length - 1);
       return updated;
     });
@@ -231,6 +296,13 @@ export default function ListeningEditor({ data, onChange }) {
 
   // Chuyển question
   const handleSwitchQuestion = (index) => {
+    console.log("🔄 ListeningEditor - Chuyển question:", {
+      từ: currentQuestionIndex + 1,
+      sang: index + 1,
+      questionId: questions[index]?.id,
+      audioUrl: questions[index]?.audioUrl || "KHÔNG CÓ",
+      tổngSốQuestions: questions.length,
+    });
     setCurrentQuestionIndex(index);
     setShowPreview(false);
   };
@@ -354,25 +426,37 @@ export default function ListeningEditor({ data, onChange }) {
   const getPreviewLessonData = () => {
     if (!currentQuestion) return null;
 
+    // Map tất cả questions để preview có thể chuyển đổi giữa các câu hỏi
+    const allQuestions = questions.map((q, idx) => ({
+      question_id: q.id,
+      audio_url: q.audioUrl, // Đảm bảo mỗi question có audio_url riêng
+      grid: {
+        rows: 3,
+        cols: 3,
+        cells: q.cells.map((cell) => ({
+          id: cell.id,
+          vi_text: cell.text.trim(),
+          image_url: cell.imageUrl || "",
+          is_correct: cell.is_correct,
+        })),
+      },
+      play_count: q.playCount || 3,
+    }));
+
+    // Log để debug
+    console.log("🎬 ListeningEditor - Tạo preview data:", {
+      currentQuestionIndex,
+      totalQuestions: allQuestions.length,
+      questions: allQuestions.map((q, idx) => ({
+        index: idx,
+        question_id: q.question_id,
+        audio_url: q.audio_url || "KHÔNG CÓ",
+      })),
+    });
+
     return {
       lesson_data: {
-        questions: [
-          {
-            question_id: currentQuestion.id,
-            audio_url: currentQuestion.audioUrl,
-            grid: {
-              rows: 3,
-              cols: 3,
-              cells: currentQuestion.cells.map((cell) => ({
-                id: cell.id,
-                vi_text: cell.text.trim(),
-                image_url: cell.imageUrl || "",
-                is_correct: cell.is_correct,
-              })),
-            },
-            play_count: currentQuestion.playCount || 3,
-          },
-        ],
+        questions: allQuestions, // Truyền tất cả questions, không chỉ currentQuestion
       },
     };
   };
@@ -492,8 +576,37 @@ export default function ListeningEditor({ data, onChange }) {
                 </button>
               ) : (
                 <div className="le-audio-preview">
-                  <audio controls>
+                  <div
+                    style={{
+                      marginBottom: "8px",
+                      fontSize: "12px",
+                      color: "#666",
+                      wordBreak: "break-all",
+                    }}
+                  ></div>
+                  {/* Force remount audio element khi chuyển question bằng key unique */}
+                  <audio
+                    ref={audioRef}
+                    key={`editor-audio-${currentQuestionIndex}-${
+                      currentQuestion.id
+                    }-${currentQuestion.audioUrl?.substring(0, 50)}`}
+                    controls
+                    preload="auto"
+                    onPlay={() => {
+                      console.log(
+                        "▶️ ListeningEditor - Audio play trong editor mode:",
+                        {
+                          questionIndex: currentQuestionIndex,
+                          questionId: currentQuestion.id,
+                          audioUrl: currentQuestion.audioUrl,
+                          audioElementSrc: audioRef.current?.src,
+                          audioElementCurrentSrc: audioRef.current?.currentSrc,
+                        }
+                      );
+                    }}
+                  >
                     <source src={currentQuestion.audioUrl} type="audio/mpeg" />
+                    <source src={currentQuestion.audioUrl} type="audio/mp3" />
                   </audio>
                   <button
                     className="le-audio-remove"
