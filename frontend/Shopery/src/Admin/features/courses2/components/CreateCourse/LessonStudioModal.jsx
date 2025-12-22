@@ -15,24 +15,48 @@ export default function LessonStudioModal({
   const [errors, setErrors] = useState({});
 
   // QUAN TRỌNG: Ưu tiên lessonType từ initialData nếu có, nếu không thì dùng từ props
-  const actualLessonType = initialData?.lessonType || initialData?.lesson_type || lessonType || "video";
-  
+  const actualLessonType =
+    initialData?.lessonType ||
+    initialData?.lesson_type ||
+    lessonType ||
+    "video";
+
   // Map "video" thành "video_lesson" cho VisualEditor
-  const mappedLessonType = actualLessonType === "video" ? "video_lesson" : actualLessonType;
+  const mappedLessonType =
+    actualLessonType === "video" ? "video_lesson" : actualLessonType;
 
   useEffect(() => {
     if (open) {
       setErrors({}); // Reset errors khi mở modal
 
       if (initialData) {
-        console.log("Loading initialData:", initialData);
-        const dataLessonType = initialData.lessonType || initialData.lesson_type || lessonType || "video";
-        
+        console.log("LessonStudioModal - Loading initialData:", initialData);
+        const dataLessonType =
+          initialData.lessonType ||
+          initialData.lesson_type ||
+          lessonType ||
+          "video";
+
+        // QUAN TRỌNG: Parse lesson_data nếu là string JSON (trường hợp từ API)
+        let lessonDataToLoad = initialData.lesson_data;
+        if (lessonDataToLoad && typeof lessonDataToLoad === "string") {
+          try {
+            lessonDataToLoad = JSON.parse(lessonDataToLoad);
+            console.log(
+              "LessonStudioModal - Parsed lesson_data from string:",
+              lessonDataToLoad
+            );
+          } catch (e) {
+            console.error("LessonStudioModal - Error parsing lesson_data:", e);
+            lessonDataToLoad = null;
+          }
+        }
+
         // Nếu là video lesson và có videoUrl từ form cũ, chuyển đổi sang format mới
         if (
           dataLessonType === "video" &&
           initialData.videoUrl &&
-          !initialData.lesson_data
+          !lessonDataToLoad
         ) {
           setLessonData({
             type: "video_lesson",
@@ -43,8 +67,11 @@ export default function LessonStudioModal({
           });
         } else {
           // Load lesson_data từ initialData (cho tất cả các loại lesson)
-          console.log("Loading lesson_data:", initialData.lesson_data);
-          setLessonData(initialData.lesson_data || null);
+          console.log(
+            "LessonStudioModal - Loading lesson_data:",
+            lessonDataToLoad
+          );
+          setLessonData(lessonDataToLoad || null);
         }
         setLessonTitle(initialData.title || "");
       } else {
@@ -128,6 +155,7 @@ export default function LessonStudioModal({
             "vocabulary_listening",
             "vocabulary_image_choice",
             "vocabulary_sentence_completion",
+            "toeic_part_1",
           ].includes(mappedLessonType)
         ) {
           if (!lessonData.questions || lessonData.questions.length === 0) {

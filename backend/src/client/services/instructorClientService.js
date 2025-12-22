@@ -37,7 +37,18 @@ const validateLessonData = (lesson_type, lesson_data) => {
     "vocabulary_sentence_completion",
   ];
 
-  if (vocabularyTypes.includes(lesson_type) || lesson_type === "grammar_theory") {
+  // TOEIC Parts (Part 1-7)
+  const toeicTypes = [
+    "toeic_part_1",
+    "toeic_part_2",
+    "toeic_part_3",
+    "toeic_part_4",
+    "toeic_part_5",
+    "toeic_part_6",
+    "toeic_part_7",
+  ];
+
+  if (vocabularyTypes.includes(lesson_type) || lesson_type === "grammar_theory" || toeicTypes.includes(lesson_type)) {
     if (typeof lesson_data !== "object") {
       return {
         valid: false,
@@ -64,6 +75,14 @@ const validateLessonData = (lesson_type, lesson_data) => {
       ].includes(lesson_type) &&
       !lesson_data.questions
     ) {
+      return {
+        valid: false,
+        error: `${lesson_type} cần lesson_data.questions (array)`,
+      };
+    }
+
+    // TOEIC Parts cần có questions array
+    if (toeicTypes.includes(lesson_type) && !lesson_data.questions) {
       return {
         valid: false,
         error: `${lesson_type} cần lesson_data.questions (array)`,

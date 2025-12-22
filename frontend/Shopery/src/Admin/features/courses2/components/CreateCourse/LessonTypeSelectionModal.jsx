@@ -11,6 +11,12 @@ import {
   HiPencil,
   HiBookOpen,
   HiXMark,
+  HiMicrophone,
+  HiChatBubbleLeftRight,
+  HiPresentationChartBar,
+  HiClipboardDocumentCheck,
+  HiDocumentDuplicate,
+  HiAcademicCap,
 } from "react-icons/hi2";
 import "./LessonTypeSelectionModal.scss";
 
@@ -68,6 +74,49 @@ const LESSON_TYPES = [
     name: "Grammar Theory",
     icon: HiBookOpen,
     description: "Lý thuyết ngữ pháp với ví dụ",
+  },
+  // TOEIC Parts
+  {
+    id: "toeic_part_1",
+    name: "TOEIC Part 1",
+    icon: HiPhoto,
+    description: "Picture Description - Mô tả hình ảnh",
+  },
+  {
+    id: "toeic_part_2",
+    name: "TOEIC Part 2",
+    icon: HiMicrophone,
+    description: "Question-Response - Câu hỏi và đáp án",
+  },
+  {
+    id: "toeic_part_3",
+    name: "TOEIC Part 3",
+    icon: HiChatBubbleLeftRight,
+    description: "Conversations - Hội thoại",
+  },
+  {
+    id: "toeic_part_4",
+    name: "TOEIC Part 4",
+    icon: HiPresentationChartBar,
+    description: "Short Talks - Bài nói ngắn",
+  },
+  {
+    id: "toeic_part_5",
+    name: "TOEIC Part 5",
+    icon: HiClipboardDocumentCheck,
+    description: "Incomplete Sentences - Câu chưa hoàn chỉnh",
+  },
+  {
+    id: "toeic_part_6",
+    name: "TOEIC Part 6",
+    icon: HiDocumentDuplicate,
+    description: "Text Completion - Hoàn thành đoạn văn",
+  },
+  {
+    id: "toeic_part_7",
+    name: "TOEIC Part 7",
+    icon: HiAcademicCap,
+    description: "Reading Comprehension - Đọc hiểu",
   },
 ];
 

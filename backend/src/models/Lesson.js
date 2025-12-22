@@ -30,7 +30,14 @@ module.exports = (sequelize, DataTypes) => {
           "vocabulary_listening",
           "vocabulary_image_choice",
           "vocabulary_sentence_completion",
-          "grammar_theory"
+          "grammar_theory",
+          "toeic_part_1",
+          "toeic_part_2",
+          "toeic_part_3",
+          "toeic_part_4",
+          "toeic_part_5",
+          "toeic_part_6",
+          "toeic_part_7"
         ),
         allowNull: false,
         defaultValue: "video",

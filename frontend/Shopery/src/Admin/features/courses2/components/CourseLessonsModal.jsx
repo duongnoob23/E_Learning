@@ -30,6 +30,20 @@ const lessonTypeLabel = (lesson) => {
       return "Hoàn thiện câu";
     case "grammar_theory":
       return "Lý thuyết";
+    case "toeic_part_1":
+      return "TOEIC Part 1";
+    case "toeic_part_2":
+      return "TOEIC Part 2";
+    case "toeic_part_3":
+      return "TOEIC Part 3";
+    case "toeic_part_4":
+      return "TOEIC Part 4";
+    case "toeic_part_5":
+      return "TOEIC Part 5";
+    case "toeic_part_6":
+      return "TOEIC Part 6";
+    case "toeic_part_7":
+      return "TOEIC Part 7";
     case "video":
     default:
       return "Video";

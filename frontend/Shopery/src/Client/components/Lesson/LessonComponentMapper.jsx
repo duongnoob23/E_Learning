@@ -11,6 +11,7 @@ import VocabularyImageChoice from "./Vocabulary/VocabularyImageChoice";
 import VocabularySentenceCompletion from "./Vocabulary/VocabularySentenceCompletion";
 import GrammarTheory from "./Grammar/GrammarTheory";
 import VideoLesson from "./Video/VideoLesson";
+import ToeicPart1 from "./Toeic/ToeicPart1";
 
 // Component mapper
 export const LessonComponentMapper = {
@@ -36,6 +37,16 @@ export const LessonComponentMapper = {
   
   // Loại mới: Grammar
   grammar_theory: GrammarTheory,
+  
+  // TOEIC Parts
+  toeic_part_1: ToeicPart1,
+  // TODO: Thêm các TOEIC parts khác khi implement
+  // toeic_part_2: ToeicPart2,
+  // toeic_part_3: ToeicPart3,
+  // toeic_part_4: ToeicPart4,
+  // toeic_part_5: ToeicPart5,
+  // toeic_part_6: ToeicPart6,
+  // toeic_part_7: ToeicPart7,
 };
 
 // Render component dựa trên lesson_type

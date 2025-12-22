@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 // React Icons
 import {
-  HiVideoCamera,
+  HiArrowPath,
+  HiBookOpen,
   HiDocumentText,
   HiLink,
-  HiArrowPath,
+  HiPencil,
+  HiPhoto,
   HiQuestionMarkCircle,
   HiSpeakerWave,
-  HiPhoto,
-  HiPencil,
-  HiBookOpen,
+  HiVideoCamera,
 } from "react-icons/hi2";
 import "./CourseBuilderTab.scss";
 import LessonStudioModal from "./LessonStudioModal";
@@ -104,8 +104,38 @@ export default function CourseBuilderTab({
 
   const handleEditLesson = (moduleId, lesson) => {
     console.log("handleEditLesson called with lesson:", lesson);
+    console.log(
+      "Raw lesson_data:",
+      lesson.lesson_data,
+      "Type:",
+      typeof lesson.lesson_data
+    );
     setSelectedModuleId(moduleId);
-    setEditingLesson(lesson);
+
+    // QUAN TRỌNG: Parse lesson_data nếu là string JSON
+    let parsedLessonData = lesson.lesson_data;
+    if (parsedLessonData && typeof parsedLessonData === "string") {
+      try {
+        parsedLessonData = JSON.parse(parsedLessonData);
+        console.log("Parsed lesson_data:", parsedLessonData);
+      } catch (e) {
+        console.error("Error parsing lesson_data:", e);
+        parsedLessonData = null;
+      }
+    }
+
+    // Nếu lesson_data là null/undefined, giữ nguyên (không convert thành {})
+    if (parsedLessonData === undefined) {
+      parsedLessonData = null;
+    }
+
+    const lessonWithParsedData = {
+      ...lesson,
+      lesson_data: parsedLessonData,
+    };
+
+    console.log("Final lesson for edit:", lessonWithParsedData);
+    setEditingLesson(lessonWithParsedData);
 
     const lessonType = lesson.lessonType || lesson.lesson_type || "video";
     setSelectedLessonType(lessonType);
@@ -116,22 +146,49 @@ export default function CourseBuilderTab({
 
   const handleSaveLesson = (lessonData) => {
     console.log("handleSaveLesson called with:", lessonData);
+    console.log("editingLesson:", editingLesson);
+    console.log("selectedModuleId:", selectedModuleId);
 
     const updatedModules = modules.map((module) => {
       if (module.id === selectedModuleId) {
         if (editingLesson) {
-          // Update existing lesson
+          // Update existing lesson - QUAN TRỌNG: Match bằng cả id và lesson_id
           return {
             ...module,
             lessons: module.lessons.map((l) => {
-              if (l.id === editingLesson.id) {
+              const isMatch =
+                l.id === editingLesson.id ||
+                l.lesson_id === editingLesson.id ||
+                l.id === editingLesson.lesson_id ||
+                l.lesson_id === editingLesson.lesson_id;
+
+              if (isMatch) {
                 const updatedLesson = {
                   ...l,
-                  ...lessonData,
-                  // Đảm bảo có lessonType
-                  lessonType: lessonData.lessonType || l.lessonType || "video",
-                  // Đảm bảo lesson_data được lưu
-                  lesson_data: lessonData.lesson_data || l.lesson_data || null,
+                  title: lessonData.title || l.title || "",
+                  description: lessonData.description || l.description || "",
+                  // QUAN TRỌNG: Giữ nguyên lessonType và lesson_data từ lessonData
+                  lessonType:
+                    lessonData.lessonType ||
+                    l.lessonType ||
+                    selectedLessonType ||
+                    "video",
+                  lesson_type:
+                    lessonData.lessonType ||
+                    lessonData.lesson_type ||
+                    l.lesson_type ||
+                    l.lessonType ||
+                    selectedLessonType ||
+                    "video",
+                  // QUAN TRỌNG: lesson_data phải lấy từ lessonData.lesson_data (không fallback về l.lesson_data)
+                  lesson_data:
+                    lessonData.lesson_data !== undefined
+                      ? lessonData.lesson_data
+                      : l.lesson_data || null,
+                  isFree:
+                    lessonData.isFree !== undefined
+                      ? lessonData.isFree
+                      : l.isFree || false,
                 };
                 console.log("Updating lesson:", updatedLesson);
                 return updatedLesson;
@@ -143,11 +200,20 @@ export default function CourseBuilderTab({
           // Add new lesson
           const newLesson = {
             id: Date.now(),
-            ...lessonData,
-            // Đảm bảo có lessonType
+            title: lessonData.title || "",
+            description: lessonData.description || "",
+            // QUAN TRỌNG: Đảm bảo lessonType và lesson_data được lưu
             lessonType: lessonData.lessonType || selectedLessonType || "video",
-            // Đảm bảo lesson_data được lưu
-            lesson_data: lessonData.lesson_data || null,
+            lesson_type:
+              lessonData.lessonType ||
+              lessonData.lesson_type ||
+              selectedLessonType ||
+              "video",
+            lesson_data:
+              lessonData.lesson_data !== undefined
+                ? lessonData.lesson_data
+                : null,
+            isFree: lessonData.isFree || false,
           };
           console.log("Adding new lesson:", newLesson);
 
@@ -387,7 +453,9 @@ export default function CourseBuilderTab({
                                 gap: "4px",
                               }}
                             >
-                              <HiVideoCamera style={{ width: "14px", height: "14px" }} />
+                              <HiVideoCamera
+                                style={{ width: "14px", height: "14px" }}
+                              />
                               Video
                             </span>
                           )}
@@ -513,11 +581,17 @@ export default function CourseBuilderTab({
             editingLesson
               ? {
                   title: editingLesson.title || "",
-                  lessonType: editingLesson.lessonType || editingLesson.lesson_type || "video", // QUAN TRỌNG: Truyền lessonType
+                  lessonType:
+                    editingLesson.lessonType ||
+                    editingLesson.lesson_type ||
+                    "video", // QUAN TRỌNG: Truyền lessonType
                   lesson_data: editingLesson.lesson_data || null, // QUAN TRỌNG: Truyền lesson_data
                   description: editingLesson.description || "",
                   content: editingLesson.content || "",
-                  videoUrl: editingLesson.videoUrl || editingLesson.lesson_data?.video_url || "",
+                  videoUrl:
+                    editingLesson.videoUrl ||
+                    editingLesson.lesson_data?.video_url ||
+                    "",
                   videoSource: editingLesson.videoSource || "",
                   isFree: editingLesson.isFree || false,
                 }

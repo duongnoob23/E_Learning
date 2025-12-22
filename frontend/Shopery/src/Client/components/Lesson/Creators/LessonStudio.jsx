@@ -116,6 +116,10 @@ function getDefaultData(lessonType) {
       type: "grammar_theory",
       sections: [],
     },
+    toeic_part_1: {
+      type: "toeic_part_1",
+      questions: [],
+    },
   };
   return defaults[lessonType] || {};
 }
