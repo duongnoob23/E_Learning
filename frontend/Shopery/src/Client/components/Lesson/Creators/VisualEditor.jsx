@@ -6,6 +6,7 @@ import MatchingEditor from "./editors/MatchingEditor";
 import QuizEditor from "./editors/QuizEditor";
 import SentenceCompletionEditor from "./editors/SentenceCompletionEditor";
 import ToeicPart1Editor from "./editors/ToeicPart1Editor";
+import ToeicPart2Editor from "./editors/ToeicPart2Editor";
 import TranslationEditor from "./editors/TranslationEditor";
 import VideoLessonEditor from "./editors/VideoLessonEditor";
 import VocabularyListEditor from "./editors/VocabularyListEditor";
@@ -102,6 +103,8 @@ export default function VisualEditor({ lessonType, data, onChange }) {
         return <GrammarTheoryEditor data={data} onChange={onChange} />;
       case "toeic_part_1":
         return <ToeicPart1Editor data={data} onChange={onChange} />;
+      case "toeic_part_2":
+        return <ToeicPart2Editor data={data} onChange={onChange} />;
       default:
         return <div>Chưa hỗ trợ editor cho loại này</div>;
     }

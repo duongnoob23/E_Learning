@@ -12,6 +12,7 @@ import VocabularySentenceCompletion from "./Vocabulary/VocabularySentenceComplet
 import GrammarTheory from "./Grammar/GrammarTheory";
 import VideoLesson from "./Video/VideoLesson";
 import ToeicPart1 from "./Toeic/ToeicPart1";
+import ToeicPart2 from "./Toeic/ToeicPart2";
 
 // Component mapper
 export const LessonComponentMapper = {
@@ -40,8 +41,8 @@ export const LessonComponentMapper = {
   
   // TOEIC Parts
   toeic_part_1: ToeicPart1,
+  toeic_part_2: ToeicPart2,
   // TODO: Thêm các TOEIC parts khác khi implement
-  // toeic_part_2: ToeicPart2,
   // toeic_part_3: ToeicPart3,
   // toeic_part_4: ToeicPart4,
   // toeic_part_5: ToeicPart5,
