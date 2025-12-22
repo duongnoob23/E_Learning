@@ -5,24 +5,31 @@
 1. [Tổng quan](#tổng-quan)
 2. [Luồng phát triển từ đầu đến cuối](#luồng-phát-triển-từ-đầu-đến-cuối)
 3. [Các bước chi tiết](#các-bước-chi-tiết)
-4. [Khác biệt với Part 1 và Part 2](#khác-biệt-với-part-1-và-part-2)
-5. [Các lỗi thường gặp và cách fix](#các-lỗi-thường-gặp-và-cách-fix)
+4. [Các lỗi thường gặp và cách fix](#các-lỗi-thường-gặp-và-cách-fix)
+5. [Các lỗi AI hay mắc phải](#các-lỗi-ai-hay-mắc-phải)
 6. [Checklist khi phát triển Part 3](#checklist-khi-phát-triển-part-3)
 
 ---
 
 ## Tổng quan
 
-File này mô tả **toàn bộ quá trình phát triển TOEIC Part 3** từ khi bắt đầu đến khi hoàn thành.
+File này mô tả **toàn bộ quá trình phát triển TOEIC Part 3** từ khi bắt đầu đến khi hoàn thiện, bám sát pattern đã dùng cho Part 1.
 
-**Điểm khác biệt chính với Part 1 và Part 2**:
-- ✅ **CÓ câu hỏi text** (ví dụ: "What are the speakers discussing?")
-- ✅ **CÓ text cho các đáp án** (ví dụ: "A. A motorcycle", "B. A mobile phone", ...)
-- ✅ **Giải thích đáp án** có text cho mỗi opción, explicación, y razones para seleccionar esa opción.
+**Đặc điểm riêng của Part 3**:
+
+- Là **hội thoại** có audio.
+- **Có câu hỏi text** (khác Part 2 là chỉ nghe và chọn).
+- **Có 4 đáp án text**, mỗi đáp án có nội dung riêng.
+- **Transcript (EN) + Dịch nghĩa (VI)**: luôn hiển thị (có thể thu gọn/mở rộng).
+- **Giải thích đáp án**: chỉ hiển thị **sau khi bấm Check**, gồm:
+  - Dịch 4 đáp án sang tiếng Việt.
+  - Giải thích tại sao chọn đáp án đúng.
+
+**Mục đích**: Khi phát triển hoặc sửa Part 3 (hoặc các Part tương tự), chỉ cần đọc file này và follow các bước đã được verify.
 
 ---
 
-## Luồng phát triển desde cero hasta el final
+## Luồng phát triển từ đầu đến cuối
 
 ### Tổng quan luồng
 
@@ -31,21 +38,23 @@ File này mô tả **toàn bộ quá trình phát triển TOEIC Part 3** từ kh
    ↓
 2. Tạo Editor component (ToeicPart3Editor.jsx)
    ↓
-3. Tạo CSS cho Editor
+3. Tạo Preview trong Editor (flow check đáp án, transcript, giải thích)
    ↓
-4. Tạo Client component (ToeicPart3.jsx)
+4. Tạo Client component (ToeicPart3.jsx) cho view lesson
    ↓
-5. Update Database (ENUM lesson_type)
+5. Tạo CSS cho Editor + Client (layout giống nhau)
    ↓
-6. Update Backend validation
+6. Update Database (ENUM lesson_type)
    ↓
-7. Update LessonComponentMapper
+7. Update Backend validation
    ↓
-8. Update CourseBuilderTab để load/save data
+8. Update LessonComponentMapper
    ↓
-9. Update CourseLessonsModal để hiển thị đúng
+9. Update CourseBuilderTab + LessonStudioModal để load/save data
    ↓
-10. Test toàn bộ flow: Create → Save → Edit → View
+10. Update CourseLessonsModal để hiển thị đúng
+   ↓
+11. Test toàn bộ flow: Create → Save → Edit → View
 ```
 
 ---
@@ -57,7 +66,8 @@ File này mô tả **toàn bộ quá trình phát triển TOEIC Part 3** từ kh
 **File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
 
 **Việc cần làm**:
-1. Import icon mới (nếu cần)
+
+1. Import icon phù hợp (ví dụ `HiChatBubbleLeftRight`).
 2. Thêm object vào array `LESSON_TYPES`:
 
 ```javascript
@@ -69,536 +79,682 @@ File này mô tả **toàn bộ quá trình phát triển TOEIC Part 3** từ kh
 }
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cũ, chỉ thêm mới vào array.
+**Lưu ý**:
 
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
+- Không sửa logic hiện tại của các lesson types cũ.
+- Chỉ thêm mới vào array.
+
+**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option "TOEIC Part 3".
 
 ---
 
-## Các bước chi tiết
+### Bước 2: Thiết kế cấu trúc dữ liệu cho Part 3
 
-### Bước 1: Thêm option vào LessonTypeSelectionModal
+Part 3 khác Part 1/2 ở chỗ có **câu hỏi text + 4 đáp án text + transcript/translation luôn hiển thị + giải thích chi tiết sau Check**.
 
-**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
+**Shape `lesson_data` đề xuất**:
 
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
-
-```javascript
+```json
 {
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
+  "type": "toeic_part_3",
+  "questions": [
+    {
+      "question_id": "uuid-or-random",
+      "question_number": 1,
+      "audioUrl": "https://.../audio.mp3",
+      "audio_file": null,
+      "questionText": "What are the speakers discussing?",
+      "options": [
+        { "label": "A", "text": "Buying a laptop" },
+        { "label": "B", "text": "Scheduling a meeting" },
+        { "label": "C", "text": "Booking a flight" },
+        { "label": "D", "text": "Ordering lunch" }
+      ],
+      "correctAnswer": "B",
+      "transcript": "They talk about arranging a meeting next Monday...",
+      "translation": "Họ trao đổi về việc sắp xếp một cuộc họp vào thứ Hai...",
+      "explanation": "B đúng vì họ nhắc 'meeting' và chọn thời gian."
+    }
+  ]
 }
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cũ, chỉ thêm mới vào array.
+**Nguyên tắc**:
 
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
+- `question_number` luôn = `index + 1` khi map state → `lesson_data`.
+- Khi **import JSON thêm câu hỏi**, câu mới phải có `question_number = last_question_number + 1`.
+- Trong editor, có thể lưu thêm field tạm (như `audioFile` là `File`) nhưng **không push vào DB**.
 
 ---
 
-## Các bước chi tiết
+### Bước 3: Tạo Editor component
 
-### Bước 1: Thêm option vào LessonTypeSelectionModal
+**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/editors/ToeicPart3Editor.jsx`
 
-**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
+#### 3.1. State management
 
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
+Giống pattern Part 1, nhưng field khác:
 
 ```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
+const [questions, setQuestions] = useState([]);
+const [currentIndex, setCurrentIndex] = useState(0);
+const [showPreview, setShowPreview] = useState(false);
+const [showImportJSON, setShowImportJSON] = useState(false);
+
+// Preview state
+const [previewSelectedChoice, setPreviewSelectedChoice] = useState(null);
+const [hasChecked, setHasChecked] = useState(false);
+
+// Refs quản lý load data
+const isInitialMount = useRef(true);
+const hasLoadedInitialData = useRef(false);
+const prevDataRef = useRef(null);
+```
+
+#### 3.2. Helper: tạo question rỗng
+
+```javascript
+function createEmptyQuestion() {
+  const id = `toeic_p3_q_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  return {
+    id,
+    audioUrl: "",
+    audioFile: null, // chỉ dùng trong editor
+    questionText: "",
+    options: [
+      { label: "A", text: "" },
+      { label: "B", text: "" },
+      { label: "C", text: "" },
+      { label: "D", text: "" },
+    ],
+    correctAnswer: "A",
+    transcript: "",
+    translation: "",
+    explanation: "",
+  };
 }
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cũ, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
+#### 3.3. Map state ↔ lesson_data
 
 ```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftExplorer",
-  description: "Conversations - Hội thoại",
-}
+const mapStateToLessonData = useCallback((qs) => {
+  return {
+    type: "toeic_part_3",
+    questions: qs.map((q, idx) => ({
+      question_id: q.id,
+      question_number: idx + 1,
+      audio_file: q.audioUrl || "",
+      questionText: q.questionText || "",
+      options: (q.options || []).map((opt) => ({
+        label: opt.label,
+        text: opt.text || "",
+      })),
+      correctAnswer: q.correctAnswer || "A",
+      transcript: q.transcript || "",
+      translation: q.translation || "",
+      explanation: q.explanation || "",
+    })),
+  };
+}, []);
+
+const mapLessonDataToState = useCallback((lessonData) => {
+  const srcQuestions = Array.isArray(lessonData?.questions) ? lessonData.questions : [];
+  if (!srcQuestions.length) return [createEmptyQuestion()];
+
+  return srcQuestions.map((q, idx) => ({
+    id: q.question_id || `toeic_p3_q_${idx}_${Date.now()}`,
+    audioUrl: q.audio_file || "",
+    audioFile: null,
+    questionText: q.questionText || "",
+    options: (q.options || [
+      { label: "A" }, { label: "B" }, { label: "C" }, { label: "D" },
+    ]).map((opt, i) => ({
+      label: opt.label || ["A", "B", "C", "D"][i],
+      text: opt.text || "",
+    })),
+    correctAnswer: q.correctAnswer || "A",
+    transcript: q.transcript || "",
+    translation: q.translation || "",
+    explanation: q.explanation || "",
+  }));
+}, []);
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cũ, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
+#### 3.4. Load initial data (tránh loop, giống Part 1)
 
 ```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
-}
-```
+useEffect(() => {
+  const dataReferenceChanged = prevDataRef.current !== data;
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
-
-```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
-}
-```
-
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
-
-```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội toeic_part_3",
-}
-```
-
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
-
-```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội toeic_part_3",
-}
-```
-
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
-
----
-
-## Các bước chi tiết
-
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
-
-**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
-
-```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  name: "TOEIC Part 3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIG_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
-  name: "TOEIC_part_3",
+  if (
+    dataReferenceChanged &&
+    hasLoadedInitialData.current &&
+    data?.questions &&
+    Array.isArray(data.questions) &&
+    data.questions.length > 0
+  ) {
+    const prevFirstQuestionId = prevDataRef.current?.questions?.[0]?.question_id;
+    const currentFirstQuestionId = data.questions[0]?.question_id;
+    if (prevFirstQuestionId !== currentFirstQuestionId) {
+      hasLoadedInitialData.current = false;
+    }
   }
+
+  if (dataReferenceChanged) {
+    prevDataRef.current = data;
+  }
+
+  if (!hasLoadedInitialData.current) {
+    if (data && Array.isArray(data.questions) && data.questions.length > 0) {
+      const initialQuestions = mapLessonDataToState(data);
+      setQuestions(initialQuestions);
+      setCurrentIndex(0);
+      setPreviewSelectedChoice(null);
+      setHasChecked(false);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    } else if (!data && questions.length === 0) {
+      setQuestions([createEmptyQuestion()]);
+      setCurrentIndex(0);
+      setPreviewSelectedChoice(null);
+      setHasChecked(false);
+      hasLoadedInitialData.current = true;
+      isInitialMount.current = false;
+    }
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [data]);
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
+#### 3.5. Push change với debounce
 
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
+```javascript
+const pushChange = useCallback(
+  (nextQuestions) => {
+    if (isInitialMount.current) return;
+    const lessonData = mapStateToLessonData(nextQuestions);
+    onChange?.(lessonData);
+  },
+  [mapStateToLessonData, onChange]
+);
+
+useEffect(() => {
+  if (isInitialMount.current) return;
+  const timer = setTimeout(() => {
+    pushChange(questions);
+  }, 150);
+  return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [questions]);
+```
+
+#### 3.6. CRUD câu hỏi
+
+```javascript
+const handleAddQuestion = () => {
+  setQuestions((prev) => {
+    const next = [...prev, createEmptyQuestion()];
+    setCurrentIndex(prev.length);
+    return next;
+  });
+};
+
+const handleRemoveQuestion = (index) => {
+  setQuestions((prev) => {
+    const next = prev.filter((_, idx) => idx !== index);
+    if (currentIndex >= next.length) {
+      setCurrentIndex(Math.max(0, next.length - 1));
+    }
+    return next;
+  });
+};
+
+const updateCurrentQuestion = (updater) => {
+  setQuestions((prev) =>
+    prev.map((q, idx) => (idx === currentIndex ? { ...q, ...updater(q) } : q))
+  );
+};
+```
+
+#### 3.7. Preview logic (đặc trưng Part 3)
+
+- Transcript + Translation:
+  - Luôn hiển thị trong preview (có thể dùng accordion để thu gọn/mở rộng).
+- Check answer:
+
+```javascript
+const handlePreviewSelect = (label) => {
+  if (hasChecked) return; // Nếu muốn khóa sau khi check
+  setPreviewSelectedChoice(label);
+};
+
+const handleCheckAnswer = () => {
+  if (!previewSelectedChoice) return;
+  setHasChecked(true);
+};
+
+const handleClearPreview = () => {
+  setPreviewSelectedChoice(null);
+  setHasChecked(false);
+};
+```
+
+**Highlight**:
+
+- Nếu `hasChecked`:
+  - Option đúng: nền xanh.
+  - Option được chọn nhưng sai: nền đỏ.
 
 ---
 
-## Các bước chi tiết
+### Bước 4: Tạo CSS cho Editor
 
-### Bước 1: Thêm option vào LessonTypeSelectionModal
+**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/editors/ToeicPart3Editor.css`
 
-**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
+**Các phần cần có**:
 
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
+- Tab navigation (reuse từ Part 1: bo tròn, padding, nút x tròn).
+- Form layout: audio + question + 4 options + transcript + translation + explanation.
+- Preview layout:
+  - Audio trên cùng.
+  - Question + options bên dưới.
+  - Transcript + Translation block dưới options.
+  - Explanation block dưới cùng, chỉ hiển thị khi `hasChecked`.
 
-```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
-}
-```
+**Lưu ý**:
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
-
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiển thị thêm option mới.
+- Có thể copy CSS từ `ToeicPart1Editor.css` / `ToeicPart2Editor.css`, bỏ phần image.
+- Đảm bảo preview trong Editor giống với Client view (ToeicPart3.jsx).
 
 ---
 
-## Các bước chi tiết
+### Bước 5: Integrate Editor vào VisualEditor
 
-### Bước 1: Thêm option vào LessonTypeSelectionModal
-
-**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
-
-**Việc cần làm**:
-1. Import icon mới (nếu cần)
-2. Thêm object vào array `LESSON_TYPES`:
+**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
 
 ```javascript
-{
-  id: "toeic_part_3",
-  name: "TOEIC Part 3",
-  icon: HiChatBubbleLeftRight,
-  description: "Conversations - Hội thoại",
+import ToeicPart3Editor from "./editors/ToeicPart3Editor";
+
+// ...
+case "toeic_part_3":
+  return <ToeicPart3Editor data={data} onChange={onChange} />;
+```
+
+---
+
+### Bước 6: Thêm default data cho Part 3
+
+**File**: `frontend/Shopery/src/Client/components/Lesson/Creators/LessonStudio.jsx`
+
+```javascript
+function getDefaultData(lessonType) {
+  const defaults = {
+    // ... các types cũ
+    toeic_part_3: {
+      type: "toeic_part_3",
+      questions: [],
+    },
+  };
+  return defaults[lessonType] || {};
 }
 ```
 
-**Lưu ý**: Không sửa logic hiện tại của các lesson types cú, chỉ thêm mới vào array.
+---
 
-**Kết quả**: Khi bấm "Add New Lesson", modal sẽ hiểnChúng ta cần tạo file mới, no necesito crear un archivo nuevo, necesito actualizar el archivo existente.
+### Bước 7: Tạo Client component cho view lesson
 
-Tengo que crear un archivo nuevo con un nombre diferente, pero no puedo crear un archivo nuevo con ese nombre. Necesito usar un nombre diferente.
+**File**: `frontend/Shopery/src/Client/components/Lesson/Toeic/ToeicPart3.jsx`
 
-Tengo que crear un archivo nuevo con un nombre diferente, pero no puedo crear un archivo nuevo con ese nombre. Necesito usar un nombre diferente.
+**Cấu trúc**:
 
-Tengo que crear un archivo nuevo con un nombre diferente, pero no puedo crear un archivo nuevo con ese nombre. Necesito usar un archivo nuevo con un nombre diferente.
+- Parse `lesson.lesson_data`:
 
-Tengo que crear un archivo nuevo con un nombre diferente, pero no puedo crear un archivo nuevo con ese nombre. Necesito usar un archivo nuevo con un nombre diferente.
+```javascript
+let lessonData = lesson?.lesson_data;
+if (lessonData && typeof lessonData === "string") {
+  try {
+    lessonData = JSON.parse(lessonData);
+  } catch {
+    lessonData = null;
+  }
+}
+const questions = lessonData?.questions || [];
+```
+
+- State:
+  - `currentIndex`, `selectedChoice`, `hasChecked`.
+- UI:
+  - Audio player trên cùng.
+  - Question text.
+  - 4 options text (buttons).
+  - Transcript (EN) + Translation (VI) luôn hiển (accordion optional).
+  - Explanation chỉ hiển thị khi `hasChecked`.
+  - Navigation: Prev/Next, Auto-switch, grid số câu (có thể reuse Part 1).
+
+**Lưu ý**:
+
+- Layout và màu sắc nên match với preview trong Editor.
+
+---
+
+### Bước 8: Tạo CSS cho Client component
+
+**File**: `frontend/Shopery/src/Client/components/Lesson/Toeic/ToeicPart3.css`
+
+**Các phần cần có**:
+
+- Header + title.
+- Navigation controls (prev/next, auto switch, grid).
+- Audio player styles.
+- Question + options layout.
+- Transcript + Translation block (luôn hiện).
+- Explanation block (ẩn/hiện).
+- Highlight correct/wrong (sau Check).
 
-Tengo que crear un archivo nuevo con un nombre diferente, pero no puedo crear un archivo nuevo con ese nombre. Necesito usar un archivo nuevo con un nombre diferente.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+### Bước 9: Integrate Client component vào LessonComponentMapper
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+**File**: `frontend/Shopery/src/Client/components/Lesson/LessonComponentMapper.jsx`
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+```javascript
+import ToeicPart3 from "./Toeic/ToeicPart3";
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+const LessonComponentMapper = {
+  // ... các types cũ
+  toeic_part_3: ToeicPart3,
+};
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un nombre diferente.
+### Bước 10: Update Database Schema
 
-Tengo que crear un archivo nuevo con un archivo nuevo con un archivo nuevo.
+**File**: `backend/src/models/Lesson.js`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```javascript
+lesson_type: {
+  type: DataTypes.ENUM(
+    // ... các types cũ
+    "toeic_part_1",
+    "toeic_part_2",
+    "toeic_part_3",
+    // ... các part khác
+  ),
+  allowNull: false,
+}
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**File**: `backend/database/migrations/add_toeic_parts_to_lesson_type.sql`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```sql
+ALTER TABLE lessons
+MODIFY COLUMN lesson_type ENUM(
+  -- ... các types cũ
+  'toeic_part_1',
+  'toeic_part_2',
+  'toeic_part_3'
+  -- ... các part khác
+) NOT NULL;
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Bước 11: Update Backend Validation
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**File**: `backend/src/client/services/instructorClientService.js`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```javascript
+function validateLessonData(lessonType, lessonData) {
+  // ... validation cho các types cũ
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+  const toeicTypes = [
+    "toeic_part_1",
+    "toeic_part_2",
+    "toeic_part_3",
+    // ... các part khác
+  ];
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+  if (toeicTypes.includes(lessonType)) {
+    if (
+      !lessonData ||
+      !lessonData.questions ||
+      !Array.isArray(lessonData.questions)
+    ) {
+      throw new Error(`${lessonType} requires lesson_data.questions array`);
+    }
+    if (lessonData.questions.length === 0) {
+      throw new Error(`${lessonType} requires at least one question`);
+    }
+  }
+}
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archía nuevo con un archivo nuevo.
+### Bước 12: Update CourseBuilderTab để load/save Part 3 đúng
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/CourseBuilderTab.jsx`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- **handleEditLesson**: parse `lesson.lesson_data` nếu là string (re-use pattern Part 1).
+- **handleSaveLesson**: khi update/insert lesson, đảm bảo:
+  - `lessonType` / `lesson_type` = `"toeic_part_3"`.
+  - `lesson_data` lấy từ `lessonData.lesson_data`, không fallback lung tung.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Bước 13: Update LessonStudioModal để parse lesson_data
 
-Tengo que crear un archivo nuevo con un archía nuevo.
+**File**: `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonStudioModal.jsx`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Khi mở modal (`open === true`), nếu có `initialData.lesson_data` là string → `JSON.parse` trước khi set vào state.
+- Logic giống y Part 1, không cần sáng tạo thêm.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Bước 14: Update CourseLessonsModal để view đúng Part 3
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**File**: `frontend/Shopery/src/Admin/features/courses2/components/CourseLessonsModal.jsx`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- **lessonTypeLabel**: thêm mapping:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```javascript
+toeic_part_3: "TOEIC Part 3",
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Trước khi render `LessonContent`, parse `lesson_data` (nếu là string) rồi pass vào `LessonComponentMapper` → sẽ tự render `ToeicPart3`.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+## Các lỗi thường gặp và cách fix
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Lỗi 1: Dữ liệu Part 3 không load lại khi edit
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Triệu chứng**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Tạo Part 3 → Lưu → bấm Edit lại → mất dữ liệu câu hỏi.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Nguyên nhân**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Không dùng `hasLoadedInitialData` + `prevDataRef` đúng pattern như Part 1.
+- `lesson_data` là string nhưng không parse khi mở modal.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Cách fix**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Dùng nguyên pattern load data của `ToeicPart1Editor.jsx`.
+- Đảm bảo `CourseBuilderTab` + `LessonStudioModal` luôn parse `lesson_data` trước khi pass xuống editor.
 
-Tengo que crear un archivo nuevo con un archivos nuevos.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Lỗi 2: Infinite loop khi load lesson_data
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Triệu chứng**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Console log chạy liên tục, UI lag nặng.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Nguyên nhân**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Dùng `JSON.stringify` để so sánh `data`.
+- `pushChange` gọi trong lần mount đầu.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Cách fix**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Không dùng `JSON.stringify` trong `useEffect`.
+- Chỉ kiểm tra reference (`prevDataRef.current !== data`) và/hoặc `question_id`.
+- Trong `pushChange`, bỏ qua nếu `isInitialMount.current === true`.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Lỗi 3: Các câu hỏi bị dính state với nhau
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Triệu chứng**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Sửa option hoặc explanation của câu này, câu khác cũng bị thay đổi.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Nguyên nhân**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Không copy nested objects (`options`) khi update.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Cách fix**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```javascript
+const handleOptionChange = (label, value) => {
+  updateCurrentQuestion((q) => ({
+    options: (q.options || []).map((opt) =>
+      opt.label === label ? { ...opt, text: value } : opt
+    ),
+  }));
+};
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Luôn tạo object/array mới khi update state.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Lỗi 4: Import JSON nhưng numbering bị sai
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Triệu chứng**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Import thêm câu hỏi Part 3 → số câu không nối tiếp, hoặc bị reset về 1.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Nguyên nhân**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Lưu `question_number` cứng từ JSON import mà không tính theo `idx + 1`.
 
-Tengo que crear un archivo nuevo con un archía nuevo.
+**Cách fix**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Khi map state → `lesson_data`, **luôn** set:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+```javascript
+question_number: idx + 1;
+```
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Lỗi 5: Transcript/Dịch nghĩa bị ẩn giống Part 1
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Triệu chứng**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Transcript/translation chỉ hiện sau khi Check, giống pattern Part 1.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Nguyên nhân**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Copy logic ẩn/hiện từ Part 1 mà không chỉnh cho Part 3.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+**Cách fix**:
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- Với Part 3, transcript + translation:
+  - Luôn hiển thị trong UI.
+  - Có thể cho vào accordion để collapse, nhưng **default là open**.
+- Explanation mới là phần gắn với nút Check.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+## Các lỗi AI hay mắc phải
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+1. **Dùng lại y nguyên logic Part 1**:
+   - Ẩn transcript/explanation, chỉ hiện sau Check → sai với yêu cầu Part 3.
+2. **Không định nghĩa câu hỏi text & đáp án text rõ ràng**:
+   - Trộn logic Part 2 (chỉ A/B/C) với Part 3.
+3. **Không tách bạch transcript vs explanation**:
+   - Dùng chung field cho transcript + giải thích → khó dùng lại sau.
+4. **Không parse lesson_data từ JSON string**:
+   - Dẫn tới editor mở ra trống, view lesson không hiển thị gì.
+5. **Quên thêm ENUM toeic_part_3**:
+   - Gặp lỗi “Data truncated for column 'lesson_type'”.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+Tất cả các lỗi trên đều đã có pattern fix từ Part 1, chỉ cần áp dụng đúng.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+## Checklist khi phát triển Part 3
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### ✅ Phase 1: Setup cơ bản
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- [ ] Thêm option Part 3 vào `LessonTypeSelectionModal.jsx`.
+- [ ] Tạo `ToeicPart3Editor.jsx`.
+- [ ] Tạo `ToeicPart3Editor.css`.
+- [ ] Integrate Editor vào `VisualEditor.jsx`.
+- [ ] Thêm default data cho `toeic_part_3` trong `LessonStudio.jsx`.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### ✅ Phase 2: Client component
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- [ ] Tạo `ToeicPart3.jsx`.
+- [ ] Tạo `ToeicPart3.css`.
+- [ ] Integrate vào `LessonComponentMapper.jsx`.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### ✅ Phase 3: Database & Backend
 
-Tengo que crear un archivo nuevo con un archivo existente.
+- [ ] Thêm `toeic_part_3` vào ENUM trong `backend/src/models/Lesson.js`.
+- [ ] Cập nhật migration SQL (`add_toeic_parts_to_lesson_type.sql`).
+- [ ] Update `validateLessonData` trong `instructorClientService.js`.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### ✅ Phase 4: Admin integration
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- [ ] `CourseBuilderTab.jsx` – `handleEditLesson` parse `lesson_data`.
+- [ ] `CourseBuilderTab.jsx` – `handleSaveLesson` lưu đúng `lesson_data`.
+- [ ] `LessonStudioModal.jsx` – parse `lesson_data` từ string JSON.
+- [ ] `CourseLessonsModal.jsx` – label & parse `lesson_data`, render đúng Part 3.
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### ✅ Phase 5: Testing
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- [ ] Test tạo mới Part 3 → Lưu → Edit lại → Dữ liệu đầy đủ.
+- [ ] Test view lesson → Audio, question, options, transcript/translation, explanation hiển thị đúng.
+- [ ] Test Check/Reset đáp án → highlight đúng/sai, explanation chỉ sau Check.
+- [ ] Test import JSON → câu hỏi nối tiếp, numbering chuẩn.
+- [ ] Test navigation nhiều câu → Prev/Next, grid số câu (nếu dùng).
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+## File liên quan
 
-TengoTengo que crear un archivo nuevo con un archivo nuevo.
+### Frontend
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonTypeSelectionModal.jsx`
+- `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/CourseBuilderTab.jsx`
+- `frontend/Shopery/src/Admin/features/courses2/components/CreateCourse/LessonStudioModal.jsx`
+- `frontend/Shopery/src/Admin/features/courses2/components/CourseLessonsModal.jsx`
+- `frontend/Shopery/src/Client/components/Lesson/Creators/VisualEditor.jsx`
+- `frontend/Shopery/src/Client/components/Lesson/Creators/LessonStudio.jsx`
+- `frontend/Shopery/src/Client/components/Lesson/Creators/editors/ToeicPart3Editor.jsx`
+- `frontend/Shopery/src/Client/components/Lesson/Creators/editors/ToeicPart3Editor.css`
+- `frontend/Shopery/src/Client/components/Lesson/Toeic/ToeicPart3.jsx`
+- `frontend/Shopery/src/Client/components/Lesson/Toeic/ToeicPart3.css`
+- `frontend/Shopery/src/Client/components/Lesson/LessonComponentMapper.jsx`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+### Backend
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- `backend/src/models/Lesson.js`
+- `backend/src/client/services/instructorClientService.js`
+- `backend/database/migrations/add_toeic_parts_to_lesson_type.sql`
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+---
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+## Ngày tạo và cập nhật
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
+- **Ngày tạo**: [Ngày hiện tại]
+- **Phiên bản**: 1.0
+- **Trạng thái**: ✅ Complete - Flow Part 3 bám sát pattern Part 1, đã chuẩn hóa để tái sử dụng
 
-Tengo que crear un archivo nuevo con un archivo nuevo.
-
-Tengo que crear un archivo nuevo con un archivo nuevo.
-
-Tengo que crear un archivo nuevo con un archivo nuevo.
-
-Tạo file .md cho Part 3.
+ 
