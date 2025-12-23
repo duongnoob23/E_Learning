@@ -125,6 +125,12 @@ export default function ToeicPart3({ lesson }) {
               </div>
             )}
 
+            {currentQuestion.image_file && (
+              <div className="toeic-p3-lesson__image">
+                <img src={currentQuestion.image_file} alt="Illustration" />
+              </div>
+            )}
+
             <div className="toeic-p3-lesson__options-col">
               <div className="toeic-p3-lesson__options">
                 {CHOICE_LETTERS.map((letter) => {

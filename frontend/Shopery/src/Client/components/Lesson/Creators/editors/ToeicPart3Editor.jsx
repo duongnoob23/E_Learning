@@ -15,6 +15,8 @@ function createEmptyQuestion() {
   return {
     id,
     audioUrl: "",
+    imageUrl: "",
+    imageFile: null,
     audioFile: null,
     questionText: "",
     options: [
@@ -62,6 +64,7 @@ export default function ToeicPart3Editor({ data, onChange }) {
         question_id: q.id,
         question_number: idx + 1,
         audio_file: q.audioUrl || "",
+        image_file: q.imageUrl || "",
         questionText: q.questionText || "",
         options: (q.options || []).map((opt, i) => ({
           label: opt.label || CHOICE_LETTERS[i],
@@ -93,6 +96,8 @@ export default function ToeicPart3Editor({ data, onChange }) {
     return srcQuestions.map((q, idx) => ({
       id: q.question_id || `toeic_p3_q_${idx}_${Date.now()}`,
       audioUrl: q.audio_file || "",
+      imageUrl: q.image_file || "",
+      imageFile: null,
       audioFile: null,
       questionText: q.questionText || "",
       options: (q.options || []).map((opt, i) => ({
@@ -240,6 +245,17 @@ export default function ToeicPart3Editor({ data, onChange }) {
     }
     const url = URL.createObjectURL(file);
     updateCurrentQuestion(() => ({ audioUrl: url }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      alert("Vui lòng chọn file ảnh.");
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    updateCurrentQuestion(() => ({ imageUrl: url }));
   };
 
   const handleOptionTextChange = (label, value) => {
@@ -410,6 +426,12 @@ export default function ToeicPart3Editor({ data, onChange }) {
               </div>
             )}
 
+            {currentQuestion.imageUrl && (
+              <div className="toeic-p3-preview__image">
+                <img src={currentQuestion.imageUrl} alt="Illustration" />
+              </div>
+            )}
+
             <div className="toeic-p3-preview__options">
               {CHOICE_LETTERS.map((letter) => {
                 const isCorrect =
@@ -566,6 +588,42 @@ export default function ToeicPart3Editor({ data, onChange }) {
               {currentQuestion.audioUrl && (
                 <div className="toeic-p3-editor__audio-preview">
                   <audio controls src={currentQuestion.audioUrl} />
+                </div>
+              )}
+
+              <label className="toeic-p3-editor__label">Ảnh minh họa (tùy chọn)</label>
+              <div className="toeic-p3-editor__field-group">
+                <input
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleImageChange}
+                  ref={(el) => {
+                    if (el) audioInputRefs.current[`img_${currentQuestion.id}`] = el;
+                  }}
+                />
+                <button
+                  type="button"
+                  className="toeic-p3-editor__btn"
+                  onClick={() =>
+                    audioInputRefs.current[`img_${currentQuestion.id}`]?.click()
+                  }
+                >
+                  📤 Upload ảnh (tùy chọn)
+                </button>
+                <input
+                  type="text"
+                  className="toeic-p3-editor__input"
+                  placeholder="Hoặc dán URL ảnh..."
+                  value={currentQuestion.imageUrl}
+                  onChange={(e) =>
+                    updateCurrentQuestion(() => ({ imageUrl: e.target.value }))
+                  }
+                />
+              </div>
+              {currentQuestion.imageUrl && (
+                <div className="toeic-p3-editor__image-preview">
+                  <img src={currentQuestion.imageUrl} alt="Preview" />
                 </div>
               )}
 

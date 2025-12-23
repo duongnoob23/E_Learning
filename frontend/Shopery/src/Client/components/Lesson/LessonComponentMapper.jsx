@@ -6,6 +6,8 @@ import GrammarTheory from "./Grammar/GrammarTheory";
 import ToeicPart1 from "./Toeic/ToeicPart1";
 import ToeicPart2 from "./Toeic/ToeicPart2";
 import ToeicPart3 from "./Toeic/ToeicPart3";
+import ToeicPart5 from "./Toeic/ToeicPart5";
+import ToeicPart6 from "./Toeic/ToeicPart6";
 import VideoLesson from "./Video/VideoLesson";
 import VocabularyImageChoice from "./Vocabulary/VocabularyImageChoice";
 import VocabularyList from "./Vocabulary/VocabularyList";
@@ -44,6 +46,8 @@ export const LessonComponentMapper = {
   toeic_part_1: ToeicPart1,
   toeic_part_2: ToeicPart2,
   toeic_part_3: ToeicPart3,
+  toeic_part_5: ToeicPart5,
+  toeic_part_6: ToeicPart6,
   // toeic_part_4: ToeicPart4,
   // toeic_part_5: ToeicPart5,
   // toeic_part_6: ToeicPart6,

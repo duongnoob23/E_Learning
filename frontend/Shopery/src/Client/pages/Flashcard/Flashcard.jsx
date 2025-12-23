@@ -36,11 +36,14 @@ const Flashcard = () => {
     title: topic.topic_name,
     description: topic.description || "",
     wordCount: topic.word_count || 0,
-    viewCount: 0,
+    // Nếu backend có trường view_count thì dùng, không thì mặc định 0
+    viewCount: topic.view_count || 0,
     logo: topic.image_url || topic.logo_url || "/images/study4-logo.png",
     category: "general",
     difficulty: "intermediate",
     topicType: topicType,
+    // Provider dùng để hiển thị giống layout Study4
+    provider: topic.provider || "study4",
   });
 
   const handleTabChange = (tabId) => {

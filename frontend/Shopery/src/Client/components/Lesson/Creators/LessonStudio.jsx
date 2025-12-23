@@ -128,6 +128,14 @@ function getDefaultData(lessonType) {
       type: "toeic_part_3",
       questions: [],
     },
+    toeic_part_5: {
+      type: "toeic_part_5",
+      questions: [],
+    },
+    toeic_part_6: {
+      type: "toeic_part_6",
+      questions: [],
+    },
   };
   return defaults[lessonType] || {};
 }

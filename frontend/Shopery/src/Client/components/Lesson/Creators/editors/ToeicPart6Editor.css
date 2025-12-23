@@ -1,25 +1,25 @@
-/* ToeicPart3Editor.css - Styles cho TOEIC Part 3 Editor (Conversations) */
+/* ToeicPart6Editor.css - Styles for TOEIC Part 6 Editor (manual blanks) */
 
-.toeic-p3-editor {
+.toeic-p6-editor {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.toeic-p3-editor__header {
+.toeic-p6-editor__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.toeic-p3-editor__tabs {
+.toeic-p6-editor__tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.toeic-p3-editor__tab {
+.toeic-p6-editor__tab {
   border: 1px solid #d1d5db;
   background-color: #f9fafb;
   padding: 6px 10px;
@@ -31,25 +31,25 @@
   gap: 4px;
 }
 
-.toeic-p3-editor__tab--active {
+.toeic-p6-editor__tab--active {
   background-color: #10b981;
   border-color: #10b981;
   color: #fff;
 }
 
-.toeic-p3-editor__tab--add {
+.toeic-p6-editor__tab--add {
   background-color: #e5f9f1;
   border-style: dashed;
   color: #047857;
 }
 
-.toeic-p3-editor__tab--json {
+.toeic-p6-editor__tab--json {
   background-color: #eff6ff;
   border-color: #bfdbfe;
   color: #1d4ed8;
 }
 
-.toeic-p3-editor__tab-close {
+.toeic-p6-editor__tab-close {
   font-size: 12px;
   cursor: pointer;
   width: 18px;
@@ -62,17 +62,17 @@
   color: #059669;
 }
 
-.toeic-p3-editor__tab--active .toeic-p3-editor__tab-close {
+.toeic-p6-editor__tab--active .toeic-p6-editor__tab-close {
   background-color: #ffffff;
   color: #10b981;
 }
 
-.toeic-p3-editor__header-actions {
+.toeic-p6-editor__header-actions {
   display: flex;
   align-items: center;
 }
 
-.toeic-p3-editor__preview-btn {
+.toeic-p6-editor__preview-btn {
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid #d1d5db;
@@ -81,71 +81,37 @@
   font-size: 13px;
 }
 
-.toeic-p3-editor__preview-btn--active {
+.toeic-p6-editor__preview-btn--active {
   background-color: #111827;
   color: #fff;
   border-color: #111827;
 }
 
-.toeic-p3-editor__body {
+.toeic-p6-editor__body {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.toeic-p3-editor__row {
-  display: flex;
-  gap: 16px;
-}
-
-.toeic-p3-editor__row--columns {
-  align-items: flex-start;
-}
-
-.toeic-p3-editor__column {
+.toeic-p6-editor__column {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.toeic-p3-editor__label {
+.toeic-p6-editor__label {
   font-size: 13px;
   font-weight: 600;
-  margin-bottom: 6px;
   display: block;
 }
 
-.toeic-p3-editor__required {
+.toeic-p6-editor__required {
   color: #ef4444;
 }
 
-.toeic-p3-editor__field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 8px;
-}
-
-.toeic-p3-editor__field-group--inline {
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.toeic-p3-editor__field-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #6b7280;
-  min-width: 36px;
-}
-
-.toeic-p3-editor__input {
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  padding: 6px 8px;
-  font-size: 13px;
-}
-
-.toeic-p3-editor__textarea {
+.toeic-p6-editor__textarea {
   width: 100%;
   border-radius: 6px;
   border: 1px solid #d1d5db;
@@ -155,98 +121,68 @@
   resize: vertical;
 }
 
-.toeic-p3-editor__btn {
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  background-color: #f9fafb;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.toeic-p3-editor__audio-preview {
-  margin-top: 6px;
-}
-
-.toeic-p3-editor__audio-preview audio {
-  width: 100%;
-}
-
-.toeic-p3-editor__image-preview {
-  margin-top: 6px;
-}
-
-.toeic-p3-editor__image-preview img {
-  max-width: 320px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.toeic-p3-editor__choices-row {
+.toeic-p6-editor__choices-row {
   display: flex;
   gap: 8px;
-  margin-bottom: 8px;
 }
 
-.toeic-p3-editor__choice-radio {
+.toeic-p6-editor__choice-radio {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-size: 13px;
 }
 
+.toeic-p6-editor__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toeic-p6-editor__field-group--inline {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.toeic-p6-editor__field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  min-width: 36px;
+}
+
 /* Preview */
-.toeic-p3-preview {
+.toeic-p6-preview {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.toeic-p3-preview__audio-row {
-  width: 100%;
-}
-
-.toeic-p3-preview__audio-row audio {
-  width: 100%;
-  max-width: 480px;
-  display: block;
-  margin: 0 auto;
-}
-
-.toeic-p3-preview__audio-placeholder {
-  padding: 8px 10px;
-  border-radius: 6px;
-  background-color: #fef2f2;
-  border: 1px dashed #fecaca;
-  color: #b91c1c;
-  font-size: 13px;
-}
-
-.toeic-p3-preview__body {
+.toeic-p6-preview__body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: stretch;
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
   width: 100%;
 }
 
-.toeic-p3-preview__question-text {
-  font-size: 15px;
-  font-weight: 600;
+.toeic-p6-preview__paragraph {
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
 }
 
-.toeic-p3-preview__options {
+.toeic-p6-preview__options {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  align-items: stretch;
-  width: 100%;
 }
 
-.toeic-p3-preview__option {
+.toeic-p6-preview__option {
   display: flex;
   align-items: flex-start;
   gap: 6px;
@@ -256,31 +192,30 @@
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.toeic-p3-preview__option-label {
-  font-weight: 500;
-}
-
-.toeic-p3-preview__option--correct {
+.toeic-p6-preview__option--correct {
   background-color: #dcfce7;
   color: #166534;
 }
 
-.toeic-p3-preview__option--wrong {
+.toeic-p6-preview__option--wrong {
   background-color: #fee2e2;
   color: #b91c1c;
 }
 
-.toeic-p3-preview__option input[type="radio"] {
+.toeic-p6-preview__option-label {
+  font-weight: 500;
+}
+
+.toeic-p6-preview__option input[type="radio"] {
   margin-top: 2px;
 }
 
-.toeic-p3-preview__buttons {
+.toeic-p6-preview__buttons {
   display: flex;
   gap: 8px;
-  width: 100%;
 }
 
-.toeic-p3-preview__btn {
+.toeic-p6-preview__btn {
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid #d1d5db;
@@ -289,51 +224,34 @@
   font-size: 13px;
 }
 
-.toeic-p3-preview__btn--primary {
+.toeic-p6-preview__btn--primary {
   background-color: #10b981;
   border-color: #10b981;
   color: #fff;
 }
 
-.toeic-p3-preview__footer {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  width: 100%;
-  margin-top: 12px;
-}
-
-.toeic-p3-preview__section {
-  flex: 1;
-  min-width: 0;
+.toeic-p6-preview__translation,
+.toeic-p6-preview__explanation {
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   background-color: #f9fafb;
 }
 
-.toeic-p3-preview__section-header {
-  width: 100%;
+.toeic-p6-preview__section-header {
   padding: 8px 10px;
   font-size: 13px;
   font-weight: 500;
-  border-radius: 8px 8px 0 0;
 }
 
-.toeic-p3-preview__section-body {
+.toeic-p6-preview__section-body {
   padding: 8px 12px 10px;
   border-top: 1px solid #e5e7eb;
   font-size: 13px;
-}
-
-.toeic-p3-preview__explanation {
-  margin-top: 12px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background-color: #f9fafb;
+  line-height: 1.5;
 }
 
 /* JSON modal */
-.toeic-p3-json-modal__backdrop {
+.toeic-p6-json-modal__backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.45);
@@ -343,7 +261,7 @@
   z-index: 1100;
 }
 
-.toeic-p3-json-modal {
+.toeic-p6-json-modal {
   background-color: #fff;
   border-radius: 10px;
   width: 90%;
@@ -354,7 +272,7 @@
   overflow: hidden;
 }
 
-.toeic-p3-json-modal__header {
+.toeic-p6-json-modal__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -362,20 +280,20 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.toeic-p3-json-modal__header h3 {
+.toeic-p6-json-modal__header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
 }
 
-.toeic-p3-json-modal__close {
+.toeic-p6-json-modal__close {
   border: none;
   background: none;
   font-size: 22px;
   cursor: pointer;
 }
 
-.toeic-p3-json-modal__content {
+.toeic-p6-json-modal__content {
   padding: 14px 18px;
   flex: 1;
   overflow-y: auto;
@@ -384,19 +302,19 @@
   gap: 10px;
 }
 
-.toeic-p3-json-modal__hint {
+.toeic-p6-json-modal__hint {
   font-size: 13px;
   color: #4b5563;
 }
 
-.toeic-p3-json-modal__hint code {
+.toeic-p6-json-modal__hint code {
   background-color: #f3f4f6;
   padding: 2px 4px;
   border-radius: 4px;
   font-size: 12px;
 }
 
-.toeic-p3-json-modal__btn {
+.toeic-p6-json-modal__btn {
   border-radius: 6px;
   border: 1px solid #d1d5db;
   background-color: #f9fafb;
@@ -406,13 +324,13 @@
   align-self: flex-start;
 }
 
-.toeic-p3-json-modal__btn--primary {
+.toeic-p6-json-modal__btn--primary {
   background-color: #10b981;
   border-color: #10b981;
   color: #fff;
 }
 
-.toeic-p3-json-modal__error {
+.toeic-p6-json-modal__error {
   padding: 8px 10px;
   border-radius: 6px;
   background-color: #fef2f2;
@@ -421,7 +339,7 @@
   font-size: 13px;
 }
 
-.toeic-p3-json-modal__textarea {
+.toeic-p6-json-modal__textarea {
   width: 100%;
   min-height: 220px;
   border-radius: 8px;
@@ -433,18 +351,12 @@
   resize: vertical;
 }
 
-.toeic-p3-json-modal__footer {
+.toeic-p6-json-modal__footer {
   padding: 12px 18px;
   border-top: 1px solid #e5e7eb;
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-}
-
-@media (max-width: 768px) {
-  .toeic-p3-preview__footer {
-    flex-direction: column;
-  }
 }
 
 
