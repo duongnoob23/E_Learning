@@ -58,6 +58,10 @@ const QuestionTag = require("./exam/QuestionTag")(sequelize, DataTypes);
 const TestDiscussion = require("./exam/Discussion")(sequelize, DataTypes);
 const TestComment = require("./exam/Comment")(sequelize, DataTypes);
 
+// Chatbot models
+const ChatSession = require("./ChatSession")(sequelize, DataTypes);
+const ChatMessage = require("./ChatMessage")(sequelize, DataTypes);
+
 
 // Associations
 
@@ -209,6 +213,12 @@ CourseTagRelation.belongsTo(CourseTag, { foreignKey: "tag_id" });
 
 Instructor.belongsTo(User, { foreignKey: "user_id" });
 
+// Chatbot Associations
+ChatSession.belongsTo(User, { as: "user", foreignKey: "user_id" });
+ChatSession.hasMany(ChatMessage, { as: "messages", foreignKey: "session_id" });
+ChatMessage.belongsTo(ChatSession, { as: "session", foreignKey: "session_id" });
+ChatMessage.belongsTo(User, { as: "sender", foreignKey: "sender_id" });
+
 // Export
 const db = {
   sequelize,
@@ -263,6 +273,9 @@ const db = {
   QuestionTag,
   TestDiscussion,
   TestComment,
+  // Chatbot models
+  ChatSession,
+  ChatMessage,
 };
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

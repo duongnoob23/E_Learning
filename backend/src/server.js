@@ -8,6 +8,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const routes = require("./routes");
 const { handleDiscussionSocket } = require("./socket/discussionSocket");
+const { handleChatbotSocket } = require("./socket/chatbotSocket");
 require("dotenv").config();
 
 const {
@@ -31,6 +32,9 @@ const io = new Server(server, {
 
 // Khởi tạo Socket.IO cho discussion
 handleDiscussionSocket(io);
+
+// Khởi tạo Socket.IO cho chatbot
+handleChatbotSocket(io);
 
 // Lưu io instance vào app để sử dụng trong controllers
 app.set('io', io);

@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Tổng quan",
+    "activities": [
+      {
+        "activityId": 6547,
+        "type": "theory",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/6547/"
+      }
+    ]
+  },
+  {
+    "title": "Câu hỏi từ loại",
+    "activities": [
+      {
+        "activityId": 6548,
+        "type": "theory",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/6548/"
+      },
+      {
+        "activityId": 7342,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7342/"
+      }
+    ]
+  },
+  {
+    "title": "Câu hỏi ngữ pháp",
+    "activities": [
+      {
+        "activityId": 6549,
+        "type": "theory",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/6549/"
+      },
+      {
+        "activityId": 7343,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7343/"
+      }
+    ]
+  },
+  {
+    "title": "Câu hỏi từ vựng",
+    "activities": [
+      {
+        "activityId": 6550,
+        "type": "theory",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/6550/"
+      },
+      {
+        "activityId": 7344,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7344/"
+      }
+    ]
+  },
+  {
+    "title": "Câu hỏi điền câu vào đoạn văn",
+    "activities": [
+      {
+        "activityId": 6551,
+        "type": "theory",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/6551/"
+      },
+      {
+        "activityId": 7345,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7345/"
+      }
+    ]
+  },
+  {
+    "title": "Luyện tập theo hình thức văn bản",
+    "activities": [
+      {
+        "activityId": 7346,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7346/"
+      },
+      {
+        "activityId": 7347,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7347/"
+      },
+      {
+        "activityId": 7348,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7348/"
+      },
+      {
+        "activityId": 7349,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7349/"
+      },
+      {
+        "activityId": 7350,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/7350/"
+      }
+    ]
+  },
+  {
+    "title": "PRACTICE ZONE",
+    "activities": [
+      {
+        "activityId": 9837,
+        "type": "practice",
+        "url": "https://study4.com/courses/28/complete-toeic/learn/activities/9837/"
+      }
+    ]
+  }
+]

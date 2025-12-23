@@ -2,15 +2,7 @@ const { Op } = require("sequelize");
 const Word = require("../../models").Word;
 const sequelize = require("../../config/database");
 
-/**
- * Dictionary Service - Nâng cấp
- * Tra từ điển từ database với đầy đủ tính năng
- */
 
-/**
- * Parse multiple meanings từ meaning_vi
- * Format: "1. nghĩa 1; 2. nghĩa 2; 3. nghĩa 3" hoặc "nghĩa 1, nghĩa 2, nghĩa 3"
- */
 const parseMeanings = (meaningText) => {
   if (!meaningText) return [];
 

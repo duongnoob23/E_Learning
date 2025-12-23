@@ -15,6 +15,7 @@ const examRoutes = require("../client/routes/examClientRoutes");
 const instructorRoutes = require("../client/routes/instructorClientRoutes");
 const paymentRoutes = require("../client/routes/paymentRoutes");
 const dictionaryRoutes = require("../client/routes/dictionaryClientRoutes");
+const chatbotRoutes = require("../client/routes/chatbotClientRoutes");
 
 
 router.use("/auth", authClient);
@@ -31,5 +32,6 @@ router.use("/exam", examRoutes);
 router.use("/instructor", instructorRoutes);
 router.use("/payment",paymentRoutes);
 router.use("/dictionary", dictionaryRoutes);
+router.use("/chatbot", chatbotRoutes);
 
 module.exports = router;

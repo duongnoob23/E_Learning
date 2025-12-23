@@ -14,6 +14,7 @@ import "./assets/styles/reset.css";
 import { queryClient } from "./lib/queryClient";
 import AppRoutes from "./routes/routes";
 import Dictionary from "./common/components/Dictionary";
+import ChatbotWidget from "./common/components/Chatbot/ChatbotWidget";
 function App() {
   return (
     <Provider store={store}>
@@ -23,6 +24,7 @@ function App() {
             <AppRoutes />
             {/* <Lesson /> */}
             <Dictionary />
+            <ChatbotWidget />
  
           </div>
         </Router>

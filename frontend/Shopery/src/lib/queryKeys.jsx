@@ -65,4 +65,10 @@ export const queryKeys = {
     all: ["dictionary"],
     search: (word, type) => ["dictionary", "search", { word, type }],
   },
+
+  // Chatbot keys
+  chatbot: {
+    session: (token) => ["chatbot", "session", token],
+    messages: (session_id) => ["chatbot", "messages", session_id],
+  },
 };
