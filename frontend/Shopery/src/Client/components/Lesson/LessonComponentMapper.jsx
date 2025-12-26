@@ -8,6 +8,7 @@ import ToeicPart2 from "./Toeic/ToeicPart2";
 import ToeicPart3 from "./Toeic/ToeicPart3";
 import ToeicPart5 from "./Toeic/ToeicPart5";
 import ToeicPart6 from "./Toeic/ToeicPart6";
+import ToeicPart7 from "./Toeic/ToeicPart7";
 import VideoLesson from "./Video/VideoLesson";
 import VocabularyImageChoice from "./Vocabulary/VocabularyImageChoice";
 import VocabularyList from "./Vocabulary/VocabularyList";
@@ -48,10 +49,7 @@ export const LessonComponentMapper = {
   toeic_part_3: ToeicPart3,
   toeic_part_5: ToeicPart5,
   toeic_part_6: ToeicPart6,
-  // toeic_part_4: ToeicPart4,
-  // toeic_part_5: ToeicPart5,
-  // toeic_part_6: ToeicPart6,
-  // toeic_part_7: ToeicPart7,
+  toeic_part_7: ToeicPart7,
 };
 
 // Render component dựa trên lesson_type

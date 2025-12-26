@@ -1,0 +1,358 @@
+/* ToeicPart7.css - Styles for TOEIC Part 7 lesson (Reading Comprehension) */
+
+.toeic-p7-lesson {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.toeic-p7-lesson__empty {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+}
+
+.toeic-p7-lesson__header {
+  margin-bottom: 24px;
+}
+
+.toeic-p7-lesson__title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.toeic-p7-lesson__description {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Layout 2 cột */
+.toeic-p7-lesson__container {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.toeic-p7-lesson__left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toeic-p7-lesson__right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Reading Passage */
+.toeic-p7-lesson__passage {
+  font-size: 14px;
+  line-height: 1.7;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 600px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: #374151;
+}
+
+/* Translation */
+.toeic-p7-lesson__translation {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  overflow: hidden;
+}
+
+.toeic-p7-lesson__section-header {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.toeic-p7-lesson__toggle {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background-color: #f3f4f6;
+  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toeic-p7-lesson__toggle:hover {
+  background-color: #e5e7eb;
+}
+
+.toeic-p7-lesson__section-body {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+  line-height: 1.7;
+  background-color: #fff;
+  color: #374151;
+  white-space: pre-wrap;
+}
+
+/* Question Text */
+.toeic-p7-lesson__question-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+}
+
+/* Options */
+.toeic-p7-lesson__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.toeic-p7-lesson__option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.toeic-p7-lesson__option:hover:not(:has(input:disabled)) {
+  background-color: #f9fafb;
+  border-color: #10b981;
+}
+
+.toeic-p7-lesson__option--correct {
+  background-color: #dcfce7;
+  border-color: #10b981;
+  color: #166534;
+}
+
+.toeic-p7-lesson__option--wrong {
+  background-color: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.toeic-p7-lesson__option input[type="radio"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.toeic-p7-lesson__option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.toeic-p7-lesson__option-label {
+  font-weight: 600;
+  min-width: 28px;
+  color: inherit;
+}
+
+.toeic-p7-lesson__option-text {
+  flex: 1;
+  color: inherit;
+}
+
+/* Buttons */
+.toeic-p7-lesson__buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.toeic-p7-lesson__btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.toeic-p7-lesson__btn:hover:not(:disabled) {
+  background-color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.toeic-p7-lesson__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toeic-p7-lesson__btn--primary {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+.toeic-p7-lesson__btn--primary:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+/* Explanation */
+.toeic-p7-lesson__explanation {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  overflow: hidden;
+}
+
+/* Navigation */
+.toeic-p7-lesson__nav-wrapper {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid #e5e7eb;
+}
+
+.toeic-p7-lesson__nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.toeic-p7-lesson__nav-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toeic-p7-lesson__nav-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toeic-p7-lesson__nav-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.toeic-p7-lesson__nav-btn:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #10b981;
+}
+
+.toeic-p7-lesson__nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toeic-p7-lesson__auto-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #374151;
+}
+
+.toeic-p7-lesson__auto-switch input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.toeic-p7-lesson__nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+  max-width: 800px;
+}
+
+.toeic-p7-lesson__nav-grid-btn {
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+}
+
+.toeic-p7-lesson__nav-grid-btn:hover {
+  background-color: #f9fafb;
+  border-color: #10b981;
+  transform: translateY(-2px);
+}
+
+.toeic-p7-lesson__nav-grid-btn--active {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .toeic-p7-lesson__container {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .toeic-p7-lesson {
+    padding: 16px;
+  }
+
+  .toeic-p7-lesson__container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .toeic-p7-lesson__passage {
+    max-height: 400px;
+  }
+
+  .toeic-p7-lesson__nav-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toeic-p7-lesson__nav-controls-left,
+  .toeic-p7-lesson__nav-controls-right {
+    justify-content: center;
+  }
+
+  .toeic-p7-lesson__nav-grid {
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 8px;
+  }
+}
+

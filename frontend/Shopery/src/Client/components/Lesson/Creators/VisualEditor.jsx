@@ -10,6 +10,7 @@ import ToeicPart2Editor from "./editors/ToeicPart2Editor";
 import ToeicPart3Editor from "./editors/ToeicPart3Editor";
 import ToeicPart5Editor from "./editors/ToeicPart5Editor";
 import ToeicPart6Editor from "./editors/ToeicPart6Editor";
+import ToeicPart7Editor from "./editors/ToeicPart7Editor";
 import TranslationEditor from "./editors/TranslationEditor";
 import VideoLessonEditor from "./editors/VideoLessonEditor";
 import VocabularyListEditor from "./editors/VocabularyListEditor";
@@ -114,6 +115,8 @@ export default function VisualEditor({ lessonType, data, onChange }) {
         return <ToeicPart5Editor data={data} onChange={onChange} />;
       case "toeic_part_6":
         return <ToeicPart6Editor data={data} onChange={onChange} />;
+      case "toeic_part_7":
+        return <ToeicPart7Editor data={data} onChange={onChange} />;
       default:
         return <div>Chưa hỗ trợ editor cho loại này</div>;
     }

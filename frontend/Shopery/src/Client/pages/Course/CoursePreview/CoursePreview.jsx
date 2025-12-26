@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { useCourseDetail } from "../../../../Client/services/Course/courseQueries";
@@ -22,7 +22,8 @@ const CoursePreview = () => {
   const course = data?.DT?.course;
 
   if (isLoading) return <div className="loading">Đang tải khóa học…</div>;
-  if (error || !course) return <div className="error">Không thể tải dữ liệu khóa học</div>;
+  if (error || !course)
+    return <div className="error">Không thể tải dữ liệu khóa học</div>;
 
   const handleToggleModule = (idx) => {
     setOpenModuleIdx(openModuleIdx === idx ? null : idx);
@@ -30,24 +31,20 @@ const CoursePreview = () => {
 
   const handleEnrollCourse = async () => {
     try {
-      const res = await courseApi.enrollCourse(userId, course.course_id);
+      // Nếu khóa học miễn phí → đăng ký trực tiếp
+      if (course.is_free) {
+        const res = await courseApi.enrollCourse(userId, course.course_id);
 
-      if (res.EC === "0") {
-        const { payment_status, is_free } = res.DT;
-
-        // Free course → học ngay
-        if (is_free || payment_status === "paid") {
-          toast.success("Bạn đã đăng ký khóa học!");
-          return navigate(`/lesson/${course.course_id}`);
-        }
-
-        // Paid but pending
-        if (!is_free && payment_status === "pending") {
-          toast.info("Khóa học cần thanh toán!");
-          return setPaymentOpen(true);
+        if (res.EC === "0") {
+          toast.success("Bạn đã đăng ký khóa học miễn phí!");
+          // Redirect đến My Course
+          navigate("/mycourses");
+        } else {
+          toast.error(res.EM);
         }
       } else {
-        toast.error(res.EM);
+        // Khóa học mất phí → hiện modal để nhập thông tin
+        setPaymentOpen(true);
       }
     } catch (err) {
       console.error(err);
@@ -56,65 +53,62 @@ const CoursePreview = () => {
   };
 
   const handlePaymentSuccess = () => {
-    toast.success("Thanh toán thành công!");
+    // Không cần xử lý ở đây vì sẽ redirect từ VNPay
     setPaymentOpen(false);
-    navigate(`/lesson/${course.course_id}`);
   };
   const convertYoutubeUrlToEmbed = (url) => {
     try {
       const urlObj = new URL(url);
       let videoId = "";
       let listId = urlObj.searchParams.get("list");
-  
+
       // 1. Dạng chuẩn watch?v=
       if (urlObj.searchParams.get("v")) {
         videoId = urlObj.searchParams.get("v");
       }
-  
+
       // 2. Dạng youtu.be/VIDEO_ID
       else if (urlObj.hostname === "youtu.be") {
         videoId = urlObj.pathname.replace("/", "");
       }
-  
+
       // 3. Dạng embed/VIDEO_ID
       else if (urlObj.pathname.startsWith("/embed/")) {
         videoId = urlObj.pathname.split("/embed/")[1];
       }
-  
+
       // 4. Dạng shorts/VIDEO_ID
       else if (urlObj.pathname.startsWith("/shorts/")) {
         videoId = urlObj.pathname.split("/shorts/")[1];
       }
-  
+
       // 5. Live stream
       else if (urlObj.pathname.startsWith("/live/")) {
         videoId = urlObj.pathname.split("/live/")[1];
       }
-  
+
       // Nếu không tìm được ID
       if (!videoId) return null;
-  
+
       // Build embed URL
       let embedUrl = `https://www.youtube.com/embed/${videoId}`;
-  
+
       if (listId) {
         embedUrl += `?list=${listId}`;
       }
-  
+
       return embedUrl;
     } catch (error) {
       return null;
     }
   };
-  
+
   return (
     <div className="course-preview">
       {/* ==================== HEADER ==================== */}
       <section className="course-preview__header">
         <div className="course-preview__header-left">
-          <span className="course-preview__badge">
-            {course.category?.name}
-          </span>
+          <span className="course-preview__badge">{course.category?.name}</span>
 
           <h1 className="course-preview__title">{course.title}</h1>
 
@@ -198,7 +192,9 @@ const CoursePreview = () => {
         <div className="course-preview__main-col course-preview__main-col--left">
           {activeTab === "about" && (
             <>
-              <h2 className="course-preview__about-title">Giới thiệu khóa học</h2>
+              <h2 className="course-preview__about-title">
+                Giới thiệu khóa học
+              </h2>
               <p className="course-preview__about-desc">
                 {course.details?.about}
               </p>
@@ -241,14 +237,18 @@ const CoursePreview = () => {
           {/* ==================== CURRICULUM ==================== */}
           {activeTab === "curriculum" && (
             <div className="course-preview__curriculum">
-              <h2 className="course-preview__curriculum-title">Nội dung khóa học</h2>
+              <h2 className="course-preview__curriculum-title">
+                Nội dung khóa học
+              </h2>
 
               <div className="curriculum-accordion">
                 {course.modules?.map((module, idx) => (
                   <div
                     key={module.module_id}
                     className={`curriculum-accordion__item ${
-                      openModuleIdx === idx ? "curriculum-accordion__item--open" : ""
+                      openModuleIdx === idx
+                        ? "curriculum-accordion__item--open"
+                        : ""
                     }`}
                   >
                     <div
@@ -288,7 +288,9 @@ const CoursePreview = () => {
           {/* ==================== REVIEWS TAB ==================== */}
           {activeTab === "reviews" && (
             <div className="course-preview__reviews">
-              <h2 className="course-preview__reviews-title">Đánh giá từ học viên</h2>
+              <h2 className="course-preview__reviews-title">
+                Đánh giá từ học viên
+              </h2>
 
               {course.reviews && course.reviews.length > 0 ? (
                 course.reviews.map((rv) => (
@@ -300,7 +302,9 @@ const CoursePreview = () => {
                     />
 
                     <div className="course-preview__review-content">
-                      <div className="course-preview__review-header">{rv.user}</div>
+                      <div className="course-preview__review-header">
+                        {rv.user}
+                      </div>
 
                       <div className="course-preview__review-date">
                         {new Date(rv.time).toLocaleDateString("vi-VN")}
@@ -319,9 +323,8 @@ const CoursePreview = () => {
               )}
             </div>
           )}
-
         </div>
-          
+
         {/* ==================== RIGHT SIDEBAR ==================== */}
         <div className="course-preview__main-col course-preview__main-col--right">
           <div className="course-preview__pricing-card">
@@ -366,9 +369,15 @@ const CoursePreview = () => {
             )}
 
             <div className="course-preview__info-list">
-              <div><i className="fa fa-check"></i> Truy cập trọn đời</div>
-              <div><i className="fa fa-check"></i> Chứng chỉ hoàn thành</div>
-              <div><i className="fa fa-check"></i> Nội dung cập nhật liên tục</div>
+              <div>
+                <i className="fa fa-check"></i> Truy cập trọn đời
+              </div>
+              <div>
+                <i className="fa fa-check"></i> Chứng chỉ hoàn thành
+              </div>
+              <div>
+                <i className="fa fa-check"></i> Nội dung cập nhật liên tục
+              </div>
             </div>
           </div>
         </div>

@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { courseApi } from "../../api/Course/courseApi";
 import "./MyCourses.css";
 
 const MyCourses = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const userId = JSON.parse(localStorage.getItem("user"))?.id || 1;
+
+  useEffect(() => {
+    // Kiểm tra nếu có query param payment=success → hiển thị thông báo
+    const paymentSuccess = searchParams.get("payment");
+    const orderNumber = searchParams.get("orderNumber");
+
+    if (paymentSuccess === "success" && orderNumber) {
+      toast.success(`Thanh toán thành công! Đơn hàng: ${orderNumber}`);
+      // Xóa query params để không hiển thị lại khi refresh
+      navigate("/mycourses", { replace: true });
+    }
+  }, [searchParams, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
