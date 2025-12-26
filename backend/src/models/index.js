@@ -43,6 +43,12 @@ const CourseCoupon = require("./CourseCoupon")(sequelize, DataTypes);
 const CourseCertificate = require("./CourseCertificate")(sequelize, DataTypes);
 const CourseTag = require("./CourseTag")(sequelize, DataTypes);
 const CourseTagRelation = require("./CourseTagRelation")(sequelize, DataTypes);
+
+// Payment models
+const Order = require("./Order")(sequelize, DataTypes);
+const OrderItem = require("./OrderItem")(sequelize, DataTypes);
+const Payment = require("./Payment")(sequelize, DataTypes);
+
 // Exam models
 const Test = require("./exam/Test")(sequelize, DataTypes);
 const Part = require("./exam/Part")(sequelize, DataTypes);
@@ -214,6 +220,29 @@ CourseTagRelation.belongsTo(CourseTag, { foreignKey: "tag_id" });
 
 Instructor.belongsTo(User, { foreignKey: "user_id" });
 
+// Payment Associations
+// Order -> User
+Order.belongsTo(User, { foreignKey: "user_id", as: "user" });
+User.hasMany(Order, { foreignKey: "user_id", as: "orders" });
+
+// Order -> Coupon
+Order.belongsTo(Coupon, { foreignKey: "coupon_id", as: "coupon" });
+
+// Order -> OrderItems (1:N)
+Order.hasMany(OrderItem, { foreignKey: "order_id", as: "items" });
+OrderItem.belongsTo(Order, { foreignKey: "order_id", as: "order" });
+
+// OrderItem -> Course
+OrderItem.belongsTo(Course, { foreignKey: "course_id", as: "course" });
+
+// Order -> Payments (1:N - một đơn có thể có nhiều lần thanh toán)
+Order.hasMany(Payment, { foreignKey: "order_id", as: "payments" });
+Payment.belongsTo(Order, { foreignKey: "order_id", as: "order" });
+
+// Payment -> User
+Payment.belongsTo(User, { foreignKey: "user_id", as: "user" });
+User.hasMany(Payment, { foreignKey: "user_id", as: "payments" });
+
 // Export
 const db = {
   sequelize,
@@ -254,6 +283,10 @@ const db = {
   CourseCertificate,
   CourseTag,
   CourseTagRelation,
+  // Payment models
+  Order,
+  OrderItem,
+  Payment,
   // Exam models
   Test,
   Part,

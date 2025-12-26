@@ -574,6 +574,51 @@
   border-left: 3px solid #10B981;
 }
 
+/* Words to Improve */
+.speaking-result__words-to-improve {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.speaking-result__words-to-improve h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.speaking-result__words-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Improvement Summary */
+.speaking-result__improvement-summary {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #fef3c7;
+  border-radius: 12px;
+  border: 2px solid #fbbf24;
+}
+
+.speaking-result__improvement-summary h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.speaking-result__improvement-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+  white-space: pre-wrap;
+}
+
 .speaking-result__actions {
   display: flex;
   gap: 16px;

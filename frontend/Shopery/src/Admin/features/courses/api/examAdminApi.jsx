@@ -1,40 +1,41 @@
-import axiosInstance from "../../../../lib/axiosInstance";
+// Dùng adminAxiosInstance để tự động thêm admin token
+import adminAxiosInstance from "../../../api/adminAuthApi";
 
 export const examAdminApi = {
   // Tests
-  getTests: async () => (await axiosInstance.get("/admin/exam/tests")).data,
+  getTests: async () => (await adminAxiosInstance.get("/admin/exam/tests")).data,
   getTestDetail: async (testId) =>
-    (await axiosInstance.get(`/admin/exam/tests/detail/${testId}`)).data,
+    (await adminAxiosInstance.get(`/admin/exam/tests/detail/${testId}`)).data,
   createTest: async (payload) =>
-    (await axiosInstance.post("/admin/exam/tests", payload)).data,
+    (await adminAxiosInstance.post("/admin/exam/tests", payload)).data,
   updateTest: async (testId, payload) =>
-    (await axiosInstance.patch(`/admin/exam/tests/${testId}`, payload)).data,
+    (await adminAxiosInstance.patch(`/admin/exam/tests/${testId}`, payload)).data,
   deleteTest: async (testId) =>
-    (await axiosInstance.delete(`/admin/exam/tests/${testId}`)).data,
+    (await adminAxiosInstance.delete(`/admin/exam/tests/${testId}`)).data,
 
   // Parts
   addPartToTest: async (testId, payload) =>
-    (await axiosInstance.post(`/admin/exam/tests/${testId}/parts`, payload))
+    (await adminAxiosInstance.post(`/admin/exam/tests/${testId}/parts`, payload))
       .data,
 
   // Questions (bulk create to part)
   addQuestionsToPart: async (partId, questions) =>
     (
-      await axiosInstance.post(`/admin/exam/parts/${partId}/questions`, {
+      await adminAxiosInstance.post(`/admin/exam/parts/${partId}/questions`, {
         questions,
       })
     ).data,
   updateQuestion: async (questionId, payload) =>
-    (await axiosInstance.patch(`/admin/exam/questions/${questionId}`, payload))
+    (await adminAxiosInstance.patch(`/admin/exam/questions/${questionId}`, payload))
       .data,
   deleteQuestion: async (questionId) =>
-    (await axiosInstance.delete(`/admin/exam/questions/${questionId}`)).data,
+    (await adminAxiosInstance.delete(`/admin/exam/questions/${questionId}`)).data,
 
   // Sessions & statistics
   getTestSessions: async (testId) =>
-    (await axiosInstance.get(`/admin/exam/tests/${testId}/sessions`)).data,
+    (await adminAxiosInstance.get(`/admin/exam/tests/${testId}/sessions`)).data,
   getExamSessionDetail: async (sessionId) =>
-    (await axiosInstance.get(`/admin/exam/exam-sessions/${sessionId}`)).data,
+    (await adminAxiosInstance.get(`/admin/exam/exam-sessions/${sessionId}`)).data,
   getTestStatistics: async (testId) =>
-    (await axiosInstance.get(`/admin/exam/tests/${testId}/statistics`)).data,
+    (await adminAxiosInstance.get(`/admin/exam/tests/${testId}/statistics`)).data,
 };

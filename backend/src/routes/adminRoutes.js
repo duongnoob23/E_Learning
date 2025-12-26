@@ -1,12 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
+const authAdminRoutes = require("../admin/routes/authAdminRoutes");
 const examAdminRoutes = require("../admin/routes/examAdminRoutes");
 const userAdminRoutes = require("../admin/routes/userAdminRoutes");
 const rolePermissionRoutes = require("../admin/routes/rolePermissionRoutes");
+const { adminAuthMiddleware } = require("../admin/middleware/authMiddleware");
 
-router.use("/role-permission", rolePermissionRoutes);
-router.use("/exam", examAdminRoutes);
+// Public routes (không cần auth)
+router.use("/auth", authAdminRoutes);
+
+// Protected routes (cần auth admin)
+router.use("/role-permission", adminAuthMiddleware, rolePermissionRoutes);
+router.use("/exam", adminAuthMiddleware, examAdminRoutes);
+// TODO: TẠM THỜI TẮT MIDDLEWARE CHO USERS - BẬT LẠI SAU KHI CÓ ADMIN LOGIN
 router.use("/users", userAdminRoutes);
 
 module.exports = router;

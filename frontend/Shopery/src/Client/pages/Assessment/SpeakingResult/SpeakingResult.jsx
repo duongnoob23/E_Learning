@@ -293,12 +293,14 @@ export default function SpeakingResult() {
             </div>
 
             {/* Your Transcript */}
-            <div className="speaking-result__your-answer">
-              <h3>Bản ghi âm của bạn</h3>
-              <div className="speaking-result__transcript">
-                {currentResult.transcription || scoreData.transcript || "Chưa có bản ghi"}
+            {!isCurrentScoring && scoreData.transcript && (
+              <div className="speaking-result__your-answer">
+                <h3>Bản ghi âm của bạn</h3>
+                <div className="speaking-result__transcript">
+                  {scoreData.transcript}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Loading State */}
             {isCurrentScoring && (
@@ -396,71 +398,23 @@ export default function SpeakingResult() {
                   </div>
                 )}
 
-                {/* Word Accuracy */}
-                {scoreData.word_accuracy && Object.keys(scoreData.word_accuracy).length > 0 && (
-                  <div className="speaking-result__word-accuracy">
-                    <h3>Độ chính xác từng từ</h3>
-                    <div className="speaking-result__word-list">
-                      {Object.entries(scoreData.word_accuracy).map(
-                        ([word, data]) => (
-                          <div key={word} className="speaking-result__word-item">
-                            <div className="speaking-result__word-header">
-                              <span className="speaking-result__word-text">
-                                {word}
-                              </span>
-                              <span
-                                className="speaking-result__word-score"
-                                style={{
-                                  color: getScoreColor(data.score * 10),
-                                }}
-                              >
-                                {data.score.toFixed(1)}/10
-                              </span>
-                            </div>
-                            {data.issues && data.issues.length > 0 && (
-                              <div className="speaking-result__word-issues">
-                                <strong>Vấn đề:</strong>
-                                <ul>
-                                  {data.issues.map((issue, idx) => (
-                                    <li key={idx}>{issue}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                            {data.tips && data.tips.length > 0 && (
-                              <div className="speaking-result__word-tips">
-                                <strong>Gợi ý:</strong>
-                                <ul>
-                                  {data.tips.map((tip, idx) => (
-                                    <li key={idx}>{tip}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* Word Feedback (Words needing improvement) */}
-                {scoreData.word_feedback &&
-                  scoreData.word_feedback.length > 0 && (
-                    <div className="speaking-result__word-feedback">
+                {/* Words to Improve */}
+                {scoreData.words_to_improve &&
+                  scoreData.words_to_improve.length > 0 && (
+                    <div className="speaking-result__words-to-improve">
                       <h3>Từ cần cải thiện</h3>
-                      <div className="speaking-result__word-feedback-list">
-                        {scoreData.word_feedback.map((wordData, idx) => (
+                      <div className="speaking-result__words-list">
+                        {scoreData.words_to_improve.map((wordData, idx) => (
                           <div
                             key={idx}
-                            className="speaking-result__word-feedback-item"
+                            className="speaking-result__word-item"
                           >
-                            <div className="speaking-result__word-feedback-header">
-                              <span className="speaking-result__word-feedback-text">
+                            <div className="speaking-result__word-header">
+                              <span className="speaking-result__word-text">
                                 {wordData.word}
                               </span>
                               <span
-                                className="speaking-result__word-feedback-score"
+                                className="speaking-result__word-score"
                                 style={{
                                   color: getScoreColor(wordData.score * 10),
                                 }}
@@ -469,7 +423,7 @@ export default function SpeakingResult() {
                               </span>
                             </div>
                             {wordData.issues && wordData.issues.length > 0 && (
-                              <div className="speaking-result__word-feedback-issues">
+                              <div className="speaking-result__word-issues">
                                 <strong>Vấn đề:</strong>
                                 <ul>
                                   {wordData.issues.map((issue, issueIdx) => (
@@ -479,8 +433,8 @@ export default function SpeakingResult() {
                               </div>
                             )}
                             {wordData.tips && wordData.tips.length > 0 && (
-                              <div className="speaking-result__word-feedback-tips">
-                                <strong>Gợi ý:</strong>
+                              <div className="speaking-result__word-tips">
+                                <strong>Gợi ý cải thiện:</strong>
                                 <ul>
                                   {wordData.tips.map((tip, tipIdx) => (
                                     <li key={tipIdx}>{tip}</li>
@@ -493,6 +447,16 @@ export default function SpeakingResult() {
                       </div>
                     </div>
                   )}
+
+                {/* Improvement Summary */}
+                {scoreData.improvement_summary && (
+                  <div className="speaking-result__improvement-summary">
+                    <h3>Tóm tắt cải thiện</h3>
+                    <div className="speaking-result__improvement-text">
+                      {scoreData.improvement_summary}
+                    </div>
+                  </div>
+                )}
               </>
             )}
           </div>

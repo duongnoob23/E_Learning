@@ -11,6 +11,7 @@ const axios = require("axios");
 const path = require("path");
 const fs = require("fs");
 const { spawn } = require("child_process");
+const multiPAService = require("./multiPAService");
 
 // Lấy danh sách từ vựng theo topic + tìm kiếm
 exports.getWordsByTopic = async (filters) => {
@@ -1247,7 +1248,8 @@ exports.assessPronunciation = async (userId, wordId, audioFile) => {
         pronunciation_score: pronunciationScore.pronunciation_score,
         fluency_score: pronunciationScore.fluency_score,
         feedback: pronunciationScore.feedback,
-      },
+        words_to_improve: pronunciationScore.words_to_improve || [],
+      }
     };
   } catch (error) {
     console.error("Lỗi trong assessPronunciation:", error);
@@ -1335,29 +1337,37 @@ exports.getPronunciationStats = async (userId, topicId = null) => {
   }
 };
 
-// Gọi Python MultiPA service
+// Gọi Python MultiPA service (sử dụng spawn Python script)
 const callMultiPAService = async (audioFile, referenceText) => {
   try {
-    const formData = new FormData();
-    formData.append("audio", audioFile);
-    formData.append("reference_text", referenceText);
+    // Kiểm tra file tồn tại
+    if (!audioFile.path || !fs.existsSync(audioFile.path)) {
+      throw new Error("File audio không tồn tại");
+    }
 
-    const response = await axios.post(
-      process.env.MULTIPA_SERVICE_URL ||
-        "http://localhost:5001/api/pronunciation/assess",
-      formData,
-      { headers: formData.getHeaders() }
-    );
+    // Sử dụng multiPAService để gọi Python script
+    const result = await multiPAService.scoreSpeaking(audioFile.path, "en");
+
+    // Chỉ lấy các từ cần cải thiện (không lấy tất cả)
+    const wordsToImprove = (result.words_to_improve || []).map((w) => ({
+      word: w.word,
+      score: w.score,
+      issues: w.issues || [],
+      tips: w.tips || [],
+    }));
 
     return {
-      score: response.data.score || 0,
-      pronunciation_score: response.data.pronunciation_score || 0,
-      fluency_score: response.data.fluency_score || 0,
-      feedback: response.data.feedback || {},
+      score: result.score || 0,
+      pronunciation_score: result.pronunciation_score || 0,
+      fluency_score: result.fluency_score || 0,
+      prosody_score: result.prosody_score || 0,
+      transcript: result.transcript || "",
+      words_to_improve: wordsToImprove,
+      feedback: result.feedback || "",
     };
   } catch (error) {
-    console.error("Lỗi gọi MultiPA service:", error);
-    throw new Error("Không thể kết nối đến dịch vụ chấm điểm");
+    console.error("Lỗi gọi MultiPA service:", error.message);
+    throw new Error(error.message || "Không thể chấm điểm phát âm");
   }
 };
 

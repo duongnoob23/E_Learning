@@ -551,6 +551,171 @@
   transform: translateY(-2px);
 }
 
+/* Sentence Feedback */
+.writing-result__sentence-feedback {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.writing-result__sentence-feedback h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.writing-result__sentence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.writing-result__sentence-item {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.writing-result__sentence-item:hover {
+  border-color: #10b981;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+}
+
+.writing-result__sentence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.writing-result__sentence-number {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.writing-result__sentence-score {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.writing-result__sentence-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+.writing-result__sentence-issues,
+.writing-result__sentence-suggestions,
+.writing-result__sentence-vocab-tips,
+.writing-result__sentence-meaning-tips {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.writing-result__sentence-suggestions {
+  background: #d1fae5;
+  border-left: 3px solid #10b981;
+}
+
+.writing-result__sentence-vocab-tips {
+  background: #dbeafe;
+  border-left: 3px solid #3b82f6;
+}
+
+.writing-result__sentence-meaning-tips {
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+}
+
+.writing-result__sentence-issues strong,
+.writing-result__sentence-suggestions strong,
+.writing-result__sentence-vocab-tips strong,
+.writing-result__sentence-meaning-tips strong {
+  color: #047857;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.writing-result__sentence-issues ul,
+.writing-result__sentence-suggestions ul,
+.writing-result__sentence-vocab-tips ul,
+.writing-result__sentence-meaning-tips ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+.writing-result__sentence-issues li,
+.writing-result__sentence-suggestions li,
+.writing-result__sentence-vocab-tips li,
+.writing-result__sentence-meaning-tips li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+/* Overall Advice */
+.writing-result__overall-advice {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #fef3c7;
+  border-radius: 12px;
+  border: 2px solid #fbbf24;
+}
+
+.writing-result__overall-advice h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.writing-result__advice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.writing-result__advice-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.writing-result__advice-header:first-child {
+  margin-top: 0;
+}
+
+.writing-result__advice-bullet {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+  padding-left: 8px;
+}
+
+.writing-result__advice-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .writing-result {
     padding: 16px;

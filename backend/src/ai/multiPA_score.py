@@ -15,7 +15,6 @@ if sys.stdout.encoding != 'utf-8':
 
 import torch
 import torchaudio
-import librosa
 import numpy as np
 from pathlib import Path
 
@@ -99,45 +98,89 @@ def analyze_word_pronunciation(transcript):
 
 def analyze_audio_features(audio_path):
     """
-    Analyze audio features for pronunciation assessment
+    Analyze audio features for pronunciation assessment using torchaudio
     Returns: fluency_score, prosody_score (0-10 scale)
     """
     try:
-        # Load audio
-        y, sr = librosa.load(audio_path, sr=16000)
+        # Load audio using torchaudio
+        waveform, sr = torchaudio.load(audio_path)
 
-        # Calculate features
-        # 1. Fluency: based on speech rate and pauses
-        # Detect silence/pauses
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        S_db = librosa.power_to_db(S, ref=np.max)
+        # Resample to 16kHz if needed
+        if sr != 16000:
+            resampler = torchaudio.transforms.Resample(orig_freq=sr, new_freq=16000)
+            waveform = resampler(waveform)
+            sr = 16000
 
-        # Calculate energy
-        energy = np.sqrt(np.mean(S_db ** 2, axis=0))
-        threshold = np.mean(energy) - np.std(energy)
+        # Convert to mono if stereo
+        if waveform.shape[0] > 1:
+            waveform = torch.mean(waveform, dim=0, keepdim=True)
 
-        # Count pauses (frames below threshold)
+        # Convert to numpy for analysis
+        audio = waveform.squeeze().numpy()
+
+        # === FLUENCY ANALYSIS ===
+        # Calculate frame-level energy (RMS)
+        frame_length = int(0.025 * sr)  # 25ms frames
+        hop_length = int(0.010 * sr)    # 10ms hop
+
+        # Pad audio for frame-based analysis
+        num_frames = 1 + (len(audio) - frame_length) // hop_length
+        if num_frames <= 0:
+            return 5.0, 5.0
+
+        energy = []
+        for i in range(num_frames):
+            start = i * hop_length
+            end = start + frame_length
+            frame = audio[start:end]
+            rms = np.sqrt(np.mean(frame ** 2))
+            energy.append(rms)
+
+        energy = np.array(energy)
+
+        # Detect pauses (energy below threshold)
+        threshold = np.mean(energy) * 0.3  # 30% of mean energy
         pauses = np.sum(energy < threshold)
         total_frames = len(energy)
         pause_ratio = pauses / total_frames if total_frames > 0 else 0
 
         # Fluency score: lower pause ratio = higher fluency
-        fluency_score = max(0, min(10, 10 * (1 - pause_ratio)))
+        # Typical pause ratio: 0.2-0.4 is normal, >0.5 is choppy
+        fluency_score = max(0, min(10, 10 * (1 - pause_ratio * 1.5)))
 
-        # 2. Prosody: based on pitch variation
-        # Extract pitch using librosa
-        f0 = librosa.yin(y, fmin=50, fmax=500)
+        # === PROSODY ANALYSIS ===
+        # Simple pitch variation estimation using zero-crossing rate
+        # Higher variation = more expressive prosody
+        zcr = []
+        for i in range(num_frames):
+            start = i * hop_length
+            end = start + frame_length
+            frame = audio[start:end]
+            # Count zero crossings
+            signs = np.sign(frame)
+            signs[signs == 0] = 1
+            crossings = np.sum(np.abs(np.diff(signs)) / 2)
+            zcr.append(crossings)
 
-        # Calculate pitch variation (standard deviation of non-zero pitches)
-        valid_f0 = f0[f0 > 0]
-        if len(valid_f0) > 0:
-            pitch_variation = np.std(valid_f0) / np.mean(valid_f0) if np.mean(valid_f0) > 0 else 0
-            # Normalize to 0-10 scale
-            prosody_score = max(0, min(10, pitch_variation * 5))
+        zcr = np.array(zcr)
+
+        # Calculate variation in speaking rate/pitch
+        if len(zcr) > 1:
+            zcr_variation = np.std(zcr) / (np.mean(zcr) + 1e-6)
+            # Normalize: 0.3-0.8 is good variation
+            prosody_score = max(0, min(10, zcr_variation * 12))
         else:
             prosody_score = 5.0
 
-        return fluency_score, prosody_score
+        # Adjust prosody based on duration (very short = lower prosody)
+        duration = len(audio) / sr
+        if duration < 1.0:
+            prosody_score *= 0.7
+        elif duration < 2.0:
+            prosody_score *= 0.85
+
+        return round(fluency_score, 2), round(prosody_score, 2)
+
     except Exception as e:
         # Return default scores if analysis fails
         return 5.0, 5.0
@@ -242,15 +285,9 @@ def score_speaking_audio(audio_path, language="en"):
             "pronunciation_score": round(pronunciation_score_100, 2),
             "fluency_score": round(fluency_score_100, 2),
             "prosody_score": round(prosody_score_100, 2),
-            "word_accuracy": word_analysis,
-            "word_feedback": word_feedback,
+            "words_to_improve": word_feedback,  # Chỉ các từ cần cải thiện
             "transcript": transcript,
-            "feedback": f"Pronunciation: {pronunciation_score:.1f}/10, Fluency: {fluency_score:.1f}/10, Prosody: {prosody_score:.1f}/10",
-            "detailed_feedback": {
-                "pronunciation": f"Accuracy score: {pronunciation_score:.1f}/10. Words needing improvement: {', '.join([w['word'] for w in word_feedback[:3]])}",
-                "fluency": f"Fluency score: {fluency_score:.1f}/10",
-                "prosody": f"Prosody score: {prosody_score:.1f}/10"
-            }
+            "feedback": f"Pronunciation: {pronunciation_score:.1f}/10, Fluency: {fluency_score:.1f}/10, Prosody: {prosody_score:.1f}/10"
         }
     except Exception as e:
         return {
@@ -263,6 +300,270 @@ def score_speaking_audio(audio_path, language="en"):
             "feedback": f"Error scoring: {str(e)}",
             "detailed_feedback": {}
         }
+
+def get_word_improvements(sentence_lower, words):
+    """
+    Suggest better vocabulary choices for common/weak words
+    Returns: list of vocabulary improvement suggestions
+    """
+    vocab_improvements = []
+
+    # Từ phổ thông -> từ nâng cao hơn
+    word_upgrades = {
+        'good': ['excellent', 'outstanding', 'remarkable', 'superb'],
+        'bad': ['poor', 'inadequate', 'unsatisfactory', 'detrimental'],
+        'big': ['significant', 'substantial', 'considerable', 'massive'],
+        'small': ['minor', 'minimal', 'slight', 'modest'],
+        'nice': ['pleasant', 'delightful', 'enjoyable', 'agreeable'],
+        'happy': ['delighted', 'thrilled', 'elated', 'content'],
+        'sad': ['disappointed', 'dismayed', 'dejected', 'sorrowful'],
+        'important': ['crucial', 'essential', 'vital', 'significant'],
+        'interesting': ['fascinating', 'intriguing', 'compelling', 'captivating'],
+        'very': ['extremely', 'remarkably', 'incredibly', 'exceptionally'],
+        'really': ['truly', 'genuinely', 'certainly', 'undoubtedly'],
+        'a lot': ['numerous', 'substantial', 'considerable', 'extensive'],
+        'thing': ['aspect', 'element', 'factor', 'component'],
+        'things': ['aspects', 'elements', 'factors', 'components'],
+        'stuff': ['materials', 'items', 'content', 'elements'],
+        'get': ['obtain', 'acquire', 'receive', 'achieve'],
+        'got': ['obtained', 'acquired', 'received', 'achieved'],
+        'make': ['create', 'develop', 'establish', 'produce'],
+        'made': ['created', 'developed', 'established', 'produced'],
+        'show': ['demonstrate', 'illustrate', 'indicate', 'reveal'],
+        'say': ['state', 'express', 'mention', 'assert'],
+        'said': ['stated', 'expressed', 'mentioned', 'asserted'],
+        'think': ['believe', 'consider', 'suppose', 'reckon'],
+        'use': ['utilize', 'employ', 'apply', 'implement'],
+        'help': ['assist', 'aid', 'support', 'facilitate'],
+        'need': ['require', 'necessitate', 'demand'],
+        'want': ['desire', 'wish', 'aspire', 'seek'],
+        'like': ['prefer', 'appreciate', 'enjoy', 'favor'],
+        'hard': ['challenging', 'difficult', 'demanding', 'arduous'],
+        'easy': ['simple', 'straightforward', 'effortless', 'uncomplicated'],
+        'fast': ['rapid', 'swift', 'quick', 'prompt'],
+        'slow': ['gradual', 'unhurried', 'leisurely', 'steady'],
+        'old': ['ancient', 'traditional', 'vintage', 'aged'],
+        'new': ['modern', 'contemporary', 'innovative', 'novel'],
+        'many': ['numerous', 'multiple', 'various', 'several'],
+        'much': ['considerable', 'substantial', 'extensive', 'significant'],
+        'some': ['certain', 'particular', 'specific', 'several'],
+        'give': ['provide', 'offer', 'present', 'deliver'],
+        'look': ['appear', 'seem', 'observe', 'examine'],
+        'put': ['place', 'position', 'set', 'situate'],
+        'also': ['furthermore', 'moreover', 'additionally', 'besides'],
+        'but': ['however', 'nevertheless', 'yet', 'although'],
+        'so': ['therefore', 'consequently', 'thus', 'hence'],
+        'because': ['since', 'as', 'due to the fact that', 'owing to'],
+    }
+
+    for word in words:
+        word_l = word.lower().strip('.,!?;:')
+        if word_l in word_upgrades:
+            alternatives = word_upgrades[word_l]
+            vocab_improvements.append({
+                'original': word_l,
+                'alternatives': alternatives[:3],
+                'suggestion': f"Thay '{word_l}' bằng từ nâng cao hơn: {', '.join(alternatives[:3])}"
+            })
+
+    return vocab_improvements
+
+def analyze_sentence_meaning(sentence, sentence_lower):
+    """
+    Analyze sentence for meaning and structure improvements
+    Returns: list of meaning/structure suggestions
+    """
+    meaning_suggestions = []
+
+    # Check for vague expressions
+    vague_patterns = [
+        ('it is', 'Tránh dùng "it is" mở đầu. Thử viết cụ thể hơn về chủ ngữ.'),
+        ('there is', 'Câu với "there is/are" thường yếu. Hãy dùng chủ ngữ cụ thể hơn.'),
+        ('there are', 'Câu với "there is/are" thường yếu. Hãy dùng chủ ngữ cụ thể hơn.'),
+        ('i think that', '"I think" có thể bỏ đi vì bài viết đã là ý kiến của bạn.'),
+        ('in my opinion', 'Có thể viết ngắn gọn hơn bằng cách bỏ "in my opinion".'),
+        ('as we all know', 'Tránh cụm từ sáo rỗng này. Đi thẳng vào vấn đề.'),
+        ('it goes without saying', 'Cụm từ này dài dòng. Nếu hiển nhiên thì không cần nói.'),
+    ]
+
+    for pattern, suggestion in vague_patterns:
+        if pattern in sentence_lower:
+            meaning_suggestions.append({
+                'type': 'structure',
+                'issue': f'Cấu trúc "{pattern}" có thể cải thiện',
+                'suggestion': suggestion
+            })
+
+    # Check for weak sentence starters
+    weak_starters = ['and', 'but', 'so', 'or', 'also']
+    first_word = sentence.split()[0].lower() if sentence.split() else ''
+    if first_word in weak_starters:
+        meaning_suggestions.append({
+            'type': 'structure',
+            'issue': f'Câu bắt đầu bằng "{first_word}" - không phù hợp trong văn viết trang trọng',
+            'suggestion': 'Dùng từ nối trang trọng hơn: However, Furthermore, Moreover, Therefore, Additionally...'
+        })
+
+    # Check for passive voice (basic detection)
+    passive_indicators = [' is being ', ' are being ', ' was being ', ' were being ',
+                         ' has been ', ' have been ', ' had been ', ' will be ',
+                         ' is done ', ' was done ', ' are done ', ' were done ']
+    for indicator in passive_indicators:
+        if indicator in sentence_lower:
+            meaning_suggestions.append({
+                'type': 'voice',
+                'issue': 'Câu có thể đang dùng thể bị động',
+                'suggestion': 'Xem xét đổi sang thể chủ động để câu mạnh mẽ và trực tiếp hơn.'
+            })
+            break
+
+    # Check sentence variety - if too simple
+    words = sentence.split()
+    if 3 <= len(words) <= 6 and ',' not in sentence:
+        meaning_suggestions.append({
+            'type': 'complexity',
+            'issue': 'Câu đơn giản, thiếu chi tiết',
+            'suggestion': 'Thêm mệnh đề phụ, ví dụ hoặc giải thích để câu phong phú hơn.'
+        })
+
+    return meaning_suggestions
+
+def analyze_sentence(sentence, sentence_index):
+    """
+    Analyze a single sentence for issues and provide feedback
+    Returns: dict with sentence analysis
+    """
+    import re
+
+    sentence = sentence.strip()
+    if not sentence:
+        return None
+
+    issues = []
+    suggestions = []
+    vocabulary_tips = []
+    meaning_tips = []
+    score = 10.0
+
+    words = sentence.split()
+    sentence_lower = sentence.lower()
+
+    # 1. Check sentence length
+    if len(words) < 3:
+        issues.append("Câu quá ngắn")
+        suggestions.append("Mở rộng câu với thêm chi tiết hoặc giải thích")
+        score -= 2
+    elif len(words) > 35:
+        issues.append("Câu quá dài, khó đọc")
+        suggestions.append("Chia thành 2-3 câu ngắn hơn để dễ hiểu")
+        score -= 1.5
+
+    # 2. Check capitalization
+    if sentence and sentence[0].islower():
+        issues.append("Câu không bắt đầu bằng chữ hoa")
+        suggestions.append("Luôn viết hoa chữ cái đầu câu")
+        score -= 1
+
+    # 3. Check for lowercase "i" (should be "I")
+    i_pattern = r'\bi\b'
+    i_matches = re.findall(i_pattern, sentence)
+    if i_matches:
+        issues.append(f"Đại từ 'i' phải viết hoa thành 'I' ({len(i_matches)} lần)")
+        suggestions.append("Đại từ nhân xưng 'I' luôn phải viết hoa trong tiếng Anh")
+        score -= len(i_matches) * 0.5
+
+    # 4. Check for informal language
+    informal_words = {
+        'gonna': 'going to',
+        'wanna': 'want to',
+        'gotta': 'got to',
+        'kinda': 'kind of',
+        'sorta': 'sort of',
+        'dunno': "don't know",
+        'cuz': 'because',
+        'cos': 'because',
+        'tho': 'though',
+        'thru': 'through'
+    }
+
+    for informal, formal in informal_words.items():
+        if informal in sentence_lower:
+            issues.append(f"Từ '{informal}' không trang trọng")
+            suggestions.append(f"Thay '{informal}' bằng '{formal}' trong văn viết")
+            score -= 0.5
+
+    # 5. Check for common spelling errors
+    spelling_errors = {
+        'recieve': 'receive',
+        'occured': 'occurred',
+        'seperate': 'separate',
+        'definately': 'definitely',
+        'untill': 'until',
+        'wich': 'which',
+        'thier': 'their',
+        'becuase': 'because',
+        'teh': 'the',
+        'adn': 'and',
+        'taht': 'that',
+        'wiht': 'with'
+    }
+
+    for wrong, correct in spelling_errors.items():
+        if wrong in sentence_lower:
+            issues.append(f"Lỗi chính tả: '{wrong}'")
+            suggestions.append(f"Sửa '{wrong}' thành '{correct}'")
+            score -= 1
+
+    # 6. Check for repeated words
+    for i in range(len(words) - 1):
+        if words[i].lower() == words[i+1].lower() and words[i].lower() not in ['very', 'had', 'that']:
+            issues.append(f"Từ '{words[i]}' bị lặp liên tiếp")
+            suggestions.append("Xóa từ lặp hoặc thay thế bằng từ đồng nghĩa")
+            score -= 0.5
+            break
+
+    # 7. Check punctuation at end
+    if sentence and sentence[-1] not in '.!?':
+        issues.append("Câu thiếu dấu câu kết thúc")
+        suggestions.append("Thêm dấu chấm (.), chấm hỏi (?), hoặc chấm than (!) cuối câu")
+        score -= 0.5
+
+    # 8. Check for run-on sentence patterns
+    run_on_patterns = [' and and ', ' but but ', ' or or ', ' so so ']
+    for pattern in run_on_patterns:
+        if pattern in sentence_lower:
+            issues.append("Câu có dấu hiệu run-on sentence")
+            suggestions.append("Kiểm tra và sửa cấu trúc câu, tránh lặp liên từ")
+            score -= 1
+            break
+
+    # 9. Get vocabulary improvement suggestions
+    vocab_improvements = get_word_improvements(sentence_lower, words)
+    if vocab_improvements:
+        vocabulary_tips = [v['suggestion'] for v in vocab_improvements[:3]]  # Top 3
+        score -= 0.3 * len(vocab_improvements[:3])  # Slight penalty for basic words
+
+    # 10. Get meaning/structure suggestions
+    meaning_analysis = analyze_sentence_meaning(sentence, sentence_lower)
+    if meaning_analysis:
+        meaning_tips = [m['suggestion'] for m in meaning_analysis[:2]]  # Top 2
+        score -= 0.2 * len(meaning_analysis[:2])
+
+    score = max(0, min(10, score))
+
+    # Only return if there are improvements needed
+    has_issues = len(issues) > 0 or len(vocabulary_tips) > 0 or len(meaning_tips) > 0
+
+    return {
+        "index": sentence_index + 1,
+        "sentence": sentence,
+        "score": round(score, 1),
+        "issues": issues,
+        "suggestions": suggestions,
+        "vocabulary_tips": vocabulary_tips,
+        "meaning_tips": meaning_tips,
+        "needs_improvement": has_issues
+    }
 
 def analyze_writing(text):
     """
@@ -277,12 +578,22 @@ def analyze_writing(text):
                 "coherence_score": 0,
                 "task_completion_score": 0,
                 "spelling_score": 0,
-                "issues": ["No text provided"]
+                "issues": ["No text provided"],
+                "sentence_feedback": []
             }
 
         words = text.split()
-        sentences = [s.strip() for s in text.split('.') if s.strip()]
+        # Tách câu tốt hơn với regex
+        import re
+        sentences = [s.strip() for s in re.split(r'[.!?]+', text) if s.strip()]
         text_lower = text.lower()
+
+        # Phân tích từng câu
+        sentence_feedback = []
+        for i, sent in enumerate(sentences):
+            analysis = analyze_sentence(sent, i)
+            if analysis:
+                sentence_feedback.append(analysis)
 
         # 1. Grammar Score (0-10)
         grammar_score = 8.0
@@ -421,6 +732,9 @@ def analyze_writing(text):
         if completion_issues:
             all_issues.extend([f"[Task Completion] {issue}" for issue in completion_issues])
 
+        # Lọc chỉ các câu cần cải thiện
+        sentences_to_improve = [s for s in sentence_feedback if s.get('needs_improvement', False)]
+
         return {
             "grammar_score": round(grammar_score, 1),
             "vocabulary_score": round(vocabulary_score, 1),
@@ -432,6 +746,7 @@ def analyze_writing(text):
             "coherence_issues": coherence_issues,
             "completion_issues": completion_issues,
             "all_issues": all_issues,
+            "sentence_feedback": sentences_to_improve,  # Chỉ các câu cần cải thiện
             "text_stats": {
                 "word_count": total_words,
                 "sentence_count": len(sentences),
@@ -446,8 +761,194 @@ def analyze_writing(text):
             "coherence_score": 0,
             "task_completion_score": 0,
             "spelling_score": 0,
+            "sentence_feedback": [],
             "error": str(e)
         }
+
+def _analyze_content(text, text_stats):
+    """
+    Analyze the content quality and meaning of the essay
+    Returns: dict with content analysis
+    """
+    text_lower = text.lower()
+    sentences = [s.strip() for s in text.split('.') if s.strip()]
+
+    content_feedback = {
+        "strengths": [],
+        "weaknesses": [],
+        "content_suggestions": []
+    }
+
+    word_count = text_stats.get("word_count", 0)
+    sentence_count = text_stats.get("sentence_count", 0)
+    diversity_ratio = text_stats.get("diversity_ratio", 0)
+
+    # 1. Check for introduction indicators
+    intro_phrases = ['first', 'firstly', 'to begin', 'introduction', 'in this essay',
+                    'i will discuss', 'this essay will', 'the purpose of']
+    has_intro = any(phrase in text_lower for phrase in intro_phrases)
+    if has_intro:
+        content_feedback["strengths"].append("✓ Có phần mở bài rõ ràng")
+    elif word_count > 50:
+        content_feedback["weaknesses"].append("Thiếu phần mở bài giới thiệu chủ đề")
+        content_feedback["content_suggestions"].append("Thêm câu mở đầu giới thiệu vấn đề và định hướng bài viết")
+
+    # 2. Check for conclusion indicators
+    conclusion_phrases = ['in conclusion', 'to conclude', 'finally', 'in summary',
+                         'to sum up', 'overall', 'in the end', 'therefore']
+    has_conclusion = any(phrase in text_lower for phrase in conclusion_phrases)
+    if has_conclusion:
+        content_feedback["strengths"].append("✓ Có phần kết luận")
+    elif word_count > 80:
+        content_feedback["weaknesses"].append("Thiếu phần kết luận tóm tắt ý chính")
+        content_feedback["content_suggestions"].append("Thêm đoạn kết tóm tắt luận điểm và đưa ra nhận định cuối cùng")
+
+    # 3. Check for examples/evidence
+    example_phrases = ['for example', 'for instance', 'such as', 'like', 'specifically',
+                      'to illustrate', 'as an example', 'namely']
+    has_examples = any(phrase in text_lower for phrase in example_phrases)
+    if has_examples:
+        content_feedback["strengths"].append("✓ Có ví dụ minh họa")
+    elif word_count > 60:
+        content_feedback["weaknesses"].append("Thiếu ví dụ cụ thể để minh họa luận điểm")
+        content_feedback["content_suggestions"].append("Thêm ví dụ thực tế hoặc dẫn chứng để bài viết thuyết phục hơn")
+
+    # 4. Check for reasoning/explanation
+    reasoning_phrases = ['because', 'since', 'due to', 'as a result', 'therefore',
+                        'consequently', 'this means', 'this shows', 'the reason']
+    has_reasoning = any(phrase in text_lower for phrase in reasoning_phrases)
+    if has_reasoning:
+        content_feedback["strengths"].append("✓ Có giải thích lý do/nguyên nhân")
+    elif word_count > 50:
+        content_feedback["content_suggestions"].append("Giải thích rõ hơn lý do đằng sau các luận điểm của bạn")
+
+    # 5. Check for contrast/comparison
+    contrast_phrases = ['however', 'on the other hand', 'in contrast', 'although',
+                       'while', 'whereas', 'but', 'nevertheless', 'despite']
+    has_contrast = any(phrase in text_lower for phrase in contrast_phrases)
+    if has_contrast:
+        content_feedback["strengths"].append("✓ Có đối chiếu/so sánh quan điểm")
+    elif word_count > 80:
+        content_feedback["content_suggestions"].append("Xem xét thêm góc nhìn đối lập để bài viết đa chiều hơn")
+
+    # 6. Analyze paragraph structure (basic)
+    paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+    if len(paragraphs) >= 3:
+        content_feedback["strengths"].append("✓ Bài viết được chia đoạn rõ ràng")
+    elif word_count > 100:
+        content_feedback["weaknesses"].append("Bài viết chưa được chia đoạn hợp lý")
+        content_feedback["content_suggestions"].append("Chia bài thành các đoạn: Mở bài, Thân bài (1-2 đoạn), Kết luận")
+
+    # 7. Check vocabulary diversity for content richness
+    if diversity_ratio >= 0.7:
+        content_feedback["strengths"].append("✓ Từ vựng đa dạng, phong phú")
+    elif diversity_ratio < 0.5:
+        content_feedback["weaknesses"].append("Từ vựng lặp lại nhiều, thiếu đa dạng")
+        content_feedback["content_suggestions"].append("Sử dụng từ đồng nghĩa để tránh lặp từ và làm phong phú bài viết")
+
+    # 8. Check sentence variety
+    if sentence_count > 0:
+        avg_words_per_sentence = word_count / sentence_count
+        if 12 <= avg_words_per_sentence <= 20:
+            content_feedback["strengths"].append("✓ Độ dài câu hợp lý, dễ đọc")
+        elif avg_words_per_sentence < 10:
+            content_feedback["weaknesses"].append("Các câu quá ngắn, thiếu chi tiết")
+            content_feedback["content_suggestions"].append("Phát triển các câu với thêm thông tin, mệnh đề phụ")
+        elif avg_words_per_sentence > 25:
+            content_feedback["weaknesses"].append("Các câu quá dài, khó theo dõi")
+            content_feedback["content_suggestions"].append("Chia câu dài thành nhiều câu ngắn hơn")
+
+    # 9. Check for personal opinion/stance
+    opinion_phrases = ['i believe', 'i think', 'in my opinion', 'i agree', 'i disagree',
+                      'from my perspective', 'personally', 'my view']
+    has_opinion = any(phrase in text_lower for phrase in opinion_phrases)
+    if has_opinion:
+        content_feedback["strengths"].append("✓ Thể hiện quan điểm cá nhân rõ ràng")
+    elif word_count > 70:
+        content_feedback["content_suggestions"].append("Thể hiện rõ quan điểm của bản thân về vấn đề")
+
+    return content_feedback
+
+def _generate_overall_advice(analysis, text, text_stats):
+    """Generate overall advice for the entire essay including content evaluation"""
+    advice = []
+
+    grammar_score = analysis.get("grammar_score", 0)
+    vocabulary_score = analysis.get("vocabulary_score", 0)
+    coherence_score = analysis.get("coherence_score", 0)
+    task_score = analysis.get("task_completion_score", 0)
+    spelling_score = analysis.get("spelling_score", 0)
+
+    # Get content analysis
+    content_feedback = _analyze_content(text, text_stats)
+
+    # Start with overall assessment
+    avg_score = (grammar_score + vocabulary_score + coherence_score + task_score + spelling_score) / 5
+    if avg_score >= 8:
+        advice.append("🌟 Bài viết xuất sắc! Nội dung và hình thức đều tốt.")
+    elif avg_score >= 6:
+        advice.append("👍 Bài viết ở mức khá. Với một vài cải thiện sẽ hoàn thiện hơn.")
+    else:
+        advice.append("📖 Bài viết cần được cải thiện đáng kể cả về nội dung và hình thức.")
+
+    # Add content strengths
+    if content_feedback["strengths"]:
+        advice.append("\n📌 ĐIỂM MẠNH VỀ NỘI DUNG:")
+        advice.extend(content_feedback["strengths"])
+
+    # Add content weaknesses
+    if content_feedback["weaknesses"]:
+        advice.append("\n⚠️ ĐIỂM CẦN CẢI THIỆN VỀ NỘI DUNG:")
+        advice.extend(content_feedback["weaknesses"])
+
+    # Add content suggestions
+    if content_feedback["content_suggestions"]:
+        advice.append("\n💡 GỢI Ý CẢI THIỆN NỘI DUNG:")
+        for i, suggestion in enumerate(content_feedback["content_suggestions"], 1):
+            advice.append(f"  {i}. {suggestion}")
+
+    # Add form/language advice
+    advice.append("\n📝 ĐÁNH GIÁ HÌNH THỨC:")
+
+    # Grammar advice
+    if grammar_score < 6:
+        advice.append("• Ngữ pháp: Cần cải thiện nhiều. Ôn lại cấu trúc câu và thì động từ.")
+    elif grammar_score < 8:
+        advice.append("• Ngữ pháp: Khá tốt, còn một số lỗi nhỏ cần sửa.")
+    else:
+        advice.append("• Ngữ pháp: Tốt ✓")
+
+    # Vocabulary advice
+    if vocabulary_score < 6:
+        advice.append("• Từ vựng: Còn hạn chế. Học thêm từ đồng nghĩa và cụm từ học thuật.")
+    elif vocabulary_score < 8:
+        advice.append("• Từ vựng: Trung bình. Thử dùng từ vựng đa dạng và nâng cao hơn.")
+    else:
+        advice.append("• Từ vựng: Phong phú ✓")
+
+    # Coherence advice
+    if coherence_score < 6:
+        advice.append("• Liên kết: Thiếu. Dùng từ nối (however, therefore, moreover...) để kết nối ý.")
+    elif coherence_score < 8:
+        advice.append("• Liên kết: Cần cải thiện. Sắp xếp ý theo trình tự logic hơn.")
+    else:
+        advice.append("• Liên kết: Mạch lạc ✓")
+
+    # Task completion advice
+    if task_score < 6:
+        advice.append("• Hoàn thành: Bài viết quá ngắn. Phát triển ý với ví dụ và giải thích.")
+    elif task_score < 8:
+        advice.append("• Hoàn thành: Cần mở rộng thêm với dẫn chứng và phân tích.")
+    else:
+        advice.append("• Hoàn thành: Đầy đủ ✓")
+
+    # Spelling advice
+    if spelling_score < 8:
+        advice.append("• Chính tả: Có lỗi. Kiểm tra lại từng từ trước khi nộp bài.")
+    else:
+        advice.append("• Chính tả: Tốt ✓")
+
+    return advice
 
 def score_writing(text, language="en"):
     """
@@ -463,7 +964,8 @@ def score_writing(text, language="en"):
             "task_completion_score": 0,
             "spelling_score": 0,
             "feedback": "No text provided for assessment",
-            "detailed_feedback": {}
+            "sentence_feedback": [],
+            "overall_advice": []
         }
 
     # Analyze writing
@@ -488,47 +990,17 @@ def score_writing(text, language="en"):
     task_100 = (analysis.get("task_completion_score", 0) / 10) * 100
     spelling_100 = (analysis.get("spelling_score", 0) / 10) * 100
 
-    # Build feedback
-    feedback_parts = [
-        f"Grammar: {analysis.get('grammar_score', 0):.1f}/10",
-        f"Vocabulary: {analysis.get('vocabulary_score', 0):.1f}/10",
-        f"Coherence: {analysis.get('coherence_score', 0):.1f}/10",
-        f"Task Completion: {analysis.get('task_completion_score', 0):.1f}/10",
-        f"Spelling: {analysis.get('spelling_score', 0):.1f}/10"
-    ]
+    # Build feedback summary
+    feedback = f"Điểm tổng: {overall_score:.1f}/10 | Grammar: {analysis.get('grammar_score', 0):.1f}/10, Vocabulary: {analysis.get('vocabulary_score', 0):.1f}/10, Coherence: {analysis.get('coherence_score', 0):.1f}/10, Task: {analysis.get('task_completion_score', 0):.1f}/10, Spelling: {analysis.get('spelling_score', 0):.1f}/10"
 
-    # Collect all issues with details
-    all_issues = analysis.get("all_issues", [])
+    # Get sentence feedback (only sentences needing improvement)
+    sentence_feedback = analysis.get("sentence_feedback", [])
 
-    # Build detailed feedback with suggestions
-    detailed_feedback = {
-        "grammar": {
-            "score": f"{analysis.get('grammar_score', 0):.1f}/10",
-            "issues": analysis.get("grammar_issues", []),
-            "suggestions": _get_grammar_suggestions(analysis.get("grammar_issues", []))
-        },
-        "vocabulary": {
-            "score": f"{analysis.get('vocabulary_score', 0):.1f}/10",
-            "diversity_ratio": analysis.get("text_stats", {}).get("diversity_ratio", 0),
-            "suggestions": "Try using more varied and sophisticated vocabulary"
-        },
-        "coherence": {
-            "score": f"{analysis.get('coherence_score', 0):.1f}/10",
-            "issues": analysis.get("coherence_issues", []),
-            "suggestions": _get_coherence_suggestions(analysis.get("coherence_issues", []))
-        },
-        "task_completion": {
-            "score": f"{analysis.get('task_completion_score', 0):.1f}/10",
-            "word_count": analysis.get("text_stats", {}).get("word_count", 0),
-            "issues": analysis.get("completion_issues", []),
-            "suggestions": "Expand your response to meet the minimum word count requirement"
-        },
-        "spelling": {
-            "score": f"{analysis.get('spelling_score', 0):.1f}/10",
-            "errors": analysis.get("spelling_issues", []),
-            "suggestions": "Proofread carefully for spelling errors"
-        }
-    }
+    # Get text stats for content analysis
+    text_stats = analysis.get("text_stats", {})
+
+    # Generate overall advice for the essay including content evaluation
+    overall_advice = _generate_overall_advice(analysis, text, text_stats)
 
     return {
         "score": round(overall_score_100, 2),
@@ -537,35 +1009,11 @@ def score_writing(text, language="en"):
         "coherence_score": round(coherence_100, 2),
         "task_completion_score": round(task_100, 2),
         "spelling_score": round(spelling_100, 2),
-        "feedback": ", ".join(feedback_parts),
-        "detailed_feedback": detailed_feedback,
-        "issues": all_issues[:10],  # Top 10 issues
+        "feedback": feedback,
+        "sentence_feedback": sentence_feedback,  # Chi tiết từng câu cần cải thiện
+        "overall_advice": overall_advice,  # Lời khuyên tổng thể cho cả bài
         "text_stats": analysis.get("text_stats", {})
     }
-
-def _get_grammar_suggestions(grammar_issues):
-    """Generate grammar improvement suggestions"""
-    suggestions = []
-    for issue in grammar_issues:
-        if "lowercase 'i'" in issue:
-            suggestions.append("Always capitalize the pronoun 'I'")
-        elif "informal" in issue:
-            suggestions.append("Use formal language in academic writing")
-        elif "Fragment" in issue:
-            suggestions.append("Ensure each sentence has a subject and verb")
-    return suggestions if suggestions else ["Review sentence structure and grammar rules"]
-
-def _get_coherence_suggestions(coherence_issues):
-    """Generate coherence improvement suggestions"""
-    suggestions = []
-    for issue in coherence_issues:
-        if "one sentence" in issue:
-            suggestions.append("Develop your ideas with multiple sentences")
-        elif "transition" in issue:
-            suggestions.append("Use transition words to connect ideas (however, therefore, moreover, etc.)")
-        elif "short sentences" in issue:
-            suggestions.append("Combine short sentences to improve flow")
-    return suggestions if suggestions else ["Improve the logical flow of your writing"]
 
 def main():
     """Main entry point for command-line usage"""
@@ -604,4 +1052,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -1,3 +1,5 @@
+// Dùng adminAxiosInstance cho admin APIs, client axiosInstance cho client APIs
+import adminAxiosInstance from "../../../api/adminAuthApi";
 import axiosInstance from "../../../../lib/axiosInstance";
 
 export const coursesAdminApi = {
@@ -17,7 +19,7 @@ export const coursesAdminApi = {
 
     const queryString = queryParams.toString();
     const url = `/admin/courses${queryString ? `?${queryString}` : ""}`;
-    return (await axiosInstance.get(url)).data;
+    return (await adminAxiosInstance.get(url)).data;
   },
 
   // Lấy danh sách khóa học từ client API (backup)
@@ -47,17 +49,17 @@ export const coursesAdminApi = {
 
   // Duyệt khóa học
   approveCourse: async (courseId, payload) =>
-    (await axiosInstance.patch(`/admin/courses/${courseId}/approve`, payload))
+    (await adminAxiosInstance.patch(`/admin/courses/${courseId}/approve`, payload))
       .data,
 
   // Từ chối khóa học
   rejectCourse: async (courseId, payload) =>
-    (await axiosInstance.patch(`/admin/courses/${courseId}/reject`, payload))
+    (await adminAxiosInstance.patch(`/admin/courses/${courseId}/reject`, payload))
       .data,
 
   // Xóa/Archive khóa học
   removeCourse: async (courseId) =>
-    (await axiosInstance.delete(`/admin/courses/${courseId}`)).data,
+    (await adminAxiosInstance.delete(`/admin/courses/${courseId}`)).data,
 
   // ==================== ADMIN INSTRUCTORS ==================== //
 
@@ -71,7 +73,7 @@ export const coursesAdminApi = {
 
     const queryString = queryParams.toString();
     const url = `/admin/instructors${queryString ? `?${queryString}` : ""}`;
-    return (await axiosInstance.get(url)).data;
+    return (await adminAxiosInstance.get(url)).data;
   },
 
   // ==================== INSTRUCTOR COURSES ==================== //

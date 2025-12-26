@@ -16,12 +16,36 @@ export const API_ENDPOINTS = {
 
   // Admin endpoints
   ADMIN: {
+    // Admin Auth
+    AUTH: {
+      LOGIN: "/admin/auth/login",
+      LOGOUT: "/admin/auth/logout",
+      REFRESH: "/admin/auth/refresh",
+      ME: "/admin/auth/me",
+    },
+    // Admin Dashboard
     DASHBOARD: "/admin/dashboard",
     DASHBOARD_STATS: "/admin/dashboard/stats",
     LEARNING_ANALYTICS: "/admin/dashboard/analytics",
+    // Admin Management
     USERS: "/admin/users",
     FLASHCARDS: "/admin/flashcards",
     STUDY_SESSIONS: "/admin/study-sessions",
+    // Admin Exam
+    EXAM: {
+      TESTS: "/admin/exam/tests",
+      TEST_DETAIL: (testId) => `/admin/exam/tests/detail/${testId}`,
+      CREATE_TEST: "/admin/exam/tests",
+      UPDATE_TEST: (testId) => `/admin/exam/tests/${testId}`,
+      DELETE_TEST: (testId) => `/admin/exam/tests/${testId}`,
+      ADD_PART: (testId) => `/admin/exam/tests/${testId}/parts`,
+      ADD_QUESTION: (partId) => `/admin/exam/parts/${partId}/questions`,
+      UPDATE_QUESTION: (questionId) => `/admin/exam/questions/${questionId}`,
+      DELETE_QUESTION: (questionId) => `/admin/exam/questions/${questionId}`,
+      TEST_SESSIONS: (testId) => `/admin/exam/tests/${testId}/sessions`,
+      SESSION_DETAIL: (sessionId) => `/admin/exam/exam-sessions/${sessionId}`,
+      TEST_STATISTICS: (testId) => `/admin/exam/tests/${testId}/statistics`,
+    },
   },
 
   // Client endpoints

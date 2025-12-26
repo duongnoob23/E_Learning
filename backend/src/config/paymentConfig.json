@@ -1,0 +1,12 @@
+{
+  "vnp_TmnCode": "NFL62W3I",
+  "vnp_HashSecret": "VWS4EUF0N4J7MGVPKLQDPGZ6MG8G4NRE",
+  "vnp_Url": "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
+  "vnp_ReturnUrl": "http://localhost:5000/payment/vnpay_return",
+  "vnp_IpnUrl": "https://unorbitally-polyneuritic-becky.ngrok-free.dev/payment/vnpay_ipn",
+  "vnp_Env": "sandbox",
+  "vnp_ExpireAfter": 15,
+  "vnp_OrderPrefix": "PAY",
+  "frontend_Url": "http://localhost:3000",
+  "backend_Url": "http://localhost:5000"
+}

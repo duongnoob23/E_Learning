@@ -30,6 +30,13 @@ exports.login = async (email, password) => {
       };
     }
 
+    if(user.status !== "active") {
+      return {
+        EM: "Tài khoản chưa được kích hoạt",
+        EC: "2",
+        DT: null,
+      };
+    }
     const token = jwt.sign(
       { userId: user.user_id, email: user.email },
       process.env.JWT_SECRET,

@@ -1,0 +1,64 @@
+# ========================================
+# SPEAKING & READING MODULE DEPENDENCIES
+# EngMoon E-Learning Platform
+# ========================================
+
+# 1. WHISPER - Speech Recognition / ASR
+# Chuyển đổi giọng nói thành văn bản
+# Sử dụng trong: backend/src/ai/whisper_transcribe.py, multiPA_score.py
+openai-whisper>=20231117
+
+# 2. TORCH - Deep Learning Framework
+# Yêu cầu cho Whisper và MultiPA
+# Sử dụng trong: backend/src/ai/multiPA_score.py
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# 3. LIBROSA - Audio Analysis
+# Phân tích âm thanh cho pronunciation assessment
+# Sử dụng trong: backend/src/ai/multiPA_score.py
+librosa>=0.10.0
+
+# 4. NUMPY - Numerical Computing
+# Xử lý dữ liệu số học
+numpy>=1.24.0
+
+# 5. gTTS - Google Text-to-Speech
+# Tạo âm thanh từ văn bản cho từ vựng
+# Sử dụng trong: backend/scripts/generate_audio.py
+gTTS>=2.5.0
+
+# 6. SCIPY - Scientific Computing
+# Hỗ trợ xử lý tín hiệu âm thanh
+scipy>=1.10.0
+
+# 7. SOUNDFILE - Audio I/O
+# Đọc/ghi file âm thanh
+soundfile>=0.12.0
+
+# 8. PYDUB - Audio Manipulation (optional)
+# Chuyển đổi định dạng audio
+pydub>=0.25.1
+
+# ========================================
+# INSTALLATION COMMANDS
+# ========================================
+# 
+# Windows (PowerShell):
+#   cd backend
+#   python -m venv venv
+#   .\venv\Scripts\Activate.ps1
+#   pip install -r requirements.txt
+#
+# Linux/macOS:
+#   cd backend
+#   python3 -m venv venv
+#   source venv/bin/activate
+#   pip install -r requirements.txt
+#
+# With NVIDIA GPU (CUDA 11.8):
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
+#   pip install -r requirements.txt
+#
+# ========================================
+

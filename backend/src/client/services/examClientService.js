@@ -1411,7 +1411,6 @@ exports.getSessionSpeakingResponses = async (session_id, options = {}) => {
   }
 };
 
-// Chấm điểm speaking response using MultiPA
 // Chấm điểm speaking response using MultiPA (Multi-task Pronunciation Assessment)
 exports.gradeSpeaking = async ({
   response_id,
@@ -1436,17 +1435,30 @@ exports.gradeSpeaking = async ({
     console.log("🔄 Calling Python MultiPA service for SPEAKING...");
     const startTime = Date.now();
     const result = await scoreResponse(audio_file_path, "SPEAKING", language);
-    const duration = Date.now() - startTime;
-    console.log(`✅ Python service completed in ${duration}ms`);
-    console.log("Python result:", {
-      score: result.score,
-      pronunciation_score: result.pronunciation_score,
-      fluency_score: result.fluency_score,
-      prosody_score: result.prosody_score,
-      has_transcript: !!result.transcript,
-      has_feedback: !!result.feedback,
-      has_detailed_feedback: !!result.detailed_feedback,
-    });
+
+    // Xử lý kết quả: chỉ trả về các từ cần cải thiện với gợi ý
+    const wordsToImprove = (result.words_to_improve || []).map((w) => ({
+      word: w.word,
+      score: w.score,
+      issues: w.issues || [],
+      tips: w.tips || [],
+    }));
+
+    // Tạo feedback tổng hợp
+    const improvementSummary =
+      wordsToImprove.length > 0
+        ? `Các từ cần cải thiện: ${wordsToImprove.map((w) => w.word).join(", ")}`
+        : "Phát âm tốt! Không có từ nào cần cải thiện.";
+
+    const detailedFeedback = {
+      summary: improvementSummary,
+      words_to_improve: wordsToImprove,
+      scores: {
+        pronunciation: result.pronunciation_score,
+        fluency: result.fluency_score,
+        prosody: result.prosody_score,
+      },
+    };
 
     // Cập nhật điểm chi tiết và feedback cho response
     console.log("💾 Updating SpeakingResponse in database...");
@@ -1458,23 +1470,28 @@ exports.gradeSpeaking = async ({
         prosody_score: result.prosody_score,
         transcript: result.transcript,
         feedback: result.feedback,
-        detailed_feedback: result.detailed_feedback,
+        detailed_feedback: detailedFeedback,
         processing_status: "COMPLETED",
       },
       {
         where: { response_id, user_id },
       }
     );
-    console.log("✅ Database updated:", {
-      response_id,
-      user_id,
-      rows_affected: updateResult[0],
-    });
 
+    // Trả về kết quả đã được lọc
     return {
       EM: "Chấm bài Speaking thành công",
       EC: "0",
-      DT: result,
+      DT: {
+        score: result.score,
+        pronunciation_score: result.pronunciation_score,
+        fluency_score: result.fluency_score,
+        prosody_score: result.prosody_score,
+        transcript: result.transcript,
+        feedback: result.feedback,
+        words_to_improve: wordsToImprove,
+        improvement_summary: improvementSummary,
+      },
     };
   } catch (error) {
     console.error("❌ Error in gradeSpeaking service:", error);
@@ -1511,18 +1528,32 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
     console.log("🔄 Calling Python MultiPA service for WRITING...");
     const startTime = Date.now();
     const result = await scoreResponse(text, "WRITING", language);
-    const duration = Date.now() - startTime;
-    console.log(`✅ Python service completed in ${duration}ms`);
-    console.log("Python result:", {
-      score: result.score,
-      grammar_score: result.grammar_score,
-      vocabulary_score: result.vocabulary_score,
-      coherence_score: result.coherence_score,
-      task_completion_score: result.task_completion_score,
-      spelling_score: result.spelling_score,
-      has_feedback: !!result.feedback,
-      has_detailed_feedback: !!result.detailed_feedback,
-    });
+
+    // Xử lý sentence feedback - chỉ giữ các câu cần cải thiện
+    // Bao gồm: issues, suggestions, vocabulary_tips (gợi ý từ vựng), meaning_tips (gợi ý về ý nghĩa)
+    const sentenceFeedback = (result.sentence_feedback || []).map((s) => ({
+      index: s.index,
+      sentence: s.sentence,
+      score: s.score,
+      issues: s.issues || [],
+      suggestions: s.suggestions || [],
+      vocabulary_tips: s.vocabulary_tips || [],  // Gợi ý từ vựng nâng cao
+      meaning_tips: s.meaning_tips || [],  // Gợi ý về cấu trúc và ý nghĩa
+    }));
+
+    // Tạo detailed feedback với cấu trúc mới
+    const detailedFeedback = {
+      sentence_feedback: sentenceFeedback,
+      overall_advice: result.overall_advice || [],
+      scores: {
+        grammar: result.grammar_score,
+        vocabulary: result.vocabulary_score,
+        coherence: result.coherence_score,
+        task_completion: result.task_completion_score,
+        spelling: result.spelling_score,
+      },
+      text_stats: result.text_stats || {},
+    };
 
     // Update WritingResponse in database
     console.log("💾 Updating WritingResponse in database...");
@@ -1535,7 +1566,7 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
         task_completion_score: result.task_completion_score,
         spelling_score: result.spelling_score,
         feedback: result.feedback,
-        detailed_feedback: result.detailed_feedback,
+        detailed_feedback: detailedFeedback,
         processing_status: "COMPLETED",
       },
       { where: { response_id, user_id } }
@@ -1546,10 +1577,22 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       rows_affected: updateResult[0],
     });
 
+    // Trả về kết quả với cấu trúc rõ ràng
     return {
       EM: "Chấm bài Writing thành công",
       EC: "0",
-      DT: result,
+      DT: {
+        score: result.score,
+        grammar_score: result.grammar_score,
+        vocabulary_score: result.vocabulary_score,
+        coherence_score: result.coherence_score,
+        task_completion_score: result.task_completion_score,
+        spelling_score: result.spelling_score,
+        feedback: result.feedback,
+        sentence_feedback: sentenceFeedback,
+        overall_advice: result.overall_advice || [],
+        text_stats: result.text_stats || {},
+      },
     };
   } catch (error) {
     console.error("❌ Error in gradeWriting service:", error);

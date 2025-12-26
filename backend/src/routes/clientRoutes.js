@@ -13,6 +13,7 @@ const profileRoutes = require("../client/routes/profileClientRoutes");
 const lessonRoutes = require("../client/routes/lessonClientRoutes");
 const examRoutes = require("../client/routes/examClientRoutes");
 const instructorRoutes = require("../client/routes/instructorClientRoutes");
+const paymentRoutes = require("../client/routes/paymentClientRoutes");
 
 router.use("/auth", authClient);
 router.use("/word", wordRoutes);
@@ -26,5 +27,6 @@ router.use("/user", profileRoutes);
 router.use("/lesson", lessonRoutes);
 router.use("/exam", examRoutes);
 router.use("/instructor", instructorRoutes);
+router.use("/payment", paymentRoutes);
 
 module.exports = router;

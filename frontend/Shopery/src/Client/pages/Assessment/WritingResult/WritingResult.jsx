@@ -384,170 +384,113 @@ export default function WritingResult() {
                   </div>
                 )}
 
-                {/* Detailed Feedback */}
-                {scoreData.detailed_feedback && (
-                  <div className="writing-result__detailed-feedback">
-                    <h3>Nhận xét chi tiết</h3>
-
-                    {scoreData.detailed_feedback.grammar && (
-                      <div className="writing-result__feedback-section">
-                        <h4>
-                          Ngữ pháp (
-                          {scoreData.detailed_feedback.grammar.score || "N/A"})
-                        </h4>
-                        {scoreData.detailed_feedback.grammar.issues?.length >
-                          0 && (
-                          <ul>
-                            {scoreData.detailed_feedback.grammar.issues.map(
-                              (issue, idx) => (
-                                <li key={idx}>{issue}</li>
-                              )
+                {/* Sentence Feedback */}
+                {scoreData.sentence_feedback &&
+                  scoreData.sentence_feedback.length > 0 && (
+                    <div className="writing-result__sentence-feedback">
+                      <h3>Nhận xét từng câu</h3>
+                      <div className="writing-result__sentence-list">
+                        {scoreData.sentence_feedback.map((sentenceData, idx) => (
+                          <div
+                            key={idx}
+                            className="writing-result__sentence-item"
+                          >
+                            <div className="writing-result__sentence-header">
+                              <span className="writing-result__sentence-number">
+                                Câu {sentenceData.index}:
+                              </span>
+                              <span
+                                className="writing-result__sentence-score"
+                                style={{
+                                  color: getScoreColor(sentenceData.score * 10),
+                                }}
+                              >
+                                {sentenceData.score.toFixed(1)}/10
+                              </span>
+                            </div>
+                            <div className="writing-result__sentence-text">
+                              "{sentenceData.sentence}"
+                            </div>
+                            {sentenceData.issues && sentenceData.issues.length > 0 && (
+                              <div className="writing-result__sentence-issues">
+                                <strong>Vấn đề:</strong>
+                                <ul>
+                                  {sentenceData.issues.map((issue, issueIdx) => (
+                                    <li key={issueIdx}>{issue}</li>
+                                  ))}
+                                </ul>
+                              </div>
                             )}
-                          </ul>
-                        )}
-                        {scoreData.detailed_feedback.grammar.suggestions
-                          ?.length > 0 && (
-                          <div className="writing-result__suggestions">
-                            <strong>Gợi ý:</strong>
-                            <ul>
-                              {scoreData.detailed_feedback.grammar.suggestions.map(
-                                (suggestion, idx) => (
-                                  <li key={idx}>{suggestion}</li>
-                                )
-                              )}
-                            </ul>
+                            {sentenceData.suggestions && sentenceData.suggestions.length > 0 && (
+                              <div className="writing-result__sentence-suggestions">
+                                <strong>Gợi ý:</strong>
+                                <ul>
+                                  {sentenceData.suggestions.map((suggestion, sugIdx) => (
+                                    <li key={sugIdx}>{suggestion}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {sentenceData.vocabulary_tips && sentenceData.vocabulary_tips.length > 0 && (
+                              <div className="writing-result__sentence-vocab-tips">
+                                <strong>Gợi ý từ vựng:</strong>
+                                <ul>
+                                  {sentenceData.vocabulary_tips.map((tip, tipIdx) => (
+                                    <li key={tipIdx}>{tip}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {sentenceData.meaning_tips && sentenceData.meaning_tips.length > 0 && (
+                              <div className="writing-result__sentence-meaning-tips">
+                                <strong>Gợi ý về ý nghĩa:</strong>
+                                <ul>
+                                  {sentenceData.meaning_tips.map((tip, tipIdx) => (
+                                    <li key={tipIdx}>{tip}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
                           </div>
-                        )}
+                        ))}
                       </div>
-                    )}
+                    </div>
+                  )}
 
-                    {scoreData.detailed_feedback.vocabulary && (
-                      <div className="writing-result__feedback-section">
-                        <h4>
-                          Từ vựng (
-                          {scoreData.detailed_feedback.vocabulary.score ||
-                            "N/A"}
-                          )
-                        </h4>
-                        {scoreData.detailed_feedback.vocabulary.suggestions && (
-                          <p>
-                            {scoreData.detailed_feedback.vocabulary.suggestions}
-                          </p>
-                        )}
-                        {scoreData.detailed_feedback.vocabulary
-                          .diversity_ratio && (
-                          <p>
-                            Độ đa dạng từ vựng:{" "}
-                            {(
-                              scoreData.detailed_feedback.vocabulary
-                                .diversity_ratio * 100
-                            ).toFixed(1)}
-                            %
-                          </p>
-                        )}
+                {/* Overall Advice */}
+                {scoreData.overall_advice &&
+                  scoreData.overall_advice.length > 0 && (
+                    <div className="writing-result__overall-advice">
+                      <h3>Lời khuyên tổng quan</h3>
+                      <div className="writing-result__advice-list">
+                        {scoreData.overall_advice.map((advice, idx) => {
+                          // Xử lý các ký tự đặc biệt như emoji và format
+                          const isHeader = advice.includes("📌") || advice.includes("⚠️") || advice.includes("💡") || advice.includes("📝");
+                          const isBullet = advice.trim().startsWith("✓") || advice.trim().startsWith("•");
+                          
+                          if (isHeader) {
+                            return (
+                              <h4 key={idx} className="writing-result__advice-header">
+                                {advice}
+                              </h4>
+                            );
+                          } else if (isBullet) {
+                            return (
+                              <div key={idx} className="writing-result__advice-bullet">
+                                {advice}
+                              </div>
+                            );
+                          } else {
+                            return (
+                              <p key={idx} className="writing-result__advice-text">
+                                {advice}
+                              </p>
+                            );
+                          }
+                        })}
                       </div>
-                    )}
-
-                    {scoreData.detailed_feedback.coherence && (
-                      <div className="writing-result__feedback-section">
-                        <h4>
-                          Mạch lạc (
-                          {scoreData.detailed_feedback.coherence.score || "N/A"}
-                          )
-                        </h4>
-                        {scoreData.detailed_feedback.coherence.issues?.length >
-                          0 && (
-                          <ul>
-                            {scoreData.detailed_feedback.coherence.issues.map(
-                              (issue, idx) => (
-                                <li key={idx}>{issue}</li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                        {scoreData.detailed_feedback.coherence.suggestions
-                          ?.length > 0 && (
-                          <div className="writing-result__suggestions">
-                            <strong>Gợi ý:</strong>
-                            <ul>
-                              {scoreData.detailed_feedback.coherence.suggestions.map(
-                                (suggestion, idx) => (
-                                  <li key={idx}>{suggestion}</li>
-                                )
-                              )}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    {scoreData.detailed_feedback.task_completion && (
-                      <div className="writing-result__feedback-section">
-                        <h4>
-                          Hoàn thành nhiệm vụ (
-                          {scoreData.detailed_feedback.task_completion.score ||
-                            "N/A"}
-                          )
-                        </h4>
-                        {scoreData.detailed_feedback.task_completion
-                          .word_count && (
-                          <p>
-                            Số từ:{" "}
-                            {
-                              scoreData.detailed_feedback.task_completion
-                                .word_count
-                            }
-                          </p>
-                        )}
-                        {scoreData.detailed_feedback.task_completion.issues
-                          ?.length > 0 && (
-                          <ul>
-                            {scoreData.detailed_feedback.task_completion.issues.map(
-                              (issue, idx) => (
-                                <li key={idx}>{issue}</li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                        {scoreData.detailed_feedback.task_completion
-                          .suggestions && (
-                          <p>
-                            <strong>Gợi ý:</strong>{" "}
-                            {
-                              scoreData.detailed_feedback.task_completion
-                                .suggestions
-                            }
-                          </p>
-                        )}
-                      </div>
-                    )}
-
-                    {scoreData.detailed_feedback.spelling && (
-                      <div className="writing-result__feedback-section">
-                        <h4>
-                          Chính tả (
-                          {scoreData.detailed_feedback.spelling.score || "N/A"})
-                        </h4>
-                        {scoreData.detailed_feedback.spelling.errors?.length >
-                          0 && (
-                          <ul>
-                            {scoreData.detailed_feedback.spelling.errors.map(
-                              (error, idx) => (
-                                <li key={idx}>{error}</li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                        {scoreData.detailed_feedback.spelling.suggestions && (
-                          <p>
-                            <strong>Gợi ý:</strong>{" "}
-                            {scoreData.detailed_feedback.spelling.suggestions}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  )}
 
                 {/* Text Statistics */}
                 {scoreData.text_stats && (
