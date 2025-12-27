@@ -11,6 +11,7 @@ const upload = require("../../middleware/uploadMiddleware");
  * =============================
  */
 router.get("/system", controller.getWordsByTopic);
+router.get("/system/search", controller.findWordByName); // Tìm từ theo tên
 router.get("/system/:word_id", controller.getWordDetail);
 router.get("/user", middleware, controller.getWordsByUser);
 /**

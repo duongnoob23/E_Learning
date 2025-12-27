@@ -26,6 +26,12 @@ export const wordApi = {
     return response.data;
   },
 
+  // Tìm từ theo tên trong hệ thống
+  findWordByName: async (wordName) => {
+    const response = await axiosInstance.get(`/word/system/search?word=${encodeURIComponent(wordName)}`);
+    return response.data;
+  },
+
   // Lấy danh sách từ vựng cá nhân của user
   getUserWords: async (filters = {}) => {
     const params = new URLSearchParams();

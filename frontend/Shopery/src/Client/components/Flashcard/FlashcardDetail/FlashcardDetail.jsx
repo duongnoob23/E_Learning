@@ -34,6 +34,48 @@ const FlashcardDetail = ({
       ? wordsData.DT
       : [];
 
+  // Load voices cho Web Speech API
+  React.useEffect(() => {
+    // Load voices khi component mount
+    if ('speechSynthesis' in window) {
+      const loadVoices = () => {
+        window.speechSynthesis.getVoices();
+      };
+      
+      // Một số browser cần event để load voices
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+      loadVoices();
+    }
+  }, []);
+
+  // Hàm phát âm từ bằng Web Speech API
+  const speakWord = (word, lang = 'en-US') => {
+    if ('speechSynthesis' in window) {
+      // Dừng bất kỳ phát âm nào đang chạy
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = lang;
+      utterance.rate = 0.9; // Tốc độ phát âm (0.1 - 10)
+      utterance.pitch = 1; // Cao độ (0 - 2)
+      utterance.volume = 1; // Âm lượng (0 - 1)
+      
+      // Chọn giọng nói (ưu tiên giọng Anh)
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoice = voices.find(voice => 
+        voice.lang.startsWith('en') && (voice.name.includes('Female') || voice.name.includes('female'))
+      ) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+      
+      if (englishVoice) {
+        utterance.voice = englishVoice;
+      }
+      
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const handleAddWord = async (wordData) => {
     try {
       await addWordMutation.mutateAsync({
@@ -45,6 +87,15 @@ const FlashcardDetail = ({
         partOfSpeech: wordData.type,
         imageUrl: wordData.image ? URL.createObjectURL(wordData.image) : null,
       });
+      
+      // Tự động phát âm từ vừa thêm
+      if (wordData.word && wordData.word.trim()) {
+        // Đợi một chút để đảm bảo modal đã đóng
+        setTimeout(() => {
+          speakWord(wordData.word.trim(), 'en-US');
+        }, 300);
+      }
+      
       setShowAddWordModal(false);
     } catch (error) {
       console.error("Error adding word:", error);
@@ -75,7 +126,7 @@ const FlashcardDetail = ({
             className="add-word-btn"
             onClick={() => setShowAddWordModal(true)}
           >
-            + Thêm từ
+            Thêm từ
           </button>
         )}
       </div>
@@ -94,7 +145,7 @@ const FlashcardDetail = ({
 
       {/* Word List Display */}
       {!isLoadingWords && (
-        <WordListDisplay words={words} topicType={topicType} />
+        <WordListDisplay words={words} topicType={topicType} topicId={topic?.id} />
       )}
 
       {/* Empty State */}
@@ -106,7 +157,7 @@ const FlashcardDetail = ({
               className="add-word-btn-empty"
               onClick={() => setShowAddWordModal(true)}
             >
-              + Thêm từ đầu tiên
+              Thêm từ đầu tiên
             </button>
           )}
         </div>
@@ -118,6 +169,7 @@ const FlashcardDetail = ({
         onClose={() => setShowAddWordModal(false)}
         onSubmit={handleAddWord}
         topicId={topic?.id}
+        existingWords={words}
       />
     </div>
   );

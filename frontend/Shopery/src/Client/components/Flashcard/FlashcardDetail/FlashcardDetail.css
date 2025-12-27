@@ -685,3 +685,80 @@
     width: 100%;
   }
 }
+
+/* Add Word Button Styles */
+.add-word-btn {
+  background: linear-gradient(135deg, #1ec28b 0%, #16a085 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(30, 194, 139, 0.3);
+  margin-left: auto;
+}
+
+.add-word-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 194, 139, 0.4);
+  background: linear-gradient(135deg, #16a085 0%, #1ec28b 100%);
+}
+
+.add-word-btn:active {
+  transform: translateY(0);
+}
+
+.add-word-btn-empty {
+  background: linear-gradient(135deg, #1ec28b 0%, #16a085 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(30, 194, 139, 0.3);
+  margin-top: 16px;
+}
+
+.add-word-btn-empty:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 194, 139, 0.4);
+  background: linear-gradient(135deg, #16a085 0%, #1ec28b 100%);
+}
+
+.add-word-btn-empty:active {
+  transform: translateY(0);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.empty-state p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.loading-state p {
+  color: #64748b;
+  font-size: 16px;
+}

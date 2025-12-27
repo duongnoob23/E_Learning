@@ -109,6 +109,52 @@ exports.getWordDetail = async (word_id) => {
   }
 };
 
+// Tìm từ theo tên (word) trong bảng words
+exports.findWordByName = async (wordName) => {
+  try {
+    if (!wordName || !wordName.trim()) {
+      return {
+        EM: "Tên từ không được để trống",
+        EC: "-1",
+        DT: null,
+      };
+    }
+
+    // Tìm từ không phân biệt hoa thường
+    const { Sequelize } = require('sequelize');
+    const word = await Word.findOne({
+      where: {
+        word: Sequelize.where(
+          Sequelize.fn('LOWER', Sequelize.col('word')),
+          wordName.trim().toLowerCase()
+        ),
+        is_active: true,
+      },
+    });
+
+    if (!word) {
+      return {
+        EM: "Không tìm thấy từ trong hệ thống",
+        EC: "1",
+        DT: null,
+      };
+    }
+
+    return {
+      EM: "Tìm thấy từ trong hệ thống",
+      EC: "0",
+      DT: word,
+    };
+  } catch (error) {
+    console.error("Lỗi trong findWordByName service:", error);
+    return {
+      EM: "Có lỗi xảy ra trong quá trình tìm kiếm",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
 // Lấy danh sách từ vựng cá nhân theo topic + tìm kiếm
 exports.getWordsbyUser = async (filters) => {
   try {
@@ -238,7 +284,6 @@ exports.postWordToUser = async (data) => {
         example_en: systemWord.example_en,
         example_vi: systemWord.example_vi,
         image_url: systemWord.image_url,
-        audio_url: systemWord.audio_url,
         notes: null,
         from_system_word_id: systemWord.word_id,
         is_active: true,
@@ -251,11 +296,7 @@ exports.postWordToUser = async (data) => {
         word_id: systemWord.word_id,
         user_word_id: newUserWord.user_word_id,
         is_learned: false,
-        review_count: 0,
-        intervall: 1,
-        ease_factor: 2.5,
-        last_reviewed: null,
-        next_review: new Date(),
+        marked_at: null,
         created_at: new Date(),
         updated_at: new Date(),
       });
@@ -273,16 +314,6 @@ exports.postWordToUser = async (data) => {
     });
 
     if (existingPersonal) {
-      // Tạo file MP3 nếu chưa có audio_url
-      let audioUrl = null;
-      if (!existingPersonal.audio_url) {
-        try {
-          audioUrl = await generateAudioFile(data.word);
-        } catch (error) {
-          console.error("Lỗi tạo audio:", error);
-        }
-      }
-
       const newUserWord = await UserWord.create({
         user_id: user_id,
         topic_id: existingPersonal.topic_id,
@@ -290,7 +321,6 @@ exports.postWordToUser = async (data) => {
         part_of_speech: part_of_speech || existingPersonal.part_of_speech,
         pronunciation: pronunciation || existingPersonal.pronunciation || null,
         meaning_vi: meaning_vi || existingPersonal.meaning_vi,
-        audio_url: audioUrl || existingPersonal.audio_url || null,
         example_en: example_en || existingPersonal.example_en,
         example_vi: example_vi || existingPersonal.example_vi,
         image_url: existingPersonal.image_url,
@@ -303,14 +333,10 @@ exports.postWordToUser = async (data) => {
       await UserWordStatus.create({
         user_id: user_id,
         topic_id: existingPersonal.topic_id,
-        word_id: existingPersonal.word_id,
+        word_id: null,
         user_word_id: newUserWord.user_word_id,
         is_learned: false,
-        review_count: 0,
-        intervalll: 1,
-        ease_factor: 2.5,
-        last_reviewed: null,
-        next_review: new Date(),
+        marked_at: null,
         created_at: new Date(),
         updated_at: new Date(),
       });
@@ -337,15 +363,6 @@ exports.postWordToUser = async (data) => {
       };
     }
 
-    // Tạo file MP3 nếu chưa có audio_url
-    let audioUrl = null;
-    try {
-      audioUrl = await generateAudioFile(data.word);
-    } catch (error) {
-      console.error("Lỗi tạo audio:", error);
-      // Tiếp tục mà không có audio
-    }
-
     const newUserWord = await UserWord.create({
       user_id: user_id,
       topic_id: topic_id,
@@ -356,7 +373,6 @@ exports.postWordToUser = async (data) => {
       example_en: example_en || null,
       example_vi: example_vi || null,
       image_url: image_url || null,
-      audio_url: audioUrl || null,
       notes: notes || null,
       from_system_word_id: null,
       is_active: true,
@@ -371,11 +387,7 @@ exports.postWordToUser = async (data) => {
       word_id: null,
       user_word_id: newUserWord.user_word_id,
       is_learned: false,
-      review_count: 0,
-      intervall: 1,
-      ease_factor: 2.5,
-      last_reviewed: null,
-      next_review: new Date(),
+      marked_at: null,
       created_at: new Date(),
       updated_at: new Date(),
     });
@@ -659,13 +671,14 @@ exports.getNextFlashcard = async (userId, set_id) => {
       where: {
         user_id: userId,
         topic_id: set_id,
+        is_learned: false, // Ưu tiên từ chưa học
       },
-      order: [["next_review", "ASC"]],
+      order: [["created_at", "ASC"]],
     });
 
     let nextWord = null;
     if (statuses.length > 0) {
-      // Tìm từ có next_review sớm nhất
+      // Tìm từ chưa học đầu tiên
       const nextStatus = statuses[0];
       if (set.topic_type === "system" && nextStatus.word_id) {
         nextWord = words.find((w) => w.word_id === nextStatus.word_id);
@@ -727,27 +740,27 @@ exports.getProgressByTopic = async (userId, topicId) => {
       },
     });
 
-    // Số từ cần review hôm nay
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const dueToday = await UserWordStatus.count({
+    // Số từ chưa học
+    const notLearnedCount = await UserWordStatus.count({
       where: {
         user_id: userId,
         topic_id: topicId,
-        next_review: { [Op.lte]: today },
+        is_learned: false,
       },
     });
 
-    // Số từ đã review hôm nay
+    // Số từ đã đánh dấu học hôm nay
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     const reviewedToday = await UserWordStatus.count({
       where: {
         user_id: userId,
         topic_id: topicId,
-        last_reviewed: { [Op.gte]: today },
+        marked_at: { [Op.gte]: today },
       },
     });
 
-    // Thống kê theo review_count
+    // Thống kê theo trạng thái học
     const statuses = await UserWordStatus.findAll({
       where: {
         user_id: userId,
@@ -755,11 +768,9 @@ exports.getProgressByTopic = async (userId, topicId) => {
       },
     });
 
-    const newCount = statuses.filter((s) => s.review_count === 0).length;
-    const learningCount = statuses.filter(
-      (s) => s.review_count > 0 && s.review_count < 5
-    ).length;
-    const masteredCount = statuses.filter((s) => s.review_count >= 5).length;
+    const newCount = statuses.filter((s) => !s.is_learned).length;
+    const learningCount = 0; // Không còn trường review_count
+    const masteredCount = statuses.filter((s) => s.is_learned).length;
 
     return {
       EM: "Lấy tiến độ học theo topic thành công",
@@ -771,7 +782,7 @@ exports.getProgressByTopic = async (userId, topicId) => {
         new_count: newCount,
         learning_count: learningCount,
         mastered_count: masteredCount,
-        due_today: dueToday,
+        due_today: notLearnedCount,
         reviewed_today: reviewedToday,
         progress_percentage:
           totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0,
@@ -789,19 +800,20 @@ exports.getProgressByTopic = async (userId, topicId) => {
 
 // ----------- SRS (SPACED REPETITION) ----------- //
 
-// Lấy danh sách từ vựng hôm nay
+// Lấy danh sách từ vựng hôm nay (từ chưa học)
 exports.getTodayWords = async (userId) => {
   try {
-    const today = new Date();
     const words = await UserWordStatus.findAll({
       where: {
         user_id: userId,
-        next_review: { [Op.lte]: today },
+        is_learned: false, // Lấy từ chưa học
       },
       include: [
         { model: UserWord, as: "user_words" },
         { model: Word, as: "words" },
       ],
+      order: [["created_at", "ASC"]],
+      limit: 20, // Giới hạn 20 từ
     });
     return {
       EM: "Lấy danh sách từ vựng hôm nay thành công",
@@ -818,16 +830,15 @@ exports.getTodayWords = async (userId) => {
   }
 };
 
-// Lấy từ vựng tiếp theo
+// Lấy từ vựng tiếp theo (từ chưa học)
 exports.getNextWord = async (userId) => {
   try {
-    const now = new Date();
     let nextWord = await UserWordStatus.findOne({
       where: {
         user_id: userId,
-        next_review: { [Op.lte]: now },
+        is_learned: false, // Ưu tiên từ chưa học
       },
-      order: [["next_review", "ASC"]],
+      order: [["created_at", "ASC"]],
       include: [
         { model: UserWord, as: "user_words" },
         { model: Word, as: "words" },
@@ -835,11 +846,12 @@ exports.getNextWord = async (userId) => {
     });
 
     if (!nextWord) {
+      // Nếu không có từ chưa học, lấy từ bất kỳ
       nextWord = await UserWordStatus.findOne({
         where: {
           user_id: userId,
         },
-        order: [["next_review", "ASC"]],
+        order: [["created_at", "ASC"]],
         include: [
           { model: UserWord, as: "user_words" },
           { model: Word, as: "words" },
@@ -869,7 +881,7 @@ exports.getNextWord = async (userId) => {
   }
 };
 
-// Gửi feedback cho từ vựng
+// Gửi feedback cho từ vựng (đơn giản hóa - chỉ cập nhật is_learned)
 exports.submitFeedback = async (userId, word_id, feedback) => {
   try {
     let status = await UserWordStatus.findOne({
@@ -887,32 +899,26 @@ exports.submitFeedback = async (userId, word_id, feedback) => {
       };
     }
 
-    let { review_count, intervall, ease_factor } = status;
+    const now = new Date();
 
-    const MIN_EASE_FACTOR = 1.3;
-
+    // Đơn giản hóa: chỉ cập nhật is_learned và marked_at
     switch (feedback) {
-      case "forget":
-        review_count = 0;
-        intervall = 1;
-        ease_factor = Math.max(MIN_EASE_FACTOR, ease_factor - 0.2);
-        break;
-
       case "remember":
-        review_count += 1;
-        intervall = Math.ceil(intervall * ease_factor);
-        break;
-
       case "easy":
-        review_count += 1;
-        ease_factor += 0.15;
-        intervall = Math.ceil(intervall * ease_factor * 1.2);
+        // Đánh dấu là đã học
+        await status.update({
+          is_learned: true,
+          marked_at: now,
+        });
         break;
 
+      case "forget":
       case "hard":
-        review_count += 1;
-        ease_factor = Math.max(MIN_EASE_FACTOR, ease_factor - 0.15);
-        intervall = Math.ceil(intervall * ease_factor * 0.8);
+        // Đánh dấu là chưa học
+        await status.update({
+          is_learned: false,
+          marked_at: null,
+        });
         break;
 
       default:
@@ -923,25 +929,12 @@ exports.submitFeedback = async (userId, word_id, feedback) => {
         };
     }
 
-    const now = new Date();
-    const next_review = new Date(
-      now.getTime() + intervall * 24 * 60 * 60 * 1000
-    );
-
-    await status.update({
-      review_count,
-      intervall,
-      ease_factor,
-      last_reviewed: now,
-      next_review,
-    });
-
     return {
       EM: "Gửi feedback thành công",
       EC: "0",
       DT: {
-        last_reviewed: now,
-        next_review: next_review,
+        is_learned: status.is_learned,
+        marked_at: status.marked_at,
       },
     };
   } catch (error) {
@@ -964,11 +957,9 @@ exports.getOverview = async (user_id) => {
     const statusCount = await UserWordStatus.findAll({
       where: { user_id },
     });
-    const newCount = statusCount.filter((s) => s.review_count === 0).length;
-    const learningCount = statusCount.filter(
-      (s) => s.review_count > 0 && s.review_count < 5
-    ).length;
-    const masteredCount = statusCount.filter((s) => s.review_count >= 5).length;
+    const newCount = statusCount.filter((s) => !s.is_learned).length;
+    const learningCount = 0; // Không còn trường review_count
+    const masteredCount = statusCount.filter((s) => s.is_learned).length;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -976,14 +967,14 @@ exports.getOverview = async (user_id) => {
     const dueToday = await UserWordStatus.count({
       where: {
         user_id,
-        next_review: { [Op.lte]: today },
+        is_learned: false, // Từ chưa học
       },
     });
 
     const reviewedToday = await UserWordStatus.count({
       where: {
         user_id,
-        last_reviewed: { [Op.gte]: today },
+        marked_at: { [Op.gte]: today },
       },
     });
 
@@ -1023,11 +1014,11 @@ exports.getDailyProgress = async (user_id) => {
       },
     });
 
-    // Từ review hôm nay
+    // Từ đánh dấu hôm nay
     const reviewedToday = await UserWordStatus.count({
       where: {
         user_id,
-        last_reviewed: { [Op.gte]: today },
+        marked_at: { [Op.gte]: today },
       },
     });
 
@@ -1049,7 +1040,7 @@ exports.getDailyProgress = async (user_id) => {
       const reviewed = await UserWordStatus.count({
         where: {
           user_id,
-          last_reviewed: { [Op.gte]: d, [Op.lt]: nextDay },
+          marked_at: { [Op.gte]: d, [Op.lt]: nextDay },
         },
       });
 
@@ -1384,26 +1375,19 @@ const updateUserWordStatusByPronunciation = async (
 
     if (!userWordStatus) return;
 
-    let newReviewCount = userWordStatus.review_count + 1;
-    let newEaseFactor = userWordStatus.ease_factor;
-    let newInterval = userWordStatus.intervall;
-
+    // Đơn giản hóa: nếu điểm >= 80 thì đánh dấu là đã học
     if (pronunciationScore >= 80) {
-      newInterval = Math.ceil(userWordStatus.intervall * newEaseFactor);
-    } else if (pronunciationScore >= 60) {
-      newInterval = userWordStatus.intervall;
-    } else {
-      newInterval = 1;
-      newEaseFactor = Math.max(1.3, newEaseFactor - 0.2);
+      await userWordStatus.update({
+        is_learned: true,
+        marked_at: new Date(),
+      });
+    } else if (pronunciationScore < 60) {
+      // Nếu điểm thấp, đánh dấu là chưa học
+      await userWordStatus.update({
+        is_learned: false,
+        marked_at: null,
+      });
     }
-
-    await userWordStatus.update({
-      review_count: newReviewCount,
-      ease_factor: newEaseFactor,
-      intervall: newInterval,
-      last_reviewed: new Date(),
-      next_review: new Date(Date.now() + newInterval * 24 * 60 * 60 * 1000),
-    });
   } catch (error) {
     console.error("Lỗi cập nhật UserWordStatus:", error);
   }

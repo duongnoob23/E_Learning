@@ -1,8 +1,9 @@
 // Client/components/Flashcard/AddWordModal/AddWordModal.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { wordApi } from "../../../api/Word/wordApi";
 import "./AddWordModal.css";
 
-const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
+const AddWordModal = ({ isOpen, onClose, onSubmit, topicId, existingWords = [] }) => {
   const [formData, setFormData] = useState({
     word: "",
     type: "noun",
@@ -13,6 +14,9 @@ const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
     image: null,
   });
   const [errors, setErrors] = useState({});
+  const [isSearching, setIsSearching] = useState(false);
+  const [foundWord, setFoundWord] = useState(null);
+  const searchTimeoutRef = useRef(null);
 
   const wordTypes = [
     { value: "noun", label: "Danh từ" },
@@ -24,6 +28,85 @@ const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
     { value: "conjunction", label: "Liên từ" },
     { value: "interjection", label: "Thán từ" },
   ];
+
+  // Tìm từ trong hệ thống khi user nhập
+  const searchWord = async (wordName) => {
+    if (!wordName || wordName.trim().length < 2) {
+      setFoundWord(null);
+      // Reset các trường nếu user xóa text
+      setFormData((prev) => ({
+        ...prev,
+        pronunciation: "",
+        definition: "",
+        exampleEn: "",
+        exampleVi: "",
+        type: "noun",
+      }));
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const result = await wordApi.findWordByName(wordName.trim());
+      if (result.EC === "0" && result.DT) {
+        // Tìm thấy từ, auto-fill các trường
+        const word = result.DT;
+        setFoundWord(word);
+        
+        // Chỉ auto-fill nếu các trường đang trống
+        setFormData((prev) => ({
+          ...prev,
+          pronunciation: prev.pronunciation || word.pronunciation || "",
+          definition: prev.definition || word.meaning_vi || "",
+          exampleEn: prev.exampleEn || word.example_en || "",
+          exampleVi: prev.exampleVi || word.example_vi || "",
+          type: prev.type || mapPartOfSpeech(word.part_of_speech) || "noun",
+        }));
+      } else {
+        setFoundWord(null);
+        // Reset các trường nếu không tìm thấy từ
+        setFormData((prev) => ({
+          ...prev,
+          pronunciation: "",
+          definition: "",
+          exampleEn: "",
+          exampleVi: "",
+          type: "noun",
+        }));
+      }
+    } catch (error) {
+      console.error("Error searching word:", error);
+      setFoundWord(null);
+      // Reset các trường khi có lỗi
+      setFormData((prev) => ({
+        ...prev,
+        pronunciation: "",
+        definition: "",
+        exampleEn: "",
+        exampleVi: "",
+        type: "noun",
+      }));
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Map part_of_speech từ database sang form type
+  const mapPartOfSpeech = (pos) => {
+    if (!pos) return "noun";
+    const posLower = pos.toLowerCase();
+    const mapping = {
+      "noun": "noun",
+      "verb": "verb",
+      "adjective": "adjective",
+      "adverb": "adverb",
+      "pronoun": "pronoun",
+      "preposition": "preposition",
+      "conjunction": "conjunction",
+      "interjection": "interjection",
+    };
+    return mapping[posLower] || "noun";
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +121,50 @@ const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
         [name]: "",
       }));
     }
+
+    // Nếu đang nhập trường "word", tìm kiếm từ sau 500ms
+    if (name === "word") {
+      // Clear timeout trước đó
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+
+      // Set timeout mới
+      searchTimeoutRef.current = setTimeout(() => {
+        searchWord(value);
+      }, 500);
+    }
   };
+
+  // Cleanup timeout khi component unmount
+  useEffect(() => {
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Reset form khi modal đóng
+  useEffect(() => {
+    if (!isOpen) {
+      setFormData({
+        word: "",
+        type: "noun",
+        pronunciation: "",
+        definition: "",
+        exampleEn: "",
+        exampleVi: "",
+        image: null,
+      });
+      setFoundWord(null);
+      setErrors({});
+      setIsSearching(false);
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    }
+  }, [isOpen]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -55,6 +181,16 @@ const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
 
     if (!formData.word.trim()) {
       newErrors.word = "Từ không được để trống";
+    } else {
+      // Kiểm tra từ trùng trong danh sách hiện tại
+      const wordLower = formData.word.trim().toLowerCase();
+      const isDuplicate = existingWords.some(
+        (word) => word.word && word.word.toLowerCase() === wordLower
+      );
+      
+      if (isDuplicate) {
+        newErrors.word = "Từ này đã tồn tại trong danh sách";
+      }
     }
 
     if (!formData.pronunciation.trim()) {
@@ -123,15 +259,42 @@ const AddWordModal = ({ isOpen, onClose, onSubmit, topicId }) => {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="word">Từ *</label>
-              <input
-                type="text"
-                id="word"
-                name="word"
-                value={formData.word}
-                onChange={handleInputChange}
-                placeholder="Nhập từ"
-                className={errors.word ? "error" : ""}
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  type="text"
+                  id="word"
+                  name="word"
+                  value={formData.word}
+                  onChange={handleInputChange}
+                  placeholder="Nhập từ"
+                  className={errors.word ? "error" : ""}
+                />
+                {isSearching && (
+                  <span style={{ 
+                    position: "absolute", 
+                    right: "10px", 
+                    top: "50%", 
+                    transform: "translateY(-50%)",
+                    fontSize: "12px",
+                    color: "#64748b"
+                  }}>
+                    Đang tìm...
+                  </span>
+                )}
+              </div>
+              {foundWord && (
+                <div style={{
+                  marginTop: "4px",
+                  padding: "8px 12px",
+                  backgroundColor: "#dbeafe",
+                  border: "1px solid #3b82f6",
+                  borderRadius: "6px",
+                  fontSize: "13px",
+                  color: "#1e40af"
+                }}>
+                  ✓ Tìm thấy từ trong hệ thống. Đã tự động điền thông tin.
+                </div>
+              )}
               {errors.word && <span className="error-text">{errors.word}</span>}
             </div>
 
