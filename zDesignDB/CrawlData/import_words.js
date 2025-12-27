@@ -4,12 +4,30 @@ const mysql = require("mysql2/promise");
 
 const INPUT_DIR = "./simple";
 
+// Hàm chuyển đổi ISO datetime sang MySQL datetime format
+function toMySQLDateTime(isoString) {
+    if (!isoString) return null;
+    try {
+        const date = new Date(isoString);
+        // Format: YYYY-MM-DD HH:mm:ss
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    } catch (err) {
+        return null;
+    }
+}
+
 async function main() {
     const conn = await mysql.createConnection({
         host: "127.0.0.1",
         user: "root",
         password: "123456",
-        database: "e_learnning6",
+        database: "elearn5",
         port: 3306
     });
 
@@ -41,7 +59,7 @@ async function main() {
                         example_vi = ?,
                         image_url = ?,
                         audio_url = ?,
-                        raw_source_url = ?,
+                        
                         updated_at = ?
                     WHERE word = ?`,
                     [
@@ -53,8 +71,8 @@ async function main() {
                         w.example_vi || "",
                         w.image_url || null,
                         w.audio || null,
-                        w.source_url || null,
-                        w.updated_at || new Date().toISOString(),
+                       
+                        toMySQLDateTime(w.updated_at) || toMySQLDateTime(new Date().toISOString()),
                         w.word
                     ]
                 );
@@ -68,9 +86,9 @@ async function main() {
                 const [insertResult] = await conn.execute(
                     `INSERT INTO words
                         (topic_id, word, part_of_speech, pronunciation, meaning_vi, definition_en,
-                         example_en, example_vi, image_url, audio_url, raw_source_url,
+                         example_en, example_vi, image_url, audio_url, 
                          word_type, created_by, is_active)
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                     [
                         1,                       // topic_id (bắt buộc)
                         w.word,
@@ -82,7 +100,7 @@ async function main() {
                         w.example_vi || "",
                         w.image_url || null,
                         w.audio || null,
-                        w.source_url || null,
+                        
                         "system",                // word_type
                         null,                    // created_by
                         1,                       // is_active
