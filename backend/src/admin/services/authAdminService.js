@@ -10,6 +10,7 @@ const crypto = require("crypto");
 exports.login = async (email, password, ipAddress, userAgent) => {
   try {
     // Tìm user theo email
+    console.log(email)
     const user = await User.findOne({
       where: { email },
       include: [
@@ -21,7 +22,7 @@ exports.login = async (email, password, ipAddress, userAgent) => {
         },
       ],
     });
-
+    console.log(user)
     if (!user) {
       return {
         EM: "Email không tồn tại",
