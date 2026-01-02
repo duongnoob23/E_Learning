@@ -1358,7 +1358,6 @@ body {
 }
 
 .lesson-page__lesson-component {
-  margin-top: 24px;
   padding: 24px;
   background: var(--lesson-color-surface);
   border-radius: var(--lesson-radius-md);

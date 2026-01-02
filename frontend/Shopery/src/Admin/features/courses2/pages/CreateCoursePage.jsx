@@ -1,19 +1,18 @@
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 // React Icons - Đa dạng và chuyên nghiệp
-import {
-  HiDocumentText,
-  HiVideoCamera,
-  HiBookOpen,
-  HiInformationCircle,
-  HiPlus,
-  HiMinus,
-  HiArrowRight,
-  HiEye,
-  HiArrowPath,
-  HiXMark,
-} from "react-icons/hi2";
 import { FaCheck } from "react-icons/fa";
+import {
+  HiArrowPath,
+  HiArrowRight,
+  HiBookOpen,
+  HiDocumentText,
+  HiEye,
+  HiInformationCircle,
+  HiMinus,
+  HiPlus,
+  HiVideoCamera,
+} from "react-icons/hi2";
 import AdditionalInformationTab from "../components/CreateCourse/AdditionalInformationTab";
 import CourseBuilderTab from "../components/CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "../components/CreateCourse/CourseInfoTab";
@@ -534,7 +533,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
             // QUAN TRỌNG: Lấy lesson_type từ lesson, không default "video"
             const lessonType =
               lesson.lessonType || lesson.lesson_type || "video";
-            
+
             const payload = {
               title: lesson.title,
               description: lesson.description || null,
@@ -547,6 +546,28 @@ export default function CreateCoursePage({ onClose, onSave }) {
             // QUAN TRỌNG: Luôn gửi lesson_data nếu có (cho tất cả các loại lesson)
             if (lesson.lesson_data) {
               payload.lesson_data = lesson.lesson_data;
+              console.log(
+                `CreateCoursePage - Sending lesson_data for lesson ${
+                  lessonIndex + 1
+                }:`,
+                {
+                  has_lesson_data: true,
+                  lesson_data_type: typeof lesson.lesson_data,
+                  lesson_data_keys: Object.keys(lesson.lesson_data || {}),
+                  video_url: lesson.lesson_data?.video_url || "N/A",
+                }
+              );
+            } else {
+              console.warn(
+                `CreateCoursePage - No lesson_data for lesson ${
+                  lessonIndex + 1
+                }`,
+                {
+                  lessonType,
+                  lesson_id: lesson.lesson_id,
+                  lesson_title: lesson.title,
+                }
+              );
             }
 
             // Xử lý video lesson: thêm videoUrl và videoDuration
@@ -644,18 +665,26 @@ export default function CreateCoursePage({ onClose, onSave }) {
                   onClick={() => handleTabClick(tab.id)}
                 >
                   <div className="course-create-page__accordion-header">
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      {React.createElement(tab.icon, { style: { width: "18px", height: "18px", color: "#14b8a6" } })}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      {React.createElement(tab.icon, {
+                        style: {
+                          width: "18px",
+                          height: "18px",
+                          color: "#14b8a6",
+                        },
+                      })}
                       <span className="course-create-page__accordion-title">
                         {tab.name}
                       </span>
                     </div>
                     <span className="course-create-page__accordion-icon">
-                      {activeTab === tab.id ? (
-                        <HiMinus />
-                      ) : (
-                        <HiPlus />
-                      )}
+                      {activeTab === tab.id ? <HiMinus /> : <HiPlus />}
                     </span>
                   </div>
                 </div>
@@ -732,7 +761,9 @@ export default function CreateCoursePage({ onClose, onSave }) {
               type="button"
             >
               Reset All
-              <HiArrowPath style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
+              <HiArrowPath
+                style={{ marginLeft: "8px", width: "16px", height: "16px" }}
+              />
             </button>
             <button
               className="course-create-page__btn course-create-page__btn--preview"
@@ -740,7 +771,9 @@ export default function CreateCoursePage({ onClose, onSave }) {
               type="button"
             >
               Preview
-              <HiEye style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
+              <HiEye
+                style={{ marginLeft: "8px", width: "16px", height: "16px" }}
+              />
             </button>
             <button
               className="course-create-page__btn course-create-page__btn--create"
@@ -749,7 +782,9 @@ export default function CreateCoursePage({ onClose, onSave }) {
               disabled={isCreating}
             >
               {isCreating ? "Creating..." : "Create Course"}
-              <HiArrowRight style={{ marginLeft: "8px", width: "16px", height: "16px" }} />
+              <HiArrowRight
+                style={{ marginLeft: "8px", width: "16px", height: "16px" }}
+              />
             </button>
           </div>
         </div>

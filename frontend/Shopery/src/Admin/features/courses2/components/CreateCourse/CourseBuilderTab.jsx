@@ -180,11 +180,28 @@ export default function CourseBuilderTab({
                     l.lessonType ||
                     selectedLessonType ||
                     "video",
-                  // QUAN TRỌNG: lesson_data phải lấy từ lessonData.lesson_data (không fallback về l.lesson_data)
-                  lesson_data:
-                    lessonData.lesson_data !== undefined
-                      ? lessonData.lesson_data
-                      : l.lesson_data || null,
+                  // QUAN TRỌNG: lesson_data phải lấy từ lessonData.lesson_data hoặc lessonData (nếu lessonData có type)
+                  lesson_data: (() => {
+                    let finalLessonData = null;
+                    if (lessonData.lesson_data !== undefined) {
+                      finalLessonData = lessonData.lesson_data;
+                    } else if (lessonData.type) {
+                      finalLessonData = lessonData;
+                    } else {
+                      finalLessonData = l.lesson_data || null;
+                    }
+                    console.log(
+                      "CourseBuilderTab - Final lesson_data for update:",
+                      {
+                        has_lesson_data: !!finalLessonData,
+                        lesson_data: finalLessonData,
+                        lessonData_has_type: !!lessonData.type,
+                        lessonData_has_lesson_data:
+                          lessonData.lesson_data !== undefined,
+                      }
+                    );
+                    return finalLessonData;
+                  })(),
                   isFree:
                     lessonData.isFree !== undefined
                       ? lessonData.isFree
@@ -209,10 +226,27 @@ export default function CourseBuilderTab({
               lessonData.lesson_type ||
               selectedLessonType ||
               "video",
-            lesson_data:
-              lessonData.lesson_data !== undefined
-                ? lessonData.lesson_data
-                : null,
+            lesson_data: (() => {
+              let finalLessonData = null;
+              if (lessonData.lesson_data !== undefined) {
+                finalLessonData = lessonData.lesson_data;
+              } else if (lessonData.type) {
+                finalLessonData = lessonData;
+              } else {
+                finalLessonData = null;
+              }
+              console.log(
+                "CourseBuilderTab - Final lesson_data for new lesson:",
+                {
+                  has_lesson_data: !!finalLessonData,
+                  lesson_data: finalLessonData,
+                  lessonData_has_type: !!lessonData.type,
+                  lessonData_has_lesson_data:
+                    lessonData.lesson_data !== undefined,
+                }
+              );
+              return finalLessonData;
+            })(),
             isFree: lessonData.isFree || false,
           };
           console.log("Adding new lesson:", newLesson);
