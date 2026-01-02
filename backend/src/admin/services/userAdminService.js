@@ -1,4 +1,4 @@
-const { User, UserRole } = require("../../models");
+const { User, UserRole, CourseEnrollment, Course, Payment, Order, OrderItem } = require("../../models");
 const { Op } = require("sequelize");
 
 //--- Gán role cho user ---//
@@ -84,7 +84,11 @@ exports.getUsers = async (query) => {
 
 exports.getUserDetail = async (user_id) => {
     try {
-        const user = await User.findbyId(user_id);
+        const user = await User.findOne({
+            where: { user_id },
+            attributes: { exclude: ["password_hash"] },
+        });
+
         if (!user) {
             return {
                 EM: "Không tìm thấy người dùng",
@@ -93,10 +97,64 @@ exports.getUserDetail = async (user_id) => {
             };
         }
 
+        // Lấy danh sách khóa học đã đăng ký
+        const enrollments = await CourseEnrollment.findAll({
+            where: { user_id },
+            include: [
+                {
+                    model: Course,
+                    attributes: ["course_id", "title", "image", "price", "is_free"],
+                },
+            ],
+            order: [["enrolled_at", "DESC"]],
+        });
+
+        // Lấy danh sách giao dịch
+        const payments = await Payment.findAll({
+            where: { user_id },
+            include: [
+                {
+                    model: Order,
+                    as: "order",
+                    attributes: ["order_id", "order_number", "total_amount", "order_status"],
+                    include: [
+                        {
+                            model: OrderItem,
+                            as: "items",
+                            include: [
+                                {
+                                    model: Course,
+                                    as: "course",
+                                    attributes: ["course_id", "title"],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            order: [["created_at", "DESC"]],
+        });
+
+        // Thống kê tổng quan
+        const stats = {
+            totalEnrollments: enrollments.length,
+            completedCourses: enrollments.filter(e => e.status === "completed").length,
+            activeCourses: enrollments.filter(e => e.status === "active").length,
+            totalPayments: payments.length,
+            totalSpent: payments
+                .filter(p => p.payment_status === "completed")
+                .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0),
+        };
+
         return {
             EM: "Thành công",
             EC: "0",
-            DT: user,
+            DT: {
+                user,
+                enrollments,
+                payments,
+                stats,
+            },
         };
     } catch (error) {
         console.error("Error in getUserDetail:", error.message);
@@ -383,3 +441,117 @@ exports.getUsersStatsByStatus = async () => {
         };
     }
 }
+
+//--- Lấy danh sách khóa học đã đăng ký của user ---//
+exports.getUserEnrollments = async (user_id, query = {}) => {
+    try {
+        const { page = 1, limit = 10, status } = query;
+        const offset = (page - 1) * limit;
+
+        const whereClause = { user_id };
+        if (status) {
+            whereClause.status = status;
+        }
+
+        const { count, rows: enrollments } = await CourseEnrollment.findAndCountAll({
+            where: whereClause,
+            include: [
+                {
+                    model: Course,
+                    attributes: ["course_id", "title", "image", "price", "is_free", "status"],
+                },
+            ],
+            offset,
+            limit: parseInt(limit),
+            order: [["enrolled_at", "DESC"]],
+        });
+
+        return {
+            EM: "Lấy danh sách khóa học đã đăng ký thành công",
+            EC: "0",
+            DT: {
+                enrollments,
+                pagination: {
+                    current_page: parseInt(page),
+                    total_pages: Math.ceil(count / limit),
+                    total_items: count,
+                    items_per_page: parseInt(limit),
+                },
+            },
+        };
+    } catch (error) {
+        console.error("Error in getUserEnrollments:", error.message);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình lấy danh sách khóa học",
+            EC: "-2",
+            DT: null,
+        };
+    }
+};
+
+//--- Lấy danh sách giao dịch của user ---//
+exports.getUserPayments = async (user_id, query = {}) => {
+    try {
+        const { page = 1, limit = 10, payment_status } = query;
+        const offset = (page - 1) * limit;
+
+        const whereClause = { user_id };
+        if (payment_status) {
+            whereClause.payment_status = payment_status;
+        }
+
+        const { count, rows: payments } = await Payment.findAndCountAll({
+            where: whereClause,
+            include: [
+                {
+                    model: Order,
+                    as: "order",
+                    attributes: ["order_id", "order_number", "total_amount", "order_status", "created_at"],
+                    include: [
+                        {
+                            model: OrderItem,
+                            as: "items",
+                            include: [
+                                {
+                                    model: Course,
+                                    as: "course",
+                                    attributes: ["course_id", "title", "image"],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            offset,
+            limit: parseInt(limit),
+            order: [["created_at", "DESC"]],
+        });
+
+        // Tính tổng tiền đã thanh toán
+        const totalSpent = await Payment.sum("amount", {
+            where: { user_id, payment_status: "completed" },
+        }) || 0;
+
+        return {
+            EM: "Lấy danh sách giao dịch thành công",
+            EC: "0",
+            DT: {
+                payments,
+                totalSpent,
+                pagination: {
+                    current_page: parseInt(page),
+                    total_pages: Math.ceil(count / limit),
+                    total_items: count,
+                    items_per_page: parseInt(limit),
+                },
+            },
+        };
+    } catch (error) {
+        console.error("Error in getUserPayments:", error.message);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình lấy danh sách giao dịch",
+            EC: "-2",
+            DT: null,
+        };
+    }
+};

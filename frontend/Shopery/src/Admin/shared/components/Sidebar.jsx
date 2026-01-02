@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 // Heroicons v2 - Modern và đẹp
 import {
+  HiBookOpen,
   HiChatBubbleLeftRight,
+  HiChartBar,
   HiDocumentText,
   HiHome,
   HiPlusCircle,
@@ -20,6 +22,7 @@ const Sidebar = () => {
       title: "HOME",
       items: [
         { name: "Dashboard", path: "/admin/dashboard", icon: HiHome },
+        { name: "Thống kê", path: "/admin/statistics", icon: HiChartBar },
         {
           name: "Discussions",
           path: "/admin/discussions",
@@ -31,6 +34,7 @@ const Sidebar = () => {
       title: "MANAGEMENT",
       items: [
         { name: "Users", path: "/admin/users", icon: HiUsers },
+        { name: "Vocabulary", path: "/admin/vocabulary", icon: HiBookOpen },
         { name: "Courses", path: "/admin/courses", icon: FaBook },
         {
           name: "Create Course",

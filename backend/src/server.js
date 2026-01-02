@@ -131,6 +131,42 @@ app.get("/uploads/images/:filename", (req, res) => {
   });
 });
 
+// Route serve vocabulary images
+app.get("/uploads/vocabulary/images/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "../uploads/vocabulary/images", filename);
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.set("Cache-Control", "public, max-age=31536000");
+
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error("Error serving vocabulary image:", err);
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+});
+
+// Route serve vocabulary audio
+app.get("/uploads/vocabulary/audio/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "../uploads/vocabulary/audio", filename);
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.set("Cache-Control", "public, max-age=31536000");
+
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error("Error serving vocabulary audio:", err);
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+});
+
 // Test endpoint
 app.get("/test-avatar", (req, res) => {
   res.json({

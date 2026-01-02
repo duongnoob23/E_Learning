@@ -1,4 +1,5 @@
 const { Op } = require("sequelize");
+const { Role } = require("./Role");
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -22,7 +23,14 @@ module.exports = (sequelize, DataTypes) => {
   );
   // Note: findAndCountAll is a built-in Sequelize method, no need to override
   User.findbyId = async (user_id) => User.findOne({ where: { user_id }, attributes: { exclude: ["password_hash"] } });
-  User.findByEmail = async (email) => User.findOne({ where: { email } });
+  User.findByEmail = async (email) => User.findOne({ where: { email }, include: [
+    {
+      model: Role,
+      as: "roles",
+      through: { attributes: [] },
+      attributes: ["role_name"],
+    },
+  ] });
   User.findByUsername = async (username) =>
     User.findOne({ where: { username } });
   User.createUser = async (data) => User.create(data);

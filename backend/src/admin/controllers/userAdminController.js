@@ -155,3 +155,25 @@ exports.getUsersStatsByStatus = async (req, res, next) => {
         next(error);
     }
 }
+
+//--- Lấy danh sách khóa học đã đăng ký của user ---//
+exports.getUserEnrollments = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserEnrollments(user_id, req.query);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+//--- Lấy danh sách giao dịch của user ---//
+exports.getUserPayments = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserPayments(user_id, req.query);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}

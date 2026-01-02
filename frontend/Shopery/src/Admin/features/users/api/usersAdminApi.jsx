@@ -93,5 +93,31 @@ export const usersAdminApi = {
   // Gán role cho user
   assignRoleToUser: async (userId, roleId) =>
     (await adminAxiosInstance.post(`/admin/users/users/${userId}/roles`, { role_id: roleId })).data,
+
+  // ==================== KHÓA HỌC & GIAO DỊCH ==================== //
+
+  // Lấy danh sách khóa học đã đăng ký của user
+  getUserEnrollments: async (userId, params = {}) => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page);
+    if (params.limit) queryParams.append("limit", params.limit);
+    if (params.status) queryParams.append("status", params.status);
+
+    const queryString = queryParams.toString();
+    const url = `/admin/users/${userId}/enrollments${queryString ? `?${queryString}` : ""}`;
+    return (await adminAxiosInstance.get(url)).data;
+  },
+
+  // Lấy danh sách giao dịch của user
+  getUserPayments: async (userId, params = {}) => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page);
+    if (params.limit) queryParams.append("limit", params.limit);
+    if (params.payment_status) queryParams.append("payment_status", params.payment_status);
+
+    const queryString = queryParams.toString();
+    const url = `/admin/users/${userId}/payments${queryString ? `?${queryString}` : ""}`;
+    return (await adminAxiosInstance.get(url)).data;
+  },
 };
 

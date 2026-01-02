@@ -59,4 +59,20 @@ router.patch("/:user_id/verify-phone", UserAdminController.verifyPhone);
 
 //--- Quản lý bảo mật & đăng nhập ---//
 router.patch("/:user_id/verify-email", UserAdminController.verifyEmail);
+
+//--- Lấy khóa học đã đăng ký và giao dịch của user ---//
+/**
+ * @route GET /api/admin/users/:user_id/enrollments
+ * @desc Lấy danh sách khóa học đã đăng ký của user
+ * @query page, limit, status (active|completed|cancelled|expired)
+ */
+router.get("/:user_id/enrollments", UserAdminController.getUserEnrollments);
+
+/**
+ * @route GET /api/admin/users/:user_id/payments
+ * @desc Lấy danh sách giao dịch của user
+ * @query page, limit, payment_status (pending|completed|failed|cancelled|refunded)
+ */
+router.get("/:user_id/payments", UserAdminController.getUserPayments);
+
 module.exports = router;
