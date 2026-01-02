@@ -1,6 +1,6 @@
 // VideoLesson.jsx - Component hiển thị video lesson
 // Hỗ trợ: YouTube embed, Google Cloud Storage video, nội dung mô tả
-import React, { useState } from "react";
+import React from "react";
 import "./VideoLesson.css";
 
 export default function VideoLesson({ lesson }) {
@@ -142,14 +142,12 @@ export default function VideoLesson({ lesson }) {
       {content && (
         <div className="video-lesson-content">
           <h3 className="video-lesson-content-title">Nội dung bài học</h3>
-          <div className="video-lesson-content-text">
-            {content.split("\n").map((line, idx) => (
-              <p key={idx}>{line || "\u00A0"}</p>
-            ))}
-          </div>
+          <div
+            className="video-lesson-content-text"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
       )}
     </div>
   );
 }
-

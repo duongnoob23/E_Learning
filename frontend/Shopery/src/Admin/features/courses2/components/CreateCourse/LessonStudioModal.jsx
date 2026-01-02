@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import LessonStudio from "../../../../../Client/components/Lesson/Creators/LessonStudio";
 import "./LessonStudioModal.scss";
@@ -13,6 +13,8 @@ export default function LessonStudioModal({
   const [lessonData, setLessonData] = useState(null);
   const [lessonTitle, setLessonTitle] = useState("");
   const [errors, setErrors] = useState({});
+  // QUAN TRỌNG: Ref để lưu data mới nhất từ LessonStudio (tránh vấn đề debounce)
+  const latestLessonDataRef = useRef(null);
 
   // QUAN TRỌNG: Ưu tiên lessonType từ initialData nếu có, nếu không thì dùng từ props
   const actualLessonType =
@@ -54,29 +56,54 @@ export default function LessonStudioModal({
 
         // Nếu là video lesson và có videoUrl từ form cũ, chuyển đổi sang format mới
         if (
-          dataLessonType === "video" &&
+          (dataLessonType === "video" || dataLessonType === "video_lesson") &&
           initialData.videoUrl &&
           !lessonDataToLoad
         ) {
-          setLessonData({
+          const newData = {
             type: "video_lesson",
             video_url: initialData.videoUrl,
             video_type:
               initialData.videoSource === "Google Drive" ? "direct" : "youtube",
             content: initialData.content || "",
-          });
+          };
+          setLessonData(newData);
+          latestLessonDataRef.current = newData;
         } else {
           // Load lesson_data từ initialData (cho tất cả các loại lesson)
-          console.log(
-            "LessonStudioModal - Loading lesson_data:",
-            lessonDataToLoad
-          );
-          setLessonData(lessonDataToLoad || null);
+          // QUAN TRỌNG: Nếu là video_lesson nhưng lessonDataToLoad không có video_url,
+          // thử lấy từ initialData.videoUrl
+          if (
+            (dataLessonType === "video" || dataLessonType === "video_lesson") &&
+            (!lessonDataToLoad || !lessonDataToLoad.video_url) &&
+            initialData.videoUrl
+          ) {
+            const newData = {
+              type: "video_lesson",
+              video_url: initialData.videoUrl,
+              video_type:
+                initialData.videoSource === "Google Drive"
+                  ? "direct"
+                  : "youtube",
+              content: lessonDataToLoad?.content || initialData.content || "",
+            };
+            setLessonData(newData);
+            latestLessonDataRef.current = newData;
+          } else {
+            console.log(
+              "LessonStudioModal - Loading lesson_data:",
+              lessonDataToLoad
+            );
+            setLessonData(lessonDataToLoad || null);
+            // QUAN TRỌNG: Cập nhật ref khi load initial data
+            latestLessonDataRef.current = lessonDataToLoad || null;
+          }
         }
         setLessonTitle(initialData.title || "");
       } else {
         // Tạo mới - reset về null
         setLessonData(null);
+        latestLessonDataRef.current = null;
         setLessonTitle("");
       }
     }
@@ -100,9 +127,14 @@ export default function LessonStudioModal({
   const handleLessonStudioSave = (newData) => {
     console.log("handleLessonStudioSave called with:", newData);
     setLessonData(newData);
+    // QUAN TRỌNG: Lưu vào ref để có thể lấy ngay khi cần (tránh vấn đề debounce)
+    latestLessonDataRef.current = newData;
   };
 
-  const validate = () => {
+  const validate = (dataToValidate = null) => {
+    // QUAN TRỌNG: Dùng data từ parameter hoặc từ ref (mới nhất) hoặc từ state
+    const dataToCheck =
+      dataToValidate || latestLessonDataRef.current || lessonData;
     const newErrors = {};
 
     if (!lessonTitle.trim()) {
@@ -110,39 +142,39 @@ export default function LessonStudioModal({
     }
 
     // Validate lesson_data theo lesson_type
-    if (actualLessonType === "video") {
+    if (actualLessonType === "video" || actualLessonType === "video_lesson") {
       // Video lesson: cần video_url trong lesson_data
-      if (!lessonData || !lessonData.video_url?.trim()) {
+      if (!dataToCheck || !dataToCheck.video_url?.trim()) {
         newErrors.lesson_data = "Vui lòng nhập video URL";
       }
     } else {
       // Các lesson khác: cần lesson_data có nội dung
-      if (!lessonData) {
+      if (!dataToCheck) {
         newErrors.lesson_data = "Vui lòng tạo nội dung bài học trước khi lưu";
       } else {
         // Validate theo từng loại lesson
-        if (lessonData.type && lessonData.type !== mappedLessonType) {
+        if (dataToCheck.type && dataToCheck.type !== mappedLessonType) {
           newErrors.lesson_data = "Dữ liệu không đúng định dạng";
         }
         // Kiểm tra có ít nhất một câu hỏi/từ vựng
         if (
-          lessonData.questions &&
-          Array.isArray(lessonData.questions) &&
-          lessonData.questions.length === 0
+          dataToCheck.questions &&
+          Array.isArray(dataToCheck.questions) &&
+          dataToCheck.questions.length === 0
         ) {
           newErrors.lesson_data = "Vui lòng thêm ít nhất một câu hỏi";
         }
         if (
-          lessonData.words &&
-          Array.isArray(lessonData.words) &&
-          lessonData.words.length === 0
+          dataToCheck.words &&
+          Array.isArray(dataToCheck.words) &&
+          dataToCheck.words.length === 0
         ) {
           newErrors.lesson_data = "Vui lòng thêm ít nhất một từ vựng";
         }
         // Kiểm tra vocabulary_list: cần có words
         if (
           mappedLessonType === "vocabulary_list" &&
-          (!lessonData.words || lessonData.words.length === 0)
+          (!dataToCheck.words || dataToCheck.words.length === 0)
         ) {
           newErrors.lesson_data = "Vui lòng thêm ít nhất một từ vựng";
         }
@@ -158,14 +190,14 @@ export default function LessonStudioModal({
             "toeic_part_1",
           ].includes(mappedLessonType)
         ) {
-          if (!lessonData.questions || lessonData.questions.length === 0) {
+          if (!dataToCheck.questions || dataToCheck.questions.length === 0) {
             newErrors.lesson_data = "Vui lòng thêm ít nhất một câu hỏi";
           }
         }
         // Kiểm tra grammar_theory: cần có sections
         if (
           mappedLessonType === "grammar_theory" &&
-          (!lessonData.sections || lessonData.sections.length === 0)
+          (!dataToCheck.sections || dataToCheck.sections.length === 0)
         ) {
           newErrors.lesson_data = "Vui lòng thêm ít nhất một phần lý thuyết";
         }
@@ -174,7 +206,7 @@ export default function LessonStudioModal({
 
     console.log("Validation result:", {
       errors: newErrors,
-      lessonData,
+      lessonData: dataToCheck,
       lessonType: mappedLessonType,
     });
     setErrors(newErrors);
@@ -182,28 +214,38 @@ export default function LessonStudioModal({
   };
 
   const handleSave = () => {
-    if (!validate()) {
+    // QUAN TRỌNG: Lấy data mới nhất từ ref (tránh vấn đề debounce)
+    // Nếu ref có data thì dùng ref, nếu không thì dùng state
+    const currentLessonData = latestLessonDataRef.current || lessonData;
+
+    // Validate với data mới nhất
+    if (!validate(currentLessonData)) {
       return;
     }
 
-    // Tạo payload để lưu
+    // Tạo payload để lưu với data mới nhất
     const payload = {
       title: lessonTitle.trim(),
       lessonType: actualLessonType, // QUAN TRỌNG: Dùng actualLessonType thay vì lessonType từ props
-      lesson_data: lessonData, // QUAN TRỌNG: Luôn gửi lesson_data cho tất cả các loại lesson
+      lesson_data: currentLessonData, // QUAN TRỌNG: Dùng data từ ref (mới nhất)
       description: initialData?.description || "",
       content: initialData?.content || "",
       isFree: initialData?.isFree || false,
     };
 
     // Backward compatibility: nếu là video, thêm videoUrl và videoSource
-    if (actualLessonType === "video" && lessonData) {
-      payload.videoUrl = lessonData.video_url || "";
+    if (
+      (actualLessonType === "video" || actualLessonType === "video_lesson") &&
+      currentLessonData
+    ) {
+      payload.videoUrl = currentLessonData.video_url || "";
       payload.videoSource =
-        lessonData.video_type === "direct" ? "Google Drive" : "YouTube";
+        currentLessonData.video_type === "direct" ? "Google Drive" : "YouTube";
     }
 
     console.log("Saving lesson with payload:", payload);
+    console.log("Current lessonData from ref:", latestLessonDataRef.current);
+    console.log("Current lessonData from state:", lessonData);
     onSave(payload);
     onClose();
   };

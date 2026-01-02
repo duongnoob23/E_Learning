@@ -1,8 +1,8 @@
-import React, { useCallback, useMemo, useState } from "react";
-import "./Lesson.css";
+import { useCallback, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCourseStructure } from "../../services/Course/courseQueries";
 import { renderLessonComponent } from "../../components/Lesson/LessonComponentMapper";
+import { useCourseStructure } from "../../services/Course/courseQueries";
+import "./Lesson.css";
 // import throttle from "lodash.throttle";
 // import ReactPlayer from "react-player";
 // ------------------------------- //
@@ -29,48 +29,48 @@ const Lesson = () => {
       const urlObj = new URL(url);
       let videoId = "";
       let listId = urlObj.searchParams.get("list");
-  
+
       // 1. Dạng chuẩn watch?v=
       if (urlObj.searchParams.get("v")) {
         videoId = urlObj.searchParams.get("v");
       }
-  
+
       // 2. Dạng youtu.be/VIDEO_ID
       else if (urlObj.hostname === "youtu.be") {
         videoId = urlObj.pathname.replace("/", "");
       }
-  
+
       // 3. Dạng embed/VIDEO_ID
       else if (urlObj.pathname.startsWith("/embed/")) {
         videoId = urlObj.pathname.split("/embed/")[1];
       }
-  
+
       // 4. Dạng shorts/VIDEO_ID
       else if (urlObj.pathname.startsWith("/shorts/")) {
         videoId = urlObj.pathname.split("/shorts/")[1];
       }
-  
+
       // 5. Live stream
       else if (urlObj.pathname.startsWith("/live/")) {
         videoId = urlObj.pathname.split("/live/")[1];
       }
-  
+
       // Nếu không tìm được ID
       if (!videoId) return null;
-  
+
       // Build embed URL
       let embedUrl = `https://www.youtube.com/embed/${videoId}`;
-  
+
       if (listId) {
         embedUrl += `?list=${listId}`;
       }
-  
+
       return embedUrl;
     } catch (error) {
       return null;
     }
   };
-  
+
   const activeLesson = useMemo(() => {
     if (!activeModule) return null;
     return (
@@ -96,7 +96,8 @@ const Lesson = () => {
   console.log("Active lesson:", activeLesson);
   // ----- Rendering -----
   if (isLoading) return <div className="loading">Đang tải khóa học...</div>;
-  if (error) return <div className="error">Không thể tải dữ liệu khóa học.</div>;
+  if (error)
+    return <div className="error">Không thể tải dữ liệu khóa học.</div>;
   if (!modules.length)
     return <div className="empty">Khóa học chưa có bài học nào.</div>;
 
@@ -106,10 +107,9 @@ const Lesson = () => {
         <section className="lesson-page__layout">
           {/* ================= LEFT SIDE ================= */}
           <div className="lesson-page__layout-left">
-            {/* Lesson Content - Render động theo lesson_type */}
             {activeLesson ? (
               <div className="lesson-page__lesson-content-wrapper">
-                <header className="lesson-page__course-header">
+                {/* <header className="lesson-page__course-header">
                   <h2 className="lesson-page__lesson-title">
                     {activeLesson.title}
                   </h2>
@@ -118,9 +118,8 @@ const Lesson = () => {
                       {activeLesson.description}
                     </p>
                   )}
-                </header>
+                </header> */}
 
-                {/* Render component dựa trên lesson_type */}
                 <div className="lesson-page__lesson-component">
                   {renderLessonComponent(activeLesson)}
                 </div>
@@ -170,16 +169,21 @@ const Lesson = () => {
                   {isOpen && (
                     <div className="lesson-page__lesson-list">
                       {module.lessons.map((lesson) => {
-                        const isActiveLesson = activeLessonId === lesson.lesson_id;
+                        const isActiveLesson =
+                          activeLessonId === lesson.lesson_id;
                         const statusClass = getLessonModifier(lesson.lesson_id);
                         return (
                           <button
                             key={lesson.lesson_id}
                             type="button"
                             className={`lesson-page__lesson-item ${statusClass} ${
-                              isActiveLesson ? "lesson-page__lesson-item--active" : ""
+                              isActiveLesson
+                                ? "lesson-page__lesson-item--active"
+                                : ""
                             }`}
-                            onClick={() => handleSelectLesson(module.module_id, lesson)}
+                            onClick={() =>
+                              handleSelectLesson(module.module_id, lesson)
+                            }
                           >
                             {/* ICON — bài đang phát */}
                             <span className="lesson-page__lesson-state">
@@ -199,11 +203,12 @@ const Lesson = () => {
                                 </svg>
                               )}
                             </span>
-                        
+
                             {/* TITLE */}
-                            <span className="lesson-page__lesson-name">{lesson.title}</span>
-                        
-                        
+                            <span className="lesson-page__lesson-name">
+                              {lesson.title}
+                            </span>
+
                             {/* TYPE - Hiển thị tên loại bài tập */}
                             <span className="lesson-page__lesson-duration">
                               {lesson.lesson_type === "quiz"
@@ -214,15 +219,18 @@ const Lesson = () => {
                                 ? "Danh sách từ"
                                 : lesson.lesson_type === "vocabulary_matching"
                                 ? "Tìm cặp"
-                                : lesson.lesson_type === "vocabulary_translation"
+                                : lesson.lesson_type ===
+                                  "vocabulary_translation"
                                 ? "Dịch nghĩa"
                                 : lesson.lesson_type === "vocabulary_quiz"
                                 ? "Trắc nghiệm"
                                 : lesson.lesson_type === "vocabulary_listening"
                                 ? "Nghe từ"
-                                : lesson.lesson_type === "vocabulary_image_choice"
+                                : lesson.lesson_type ===
+                                  "vocabulary_image_choice"
                                 ? "Chọn ảnh"
-                                : lesson.lesson_type === "vocabulary_sentence_completion"
+                                : lesson.lesson_type ===
+                                  "vocabulary_sentence_completion"
                                 ? "Hoàn thiện câu"
                                 : lesson.lesson_type === "grammar_theory"
                                 ? "Lý thuyết"
@@ -232,7 +240,6 @@ const Lesson = () => {
                             </span>
                           </button>
                         );
-                        
                       })}
                     </div>
                   )}

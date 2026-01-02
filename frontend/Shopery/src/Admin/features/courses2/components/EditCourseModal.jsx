@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
-import { useAdminCourseDetail, useAdminCourseStructure } from "../hooks/useCoursesAdminQueries";
-import { 
-  useUpdateCourse, 
-  useUpdateModule, 
-  useUpdateLesson,
-  useAddModule,
+import {
   useAddLesson,
+  useAddModule,
   useDeleteLesson,
   useDeleteModule,
+  useUpdateCourse,
+  useUpdateLesson,
+  useUpdateModule,
 } from "../hooks/useCoursesAdminMutations";
+import {
+  useAdminCourseDetail,
+  useAdminCourseStructure,
+} from "../hooks/useCoursesAdminQueries";
 import AdditionalInformationTab from "./CreateCourse/AdditionalInformationTab";
 import CourseBuilderTab from "./CreateCourse/CourseBuilderTab";
 import CourseInfoTab from "./CreateCourse/CourseInfoTab";
@@ -44,7 +47,12 @@ const initialFormData = {
   targetedAudience: "",
 };
 
-export default function EditCourseModal({ open, onClose, courseId, onSuccess }) {
+export default function EditCourseModal({
+  open,
+  onClose,
+  courseId,
+  onSuccess,
+}) {
   const [activeTab, setActiveTab] = useState(0);
   const [formData, setFormData] = useState(initialFormData);
   const [validationErrors, setValidationErrors] = useState({});
@@ -52,14 +60,10 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
   const [originalModules, setOriginalModules] = useState([]); // Lưu dữ liệu ban đầu để so sánh
 
   // Fetch course data
-  const { data: courseDetailRes, isLoading: isLoadingDetail } = useAdminCourseDetail(
-    courseId,
-    open && !!courseId
-  );
-  const { data: courseStructureRes, isLoading: isLoadingStructure } = useAdminCourseStructure(
-    courseId,
-    open && !!courseId
-  );
+  const { data: courseDetailRes, isLoading: isLoadingDetail } =
+    useAdminCourseDetail(courseId, open && !!courseId);
+  const { data: courseStructureRes, isLoading: isLoadingStructure } =
+    useAdminCourseStructure(courseId, open && !!courseId);
 
   // Hooks cho mutations
   const updateCourseMutation = useUpdateCourse();
@@ -93,7 +97,10 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
               try {
                 lessonData = JSON.parse(lessonData);
               } catch (e) {
-                console.error("Error parsing lesson_data in EditCourseModal:", e);
+                console.error(
+                  "Error parsing lesson_data in EditCourseModal:",
+                  e
+                );
                 lessonData = null;
               }
             }
@@ -101,30 +108,39 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
             if (!lessonData) {
               lessonData = null;
             }
-            
+
             const lessonType = lesson.lesson_type || "video";
-            const videoUrl = lesson.video_url || lessonData.video_url || "";
-            const videoType = lessonData.video_type || 
-                             (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be") ? "youtube" : "direct");
-            
+            // QUAN TRỌNG: Kiểm tra lessonData trước khi truy cập thuộc tính để tránh lỗi null
+            const videoUrl = lesson.video_url || lessonData?.video_url || "";
+            const videoType =
+              lessonData?.video_type ||
+              (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")
+                ? "youtube"
+                : "direct");
+
             // Detect video source từ URL và video_type
             let videoSource = "";
             if (videoUrl) {
-              if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+              if (
+                videoUrl.includes("youtube.com") ||
+                videoUrl.includes("youtu.be")
+              ) {
                 videoSource = "YouTube";
               } else if (videoUrl.includes("vimeo.com")) {
                 videoSource = "Vimeo";
               } else if (videoUrl.includes("drive.google.com")) {
                 videoSource = "Google Drive";
-              } else if (videoUrl.includes("storage.googleapis.com") || 
-                         videoUrl.includes("googleapis.com") ||
-                         videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+              } else if (
+                videoUrl.includes("storage.googleapis.com") ||
+                videoUrl.includes("googleapis.com") ||
+                videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)
+              ) {
                 videoSource = "Local Upload";
               } else {
                 videoSource = "Local Upload";
               }
             }
-            
+
             return {
               id: lesson.lesson_id,
               lesson_id: lesson.lesson_id, // Keep original ID for API calls
@@ -150,8 +166,11 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
           discountedPrice: "",
           category: course.category || null,
           thumbnail: course.image || null,
-          videoSource: course.video_preview?.includes("youtube") ? "YouTube" : 
-                      course.video_preview?.includes("vimeo") ? "Vimeo" : "",
+          videoSource: course.video_preview?.includes("youtube")
+            ? "YouTube"
+            : course.video_preview?.includes("vimeo")
+            ? "Vimeo"
+            : "",
           videoUrl: course.video_preview || "",
           modules: mappedModules,
           startDate: course.start_date || "",
@@ -160,12 +179,16 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
           requirementsPerLine: false,
           description: course.details?.description || "",
           descriptionPerLine: false,
-          durationHour: course.total_duration ? Math.floor(course.total_duration / 60).toString() : "",
-          durationMinute: course.total_duration ? (course.total_duration % 60).toString() : "",
+          durationHour: course.total_duration
+            ? Math.floor(course.total_duration / 60).toString()
+            : "",
+          durationMinute: course.total_duration
+            ? (course.total_duration % 60).toString()
+            : "",
           tags: course.tags || "",
           targetedAudience: course.targeted_audience || "",
         });
-        
+
         // Lưu dữ liệu ban đầu để so sánh khi xóa
         setOriginalModules(mappedModules);
       }
@@ -231,7 +254,10 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
       const coursePayload = {
         title: formData.title,
         description: formData.about || formData.description || "",
-        price: formData.priceType === "paid" ? parseFloat(formData.regularPrice) || 0 : 0,
+        price:
+          formData.priceType === "paid"
+            ? parseFloat(formData.regularPrice) || 0
+            : 0,
         image: formData.thumbnail,
         video_preview: formData.videoUrl,
       };
@@ -249,8 +275,10 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
       // So sánh originalModules với formData.modules để tìm lesson/module bị xóa
       if (originalModules && originalModules.length > 0) {
         for (const originalModule of originalModules) {
-          const currentModule = formData.modules?.find(m => m.module_id === originalModule.module_id);
-          
+          const currentModule = formData.modules?.find(
+            (m) => m.module_id === originalModule.module_id
+          );
+
           if (!currentModule) {
             // Module bị xóa - xóa tất cả lessons trong module đó trước
             if (originalModule.lessons && originalModule.lessons.length > 0) {
@@ -272,12 +300,18 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
             }
           } else {
             // Module còn tồn tại - kiểm tra lessons bị xóa
-            const originalLessonIds = (originalModule.lessons || []).map(l => l.lesson_id).filter(Boolean);
-            const currentLessonIds = (currentModule.lessons || []).map(l => l.lesson_id).filter(Boolean);
-            
+            const originalLessonIds = (originalModule.lessons || [])
+              .map((l) => l.lesson_id)
+              .filter(Boolean);
+            const currentLessonIds = (currentModule.lessons || [])
+              .map((l) => l.lesson_id)
+              .filter(Boolean);
+
             // Tìm lessons bị xóa
-            const deletedLessonIds = originalLessonIds.filter(id => !currentLessonIds.includes(id));
-            
+            const deletedLessonIds = originalLessonIds.filter(
+              (id) => !currentLessonIds.includes(id)
+            );
+
             for (const lessonId of deletedLessonIds) {
               await deleteLessonMutation.mutateAsync({
                 lessonId,
@@ -292,7 +326,7 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
       if (formData.modules && formData.modules.length > 0) {
         for (const module of formData.modules) {
           let currentModuleId = module.module_id;
-          
+
           // Thêm module mới nếu không có module_id
           if (!module.module_id) {
             const modulePayload = {
@@ -324,55 +358,77 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
 
           // Xử lý lessons
           if (module.lessons && module.lessons.length > 0) {
-            for (let lessonIndex = 0; lessonIndex < module.lessons.length; lessonIndex++) {
+            for (
+              let lessonIndex = 0;
+              lessonIndex < module.lessons.length;
+              lessonIndex++
+            ) {
               const lesson = module.lessons[lessonIndex];
-              
+
               if (lesson.lesson_id) {
                 // Update existing lesson
-                const lessonType = lesson.lessonType || lesson.lesson_type || "video";
-                
+                const lessonType =
+                  lesson.lessonType || lesson.lesson_type || "video";
+
                 // Detect video_type từ videoSource và URL
                 let detectedVideoType = "youtube";
                 if (lesson.videoSource === "YouTube") {
                   detectedVideoType = "youtube";
-                } else if (lesson.videoSource === "Local Upload" || 
-                           lesson.videoUrl?.includes("storage.googleapis.com") ||
-                           lesson.videoUrl?.includes("googleapis.com") ||
-                           lesson.videoUrl?.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+                } else if (
+                  lesson.videoSource === "Local Upload" ||
+                  lesson.videoUrl?.includes("storage.googleapis.com") ||
+                  lesson.videoUrl?.includes("googleapis.com") ||
+                  lesson.videoUrl?.match(/\.(mp4|webm|ogg|mov|avi)$/i)
+                ) {
                   detectedVideoType = "direct";
                 }
-                
+
+                // QUAN TRỌNG: Map "video_lesson" thành "video" vì backend ENUM chỉ có "video"
+                const lessonTypeForBackend =
+                  lessonType === "video_lesson" ? "video" : lessonType;
+
                 const lessonPayload = {
                   title: lesson.title,
                   description: lesson.description || null,
-                  lesson_type: lessonType, // QUAN TRỌNG: Giữ nguyên lesson_type
+                  lesson_type: lessonTypeForBackend, // Map video_lesson -> video
                   is_free: lesson.isFree || false,
                   sort_order: lessonIndex + 1,
                 };
-                
-                // Nếu là video lesson, thêm video_url và video_duration
-                if (lessonType === "video") {
-                  lessonPayload.video_url = lesson.videoUrl || "";
+
+                // Nếu là video lesson (cả "video" và "video_lesson"), thêm video_url và video_duration
+                if (lessonType === "video" || lessonType === "video_lesson") {
+                  // QUAN TRỌNG: Ưu tiên lấy video_url từ lesson_data (từ LessonStudioModal)
+                  const videoUrlToSave =
+                    lesson.lesson_data?.video_url || lesson.videoUrl || "";
+                  const videoTypeToSave =
+                    lesson.lesson_data?.video_type || detectedVideoType;
+                  const contentToSave =
+                    lesson.lesson_data?.content || lesson.description || "";
+
+                  lessonPayload.video_url = videoUrlToSave;
                   lessonPayload.video_duration = lesson.duration || null;
-                  
+
                   // QUAN TRỌNG: Lưu video_type vào lesson_data
                   lessonPayload.lesson_data = {
-                    ...(lesson.lesson_data || {}),
-                    video_type: detectedVideoType,
-                    video_url: lesson.videoUrl || "",
-                    content: lesson.description || lesson.lesson_data?.content || "",
+                    type: "video_lesson",
+                    video_type: videoTypeToSave,
+                    video_url: videoUrlToSave,
+                    content: contentToSave,
                   };
                 } else {
                   // Với các lesson type khác, QUAN TRỌNG: Luôn gửi lesson_data nếu có
                   // Đảm bảo lesson_data được giữ nguyên (không bị mất khi update)
-                  if (lesson.lesson_data !== null && lesson.lesson_data !== undefined) {
+                  if (
+                    lesson.lesson_data !== null &&
+                    lesson.lesson_data !== undefined
+                  ) {
                     lessonPayload.lesson_data = lesson.lesson_data;
                   } else {
                     // Nếu lesson_data là null, vẫn gửi null để backend biết
                     lessonPayload.lesson_data = null;
                   }
                 }
-                
+
                 // Debug log để kiểm tra
                 console.log("EditCourseModal - Updating lesson:", {
                   lesson_id: lesson.lesson_id,
@@ -382,7 +438,7 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
                   lesson_data: lesson.lesson_data,
                   payload_lesson_data: lessonPayload.lesson_data,
                 });
-                
+
                 await updateLessonMutation.mutateAsync({
                   lessonId: lesson.lesson_id,
                   payload: lessonPayload,
@@ -390,37 +446,53 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
                 });
               } else {
                 // Thêm lesson mới
-                const lessonType = lesson.lessonType || lesson.lesson_type || "video";
-                
+                const lessonType =
+                  lesson.lessonType || lesson.lesson_type || "video";
+
                 // Detect video_type từ videoSource và URL
                 let detectedVideoType = "youtube";
                 if (lesson.videoSource === "YouTube") {
                   detectedVideoType = "youtube";
-                } else if (lesson.videoSource === "Local Upload" || 
-                           lesson.videoUrl?.includes("storage.googleapis.com") ||
-                           lesson.videoUrl?.includes("googleapis.com") ||
-                           lesson.videoUrl?.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+                } else if (
+                  lesson.videoSource === "Local Upload" ||
+                  lesson.videoUrl?.includes("storage.googleapis.com") ||
+                  lesson.videoUrl?.includes("googleapis.com") ||
+                  lesson.videoUrl?.match(/\.(mp4|webm|ogg|mov|avi)$/i)
+                ) {
                   detectedVideoType = "direct";
                 }
-                
+
+                // QUAN TRỌNG: Map "video_lesson" thành "video" vì backend ENUM chỉ có "video"
+                const lessonTypeForBackend =
+                  lessonType === "video_lesson" ? "video" : lessonType;
+
                 const lessonPayload = {
                   title: lesson.title,
                   description: lesson.description || null,
-                  lesson_type: lessonType,
+                  lesson_type: lessonTypeForBackend, // Map video_lesson -> video
                   is_free: lesson.isFree || false,
                   sort_order: lessonIndex + 1,
                 };
-                
-                // Nếu là video lesson, thêm video_url và video_duration
-                if (lessonType === "video") {
-                  lessonPayload.video_url = lesson.videoUrl || "";
+
+                // Nếu là video lesson (cả "video" và "video_lesson"), thêm video_url và video_duration
+                if (lessonType === "video" || lessonType === "video_lesson") {
+                  // QUAN TRỌNG: Ưu tiên lấy video_url từ lesson_data (từ LessonStudioModal)
+                  const videoUrlToSave =
+                    lesson.lesson_data?.video_url || lesson.videoUrl || "";
+                  const videoTypeToSave =
+                    lesson.lesson_data?.video_type || detectedVideoType;
+                  const contentToSave =
+                    lesson.lesson_data?.content || lesson.description || "";
+
+                  lessonPayload.video_url = videoUrlToSave;
                   lessonPayload.video_duration = lesson.duration || null;
-                  
+
                   // QUAN TRỌNG: Lưu video_type vào lesson_data
                   lessonPayload.lesson_data = {
-                    video_type: detectedVideoType,
-                    video_url: lesson.videoUrl || "",
-                    content: lesson.description || "",
+                    type: "video_lesson",
+                    video_type: videoTypeToSave,
+                    video_url: videoUrlToSave,
+                    content: contentToSave,
                   };
                 } else {
                   // Với các lesson type khác, dùng lesson_data từ form
@@ -428,7 +500,7 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
                     lessonPayload.lesson_data = lesson.lesson_data;
                   }
                 }
-                
+
                 await addLessonMutation.mutateAsync({
                   moduleId: currentModuleId,
                   payload: lessonPayload,
@@ -447,7 +519,10 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
       onClose();
     } catch (error) {
       console.error("Lỗi khi cập nhật khóa học:", error);
-      alert(error.message || "Có lỗi xảy ra khi cập nhật khóa học. Vui lòng thử lại.");
+      alert(
+        error.message ||
+          "Có lỗi xảy ra khi cập nhật khóa học. Vui lòng thử lại."
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -478,9 +553,7 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="admin-edit-course-modal__header">
-          <div style={{ fontWeight: 600, fontSize: "18px" }}>
-            Edit Course
-          </div>
+          <div style={{ fontWeight: 600, fontSize: "18px" }}>Edit Course</div>
           <button className="admin-btn-close" onClick={onClose}>
             <HiXMark />
           </button>
@@ -591,4 +664,3 @@ export default function EditCourseModal({ open, onClose, courseId, onSuccess }) 
     </div>
   );
 }
-

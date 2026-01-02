@@ -1,6 +1,15 @@
 // VideoLessonEditor.jsx - Editor cho Video Lesson
-// Hỗ trợ: YouTube URL, Google Cloud Storage URL, nội dung mô tả
-import React, { useState, useRef, useEffect, useCallback } from "react";
+// Hỗ trợ: YouTube URL, Google Cloud Storage URL, nội dung mô tả (HTML)
+// Sử dụng TipTap để tránh lỗi findDOMNode của React 19
+import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
+import { Table } from "@tiptap/extension-table";
+import { TableCell } from "@tiptap/extension-table-cell";
+import { TableHeader } from "@tiptap/extension-table-header";
+import { TableRow } from "@tiptap/extension-table-row";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import VideoLesson from "../../Video/VideoLesson";
 import "./VideoLessonEditor.css";
 
@@ -10,22 +19,85 @@ export default function VideoLessonEditor({ data, onChange }) {
   const [content, setContent] = useState("");
   const [showPreview, setShowPreview] = useState(false);
   const isInitialMount = useRef(true);
+  const prevDataRef = useRef(null);
+
+  // TipTap editor cho content
+  const contentEditor = useEditor({
+    extensions: [
+      StarterKit.configure({ heading: { levels: [1, 2, 3, 4] } }),
+      Link.configure({ openOnClick: false, autolink: true }),
+      Image.configure({ allowBase64: true }),
+      Table.configure({ resizable: false }),
+      TableRow,
+      TableHeader,
+      TableCell,
+    ],
+    content: content || "<p></p>",
+    onUpdate: ({ editor }) => {
+      setContent(editor.getHTML());
+    },
+  });
+
+  // Update editor content khi content state thay đổi từ data load ban đầu
+  const prevContentRef = useRef(null);
+  useEffect(() => {
+    if (contentEditor && content !== prevContentRef.current) {
+      const editorHtml = contentEditor.getHTML();
+      // Chỉ update nếu content khác với editor content (tránh vòng lặp)
+      if (content && content !== editorHtml && content !== "<p></p>") {
+        contentEditor.commands.setContent(content);
+      }
+      prevContentRef.current = content;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [content, contentEditor]);
+
+  // Cleanup editor khi unmount
+  useEffect(() => {
+    return () => {
+      if (contentEditor) {
+        contentEditor.destroy();
+      }
+    };
+  }, [contentEditor]);
 
   // Load data từ props
   useEffect(() => {
-    if (data) {
-      const videoUrlFromData = data.video_url || data.lesson_data?.video_url || "";
+    const dataReferenceChanged = prevDataRef.current !== data;
+
+    // Reset flag khi data reference thay đổi (có thể là lesson khác)
+    if (dataReferenceChanged && !isInitialMount.current) {
+      // Detect lesson khác bằng cách so sánh video_url
+      const prevVideoUrl =
+        prevDataRef.current?.video_url ||
+        prevDataRef.current?.lesson_data?.video_url ||
+        "";
+      const currentVideoUrl =
+        data?.video_url || data?.lesson_data?.video_url || "";
+
+      if (prevVideoUrl !== currentVideoUrl) {
+        // Lesson khác - reset và load lại
+        isInitialMount.current = true;
+      }
+    }
+
+    if (dataReferenceChanged) {
+      prevDataRef.current = data;
+    }
+
+    if (data && isInitialMount.current) {
+      // Lần đầu mount hoặc lesson khác - load data
+      const videoUrlFromData =
+        data.video_url || data.lesson_data?.video_url || "";
       const videoTypeFromData = data.video_type || data.lesson_data?.video_type;
       const contentFromData = data.content || data.lesson_data?.content || "";
-      
+
       setVideoUrl(videoUrlFromData);
       setContent(contentFromData);
-      
-      // Nếu có video_type trong data, dùng nó; nếu không, auto-detect từ URL
+
       if (videoTypeFromData) {
         setVideoType(videoTypeFromData);
       } else if (videoUrlFromData) {
-        // Auto-detect từ URL
         try {
           const urlObj = new URL(videoUrlFromData);
           const isYouTube =
@@ -35,27 +107,24 @@ export default function VideoLessonEditor({ data, onChange }) {
             urlObj.hostname.includes("storage.googleapis.com") ||
             urlObj.hostname.includes("googleapis.com") ||
             videoUrlFromData.match(/\.(mp4|webm|ogg|mov|avi)$/i);
-          
-          if (isYouTube) {
-            setVideoType("youtube");
-          } else if (isGoogleCloud) {
-            setVideoType("direct");
-          } else {
-            setVideoType("youtube"); // Default
-          }
+
+          setVideoType(
+            isYouTube ? "youtube" : isGoogleCloud ? "direct" : "youtube"
+          );
         } catch {
-          // Invalid URL, kiểm tra extension
-          if (videoUrlFromData.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
-            setVideoType("direct");
-          } else {
-            setVideoType("youtube"); // Default
-          }
+          const detectedType = videoUrlFromData.match(
+            /\.(mp4|webm|ogg|mov|avi)$/i
+          )
+            ? "direct"
+            : "youtube";
+          setVideoType(detectedType);
         }
       } else {
-        setVideoType("youtube"); // Default khi không có URL
+        setVideoType("youtube");
       }
+      isInitialMount.current = false;
     }
-    isInitialMount.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   // Update data và gửi lên parent
@@ -66,7 +135,8 @@ export default function VideoLessonEditor({ data, onChange }) {
       type: "video_lesson",
       video_url: videoUrl.trim(),
       video_type: videoType,
-      content: content.trim(),
+      // QUAN TRỌNG: Không trim content vì có thể là HTML với whitespace quan trọng
+      content: content || "",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoUrl, videoType, content]); // Bỏ onChange để tránh vòng lặp
@@ -97,7 +167,7 @@ export default function VideoLessonEditor({ data, onChange }) {
           urlObj.hostname.includes("storage.googleapis.com") ||
           urlObj.hostname.includes("googleapis.com") ||
           value.match(/\.(mp4|webm|ogg|mov|avi)$/i);
-        
+
         if (isYouTube) {
           setVideoType("youtube");
         } else if (isGoogleCloud) {
@@ -236,22 +306,181 @@ export default function VideoLessonEditor({ data, onChange }) {
               </label>
             </div>
             <p className="vle-hint">
-              💡 Hệ thống sẽ tự động phát hiện loại video từ URL. Bạn có thể chọn thủ công nếu cần.
+              💡 Hệ thống sẽ tự động phát hiện loại video từ URL. Bạn có thể
+              chọn thủ công nếu cần.
             </p>
           </div>
 
           {/* Content Section */}
           <div className="vle-section">
             <label className="vle-label">Nội dung bài học</label>
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="vle-textarea"
-              placeholder="Nhập nội dung mô tả bài học (tùy chọn)..."
-              rows={8}
-            />
+            {contentEditor && (
+              <div className="vle-content-editor-wrapper">
+                <div className="vle-toolbar">
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("bold") ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor.chain().focus().toggleBold().run()
+                    }
+                  >
+                    B
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("italic") ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor.chain().focus().toggleItalic().run()
+                    }
+                  >
+                    I
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("heading", { level: 1 })
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor
+                        .chain()
+                        .focus()
+                        .toggleHeading({ level: 1 })
+                        .run()
+                    }
+                  >
+                    H1
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("heading", { level: 2 })
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor
+                        .chain()
+                        .focus()
+                        .toggleHeading({ level: 2 })
+                        .run()
+                    }
+                  >
+                    H2
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("bulletList") ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor.chain().focus().toggleBulletList().run()
+                    }
+                  >
+                    •
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("orderedList") ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      contentEditor.chain().focus().toggleOrderedList().run()
+                    }
+                  >
+                    1.
+                  </button>
+                  <button
+                    type="button"
+                    className={`vle-toolbar-btn ${
+                      contentEditor.isActive("link") ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      const url = window.prompt(
+                        "Nhập URL",
+                        contentEditor.getAttributes("link").href || ""
+                      );
+                      if (url === null) return;
+                      if (url === "")
+                        return contentEditor.chain().focus().unsetLink().run();
+                      contentEditor
+                        .chain()
+                        .focus()
+                        .setLink({ href: url, target: "_blank" })
+                        .run();
+                    }}
+                  >
+                    Link
+                  </button>
+                  <button
+                    type="button"
+                    className="vle-toolbar-btn"
+                    onClick={() => {
+                      const url = window.prompt("Nhập URL hình ảnh");
+                      if (url)
+                        contentEditor
+                          .chain()
+                          .focus()
+                          .setImage({ src: url })
+                          .run();
+                    }}
+                  >
+                    Ảnh
+                  </button>
+                  <button
+                    type="button"
+                    className="vle-toolbar-btn"
+                    onClick={() => {
+                      const r = parseInt(
+                        window.prompt("Số hàng (2-6)?", "2"),
+                        10
+                      );
+                      const c = parseInt(
+                        window.prompt("Số cột (2-6)?", "2"),
+                        10
+                      );
+                      const rows = isNaN(r) ? 2 : Math.min(Math.max(r, 2), 6);
+                      const cols = isNaN(c) ? 2 : Math.min(Math.max(c, 2), 6);
+                      contentEditor
+                        .chain()
+                        .focus()
+                        .insertTable({ rows, cols, withHeaderRow: true })
+                        .run();
+                    }}
+                  >
+                    Table
+                  </button>
+                  <button
+                    type="button"
+                    className="vle-toolbar-btn"
+                    onClick={() => contentEditor.chain().focus().undo().run()}
+                  >
+                    ⟳
+                  </button>
+                  <button
+                    type="button"
+                    className="vle-toolbar-btn"
+                    onClick={() => contentEditor.chain().focus().redo().run()}
+                  >
+                    ⟲
+                  </button>
+                </div>
+                <div
+                  className="vle-tiptap-editor"
+                  data-placeholder="Nhập nội dung mô tả bài học (tùy chọn)..."
+                >
+                  <EditorContent editor={contentEditor} />
+                </div>
+              </div>
+            )}
             <p className="vle-hint">
               💡 Nội dung này sẽ hiển thị bên dưới video để học viên tham khảo.
+              Hỗ trợ HTML và định dạng văn bản.
             </p>
           </div>
 
@@ -269,7 +498,9 @@ export default function VideoLessonEditor({ data, onChange }) {
               </div>
               <div className="vle-example-item">
                 <strong>Google Cloud Storage:</strong>
-                <code>https://storage.googleapis.com/bucket-name/video.mp4</code>
+                <code>
+                  https://storage.googleapis.com/bucket-name/video.mp4
+                </code>
               </div>
             </div>
           </div>
@@ -278,4 +509,3 @@ export default function VideoLessonEditor({ data, onChange }) {
     </div>
   );
 }
-

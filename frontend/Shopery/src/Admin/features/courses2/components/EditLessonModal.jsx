@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { useUpdateLesson } from "../hooks/useCoursesAdminMutations";
 import "./EditLessonModal.scss";
@@ -12,7 +12,13 @@ const VIDEO_EXAMPLES = {
   "Local Upload": "Upload a video file from your device",
 };
 
-export default function EditLessonModal({ open, onClose, lesson, courseId, onSuccess }) {
+export default function EditLessonModal({
+  open,
+  onClose,
+  lesson,
+  courseId,
+  onSuccess,
+}) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -29,7 +35,7 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
       const videoUrl = lesson.video_url || lesson.lesson_data?.video_url || "";
       // Load video_type từ lesson.lesson_data.video_type để xác định source chính xác
       const videoType = lesson.lesson_data?.video_type || "";
-      
+
       // Detect video source từ URL và video_type
       let videoSource = "";
       if (videoUrl) {
@@ -39,16 +45,18 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
           videoSource = "Vimeo";
         } else if (videoUrl.includes("drive.google.com")) {
           videoSource = "Google Drive";
-        } else if (videoUrl.includes("storage.googleapis.com") || 
-                   videoUrl.includes("googleapis.com") ||
-                   videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+        } else if (
+          videoUrl.includes("storage.googleapis.com") ||
+          videoUrl.includes("googleapis.com") ||
+          videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)
+        ) {
           // Google Cloud Storage hoặc direct video URL
           videoSource = "Local Upload";
         } else {
           videoSource = "Local Upload";
         }
       }
-      
+
       // Nếu có video_type trong lesson_data, ưu tiên dùng nó để xác định source
       if (videoType === "direct" && videoSource === "Local Upload") {
         // Giữ nguyên Local Upload cho Google Cloud Storage
@@ -88,21 +96,31 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
     if (!formData.title.trim()) {
       newErrors.title = "Lesson title is required";
     }
-    
+
     // Chỉ validate video URL nếu lesson_type là "video"
     if (lesson?.lesson_type === "video") {
       if (!formData.videoUrl.trim()) {
         newErrors.videoUrl = "Video URL is required";
-      } else if (formData.videoSource === "YouTube" && !formData.videoUrl.includes("youtube.com/watch") && !formData.videoUrl.includes("youtu.be")) {
+      } else if (
+        formData.videoSource === "YouTube" &&
+        !formData.videoUrl.includes("youtube.com/watch") &&
+        !formData.videoUrl.includes("youtu.be")
+      ) {
         newErrors.videoUrl = "Invalid YouTube URL format";
-      } else if (formData.videoSource === "Vimeo" && !formData.videoUrl.includes("vimeo.com")) {
+      } else if (
+        formData.videoSource === "Vimeo" &&
+        !formData.videoUrl.includes("vimeo.com")
+      ) {
         newErrors.videoUrl = "Invalid Vimeo URL format";
-      } else if (formData.videoSource === "Google Drive" && !formData.videoUrl.includes("drive.google.com")) {
+      } else if (
+        formData.videoSource === "Google Drive" &&
+        !formData.videoUrl.includes("drive.google.com")
+      ) {
         newErrors.videoUrl = "Invalid Google Drive URL format";
       }
       // Local Upload và Google Cloud Storage không cần validate format nghiêm ngặt
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -123,31 +141,39 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
       let detectedVideoType = "youtube";
       if (formData.videoSource === "YouTube") {
         detectedVideoType = "youtube";
-      } else if (formData.videoSource === "Local Upload" || 
-                 formData.videoUrl.includes("storage.googleapis.com") ||
-                 formData.videoUrl.includes("googleapis.com") ||
-                 formData.videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)) {
+      } else if (
+        formData.videoSource === "Local Upload" ||
+        formData.videoUrl.includes("storage.googleapis.com") ||
+        formData.videoUrl.includes("googleapis.com") ||
+        formData.videoUrl.match(/\.(mp4|webm|ogg|mov|avi)$/i)
+      ) {
         detectedVideoType = "direct";
       }
 
       // QUAN TRỌNG: Giữ nguyên lesson_type hiện tại, không hardcode "video"
       const currentLessonType = lesson.lesson_type || "video";
-      
+      // Map "video_lesson" thành "video" vì backend ENUM chỉ có "video"
+      const lessonTypeForBackend =
+        currentLessonType === "video_lesson" ? "video" : currentLessonType;
+
       const payload = {
         title: formData.title,
         description: formData.description || null,
-        lesson_type: currentLessonType, // Giữ nguyên lesson_type hiện tại
+        lesson_type: lessonTypeForBackend, // Map video_lesson -> video
         is_free: lesson.is_free !== undefined ? lesson.is_free : false,
       };
 
-      // Chỉ update video_url và video_duration nếu lesson_type là "video"
-      if (currentLessonType === "video") {
+      // Update video_url và video_duration nếu lesson_type là "video" hoặc "video_lesson"
+      if (
+        currentLessonType === "video" ||
+        currentLessonType === "video_lesson"
+      ) {
         payload.video_url = formData.videoUrl;
         payload.video_duration = lesson.video_duration || null;
-        
+
         // Lưu video_type vào lesson_data để VideoLesson component có thể đọc
         payload.lesson_data = {
-          ...(lesson.lesson_data || {}),
+          type: "video_lesson",
           video_type: detectedVideoType,
           video_url: formData.videoUrl,
           content: formData.description || lesson.lesson_data?.content || "",
@@ -199,7 +225,10 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="admin-edit-lesson-modal__content">
+        <form
+          onSubmit={handleSubmit}
+          className="admin-edit-lesson-modal__content"
+        >
           <div className="admin-edit-lesson-modal__field">
             <label>
               Lesson Title <span style={{ color: "#ef4444" }}>*</span>
@@ -209,10 +238,14 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
               value={formData.title}
               onChange={(e) => handleChange("title", e.target.value)}
               placeholder="Enter lesson title"
-              className={errors.title ? "admin-edit-lesson-modal__input--error" : ""}
+              className={
+                errors.title ? "admin-edit-lesson-modal__input--error" : ""
+              }
             />
             {errors.title && (
-              <div className="admin-edit-lesson-modal__error">{errors.title}</div>
+              <div className="admin-edit-lesson-modal__error">
+                {errors.title}
+              </div>
             )}
           </div>
 
@@ -256,10 +289,16 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
                     value={formData.videoUrl}
                     onChange={(e) => handleChange("videoUrl", e.target.value)}
                     placeholder="Add Your Video URL here."
-                    className={errors.videoUrl ? "admin-edit-lesson-modal__input--error" : ""}
+                    className={
+                      errors.videoUrl
+                        ? "admin-edit-lesson-modal__input--error"
+                        : ""
+                    }
                   />
                   {errors.videoUrl && (
-                    <div className="admin-edit-lesson-modal__error">{errors.videoUrl}</div>
+                    <div className="admin-edit-lesson-modal__error">
+                      {errors.videoUrl}
+                    </div>
                   )}
                   <div className="admin-edit-lesson-modal__helper">
                     Example: {VIDEO_EXAMPLES[formData.videoSource]}
@@ -270,14 +309,18 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
           ) : (
             /* Hiển thị thông báo cho các lesson type khác */
             <div className="admin-edit-lesson-modal__field">
-              <div className="admin-edit-lesson-modal__helper" style={{ 
-                backgroundColor: "#f0f9ff", 
-                border: "1px solid #bae6fd",
-                padding: "12px",
-                borderRadius: "4px"
-              }}>
-                ℹ️ Loại bài học: <strong>{lesson?.lesson_type || "N/A"}</strong>. 
-                Để chỉnh sửa nội dung chi tiết, vui lòng sử dụng Lesson Studio từ Course Builder.
+              <div
+                className="admin-edit-lesson-modal__helper"
+                style={{
+                  backgroundColor: "#f0f9ff",
+                  border: "1px solid #bae6fd",
+                  padding: "12px",
+                  borderRadius: "4px",
+                }}
+              >
+                ℹ️ Loại bài học: <strong>{lesson?.lesson_type || "N/A"}</strong>
+                . Để chỉnh sửa nội dung chi tiết, vui lòng sử dụng Lesson Studio
+                từ Course Builder.
               </div>
             </div>
           )}
@@ -303,4 +346,3 @@ export default function EditLessonModal({ open, onClose, lesson, courseId, onSuc
     </div>
   );
 }
-
