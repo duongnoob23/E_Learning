@@ -92,9 +92,10 @@ export const useDeleteUserWord = () => {
       const { EM, EC, DT } = data;
       if (EC === "0") {
         toast.success(EM || "Xóa từ vựng thành công!");
-        // Invalidate queries liên quan
+        // Invalidate queries liên quan - invalidate tất cả queries bắt đầu bằng ["flashcard", "set"]
         queryClient.invalidateQueries({ queryKey: ["words", "user"] });
         queryClient.invalidateQueries({ queryKey: ["flashcard", "set"] });
+        queryClient.invalidateQueries({ queryKey: ["flashcard"] });
       } else {
         toast.error(EM || "Xóa từ vựng thất bại!");
       }
