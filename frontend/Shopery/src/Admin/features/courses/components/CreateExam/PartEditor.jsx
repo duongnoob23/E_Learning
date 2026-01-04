@@ -26,6 +26,18 @@ export default function PartEditor({
   const [errors, setErrors] = useState({});
   const [showQuestionEditor, setShowQuestionEditor] = useState(false);
 
+  // Get Speaking part name by number
+  const getSpeakingPartName = useCallback((partNumber) => {
+    const names = {
+      1: "Part 1: Read a text aloud",
+      2: "Part 2: Describe a picture",
+      3: "Part 3: Respond to questions",
+      4: "Part 4: Respond to questions using information provided",
+      5: "Part 5: Propose a solution",
+    };
+    return names[partNumber] || `Part ${partNumber}`;
+  }, []);
+
   // Load data when editing
   useEffect(() => {
     if (part) {
@@ -39,9 +51,17 @@ export default function PartEditor({
       });
     } else {
       // Reset to defaults for new part
+      const partNumber = part?.part_number || 1;
+      let partName = part?.part_name || "";
+
+      // Auto-fill part name for Speaking
+      if (defaultPartType === "SPEAKING" && !partName) {
+        partName = getSpeakingPartName(partNumber);
+      }
+
       setPartData({
-        part_number: part?.part_number || 1,
-        part_name: part?.part_name || "",
+        part_number: partNumber,
+        part_name: partName,
         part_type: defaultPartType || "LISTENING",
         duration_minutes: 0,
         description: "",
@@ -49,7 +69,7 @@ export default function PartEditor({
       });
     }
     setErrors({});
-  }, [part, defaultPartType, open]);
+  }, [part, defaultPartType, open, getSpeakingPartName]);
 
   // Handle field changes
   const handleChange = useCallback(
@@ -145,11 +165,22 @@ export default function PartEditor({
                 errors.part_number ? "part-editor__input--error" : ""
               }`}
               value={partData.part_number}
-              onChange={(e) =>
-                handleChange("part_number", parseInt(e.target.value) || 1)
-              }
+              onChange={(e) => {
+                const newPartNumber = parseInt(e.target.value) || 1;
+                handleChange("part_number", newPartNumber);
+                // Auto-update part name for Speaking
+                if (partData.part_type === "SPEAKING" && !part) {
+                  handleChange("part_name", getSpeakingPartName(newPartNumber));
+                }
+              }}
               min="1"
-              max={examType === "LISTENING_READING" ? "7" : undefined}
+              max={
+                examType === "LISTENING_READING"
+                  ? "7"
+                  : examType === "SPEAKING"
+                  ? "5"
+                  : undefined
+              }
               disabled={!!part} // Disable when editing existing part
             />
             {errors.part_number && (

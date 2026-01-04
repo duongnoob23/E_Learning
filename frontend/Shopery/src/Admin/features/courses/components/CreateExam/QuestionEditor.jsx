@@ -5,9 +5,15 @@ import ExamPart3Editor from "./editors/ExamPart3Editor";
 import ExamPart5Editor from "./editors/ExamPart5Editor";
 import ExamPart6Editor from "./editors/ExamPart6Editor";
 import ExamPart7Editor from "./editors/ExamPart7Editor";
+import ExamSpeakingPart1Editor from "./editors/ExamSpeakingPart1Editor";
+import ExamSpeakingPart2Editor from "./editors/ExamSpeakingPart2Editor";
+import ExamSpeakingPart3Editor from "./editors/ExamSpeakingPart3Editor";
+import ExamSpeakingPart4Editor from "./editors/ExamSpeakingPart4Editor";
+import ExamSpeakingPart5Editor from "./editors/ExamSpeakingPart5Editor";
+import ExamWritingPart1Editor from "./editors/ExamWritingPart1Editor";
+import ExamWritingPart2Editor from "./editors/ExamWritingPart2Editor";
+import ExamWritingPart3Editor from "./editors/ExamWritingPart3Editor";
 import "./QuestionEditor.scss";
-import SpeakingQuestionEditor from "./SpeakingQuestionEditor";
-import WritingQuestionEditor from "./WritingQuestionEditor";
 
 /**
  * Question Editor Component
@@ -109,19 +115,73 @@ export default function QuestionEditor({
         </div>
       );
     } else if (partType === "SPEAKING") {
-      return (
-        <SpeakingQuestionEditor
-          questions={currentQuestions}
-          onChange={handleQuestionsChange}
-        />
-      );
+      // Route to specific Speaking part editor based on partNumber
+      switch (partNumber) {
+        case 1:
+          return (
+            <ExamSpeakingPart1Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 2:
+          return (
+            <ExamSpeakingPart2Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 3:
+          return (
+            <ExamSpeakingPart3Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 4:
+          return (
+            <ExamSpeakingPart4Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 5:
+          return (
+            <ExamSpeakingPart5Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        default:
+          return <div>Invalid Speaking Part (must be 1-5)</div>;
+      }
     } else if (partType === "WRITING") {
-      return (
-        <WritingQuestionEditor
-          questions={currentQuestions}
-          onChange={handleQuestionsChange}
-        />
-      );
+      // Route to specific Writing part editor based on partNumber
+      switch (partNumber) {
+        case 1:
+          return (
+            <ExamWritingPart1Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 2:
+          return (
+            <ExamWritingPart2Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        case 3:
+          return (
+            <ExamWritingPart3Editor
+              questions={currentQuestions}
+              onChange={handleQuestionsChange}
+            />
+          );
+        default:
+          return <div>Invalid Writing Part (must be 1-3)</div>;
+      }
     }
     return <div>Invalid Part Type</div>;
   };

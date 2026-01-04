@@ -28,6 +28,22 @@ export default function ExamContentBuilder({
     { number: 7, name: "Part 7: Reading Comprehension", type: "READING" },
   ];
 
+  // Part configurations for Speaking
+  const SPEAKING_PARTS = [
+    { number: 1, name: "Part 1: Read a text aloud" },
+    { number: 2, name: "Part 2: Describe a picture" },
+    { number: 3, name: "Part 3: Respond to questions" },
+    { number: 4, name: "Part 4: Respond to questions using information provided" },
+    { number: 5, name: "Part 5: Propose a solution" },
+  ];
+
+  // Part configurations for Writing
+  const WRITING_PARTS = [
+    { number: 1, name: "Part 1: Write a sentence based on a picture" },
+    { number: 2, name: "Part 2: Write an essay" },
+    { number: 3, name: "Part 3: Write an essay based on a reading passage" },
+  ];
+
   // Get next available part number
   const getNextPartNumber = useCallback(() => {
     if (examType === "LISTENING_READING") {
@@ -42,8 +58,29 @@ export default function ExamContentBuilder({
       }
       // If all 1-7 are taken, return 7
       return 7;
+    } else if (examType === "SPEAKING") {
+      // For Speaking, find first missing number from 1-5
+      if (parts.length === 0) return 1;
+      const existingNumbers = parts.map(p => p.part_number).sort((a, b) => a - b);
+      for (let i = 1; i <= 5; i++) {
+        if (!existingNumbers.includes(i)) {
+          return i;
+        }
+      }
+      // If all 1-5 are taken, return 5
+      return 5;
+    } else if (examType === "WRITING") {
+      // For Writing, find first missing number from 1-3
+      if (parts.length === 0) return 1;
+      const existingNumbers = parts.map(p => p.part_number).sort((a, b) => a - b);
+      for (let i = 1; i <= 3; i++) {
+        if (!existingNumbers.includes(i)) {
+          return i;
+        }
+      }
+      // If all 1-3 are taken, return 3
+      return 3;
     }
-    // For Speaking/Writing, just increment
     return parts.length + 1;
   }, [parts, examType]);
 
@@ -51,11 +88,15 @@ export default function ExamContentBuilder({
   const canAddPart = useCallback(() => {
     if (examType === "LISTENING_READING") {
       return parts.length < 7;
+    } else if (examType === "SPEAKING") {
+      return parts.length < 5;
+    } else if (examType === "WRITING") {
+      return parts.length < 3;
     }
-    return true; // No limit for Speaking/Writing
+    return true;
   }, [parts.length, examType]);
 
-  // Auto-generate part data for Listening/Reading
+  // Auto-generate part data for Listening/Reading/Speaking
   const generatePartData = useCallback((partNumber) => {
     if (examType === "LISTENING_READING") {
       const partConfig = LISTENING_READING_PARTS.find(p => p.number === partNumber);
@@ -69,13 +110,35 @@ export default function ExamContentBuilder({
           display_template: null,
         };
       }
+    } else if (examType === "SPEAKING") {
+      const partConfig = SPEAKING_PARTS.find(p => p.number === partNumber);
+      if (partConfig) {
+        return {
+          part_number: partConfig.number,
+          part_name: partConfig.name,
+          part_type: "SPEAKING",
+          duration_minutes: 0,
+          description: "",
+          display_template: null,
+        };
+      }
+    } else if (examType === "WRITING") {
+      const partConfig = WRITING_PARTS.find(p => p.number === partNumber);
+      if (partConfig) {
+        return {
+          part_number: partConfig.number,
+          part_name: partConfig.name,
+          part_type: "WRITING",
+          duration_minutes: 0,
+          description: "",
+          display_template: null,
+        };
+      }
     }
-    // For Speaking/Writing, generate default
+    // Fallback
     return {
       part_number: partNumber,
-      part_name: examType === "SPEAKING" 
-        ? `Speaking Part ${partNumber}`
-        : `Writing Part ${partNumber}`,
+      part_name: `${examType} Part ${partNumber}`,
       part_type: examType,
       duration_minutes: 0,
       description: "",
@@ -86,7 +149,13 @@ export default function ExamContentBuilder({
   // Handle add part
   const handleAddPart = useCallback(() => {
     if (!canAddPart()) {
-      alert("Maximum 7 parts allowed for Listening & Reading exams.");
+      if (examType === "LISTENING_READING") {
+        alert("Maximum 7 parts allowed for Listening & Reading exams.");
+      } else if (examType === "SPEAKING") {
+        alert("Maximum 5 parts allowed for Speaking exams.");
+      } else if (examType === "WRITING") {
+        alert("Maximum 3 parts allowed for Writing exams.");
+      }
       return;
     }
 
@@ -106,11 +175,11 @@ export default function ExamContentBuilder({
     };
 
     // Directly save the part with auto-generated data
-    // No need to open editor for Listening/Reading parts
-    if (examType === "LISTENING_READING") {
+    // Auto-add for Listening/Reading, Speaking, and Writing
+    if (examType === "LISTENING_READING" || examType === "SPEAKING" || examType === "WRITING") {
       onChange([...parts, newPart]);
     } else {
-      // For Speaking/Writing, open editor for customization
+      // For other types, open editor for customization
       setEditingPart(null);
       setShowPartEditor(true);
       setTimeout(() => {
@@ -183,6 +252,8 @@ export default function ExamContentBuilder({
         <p className="exam-content-builder__description">
           Add parts and create questions for each part. Exam type: {examType.replace('_', ' & ')}
           {examType === "LISTENING_READING" && ` (Maximum 7 parts)`}
+          {examType === "SPEAKING" && ` (Maximum 5 parts)`}
+          {examType === "WRITING" && ` (Maximum 3 parts)`}
         </p>
         <button
           className="exam-content-builder__add-btn"
