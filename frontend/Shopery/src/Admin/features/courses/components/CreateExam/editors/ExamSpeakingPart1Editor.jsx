@@ -8,15 +8,15 @@ import "./ExamSpeakingPart1Editor.css";
 const MAX_QUESTIONS = 2;
 const MIN_QUESTIONS = 2;
 
-function createEmptyQuestion() {
+function createEmptyQuestion(questionNumber = 1) {
   const id = `speaking_p1_q_${Date.now()}_${Math.random()
     .toString(36)
     .slice(2, 8)}`;
   return {
     id,
-    question_number: 1,
+    question_number: questionNumber,
     question_text: "",
-    image_file: "", // Only for Part 2
+    image_file: "", // Optional for all parts
   };
 }
 
@@ -53,7 +53,10 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
   // Map exam data to state
   const mapExamDataToState = useCallback((examQuestions) => {
     if (!Array.isArray(examQuestions) || examQuestions.length === 0) {
-      return [createEmptyQuestion(), createEmptyQuestion()]; // Always 2 questions
+      return [
+        createEmptyQuestion(1),
+        createEmptyQuestion(2),
+      ]; // Always 2 questions with correct numbers
     }
 
     // Ensure we have exactly 2 questions
@@ -61,12 +64,12 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
       id: q.question_id || q.id || `speaking_p1_q_${idx}_${Date.now()}`,
       question_number: q.question_number || idx + 1,
       question_text: q.question_text || "",
-      image_file: q.image_file || "", // Only for Part 2
+      image_file: q.image_file || "", // Optional for all parts
     }));
 
     // Pad to 2 questions if less
     while (mapped.length < MIN_QUESTIONS) {
-      mapped.push(createEmptyQuestion());
+      mapped.push(createEmptyQuestion(mapped.length + 1));
     }
 
     // Trim to 2 questions if more
@@ -108,8 +111,8 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
         isInitialMount.current = false;
       } else {
         const initialQuestions = [
-          createEmptyQuestion(),
-          createEmptyQuestion(),
+          createEmptyQuestion(1),
+          createEmptyQuestion(2),
         ];
         setCurrentQuestions(initialQuestions);
         setCurrentIndex(0);
@@ -141,7 +144,7 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
   }, [currentQuestions]);
 
   const currentQuestion =
-    currentQuestions[currentIndex] || currentQuestions[0] || createEmptyQuestion();
+    currentQuestions[currentIndex] || currentQuestions[0] || createEmptyQuestion(1);
 
   // Update question field
   const updateCurrentQuestion = useCallback(
@@ -193,7 +196,7 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
 
     // Ensure we have exactly 2 questions
     while (mapped.length < MIN_QUESTIONS) {
-      mapped.push(createEmptyQuestion());
+      mapped.push(createEmptyQuestion(mapped.length + 1));
     }
 
     setCurrentQuestions(mapped.slice(0, MAX_QUESTIONS));
@@ -396,6 +399,18 @@ export default function ExamSpeakingPart1Editor({ questions = [], onChange }) {
                 }
                 rows={6}
                 placeholder="Enter the text that students need to read aloud..."
+              />
+            </div>
+
+            <div className="exam-speaking-p1-editor__field">
+              <label>Image File (Optional)</label>
+              <input
+                type="text"
+                value={currentQuestion.image_file}
+                onChange={(e) =>
+                  updateCurrentQuestion("image_file", e.target.value)
+                }
+                placeholder="https://example.com/image.jpg"
               />
             </div>
           </div>

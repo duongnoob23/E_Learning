@@ -6,7 +6,7 @@ import "./WordModals.scss";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
-export default function CreateWordModal({ onClose, onSuccess, topics = [] }) {
+export default function CreateWordModal({ onClose, onSuccess, topics = [], defaultTopicId = null }) {
   const [formData, setFormData] = useState({
     word: "",
     pronunciation: "",
@@ -17,7 +17,7 @@ export default function CreateWordModal({ onClose, onSuccess, topics = [] }) {
     example_translation: "",
     audio_url: "",
     image_url: "",
-    topic_id: "",
+    topic_id: defaultTopicId ? String(defaultTopicId) : "",
     notes: "",
     is_active: true,
   });

@@ -7,8 +7,8 @@ const SAMPLE_FORMAT = `word,pronunciation,meaning_vi,meaning_en,part_of_speech,e
 hello,/həˈloʊ/,xin chào,a greeting,interjection,Hello! How are you?
 book,/bʊk/,sách,a written work,noun,I love reading books.`;
 
-export default function BatchImportModal({ onClose, onSuccess, topics = [] }) {
-  const [topicId, setTopicId] = useState("");
+export default function BatchImportModal({ onClose, onSuccess, topics = [], defaultTopicId = null }) {
+  const [topicId, setTopicId] = useState(defaultTopicId ? String(defaultTopicId) : "");
   const [inputText, setInputText] = useState("");
   const [parsedWords, setParsedWords] = useState([]);
   const [parseError, setParseError] = useState("");

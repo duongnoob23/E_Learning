@@ -34,6 +34,7 @@ const Sidebar = () => {
       title: "MANAGEMENT",
       items: [
         { name: "Users", path: "/admin/users", icon: HiUsers },
+        { name: "Flashcards", path: "/admin/flashcards", icon: HiBookOpen },
         { name: "Vocabulary", path: "/admin/vocabulary", icon: HiBookOpen },
         { name: "Courses", path: "/admin/courses", icon: FaBook },
         {

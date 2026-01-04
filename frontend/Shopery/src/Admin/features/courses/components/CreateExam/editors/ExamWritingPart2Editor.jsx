@@ -8,13 +8,13 @@ import "./ExamWritingPart2Editor.css";
 const MAX_QUESTIONS = 2;
 const MIN_QUESTIONS = 2;
 
-function createEmptyQuestion() {
+function createEmptyQuestion(questionNumber = 1) {
   const id = `writing_p2_q_${Date.now()}_${Math.random()
     .toString(36)
     .slice(2, 8)}`;
   return {
     id,
-    question_number: 1,
+    question_number: questionNumber,
     question_text: "",
     image_file: "", // Part 2 has image
   };
@@ -53,7 +53,10 @@ export default function ExamWritingPart2Editor({ questions = [], onChange }) {
   // Map exam data to state
   const mapExamDataToState = useCallback((examQuestions) => {
     if (!Array.isArray(examQuestions) || examQuestions.length === 0) {
-      return [createEmptyQuestion(), createEmptyQuestion()];
+      return [
+        createEmptyQuestion(1),
+        createEmptyQuestion(2),
+      ];
     }
 
     const mapped = examQuestions.map((q, idx) => ({
@@ -64,7 +67,7 @@ export default function ExamWritingPart2Editor({ questions = [], onChange }) {
     }));
 
     while (mapped.length < MIN_QUESTIONS) {
-      mapped.push(createEmptyQuestion());
+      mapped.push(createEmptyQuestion(mapped.length + 1));
     }
 
     return mapped.slice(0, MAX_QUESTIONS);
@@ -105,8 +108,8 @@ export default function ExamWritingPart2Editor({ questions = [], onChange }) {
         isInitialMount.current = false;
       } else {
         const initialQuestions = [
-          createEmptyQuestion(),
-          createEmptyQuestion(),
+          createEmptyQuestion(1),
+          createEmptyQuestion(2),
         ];
         setCurrentQuestions(initialQuestions);
         setCurrentIndex(0);
@@ -138,7 +141,7 @@ export default function ExamWritingPart2Editor({ questions = [], onChange }) {
   }, [currentQuestions]);
 
   const currentQuestion =
-    currentQuestions[currentIndex] || currentQuestions[0] || createEmptyQuestion();
+    currentQuestions[currentIndex] || currentQuestions[0] || createEmptyQuestion(1);
 
   // Update question field
   const updateCurrentQuestion = useCallback(
@@ -204,7 +207,7 @@ export default function ExamWritingPart2Editor({ questions = [], onChange }) {
     }));
 
     while (mapped.length < MIN_QUESTIONS) {
-      mapped.push(createEmptyQuestion());
+      mapped.push(createEmptyQuestion(mapped.length + 1));
     }
 
     setCurrentQuestions(mapped.slice(0, MAX_QUESTIONS));
