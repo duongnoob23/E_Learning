@@ -1,0 +1,48 @@
+.exam-content-builder {
+  &__header {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 16px;
+  }
+
+  &__add-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #2563eb;
+    }
+  }
+
+  &__empty {
+    padding: 48px 24px;
+    text-align: center;
+    background: #f9fafb;
+    border-radius: 8px;
+
+    p {
+      font-size: 16px;
+      color: #6b7280;
+      margin: 0;
+    }
+  }
+}
+

@@ -8,6 +8,8 @@ export const examAdminApi = {
     (await adminAxiosInstance.get(`/admin/exam/tests/detail/${testId}`)).data,
   createTest: async (payload) =>
     (await adminAxiosInstance.post("/admin/exam/tests", payload)).data,
+  createFullExam: async (payload) =>
+    (await adminAxiosInstance.post("/admin/exam/tests/full", payload)).data,
   updateTest: async (testId, payload) =>
     (await adminAxiosInstance.patch(`/admin/exam/tests/${testId}`, payload)).data,
   deleteTest: async (testId) =>

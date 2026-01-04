@@ -1,0 +1,159 @@
+.exam-builder-tab {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+
+  &__tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 24px;
+  }
+
+  &__tab {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover:not(:disabled) {
+      color: #3b82f6;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+  }
+
+  &__tab-badge {
+    background: #3b82f6;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  &__content {
+    min-height: 400px;
+  }
+
+  &__section-description {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 24px;
+  }
+
+  &__info-section,
+  &__type-section,
+  &__content-section {
+    padding: 24px 0;
+  }
+
+  &__info-preview {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 8px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 14px;
+        color: #6b7280;
+        padding: 4px 0;
+      }
+    }
+  }
+
+  &__selected-type {
+    padding: 24px;
+    background: #eff6ff;
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0;
+    }
+  }
+
+  &__change-type-btn,
+  &__select-type-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #2563eb;
+    }
+  }
+
+  &__select-type-btn {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__no-type-selected {
+    text-align: center;
+    padding: 48px 24px;
+
+    p {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background: #3b82f6;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #2563eb;
+      }
+    }
+  }
+}
+

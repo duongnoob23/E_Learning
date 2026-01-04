@@ -1,0 +1,96 @@
+.part-list {
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__item {
+    padding: 20px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  &__item-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__item-info {
+    flex: 1;
+  }
+
+  &__item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+  }
+
+  &__item-meta {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  &__item-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__edit-btn,
+  &__delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  &__edit-btn {
+    color: #3b82f6;
+    background: #eff6ff;
+    border: 1px solid #3b82f6;
+
+    &:hover {
+      background: #dbeafe;
+    }
+  }
+
+  &__delete-btn {
+    color: #ef4444;
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+
+    &:hover {
+      background: #fee2e2;
+    }
+  }
+
+  &__item-description {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 12px 0 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+}
+

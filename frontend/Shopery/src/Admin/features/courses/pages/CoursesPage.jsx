@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ExamBuilderModal from "../components/ExamBuilderModal";
+import ExamBuilderModalNew from "../components/CreateExam/ExamBuilderModalNew";
 import ExamPreviewModal from "../components/ExamPreviewModal";
 import ExamEditModal from "../components/ExamEditModal";
 import {
   useAdminAddPartToTest,
   useAdminAddQuestionsToPart,
   useAdminCreateTest,
+  useAdminCreateFullExam,
   useAdminDeleteTest,
 } from "../hooks/useExamAdminMutations";
 import {
@@ -73,6 +75,7 @@ const stats1 = [
 
 export default function CoursesPage() {
   const [open, setOpen] = useState(false);
+  const [openNew, setOpenNew] = useState(false); // Modal mới
   const [previewTestId, setPreviewTestId] = useState(null);
   const [hoveredTestId, setHoveredTestId] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -89,9 +92,24 @@ export default function CoursesPage() {
 
   // Mutations cho pipeline submit
   const createTest = useAdminCreateTest();
+  const createFullExam = useAdminCreateFullExam(); // Hook mới
   const addPart = useAdminAddPartToTest();
   const addQuestions = useAdminAddQuestionsToPart();
   const deleteTest = useAdminDeleteTest();
+
+  // Handler cho modal mới - sử dụng createFullExam
+  async function handleSubmitExamNew(payload) {
+    try {
+      const res = await createFullExam.mutateAsync(payload);
+      if (res?.EC !== "0") {
+        throw new Error(res?.EM || "Failed to create exam");
+      }
+      setOpenNew(false);
+    } catch (error) {
+      console.error("Error creating full exam:", error);
+      throw error;
+    }
+  }
 
   // Pipeline: tạo test -> tạo các part có câu hỏi -> thêm nhiều câu hỏi
   async function handleSubmitExam({ info, parts }) {
@@ -123,7 +141,7 @@ export default function CoursesPage() {
 
       const testId =
         createRes?.DT?.test_id ?? createRes?.DT?.id ?? createRes?.DT?._id;
-      if (!testId) throw new Error("Không tìm thấy test_id sau khi tạo đề");
+      if (!testId) throw new Error("Could not find test_id after creating exam");
 
       // 2) Tạo part cho những part có câu hỏi
       for (const p of includedParts) {
@@ -181,7 +199,7 @@ export default function CoursesPage() {
   }
 
   async function handleDelete(testId) {
-    if (!window.confirm("Bạn có chắc muốn xóa đề thi này?")) return;
+    if (!window.confirm("Are you sure you want to delete this exam?")) return;
     try {
       await deleteTest.mutateAsync(testId);
     } catch (e) {
@@ -200,8 +218,8 @@ export default function CoursesPage() {
             </span>
           </div>
         </div>
-        <button className="btn btn--primary" onClick={() => setOpen(true)}>
-          Add New Exam
+        <button className="btn btn--primary" onClick={() => setOpenNew(true)}>
+          Create New Exam
         </button>
       </div>
 
@@ -521,10 +539,18 @@ export default function CoursesPage() {
         </div>
       </div>
 
+      {/* Modal cũ - giữ lại để tương thích */}
       <ExamBuilderModal
         open={open}
         onClose={() => setOpen(false)}
         onSubmit={({ info, parts }) => handleSubmitExam({ info, parts })}
+      />
+
+      {/* Modal mới - sử dụng ExamBuilderTab */}
+      <ExamBuilderModalNew
+        open={openNew}
+        onClose={() => setOpenNew(false)}
+        onSubmit={handleSubmitExamNew}
       />
 
       <ExamPreviewModal
