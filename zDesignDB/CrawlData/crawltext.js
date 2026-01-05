@@ -3,21 +3,9 @@ const fs = require("fs");
 const path = require("path");
 
 /* ================= CONFIG ================= */
-const OUTPUT_DIR = "./study4_part/part7";
+const OUTPUT_DIR = "./study4_part/part6";
 const LESSON_IDS = [
-  6552,
-  6553,
-  6554,
-  6555,
-  6556,
-  6557,
-  6558,
-  6559,
-  6945,
-  6946,
-  6948,
-  6949,
-  6950
+  6548
 ];
 
 

@@ -4,30 +4,24 @@ const path = require("path");
 
 /* ========== CONFIG ========== */
 const COURSE_ID = 28;
-const OUTPUT_DIR = "./study4_part/part4";
+const OUTPUT_DIR = "./study4_part/part7";
 
 const ACTIVITY_IDS = [
-  7339,
-  7340,
-  7341,
-  9690,
-  9691,
-  9692,
-  7368,
-  7369,
-  7383,
-  7371,
-  7372,
-  7373,
-  7374,
-  7375,
-  7376,
-  7377,
-  7378,
-  7379,
-  7380,
+  7351,
+  7352,
   7381,
-  7382
+  7630,
+  7631,
+  7382,
+  7353,
+  7358,
+  7360,
+  7356,
+  7359,
+  7357,
+  7361,
+  7354,
+  7355
 ];
 /* ============================ */
 
@@ -64,29 +58,61 @@ if (!fs.existsSync(OUTPUT_DIR)) {
         timeout: 60000,
       });
 
-      /* STEP 2: GET PROBLEM SET URL */
-      const problemSetUrl = await page.evaluate(() => {
-        const iframe = document.querySelector(".learncourse-iframe");
-        return iframe ? iframe.src : null;
+      /* STEP 2: DETECT PROBLEM SET TYPE */
+      const problemSetInfo = await page.evaluate(() => {
+        // Dạng cũ: có iframe .learncourse-iframe
+        const oldIframe = document.querySelector(".learncourse-iframe");
+        if (oldIframe && oldIframe.src) {
+          return {
+            type: "old",
+            problemSetUrl: oldIframe.src
+          };
+        }
+        
+        // Dạng mới: có iframe .problem-iframe và problem IDs trên cùng trang
+        const newIframe = document.querySelector(".problem-iframe");
+        if (newIframe) {
+          const problemIds = [...document.querySelectorAll(
+            ".problemset-problem-number[data-problem_id], .jqchange-problem[data-problem_id]"
+          )].map(el => Number(el.dataset.problem_id));
+          
+          if (problemIds.length > 0) {
+            return {
+              type: "new",
+              problemIds: problemIds
+            };
+          }
+        }
+        
+        return null;
       });
 
-      if (!problemSetUrl) {
-        console.log("⚠️ Không có problem-set → skip");
+      if (!problemSetInfo) {
+        console.log("⚠️ Không tìm thấy problem-set → skip");
         continue;
       }
 
-      /* STEP 3: OPEN PROBLEM SET */
-      await page.goto(problemSetUrl, {
-        waitUntil: "domcontentloaded",
-        timeout: 60000,
-      });
+      let problemIds;
 
-      /* STEP 4: GET PROBLEM IDS */
-      const problemIds = await page.evaluate(() => {
-        return [...document.querySelectorAll(
-          ".problemset-problem-number[data-problem_id]"
-        )].map(el => Number(el.dataset.problem_id));
-      });
+      if (problemSetInfo.type === "old") {
+        /* STEP 3: OPEN PROBLEM SET (dạng cũ) */
+        console.log("📋 Dạng bài tập cũ (iframe)");
+        await page.goto(problemSetInfo.problemSetUrl, {
+          waitUntil: "domcontentloaded",
+          timeout: 60000,
+        });
+
+        /* STEP 4: GET PROBLEM IDS (dạng cũ) */
+        problemIds = await page.evaluate(() => {
+          return [...document.querySelectorAll(
+            ".problemset-problem-number[data-problem_id]"
+          )].map(el => Number(el.dataset.problem_id));
+        });
+      } else {
+        /* Dạng mới: problem IDs đã có sẵn trên trang */
+        console.log("📋 Dạng bài tập mới (trực tiếp)");
+        problemIds = problemSetInfo.problemIds;
+      }
 
       console.log("🧩 Problems:", problemIds.length);
 
@@ -109,59 +135,127 @@ if (!fs.existsSync(OUTPUT_DIR)) {
             timeout: 30000,
           });
 
-          const data = await page.evaluate(() => {
-            const q = document.querySelector(".problem-mcq-question");
-            if (!q) return null;
-          
-            const contextEl = q.querySelector(".problem-mcq-context");
-          
-            // AUDIO
+          const problemData = await page.evaluate(() => {
+            // Lấy tất cả các câu hỏi trong trang
+            const allQuestions = document.querySelectorAll(".problem-mcq-question");
+            if (!allQuestions || allQuestions.length === 0) return null;
+
+            // Tìm CONTEXT CHUNG (loại mới: nhiều questions cùng context)
+            let sharedContextEl = document.querySelector(".problem-mcq-context-wrapper .problem-mcq-context") ||
+                                 document.querySelector(".problem-mcq-data-left .problem-mcq-context");
+            
+            // Kiểm tra xem có phải loại context chung không
+            const hasSharedContext = !!sharedContextEl;
+
+            // AUDIO (chung cho cả problem)
             const audioEl = document.querySelector("audio source");
             const audio = audioEl ? audioEl.getAttribute("src") : null;
-          
-            // TRANSCRIPT
+
+            // TRANSCRIPT (chung)
             const transcriptEl = document.querySelector(".problem-mcq-script");
             const transcript = transcriptEl
               ? transcriptEl.innerText.trim()
               : null;
-          
-            // TRANSLATION
-            const translationEl = document.querySelector(".problem-mcq-translation");
+
+            // TRANSLATION (chung - có thể trong collapse)
+            let translationEl = document.querySelector(".problem-mcq-translation");
+            // Nếu translation trong collapse, cần lấy từ collapse content
+            if (!translationEl) {
+              const collapseEl = document.querySelector("#mcq-translation");
+              if (collapseEl) {
+                translationEl = collapseEl.querySelector(".problem-mcq-translation");
+              }
+            }
             const translation = translationEl
               ? translationEl.innerText.trim()
               : null;
-          
-            // IMAGES (có hoặc không)
-            const images = contextEl
-              ? [...contextEl.querySelectorAll("img")].map(img =>
+
+            // IMAGES (từ context chung nếu có)
+            const sharedImages = sharedContextEl
+              ? [...sharedContextEl.querySelectorAll("img")].map(img =>
                   img.getAttribute("src")
                 )
               : [];
-          
-            return {
-              qnum: q.dataset.qnum,
-              correct: q.dataset.correct,
-          
-              audio,
-              transcript,
-              translation,
-          
-              question_text: contextEl?.innerText.trim() || "",
-              question_html: contextEl?.innerHTML.trim() || "",
-          
-              images,
-          
-              answers: [...q.querySelectorAll(".problem-mcq-answer label")].map(l =>
-                l.innerText.trim()
-              ),
-          
-              explanation:
-                q.querySelector(".problem-mcq-explanation")?.innerText.trim() || null
-            };
-          });
-          
 
-          if (data) questions.push(data);
+            // Context text và HTML (chung)
+            const sharedQuestionText = sharedContextEl?.innerText.trim() || "";
+            const sharedQuestionHtml = sharedContextEl?.innerHTML.trim() || "";
+
+            // Xử lý từng câu hỏi
+            const questions = [];
+            
+            for (const q of allQuestions) {
+              // Nếu có context chung, dùng chung; nếu không, tìm context riêng
+              let contextEl = sharedContextEl;
+              let question_text = sharedQuestionText;
+              let question_html = sharedQuestionHtml;
+              let images = sharedImages;
+
+              // Nếu không có context chung, thử lấy từ question riêng (loại cũ)
+              if (!contextEl) {
+                contextEl = q.querySelector(".problem-mcq-context");
+                if (contextEl) {
+                  question_text = contextEl.innerText.trim() || "";
+                  question_html = contextEl.innerHTML.trim() || "";
+                  images = [...contextEl.querySelectorAll("img")].map(img =>
+                    img.getAttribute("src")
+                  );
+                }
+              }
+
+              // Lấy explanation (có thể trong collapse)
+              let explanationEl = q.querySelector(".problem-mcq-explanation");
+              if (!explanationEl) {
+                const qnum = q.dataset.qnum;
+                const collapseId = `mcq-explanation-${qnum}`;
+                const collapseEl = document.querySelector(`#${collapseId}`);
+                if (collapseEl) {
+                  explanationEl = collapseEl.querySelector(".problem-mcq-explanation");
+                }
+              }
+
+              const questionData = {
+                qnum: q.dataset.qnum,
+                correct: q.dataset.correct,
+
+                // Context (chung hoặc riêng tùy loại)
+                question_text: question_text,
+                question_html: question_html,
+                
+                // Audio, transcript, translation (chung)
+                audio: audio,
+                transcript: transcript,
+                translation: translation,
+                images: images,
+
+                // Đáp án riêng cho từng câu
+                answers: [...q.querySelectorAll(".problem-mcq-answer label")].map(l =>
+                  l.innerText.trim()
+                ),
+
+                // Explanation riêng cho từng câu
+                explanation: explanationEl?.innerText.trim() || null
+              };
+
+              questions.push(questionData);
+            }
+
+            // Nếu chỉ có 1 question, trả về object đơn (tương thích với code cũ)
+            // Nếu có nhiều questions, trả về array
+            return questions.length === 1 ? questions[0] : questions;
+          });
+
+          // Xử lý kết quả
+          if (problemData) {
+            if (Array.isArray(problemData)) {
+              // Nhiều câu hỏi trong một problem
+              questions.push(...problemData);
+              console.log(`  ✓ Crawled ${problemData.length} questions from problem ${pid}`);
+            } else {
+              // Một câu hỏi (tương thích với code cũ)
+              questions.push(problemData);
+            }
+          }
 
           await new Promise(r => setTimeout(r, 1200));
 
