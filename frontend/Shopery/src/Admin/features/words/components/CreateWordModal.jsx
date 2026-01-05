@@ -197,7 +197,7 @@ export default function CreateWordModal({ onClose, onSuccess, topics = [], defau
           <div className="word-modal__upload-section">
             {/* Image Upload */}
             <div className="word-modal__upload-group">
-              <label>Hình ảnh minh họa</label>
+              <label>Image (Upload or Paste URL)</label>
               <div className="word-modal__upload-box">
                 {imagePreview ? (
                   <div className="word-modal__preview word-modal__preview--image">
@@ -207,63 +207,103 @@ export default function CreateWordModal({ onClose, onSuccess, topics = [], defau
                     </button>
                   </div>
                 ) : (
-                  <div className="word-modal__upload-placeholder" onClick={() => imageInputRef.current?.click()}>
-                    {uploadingImage ? (
-                      <span className="word-modal__upload-loading">Đang tải...</span>
-                    ) : (
-                      <>
-                        <HiPhoto className="word-modal__upload-icon" />
-                        <span>Nhấn để chọn ảnh</span>
-                        <span className="word-modal__upload-hint">JPG, PNG, GIF (Max 5MB)</span>
-                      </>
-                    )}
-                  </div>
+                  <>
+                    <div className="word-modal__upload-placeholder" onClick={() => imageInputRef.current?.click()}>
+                      {uploadingImage ? (
+                        <span className="word-modal__upload-loading">Uploading...</span>
+                      ) : (
+                        <>
+                          <HiPhoto className="word-modal__upload-icon" />
+                          <span>Click to select image</span>
+                          <span className="word-modal__upload-hint">JPG, PNG, GIF (Max 5MB)</span>
+                        </>
+                      )}
+                    </div>
+                    <input
+                      ref={imageInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      style={{ display: "none" }}
+                    />
+                    <div className="word-modal__url-input-wrapper">
+                      <span className="word-modal__url-divider">OR</span>
+                      <input
+                        type="text"
+                        className="word-modal__url-input"
+                        placeholder="Paste image URL here..."
+                        value={formData.image_url}
+                        onChange={(e) => {
+                          const url = e.target.value;
+                          setFormData((prev) => ({ ...prev, image_url: url }));
+                          if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
+                            setImagePreview(url);
+                          } else if (!url) {
+                            setImagePreview(null);
+                          }
+                        }}
+                      />
+                    </div>
+                  </>
                 )}
-                <input
-                  ref={imageInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  style={{ display: "none" }}
-                />
               </div>
             </div>
 
             {/* Audio Upload */}
             <div className="word-modal__upload-group">
-              <label>File phát âm</label>
+              <label>Audio (Upload or Paste URL)</label>
               <div className="word-modal__upload-box">
                 {audioPreview ? (
                   <div className="word-modal__preview word-modal__preview--audio">
                     <audio ref={audioPlayerRef} src={audioPreview} />
                     <button type="button" className="word-modal__audio-play" onClick={playAudio}>
                       <HiSpeakerWave />
-                      <span>Phát âm thanh</span>
+                      <span>Play Audio</span>
                     </button>
                     <button type="button" className="word-modal__preview-remove" onClick={removeAudio}>
                       <HiXCircle />
                     </button>
                   </div>
                 ) : (
-                  <div className="word-modal__upload-placeholder" onClick={() => audioInputRef.current?.click()}>
-                    {uploadingAudio ? (
-                      <span className="word-modal__upload-loading">Đang tải...</span>
-                    ) : (
-                      <>
-                        <HiMusicalNote className="word-modal__upload-icon" />
-                        <span>Nhấn để chọn audio</span>
-                        <span className="word-modal__upload-hint">MP3, WAV, OGG (Max 10MB)</span>
-                      </>
-                    )}
-                  </div>
+                  <>
+                    <div className="word-modal__upload-placeholder" onClick={() => audioInputRef.current?.click()}>
+                      {uploadingAudio ? (
+                        <span className="word-modal__upload-loading">Uploading...</span>
+                      ) : (
+                        <>
+                          <HiMusicalNote className="word-modal__upload-icon" />
+                          <span>Click to select audio</span>
+                          <span className="word-modal__upload-hint">MP3, WAV, OGG (Max 10MB)</span>
+                        </>
+                      )}
+                    </div>
+                    <input
+                      ref={audioInputRef}
+                      type="file"
+                      accept="audio/*"
+                      onChange={handleAudioUpload}
+                      style={{ display: "none" }}
+                    />
+                    <div className="word-modal__url-input-wrapper">
+                      <span className="word-modal__url-divider">OR</span>
+                      <input
+                        type="text"
+                        className="word-modal__url-input"
+                        placeholder="Paste audio URL here..."
+                        value={formData.audio_url}
+                        onChange={(e) => {
+                          const url = e.target.value;
+                          setFormData((prev) => ({ ...prev, audio_url: url }));
+                          if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
+                            setAudioPreview(url);
+                          } else if (!url) {
+                            setAudioPreview(null);
+                          }
+                        }}
+                      />
+                    </div>
+                  </>
                 )}
-                <input
-                  ref={audioInputRef}
-                  type="file"
-                  accept="audio/*"
-                  onChange={handleAudioUpload}
-                  style={{ display: "none" }}
-                />
               </div>
             </div>
           </div>

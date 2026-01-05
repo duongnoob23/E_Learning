@@ -73,9 +73,11 @@ exports.deleteWord = async (req, res, next) => {
   try {
     const { word_id } = req.params;
     const { hard } = req.query; // ?hard=true để xóa cứng
+    const { delete_reason } = req.body; // Lý do xóa (bắt buộc nếu hard=true)
+    const deleted_by = req.user?.user_id || 1;
     
     const response = hard === "true"
-      ? await vocabularyAdminService.hardDeleteWord(word_id)
+      ? await vocabularyAdminService.hardDeleteWord(word_id, delete_reason, deleted_by)
       : await vocabularyAdminService.softDeleteWord(word_id);
     res.json(response);
   } catch (error) {

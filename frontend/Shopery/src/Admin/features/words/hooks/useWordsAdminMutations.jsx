@@ -55,10 +55,11 @@ export const useUpdateWord = () => {
 export const useDeleteWord = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ wordId, hard = false }) => wordsAdminApi.deleteWord(wordId, hard),
+    mutationFn: ({ wordId, hard = false, delete_reason = null }) => 
+      wordsAdminApi.deleteWord(wordId, hard, delete_reason),
     onSuccess: (data) => {
       if (isOk(data)) {
-        toast.success(em(data, "Xóa từ vựng thành công"));
+        toast.success(em(data, hard ? "Xóa vĩnh viễn từ vựng thành công" : "Xóa từ vựng thành công"));
         qc.invalidateQueries({ queryKey: adminVocabKeys.words() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {
@@ -222,10 +223,11 @@ export const useUpdateTopic = () => {
 export const useDeleteTopic = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (topicId) => wordsAdminApi.deleteTopic(topicId),
+    mutationFn: ({ topicId, hard = false, delete_reason = null }) => 
+      wordsAdminApi.deleteTopic(topicId, hard, delete_reason),
     onSuccess: (data) => {
       if (isOk(data)) {
-        toast.success(em(data, "Xóa chủ đề thành công"));
+        toast.success(em(data, hard ? "Xóa vĩnh viễn chủ đề thành công" : "Xóa chủ đề thành công"));
         qc.invalidateQueries({ queryKey: adminVocabKeys.topics() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {

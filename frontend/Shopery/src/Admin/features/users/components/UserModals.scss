@@ -64,9 +64,11 @@
 }
 
 .user-modal__content {
-  padding: 20px;
+  padding: 20px 24px;
   overflow-y: auto;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-modal__loading {
@@ -289,13 +291,16 @@
 
 // Extended modal for detail with tabs
 .user-modal__wrapper--detail-extended {
-  max-width: 900px;
-  max-height: 85vh;
+  max-width: 95vw;
+  width: 95vw;
+  max-height: 95vh;
+  height: 95vh;
 }
 
 .user-modal__content--scrollable {
-  max-height: 400px;
+  max-height: calc(95vh - 250px);
   overflow-y: auto;
+  flex: 1;
 }
 
 // Stats cards
@@ -493,5 +498,46 @@
   color: #64748b;
   padding: 40px 20px;
   font-size: 14px;
+}
+
+.user-detail__error {
+  padding: 20px;
+  background: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  color: #991b1b;
+  font-size: 14px;
+  margin: 20px 0;
+
+  p {
+    margin: 8px 0;
+  }
+
+  pre {
+    background: #fff;
+    padding: 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}
+
+.user-detail__loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 16px;
+}
+
+.user-detail__table-wrapper {
+  margin-top: 20px;
+}
+
+.user-detail__section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 16px;
 }
 

@@ -119,5 +119,45 @@ export const usersAdminApi = {
     const url = `/admin/users/${userId}/payments${queryString ? `?${queryString}` : ""}`;
     return (await adminAxiosInstance.get(url)).data;
   },
+
+  // ==================== FLASHCARD PROGRESS ==================== //
+
+  // Lấy tiến độ học flashcard của user
+  getUserFlashcardProgress: async (userId) =>
+    (await adminAxiosInstance.get(`/admin/users/${userId}/flashcard-progress`)).data,
+
+  // Lấy danh sách topics user đã tạo
+  getUserCreatedTopics: async (userId) =>
+    (await adminAxiosInstance.get(`/admin/users/${userId}/created-topics`)).data,
+
+  // ==================== EXAM PROGRESS ==================== //
+
+  // Lấy lịch sử làm bài thi của user
+  getUserExams: async (userId, params = {}) => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page);
+    if (params.limit) queryParams.append("limit", params.limit);
+
+    const queryString = queryParams.toString();
+    const url = `/admin/users/${userId}/exams${queryString ? `?${queryString}` : ""}`;
+    return (await adminAxiosInstance.get(url)).data;
+  },
+
+  // Lấy thống kê exam của user
+  getUserExamStatistics: async (userId) =>
+    (await adminAxiosInstance.get(`/admin/users/${userId}/exam-statistics`)).data,
+
+  // ==================== COURSE PROGRESS ==================== //
+
+  // Lấy tiến độ học course của user (chi tiết hơn enrollments)
+  getUserCourseProgress: async (userId, params = {}) => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page);
+    if (params.limit) queryParams.append("limit", params.limit);
+
+    const queryString = queryParams.toString();
+    const url = `/admin/users/${userId}/course-progress${queryString ? `?${queryString}` : ""}`;
+    return (await adminAxiosInstance.get(url)).data;
+  },
 };
 

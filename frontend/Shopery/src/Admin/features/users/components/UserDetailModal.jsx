@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { HiXMark, HiCheckCircle, HiXCircle, HiAcademicCap, HiCreditCard, HiChartBar } from "react-icons/hi2";
+import { HiXMark, HiCheckCircle, HiXCircle, HiAcademicCap, HiCreditCard, HiChartBar, HiBookOpen, HiClipboardDocumentList, HiFolderOpen } from "react-icons/hi2";
 import { useAdminUserDetail } from "../hooks/useUsersAdminQueries";
+import UserExamsTab from "./UserExamsTab";
+import UserFlashcardsTab from "./UserFlashcardsTab";
+import UserCreatedTopicsTab from "./UserCreatedTopicsTab";
+import UserCoursesTab from "./UserCoursesTab";
 import "./UserModals.scss";
 
 function formatDate(dateString) {
@@ -138,16 +142,34 @@ export default function UserDetailModal({ userId, onClose }) {
             Thông tin
           </button>
           <button
-            className={`user-detail__tab ${activeTab === "enrollments" ? "user-detail__tab--active" : ""}`}
-            onClick={() => setActiveTab("enrollments")}
+            className={`user-detail__tab ${activeTab === "exams" ? "user-detail__tab--active" : ""}`}
+            onClick={() => setActiveTab("exams")}
           >
-            Khóa học ({enrollments.length})
+            <HiClipboardDocumentList /> Bài thi
+          </button>
+          <button
+            className={`user-detail__tab ${activeTab === "flashcards" ? "user-detail__tab--active" : ""}`}
+            onClick={() => setActiveTab("flashcards")}
+          >
+            <HiBookOpen /> Flashcards
+          </button>
+          <button
+            className={`user-detail__tab ${activeTab === "created-topics" ? "user-detail__tab--active" : ""}`}
+            onClick={() => setActiveTab("created-topics")}
+          >
+            <HiFolderOpen /> Topics đã tạo
+          </button>
+          <button
+            className={`user-detail__tab ${activeTab === "courses" ? "user-detail__tab--active" : ""}`}
+            onClick={() => setActiveTab("courses")}
+          >
+            <HiAcademicCap /> Khóa học
           </button>
           <button
             className={`user-detail__tab ${activeTab === "payments" ? "user-detail__tab--active" : ""}`}
             onClick={() => setActiveTab("payments")}
           >
-            Giao dịch ({payments.length})
+            <HiCreditCard /> Giao dịch ({payments.length})
           </button>
         </div>
 
@@ -217,7 +239,19 @@ export default function UserDetailModal({ userId, onClose }) {
             </>
           )}
 
-          {/* Tab: Enrollments */}
+          {/* Tab: Exams */}
+          {activeTab === "exams" && <UserExamsTab userId={userId} />}
+
+          {/* Tab: Flashcards */}
+          {activeTab === "flashcards" && <UserFlashcardsTab userId={userId} />}
+
+          {/* Tab: Created Topics */}
+          {activeTab === "created-topics" && <UserCreatedTopicsTab userId={userId} />}
+
+          {/* Tab: Courses */}
+          {activeTab === "courses" && <UserCoursesTab userId={userId} />}
+
+          {/* Tab: Enrollments (Legacy - redirect to courses) */}
           {activeTab === "enrollments" && (
             <div className="user-detail__enrollments">
               {enrollments.length === 0 ? (

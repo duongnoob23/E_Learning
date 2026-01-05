@@ -75,4 +75,36 @@ router.get("/:user_id/enrollments", UserAdminController.getUserEnrollments);
  */
 router.get("/:user_id/payments", UserAdminController.getUserPayments);
 
+/**
+ * @route GET /api/admin/users/:user_id/flashcard-progress
+ * @desc Lấy tiến độ học flashcard của user
+ */
+router.get("/:user_id/flashcard-progress", UserAdminController.getUserFlashcardProgress);
+
+/**
+ * @route GET /api/admin/users/:user_id/created-topics
+ * @desc Lấy danh sách topics user đã tạo
+ */
+router.get("/:user_id/created-topics", UserAdminController.getUserCreatedTopics);
+
+/**
+ * @route GET /api/admin/users/:user_id/exams
+ * @desc Lấy lịch sử làm bài thi của user
+ * @query page, limit
+ */
+router.get("/:user_id/exams", UserAdminController.getUserExams);
+
+/**
+ * @route GET /api/admin/users/:user_id/exam-statistics
+ * @desc Lấy thống kê exam của user
+ */
+router.get("/:user_id/exam-statistics", UserAdminController.getUserExamStatistics);
+
+/**
+ * @route GET /api/admin/users/:user_id/course-progress
+ * @desc Lấy tiến độ học course của user (chi tiết hơn enrollments)
+ * @query page, limit
+ */
+router.get("/:user_id/course-progress", UserAdminController.getUserCourseProgress);
+
 module.exports = router;

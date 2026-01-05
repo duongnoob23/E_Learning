@@ -1,11 +1,10 @@
-import React from "react";
 import {
-  HiEllipsisVertical,
   HiCheckCircle,
-  HiXCircle,
+  HiEllipsisVertical,
+  HiEye,
   HiPencil,
   HiTrash,
-  HiEye,
+  HiXCircle,
 } from "react-icons/hi2";
 import "./TopicCard.scss";
 
@@ -15,6 +14,7 @@ export default function TopicCard({
   onEdit,
   onDelete,
   onToggleActive,
+  onPreview,
   showActionMenu,
   onToggleActionMenu,
 }) {
@@ -33,15 +33,12 @@ export default function TopicCard({
           </div>
         )}
         <div className="topic-card__overlay">
-          <button
-            className="topic-card__view-btn"
-            onClick={onView}
-          >
+          <button className="topic-card__view-btn" onClick={onView}>
             View Words
           </button>
         </div>
       </div>
-      
+
       <div className="topic-card__content">
         <div className="topic-card__header">
           <h3 className="topic-card__title">{topic.topic_name}</h3>
@@ -56,14 +53,14 @@ export default function TopicCard({
               <div className="topic-card__action-menu">
                 <button
                   className="topic-card__action-item"
-                  onClick={onView}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onPreview?.();
+                  }}
                 >
-                  <HiEye /> View
+                  <HiEye /> Preview
                 </button>
-                <button
-                  className="topic-card__action-item"
-                  onClick={onEdit}
-                >
+                <button className="topic-card__action-item" onClick={onEdit}>
                   <HiPencil /> Edit
                 </button>
                 <button
@@ -90,11 +87,11 @@ export default function TopicCard({
             )}
           </div>
         </div>
-        
+
         <p className="topic-card__description">
           {topic.description || "No description"}
         </p>
-        
+
         <div className="topic-card__footer">
           <div className="topic-card__badges">
             <span
@@ -124,4 +121,3 @@ export default function TopicCard({
     </div>
   );
 }
-

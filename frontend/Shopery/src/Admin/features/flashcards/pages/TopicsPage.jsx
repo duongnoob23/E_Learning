@@ -22,6 +22,8 @@ import {
 } from "../../words/hooks/useWordsAdminMutations";
 import CreateTopicModal from "../components/CreateTopicModal";
 import EditTopicModal from "../components/EditTopicModal";
+import TopicPreviewModal from "../components/TopicPreviewModal";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import TopicCard from "../components/TopicCard";
 import "./TopicsPage.scss";
 
@@ -34,6 +36,8 @@ export default function TopicsPage() {
   // Modal states
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [editTopicId, setEditTopicId] = useState(null);
+  const [previewTopic, setPreviewTopic] = useState(null);
+  const [deleteConfirm, setDeleteConfirm] = useState({ open: false, topic: null, hard: false });
   
   // Filter & search states
   const [search, setSearch] = useState("");
@@ -106,15 +110,34 @@ export default function TopicsPage() {
     setShowActionMenu(null);
   };
   
-  const handleDeleteTopic = (topicId) => {
-    if (window.confirm("Are you sure you want to delete this topic? This will not delete the words, but will deactivate the topic.")) {
-      deleteTopicMutation.mutate(topicId, {
+  const handleDeleteTopic = (topicId, hard = false) => {
+    const topic = topics.find(t => t.topic_id === topicId);
+    setDeleteConfirm({ 
+      open: true, 
+      topic: topic || { topic_id: topicId, topic_name: "Unknown" },
+      hard 
+    });
+    setShowActionMenu(null);
+  };
+
+  const handleConfirmDelete = (delete_reason) => {
+    deleteTopicMutation.mutate(
+      { 
+        topicId: deleteConfirm.topic.topic_id, 
+        hard: deleteConfirm.hard,
+        delete_reason 
+      },
+      {
         onSuccess: () => {
           refetch();
+          setDeleteConfirm({ open: false, topic: null, hard: false });
         },
-      });
-    }
-    setShowActionMenu(null);
+      }
+    );
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteConfirm({ open: false, topic: null, hard: false });
   };
   
   const handleToggleActive = (topicId) => {
@@ -358,6 +381,7 @@ export default function TopicsPage() {
                     onEdit={() => handleEditTopic(topic.topic_id)}
                     onDelete={() => handleDeleteTopic(topic.topic_id)}
                     onToggleActive={() => handleToggleActive(topic.topic_id)}
+                    onPreview={() => setPreviewTopic(topic)}
                     showActionMenu={showActionMenu === topic.topic_id}
                     onToggleActionMenu={() =>
                       setShowActionMenu(showActionMenu === topic.topic_id ? null : topic.topic_id)
@@ -545,6 +569,12 @@ export default function TopicsPage() {
             setEditTopicId(null);
             refetch();
           }}
+        />
+      )}
+      {previewTopic && (
+        <TopicPreviewModal
+          topic={previewTopic}
+          onClose={() => setPreviewTopic(null)}
         />
       )}
     </div>

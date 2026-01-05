@@ -177,3 +177,56 @@ exports.getUserPayments = async (req, res, next) => {
         next(error);
     }
 }
+
+//--- Flashcard Progress ---//
+exports.getUserFlashcardProgress = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserFlashcardProgress(user_id);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.getUserCreatedTopics = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserCreatedTopics(user_id);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+//--- Exam Progress ---//
+exports.getUserExams = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserExams(user_id, req.query);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.getUserExamStatistics = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserExamStatistics(user_id);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+//--- Course Progress ---//
+exports.getUserCourseProgress = async (req, res, next) => {
+    try {
+        const { user_id } = req.params;
+        const response = await userAdminService.getUserCourseProgress(user_id, req.query);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}

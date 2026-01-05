@@ -11,7 +11,15 @@ class VocabularyAdminService {
   /**
    * Lấy danh sách từ vựng với phân trang, filter, search
    */
-  async getWords({ page = 1, limit = 10, search, topic_id, is_active, sort_by = "created_at", sort_order = "DESC" }) {
+  async getWords({
+    page = 1,
+    limit = 10,
+    search,
+    topic_id,
+    is_active,
+    sort_by = "created_at",
+    sort_order = "DESC",
+  }) {
     const offset = (page - 1) * limit;
     const where = {};
 
@@ -35,22 +43,46 @@ class VocabularyAdminService {
 
     // Tất cả các cột trong DB
     const attributes = [
-      "word_id", "topic_id", "word", "part_of_speech",
-      "pronunciation", "meaning_vi", "example_en", "example_vi",
-      "image_url", "notes", "word_type", "created_by",
-      "is_active", "created_at", "updated_at", "audio_url"
+      "word_id",
+      "topic_id",
+      "word",
+      "part_of_speech",
+      "pronunciation",
+      "meaning_vi",
+      "example_en",
+      "example_vi",
+      "image_url",
+      "notes",
+      "word_type",
+      "created_by",
+      "is_active",
+      "created_at",
+      "updated_at",
+      "audio_url",
     ];
 
     // Validate sort_by
-    const validSortColumns = ["word_id", "word", "topic_id", "created_at", "is_active"];
-    const safeSortBy = validSortColumns.includes(sort_by) ? sort_by : "created_at";
+    const validSortColumns = [
+      "word_id",
+      "word",
+      "topic_id",
+      "created_at",
+      "is_active",
+    ];
+    const safeSortBy = validSortColumns.includes(sort_by)
+      ? sort_by
+      : "created_at";
 
     const { rows: words, count: total } = await Word.findAndCountAll({
       where,
       attributes,
       include: [
         { model: Topic, attributes: ["topic_id", "topic_name", "image_url"] },
-        { model: User, as: "wordCreator", attributes: ["user_id", "username", "email"] },
+        {
+          model: User,
+          as: "wordCreator",
+          attributes: ["user_id", "username", "email"],
+        },
       ],
       order: [[safeSortBy, sort_order.toUpperCase()]],
       limit: parseInt(limit),
@@ -78,8 +110,15 @@ class VocabularyAdminService {
   async getWordDetail(word_id) {
     const word = await Word.findByPk(word_id, {
       include: [
-        { model: Topic, attributes: ["topic_id", "topic_name", "image_url", "description"] },
-        { model: User, as: "wordCreator", attributes: ["user_id", "username", "email"] },
+        {
+          model: Topic,
+          attributes: ["topic_id", "topic_name", "image_url", "description"],
+        },
+        {
+          model: User,
+          as: "wordCreator",
+          attributes: ["user_id", "username", "email"],
+        },
       ],
     });
 
@@ -105,7 +144,11 @@ class VocabularyAdminService {
       where: { word: data.word, topic_id: data.topic_id },
     });
     if (existingWord) {
-      return { EC: "2", EM: "Từ này đã tồn tại trong chủ đề", DT: existingWord };
+      return {
+        EC: "2",
+        EM: "Từ này đã tồn tại trong chủ đề",
+        DT: existingWord,
+      };
     }
 
     const word = await Word.create({
@@ -144,27 +187,44 @@ class VocabularyAdminService {
     // Kiểm tra từ trùng lặp nếu đổi tên từ
     if (data.word && data.word !== word.word) {
       const existingWord = await Word.findOne({
-        where: { word: data.word, topic_id: data.topic_id || word.topic_id, word_id: { [Op.ne]: word_id } },
+        where: {
+          word: data.word,
+          topic_id: data.topic_id || word.topic_id,
+          word_id: { [Op.ne]: word_id },
+        },
         attributes: ["word_id", "word"],
       });
       if (existingWord) {
-        return { EC: "2", EM: "Từ này đã tồn tại trong chủ đề", DT: existingWord };
+        return {
+          EC: "2",
+          EM: "Từ này đã tồn tại trong chủ đề",
+          DT: existingWord,
+        };
       }
     }
 
     // Update các field
     const updateData = { updated_at: new Date() };
     const allowedFields = [
-      "word", "pronunciation", "meaning_vi", "part_of_speech",
-      "image_url", "audio_url", "notes", "is_active", "topic_id"
+      "word",
+      "pronunciation",
+      "meaning_vi",
+      "part_of_speech",
+      "image_url",
+      "audio_url",
+      "notes",
+      "is_active",
+      "topic_id",
     ];
     allowedFields.forEach((field) => {
       if (data[field] !== undefined) updateData[field] = data[field];
     });
 
     // Handle alias fields
-    if (data.example_sentence !== undefined) updateData.example_en = data.example_sentence;
-    if (data.example_translation !== undefined) updateData.example_vi = data.example_translation;
+    if (data.example_sentence !== undefined)
+      updateData.example_en = data.example_sentence;
+    if (data.example_translation !== undefined)
+      updateData.example_vi = data.example_translation;
     if (data.example_en !== undefined) updateData.example_en = data.example_en;
     if (data.example_vi !== undefined) updateData.example_vi = data.example_vi;
 
@@ -195,14 +255,27 @@ class VocabularyAdminService {
 
   /**
    * Xóa cứng từ vựng (xóa hoàn toàn khỏi DB)
+   * @param {number} word_id - ID của từ vựng
+   * @param {string} delete_reason - Lý do xóa (bắt buộc)
+   * @param {number} deleted_by - ID người xóa
    */
-  async hardDeleteWord(word_id) {
+  async hardDeleteWord(word_id, delete_reason, deleted_by) {
+    if (!delete_reason || delete_reason.trim().length < 10) {
+      return { EC: "1", EM: "Lý do xóa phải có ít nhất 10 ký tự", DT: null };
+    }
+
     const word = await Word.findByPk(word_id);
     if (!word) {
       return { EC: "1", EM: "Không tìm thấy từ vựng", DT: null };
     }
 
     const topic_id = word.topic_id;
+
+    // Log deletion (có thể lưu vào bảng audit log nếu có)
+    console.log(
+      `[HARD DELETE WORD] ID: ${word_id}, Reason: ${delete_reason}, Deleted by: ${deleted_by}`
+    );
+
     await word.destroy();
 
     // Giảm word_count của topic
@@ -238,7 +311,9 @@ class VocabularyAdminService {
 
     return {
       EC: "0",
-      EM: newStatus ? "Kích hoạt từ vựng thành công" : "Vô hiệu hóa từ vựng thành công",
+      EM: newStatus
+        ? "Kích hoạt từ vựng thành công"
+        : "Vô hiệu hóa từ vựng thành công",
       DT: word,
     };
   }
@@ -290,12 +365,36 @@ class VocabularyAdminService {
     const { rows: topics, count: total } = await Topic.findAndCountAll({
       where,
       include: [
-        { model: User, as: "creator", attributes: ["user_id", "username", "email"] },
+        {
+          model: User,
+          as: "creator",
+          attributes: [
+            "user_id",
+            "username",
+            "email",
+            "full_name",
+            "avatar_url",
+          ],
+        },
       ],
       order: [["created_at", "DESC"]],
       limit: parseInt(limit),
       offset,
     });
+
+    // Recalculate word_count for each topic based on actual active words
+    for (const topic of topics) {
+      const actualCount = await Word.count({
+        where: {
+          topic_id: topic.topic_id,
+          is_active: true,
+        },
+      });
+      if (topic.word_count !== actualCount) {
+        await topic.update({ word_count: actualCount });
+        topic.word_count = actualCount;
+      }
+    }
 
     return {
       EC: "0",
@@ -392,6 +491,46 @@ class VocabularyAdminService {
   }
 
   /**
+   * Xóa cứng chủ đề (xóa hoàn toàn khỏi DB, kèm theo tất cả words)
+   * @param {number} topic_id - ID của chủ đề
+   * @param {string} delete_reason - Lý do xóa (bắt buộc)
+   * @param {number} deleted_by - ID người xóa
+   */
+  async hardDeleteTopic(topic_id, delete_reason, deleted_by) {
+    if (!delete_reason || delete_reason.trim().length < 10) {
+      return { EC: "1", EM: "Lý do xóa phải có ít nhất 10 ký tự", DT: null };
+    }
+
+    const topic = await Topic.findByPk(topic_id);
+    if (!topic) {
+      return { EC: "1", EM: "Không tìm thấy chủ đề", DT: null };
+    }
+
+    // Log deletion
+    console.log(
+      `[HARD DELETE TOPIC] ID: ${topic_id}, Reason: ${delete_reason}, Deleted by: ${deleted_by}`
+    );
+
+    // Xóa tất cả words trong topic trước
+    const words = await Word.findAll({ where: { topic_id } });
+    const wordIds = words.map((w) => w.word_id);
+
+    if (wordIds.length > 0) {
+      await Word.destroy({ where: { topic_id } });
+      console.log(`[HARD DELETE TOPIC] Deleted ${wordIds.length} words`);
+    }
+
+    // Xóa topic
+    await topic.destroy();
+
+    return {
+      EC: "0",
+      EM: `Xóa vĩnh viễn chủ đề và ${wordIds.length} từ vựng thành công`,
+      DT: { deleted_words_count: wordIds.length },
+    };
+  }
+
+  /**
    * Toggle trạng thái chủ đề
    */
   async toggleTopicActive(topic_id) {
@@ -405,7 +544,9 @@ class VocabularyAdminService {
 
     return {
       EC: "0",
-      EM: newStatus ? "Kích hoạt chủ đề thành công" : "Vô hiệu hóa chủ đề thành công",
+      EM: newStatus
+        ? "Kích hoạt chủ đề thành công"
+        : "Vô hiệu hóa chủ đề thành công",
       DT: topic,
     };
   }
@@ -420,16 +561,42 @@ class VocabularyAdminService {
       Word.findAll({
         attributes: [
           [sequelize.fn("COUNT", sequelize.col("word_id")), "total_words"],
-          [sequelize.fn("SUM", sequelize.literal("CASE WHEN is_active = 1 THEN 1 ELSE 0 END")), "active_words"],
-          [sequelize.fn("SUM", sequelize.literal("CASE WHEN is_active = 0 THEN 1 ELSE 0 END")), "inactive_words"],
+          [
+            sequelize.fn(
+              "SUM",
+              sequelize.literal("CASE WHEN is_active = 1 THEN 1 ELSE 0 END")
+            ),
+            "active_words",
+          ],
+          [
+            sequelize.fn(
+              "SUM",
+              sequelize.literal("CASE WHEN is_active = 0 THEN 1 ELSE 0 END")
+            ),
+            "inactive_words",
+          ],
         ],
         raw: true,
       }),
       Topic.findAll({
         attributes: [
           [sequelize.fn("COUNT", sequelize.col("topic_id")), "total_topics"],
-          [sequelize.fn("SUM", sequelize.literal("CASE WHEN is_active = 1 THEN 1 ELSE 0 END")), "active_topics"],
-          [sequelize.fn("SUM", sequelize.literal("CASE WHEN topic_type = 'system' THEN 1 ELSE 0 END")), "system_topics"],
+          [
+            sequelize.fn(
+              "SUM",
+              sequelize.literal("CASE WHEN is_active = 1 THEN 1 ELSE 0 END")
+            ),
+            "active_topics",
+          ],
+          [
+            sequelize.fn(
+              "SUM",
+              sequelize.literal(
+                "CASE WHEN topic_type = 'system' THEN 1 ELSE 0 END"
+              )
+            ),
+            "system_topics",
+          ],
         ],
         raw: true,
       }),
@@ -477,7 +644,10 @@ class VocabularyAdminService {
           where: { word: wordData.word, topic_id },
         });
         if (existing) {
-          results.duplicates.push({ word: wordData.word, reason: "Đã tồn tại" });
+          results.duplicates.push({
+            word: wordData.word,
+            reason: "Đã tồn tại",
+          });
           continue;
         }
 
@@ -488,7 +658,8 @@ class VocabularyAdminService {
           pronunciation: wordData.pronunciation || null,
           meaning_vi: wordData.meaning_vi,
           example_en: wordData.example_en || wordData.example_sentence || null,
-          example_vi: wordData.example_vi || wordData.example_translation || null,
+          example_vi:
+            wordData.example_vi || wordData.example_translation || null,
           image_url: wordData.image_url || null,
           audio_url: wordData.audio_url || null,
           notes: wordData.notes || null,
@@ -570,11 +741,12 @@ class VocabularyAdminService {
 
     return {
       EC: "0",
-      EM: is_active ? `Kích hoạt ${word_ids.length} từ` : `Vô hiệu hóa ${word_ids.length} từ`,
+      EM: is_active
+        ? `Kích hoạt ${word_ids.length} từ`
+        : `Vô hiệu hóa ${word_ids.length} từ`,
       DT: { updated_count: word_ids.length },
     };
   }
 }
 
 module.exports = new VocabularyAdminService();
-
