@@ -108,30 +108,6 @@ export default function UserDetailModal({ userId, onClose }) {
           </button>
         </div>
 
-        {/* Stats Summary */}
-        <div className="user-detail__stats">
-          <div className="user-detail__stat-card">
-            <HiAcademicCap className="user-detail__stat-icon" />
-            <div className="user-detail__stat-info">
-              <span className="user-detail__stat-value">{stats.totalEnrollments || 0}</span>
-              <span className="user-detail__stat-label">Khóa học</span>
-            </div>
-          </div>
-          <div className="user-detail__stat-card">
-            <HiChartBar className="user-detail__stat-icon" />
-            <div className="user-detail__stat-info">
-              <span className="user-detail__stat-value">{stats.completedCourses || 0}</span>
-              <span className="user-detail__stat-label">Hoàn thành</span>
-            </div>
-          </div>
-          <div className="user-detail__stat-card">
-            <HiCreditCard className="user-detail__stat-icon" />
-            <div className="user-detail__stat-info">
-              <span className="user-detail__stat-value">{formatCurrency(stats.totalSpent || 0)}</span>
-              <span className="user-detail__stat-label">Tổng chi tiêu</span>
-            </div>
-          </div>
-        </div>
 
         {/* Tabs */}
         <div className="user-detail__tabs">
@@ -314,48 +290,98 @@ export default function UserDetailModal({ userId, onClose }) {
           {/* Tab: Payments */}
           {activeTab === "payments" && (
             <div className="user-detail__payments">
-              {payments.length === 0 ? (
-                <p className="user-detail__empty">Người dùng chưa có giao dịch nào</p>
-              ) : (
-                <table className="user-detail__table">
-                  <thead>
-                    <tr>
-                      <th>Mã đơn hàng</th>
-                      <th>Khóa học</th>
-                      <th>Số tiền</th>
-                      <th>Phương thức</th>
-                      <th>Trạng thái</th>
-                      <th>Ngày tạo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {payments.map((payment) => {
-                      const payStatus = formatPaymentStatus(payment.payment_status);
-                      const courses = payment.order?.items?.map((item) => item.course?.title).join(", ") || "N/A";
-                      return (
-                        <tr key={payment.payment_id}>
-                          <td>{payment.order?.order_number || "N/A"}</td>
-                          <td className="user-detail__cell-truncate" title={courses}>
-                            {courses}
-                          </td>
-                          <td>{formatCurrency(payment.amount)}</td>
-                          <td>
-                            <span className="user-detail__payment-method">
-                              {payment.payment_method?.toUpperCase()}
-                            </span>
-                          </td>
-                          <td>
-                            <span className={`user-detail__badge user-detail__badge--${payStatus.class}`}>
-                              {payStatus.text}
-                            </span>
-                          </td>
-                          <td>{formatDate(payment.created_at)}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              )}
+              {/* Statistics Cards - Hiển thị nằm ngang */}
+              <div className="user-detail__stats-grid">
+                <div className="user-detail__stat-card">
+                  <HiAcademicCap className="user-detail__stat-icon" />
+                  <div className="user-detail__stat-info">
+                    <span className="user-detail__stat-value">{enrollments.length || 0}</span>
+                    <span className="user-detail__stat-label">Số khóa học</span>
+                  </div>
+                </div>
+                <div className="user-detail__stat-card">
+                  <HiCreditCard className="user-detail__stat-icon" />
+                  <div className="user-detail__stat-info">
+                    <span className="user-detail__stat-value">
+                      {formatCurrency(
+                        payments.reduce((sum, payment) => {
+                          // Chỉ tính các giao dịch thành công
+                          if (payment.payment_status === "completed" || payment.payment_status === "paid") {
+                            return sum + (Number(payment.amount) || 0);
+                          }
+                          return sum;
+                        }, 0)
+                      )}
+                    </span>
+                    <span className="user-detail__stat-label">Tổng chi tiêu</span>
+                  </div>
+                </div>
+                <div className="user-detail__stat-card">
+                  <HiCreditCard className="user-detail__stat-icon" />
+                  <div className="user-detail__stat-info">
+                    <span className="user-detail__stat-value">{payments.length || 0}</span>
+                    <span className="user-detail__stat-label">Tổng số giao dịch</span>
+                  </div>
+                </div>
+                <div className="user-detail__stat-card">
+                  <HiChartBar className="user-detail__stat-icon" />
+                  <div className="user-detail__stat-info">
+                    <span className="user-detail__stat-value">
+                      {payments.filter(
+                        (p) => p.payment_status === "completed" || p.payment_status === "paid"
+                      ).length || 0}
+                    </span>
+                    <span className="user-detail__stat-label">Giao dịch thành công</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Danh sách giao dịch */}
+              <div className="user-detail__table-wrapper">
+                <h3 className="user-detail__section-title">Lịch sử giao dịch</h3>
+                {payments.length === 0 ? (
+                  <p className="user-detail__empty">Người dùng chưa có giao dịch nào</p>
+                ) : (
+                  <table className="user-detail__table">
+                    <thead>
+                      <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Khóa học</th>
+                        <th>Số tiền</th>
+                        <th>Phương thức</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {payments.map((payment) => {
+                        const payStatus = formatPaymentStatus(payment.payment_status);
+                        const courses = payment.order?.items?.map((item) => item.course?.title).join(", ") || "N/A";
+                        return (
+                          <tr key={payment.payment_id}>
+                            <td>{payment.order?.order_number || "N/A"}</td>
+                            <td className="user-detail__cell-truncate" title={courses}>
+                              {courses}
+                            </td>
+                            <td>{formatCurrency(payment.amount)}</td>
+                            <td>
+                              <span className="user-detail__payment-method">
+                                {payment.payment_method?.toUpperCase()}
+                              </span>
+                            </td>
+                            <td>
+                              <span className={`user-detail__badge user-detail__badge--${payStatus.class}`}>
+                                {payStatus.text}
+                              </span>
+                            </td>
+                            <td>{formatDate(payment.created_at)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                )}
+              </div>
             </div>
           )}
         </div>

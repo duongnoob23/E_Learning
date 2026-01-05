@@ -1,5 +1,7 @@
+import React from "react";
 import { HiCheckCircle, HiClock } from "react-icons/hi2";
-import { useUserCourseProgress } from "../hooks/useUsersAdminQueries";
+import { useUserEnrollments } from "../hooks/useUsersAdminQueries";
+import "./UserCoursesTab.scss";
 
 function formatDate(dateString) {
   if (!dateString) return "N/A";
@@ -13,12 +15,15 @@ function formatDate(dateString) {
 }
 
 export default function UserCoursesTab({ userId }) {
-  const { data, isLoading, error } = useUserCourseProgress(userId, { page: 1, limit: 50 });
+  const { data, isLoading, error } = useUserEnrollments(userId, {
+    page: 1,
+    limit: 50,
+  });
 
   // Helper function để convert sang number an toàn
   const toNumber = (value, defaultValue = 0) => {
     if (value === null || value === undefined) return defaultValue;
-    const num = typeof value === 'string' ? parseFloat(value) : Number(value);
+    const num = typeof value === "string" ? parseFloat(value) : Number(value);
     return isNaN(num) ? defaultValue : num;
   };
 
@@ -30,118 +35,149 @@ export default function UserCoursesTab({ userId }) {
 
   if (isLoading) {
     return (
-      <div className="user-detail__loading">Loading course progress...</div>
+      <div className="user-courses-tab__loading">
+        Đang tải danh sách khóa học...
+      </div>
     );
   }
 
   if (error) {
     return (
-      <div className="user-detail__error">
-        <p>Error loading course progress: {error.message}</p>
+      <div className="user-courses-tab__error">
+        <p>Lỗi khi tải danh sách khóa học: {error.message}</p>
       </div>
     );
   }
 
-  // Lấy dữ liệu từ admin API
+  // Lấy dữ liệu từ admin API - có thể là array hoặc object với enrollments
   const responseData = data?.DT || {};
-  const enrollments = Array.isArray(responseData.enrollments) ? responseData.enrollments : [];
+  let enrollments = [];
   
-  // Debug log để kiểm tra dữ liệu
-  if (process.env.NODE_ENV === 'development') {
-    console.log("UserCoursesTab - data:", data);
-    console.log("UserCoursesTab - responseData:", responseData);
-    console.log("UserCoursesTab - enrollments:", enrollments);
+  if (Array.isArray(responseData)) {
+    enrollments = responseData;
+  } else if (Array.isArray(responseData.enrollments)) {
+    enrollments = responseData.enrollments;
+  } else if (Array.isArray(responseData.data)) {
+    enrollments = responseData.data;
   }
 
+  // Map dữ liệu từ course_enrollment format
+  const mappedEnrollments = enrollments.map((enrollment) => {
+    // Nếu có Course object (từ join)
+    const course = enrollment.Course || enrollment.course || {};
+    
+    return {
+      enrollment_id: enrollment.enrollment_id || enrollment.id,
+      course_id: enrollment.course_id || course.course_id || course.id,
+      course_name: course.title || course.course_name || enrollment.course_name || "Unknown Course",
+      course_image: course.image || course.course_image || enrollment.course_image,
+      status: enrollment.status || "active",
+      progress_percent: enrollment.progress_percent || 0,
+      enrolled_at: enrollment.enrolled_at || enrollment.created_at,
+      // Thông tin từ course
+      total_lessons: course.total_lessons || enrollment.total_lessons || 0,
+      completed_lessons: enrollment.completed_lessons || 0,
+      lesson_progress: enrollment.lesson_progress || [],
+    };
+  });
+
   return (
-    <div className="user-detail__courses">
-      <div className="user-detail__table-wrapper">
-        <h3 className="user-detail__section-title">Tiến độ học khóa học</h3>
-        {enrollments.length === 0 ? (
-          <p className="user-detail__empty">
+    <div className="user-courses-tab">
+      {/* Danh sách khóa học - Card style */}
+      <div className="user-courses-tab__section">
+        <h3 className="user-courses-tab__section-title">
+          Danh sách khóa học đã đăng ký
+        </h3>
+        {mappedEnrollments.length === 0 ? (
+          <div className="user-courses-tab__empty">
             Người dùng chưa đăng ký khóa học nào
-          </p>
+          </div>
         ) : (
-          <>
-            {enrollments.map((enrollment) => (
+          <div className="user-courses-tab__list">
+            {mappedEnrollments.map((enrollment) => (
               <div
                 key={enrollment.enrollment_id}
-                className="user-detail__course-card"
+                className="user-courses-tab__card"
               >
-                <div className="user-detail__course-header">
-                  {enrollment.course_image && (
-                    <img
-                      src={enrollment.course_image}
-                      alt=""
-                      className="user-detail__course-img"
-                    />
-                  )}
-                  <div className="user-detail__course-info">
-                    <h4>{enrollment.course_name}</h4>
-                    <div className="user-detail__course-meta">
-                      <span>
-                        {enrollment.completed_lessons} /{" "}
-                        {enrollment.total_lessons} bài học
-                      </span>
-                      <span
-                        className={`user-detail__badge user-detail__badge--${enrollment.status}`}
-                      >
-                        {enrollment.status === "completed" ? (
-                          <>
-                            <HiCheckCircle /> Hoàn thành
-                          </>
-                        ) : (
-                          <>
-                            <HiClock /> Đang học
-                          </>
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="user-detail__progress">
-                  <div
-                    className="user-detail__progress-bar"
-                    style={{ width: `${toNumber(enrollment.progress_percent, 0)}%` }}
+                {enrollment.course_image && (
+                  <img
+                    src={enrollment.course_image}
+                    alt={enrollment.course_name}
+                    className="user-courses-tab__thumb"
                   />
-                  <span>{formatPercent(enrollment.progress_percent)}%</span>
-                </div>
-                {enrollment.lesson_progress &&
-                  enrollment.lesson_progress.length > 0 && (
-                    <details className="user-detail__lesson-details">
-                      <summary>
-                        Chi tiết bài học ({enrollment.lesson_progress.length})
-                      </summary>
-                      <div className="user-detail__lessons-list">
-                        {enrollment.lesson_progress.map((lesson) => (
-                          <div
-                            key={lesson.lesson_id}
-                            className="user-detail__lesson-item"
-                          >
-                            <span>{lesson.lesson_name}</span>
-                            <span
-                              className={`user-detail__badge user-detail__badge--${lesson.status}`}
+                )}
+                <div className="user-courses-tab__info">
+                  <h4 className="user-courses-tab__course-title">
+                    {enrollment.course_name}
+                  </h4>
+                  <div className="user-courses-tab__meta">
+                    <span className="user-courses-tab__lessons">
+                      {enrollment.completed_lessons} / {enrollment.total_lessons}{" "}
+                      bài học
+                    </span>
+                    <span
+                      className={`user-courses-tab__badge user-courses-tab__badge--${enrollment.status}`}
+                    >
+                      {enrollment.status === "completed" ? (
+                        <>
+                          <HiCheckCircle /> Hoàn thành
+                        </>
+                      ) : (
+                        <>
+                          <HiClock /> Đang học
+                        </>
+                      )}
+                    </span>
+                  </div>
+                  <div className="user-courses-tab__progress">
+                    <div className="user-courses-tab__progress-bar-wrapper">
+                      <div
+                        className="user-courses-tab__progress-bar"
+                        style={{
+                          width: `${toNumber(enrollment.progress_percent, 0)}%`,
+                        }}
+                      />
+                    </div>
+                    <span className="user-courses-tab__progress-text">
+                      {formatPercent(enrollment.progress_percent)}%
+                    </span>
+                  </div>
+                  {enrollment.lesson_progress &&
+                    enrollment.lesson_progress.length > 0 && (
+                      <details className="user-courses-tab__lesson-details">
+                        <summary>
+                          Chi tiết bài học ({enrollment.lesson_progress.length})
+                        </summary>
+                        <div className="user-courses-tab__lessons-list">
+                          {enrollment.lesson_progress.map((lesson) => (
+                            <div
+                              key={lesson.lesson_id}
+                              className="user-courses-tab__lesson-item"
                             >
-                              {lesson.status === "completed" ? (
-                                <>
-                                  <HiCheckCircle /> Hoàn thành
-                                </>
-                              ) : (
-                                <>
-                                  <HiClock />{" "}
-                                  {formatPercent(lesson.completion_percent)}%
-                                </>
-                              )}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </details>
-                  )}
+                              <span>{lesson.lesson_name}</span>
+                              <span
+                                className={`user-courses-tab__badge user-courses-tab__badge--${lesson.status}`}
+                              >
+                                {lesson.status === "completed" ? (
+                                  <>
+                                    <HiCheckCircle /> Hoàn thành
+                                  </>
+                                ) : (
+                                  <>
+                                    <HiClock />{" "}
+                                    {formatPercent(lesson.completion_percent)}%
+                                  </>
+                                )}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </details>
+                    )}
+                </div>
               </div>
             ))}
-
-          </>
+          </div>
         )}
       </div>
     </div>

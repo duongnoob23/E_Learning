@@ -9,27 +9,25 @@ export default function DeleteConfirmModal({
   onConfirm,
   onCancel,
 }) {
-  const [deleteReason, setDeleteReason] = useState("");
+  const [confirmName, setConfirmName] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!deleteReason.trim()) {
-      setErrors({ reason: "Please provide a reason for deletion" });
+    // Yêu cầu nhập đúng tên topic để xác nhận xóa
+    if (confirmName.trim() !== name) {
+      setErrors({ name: `Vui lòng nhập chính xác "${name}" để xác nhận xóa` });
       return;
     }
 
-    if (deleteReason.trim().length < 10) {
-      setErrors({ reason: "Reason must be at least 10 characters" });
-      return;
-    }
-
-    onConfirm(deleteReason.trim());
+    onConfirm();
+    setConfirmName("");
+    setErrors({});
   };
 
   const handleCancel = () => {
-    setDeleteReason("");
+    setConfirmName("");
     setErrors({});
     onCancel();
   };
@@ -47,7 +45,7 @@ export default function DeleteConfirmModal({
             <HiExclamationTriangle />
           </div>
           <h2 className="delete-confirm-modal__title">
-            Confirm Permanent Deletion
+            Xác nhận xóa vĩnh viễn
           </h2>
           <button
             className="delete-confirm-modal__close"
@@ -60,17 +58,15 @@ export default function DeleteConfirmModal({
         <div className="delete-confirm-modal__content">
           <div className="delete-confirm-modal__warning">
             <p>
-              You are about to <strong>permanently delete</strong> this {type}:
+              Bạn đang thực hiện <strong>xóa vĩnh viễn</strong> {type === "topic" ? "chủ đề" : "từ vựng"}:
             </p>
             <p className="delete-confirm-modal__item-name">"{name}"</p>
             <p className="delete-confirm-modal__warning-text">
-              This action cannot be undone. All data associated with this {type}{" "}
-              will be permanently removed from the system.
+              Hành động này <strong>không thể hoàn tác</strong>. Tất cả dữ liệu liên quan đến {type === "topic" ? "chủ đề" : "từ vựng"} này sẽ bị xóa vĩnh viễn khỏi hệ thống.
             </p>
             {type === "topic" && (
-              <p className="delete-confirm-modal__warning-text">
-                <strong>Warning:</strong> All words in this topic will also be
-                permanently deleted.
+              <p className="delete-confirm-modal__warning-text delete-confirm-modal__warning-text--danger">
+                <strong>⚠️ Cảnh báo:</strong> Tất cả từ vựng trong chủ đề này cũng sẽ bị xóa vĩnh viễn.
               </p>
             )}
           </div>
@@ -78,32 +74,28 @@ export default function DeleteConfirmModal({
           <form className="delete-confirm-modal__form" onSubmit={handleSubmit}>
             <div className="delete-confirm-modal__field">
               <label className="delete-confirm-modal__label">
-                Reason for Deletion{" "}
-                <span className="delete-confirm-modal__required">*</span>
+                Để xác nhận xóa, vui lòng nhập lại tên: <strong>{name}</strong>
               </label>
-              <textarea
-                className={`delete-confirm-modal__textarea ${
-                  errors.reason ? "delete-confirm-modal__textarea--error" : ""
+              <input
+                type="text"
+                className={`delete-confirm-modal__input ${
+                  errors.name ? "delete-confirm-modal__input--error" : ""
                 }`}
-                value={deleteReason}
+                value={confirmName}
                 onChange={(e) => {
-                  setDeleteReason(e.target.value);
-                  if (errors.reason) {
+                  setConfirmName(e.target.value);
+                  if (errors.name) {
                     setErrors({});
                   }
                 }}
-                placeholder="Please explain why you are deleting this item (minimum 10 characters)..."
-                rows={4}
-                required
+                placeholder={`Nhập "${name}" để xác nhận`}
+                autoFocus
               />
-              {errors.reason && (
+              {errors.name && (
                 <div className="delete-confirm-modal__error">
-                  {errors.reason}
+                  {errors.name}
                 </div>
               )}
-              <div className="delete-confirm-modal__hint">
-                Minimum 10 characters required
-              </div>
             </div>
 
             <div className="delete-confirm-modal__footer">
@@ -112,13 +104,14 @@ export default function DeleteConfirmModal({
                 className="delete-confirm-modal__btn delete-confirm-modal__btn--cancel"
                 onClick={handleCancel}
               >
-                Cancel
+                Hủy bỏ
               </button>
               <button
                 type="submit"
                 className="delete-confirm-modal__btn delete-confirm-modal__btn--delete"
+                disabled={confirmName.trim() !== name}
               >
-                Delete Permanently
+                Xóa vĩnh viễn
               </button>
             </div>
           </form>

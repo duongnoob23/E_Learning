@@ -1081,19 +1081,43 @@ exports.getUserExamResult = async (user_id, exam_session_id) => {
                 {
                     model: Question,
                     as: "question",
-                    attributes: ["question_id", "question_number", "question_text", "part_id"],
+                    attributes: [
+                        "question_id", 
+                        "question_number", 
+                        "question_text", 
+                        "part_id",
+                        "audio_file",
+                        "image_file",
+                        "transcript",
+                        "explanation",
+                        "grammar_notes",
+                        "question_type"
+                    ],
                     include: [
+                        {
+                            model: Part,
+                            as: "part",
+                            attributes: ["part_id", "part_name", "part_number", "part_type"],
+                            required: false,
+                        },
                         {
                             model: Choice,
                             as: "choices",
-                            attributes: ["choice_id", "choice_text", "is_correct"],
+                            attributes: [
+                                "choice_id", 
+                                "choice_text", 
+                                "choice_letter",
+                                "is_correct",
+                                "choice_translation",
+                                "choice_explanation"
+                            ],
                         },
                     ],
                 },
                 {
                     model: Choice,
                     as: "selected_choice",
-                    attributes: ["choice_id", "choice_text", "is_correct"],
+                    attributes: ["choice_id", "choice_text", "choice_letter", "is_correct"],
                     required: false,
                 },
             ],
@@ -1105,6 +1129,7 @@ exports.getUserExamResult = async (user_id, exam_session_id) => {
             const question = answer.question || answer.Question || null;
             const selectedChoice = answer.selected_choice || answer.selected_choice || null;
             const choices = question?.choices || [];
+            const part = question?.part || question?.Part || null;
 
             return {
                 user_answer_id: answer.user_answer_id,
@@ -1117,15 +1142,31 @@ exports.getUserExamResult = async (user_id, exam_session_id) => {
                     question_number: question.question_number,
                     question_text: question.question_text,
                     part_id: question.part_id,
+                    audio_file: question.audio_file,
+                    image_file: question.image_file,
+                    transcript: question.transcript,
+                    explanation: question.explanation,
+                    grammar_notes: question.grammar_notes,
+                    question_type: question.question_type,
+                    part: part ? {
+                        part_id: part.part_id,
+                        part_name: part.part_name,
+                        part_number: part.part_number,
+                        part_type: part.part_type,
+                    } : null,
                     choices: choices.map((c) => ({
                         choice_id: c.choice_id,
                         choice_text: c.choice_text,
+                        choice_letter: c.choice_letter,
                         is_correct: c.is_correct,
+                        choice_translation: c.choice_translation,
+                        choice_explanation: c.choice_explanation,
                     })),
                 } : null,
                 selected_choice: selectedChoice ? {
                     choice_id: selectedChoice.choice_id,
                     choice_text: selectedChoice.choice_text,
+                    choice_letter: selectedChoice.choice_letter,
                     is_correct: selectedChoice.is_correct,
                 } : null,
             };

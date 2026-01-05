@@ -25,14 +25,12 @@ import {
   useBatchDeleteWords,
   useBatchToggleActive,
   useDeleteWord,
-  useRestoreWord,
   useToggleWordActive,
 } from "../../words/hooks/useWordsAdminMutations";
 import {
   useAdminAllTopics,
   useAdminWords,
 } from "../../words/hooks/useWordsAdminQueries";
-import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import "./TopicWordsPage.scss";
 
 function formatDate(dateString) {
@@ -70,11 +68,7 @@ export default function TopicWordsPage() {
   const [editWordId, setEditWordId] = useState(null);
   const [previewWordId, setPreviewWordId] = useState(null);
 
-  // Delete confirmation modal state
-  const [deleteConfirm, setDeleteConfirm] = useState({
-    open: false,
-    word: null,
-  });
+  // Note: Word delete is quick delete without confirmation modal
 
   // Filter & search states
   const [search, setSearch] = useState("");
@@ -130,7 +124,6 @@ export default function TopicWordsPage() {
   // Mutations
   const deleteWordMutation = useDeleteWord();
   const toggleActiveMutation = useToggleWordActive();
-  const restoreWordMutation = useRestoreWord();
   const batchDeleteMutation = useBatchDeleteWords();
   const batchToggleMutation = useBatchToggleActive();
 
@@ -173,42 +166,41 @@ export default function TopicWordsPage() {
     );
   };
 
+  // Delete = Hard delete (xóa cứng - không cần xác nhận, xóa nhanh)
   const handleDelete = (wordId) => {
     const word = words.find((w) => w.word_id === wordId);
-    setDeleteConfirm({
-      open: true,
-      word: word || { word_id: wordId, word: "Unknown" },
-    });
+    if (window.confirm(`Bạn có chắc muốn xóa vĩnh viễn từ "${word?.word || 'Unknown'}"?`)) {
+      deleteWordMutation.mutate(
+        {
+          wordId: wordId,
+          hard: true,  // Hard delete - xóa khỏi database
+        },
+        {
+          onSuccess: (data) => {
+            if (data?.EC === "0") {
+              refetch();
+              // Reload topic info to update word count
+              wordsAdminApi.getTopics({ page: 1, limit: 1000 }).then((response) => {
+                if (response?.EC === "0") {
+                  const topic = response.DT?.topics?.find(
+                    (t) => t.topic_id === parseInt(topicId)
+                  );
+                  if (topic) {
+                    setTopicInfo(topic);
+                  }
+                }
+              });
+            }
+          },
+        }
+      );
+    }
     setShowActionMenu(null);
   };
 
-  const handleConfirmDelete = (delete_reason) => {
-    deleteWordMutation.mutate(
-      {
-        wordId: deleteConfirm.word.word_id,
-        hard: true,
-        delete_reason,
-      },
-      {
-        onSuccess: () => {
-          refetch();
-          setDeleteConfirm({ open: false, word: null });
-        },
-      }
-    );
-  };
-
-  const handleCancelDelete = () => {
-    setDeleteConfirm({ open: false, word: null });
-  };
-
+  // Toggle Active = Soft delete (xóa mềm - chỉ thay đổi is_active)
   const handleToggleActive = (wordId) => {
     toggleActiveMutation.mutate(wordId);
-    setShowActionMenu(null);
-  };
-
-  const handleRestore = (wordId) => {
-    restoreWordMutation.mutate(wordId);
     setShowActionMenu(null);
   };
 
@@ -660,14 +652,6 @@ export default function TopicWordsPage() {
                                 </>
                               )}
                             </button>
-                            {!word.is_active && (
-                              <button
-                                className="topic-words-page__action-menu-item"
-                                onClick={() => handleRestore(word.word_id)}
-                              >
-                                <HiArrowPath /> Restore
-                              </button>
-                            )}
                             <button
                               className="topic-words-page__action-menu-item topic-words-page__action-menu-item--danger"
                               onClick={() => handleDelete(word.word_id)}
@@ -798,13 +782,6 @@ export default function TopicWordsPage() {
         />
       )}
 
-      <DeleteConfirmModal
-        open={deleteConfirm.open}
-        type="word"
-        name={deleteConfirm.word?.word || ""}
-        onConfirm={handleConfirmDelete}
-        onCancel={handleCancelDelete}
-      />
     </div>
   );
 }

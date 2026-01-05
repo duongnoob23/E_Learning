@@ -256,14 +256,10 @@ class VocabularyAdminService {
   /**
    * Xóa cứng từ vựng (xóa hoàn toàn khỏi DB)
    * @param {number} word_id - ID của từ vựng
-   * @param {string} delete_reason - Lý do xóa (bắt buộc)
+   * @param {string} delete_reason - Lý do xóa (tùy chọn)
    * @param {number} deleted_by - ID người xóa
    */
   async hardDeleteWord(word_id, delete_reason, deleted_by) {
-    if (!delete_reason || delete_reason.trim().length < 10) {
-      return { EC: "1", EM: "Lý do xóa phải có ít nhất 10 ký tự", DT: null };
-    }
-
     const word = await Word.findByPk(word_id);
     if (!word) {
       return { EC: "1", EM: "Không tìm thấy từ vựng", DT: null };
@@ -271,9 +267,9 @@ class VocabularyAdminService {
 
     const topic_id = word.topic_id;
 
-    // Log deletion (có thể lưu vào bảng audit log nếu có)
+    // Log deletion
     console.log(
-      `[HARD DELETE WORD] ID: ${word_id}, Reason: ${delete_reason}, Deleted by: ${deleted_by}`
+      `[HARD DELETE WORD] ID: ${word_id}, Word: ${word.word}, Deleted by: ${deleted_by}`
     );
 
     await word.destroy();
@@ -493,14 +489,10 @@ class VocabularyAdminService {
   /**
    * Xóa cứng chủ đề (xóa hoàn toàn khỏi DB, kèm theo tất cả words)
    * @param {number} topic_id - ID của chủ đề
-   * @param {string} delete_reason - Lý do xóa (bắt buộc)
+   * @param {string} delete_reason - Lý do xóa (tùy chọn)
    * @param {number} deleted_by - ID người xóa
    */
   async hardDeleteTopic(topic_id, delete_reason, deleted_by) {
-    if (!delete_reason || delete_reason.trim().length < 10) {
-      return { EC: "1", EM: "Lý do xóa phải có ít nhất 10 ký tự", DT: null };
-    }
-
     const topic = await Topic.findByPk(topic_id);
     if (!topic) {
       return { EC: "1", EM: "Không tìm thấy chủ đề", DT: null };
@@ -508,7 +500,7 @@ class VocabularyAdminService {
 
     // Log deletion
     console.log(
-      `[HARD DELETE TOPIC] ID: ${topic_id}, Reason: ${delete_reason}, Deleted by: ${deleted_by}`
+      `[HARD DELETE TOPIC] ID: ${topic_id}, Name: ${topic.topic_name}, Deleted by: ${deleted_by}`
     );
 
     // Xóa tất cả words trong topic trước

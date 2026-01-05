@@ -303,7 +303,7 @@
   flex: 1;
 }
 
-// Stats cards
+// Stats cards - Hiển thị nằm ngang
 .user-detail__stats {
   display: flex;
   gap: 16px;
@@ -312,36 +312,48 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
+.user-detail__stats-grid {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
 .user-detail__stat-card {
   flex: 1;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 16px 20px;
   background: #fff;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
+  min-width: 180px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .user-detail__stat-icon {
-  font-size: 24px;
-  color: #14b8a6;
+  font-size: 32px;
+  color: #10b981;
+  flex-shrink: 0;
 }
 
 .user-detail__stat-info {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .user-detail__stat-value {
-  font-size: 18px;
-  font-weight: 600;
-  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
 }
 
 .user-detail__stat-label {
-  font-size: 12px;
-  color: #64748b;
+  font-size: 14px;
+  color: #6b7280;
 }
 
 // Tabs
@@ -539,5 +551,33 @@
   font-weight: 600;
   color: #0f172a;
   margin-bottom: 16px;
+}
+
+// Topic info và image - Thu nhỏ ảnh
+.user-detail__topic-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-detail__topic-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid #e5e7eb;
+}
+
+.user-detail__topic-name {
+  font-weight: 500;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.user-detail__topic-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
 }
 

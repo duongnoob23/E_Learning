@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 // Heroicons v2 - Modern và đẹp
 import {
   HiBookOpen,
-  HiChatBubbleLeftRight,
   HiChartBar,
   HiDocumentText,
-  HiHome,
   HiPlusCircle,
   HiUsers,
 } from "react-icons/hi2";
 // FontAwesome - Đa dạng
-import { FaBook, FaCog, FaCreditCard } from "react-icons/fa";
+import { FaBook, FaCreditCard } from "react-icons/fa";
 // Material Design - Phong phú
 import { MdMenuBook } from "react-icons/md";
 import "./Sidebar.scss";
@@ -21,13 +19,7 @@ const Sidebar = () => {
     {
       title: "HOME",
       items: [
-        { name: "Dashboard", path: "/admin/dashboard", icon: HiHome },
-        { name: "Thống kê", path: "/admin/statistics", icon: HiChartBar },
-        {
-          name: "Discussions",
-          path: "/admin/discussions",
-          icon: HiChatBubbleLeftRight,
-        },
+        { name: "Dashboard", path: "/admin/dashboard", icon: HiChartBar },
       ],
     },
     {
@@ -53,7 +45,6 @@ const Sidebar = () => {
       title: "OTHER",
       items: [
         { name: "Payments", path: "/admin/payments", icon: FaCreditCard },
-        { name: "Settings", path: "/admin/settings", icon: FaCog },
       ],
     },
   ];

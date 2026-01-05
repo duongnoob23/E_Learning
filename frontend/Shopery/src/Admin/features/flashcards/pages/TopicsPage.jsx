@@ -110,28 +110,39 @@ export default function TopicsPage() {
     setShowActionMenu(null);
   };
   
-  const handleDeleteTopic = (topicId, hard = false) => {
+  // Delete = Hard delete (xóa cứng - xóa khỏi database)
+  const handleDeleteTopic = (topicId) => {
     const topic = topics.find(t => t.topic_id === topicId);
     setDeleteConfirm({ 
       open: true, 
       topic: topic || { topic_id: topicId, topic_name: "Unknown" },
-      hard 
+      hard: true  // Luôn hard delete khi bấm Delete
     });
     setShowActionMenu(null);
   };
 
-  const handleConfirmDelete = (delete_reason) => {
+  const handleConfirmDelete = () => {
     deleteTopicMutation.mutate(
       { 
         topicId: deleteConfirm.topic.topic_id, 
-        hard: deleteConfirm.hard,
-        delete_reason 
+        hard: true,  // Luôn hard delete
       },
       {
-        onSuccess: () => {
-          refetch();
+        onSuccess: (data) => {
+          // Kiểm tra response thành công
+          if (data?.EC === "0") {
+            refetch();
+            setDeleteConfirm({ open: false, topic: null, hard: false });
+          }
+        },
+        onError: () => {
+          // Toast error đã được xử lý trong mutation hook
           setDeleteConfirm({ open: false, topic: null, hard: false });
         },
+        onSettled: () => {
+          // Luôn đóng modal sau khi mutation kết thúc
+          setDeleteConfirm({ open: false, topic: null, hard: false });
+        }
       }
     );
   };
@@ -577,6 +588,15 @@ export default function TopicsPage() {
           onClose={() => setPreviewTopic(null)}
         />
       )}
+      
+      {/* Delete Confirmation Modal - Yêu cầu nhập lại tên topic để xác nhận xóa cứng */}
+      <DeleteConfirmModal
+        open={deleteConfirm.open}
+        type="topic"
+        name={deleteConfirm.topic?.topic_name || ""}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   );
 }

@@ -118,6 +118,14 @@
   strong {
     font-weight: 600;
   }
+  
+  &--danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-top: 8px !important;
+  }
 }
 
 .delete-confirm-modal__form {
@@ -140,6 +148,34 @@
 
 .delete-confirm-modal__required {
   color: #ef4444;
+}
+
+.delete-confirm-modal__input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s;
+  
+  &:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+  
+  &--error {
+    border-color: #ef4444;
+    background: #fef2f2;
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+  }
+  
+  &::placeholder {
+    color: #9ca3af;
+  }
 }
 
 .delete-confirm-modal__textarea {
@@ -214,6 +250,10 @@
     color: white;
     &:hover {
       background: #b91c1c;
+    }
+    &:disabled {
+      background: #fca5a5;
+      cursor: not-allowed;
     }
   }
 }

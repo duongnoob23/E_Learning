@@ -114,3 +114,12 @@ export const useUserCourseProgress = (userId, params = {}, enabled = true) =>
     staleTime: 5 * 60 * 1000,
   });
 
+// Lấy danh sách khóa học đã đăng ký của user (từ course_enrollment)
+export const useUserEnrollments = (userId, params = {}, enabled = true) =>
+  useQuery({
+    queryKey: [...adminUsersKeys.userDetail(userId), "enrollments", params],
+    queryFn: () => usersAdminApi.getUserEnrollments(userId, params),
+    enabled: enabled && !!userId,
+    staleTime: 5 * 60 * 1000,
+  });
+
