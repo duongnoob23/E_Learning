@@ -1,29 +1,9 @@
-import React from "react";
-import { HiCheckCircle, HiClock, HiXCircle } from "react-icons/hi2";
+import React, { useMemo } from "react";
 import {
   useUserExams,
   useUserExamStatistics,
 } from "../hooks/useUsersAdminQueries";
-
-function formatDate(dateString) {
-  if (!dateString) return "N/A";
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) return "N/A";
-  return date.toLocaleDateString("vi-VN", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
-function formatDuration(seconds) {
-  if (!seconds) return "N/A";
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins}m ${secs}s`;
-}
+import "./UserExamsTab.scss";
 
 export default function UserExamsTab({ userId }) {
   // Sử dụng admin API để lấy thống kê và lịch sử exam
@@ -31,7 +11,7 @@ export default function UserExamsTab({ userId }) {
     data: examsData,
     isLoading: loadingExams,
     error: examsError,
-  } = useUserExams(userId, { page: 1, limit: 10 });
+  } = useUserExams(userId, { page: 1, limit: 50 });
   const {
     data: statsData,
     isLoading: loadingStats,
@@ -45,227 +25,204 @@ export default function UserExamsTab({ userId }) {
     return isNaN(num) ? defaultValue : num;
   };
 
-  // Format số với 1 chữ số thập phân
-  const formatScore = (value) => {
-    const num = toNumber(value, 0);
-    return num.toFixed(1);
-  };
-
   // Lấy dữ liệu từ API response
   const stats = statsData?.DT || {};
   const examsResponse = examsData?.DT || {};
-  // Backend trả về DT.exams (array), không phải DT.exams.exams
   const exams = Array.isArray(examsResponse.exams)
     ? examsResponse.exams
     : Array.isArray(examsResponse)
     ? examsResponse
     : [];
   const userStats = stats.overall || {};
-  const partStats = Array.isArray(stats.by_part) ? stats.by_part : [];
 
-  // Debug log để kiểm tra dữ liệu
+  // Parse selected_parts từ string hoặc array
+  const parseSelectedParts = (selectedParts) => {
+    if (!selectedParts) return [];
+    if (Array.isArray(selectedParts)) return selectedParts;
+    try {
+      return JSON.parse(selectedParts);
+    } catch (e) {
+      return [];
+    }
+  };
+
+  // Format thời gian làm bài
+  const formatDuration = (seconds) => {
+    if (!seconds || seconds === 0) return "0:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // Format ngày
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "N/A";
+    return date.toLocaleDateString("vi-VN", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+  };
+
+  // Tính tổng số câu hỏi
+  const getTotalQuestions = (exam) => {
+    return (
+      toNumber(exam.correct_answers, 0) +
+      toNumber(exam.wrong_answers, 0) +
+      toNumber(exam.skipped_answers, 0)
+    );
+  };
+
+  // Debug log
   console.log("=== UserExamsTab Debug ===");
-  console.log("examsData (raw):", examsData);
-  console.log("statsData (raw):", statsData);
-  console.log("examsResponse:", examsResponse);
-  console.log("exams (parsed):", exams);
-  console.log("exams.length:", exams.length);
+  console.log("examsData:", examsData);
+  console.log("exams:", exams);
   console.log("userStats:", userStats);
-  console.log("partStats:", partStats);
   console.log("=========================");
 
   if (loadingExams || loadingStats) {
-    return <div className="user-detail__loading">Loading exam data...</div>;
+    return (
+      <div className="user-exams-tab__loading">Đang tải dữ liệu bài thi...</div>
+    );
   }
 
   if (examsError || statsError) {
     return (
-      <div className="user-detail__error">
+      <div className="user-exams-tab__error">
         <p>
-          Error loading exam data: {examsError?.message || statsError?.message}
+          Lỗi khi tải dữ liệu: {examsError?.message || statsError?.message}
         </p>
       </div>
     );
   }
 
   return (
-    <div className="user-detail__exams">
+    <div className="user-exams-tab">
       {/* Statistics Cards */}
-      {userStats && (
-        <div className="user-detail__stats-grid">
-          <div className="user-detail__stat-card">
-            <div className="user-detail__stat-value">
+      {userStats && Object.keys(userStats).length > 0 && (
+        <div className="user-exams-tab__stats-grid">
+          <div className="user-exams-tab__stat-card">
+            <div className="user-exams-tab__stat-card-value">
               {toNumber(userStats.total_exams, 0)}
             </div>
-            <div className="user-detail__stat-label">Tổng số bài thi</div>
-          </div>
-          <div className="user-detail__stat-card">
-            <div className="user-detail__stat-value">
-              {formatScore(userStats.average_score)}
+            <div className="user-exams-tab__stat-card-label">
+              Tổng số bài thi
             </div>
-            <div className="user-detail__stat-label">Điểm trung bình</div>
           </div>
-          <div className="user-detail__stat-card">
-            <div className="user-detail__stat-value">
+          <div className="user-exams-tab__stat-card">
+            <div className="user-exams-tab__stat-card-value">
+              {toNumber(userStats.average_score, 0).toFixed(1)}
+            </div>
+            <div className="user-exams-tab__stat-card-label">
+              Điểm trung bình
+            </div>
+          </div>
+          <div className="user-exams-tab__stat-card">
+            <div className="user-exams-tab__stat-card-value">
               {toNumber(userStats.best_score, 0)}
             </div>
-            <div className="user-detail__stat-label">Điểm cao nhất</div>
+            <div className="user-exams-tab__stat-card-label">Điểm cao nhất</div>
           </div>
-          <div className="user-detail__stat-card">
-            <div className="user-detail__stat-value">
+          <div className="user-exams-tab__stat-card">
+            <div className="user-exams-tab__stat-card-value">
               {toNumber(userStats.worst_score, 0)}
             </div>
-            <div className="user-detail__stat-label">Điểm thấp nhất</div>
+            <div className="user-exams-tab__stat-card-label">Điểm thấp nhất</div>
           </div>
         </div>
       )}
 
-      {/* Exam History Table */}
-      <div className="user-detail__table-wrapper">
-        <h3 className="user-detail__section-title">Lịch sử làm bài thi</h3>
+      {/* Lịch sử làm bài */}
+      <div className="user-exams-tab__statistics">
+        <h4 className="user-exams-tab__section-title">
+          Lịch sử làm bài của người dùng
+        </h4>
         {exams.length === 0 ? (
-          <p className="user-detail__empty">Người dùng chưa làm bài thi nào</p>
+          <div className="user-exams-tab__empty">
+            Người dùng chưa làm bài thi nào
+          </div>
         ) : (
-          <>
-            <table className="user-detail__table">
-              <thead>
-                <tr>
-                  <th>Bài thi</th>
-                  <th>Loại</th>
-                  <th>Điểm</th>
-                  <th>Đúng/Sai</th>
-                  <th>Thời gian</th>
-                  <th>Ngày làm</th>
-                  <th>Trạng thái</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody>
-                {exams.map((exam, idx) => (
-                  <tr key={exam.exam_session_id || idx}>
-                    <td>
-                      <div>
-                        <div>
-                          {exam.test_name || exam.title || "Unknown Test"}
-                        </div>
-                        {exam.selected_parts &&
-                          Array.isArray(exam.selected_parts) &&
-                          exam.selected_parts.length > 0 && (
-                            <div
-                              style={{
-                                fontSize: "0.85em",
-                                color: "#666",
-                                marginTop: "4px",
-                              }}
-                            >
-                              Parts: {exam.selected_parts.join(", ")}
-                            </div>
-                          )}
-                        {exam.session_type && (
-                          <span
-                            className="user-detail__badge user-detail__badge--secondary"
-                            style={{
-                              marginTop: "4px",
-                              display: "inline-block",
-                            }}
-                          >
-                            {exam.session_type === "FULL_TEST"
-                              ? "Full Test"
-                              : exam.session_type}
-                          </span>
-                        )}
+          <div className="user-exams-tab__statistics-table">
+            <div className="user-exams-tab__statistics-header">
+              <div className="user-exams-tab__statistics-cell">Ngày làm</div>
+              <div className="user-exams-tab__statistics-cell">Kết quả</div>
+              <div className="user-exams-tab__statistics-cell">
+                Thời gian làm bài
+              </div>
+              <div className="user-exams-tab__statistics-cell">Hành động</div>
+            </div>
+            <div className="user-exams-tab__statistics-body">
+              {exams.map((session) => {
+                const selectedParts = parseSelectedParts(session.selected_parts);
+                const totalQuestions = getTotalQuestions(session);
+                const isFullTest =
+                  session.session_type === "FULL_TEST" ||
+                  selectedParts.length >= 7;
+
+                return (
+                  <div
+                    key={session.exam_session_id}
+                    className="user-exams-tab__statistics-row"
+                  >
+                    <div className="user-exams-tab__statistics-cell">
+                      <div className="user-exams-tab__session-date">
+                        {formatDate(session.end_time || session.start_time)}
                       </div>
-                    </td>
-                    <td>
-                      <span className="user-detail__badge user-detail__badge--info">
-                        {exam.exam_type || "TOEIC"}
-                      </span>
-                    </td>
-                    <td>
-                      <strong className="user-detail__score">
-                        {toNumber(exam.total_score, 0)}
-                      </strong>
-                    </td>
-                    <td>
-                      <span className="user-detail__correct">
-                        {toNumber(exam.correct_answers, 0)}
-                      </span>{" "}
-                      /{" "}
-                      <span className="user-detail__wrong">
-                        {toNumber(exam.wrong_answers, 0)}
-                      </span>
-                    </td>
-                    <td>
-                      <span className="user-detail__with-icon">
-                        <HiClock />{" "}
-                        {formatDuration(toNumber(exam.duration_seconds, 0))}
-                      </span>
-                    </td>
-                    <td>{formatDate(exam.start_time)}</td>
-                    <td>
-                      {exam.status === "COMPLETED" ? (
-                        <HiCheckCircle className="user-detail__icon--success" />
-                      ) : (
-                        <HiXCircle className="user-detail__icon--muted" />
-                      )}
-                    </td>
-                    <td>
-                      {exam.exam_session_id && exam.test_id && (
+                      <div className="user-exams-tab__session-tags">
+                        <span
+                          className={`user-exams-tab__session-tag ${
+                            isFullTest
+                              ? "user-exams-tab__session-tag--practice"
+                              : ""
+                          }`}
+                        >
+                          {isFullTest ? "Làm Full Test" : "Luyện Tập"}
+                        </span>
+                        {selectedParts.map((part) => (
+                          <span
+                            key={part}
+                            className="user-exams-tab__session-tag"
+                          >
+                            Part {part}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="user-exams-tab__statistics-cell">
+                      <div className="user-exams-tab__session-result">
+                        {toNumber(session.correct_answers, 0)}/{totalQuestions}
+                      </div>
+                    </div>
+                    <div className="user-exams-tab__statistics-cell">
+                      <div className="user-exams-tab__session-duration">
+                        {formatDuration(toNumber(session.duration_seconds, 0))}
+                      </div>
+                    </div>
+                    <div className="user-exams-tab__statistics-cell">
+                      {session.exam_session_id && session.test_id && (
                         <button
-                          className="user-detail__btn user-detail__btn--primary"
-                          onClick={() =>
+                          className="user-exams-tab__session-detail-btn"
+                          onClick={() => {
+                            // Điều hướng đến trang kết quả chi tiết
                             window.open(
-                              `/assessment/${exam.test_id}/result?sessionId=${exam.exam_session_id}`,
+                              `/assessment/${session.test_id}/result?sessionId=${session.exam_session_id}`,
                               "_blank"
-                            )
-                          }
+                            );
+                          }}
                         >
                           Xem chi tiết
                         </button>
                       )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {/* Pagination - Note: recent_sessions chỉ trả về 10 items, không có pagination */}
-          </>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         )}
       </div>
-
-      {/* Part Statistics */}
-      {partStats && partStats.length > 0 && (
-        <div className="user-detail__table-wrapper">
-          <h3 className="user-detail__section-title">Thống kê theo phần</h3>
-          <table className="user-detail__table">
-            <thead>
-              <tr>
-                <th>Phần</th>
-                <th>Loại</th>
-                <th>Tỷ lệ đúng</th>
-                <th>Số lần làm</th>
-                <th>Lần làm gần nhất</th>
-              </tr>
-            </thead>
-            <tbody>
-              {partStats.map((part, idx) => (
-                <tr key={part.part_id || idx}>
-                  <td>{part.part_name || "Unknown"}</td>
-                  <td>
-                    <span className="user-detail__badge user-detail__badge--secondary">
-                      {part.part_type || "LISTENING"}
-                    </span>
-                  </td>
-                  <td>{formatScore(part.accuracy_rate)}%</td>
-                  <td>{toNumber(part.total_attempts, 0)}</td>
-                  <td>{formatDate(part.last_attempt)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
     </div>
   );
 }

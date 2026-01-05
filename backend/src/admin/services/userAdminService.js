@@ -15,7 +15,10 @@ const {
     Part,
     UserExamStatistics,
     LessonProgress,
-    Lesson
+    Lesson,
+    UserAnswer,
+    Question,
+    Choice
 } = require("../../models");
 const { Op, Sequelize } = require("sequelize");
 const sequelize = require("../../config/database");
@@ -1021,6 +1024,169 @@ exports.getUserExamStatistics = async (user_id) => {
         console.error("Error in getUserExamStatistics:", error.message);
         return {
             EM: "Có lỗi xảy ra trong quá trình lấy thống kê exam",
+            EC: "-2",
+            DT: null,
+        };
+    }
+};
+
+//--- Lấy kết quả chi tiết bài thi theo exam_session_id (Admin) ---//
+exports.getUserExamResult = async (user_id, exam_session_id) => {
+    try {
+        console.log(`[getUserExamResult] Fetching exam result for user_id: ${user_id}, session_id: ${exam_session_id}`);
+
+        // Lấy phiên thi với tất cả thông tin liên quan
+        const examSession = await ExamSession.findOne({
+            where: {
+                exam_session_id,
+                user_id, // Đảm bảo session thuộc về user này
+            },
+            include: [
+                {
+                    model: Test,
+                    as: "test",
+                    attributes: ["test_id", "title", "exam_type", "total_duration", "total_questions"],
+                },
+            ],
+        });
+
+        if (!examSession) {
+            return {
+                EM: "Không tìm thấy phiên thi hoặc bạn không có quyền truy cập",
+                EC: "2",
+                DT: null,
+            };
+        }
+
+        // Lấy thống kê theo part cho session này
+        const partStatistics = await PartStatistics.findAll({
+            where: {
+                user_id,
+                exam_session_id,
+            },
+            include: [
+                {
+                    model: Part,
+                    as: "part",
+                    attributes: ["part_name", "part_type", "part_number"],
+                    required: false,
+                },
+            ],
+        });
+
+        // Lấy tất cả câu trả lời của user trong session này
+        const userAnswers = await UserAnswer.findAll({
+            where: { exam_session_id },
+            include: [
+                {
+                    model: Question,
+                    as: "question",
+                    attributes: ["question_id", "question_number", "question_text", "part_id"],
+                    include: [
+                        {
+                            model: Choice,
+                            as: "choices",
+                            attributes: ["choice_id", "choice_text", "is_correct"],
+                        },
+                    ],
+                },
+                {
+                    model: Choice,
+                    as: "selected_choice",
+                    attributes: ["choice_id", "choice_text", "is_correct"],
+                    required: false,
+                },
+            ],
+            order: [[{ model: Question, as: "question" }, "question_number", "ASC"]],
+        });
+
+        // Format detailed answers
+        const detailedAnswers = userAnswers.map((answer) => {
+            const question = answer.question || answer.Question || null;
+            const selectedChoice = answer.selected_choice || answer.selected_choice || null;
+            const choices = question?.choices || [];
+
+            return {
+                user_answer_id: answer.user_answer_id,
+                question_id: answer.question_id,
+                selected_choice_id: answer.selected_choice_id,
+                is_correct: answer.is_correct,
+                answer_time: answer.answer_time,
+                question: question ? {
+                    question_id: question.question_id,
+                    question_number: question.question_number,
+                    question_text: question.question_text,
+                    part_id: question.part_id,
+                    choices: choices.map((c) => ({
+                        choice_id: c.choice_id,
+                        choice_text: c.choice_text,
+                        is_correct: c.is_correct,
+                    })),
+                } : null,
+                selected_choice: selectedChoice ? {
+                    choice_id: selectedChoice.choice_id,
+                    choice_text: selectedChoice.choice_text,
+                    is_correct: selectedChoice.is_correct,
+                } : null,
+            };
+        });
+
+        // Format part statistics
+        const formattedPartStats = partStatistics.map((ps) => {
+            const part = ps.part || ps.Part || null;
+            return {
+                part_stat_id: ps.part_stat_id,
+                part_id: ps.part_id,
+                part_name: part?.part_name || `Part ${ps.part_id}`,
+                part_type: part?.part_type || "LISTENING",
+                part_number: part?.part_number || 0,
+                accuracy_rate: parseFloat(ps.accuracy_rate || 0),
+                total_attempts: ps.total_attempts || 0,
+                total_questions: ps.total_questions || 0,
+                correct_answers: ps.correct_answers || 0,
+                last_attempt: ps.last_attempt,
+            };
+        });
+
+        const result = {
+            session: {
+                exam_session_id: examSession.exam_session_id,
+                test_id: examSession.test_id,
+                user_id: examSession.user_id,
+                session_type: examSession.session_type,
+                start_time: examSession.start_time,
+                end_time: examSession.end_time,
+                duration_seconds: examSession.duration_seconds,
+                total_score: examSession.total_score,
+                correct_answers: examSession.correct_answers,
+                wrong_answers: examSession.wrong_answers,
+                skipped_answers: examSession.skipped_answers,
+                status: examSession.status,
+                selected_parts: examSession.selected_parts,
+                test: examSession.test ? {
+                    test_id: examSession.test.test_id,
+                    title: examSession.test.title,
+                    exam_type: examSession.test.exam_type,
+                    total_duration: examSession.test.total_duration,
+                    total_questions: examSession.test.total_questions,
+                } : null,
+            },
+            part_statistics: formattedPartStats,
+            detailed_answers: detailedAnswers,
+        };
+
+        console.log(`[getUserExamResult] Successfully retrieved exam result for session ${exam_session_id}`);
+
+        return {
+            EM: "Lấy kết quả bài thi thành công",
+            EC: "0",
+            DT: result,
+        };
+    } catch (error) {
+        console.error("[getUserExamResult] Error:", error.message);
+        console.error("[getUserExamResult] Stack:", error.stack);
+        return {
+            EM: "Có lỗi xảy ra trong quá trình lấy kết quả bài thi",
             EC: "-2",
             DT: null,
         };

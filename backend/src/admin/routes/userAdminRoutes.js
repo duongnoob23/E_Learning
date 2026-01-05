@@ -107,4 +107,10 @@ router.get("/:user_id/exam-statistics", UserAdminController.getUserExamStatistic
  */
 router.get("/:user_id/course-progress", UserAdminController.getUserCourseProgress);
 
+/**
+ * @route GET /api/admin/users/:user_id/exam-results/:exam_session_id
+ * @desc Lấy kết quả chi tiết bài thi của user theo exam_session_id
+ */
+router.get("/:user_id/exam-results/:exam_session_id", UserAdminController.getUserExamResult);
+
 module.exports = router;

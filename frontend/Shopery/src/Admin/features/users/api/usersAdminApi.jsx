@@ -147,6 +147,10 @@ export const usersAdminApi = {
   getUserExamStatistics: async (userId) =>
     (await adminAxiosInstance.get(`/admin/users/${userId}/exam-statistics`)).data,
 
+  // Lấy kết quả chi tiết bài thi của user
+  getUserExamResult: async (userId, examSessionId) =>
+    (await adminAxiosInstance.get(`/admin/users/${userId}/exam-results/${examSessionId}`)).data,
+
   // ==================== COURSE PROGRESS ==================== //
 
   // Lấy tiến độ học course của user (chi tiết hơn enrollments)

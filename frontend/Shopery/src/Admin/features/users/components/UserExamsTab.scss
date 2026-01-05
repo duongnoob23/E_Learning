@@ -1,0 +1,174 @@
+// UserExamsTab Styles - Tương tự InfoBox.css
+.user-exams-tab {
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+
+  // Statistics Cards
+  &__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__stat-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+
+    &-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-bottom: 4px;
+    }
+
+    &-label {
+      font-size: 14px;
+      color: #6c757d;
+    }
+  }
+
+  // Section Title
+  &__section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+  }
+
+  // Statistics Table (giống InfoBox)
+  &__statistics {
+    margin-top: 20px;
+  }
+
+  &__statistics-table {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__statistics-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+  }
+
+  &__statistics-body {
+    background: white;
+  }
+
+  &__statistics-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #f8f9fa;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__statistics-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  // Session Date
+  &__session-date {
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 4px;
+  }
+
+  // Session Tags
+  &__session-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  &__session-tag {
+    background: #d1f9e2;
+    color: #3cb46e;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+
+    &--practice {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+  }
+
+  // Session Result
+  &__session-result {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+  }
+
+  // Session Duration
+  &__session-duration {
+    color: #6c757d;
+    font-family: monospace;
+  }
+
+  // Detail Button
+  &__session-detail-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #2980b9;
+    }
+  }
+
+  // Empty State
+  &__empty {
+    text-align: center;
+    color: #6c757d;
+    padding: 40px 20px;
+    font-size: 16px;
+  }
+
+  // Loading State
+  &__loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+  }
+
+  // Error State
+  &__error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #dc2626;
+  }
+}
+

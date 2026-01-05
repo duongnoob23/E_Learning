@@ -220,6 +220,17 @@ exports.getUserExamStatistics = async (req, res, next) => {
     }
 }
 
+//--- Lấy kết quả chi tiết bài thi ---//
+exports.getUserExamResult = async (req, res, next) => {
+    try {
+        const { user_id, exam_session_id } = req.params;
+        const response = await userAdminService.getUserExamResult(user_id, exam_session_id);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 //--- Course Progress ---//
 exports.getUserCourseProgress = async (req, res, next) => {
     try {
