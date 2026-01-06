@@ -1,109 +1,135 @@
-// Client/components/Flashcard/CreateTopicModal/CreateTopicModal.jsx
+// Client/components/Flashcard/CreateTopicModal/CreateTopicModal.jsx - Updated based on admin design
 import React, { useState } from "react";
+import { HiXMark } from "react-icons/hi2";
+import { useCreateSet } from "../../../services/Word/wordMutations";
 import "./CreateTopicModal.css";
 
-const CreateTopicModal = ({ isOpen, onClose, onSubmit }) => {
+export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
-    title: "",
+    topic_name: "",
     description: "",
   });
-  const [errors, setErrors] = useState({});
 
-  const handleInputChange = (e) => {
+  const [errors, setErrors] = useState({});
+  const createSetMutation = useCreateSet();
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
 
+    // Clear error when user types
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
-        [name]: "",
+        [name]: null,
       }));
     }
   };
 
-  const validateForm = () => {
+  const validate = () => {
     const newErrors = {};
-
-    if (!formData.title.trim()) {
-      newErrors.title = "Tên chủ đề không được để trống";
+    if (!formData.topic_name.trim()) {
+      newErrors.topic_name = "Topic name is required";
     }
-
-    if (!formData.description.trim()) {
-      newErrors.description = "Mô tả không được để trống";
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
 
-    if (validateForm()) {
-      onSubmit(formData);
-      setFormData({ title: "", description: "" });
-      onClose();
-    }
+    createSetMutation.mutate(
+      {
+        topic_name: formData.topic_name.trim(),
+        description: formData.description.trim() || null,
+      },
+      {
+        onSuccess: (data) => {
+          if (data?.EC === "0") {
+            setFormData({ topic_name: "", description: "" });
+            setErrors({});
+            onSuccess?.();
+            onClose();
+          }
+        },
+      }
+    );
   };
+
+  // Reset form when modal closes
+  React.useEffect(() => {
+    if (!isOpen) {
+      setFormData({ topic_name: "", description: "" });
+      setErrors({});
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2>Tạo chủ đề mới</h2>
-          <button className="modal-close" onClick={onClose}>
-            ×
+    <div className="create-topic-modal-overlay" onClick={onClose}>
+      <div className="create-topic-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="create-topic-modal__header">
+          <h2 className="create-topic-modal__title">Create New Topic</h2>
+          <button className="create-topic-modal__close" onClick={onClose}>
+            <HiXMark />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="title">Tên chủ đề *</label>
+        <form className="create-topic-modal__form" onSubmit={handleSubmit}>
+          <div className="create-topic-modal__field">
+            <label className="create-topic-modal__label">
+              Topic Name <span className="create-topic-modal__required">*</span>
+            </label>
             <input
               type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              placeholder="Nhập tên chủ đề"
-              className={errors.title ? "error" : ""}
+              name="topic_name"
+              className={`create-topic-modal__input ${
+                errors.topic_name ? "create-topic-modal__input--error" : ""
+              }`}
+              value={formData.topic_name}
+              onChange={handleChange}
+              placeholder="Enter topic name..."
             />
-            {errors.title && <span className="error-text">{errors.title}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="description">Mô tả *</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="Nhập mô tả cho chủ đề"
-              rows="4"
-              className={errors.description ? "error" : ""}
-            />
-            {errors.description && (
-              <span className="error-text">{errors.description}</span>
+            {errors.topic_name && (
+              <div className="create-topic-modal__error">{errors.topic_name}</div>
             )}
           </div>
 
-          <div className="modal-actions">
-            <button type="button" className="btn-secondary" onClick={onClose}>
-              Hủy
+          <div className="create-topic-modal__field">
+            <label className="create-topic-modal__label">Description</label>
+            <textarea
+              name="description"
+              className="create-topic-modal__textarea"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Enter topic description..."
+              rows={4}
+            />
+          </div>
+
+          <div className="create-topic-modal__footer">
+            <button
+              type="button"
+              className="create-topic-modal__btn create-topic-modal__btn--cancel"
+              onClick={onClose}
+            >
+              Cancel
             </button>
-            <button type="submit" className="btn-primary">
-              Tạo chủ đề
+            <button
+              type="submit"
+              className="create-topic-modal__btn create-topic-modal__btn--submit"
+              disabled={createSetMutation.isPending}
+            >
+              {createSetMutation.isPending ? "Creating..." : "Create Topic"}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-};
-
-export default CreateTopicModal;
+}

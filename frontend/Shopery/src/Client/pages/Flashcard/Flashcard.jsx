@@ -63,17 +63,10 @@ const Flashcard = () => {
     setSelectedTopic(topic);
   };
 
-  const handleCreateTopic = async (formData) => {
-    try {
-      await createSetMutation.mutateAsync({
-        topic_name: formData.title,
-        description: formData.description,
-      });
-      setShowCreateTopicModal(false);
-      refetchUser();
-    } catch (error) {
-      console.error("Error creating topic:", error);
-    }
+  const handleCreateTopic = async () => {
+    // CreateTopicModal will handle the mutation internally
+    // This is just a callback to refetch data after success
+    refetchUser();
   };
 
   const handleBack = () => {
@@ -357,7 +350,7 @@ const Flashcard = () => {
       <CreateTopicModal
         isOpen={showCreateTopicModal}
         onClose={() => setShowCreateTopicModal(false)}
-        onSubmit={handleCreateTopic}
+        onSuccess={handleCreateTopic}
       />
     </div>
   );
