@@ -63,9 +63,11 @@ function getPathWithFFmpeg() {
  * @param {string} inputData - audio path (SPEAKING) or text (WRITING)
  * @param {string} type - "SPEAKING" or "WRITING"
  * @param {string} language - language code (default: "en")
+ * @param {string} questionText - nội dung câu hỏi (optional - để đánh giá content relevance)
+ * @param {string} referenceAnswer - đáp án mẫu (optional)
  * @returns {Promise<Object>} - scoring result
  */
-exports.scoreResponse = async (inputData, type = "SPEAKING", language = "en") => {
+exports.scoreResponse = async (inputData, type = "SPEAKING", language = "en", questionText = null, referenceAnswer = null) => {
     return new Promise((resolve, reject) => {
         console.log("=== scoreResponse MultiPA Service ===");
         console.log("Type:", type);
@@ -96,7 +98,9 @@ exports.scoreResponse = async (inputData, type = "SPEAKING", language = "en") =>
             audio_path: type === "SPEAKING" ? inputData : undefined,
             text: type === "WRITING" ? inputData : undefined,
             type,
-            language
+            language,
+            question_text: questionText || undefined,  // Câu hỏi để đánh giá content relevance
+            reference_answer: referenceAnswer || undefined  // Đáp án mẫu (optional)
         });
 
         console.log("Calling Python with input:", JSON.parse(input));
@@ -184,20 +188,24 @@ exports.scoreResponse = async (inputData, type = "SPEAKING", language = "en") =>
  * Score speaking response using audio file
  * @param {string} audioPath - path to audio file
  * @param {string} language - language code
- * @returns {Promise<Object>} - speaking scores (pronunciation, fluency, prosody)
+ * @param {string} questionText - nội dung câu hỏi (optional)
+ * @param {string} referenceAnswer - đáp án mẫu (optional)
+ * @returns {Promise<Object>} - speaking scores (pronunciation, fluency, prosody, relevance)
  */
-exports.scoreSpeaking = async (audioPath, language = "en") => {
-    return exports.scoreResponse(audioPath, "SPEAKING", language);
+exports.scoreSpeaking = async (audioPath, language = "en", questionText = null, referenceAnswer = null) => {
+    return exports.scoreResponse(audioPath, "SPEAKING", language, questionText, referenceAnswer);
 };
 
 /**
  * Score writing response
  * @param {string} text - written text
  * @param {string} language - language code
+ * @param {string} questionText - nội dung câu hỏi (optional)
+ * @param {string} referenceAnswer - đáp án mẫu (optional)
  * @returns {Promise<Object>} - writing scores
  */
-exports.scoreWriting = async (text, language = "en") => {
-    return exports.scoreResponse(text, "WRITING", language);
+exports.scoreWriting = async (text, language = "en", questionText = null, referenceAnswer = null) => {
+    return exports.scoreResponse(text, "WRITING", language, questionText, referenceAnswer);
 };
 
 /**

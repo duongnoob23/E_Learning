@@ -1,6 +1,7 @@
 """
 MultiPA (Multi-task Pronunciation Assessment) Integration
 Scores speaking responses using Whisper ASR + pronunciation analysis
++ Content Relevance scoring using Sentence-Transformers
 Reference: https://github.com/yuwchen/MultiPA
 """
 
@@ -24,6 +25,186 @@ CHECKPOINT_DIR = os.path.join(MULTIPA_DIR, "model_assessment")
 
 # Global model cache
 _whisper_model_cache = None
+_sentence_model_cache = None
+
+
+# ==================== CONTENT RELEVANCE SCORING ==================== #
+
+def load_sentence_model():
+    """Load Sentence-Transformers model (cached) for semantic similarity"""
+    global _sentence_model_cache
+
+    if _sentence_model_cache is not None:
+        return _sentence_model_cache
+
+    try:
+        from sentence_transformers import SentenceTransformer
+        # all-MiniLM-L6-v2: nhẹ (~80MB), nhanh, accuracy tốt
+        model = SentenceTransformer('all-MiniLM-L6-v2')
+        _sentence_model_cache = model
+        return model
+    except ImportError:
+        print("Warning: sentence-transformers not installed. Content scoring disabled.", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"Warning: Failed to load sentence model: {e}", file=sys.stderr)
+        return None
+
+
+def calculate_keyword_similarity(text1, text2):
+    """
+    Tính độ tương đồng đơn giản bằng keyword matching
+    KHÔNG cần package bên ngoài - chỉ dùng Python cơ bản
+    Returns: float 0-1
+    """
+    if not text1 or not text2:
+        return 0.0
+
+    # Stop words tiếng Anh phổ biến
+    stop_words = {
+        'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them',
+        'the', 'a', 'an', 'is', 'are', 'was', 'were', 'am', 'be', 'been', 'being',
+        'do', 'does', 'did', 'have', 'has', 'had', 'will', 'would', 'could', 'should',
+        'can', 'may', 'might', 'must', 'shall', 'to', 'of', 'in', 'for', 'on', 'with',
+        'at', 'by', 'from', 'what', 'where', 'when', 'who', 'how', 'why', 'which',
+        'this', 'that', 'these', 'those', 'and', 'or', 'but', 'if', 'then', 'so',
+        'my', 'your', 'his', 'her', 'its', 'our', 'their', 'there', 'here',
+        'very', 'just', 'also', 'now', 'only', 'even', 'more', 'most', 'some', 'any',
+        'about', 'into', 'through', 'during', 'before', 'after', 'above', 'below',
+        'up', 'down', 'out', 'off', 'over', 'under', 'again', 'further', 'once'
+    }
+
+    # Tách từ và loại bỏ stop words
+    def extract_keywords(text):
+        import re
+        words = re.findall(r'\b[a-zA-Z]+\b', text.lower())
+        return set(w for w in words if w not in stop_words and len(w) > 2)
+
+    keywords1 = extract_keywords(text1)
+    keywords2 = extract_keywords(text2)
+
+    if not keywords1 or not keywords2:
+        return 0.3  # Default nếu không có keyword
+
+    # Tính overlap (Jaccard similarity)
+    intersection = keywords1.intersection(keywords2)
+    union = keywords1.union(keywords2)
+
+    jaccard = len(intersection) / len(union) if union else 0
+
+    # Tính coverage: bao nhiêu % keyword của câu hỏi xuất hiện trong câu trả lời
+    coverage = len(intersection) / len(keywords1) if keywords1 else 0
+
+    # Kết hợp: 40% jaccard + 60% coverage
+    similarity = 0.4 * jaccard + 0.6 * coverage
+
+    return max(0, min(1, similarity))
+
+
+def calculate_semantic_similarity(text1, text2):
+    """
+    Tính độ tương đồng ngữ nghĩa giữa 2 đoạn text
+    Ưu tiên dùng sentence-transformers, fallback sang keyword matching
+    Returns: float 0-1 (1 = hoàn toàn giống nhau về ý nghĩa)
+    """
+    model = load_sentence_model()
+
+    # Fallback: dùng keyword matching nếu không có sentence-transformers
+    if model is None:
+        return calculate_keyword_similarity(text1, text2)
+
+    try:
+        from sentence_transformers import util
+
+        # Encode 2 câu thành vectors
+        embeddings = model.encode([text1, text2], convert_to_tensor=True)
+
+        # Tính cosine similarity
+        similarity = util.cos_sim(embeddings[0], embeddings[1]).item()
+
+        return max(0, min(1, similarity))  # Clamp to [0, 1]
+    except Exception as e:
+        print(f"Warning: Similarity calculation failed, using keyword matching: {e}", file=sys.stderr)
+        return calculate_keyword_similarity(text1, text2)
+
+
+def evaluate_content_relevance(transcript, question_text, reference_answer=None):
+    """
+    Đánh giá nội dung câu trả lời có liên quan đến câu hỏi không
+
+    Args:
+        transcript: Câu trả lời của user (từ Whisper)
+        question_text: Nội dung câu hỏi
+        reference_answer: Đáp án mẫu (optional)
+
+    Returns: {
+        relevance_score: 0-100,
+        question_similarity: 0-100 (độ liên quan với câu hỏi),
+        reference_similarity: 0-100 (độ giống đáp án mẫu, nếu có),
+        feedback: str
+    }
+    """
+    result = {
+        "relevance_score": 0,
+        "question_similarity": 0,
+        "reference_similarity": None,
+        "content_feedback": []
+    }
+
+    if not transcript or not question_text:
+        result["content_feedback"].append("Không có đủ dữ liệu để đánh giá nội dung")
+        return result
+
+    # 1. Tính độ tương đồng với câu hỏi
+    q_similarity = calculate_semantic_similarity(transcript, question_text)
+
+    if q_similarity is not None:
+        result["question_similarity"] = round(q_similarity * 100, 2)
+
+        # Đánh giá dựa trên similarity
+        if q_similarity >= 0.5:
+            result["content_feedback"].append("✅ Câu trả lời liên quan tốt đến câu hỏi")
+        elif q_similarity >= 0.3:
+            result["content_feedback"].append("⚠️ Câu trả lời có liên quan một phần đến câu hỏi")
+        else:
+            result["content_feedback"].append("❌ Câu trả lời có vẻ không đúng chủ đề")
+
+    # 2. Tính độ tương đồng với đáp án mẫu (nếu có)
+    if reference_answer:
+        ref_similarity = calculate_semantic_similarity(transcript, reference_answer)
+        if ref_similarity is not None:
+            result["reference_similarity"] = round(ref_similarity * 100, 2)
+
+            if ref_similarity >= 0.6:
+                result["content_feedback"].append("✅ Nội dung rất gần với đáp án mẫu")
+            elif ref_similarity >= 0.4:
+                result["content_feedback"].append("👍 Nội dung khá tốt, có thể bổ sung thêm")
+            else:
+                result["content_feedback"].append("💡 Nội dung có thể cải thiện để đầy đủ hơn")
+
+    # 3. Tính điểm tổng hợp
+    if q_similarity is not None:
+        if reference_answer and result["reference_similarity"] is not None:
+            # Có đáp án mẫu: 40% question relevance + 60% reference similarity
+            result["relevance_score"] = round(
+                (q_similarity * 0.4 + (result["reference_similarity"]/100) * 0.6) * 100, 2
+            )
+        else:
+            # Không có đáp án mẫu: chỉ dựa trên question relevance
+            result["relevance_score"] = round(q_similarity * 100, 2)
+
+    # 4. Kiểm tra độ dài câu trả lời
+    word_count = len(transcript.split())
+    if word_count < 5:
+        result["content_feedback"].append("⚠️ Câu trả lời quá ngắn, nên nói thêm chi tiết")
+        result["relevance_score"] = max(0, result["relevance_score"] - 20)
+    elif word_count < 10:
+        result["content_feedback"].append("💡 Có thể mở rộng câu trả lời thêm")
+        result["relevance_score"] = max(0, result["relevance_score"] - 10)
+    elif word_count > 50:
+        result["content_feedback"].append("✅ Câu trả lời đầy đủ và chi tiết")
+
+    return result
 
 def load_whisper_model(device='cpu'):
     """Load Whisper model (cached)"""
@@ -185,18 +366,24 @@ def analyze_audio_features(audio_path):
         # Return default scores if analysis fails
         return 5.0, 5.0
 
-def score_speaking_audio(audio_path, language="en"):
+def score_speaking_audio(audio_path, language="en", question_text=None, reference_answer=None):
     """
-    Score speaking response using Whisper ASR + audio analysis
-    Input: audio file path
+    Score speaking response using Whisper ASR + audio analysis + content relevance
+    Input:
+        audio_path: đường dẫn file audio
+        language: ngôn ngữ (default: "en")
+        question_text: nội dung câu hỏi (optional - để đánh giá content relevance)
+        reference_answer: đáp án mẫu (optional)
     Output: {
         score: overall score (0-100),
         pronunciation_score: 0-100,
         fluency_score: 0-100,
         prosody_score: 0-100,
+        relevance_score: 0-100 (nếu có question_text),
         word_accuracy: dict of word-level scores,
         transcript: ASR transcription,
         feedback: general feedback,
+        content_feedback: feedback về nội dung,
         detailed_feedback: {criterion: feedback}
     }
     """
@@ -257,8 +444,22 @@ def score_speaking_audio(audio_path, language="en"):
         else:
             pronunciation_score = 7.5
 
-        # Calculate overall score as average
-        overall_score = (pronunciation_score + fluency_score + prosody_score) / 3
+        # ========== ĐÁNH GIÁ CONTENT RELEVANCE ========== #
+        relevance_result = {"relevance_score": 0, "content_feedback": []}
+        if question_text:
+            relevance_result = evaluate_content_relevance(transcript, question_text, reference_answer)
+
+        relevance_score = relevance_result.get("relevance_score", 0)
+        content_feedback = relevance_result.get("content_feedback", [])
+
+        # Calculate overall score as average (bao gồm relevance nếu có question_text)
+        if question_text:
+            # Có question_text: tính cả relevance vào điểm tổng
+            relevance_score_10 = relevance_score / 10  # Convert 0-100 to 0-10
+            overall_score = (pronunciation_score + fluency_score + prosody_score + relevance_score_10) / 4
+        else:
+            # Không có question_text: chỉ tính 3 tiêu chí
+            overall_score = (pronunciation_score + fluency_score + prosody_score) / 3
 
         # Convert to 0-100 scale for consistency
         overall_score_100 = (overall_score / 10) * 100
@@ -280,14 +481,26 @@ def score_speaking_audio(audio_path, language="en"):
         # Sort by score (lowest first - needs most improvement)
         word_feedback.sort(key=lambda x: x['score'])
 
+        # Build feedback string
+        feedback_parts = [
+            f"Pronunciation: {pronunciation_score:.1f}/10",
+            f"Fluency: {fluency_score:.1f}/10",
+            f"Prosody: {prosody_score:.1f}/10"
+        ]
+        if question_text:
+            feedback_parts.append(f"Relevance: {relevance_score:.1f}/100")
+        feedback_str = ", ".join(feedback_parts)
+
         return {
             "score": round(overall_score_100, 2),
             "pronunciation_score": round(pronunciation_score_100, 2),
             "fluency_score": round(fluency_score_100, 2),
             "prosody_score": round(prosody_score_100, 2),
+            "relevance_score": round(relevance_score, 2),  # Điểm liên quan nội dung
             "words_to_improve": word_feedback,  # Chỉ các từ cần cải thiện
             "transcript": transcript,
-            "feedback": f"Pronunciation: {pronunciation_score:.1f}/10, Fluency: {fluency_score:.1f}/10, Prosody: {prosody_score:.1f}/10"
+            "feedback": feedback_str,
+            "content_feedback": content_feedback  # Feedback về nội dung
         }
     except Exception as e:
         return {
@@ -950,10 +1163,15 @@ def _generate_overall_advice(analysis, text, text_stats):
 
     return advice
 
-def score_writing(text, language="en"):
+def score_writing(text, language="en", question_text=None, reference_answer=None):
     """
-    Score writing response based on multiple criteria
-    Returns: grammar, vocabulary, coherence, task completion, spelling scores
+    Score writing response based on multiple criteria + content relevance
+    Args:
+        text: bài viết của user
+        language: ngôn ngữ (default: "en")
+        question_text: nội dung câu hỏi/đề bài (optional - để đánh giá content relevance)
+        reference_answer: đáp án mẫu (optional)
+    Returns: grammar, vocabulary, coherence, task completion, spelling, relevance scores
     """
     if not text or len(text.strip()) == 0:
         return {
@@ -963,15 +1181,25 @@ def score_writing(text, language="en"):
             "coherence_score": 0,
             "task_completion_score": 0,
             "spelling_score": 0,
+            "relevance_score": 0,
             "feedback": "No text provided for assessment",
             "sentence_feedback": [],
-            "overall_advice": []
+            "overall_advice": [],
+            "content_feedback": []
         }
 
     # Analyze writing
     analysis = analyze_writing(text)
 
-    # Calculate overall score (average of all criteria)
+    # ========== ĐÁNH GIÁ CONTENT RELEVANCE ========== #
+    relevance_result = {"relevance_score": 0, "content_feedback": []}
+    if question_text:
+        relevance_result = evaluate_content_relevance(text, question_text, reference_answer)
+
+    relevance_score = relevance_result.get("relevance_score", 0)
+    content_feedback = relevance_result.get("content_feedback", [])
+
+    # Calculate overall score (average of all criteria including relevance)
     scores = [
         analysis.get("grammar_score", 0),
         analysis.get("vocabulary_score", 0),
@@ -979,6 +1207,11 @@ def score_writing(text, language="en"):
         analysis.get("task_completion_score", 0),
         analysis.get("spelling_score", 0)
     ]
+
+    # Nếu có question_text, thêm relevance vào tính điểm
+    if question_text:
+        relevance_score_10 = relevance_score / 10  # Convert 0-100 to 0-10
+        scores.append(relevance_score_10)
 
     overall_score = sum(scores) / len(scores) if scores else 0
     overall_score_100 = (overall_score / 10) * 100
@@ -991,7 +1224,17 @@ def score_writing(text, language="en"):
     spelling_100 = (analysis.get("spelling_score", 0) / 10) * 100
 
     # Build feedback summary
-    feedback = f"Điểm tổng: {overall_score:.1f}/10 | Grammar: {analysis.get('grammar_score', 0):.1f}/10, Vocabulary: {analysis.get('vocabulary_score', 0):.1f}/10, Coherence: {analysis.get('coherence_score', 0):.1f}/10, Task: {analysis.get('task_completion_score', 0):.1f}/10, Spelling: {analysis.get('spelling_score', 0):.1f}/10"
+    feedback_parts = [
+        f"Điểm tổng: {overall_score:.1f}/10",
+        f"Grammar: {analysis.get('grammar_score', 0):.1f}/10",
+        f"Vocabulary: {analysis.get('vocabulary_score', 0):.1f}/10",
+        f"Coherence: {analysis.get('coherence_score', 0):.1f}/10",
+        f"Task: {analysis.get('task_completion_score', 0):.1f}/10",
+        f"Spelling: {analysis.get('spelling_score', 0):.1f}/10"
+    ]
+    if question_text:
+        feedback_parts.append(f"Relevance: {relevance_score:.1f}/100")
+    feedback = " | ".join(feedback_parts)
 
     # Get sentence feedback (only sentences needing improvement)
     sentence_feedback = analysis.get("sentence_feedback", [])
@@ -1002,6 +1245,11 @@ def score_writing(text, language="en"):
     # Generate overall advice for the essay including content evaluation
     overall_advice = _generate_overall_advice(analysis, text, text_stats)
 
+    # Thêm content feedback vào overall_advice
+    if content_feedback:
+        overall_advice.insert(0, "\n📊 ĐÁNH GIÁ NỘI DUNG SO VỚI CÂU HỎI:")
+        overall_advice[1:1] = content_feedback
+
     return {
         "score": round(overall_score_100, 2),
         "grammar_score": round(grammar_100, 2),
@@ -1009,9 +1257,11 @@ def score_writing(text, language="en"):
         "coherence_score": round(coherence_100, 2),
         "task_completion_score": round(task_100, 2),
         "spelling_score": round(spelling_100, 2),
+        "relevance_score": round(relevance_score, 2),
         "feedback": feedback,
         "sentence_feedback": sentence_feedback,  # Chi tiết từng câu cần cải thiện
         "overall_advice": overall_advice,  # Lời khuyên tổng thể cho cả bài
+        "content_feedback": content_feedback,  # Feedback về nội dung
         "text_stats": analysis.get("text_stats", {})
     }
 
@@ -1031,17 +1281,19 @@ def main():
     text = data.get("text", "")
     score_type = data.get("type", "SPEAKING")
     language = data.get("language", "en")
+    question_text = data.get("question_text", None)  # Câu hỏi để đánh giá content relevance
+    reference_answer = data.get("reference_answer", None)  # Đáp án mẫu (optional)
 
     if score_type == "SPEAKING":
         if not audio_path:
             result = {"error": "audio_path required for SPEAKING type"}
         else:
-            result = score_speaking_audio(audio_path, language)
+            result = score_speaking_audio(audio_path, language, question_text, reference_answer)
     elif score_type == "WRITING":
         if not text:
             result = {"error": "text required for WRITING type"}
         else:
-            result = score_writing(text, language)
+            result = score_writing(text, language, question_text, reference_answer)
     else:
         result = {"error": f"Unknown score type: {score_type}"}
 

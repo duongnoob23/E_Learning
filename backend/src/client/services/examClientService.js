@@ -1417,11 +1417,10 @@ exports.gradeSpeaking = async ({
   user_id,
   audio_file_path,
   language,
+  question_text = null,  // Thêm để đánh giá content relevance
+  reference_answer = null,  // Đáp án mẫu (optional)
 }) => {
   try {
-    console.log("=== gradeSpeaking Service ===");
-    console.log("Input:", { response_id, user_id, audio_file_path, language });
-
     if (!audio_file_path) {
       console.log("❌ Missing audio_file_path for Speaking assessment");
       return {
@@ -1430,13 +1429,10 @@ exports.gradeSpeaking = async ({
         DT: null,
       };
     }
-
-    // Score speaking using multiPAService
-    console.log("🔄 Calling Python MultiPA service for SPEAKING...");
     const startTime = Date.now();
-    const result = await scoreResponse(audio_file_path, "SPEAKING", language);
+    const result = await scoreResponse(audio_file_path, "SPEAKING", language, question_text, reference_answer);
 
-    // Xử lý kết quả: chỉ trả về các từ cần cải thiện với gợi ý
+    
     const wordsToImprove = (result.words_to_improve || []).map((w) => ({
       word: w.word,
       score: w.score,
@@ -1444,7 +1440,7 @@ exports.gradeSpeaking = async ({
       tips: w.tips || [],
     }));
 
-    // Tạo feedback tổng hợp
+    
     const improvementSummary =
       wordsToImprove.length > 0
         ? `Các từ cần cải thiện: ${wordsToImprove.map((w) => w.word).join(", ")}`
@@ -1457,11 +1453,11 @@ exports.gradeSpeaking = async ({
         pronunciation: result.pronunciation_score,
         fluency: result.fluency_score,
         prosody: result.prosody_score,
+        relevance: result.relevance_score || 0,  
       },
+      content_feedback: result.content_feedback || [],  
     };
 
-    // Cập nhật điểm chi tiết và feedback cho response
-    console.log("💾 Updating SpeakingResponse in database...");
     const updateResult = await SpeakingResponse.update(
       {
         score: result.score,
@@ -1487,10 +1483,12 @@ exports.gradeSpeaking = async ({
         pronunciation_score: result.pronunciation_score,
         fluency_score: result.fluency_score,
         prosody_score: result.prosody_score,
+        relevance_score: result.relevance_score || 0,  // Điểm liên quan nội dung
         transcript: result.transcript,
         feedback: result.feedback,
         words_to_improve: wordsToImprove,
         improvement_summary: improvementSummary,
+        content_feedback: result.content_feedback || [],  // Feedback về nội dung
       },
     };
   } catch (error) {
@@ -1505,7 +1503,14 @@ exports.gradeSpeaking = async ({
 };
 
 // Chấm điểm writing response
-exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
+exports.gradeWriting = async ({
+  response_id,
+  user_id,
+  text,
+  language,
+  question_text = null,  
+  reference_answer = null,  
+}) => {
   try {
     console.log("=== gradeWriting Service ===");
     console.log("Input:", {
@@ -1513,6 +1518,7 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       user_id,
       text_length: text?.length,
       language,
+      question_text: question_text ? "provided" : "not provided",
     });
 
     if (!text) {
@@ -1524,10 +1530,10 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       };
     }
 
-    // Score writing using multiPAService
+    // Score writing using multiPAService (với question_text để đánh giá content relevance)
     console.log("🔄 Calling Python MultiPA service for WRITING...");
     const startTime = Date.now();
-    const result = await scoreResponse(text, "WRITING", language);
+    const result = await scoreResponse(text, "WRITING", language, question_text, reference_answer);
 
     // Xử lý sentence feedback - chỉ giữ các câu cần cải thiện
     // Bao gồm: issues, suggestions, vocabulary_tips (gợi ý từ vựng), meaning_tips (gợi ý về ý nghĩa)
@@ -1541,16 +1547,18 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       meaning_tips: s.meaning_tips || [],  // Gợi ý về cấu trúc và ý nghĩa
     }));
 
-    // Tạo detailed feedback với cấu trúc mới
+    // Tạo detailed feedback với cấu trúc mới (bao gồm content relevance)
     const detailedFeedback = {
       sentence_feedback: sentenceFeedback,
       overall_advice: result.overall_advice || [],
+      content_feedback: result.content_feedback || [],  // Feedback về nội dung so với câu hỏi
       scores: {
         grammar: result.grammar_score,
         vocabulary: result.vocabulary_score,
         coherence: result.coherence_score,
         task_completion: result.task_completion_score,
         spelling: result.spelling_score,
+        relevance: result.relevance_score || 0,  // Điểm liên quan nội dung
       },
       text_stats: result.text_stats || {},
     };
@@ -1577,7 +1585,7 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
       rows_affected: updateResult[0],
     });
 
-    // Trả về kết quả với cấu trúc rõ ràng
+    // Trả về kết quả với cấu trúc rõ ràng (bao gồm relevance score)
     return {
       EM: "Chấm bài Writing thành công",
       EC: "0",
@@ -1588,9 +1596,11 @@ exports.gradeWriting = async ({ response_id, user_id, text, language }) => {
         coherence_score: result.coherence_score,
         task_completion_score: result.task_completion_score,
         spelling_score: result.spelling_score,
+        relevance_score: result.relevance_score || 0,  // Điểm liên quan nội dung
         feedback: result.feedback,
         sentence_feedback: sentenceFeedback,
         overall_advice: result.overall_advice || [],
+        content_feedback: result.content_feedback || [],  // Feedback về nội dung
         text_stats: result.text_stats || {},
       },
     };
@@ -1616,15 +1626,6 @@ exports.submitWritingText = async (writingData) => {
       language = "en",
     } = writingData;
 
-    console.log("=== submitWritingText Service ===");
-    console.log("Input data:", {
-      user_id,
-      session_id,
-      question_id,
-      language,
-      written_text_length: written_text?.length,
-    });
-
     // Kiểm tra phiên thi có tồn tại không
     const examSession = await ExamSession.findById(session_id);
     console.log("ExamSession lookup:", { session_id, found: !!examSession });
@@ -1637,11 +1638,6 @@ exports.submitWritingText = async (writingData) => {
       };
     }
 
-    // Kiểm tra câu hỏi writing có tồn tại không
-    console.log("Question lookup:", {
-      question_id,
-      question_id_type: typeof question_id,
-    });
     const writingQuestion = await Question.findById(question_id);
     console.log("Question found:", {
       found: !!writingQuestion,
@@ -1661,7 +1657,6 @@ exports.submitWritingText = async (writingData) => {
       };
     }
 
-    // DEBUG: Nếu question_type không phải WRITING, tìm tất cả WRITING questions trong cùng part
     if (writingQuestion.question_type !== "WRITING") {
       console.log("❌ Question type mismatch:", {
         question_id,
@@ -1669,15 +1664,12 @@ exports.submitWritingText = async (writingData) => {
         actual: writingQuestion.question_type,
         part_id: writingQuestion.part_id,
       });
-
-      // Tìm tất cả WRITING questions trong cùng part để gợi ý
       try {
         const allQuestionsInPart = await Question.findAll({
           where: { part_id: writingQuestion.part_id },
           attributes: ["question_id", "question_number", "question_type"],
           order: [["question_number", "ASC"]],
         });
-        console.log(`📋 All questions in part_id ${writingQuestion.part_id}:`);
         allQuestionsInPart.forEach((q) => {
           const marker = q.question_id === question_id ? " ⬅️ (this one)" : "";
           console.log(
