@@ -14,6 +14,7 @@ import WordsPage from "../features/words/pages/WordsPage";
 import TopicsPage from "../features/flashcards/pages/TopicsPage";
 import TopicWordsPage from "../features/flashcards/pages/TopicWordsPage";
 import StatisticsPage from "../features/statistics/pages/StatisticsPage";
+import TransactionsPage from "../features/transactions/pages/TransactionsPage";
 
 const AdminRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AdminRoutes = () => {
                 <Route path="/flashcards" element={<TopicsPage />} />
                 <Route path="/flashcards/topics/:topicId" element={<TopicWordsPage />} />
                 <Route path="/vocabulary" element={<WordsPage />} />
+                <Route path="/transactions" element={<TransactionsPage />} />
                 {/* Có thể thêm nhiều route khác ở đây */}
                 <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
               </Routes>

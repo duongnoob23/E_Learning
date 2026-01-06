@@ -44,7 +44,7 @@ const Sidebar = () => {
     {
       title: "OTHER",
       items: [
-        { name: "Payments", path: "/admin/payments", icon: FaCreditCard },
+        { name: "Giao dịch", path: "/admin/transactions", icon: FaCreditCard },
       ],
     },
   ];
