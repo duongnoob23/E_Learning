@@ -65,6 +65,8 @@ export const wordApi = {
     const response = await axiosInstance.post("/word/topics/sets", {
       topic_name: data.topic_name,
       description: data.description,
+      image_url: data.image_url,
+      logo_url: data.logo_url,
     });
     return response.data;
   },
@@ -75,10 +77,13 @@ export const wordApi = {
     return response.data;
   },
 
-  // Lấy danh sách từ vựng trong set
-  getWordsBySet: async (setId) => {
+  // Lấy danh sách từ vựng trong set (có pagination)
+  getWordsBySet: async (setId, page = 1, limit = 50) => {
     const response = await axiosInstance.get(
-      `/word/flashcard/set/${setId}/words`
+      `/word/flashcard/set/${setId}/words`,
+      {
+        params: { page, limit },
+      }
     );
     return response.data;
   },

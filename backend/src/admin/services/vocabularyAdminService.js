@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Word, Topic, User, sequelize } = require("../../models");
+const { Word, Topic, User, UserWord, sequelize } = require("../../models");
 
 /**
  * Vocabulary Admin Service
@@ -10,6 +10,9 @@ class VocabularyAdminService {
 
   /**
    * Lấy danh sách từ vựng với phân trang, filter, search
+   * Nếu có topic_id, check topic_type để lấy từ đúng bảng:
+   * - topic_type = "system" → lấy từ bảng Word
+   * - topic_type = "user_created" → lấy từ bảng UserWord
    */
   async getWords({
     page = 1,
@@ -21,6 +24,96 @@ class VocabularyAdminService {
     sort_order = "DESC",
   }) {
     const offset = (page - 1) * limit;
+    
+    // Nếu có topic_id, check topic_type để quyết định lấy từ bảng nào
+    let isUserCreated = false;
+    let userId = null;
+    
+    if (topic_id) {
+      const topic = await Topic.findByPk(topic_id);
+      if (topic) {
+        isUserCreated = topic.topic_type === "user_created";
+        userId = topic.created_by;
+      }
+    }
+
+    // Nếu là user_created topic, lấy từ UserWord
+    if (isUserCreated && userId) {
+      const where = {};
+
+      // Search theo word hoặc meaning_vi
+      if (search) {
+        where[Op.or] = [
+          { word: { [Op.like]: `%${search}%` } },
+          { meaning_vi: { [Op.like]: `%${search}%` } },
+        ];
+      }
+
+      // Filter theo topic và user
+      where.topic_id = topic_id;
+      where.user_id = userId;
+
+      // Filter theo trạng thái active
+      if (is_active !== undefined && is_active !== null && is_active !== "") {
+        where.is_active = is_active === "true" || is_active === true;
+      }
+
+      // Validate sort_by cho UserWord
+      const validSortColumns = [
+        "user_word_id",
+        "word",
+        "topic_id",
+        "created_at",
+        "is_active",
+      ];
+      const safeSortBy = validSortColumns.includes(sort_by)
+        ? sort_by === "word_id" ? "user_word_id" : sort_by
+        : "created_at";
+
+      const { rows: userWords, count: total } = await UserWord.findAndCountAll({
+        where,
+        limit: parseInt(limit),
+        offset,
+        order: [[safeSortBy, sort_order.toUpperCase()]],
+      });
+
+      // Transform UserWord sang format giống Word để frontend không cần thay đổi
+      const words = userWords.map((uw) => ({
+        word_id: uw.user_word_id,
+        user_word_id: uw.user_word_id,
+        topic_id: uw.topic_id,
+        word: uw.word,
+        part_of_speech: uw.part_of_speech,
+        pronunciation: uw.pronunciation,
+        meaning_vi: uw.meaning_vi,
+        example_en: uw.example || null,
+        example_vi: uw.example_vi || null,
+        image_url: uw.image_url,
+        audio_url: uw.audio_url,
+        notes: uw.notes || null,
+        word_type: "user",
+        created_by: uw.user_id,
+        is_active: uw.is_active,
+        created_at: uw.created_at,
+        updated_at: uw.updated_at,
+      }));
+
+      return {
+        EC: "0",
+        EM: "Lấy danh sách từ vựng thành công",
+        DT: {
+          words,
+          pagination: {
+            current_page: parseInt(page),
+            total_pages: Math.ceil(total / limit),
+            total_items: total,
+            items_per_page: parseInt(limit),
+          },
+        },
+      };
+    }
+
+    // Nếu là system topic hoặc không có topic_id, lấy từ Word (logic cũ)
     const where = {};
 
     // Search theo word hoặc meaning_vi
@@ -423,27 +516,57 @@ class VocabularyAdminService {
   /**
    * Tạo chủ đề mới
    */
-  async createTopic(data, created_by) {
-    // Kiểm tra tên trùng
-    const existingTopic = await Topic.findOne({
-      where: { topic_name: data.topic_name },
-    });
-    if (existingTopic) {
-      return { EC: "1", EM: "Tên chủ đề đã tồn tại", DT: existingTopic };
+  async createTopic(data, adminUserId) {
+    try {
+      // Kiểm tra tên trùng
+      const existingTopic = await Topic.findOne({
+        where: { topic_name: data.topic_name },
+      });
+      if (existingTopic) {
+        return { EC: "1", EM: "Tên chủ đề đã tồn tại", DT: existingTopic };
+      }
+
+      // Nếu topic_type = "user_created", sử dụng created_by từ data
+      // Nếu topic_type = "system", sử dụng adminUserId
+      let created_by = adminUserId;
+      if (data.topic_type === "user_created" && data.created_by) {
+        // Convert sang number nếu là string
+        created_by = typeof data.created_by === "string" 
+          ? parseInt(data.created_by, 10) 
+          : data.created_by;
+        
+        // Validate created_by là số hợp lệ
+        if (isNaN(created_by) || created_by <= 0) {
+          return { EC: "1", EM: "User ID không hợp lệ", DT: null };
+        }
+      }
+
+      // Chỉ lấy các field hợp lệ từ model Topic
+      const topicData = {
+        topic_name: data.topic_name,
+        description: data.description || null,
+        image_url: data.image_url || null,
+        logo_url: data.logo_url || null,
+        topic_type: data.topic_type || "system",
+        created_by: created_by,
+        is_active: true,
+        is_public: data.is_public !== undefined ? data.is_public : true,
+        word_count: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      };
+
+      const topic = await Topic.create(topicData);
+
+      return { EC: "0", EM: "Tạo chủ đề thành công", DT: topic };
+    } catch (error) {
+      console.error("Error in createTopic service:", error);
+      return { 
+        EC: "-2", 
+        EM: error.message || "Có lỗi xảy ra trong quá trình tạo chủ đề", 
+        DT: null 
+      };
     }
-
-    const topic = await Topic.create({
-      ...data,
-      created_by,
-      topic_type: "system",
-      is_active: true,
-      is_public: true,
-      word_count: 0,
-      created_at: new Date(),
-      updated_at: new Date(),
-    });
-
-    return { EC: "0", EM: "Tạo chủ đề thành công", DT: topic };
   }
 
   /**
@@ -620,6 +743,8 @@ class VocabularyAdminService {
 
   /**
    * Import nhiều từ vựng cùng lúc
+   * Nếu topic_type = "system" → lưu vào bảng Word
+   * Nếu topic_type = "user_created" → lưu vào bảng UserWord với user_id = topic.created_by
    */
   async batchImportWords(words, topic_id, created_by) {
     const topic = await Topic.findByPk(topic_id);
@@ -628,40 +753,88 @@ class VocabularyAdminService {
     }
 
     const results = { success: [], duplicates: [], errors: [] };
+    const isUserCreated = topic.topic_type === "user_created";
+    const userId = isUserCreated ? topic.created_by : null;
+
+    if (isUserCreated && !userId) {
+      return { EC: "1", EM: "Topic user_created phải có created_by", DT: null };
+    }
 
     for (const wordData of words) {
       try {
-        // Kiểm tra từ trùng
-        const existing = await Word.findOne({
-          where: { word: wordData.word, topic_id },
-        });
-        if (existing) {
-          results.duplicates.push({
-            word: wordData.word,
-            reason: "Đã tồn tại",
+        if (isUserCreated) {
+          // Kiểm tra từ trùng trong UserWord
+          const existing = await UserWord.findOne({
+            where: { 
+              word: wordData.word.trim().toLowerCase(), 
+              topic_id,
+              user_id: userId
+            },
           });
-          continue;
-        }
+          if (existing) {
+            results.duplicates.push({
+              word: wordData.word,
+              reason: "Đã tồn tại",
+            });
+            continue;
+          }
 
-        const word = await Word.create({
-          topic_id,
-          word: wordData.word,
-          part_of_speech: wordData.part_of_speech || null,
-          pronunciation: wordData.pronunciation || null,
-          meaning_vi: wordData.meaning_vi,
-          example_en: wordData.example_en || wordData.example_sentence || null,
-          example_vi:
-            wordData.example_vi || wordData.example_translation || null,
-          image_url: wordData.image_url || null,
-          audio_url: wordData.audio_url || null,
-          notes: wordData.notes || null,
-          word_type: "system",
-          created_by: created_by || null,
-          is_active: true,
-          created_at: new Date(),
-          updated_at: new Date(),
-        });
-        results.success.push(word);
+          // Lưu vào UserWord
+          const userWord = await UserWord.create({
+            user_id: userId,
+            topic_id,
+            word: wordData.word.trim().toLowerCase(),
+            meaning_vi: wordData.meaning_vi,
+            meaning: wordData.meaning_en || null,
+            example: wordData.example_en || wordData.example_sentence || null,
+            example_vi: wordData.example_vi || wordData.example_translation || null,
+            part_of_speech: wordData.part_of_speech || null,
+            pronunciation: wordData.pronunciation || null,
+            image_url: wordData.image_url || null,
+            audio_url: wordData.audio_url || null,
+            notes: wordData.notes || null,
+            is_active: true,
+            created_at: new Date(),
+            updated_at: new Date(),
+          });
+          results.success.push(userWord);
+        } else {
+          // Kiểm tra từ trùng trong Word
+          const existing = await Word.findOne({
+            where: { 
+              word: wordData.word.trim().toLowerCase(), 
+              topic_id 
+            },
+          });
+          if (existing) {
+            results.duplicates.push({
+              word: wordData.word,
+              reason: "Đã tồn tại",
+            });
+            continue;
+          }
+
+          // Lưu vào Word
+          const word = await Word.create({
+            topic_id,
+            word: wordData.word.trim().toLowerCase(),
+            part_of_speech: wordData.part_of_speech || null,
+            pronunciation: wordData.pronunciation || null,
+            meaning_vi: wordData.meaning_vi,
+            example_en: wordData.example_en || wordData.example_sentence || null,
+            example_vi:
+              wordData.example_vi || wordData.example_translation || null,
+            image_url: wordData.image_url || null,
+            audio_url: wordData.audio_url || null,
+            notes: wordData.notes || null,
+            word_type: "system",
+            created_by: created_by || null,
+            is_active: true,
+            created_at: new Date(),
+            updated_at: new Date(),
+          });
+          results.success.push(word);
+        }
       } catch (error) {
         results.errors.push({ word: wordData.word, reason: error.message });
       }
@@ -674,22 +847,48 @@ class VocabularyAdminService {
 
     return {
       EC: "0",
-      EM: `Import thành công ${results.success.length}/${words.length} từ`,
+      EM: `Import thành công ${results.success.length}/${words.length} từ vào ${isUserCreated ? 'UserWord' : 'Word'}`,
       DT: results,
     };
   }
 
   /**
    * Kiểm tra từ trùng lặp
+   * Check đúng bảng dựa trên topic_type
    */
   async checkDuplicates(words, topic_id) {
+    const topic = await Topic.findByPk(topic_id);
+    if (!topic) {
+      return { EC: "1", EM: "Chủ đề không tồn tại", DT: [] };
+    }
+
+    const isUserCreated = topic.topic_type === "user_created";
+    const userId = isUserCreated ? topic.created_by : null;
     const duplicates = [];
 
-    for (const word of words) {
-      const existing = await Word.findOne({
-        where: { word, topic_id },
-        attributes: ["word_id", "word"],
-      });
+    for (const wordData of words) {
+      const word = typeof wordData === 'string' ? wordData.trim().toLowerCase() : wordData.word?.trim().toLowerCase();
+      if (!word) continue;
+
+      let existing;
+      if (isUserCreated && userId) {
+        // Check trong UserWord
+        existing = await UserWord.findOne({
+          where: { 
+            word: word, 
+            topic_id,
+            user_id: userId
+          },
+          attributes: ["user_word_id", "word"],
+        });
+      } else {
+        // Check trong Word
+        existing = await Word.findOne({
+          where: { word: word, topic_id },
+          attributes: ["word_id", "word"],
+        });
+      }
+
       if (existing) {
         duplicates.push({ word, existing });
       }

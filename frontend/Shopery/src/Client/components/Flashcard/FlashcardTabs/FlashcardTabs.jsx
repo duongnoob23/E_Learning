@@ -1,27 +1,30 @@
 // Client/components/Flashcard/FlashcardTabs/FlashcardTabs.jsx - Redesigned
-import React from "react";
-import { HiOutlineGlobeAlt, HiOutlineBookmark, HiOutlineAcademicCap } from "react-icons/hi2";
+import {
+  HiOutlineAcademicCap,
+  HiOutlineBookmark,
+  HiOutlineGlobeAlt,
+} from "react-icons/hi2";
 import "./FlashcardTabs.css";
 
 const FlashcardTabs = ({ activeTab, onTabChange }) => {
   const tabs = [
-    { 
-      id: "explore", 
-      label: "Khám phá", 
+    {
+      id: "explore",
+      label: "Khám phá",
       icon: HiOutlineGlobeAlt,
-      description: "Các chủ đề từ hệ thống"
+      description: "Các chủ đề từ hệ thống",
     },
-    { 
-      id: "my-lists", 
-      label: "List từ của tôi", 
+    {
+      id: "my-lists",
+      label: "List từ của tôi",
       icon: HiOutlineBookmark,
-      description: "Danh sách bạn đã tạo"
+      description: "Danh sách bạn đã tạo",
     },
-    { 
-      id: "learning", 
-      label: "Đang học", 
+    {
+      id: "learning",
+      label: "Đang học",
       icon: HiOutlineAcademicCap,
-      description: "Từ vựng đang ôn luyện"
+      description: "Từ vựng đang ôn luyện",
     },
   ];
 
@@ -33,7 +36,9 @@ const FlashcardTabs = ({ activeTab, onTabChange }) => {
           return (
             <button
               key={tab.id}
-              className={`flashcard-tab ${activeTab === tab.id ? "active" : ""}`}
+              className={`flashcard-tab ${
+                activeTab === tab.id ? "active" : ""
+              }`}
               onClick={() => onTabChange(tab.id)}
             >
               <Icon className="tab-icon" />
@@ -41,13 +46,15 @@ const FlashcardTabs = ({ activeTab, onTabChange }) => {
             </button>
           );
         })}
-        
+
         {/* Active Tab Indicator */}
-        <div 
-          className="tab-indicator" 
+        <div
+          className="tab-indicator"
           style={{
-            left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
-            width: `${100 / tabs.length}%`
+            left: `${
+              tabs.findIndex((t) => t.id === activeTab) * (100 / tabs.length)
+            }%`,
+            width: `${100 / tabs.length}%`,
           }}
         />
       </div>

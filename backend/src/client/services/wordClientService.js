@@ -64,13 +64,29 @@ exports.getTopicPublic = async (topic_type) => {
         is_active: true,
         topic_type: "system",
       },
-      attributes: ["topic_id", "topic_name", "description", "image_url"],
+      attributes: ["topic_id", "topic_name", "description", "image_url", "word_count"],
     });
+
+    // Tính lại word_count cho mỗi topic (đếm số words active)
+    const topicsWithCount = await Promise.all(
+      topics.map(async (topic) => {
+        const wordCount = await Word.count({
+          where: {
+            topic_id: topic.topic_id,
+            is_active: true,
+          },
+        });
+        return {
+          ...topic.toJSON(),
+          word_count: wordCount,
+        };
+      })
+    );
 
     return {
       EM: "Lấy danh sách chủ đề thành công",
       EC: "0",
-      DT: topics,
+      DT: topicsWithCount,
     };
   } catch (error) {
     console.error("Lỗi trong getTopic service:", error);
@@ -494,13 +510,30 @@ exports.getTopicByUser = async (userId) => {
         created_by: userId,
         is_active: true,
       },
-      attributes: ["topic_id", "topic_name", "description", "image_url"],
+      attributes: ["topic_id", "topic_name", "description", "image_url", "word_count"],
     });
+
+    // Tính lại word_count cho mỗi topic (đếm số user_words active của user đó)
+    const topicsWithCount = await Promise.all(
+      topics.map(async (topic) => {
+        const wordCount = await UserWord.count({
+          where: {
+            topic_id: topic.topic_id,
+            user_id: userId,
+            is_active: true,
+          },
+        });
+        return {
+          ...topic.toJSON(),
+          word_count: wordCount,
+        };
+      })
+    );
 
     return {
       EM: "Lấy danh sách chủ đề thành công",
       EC: "0",
-      DT: topics,
+      DT: topicsWithCount,
     };
   } catch (error) {
     console.error("Lỗi trong getTopicByUser service:", error);
@@ -512,12 +545,13 @@ exports.getTopicByUser = async (userId) => {
   }
 };
 // Tạo set
-exports.createSet = async (userId, topic_name, description) => {
+exports.createSet = async (userId, topic_name, description, image_url = null, logo_url = null) => {
   try {
     const newSet = await Topic.createTopic({
       topic_name: topic_name,
-      description: description,
-      image_url: null,
+      description: description || null,
+      image_url: image_url || null,
+      logo_url: logo_url || null,
       topic_type: "user_created",
       created_by: userId,
       is_public: false,
@@ -565,40 +599,58 @@ exports.getSetDetail = async (set_id) => {
   }
 };
 
-// Lấy danh sách từ vựng trong set theo id
-exports.getWordsBySet = async (set_id) => {
+// Lấy danh sách từ vựng trong set theo id (có pagination và filter theo user_id cho user topics)
+exports.getWordsBySet = async (set_id, userId = null, pagination = { page: 1, limit: 50 }) => {
   try {
+    const { page, limit } = pagination;
+    const offset = (page - 1) * limit;
+
+    console.log(`[getWordsBySet Service] set_id: ${set_id}, userId: ${userId}, page: ${page}, limit: ${limit}`);
+
     const set = await Topic.findOne({
       where: {
         topic_id: set_id,
         is_active: true,
       },
     });
-    if (set.topic_type === "system") {
-      const words = await Word.findAll({
-        where: {
-          topic_id: set_id,
-          is_active: true,
-        },
-      });
+
+    if (!set) {
+      console.log(`[getWordsBySet Service] Topic not found: ${set_id}`);
       return {
-        EM: "Lấy danh sách từ vựng trong set thành công",
-        EC: "0",
-        DT: words,
-      };
-    } else {
-      const words = await UserWord.findAll({
-        where: {
-          topic_id: set_id,
-          is_active: true,
-        },
-      });
-      return {
-        EM: "Lấy danh sách từ vựng trong set thành công",
-        EC: "0",
-        DT: words,
+        EM: "Không tìm thấy topic",
+        EC: "1",
+        DT: null,
       };
     }
+
+    console.log(`[getWordsBySet Service] Topic found: ${set.topic_name}, type: ${set.topic_type}`);
+
+    // Sử dụng logic giống admin: luôn lấy từ bảng Word (không phân biệt system hay user_created)
+    // Vì words của user_created topics cũng được lưu trong bảng Word với topic_id tương ứng
+    const { count, rows: words } = await Word.findAndCountAll({
+      where: {
+        topic_id: set_id,
+        is_active: true,
+      },
+      limit: limit,
+      offset: offset,
+      order: [["word_id", "ASC"]],
+    });
+
+    console.log(`[getWordsBySet] topic_id: ${set_id}, topic_type: ${set.topic_type}`);
+    console.log(`[getWordsBySet] Found ${count} words in Word table, returning ${words.length} words for page ${page}`);
+
+    return {
+      EM: "Lấy danh sách từ vựng trong set thành công",
+      EC: "0",
+      DT: words,
+      pagination: {
+        total: count,
+        page: page,
+        limit: limit,
+        total_pages: Math.ceil(count / limit),
+      },
+    };
   } catch (error) {
     console.error("Lỗi trong getWordsBySet service:", error);
     return {

@@ -73,12 +73,13 @@ export const useSetDetail = (setId, enabled = true) => {
 };
 
 // Query để lấy danh sách từ vựng trong set
-export const useWordsBySet = (setId, enabled = true) => {
+export const useWordsBySet = (setId, page = 1, limit = 50, enabled = true) => {
   return useQuery({
-    queryKey: ["flashcard", "set", setId, "words"],
-    queryFn: () => wordApi.getWordsBySet(setId),
+    queryKey: ["flashcard", "set", setId, "words", page, limit],
+    queryFn: () => wordApi.getWordsBySet(setId, page, limit),
     enabled: enabled && !!setId,
     staleTime: 5 * 60 * 1000, // 5 phút
+    keepPreviousData: true, // Giữ data cũ khi chuyển trang
   });
 };
 

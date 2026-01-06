@@ -151,10 +151,21 @@ exports.getAllTopics = async (req, res, next) => {
  */
 exports.createTopic = async (req, res, next) => {
   try {
-    const created_by = req.user?.user_id || 1;
-    const response = await vocabularyAdminService.createTopic(req.body, created_by);
-    res.status(201).json(response);
+    console.log("[createTopic Controller] Request body:", JSON.stringify(req.body, null, 2));
+    const adminUserId = req.user?.user_id || 1;
+    console.log("[createTopic Controller] Admin user ID:", adminUserId);
+    
+    const response = await vocabularyAdminService.createTopic(req.body, adminUserId);
+    
+    console.log("[createTopic Controller] Response:", JSON.stringify(response, null, 2));
+    
+    if (response.EC === "0") {
+      res.status(201).json(response);
+    } else {
+      res.status(400).json(response);
+    }
   } catch (error) {
+    console.error("[createTopic Controller] Error:", error);
     next(error);
   }
 };

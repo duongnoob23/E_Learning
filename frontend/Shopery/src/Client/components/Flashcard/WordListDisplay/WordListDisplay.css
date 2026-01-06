@@ -119,25 +119,31 @@
 
 .word-flashcard-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #1ec28b 0%, #16a085 100%);
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
   color: white;
-  border-color: #1ec28b;
+  border-color: #0d9488;
+  /* Tăng contrast cho text */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .word-section {
 }
 
 .word-text {
-  font-size: 30px;
-  font-weight: 800;
-  color: #1f2937;
+  font-size: 36px;
+  font-weight: 900;
+  color: #111827;
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  letter-spacing: -0.5px;
 }
 
 .word-flashcard-back .word-text {
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 900;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
 }
 
 .word-pronunciation-section {
@@ -149,14 +155,19 @@
 }
 
 .word-pronunciation {
-  font-size: 24px;
-  color: #6b7280;
+  font-size: 22px;
+  color: #4b5563;
   font-family: "Courier New", monospace;
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .word-flashcard-back .word-pronunciation {
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0.95;
 }
 
 .word-audio-buttons {
@@ -194,14 +205,18 @@
 
 .word-definition {
   margin-top: 10px;
-  font-size: 30px;
+  font-size: 32px;
   color: #374151;
   line-height: 1.7;
-  font-weight: 800;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .word-flashcard-back .word-definition {
-  color: rgba(255, 255, 255, 0.95);
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 900;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .word-example {
@@ -215,25 +230,35 @@
 }
 
 .word-example-title {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   color: #1f2937;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .word-flashcard-back .word-example-title {
-  color: white;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0.98;
 }
 
 .word-example-en {
-  font-size: 20px;
+  font-size: 18px;
   color: #1f2937;
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
   font-style: italic;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .word-flashcard-back .word-example-en {
-  color: rgba(255, 255, 255, 0.95);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0.98;
 }
 
 .word-image {

@@ -184,8 +184,14 @@ exports.getTopicByUser = async (req, res, next) => {
 exports.createSet = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { topic_name, description } = req.body;
-    const result = await wordClientService.createSet(userId, topic_name, description);
+    const { topic_name, description, image_url, logo_url } = req.body;
+    const result = await wordClientService.createSet(
+      userId, 
+      topic_name, 
+      description, 
+      image_url, 
+      logo_url
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -207,9 +213,23 @@ exports.getSetDetail = async (req, res, next) => {
 exports.getWordsBySet = async (req, res, next) => {
   try {
     const set_id = req.params.set_id;
-    const result = await wordClientService.getWordsBySet(set_id);
+    const userId = req.user?.userId || req.user?.user_id; // Lấy user_id từ authenticated user (support cả userId và user_id)
+    const { page = 1, limit = 50 } = req.query; // Thêm pagination params
+    
+    // Debug log
+    console.log(`[getWordsBySet Controller] set_id: ${set_id}, userId: ${userId}, page: ${page}, limit: ${limit}`);
+    
+    const result = await wordClientService.getWordsBySet(set_id, userId, {
+      page: parseInt(page),
+      limit: parseInt(limit),
+    });
+    
+    // Debug log response
+    console.log(`[getWordsBySet Controller] Response EC: ${result.EC}, DT length: ${result.DT?.length || 0}`);
+    
     res.json(result);
   } catch (error) {
+    console.error("[getWordsBySet Controller] Error:", error);
     next(error);
   }
 };

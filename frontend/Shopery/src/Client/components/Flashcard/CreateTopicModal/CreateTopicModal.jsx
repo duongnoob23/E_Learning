@@ -8,6 +8,8 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
     topic_name: "",
     description: "",
+    image_url: "",
+    logo_url: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -46,11 +48,13 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
       {
         topic_name: formData.topic_name.trim(),
         description: formData.description.trim() || null,
+        image_url: formData.image_url.trim() || null,
+        logo_url: formData.logo_url.trim() || null,
       },
       {
         onSuccess: (data) => {
           if (data?.EC === "0") {
-            setFormData({ topic_name: "", description: "" });
+            setFormData({ topic_name: "", description: "", image_url: "", logo_url: "" });
             setErrors({});
             onSuccess?.();
             onClose();
@@ -63,7 +67,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
   // Reset form when modal closes
   React.useEffect(() => {
     if (!isOpen) {
-      setFormData({ topic_name: "", description: "" });
+      setFormData({ topic_name: "", description: "", image_url: "", logo_url: "" });
       setErrors({});
     }
   }, [isOpen]);
@@ -109,6 +113,30 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
               onChange={handleChange}
               placeholder="Enter topic description..."
               rows={4}
+            />
+          </div>
+          
+          <div className="create-topic-modal__field">
+            <label className="create-topic-modal__label">Image URL</label>
+            <input
+              type="text"
+              name="image_url"
+              className="create-topic-modal__input"
+              value={formData.image_url}
+              onChange={handleChange}
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
+          
+          <div className="create-topic-modal__field">
+            <label className="create-topic-modal__label">Logo URL</label>
+            <input
+              type="text"
+              name="logo_url"
+              className="create-topic-modal__input"
+              value={formData.logo_url}
+              onChange={handleChange}
+              placeholder="https://example.com/logo.png"
             />
           </div>
 

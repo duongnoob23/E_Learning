@@ -173,3 +173,79 @@
   color: #64748b;
 }
 
+// User Search Dropdown Styles
+.topic-modal__user-search-wrapper {
+  position: relative;
+}
+
+.topic-modal__user-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.topic-modal__search-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.topic-modal__user-search-input {
+  padding-left: 40px !important;
+}
+
+.topic-modal__user-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.topic-modal__user-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  border-bottom: 1px solid #f3f4f6;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background-color: #f9fafb;
+  }
+  
+  &--empty {
+    color: #9ca3af;
+    cursor: default;
+    text-align: center;
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+
+.topic-modal__user-option-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.topic-modal__user-option-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
