@@ -11,6 +11,8 @@ import CreateCoursePage from "../features/courses2/pages/CreateCoursePage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import UsersPage from "../features/users/pages/UsersPage";
 import WordsPage from "../features/words/pages/WordsPage";
+import TopicsPage from "../features/flashcards/pages/TopicsPage";
+import TopicWordsPage from "../features/flashcards/pages/TopicWordsPage";
 import StatisticsPage from "../features/statistics/pages/StatisticsPage";
 import TransactionsPage from "../features/transactions/pages/TransactionsPage";
 
@@ -33,6 +35,8 @@ const AdminRoutes = () => {
                 <Route path="/courses" element={<CoursesPage2 />} />
                 <Route path="/create-course" element={<CreateCoursePage />} />
                 <Route path="/users" element={<UsersPage />} />
+                <Route path="/flashcards" element={<TopicsPage />} />
+                <Route path="/flashcards/topics/:topicId" element={<TopicWordsPage />} />
                 <Route path="/vocabulary" element={<WordsPage />} />
                 <Route path="/transactions" element={<TransactionsPage />} />
                 {/* Có thể thêm nhiều route khác ở đây */}

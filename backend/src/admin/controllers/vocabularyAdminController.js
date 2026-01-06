@@ -66,16 +66,19 @@ exports.updateWord = async (req, res, next) => {
 };
 
 /**
- * Xóa mềm từ vựng
+ * Xóa từ vựng
  * DELETE /admin/vocabulary/words/:word_id
+ * Query: ?hard=true để xóa cứng (vĩnh viễn)
  */
 exports.deleteWord = async (req, res, next) => {
   try {
     const { word_id } = req.params;
     const { hard } = req.query; // ?hard=true để xóa cứng
+    const delete_reason = req.body?.delete_reason || null; // Lý do xóa (tùy chọn)
+    const deleted_by = req.user?.user_id || 1;
     
     const response = hard === "true"
-      ? await vocabularyAdminService.hardDeleteWord(word_id)
+      ? await vocabularyAdminService.hardDeleteWord(word_id, delete_reason, deleted_by)
       : await vocabularyAdminService.softDeleteWord(word_id);
     res.json(response);
   } catch (error) {
@@ -171,13 +174,19 @@ exports.updateTopic = async (req, res, next) => {
 };
 
 /**
- * Xóa mềm chủ đề
+ * Xóa chủ đề
  * DELETE /admin/vocabulary/topics/:topic_id
+ * Body: { hard: true } để xóa cứng (vĩnh viễn)
  */
 exports.deleteTopic = async (req, res, next) => {
   try {
     const { topic_id } = req.params;
-    const response = await vocabularyAdminService.softDeleteTopic(topic_id);
+    const { hard, delete_reason } = req.body || {};
+    const deleted_by = req.user?.user_id || 1;
+    
+    const response = hard
+      ? await vocabularyAdminService.hardDeleteTopic(topic_id, delete_reason, deleted_by)
+      : await vocabularyAdminService.softDeleteTopic(topic_id);
     res.json(response);
   } catch (error) {
     next(error);

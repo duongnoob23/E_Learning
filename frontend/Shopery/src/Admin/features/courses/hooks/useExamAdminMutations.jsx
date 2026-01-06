@@ -23,6 +23,22 @@ export const useAdminCreateTest = () => {
   });
 };
 
+// Create full exam (Test + Parts + Questions + Choices)
+export const useAdminCreateFullExam = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: examAdminApi.createFullExam,
+    onSuccess: (data) => {
+      if (isOk(data)) {
+        toast.success(em(data, "Exam created successfully"));
+        qc.invalidateQueries({ queryKey: adminExamKeys.tests() });
+        qc.invalidateQueries({ queryKey: ["ListExamsAdmin"] });
+      } else toast.error(em(data, "Failed to create exam"));
+    },
+    onError: () => toast.error("Error occurred while creating exam"),
+  });
+};
+
 // Update test
 export const useAdminUpdateTest = () => {
   const qc = useQueryClient();
@@ -128,6 +144,7 @@ export const useAdminDeleteQuestion = () => {
 
 export default {
   useAdminCreateTest,
+  useAdminCreateFullExam,
   useAdminUpdateTest,
   useAdminDeleteTest,
   useAdminAddPartToTest,

@@ -160,6 +160,14 @@ router.post(
   wrapController(ExamAdminController.createTest)
 );
 
+// POST - Tạo toàn bộ bài thi (Test + Parts + Questions + Choices)
+router.post(
+  "/tests/full",
+  authMiddleware,
+  authorizeByRole(["admin", "teacher"]),
+  wrapController(ExamAdminController.createFullExam)
+);
+
 // POST - Thêm Part vào bài thi
 router.post(
   "/tests/:test_id/parts",

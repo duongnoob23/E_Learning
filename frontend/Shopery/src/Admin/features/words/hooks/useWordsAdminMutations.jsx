@@ -50,15 +50,16 @@ export const useUpdateWord = () => {
 };
 
 /**
- * Hook xóa từ vựng (soft delete mặc định)
+ * Hook xóa từ vựng (soft delete mặc định, hard=true để xóa cứng)
  */
 export const useDeleteWord = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ wordId, hard = false }) => wordsAdminApi.deleteWord(wordId, hard),
-    onSuccess: (data) => {
+    mutationFn: ({ wordId, hard = false, delete_reason = null }) => 
+      wordsAdminApi.deleteWord(wordId, hard, delete_reason),
+    onSuccess: (data, variables) => {
       if (isOk(data)) {
-        toast.success(em(data, "Xóa từ vựng thành công"));
+        toast.success(em(data, variables.hard ? "Xóa vĩnh viễn từ vựng thành công" : "Xóa từ vựng thành công"));
         qc.invalidateQueries({ queryKey: adminVocabKeys.words() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {
@@ -217,15 +218,16 @@ export const useUpdateTopic = () => {
 };
 
 /**
- * Hook xóa topic
+ * Hook xóa topic (soft delete mặc định, hard=true để xóa cứng)
  */
 export const useDeleteTopic = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (topicId) => wordsAdminApi.deleteTopic(topicId),
-    onSuccess: (data) => {
+    mutationFn: ({ topicId, hard = false, delete_reason = null }) => 
+      wordsAdminApi.deleteTopic(topicId, hard, delete_reason),
+    onSuccess: (data, variables) => {
       if (isOk(data)) {
-        toast.success(em(data, "Xóa chủ đề thành công"));
+        toast.success(em(data, variables.hard ? "Xóa vĩnh viễn chủ đề thành công" : "Xóa chủ đề thành công"));
         qc.invalidateQueries({ queryKey: adminVocabKeys.topics() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {

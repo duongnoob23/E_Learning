@@ -1,0 +1,406 @@
+/* ExamPart6Editor.css - Styles for Exam Part 6 Editor (Text Completion) */
+
+.exam-p6-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exam-p6-editor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.exam-p6-editor__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exam-p6-editor__tab {
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exam-p6-editor__tab--active {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+.exam-p6-editor__tab--add {
+  background-color: #e5f9f1;
+  border-style: dashed;
+  color: #047857;
+}
+
+.exam-p6-editor__tab--json {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.exam-p6-editor__tab-close {
+  font-size: 12px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #059669;
+}
+
+.exam-p6-editor__tab--active .exam-p6-editor__tab-close {
+  background-color: #ffffff;
+  color: #10b981;
+}
+
+.exam-p6-editor__header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.exam-p6-editor__preview-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.exam-p6-editor__preview-btn--active {
+  background-color: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+.exam-p6-editor__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exam-p6-editor__column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exam-p6-editor__label {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+}
+
+.exam-p6-editor__required {
+  color: #ef4444;
+}
+
+.exam-p6-editor__input {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.exam-p6-editor__textarea {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 6px 8px;
+  min-height: 60px;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.exam-p6-editor__choices-row {
+  display: flex;
+  gap: 8px;
+}
+
+.exam-p6-editor__choice-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.exam-p6-editor__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exam-p6-editor__field-group--inline {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.exam-p6-editor__field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  min-width: 36px;
+}
+
+/* Preview */
+.exam-p6-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exam-p6-preview__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.exam-p6-preview__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.exam-p6-preview__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.exam-p6-preview__paragraph {
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+}
+
+.exam-p6-preview__options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exam-p6-preview__option {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.exam-p6-preview__option--correct {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.exam-p6-preview__option--wrong {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.exam-p6-preview__option-label {
+  font-weight: 500;
+}
+
+.exam-p6-preview__option input[type="radio"] {
+  margin-top: 2px;
+}
+
+.exam-p6-preview__option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.exam-p6-preview__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.exam-p6-preview__btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.exam-p6-preview__btn--primary {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+.exam-p6-preview__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exam-p6-preview__translation,
+.exam-p6-preview__explanation {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.exam-p6-preview__section-header {
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.exam-p6-preview__toggle {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.exam-p6-preview__toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.exam-p6-preview__section-body {
+  padding: 8px 12px 10px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* JSON modal */
+.exam-p6-json-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.exam-p6-json-modal {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 780px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.exam-p6-json-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.exam-p6-json-modal__header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.exam-p6-json-modal__close {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.exam-p6-json-modal__content {
+  padding: 14px 18px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exam-p6-json-modal__hint {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.exam-p6-json-modal__hint code {
+  background-color: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.exam-p6-json-modal__btn {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  align-self: flex-start;
+}
+
+.exam-p6-json-modal__btn--primary {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+.exam-p6-json-modal__error {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.exam-p6-json-modal__textarea {
+  width: 100%;
+  min-height: 220px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.exam-p6-json-modal__footer {
+  padding: 12px 18px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+

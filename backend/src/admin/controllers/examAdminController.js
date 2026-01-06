@@ -31,8 +31,10 @@ exports.createTest = async (req, res, next) => {
       total_questions,
       total_parts,
       difficulty_level,
+      exam_type,
       category_ids,
     } = req.body;
+    const created_by = req.user?.user_id || null;
     const response = await examAdminService.createTest({
       title,
       duration,
@@ -40,7 +42,43 @@ exports.createTest = async (req, res, next) => {
       total_questions,
       total_parts,
       difficulty_level,
+      exam_type,
       category_ids,
+      created_by,
+    });
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Tạo toàn bộ bài thi (Test + Parts + Questions + Choices)
+exports.createFullExam = async (req, res, next) => {
+  try {
+    const { testInfo, parts } = req.body;
+    const created_by = req.user?.user_id || null;
+
+    // Validation
+    if (!testInfo || !testInfo.title) {
+      return res.status(400).json({
+        EM: "Thông tin bài thi không hợp lệ",
+        EC: "-1",
+        DT: null,
+      });
+    }
+
+    if (!parts || !Array.isArray(parts) || parts.length === 0) {
+      return res.status(400).json({
+        EM: "Phải có ít nhất 1 Part",
+        EC: "-1",
+        DT: null,
+      });
+    }
+
+    const response = await examAdminService.createFullExam({
+      testInfo,
+      parts,
+      created_by,
     });
     res.json(response);
   } catch (error) {

@@ -3,17 +3,74 @@ import { HiXMark, HiArrowUpTray, HiDocumentText } from "react-icons/hi2";
 import { useBatchImportWords } from "../hooks/useWordsAdminMutations";
 import "./WordModals.scss";
 
-const SAMPLE_FORMAT = `word,pronunciation,meaning_vi,meaning_en,part_of_speech,example_sentence
+const SAMPLE_CSV = `word,pronunciation,meaning_vi,meaning_en,part_of_speech,example_sentence
 hello,/həˈloʊ/,xin chào,a greeting,interjection,Hello! How are you?
 book,/bʊk/,sách,a written work,noun,I love reading books.`;
 
-export default function BatchImportModal({ onClose, onSuccess, topics = [] }) {
-  const [topicId, setTopicId] = useState("");
+const SAMPLE_JSON = `[
+  {
+    "word": "happy",
+    "pronunciation": "/ˈhæpi/",
+    "meaning_vi": "vui mừng",
+    "meaning_en": "feeling or showing pleasure",
+    "part_of_speech": "adjective",
+    "example_sentence": "I am very happy today",
+    "example_translation": "Hôm nay tôi rất vui",
+    "image_url": "https://example.com/happy.jpg",
+    "audio_url": "https://example.com/happy.mp3"
+  },
+  {
+    "word": "book",
+    "pronunciation": "/bʊk/",
+    "meaning_vi": "sách",
+    "meaning_en": "a written work",
+    "part_of_speech": "noun",
+    "example_sentence": "I love reading books",
+    "example_translation": "Tôi thích đọc sách"
+  }
+]`;
+
+export default function BatchImportModal({ onClose, onSuccess, topics = [], defaultTopicId = null }) {
+  const [topicId, setTopicId] = useState(defaultTopicId ? String(defaultTopicId) : "");
   const [inputText, setInputText] = useState("");
   const [parsedWords, setParsedWords] = useState([]);
   const [parseError, setParseError] = useState("");
+  const [importMode, setImportMode] = useState("csv"); // "csv" or "json"
 
   const batchImportMutation = useBatchImportWords();
+
+  const parseJSON = (text) => {
+    try {
+      const parsed = JSON.parse(text);
+      const wordsArray = Array.isArray(parsed) ? parsed : [parsed];
+      
+      const words = wordsArray
+        .filter((w) => w.word && w.meaning_vi)
+        .map((w) => ({
+          word: w.word || "",
+          pronunciation: w.pronunciation || "",
+          meaning_vi: w.meaning_vi || "",
+          meaning_en: w.meaning_en || "",
+          part_of_speech: w.part_of_speech || "",
+          example_sentence: w.example_sentence || w.example || "",
+          example_translation: w.example_translation || "",
+          image_url: w.image_url || "",
+          audio_url: w.audio_url || "",
+        }));
+      
+      if (words.length === 0) {
+        setParseError("No valid words found. Each word must have 'word' and 'meaning_vi' fields.");
+        setParsedWords([]);
+        return;
+      }
+      
+      setParseError("");
+      setParsedWords(words);
+    } catch (err) {
+      setParseError(`Invalid JSON: ${err.message}`);
+      setParsedWords([]);
+    }
+  };
 
   const parseCSV = (text) => {
     const lines = text.trim().split("\n");
@@ -61,10 +118,24 @@ export default function BatchImportModal({ onClose, onSuccess, topics = [] }) {
     const text = e.target.value;
     setInputText(text);
     if (text.trim()) {
-      parseCSV(text);
+      if (importMode === "json") {
+        parseJSON(text);
+      } else {
+        parseCSV(text);
+      }
     } else {
       setParsedWords([]);
       setParseError("");
+    }
+  };
+  
+  const handlePasteSample = () => {
+    if (importMode === "json") {
+      setInputText(SAMPLE_JSON);
+      parseJSON(SAMPLE_JSON);
+    } else {
+      setInputText(SAMPLE_CSV);
+      parseCSV(SAMPLE_CSV);
     }
   };
 
@@ -105,23 +176,60 @@ export default function BatchImportModal({ onClose, onSuccess, topics = [] }) {
             </select>
           </div>
 
+          {/* Import Mode Toggle */}
+          <div className="import-modal__mode-toggle">
+            <button
+              type="button"
+              className={`import-modal__mode-btn ${importMode === "csv" ? "active" : ""}`}
+              onClick={() => {
+                setImportMode("csv");
+                setInputText("");
+                setParsedWords([]);
+                setParseError("");
+              }}
+            >
+              CSV Format
+            </button>
+            <button
+              type="button"
+              className={`import-modal__mode-btn ${importMode === "json" ? "active" : ""}`}
+              onClick={() => {
+                setImportMode("json");
+                setInputText("");
+                setParsedWords([]);
+                setParseError("");
+              }}
+            >
+              JSON Format
+            </button>
+          </div>
+
           {/* Sample Format */}
           <div className="import-modal__sample">
             <div className="import-modal__sample-header">
-              <HiDocumentText /> Sample CSV Format
+              <HiDocumentText /> Sample {importMode.toUpperCase()} Format
+              <button
+                type="button"
+                className="import-modal__paste-sample-btn"
+                onClick={handlePasteSample}
+              >
+                📥 Paste Sample
+              </button>
             </div>
-            <pre className="import-modal__sample-code">{SAMPLE_FORMAT}</pre>
+            <pre className="import-modal__sample-code">
+              {importMode === "json" ? SAMPLE_JSON : SAMPLE_CSV}
+            </pre>
           </div>
 
           {/* Input Area */}
           <div className="word-modal__form-group">
-            <label>Paste CSV Data</label>
+            <label>Paste {importMode.toUpperCase()} Data</label>
             <textarea
               className="import-modal__textarea"
               value={inputText}
               onChange={handleTextChange}
-              placeholder="Paste your CSV data here..."
-              rows={8}
+              placeholder={`Paste your ${importMode.toUpperCase()} data here...`}
+              rows={12}
             />
           </div>
 

@@ -33,9 +33,10 @@ export const wordsAdminApi = {
   },
 
   // Xóa từ vựng (soft delete mặc định, hard=true để xóa cứng)
-  deleteWord: async (wordId, hard = false) => {
+  deleteWord: async (wordId, hard = false, delete_reason = null) => {
     const response = await adminAxiosInstance.delete(`/admin/vocabulary/words/${wordId}`, {
-      params: { hard },
+      params: { hard: hard ? "true" : undefined },
+      data: hard && delete_reason ? { delete_reason } : undefined,
     });
     return response.data;
   },
@@ -116,9 +117,11 @@ export const wordsAdminApi = {
     return response.data;
   },
 
-  // Xóa topic (soft delete)
-  deleteTopic: async (topicId) => {
-    const response = await adminAxiosInstance.delete(`/admin/vocabulary/topics/${topicId}`);
+  // Xóa topic (soft delete mặc định, hard=true để xóa cứng)
+  deleteTopic: async (topicId, hard = false, delete_reason = null) => {
+    const response = await adminAxiosInstance.delete(`/admin/vocabulary/topics/${topicId}`, {
+      data: hard ? { hard: true, delete_reason } : undefined,
+    });
     return response.data;
   },
 

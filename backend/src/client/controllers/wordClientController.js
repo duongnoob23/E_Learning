@@ -37,6 +37,17 @@ exports.getWordDetail = async (req, res, next) => {
   }
 }
 
+// [GET] Tìm từ theo tên
+exports.findWordByName = async (req, res, next) => {
+  try {
+    const { word } = req.query;
+    const result = await wordClientService.findWordByName(word);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
 // [GET] User words theo cas nhan
 exports.getWordsByUser = async (req, res, next) => {
   try{
