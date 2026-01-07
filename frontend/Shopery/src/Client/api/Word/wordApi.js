@@ -91,6 +91,7 @@ export const wordApi = {
       partOfSpeech: data.partOfSpeech,
       pronunciation: data.pronunciation,
       imageUrl: data.imageUrl,
+      audioUrl: data.audioUrl,
       fromSystemWordId: data.fromSystemWordId,
       notes: data.notes,
     });

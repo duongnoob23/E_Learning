@@ -332,15 +332,15 @@ exports.postWordToUser = async (data) => {
     if (existingPersonal) {
       const newUserWord = await UserWord.create({
         user_id: user_id,
-        topic_id: existingPersonal.topic_id,
+        topic_id: topic_id || existingPersonal.topic_id,
         word: data.word,
         part_of_speech: part_of_speech || existingPersonal.part_of_speech,
         pronunciation: pronunciation || existingPersonal.pronunciation || null,
         meaning_vi: meaning_vi || existingPersonal.meaning_vi,
         example_en: example_en || existingPersonal.example_en,
         example_vi: example_vi || existingPersonal.example_vi,
-        image_url: existingPersonal.image_url,
-        notes: null,
+        image_url: image_url || existingPersonal.image_url || null,
+        notes: notes || null,
         from_system_word_id: null,
         is_active: true,
         created_at: new Date(),
@@ -348,7 +348,7 @@ exports.postWordToUser = async (data) => {
       });
       await UserWordStatus.create({
         user_id: user_id,
-        topic_id: existingPersonal.topic_id,
+        topic_id: topic_id || existingPersonal.topic_id,
         word_id: null,
         user_word_id: newUserWord.user_word_id,
         is_learned: false,
