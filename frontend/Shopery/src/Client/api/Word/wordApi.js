@@ -28,7 +28,9 @@ export const wordApi = {
 
   // Tìm từ theo tên trong hệ thống
   findWordByName: async (wordName) => {
-    const response = await axiosInstance.get(`/word/system/search?word=${encodeURIComponent(wordName)}`);
+    const response = await axiosInstance.get(
+      `/word/system/search?word=${encodeURIComponent(wordName)}`
+    );
     return response.data;
   },
 
@@ -43,10 +45,6 @@ export const wordApi = {
     const response = await axiosInstance.get(`/word/user?${params.toString()}`);
     return response.data;
   },
-
-  // =============================
-  // FLASHCARD SYSTEM
-  // =============================
 
   // Lấy danh sách topic công khai (hệ thống)
   getPublicTopics: async () => {
