@@ -23,7 +23,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
   
   const createTopicMutation = useCreateTopic();
   
-  // Search users khi topic_type = "user_created"
   const { data: searchUsersData } = useSearchUsers(
     userSearchQuery,
     formData.topic_type === "user_created" && userSearchQuery.length > 0
@@ -31,7 +30,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
   
   const searchResults = searchUsersData?.EC === "0" ? searchUsersData.DT || [] : [];
   
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
@@ -46,7 +44,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     
-    // Reset created_by when topic_type changes
     if (name === "topic_type") {
       setFormData((prev) => ({
         ...prev,
@@ -62,7 +59,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
       }));
     }
     
-    // Clear error when user types
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -107,7 +103,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
     e.preventDefault();
     if (!validate()) return;
     
-    // Chỉ gửi created_by khi topic_type = "user_created"
     const payload = {
       topic_name: formData.topic_name,
       description: formData.description || "",
@@ -117,7 +112,6 @@ export default function CreateTopicModal({ onClose, onSuccess }) {
       is_public: formData.is_public,
     };
     
-    // Chỉ thêm created_by nếu là user_created
     if (formData.topic_type === "user_created" && formData.created_by) {
       payload.created_by = formData.created_by;
     }

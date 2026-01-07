@@ -1,4 +1,3 @@
-// Client/components/Flashcard/FlashcardTabs/FlashcardTabs.jsx - Redesigned
 import {
   HiOutlineAcademicCap,
   HiOutlineBookmark,

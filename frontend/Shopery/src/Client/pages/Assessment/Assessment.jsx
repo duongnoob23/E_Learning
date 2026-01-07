@@ -1,13 +1,10 @@
 import React from "react";
-import Filter from "../../components/Assessment/AssessmentJSX/Filter";
 import Layout from "../../components/Assessment/AssessmentJSX/Layout";
 import List from "../../components/Assessment/AssessmentJSX/List";
 import SearchBar from "../../components/Assessment/AssessmentJSX/SearchBar";
-import Sidebar from "../../components/Assessment/AssessmentJSX/Sidebar";
 import { useTests } from "../../services/Assessment/assessmentQueries";
 import "./Assessment.css";
 
-// 🍎🍊🍋🍉🍇🍓🥑🍍
 const Assessment = () => {
   const { data: testsData, isLoading: testsLoading } = useTests();
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -43,13 +40,9 @@ const Assessment = () => {
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
             />
-            <List
-              data={filteredTests}
-              isLoading={testsLoading}
-            />
+            <List data={filteredTests} isLoading={testsLoading} />
           </>
         }
-      // right={<Sidebar />}
       />
     </div>
   );

@@ -1,4 +1,3 @@
-// Client/components/Flashcard/CreateTopicModal/CreateTopicModal.jsx - Updated based on admin design
 import React, { useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { useCreateSet } from "../../../services/Word/wordMutations";
@@ -22,7 +21,6 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
       [name]: value,
     }));
 
-    // Clear error when user types
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -64,7 +62,6 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }) {
     );
   };
 
-  // Reset form when modal closes
   React.useEffect(() => {
     if (!isOpen) {
       setFormData({ topic_name: "", description: "", image_url: "", logo_url: "" });

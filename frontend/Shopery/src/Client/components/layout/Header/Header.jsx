@@ -1,4 +1,3 @@
-// Client Header Component
 import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../../stores/authStore";

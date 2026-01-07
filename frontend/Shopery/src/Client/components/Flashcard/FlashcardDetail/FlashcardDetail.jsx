@@ -1,4 +1,3 @@
-// Client/components/Flashcard/FlashcardDetail/FlashcardDetail.jsx - Updated with pagination
 import React, { useState } from "react";
 import {
   FiArrowLeft,
@@ -20,19 +19,15 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 50;
 
-  // Fetch words từ API với pagination
   const {
     data: wordsData,
     isLoading: isLoadingWords,
     refetch,
   } = useWordsBySet(topic?.id, currentPage, limit, !!topic?.id);
 
-  // Fetch progress
   const { data: progressData } = useProgressByTopic(topic?.id, !!topic?.id);
 
-  // Transform words từ API - format phù hợp với WordListDisplay
   const words = React.useMemo(() => {
-    // Debug: Log API response
     if (wordsData) {
       console.log("[FlashcardDetail] wordsData:", wordsData);
       console.log("[FlashcardDetail] wordsData.DT:", wordsData.DT);
@@ -47,15 +42,14 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
         id: word.user_word_id || word.word_id,
         word_id: word.word_id,
         user_word_id: word.user_word_id,
-        // WordListDisplay expect: en, vi
         en: word.word || "",
         vi: word.meaning_vi || word.meaning || "",
-        word: word.word || "", // Giữ lại để tương thích
+        word: word.word || "",
         pronunciation: word.pronunciation || "",
         meaning_vi: word.meaning_vi || word.meaning || "",
         definition_en: word.definition_en || word.notes || "",
         example_en: word.example_en || word.example || "",
-        example: word.example_en || word.example || "", // WordListDisplay expect: example
+        example: word.example_en || word.example || "",
         example_vi: word.example_vi || "",
         part_of_speech: word.part_of_speech || "",
         audio_url: word.audio_url || null,
@@ -70,28 +64,23 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
     return [];
   }, [wordsData]);
 
-  // Pagination info
   const pagination = wordsData?.pagination || null;
   const totalWords = pagination?.total || words.length;
   const totalPages = pagination?.total_pages || 1;
 
-  // Progress data
   const progress = progressData?.EC === "0" ? progressData.DT : null;
 
-  // Calculate progress (chỉ tính trên trang hiện tại)
   const learnedCount = words.filter((w) => w.is_learned).length;
   const progressPercent = progress?.progress_percentage || 0;
 
   const handleAddWord = () => {
     setShowAddWordModal(false);
     refetch();
-    // Reset về trang 1 sau khi thêm từ
     setCurrentPage(1);
   };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    // Scroll to top khi chuyển trang
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
