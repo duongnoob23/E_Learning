@@ -4,15 +4,11 @@ import "../AssessmentCSS/List.css";
 import Card from "./Card";
 
 const List = (Props) => {
-  const { data } = Props;
+  const { data: tests, isLoading } = Props;
 
   // Lấy thống kê người dùng để kiểm tra các session đã hoàn thành
   const { data: userStatsData, isLoading: userStatsLoading } =
     useUserStatistics();
-  // console.log(
-  //   "🚀 ~ List ~ userStatsData:",
-  //   JSON.stringify(userStatsData, null, 2)
-  // );
 
   // Tạo map các test đã hoàn thành từ recent_sessions
   const completedTests = React.useMemo(() => {
@@ -27,25 +23,28 @@ const List = (Props) => {
     return completed;
   }, [userStatsData]);
 
-  if (userStatsLoading) {
+  if (userStatsLoading || isLoading) {
     return <div className="assessment-list">Đang tải dữ liệu...</div>;
+  }
+
+  if (!tests || tests.length === 0) {
+    return <div className="assessment-list">Không tìm thấy bài thi nào phù hợp.</div>;
   }
 
   return (
     <div className="assessment-list">
-      {data &&
-        data.DT.tests.map((assessment) => {
-          const isCompleted = completedTests.has(assessment.test_id);
-          return (
-            <Card
-              key={assessment.test_id}
-              exam={assessment}
-              id={assessment.test_id}
-              isCompleted={isCompleted}
-              userStats={userStatsData?.DT}
-            />
-          );
-        })}
+      {tests.map((assessment) => {
+        const isCompleted = completedTests.has(assessment.test_id);
+        return (
+          <Card
+            key={assessment.test_id}
+            exam={assessment}
+            id={assessment.test_id}
+            isCompleted={isCompleted}
+            userStats={userStatsData?.DT}
+          />
+        );
+      })}
     </div>
   );
 };

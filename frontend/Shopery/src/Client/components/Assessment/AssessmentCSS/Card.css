@@ -1,5 +1,6 @@
 .assessment-card {
-  width: calc(25% - 12px);
+  width: 100%;
+  min-width: 0;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 12px;

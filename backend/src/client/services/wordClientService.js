@@ -625,20 +625,46 @@ exports.getWordsBySet = async (set_id, userId = null, pagination = { page: 1, li
 
     console.log(`[getWordsBySet Service] Topic found: ${set.topic_name}, type: ${set.topic_type}`);
 
-    // Sử dụng logic giống admin: luôn lấy từ bảng Word (không phân biệt system hay user_created)
-    // Vì words của user_created topics cũng được lưu trong bảng Word với topic_id tương ứng
-    const { count, rows: words } = await Word.findAndCountAll({
-      where: {
-        topic_id: set_id,
-        is_active: true,
-      },
-      limit: limit,
-      offset: offset,
-      order: [["word_id", "ASC"]],
-    });
+    let count, words;
 
-    console.log(`[getWordsBySet] topic_id: ${set_id}, topic_type: ${set.topic_type}`);
-    console.log(`[getWordsBySet] Found ${count} words in Word table, returning ${words.length} words for page ${page}`);
+    // Phân biệt logic theo topic_type
+    if (set.topic_type === "system") {
+      // Topic hệ thống: lấy từ bảng Word
+      const result = await Word.findAndCountAll({
+        where: {
+          topic_id: set_id,
+          is_active: true,
+        },
+        limit: limit,
+        offset: offset,
+        order: [["word_id", "ASC"]],
+      });
+      count = result.count;
+      words = result.rows;
+      console.log(`[getWordsBySet] System topic: Found ${count} words in Word table, returning ${words.length} words for page ${page}`);
+    } else if (set.topic_type === "user_created") {
+      // Topic user-created: lấy từ bảng UserWord
+      const result = await UserWord.findAndCountAll({
+        where: {
+          topic_id: set_id,
+          user_id: set.created_by, // Lấy từ của user tạo topic
+          is_active: true,
+        },
+        limit: limit,
+        offset: offset,
+        order: [["user_word_id", "ASC"]],
+      });
+      count = result.count;
+      words = result.rows;
+      console.log(`[getWordsBySet] User-created topic: Found ${count} words in UserWord table for user ${set.created_by}, returning ${words.length} words for page ${page}`);
+    } else {
+      console.error(`[getWordsBySet] Unknown topic_type: ${set.topic_type}`);
+      return {
+        EM: "Topic type không hợp lệ",
+        EC: "1",
+        DT: null,
+      };
+    }
 
     return {
       EM: "Lấy danh sách từ vựng trong set thành công",
@@ -1350,8 +1376,8 @@ exports.getPronunciationStats = async (userId, topicId = null) => {
     const avgScore =
       totalAssessments > 0
         ? (
-            assessments.reduce((sum, a) => sum + a.score, 0) / totalAssessments
-          ).toFixed(2)
+          assessments.reduce((sum, a) => sum + a.score, 0) / totalAssessments
+        ).toFixed(2)
         : 0;
 
     const scoreDistribution = {

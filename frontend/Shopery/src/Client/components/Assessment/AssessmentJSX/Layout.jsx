@@ -5,7 +5,7 @@ const Layout = ({ left, right }) => {
   return (
     <div className="assessment-layout">
       <div className="assessment-layout__left">{left}</div>
-      <div className="assessment-layout__right">{right}</div>
+      {right && <div className="assessment-layout__right">{right}</div>}
     </div>
   );
 };

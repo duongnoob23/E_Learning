@@ -27,6 +27,16 @@
   color: #1677ff;
 }
 
+.assessment-filter__btn--active {
+  background-color: #1677ff;
+  color: white;
+  border-color: #1677ff;
+}
+
+.assessment-filter__btn--active:hover {
+  color: white;
+}
+
 .assessment-filter__btn--small {
   font-size: 0.85rem;
   padding: 4px 10px;

@@ -3,47 +3,23 @@ import "../AssessmentCSS/Filter.css";
 
 const categories = [
   "Tất cả",
-  "IELTS Academic",
-  "IELTS General",
-  "TOEIC",
-  "TOEIC SW",
-  "HSK 1",
-  "HSK 2",
-  "HSK 3",
-  "HSK 4",
-  "TOPIK I",
-  "TOPIK II",
+  "toeic speaking",
+  "toeic writing",
+  "toeic listening-reading",
 ];
 
-const subCategories = [
-  "2024",
-  "2023",
-  "2022",
-  "2021",
-  "2020",
-  "New economy",
-  "Y1",
-  "Y2",
-  "ETS (old format)",
-];
-
-const Filter = () => {
+const Filter = ({ selectedCategory, onCategoryChange }) => {
   return (
     <div className="assessment-filter">
       <div className="assessment-filter__categories">
         {categories.map((cat) => (
-          <button key={cat} className="assessment-filter__btn">
-            {cat}
-          </button>
-        ))}
-      </div>
-      <div className="assessment-filter__sub">
-        {subCategories.map((sub) => (
           <button
-            key={sub}
-            className="assessment-filter__btn assessment-filter__btn--small"
+            key={cat}
+            className={`assessment-filter__btn ${selectedCategory === cat ? "assessment-filter__btn--active" : ""
+              }`}
+            onClick={() => onCategoryChange(cat)}
           >
-            {sub}
+            {cat}
           </button>
         ))}
       </div>

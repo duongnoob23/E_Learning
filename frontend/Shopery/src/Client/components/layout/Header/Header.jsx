@@ -1,6 +1,6 @@
 // Client Header Component
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../../stores/authStore";
 import "./Header.css";
 
@@ -37,58 +37,57 @@ const Header = () => {
         <nav className={`header__nav ${isMenuOpen ? "header__nav--open" : ""}`}>
           <ul className="header__nav-list">
             <li className="header__nav-item">
-              <Link
+              <NavLink
                 to="/"
-                className="header__nav-link header__nav-link--active"
+                className={({ isActive }) =>
+                  `header__nav-link ${isActive ? "header__nav-link--active" : ""}`
+                }
+                end
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="header__nav-item">
-              <Link to="course" className="header__nav-link">
+              <NavLink
+                to="/course"
+                className={({ isActive }) =>
+                  `header__nav-link ${isActive ? "header__nav-link--active" : ""}`
+                }
+              >
                 Course
-              </Link>
+              </NavLink>
             </li>
             <li className="header__nav-item">
-              <Link to="/flashcard" className="header__nav-link">
+              <NavLink
+                to="/flashcard"
+                className={({ isActive }) =>
+                  `header__nav-link ${isActive ? "header__nav-link--active" : ""}`
+                }
+              >
                 Flashcard
-              </Link>
+              </NavLink>
             </li>
             <li className="header__nav-item">
-              <Link to="/exam" className="header__nav-link">
-                Practice Tests
-              </Link>
-            </li>
-            <li className="header__nav-item">
-              <Link to="/assessment" className="header__nav-link">
+              <NavLink
+                to="/assessment"
+                className={({ isActive }) =>
+                  `header__nav-link ${isActive ? "header__nav-link--active" : ""}`
+                }
+              >
                 Assessment
-              </Link>
+              </NavLink>
             </li>
+
             <li className="header__nav-item">
-              <Link to="/blog" className="header__nav-link">
-                Blog
-              </Link>
-            </li>
-            <li className="header__nav-item">
-              <Link to="/instructor" className="header__nav-link">
-                Instructor
-              </Link>
-            </li>
-            <li className="header__nav-item">
-              <Link to="/mycourses" className="header__nav-link">
+              <NavLink
+                to="/mycourses"
+                className={({ isActive }) =>
+                  `header__nav-link ${isActive ? "header__nav-link--active" : ""}`
+                }
+              >
                 My Courses
-              </Link>
+              </NavLink>
             </li>
-            <li className="header__nav-item">
-              <Link to="/test" className="header__nav-link">
-                Test
-              </Link>
-            </li>
-            {/* <li className="header__nav-item">
-              <Link to="/courses" className="header__nav-link">
-                Courses
-              </Link>
-            </li> */}
           </ul>
         </nav>
 
@@ -117,9 +116,8 @@ const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`header__menu-toggle ${
-            isMenuOpen ? "header__menu-toggle--open" : ""
-          }`}
+          className={`header__menu-toggle ${isMenuOpen ? "header__menu-toggle--open" : ""
+            }`}
           onClick={toggleMenu}
         >
           <span></span>

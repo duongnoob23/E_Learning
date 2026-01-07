@@ -1,5 +1,9 @@
 /* Header Component - CSS theo chuẩn BEM */
 
+* {
+  text-decoration: none;
+}
+
 .header {
   background: linear-gradient(135deg, #4fd1c7 0%, #38b2ac 100%);
   padding: 0;
@@ -102,6 +106,7 @@
 .header__nav-link:hover {
   color: rgba(255, 255, 255, 0.9);
   transform: translateY(-1px);
+  text-decoration: none;
 }
 
 /* Auth Buttons */
@@ -242,7 +247,8 @@
 
 .client-main {
   flex: 1;
-  padding-top: 70px; /* Space for fixed header */
+  padding-top: 70px;
+  /* Space for fixed header */
 }
 
 /* Responsive Design */
