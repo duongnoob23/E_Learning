@@ -12,6 +12,24 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
   // Mutation để xóa từ
   const deleteWordMutation = useDeleteUserWord();
 
+  // Helper function để fix image URL - tự động thêm https://study4.com/ nếu chưa có
+  const fixImageUrl = (url) => {
+    if (!url) return null;
+    
+    // Nếu đã có http:// hoặc https:// thì giữ nguyên
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    
+    // Nếu bắt đầu bằng / thì thêm domain
+    if (url.startsWith('/')) {
+      return `https://study4.com${url}`;
+    }
+    
+    // Nếu không có / ở đầu thì thêm / và domain
+    return `https://study4.com/${url}`;
+  };
+
   if (words.length === 0) {
     return <div className="word-list-empty">Không có từ vựng nào</div>;
   }
@@ -25,7 +43,7 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     vi: word.meaning_vi || word.meaning || "",
     pronunciation: word.pronunciation || `/${word.word}/`,
     audio_url: word.audio_url || null,
-    image_url: word.image_url || null,
+    image_url: fixImageUrl(word.image_url), // Fix image URL
     example: word.example_en || word.example || "",
     example_vi: word.example_vi || "",
   }));
@@ -305,13 +323,10 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
                 )}
                 <h2 className="word-definition">{currentWord.vi}</h2>
                 {currentWord.example && (
-                  <>
-                    <div className="word-example">
-                      <p className="word-example-title">Example: </p>
-                      <div></div>
-                      <p className="word-example-en">{currentWord.example}</p>
-                    </div>
-                  </>
+                  <div className="word-example">
+                    <p className="word-example-title">Example</p>
+                    <p className="word-example-en">{currentWord.example}</p>
+                  </div>
                 )}
               </div>
             </div>

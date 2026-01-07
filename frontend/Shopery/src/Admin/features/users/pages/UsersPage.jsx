@@ -16,10 +16,8 @@ import {
   useDeleteUser,
   useBanUser,
   useUnbanUser,
-  useVerifyEmail,
 } from "../hooks/useUsersAdminMutations";
 import CreateUserModal from "../components/CreateUserModal";
-import EditUserModal from "../components/EditUserModal";
 import UserDetailModal from "../components/UserDetailModal";
 import "./UsersPage.scss";
 
@@ -52,7 +50,6 @@ export default function UsersPage() {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [showActionMenu, setShowActionMenu] = useState(null);
-  const [editUserId, setEditUserId] = useState(null);
   const [detailUserId, setDetailUserId] = useState(null);
 
   const rowsPerPage = 10;
@@ -73,7 +70,6 @@ export default function UsersPage() {
   const deleteUserMutation = useDeleteUser();
   const banUserMutation = useBanUser();
   const unbanUserMutation = useUnbanUser();
-  const verifyEmailMutation = useVerifyEmail();
 
   // Xử lý dữ liệu từ API
   const users = useMemo(() => {
@@ -157,11 +153,6 @@ export default function UsersPage() {
 
   const handleUnban = (userId) => {
     unbanUserMutation.mutate(userId);
-    setShowActionMenu(null);
-  };
-
-  const handleVerifyEmail = (userId) => {
-    verifyEmailMutation.mutate(userId);
     setShowActionMenu(null);
   };
 
@@ -383,10 +374,6 @@ export default function UsersPage() {
                         {showActionMenu === user.user_id && (
                           <div className="users-page__action-menu-dropdown">
                             <button className="users-page__action-menu-item" onClick={() => { setDetailUserId(user.user_id); setShowActionMenu(null); }}>View Details</button>
-                            <button className="users-page__action-menu-item" onClick={() => { setEditUserId(user.user_id); setShowActionMenu(null); }}>Edit</button>
-                            {!user.email_verified && (
-                              <button className="users-page__action-menu-item" onClick={() => handleVerifyEmail(user.user_id)}>Verify Email</button>
-                            )}
                             {user.status === "banned" ? (
                               <button className="users-page__action-menu-item" onClick={() => handleUnban(user.user_id)}>Unban</button>
                             ) : (
@@ -439,13 +426,6 @@ export default function UsersPage() {
         <CreateUserModal
           onClose={() => setOpenCreateModal(false)}
           onSuccess={() => { setOpenCreateModal(false); refetch(); }}
-        />
-      )}
-      {editUserId && (
-        <EditUserModal
-          userId={editUserId}
-          onClose={() => setEditUserId(null)}
-          onSuccess={() => { setEditUserId(null); refetch(); }}
         />
       )}
       {detailUserId && (

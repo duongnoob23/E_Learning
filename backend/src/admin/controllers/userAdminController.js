@@ -1,6 +1,5 @@
 const userAdminService = require("../services/userAdminService");
 
-// gan role cho user
 exports.assignRoleToUser = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -12,7 +11,6 @@ exports.assignRoleToUser = async (req, res, next) => {
     }
 }
 
-//--- Quản lý tài khoản ---//
 exports.getUsers = async (req, res, next) => {
     try {
         const response = await userAdminService.getUsers(req.query);
@@ -61,7 +59,6 @@ exports.deleteUser = async (req, res, next) => {
     }
 }
 
-//--- Quản lý trạng thái tài khoản ---//
 exports.banUser = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -93,8 +90,6 @@ exports.updateUserStatus = async (req, res, next) => {
     }
 }
 
-//--- Quản lý xác thực email & phone ---//
-
 exports.verifyPhone = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -105,7 +100,6 @@ exports.verifyPhone = async (req, res, next) => {
     }
 }
 
-//--- Quản lý bảo mật & đăng nhập ---//
 exports.verifyEmail = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -116,7 +110,6 @@ exports.verifyEmail = async (req, res, next) => {
     }
 }
 
-//--- Tìm kiếm & lọc nâng cao ---//
 exports.searchUsers = async (req, res, next) => {
     try {
         const { keyword } = req.query;
@@ -137,7 +130,6 @@ exports.filterUsers = async (req, res, next) => {
     }
 }
 
-//--- Thống kê phân tích ---//
 exports.getUsersStats = async (req, res, next) => {
     try {
         const response = await userAdminService.getUsersStats();
@@ -156,7 +148,6 @@ exports.getUsersStatsByStatus = async (req, res, next) => {
     }
 }
 
-//--- Lấy danh sách khóa học đã đăng ký của user ---//
 exports.getUserEnrollments = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -167,7 +158,6 @@ exports.getUserEnrollments = async (req, res, next) => {
     }
 }
 
-//--- Lấy danh sách giao dịch của user ---//
 exports.getUserPayments = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -178,7 +168,6 @@ exports.getUserPayments = async (req, res, next) => {
     }
 }
 
-//--- Flashcard Progress ---//
 exports.getUserFlashcardProgress = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -199,7 +188,6 @@ exports.getUserCreatedTopics = async (req, res, next) => {
     }
 }
 
-//--- Exam Progress ---//
 exports.getUserExams = async (req, res, next) => {
     try {
         const { user_id } = req.params;
@@ -220,7 +208,6 @@ exports.getUserExamStatistics = async (req, res, next) => {
     }
 }
 
-//--- Lấy kết quả chi tiết bài thi ---//
 exports.getUserExamResult = async (req, res, next) => {
     try {
         const { user_id, exam_session_id } = req.params;
@@ -231,7 +218,6 @@ exports.getUserExamResult = async (req, res, next) => {
     }
 }
 
-//--- Course Progress ---//
 exports.getUserCourseProgress = async (req, res, next) => {
     try {
         const { user_id } = req.params;

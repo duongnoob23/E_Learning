@@ -20,11 +20,28 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 50;
 
+  // Helper function để fix image URL - tự động thêm https://study4.com/ nếu chưa có
+  const fixImageUrl = (url) => {
+    if (!url) return null;
+    
+    // Nếu đã có http:// hoặc https:// thì giữ nguyên
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    
+    // Nếu bắt đầu bằng / thì thêm domain
+    if (url.startsWith('/')) {
+      return `https://study4.com${url}`;
+    }
+    
+    // Nếu không có / ở đầu thì thêm / và domain
+    return `https://study4.com/${url}`;
+  };
+
   // Fetch words từ API với pagination
   const {
     data: wordsData,
     isLoading: isLoadingWords,
-    refetch,
   } = useWordsBySet(topic?.id, currentPage, limit, !!topic?.id);
 
   // Fetch progress
@@ -59,7 +76,7 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
         example_vi: word.example_vi || "",
         part_of_speech: word.part_of_speech || "",
         audio_url: word.audio_url || null,
-        image_url: word.image_url || null,
+        image_url: fixImageUrl(word.image_url), // Fix image URL
         is_learned: word.is_learned || false,
         mastery_level: word.mastery_level || 0,
       }));
@@ -77,17 +94,7 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
 
   // Progress data
   const progress = progressData?.EC === "0" ? progressData.DT : null;
-
-  // Calculate progress (chỉ tính trên trang hiện tại)
-  const learnedCount = words.filter((w) => w.is_learned).length;
   const progressPercent = progress?.progress_percentage || 0;
-
-  const handleAddWord = () => {
-    setShowAddWordModal(false);
-    refetch();
-    // Reset về trang 1 sau khi thêm từ
-    setCurrentPage(1);
-  };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);

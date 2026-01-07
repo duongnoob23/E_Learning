@@ -23,8 +23,6 @@ const {
 const { Op, Sequelize } = require("sequelize");
 const sequelize = require("../../config/database");
 
-//--- Gán role cho user ---//
-
 exports.assignRoleToUser = async (user_id, role_id) => {
     try {
         const user = await User.findByPk(user_id);
@@ -60,7 +58,6 @@ exports.assignRoleToUser = async (user_id, role_id) => {
         };
     }
 }
-//--- Quản lý tài khoản ---//
 exports.getUsers = async (query) => {
     try {
         const { page = 1, limit = 10, sort = "ASC", order = "user_id" } = query;
@@ -132,7 +129,6 @@ exports.getUserDetail = async (user_id) => {
             order: [["enrolled_at", "DESC"]],
         });
 
-        // Lấy danh sách giao dịch
         const payments = await Payment.findAll({
             where: { user_id },
             include: [
@@ -158,7 +154,6 @@ exports.getUserDetail = async (user_id) => {
             order: [["created_at", "DESC"]],
         });
 
-        // Thống kê tổng quan
         const stats = {
             totalEnrollments: enrollments.length,
             completedCourses: enrollments.filter(e => e.status === "completed").length,
@@ -243,7 +238,6 @@ exports.deleteUser = async (user_id) => {
     }
 }
 
-//--- Quản lý trạng thái tài khoản ---//
 exports.banUser = async (user_id) => {
     try {
         await User.updateUser(user_id, { status: "banned" });
@@ -298,7 +292,6 @@ exports.updateUserStatus = async (user_id, status) => {
     }
 }
 
-//--- Quản lý xác thực email & phone ---//
 exports.verifyEmail = async (user_id) => {
     try {
         await User.updateUser(user_id, { email_verified: true });
@@ -335,7 +328,6 @@ exports.verifyPhone = async (user_id) => {
     }
 }
 
-//--- Quản lý bảo mật & đăng nhập ---//
 exports.resetPassword = async (user_id, new_password) => {
     try {   
         await User.updateUser(user_id, { password_hash: new_password });
@@ -354,7 +346,6 @@ exports.resetPassword = async (user_id, new_password) => {
     }
 }
 
-//--- Tìm kiếm & lọc nâng cao ---//
 exports.searchUsers = async (keyword) => {
     try {
         const users = await User.findAll({
@@ -403,15 +394,6 @@ exports.filterUsers = async (from, to) => {
     }
 }
 
-//--- Thống kê phân tích ---//  
-// json tra ve :{
-//   "total_users": 1200,
-//   "active": 950,
-//   "banned": 20,
-//   "inactive": 150,
-//   "pending_verification": 80,
-//   "today_new_users": 12
-// }
 exports.getUsersStats = async () => {
     try {
         const totalUsers = await User.count();
@@ -465,7 +447,6 @@ exports.getUsersStatsByStatus = async () => {
     }
 }
 
-//--- Lấy danh sách khóa học đã đăng ký của user ---//
 exports.getUserEnrollments = async (user_id, query = {}) => {
     try {
         const { page = 1, limit = 10, status } = query;
@@ -512,7 +493,6 @@ exports.getUserEnrollments = async (user_id, query = {}) => {
     }
 };
 
-//--- Lấy danh sách giao dịch của user ---//
 exports.getUserPayments = async (user_id, query = {}) => {
     try {
         const { page = 1, limit = 10, payment_status } = query;
@@ -550,7 +530,6 @@ exports.getUserPayments = async (user_id, query = {}) => {
             order: [["created_at", "DESC"]],
         });
 
-        // Tính tổng tiền đã thanh toán
         const totalSpent = await Payment.sum("amount", {
             where: { user_id, payment_status: "completed" },
         }) || 0;
@@ -579,22 +558,18 @@ exports.getUserPayments = async (user_id, query = {}) => {
     }
 };
 
-//--- Flashcard Progress ---//
 exports.getUserFlashcardProgress = async (user_id) => {
     try {
-        // Lấy tất cả topics active
         const allTopics = await Topic.findAll({
             where: { is_active: true },
             attributes: ["topic_id", "topic_name", "description", "image_url"],
         });
 
-        // Lấy trạng thái học từ của user
         const userWordStatuses = await UserWordStatus.findAll({
             where: { user_id },
             attributes: ["word_id", "topic_id", "is_learned", "marked_at"],
         });
 
-        // Tính toán tiến độ cho từng topic
         const topicsWithProgress = await Promise.all(
             allTopics.map(async (topic) => {
                 const topicWords = await Word.findAll({
@@ -636,11 +611,9 @@ exports.getUserFlashcardProgress = async (user_id) => {
             })
         );
 
-        // Tính tổng số từ đã học
         const totalWordsLearned = userWordStatuses.filter((uws) => uws.is_learned === true).length;
         const totalTopicsStudied = new Set(userWordStatuses.map((uws) => uws.topic_id)).size;
 
-        // Tính study streak (ngày liên tiếp học)
         const studyDates = userWordStatuses
             .filter((uws) => uws.marked_at !== null)
             .map((uws) => {
@@ -712,7 +685,6 @@ exports.getUserCreatedTopics = async (user_id) => {
             order: [["created_at", "DESC"]],
         });
 
-        // Đếm số người học mỗi topic
         const topicsWithLearners = await Promise.all(
             topics.map(async (topic) => {
                 const learnersCount = await UserWordStatus.count({
@@ -765,7 +737,6 @@ exports.getUserCreatedTopics = async (user_id) => {
     }
 };
 
-//--- Exam Progress ---//
 exports.getUserExams = async (user_id, query = {}) => {
     try {
         const { page = 1, limit = 20 } = query;
@@ -773,13 +744,12 @@ exports.getUserExams = async (user_id, query = {}) => {
 
         console.log(`[getUserExams] Fetching exams for user_id: ${user_id}, page: ${page}, limit: ${limit}`);
 
-        // Sử dụng cùng cách query như client API (findRecentSessions)
         const { count, rows: examSessions } = await ExamSession.findAndCountAll({
             where: { user_id },
             include: [
                 {
                     model: Test,
-                    as: "test", // ✅ Sử dụng "test" (小写) như client API
+                    as: "test",
                     attributes: ["test_id", "title", "exam_type", "total_duration", "total_questions"],
                     required: false,
                 },
@@ -791,12 +761,9 @@ exports.getUserExams = async (user_id, query = {}) => {
 
         console.log(`[getUserExams] Found ${count} total sessions, returning ${examSessions.length} sessions`);
 
-        // Format data - 与客户端 API 保持一致
         const exams = examSessions.map((session) => {
-            // ✅ 优先使用 session.test (小写)，与客户端 API 一致
             const test = session.test || session.Test || null;
             
-            // Parse selected_parts nếu là JSON string
             let selectedParts = null;
             try {
                 if (session.selected_parts) {
@@ -825,7 +792,7 @@ exports.getUserExams = async (user_id, query = {}) => {
                 wrong_answers: session.wrong_answers || 0,
                 skipped_answers: session.skipped_answers || 0,
                 status: session.status,
-                selected_parts: selectedParts, // ✅ 添加 selected_parts 信息
+                selected_parts: selectedParts,
                 created_at: session.created_at,
             };
 
@@ -868,12 +835,10 @@ exports.getUserExams = async (user_id, query = {}) => {
 
 exports.getUserExamStatistics = async (user_id) => {
     try {
-        // Lấy thống kê từ UserExamStatistics nếu có
         const userExamStats = await UserExamStatistics.findOne({
             where: { user_id },
         });
 
-        // Lấy thống kê tổng quan từ exam_sessions
         const completedSessions = await ExamSession.findAll({
             where: {
                 user_id,
@@ -887,7 +852,6 @@ exports.getUserExamStatistics = async (user_id) => {
             ],
         });
 
-        // Sử dụng UserExamStatistics nếu có, nếu không thì tính từ sessions
         const totalExams = userExamStats?.total_tests_taken || completedSessions.length;
         const averageScore = userExamStats?.average_score 
             ? parseFloat(userExamStats.average_score)
@@ -908,7 +872,6 @@ exports.getUserExamStatistics = async (user_id) => {
                 ? Math.min(...completedSessions.map((s) => s.total_score || 0))
                 : 0;
 
-        // Thống kê theo exam type
         const sessionsByType = await ExamSession.findAll({
             where: {
                 user_id,
@@ -961,12 +924,10 @@ exports.getUserExamStatistics = async (user_id) => {
             order: [["last_attempt", "DESC"]],
         });
 
-        // Nếu part null, query trực tiếp từ Part table
         const byPart = await Promise.all(
             partStats.map(async (ps) => {
                 let part = ps.part || ps.Part || null;
                 
-                // Nếu part null, query trực tiếp
                 if (!part && ps.part_id) {
                     part = await Part.findByPk(ps.part_id, {
                         attributes: ["part_name", "part_type", "part_number"],
