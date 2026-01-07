@@ -1,58 +1,18 @@
-// frontend/Shopery/src/Client/pages/Course/Course.jsx
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { mapCourseData } from "../../../utils/dataMapper";
-import {
-  useCategories,
-  useCourses,
-  useInstructors,
-  useLevels,
-} from "../../services/Course/courseQueries";
+import { useCourses } from "../../services/Course/courseQueries";
 import "./Course.css";
 
-// Màu xanh chủ đạo
-const PRIMARY_COLOR = "#1ec28b";
-
-const reviewOptions = [5, 4, 3, 2, 1];
-
 function Course() {
-  // State filter
   const [view, setView] = useState("grid");
   const [search, setSearch] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedInstructors, setSelectedInstructors] = useState([]);
-  const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState("all");
-  const [selectedReview, setSelectedReview] = useState([]);
-  const [showReview, setShowReview] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("newest");
 
-  const {
-    data: categoriesData,
-    isLoading: categoriesLoading,
-    error: categoriesError,
-  } = useCategories();
-
-  // Lấy danh sách levels
-  const {
-    data: levelsData,
-    isLoading: levelsLoading,
-    error: levelsError,
-  } = useLevels();
-
-  // Lấy danh sách instructors
-  const {
-    data: instructorsData,
-    isLoading: instructorsLoading,
-    error: instructorsError,
-  } = useInstructors();
-
   const navigate = useNavigate();
 
-  // Build filters object for API
   const filters = useMemo(() => {
-    // Limit khác nhau cho grid và list
     const itemsPerPage = view === "grid" ? 6 : 4;
 
     const apiFilters = {
@@ -61,95 +21,20 @@ function Course() {
       sort_by: sortBy,
     };
 
-    // Search
     if (search.trim()) {
       apiFilters.title = search.trim();
     }
 
-    // Categories - SỬA: dùng ID thay vì tên
-    // Sửa dòng 67-78
-    // Categories - SỬA: dùng ID thay vì tên
-    if (selectedCategories.length > 0) {
-      // Tìm ID từ tên được chọn
-      const selectedCategoryIds = selectedCategories
-        .map((categoryName) => {
-          const category = categoriesData?.DT?.find(
-            (cat) => cat.name === categoryName
-          );
-          return category?.category_id;
-        })
-        .filter(Boolean);
-
-      if (selectedCategoryIds.length > 0) {
-        apiFilters.category = selectedCategoryIds[0]; // Gửi ID
-      }
-    }
-
-    // Instructors - SỬA: dùng ID thay vì tên
-    if (selectedInstructors.length > 0) {
-      const selectedInstructorIds = selectedInstructors
-        .map((instructorName) => {
-          const instructor = instructorsData?.DT?.find(
-            (inst) => inst.name === instructorName
-          );
-          return instructor?.instructor_id;
-        })
-        .filter(Boolean);
-
-      if (selectedInstructorIds.length > 0) {
-        apiFilters.instructor = selectedInstructorIds[0]; // Gửi ID
-      }
-    }
-
-    // Levels - SỬA: dùng ID thay vì tên
-    if (selectedLevels.length > 0) {
-      const selectedLevelIds = selectedLevels
-        .map((levelName) => {
-          const level = levelsData?.DT?.find((lvl) => lvl.name === levelName);
-          return level?.level_id;
-        })
-        .filter(Boolean);
-
-      if (selectedLevelIds.length > 0) {
-        apiFilters.level = selectedLevelIds[0]; // Gửi ID
-      }
-    }
-
-    // Price
-    if (selectedPrice === "free") {
-      apiFilters.price_type = "free";
-    } else if (selectedPrice === "paid") {
-      apiFilters.price_type = "paid";
-    }
-
-    // Rating
-    if (selectedReview.length > 0) {
-      apiFilters.rating = Math.min(...selectedReview);
-    }
-
     return apiFilters;
-  }, [
-    search,
-    selectedCategories,
-    selectedInstructors,
-    selectedLevels,
-    selectedPrice,
-    selectedReview,
-    currentPage,
-    sortBy,
-    view,
-  ]);
+  }, [search, currentPage, sortBy, view]);
 
-  // Gọi các API trực tiếp
   const {
     data: coursesData,
     isLoading: coursesLoading,
     error: coursesError,
     refetch: refetchCourses,
-    isFetching: coursesFetching,
   } = useCourses(filters);
 
-  // Map dữ liệu từ API
   const courses = useMemo(() => {
     if (!coursesData?.DT?.courses) return [];
     return coursesData.DT.courses.map(mapCourseData);
@@ -166,74 +51,6 @@ function Course() {
     );
   }, [coursesData]);
 
-  // Lấy tất cả courses để đếm (không filter)
-  const { data: allCoursesData } = useCourses({
-    page: 1,
-    limit: 1000, // Lấy nhiều để đếm
-  });
-
-  const allCourses = useMemo(() => {
-    if (!allCoursesData?.DT?.courses) return [];
-    return allCoursesData.DT.courses.map(mapCourseData);
-  }, [allCoursesData]);
-
-  // Map filter options từ API với count thực tế
-  const filterOptions = useMemo(() => {
-    const categories = categoriesData?.DT || [];
-    const instructors = instructorsData?.DT || [];
-    const levels = levelsData?.DT || [];
-
-    return {
-      categories: categories.map((cat) => {
-        const categoryId = cat.category_id;
-        const count = allCourses.filter(
-          (course) => course.categoryId === categoryId
-        ).length;
-        return { name: cat.name, count, categoryId };
-      }),
-      instructors: instructors.map((inst) => {
-        const instructorId = inst.instructor_id;
-        const count = allCourses.filter(
-          (course) => course.instructorId === instructorId
-        ).length;
-        return { name: inst.name, count, instructorId };
-      }),
-      levels: levels.map((level) => {
-        const levelId = level.level_id;
-        const count = allCourses.filter(
-          (course) => course.levelId === levelId
-        ).length;
-        return { name: level.name, count, levelId };
-      }),
-    };
-  }, [categoriesData, instructorsData, levelsData, allCourses]);
-
-  // Debug logs
-  useEffect(() => {
-    // console.log("=== COURSE DEBUG ===");
-    // console.log("Filters:", filters);
-    // console.log("Courses Loading:", coursesLoading);
-    // console.log("Courses Fetching:", coursesFetching);
-    // console.log("Courses Error:", coursesError);
-    // console.log("Courses Data:", coursesData);
-    // console.log("Courses:", courses);
-    // console.log("Categories Data:", categoriesData);
-    // console.log("Instructors Data:", instructorsData);
-    // console.log("Levels Data:", levelsData);
-    // console.log("===================");
-  }, [
-    filters,
-    coursesLoading,
-    coursesFetching,
-    coursesError,
-    coursesData,
-    courses,
-    categoriesData,
-    instructorsData,
-    levelsData,
-  ]);
-
-  // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => {
       if (search !== "") {
@@ -244,31 +61,9 @@ function Course() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  // Reset page when filters or view change
   useEffect(() => {
     setCurrentPage(1);
-  }, [
-    selectedCategories,
-    selectedInstructors,
-    selectedLevels,
-    selectedPrice,
-    selectedReview,
-    sortBy,
-    view,
-  ]);
-
-  // Xử lý chọn filter
-  const handleCheckbox = (value, arr, setArr) => {
-    setArr((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-    );
-  };
-
-  const handleReview = (star) => {
-    setSelectedReview((prev) =>
-      prev.includes(star) ? prev.filter((v) => v !== star) : [...prev, star]
-    );
-  };
+  }, [sortBy, view]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -279,18 +74,6 @@ function Course() {
     setSortBy(newSortBy);
   };
 
-  const clearAllFilters = () => {
-    setSearch("");
-    setSelectedCategories([]);
-    setSelectedInstructors([]);
-    setSelectedLevels([]);
-    setSelectedPrice("all");
-    setSelectedReview([]);
-    setCurrentPage(1);
-    setSortBy("newest");
-  };
-
-  // Loading state
   if (coursesLoading) {
     return (
       <div className="course-container">
@@ -325,32 +108,6 @@ function Course() {
             </div>
           </div>
           <div className="course-main">
-            <aside className="course-filter">
-              <div className="filter-group">
-                <h4>Thể loại</h4>
-                <div className="loading-skeleton">
-                  {[...Array(4)].map((_, i) => (
-                    <div key={i} className="skeleton-item"></div>
-                  ))}
-                </div>
-              </div>
-              <div className="filter-group">
-                <h4>Instructor</h4>
-                <div className="loading-skeleton">
-                  {[...Array(3)].map((_, i) => (
-                    <div key={i} className="skeleton-item"></div>
-                  ))}
-                </div>
-              </div>
-              <div className="filter-group filter-group-price">
-                <h4>Giá</h4>
-                <div className="loading-skeleton">
-                  {[...Array(3)].map((_, i) => (
-                    <div key={i} className="skeleton-item"></div>
-                  ))}
-                </div>
-              </div>
-            </aside>
             <section className={`course-list ${view}`}>
               <div className="loading-courses">
                 <div className="loading-spinner">
@@ -365,7 +122,6 @@ function Course() {
     );
   }
 
-  // Error state
   if (coursesError) {
     return (
       <div className="course-container">
@@ -399,15 +155,6 @@ function Course() {
             </div>
           </div>
           <div className="course-main">
-            <aside className="course-filter">
-              <div className="filter-group">
-                <h4>Thể loại</h4>
-                <div className="error-message">
-                  <i className="fa fa-exclamation-triangle"></i>
-                  <p>Không thể tải dữ liệu filter</p>
-                </div>
-              </div>
-            </aside>
             <section className={`course-list ${view}`}>
               <div className="error-courses">
                 <div className="error-icon">
@@ -431,7 +178,6 @@ function Course() {
 
   return (
     <div className="course-container">
-      {/* Header Section with Gradient */}
       <div className="course-header-section">
         <div className="course-header-wrapper">
           <div className="course-breadcrumb">
@@ -502,170 +248,17 @@ function Course() {
       </div>
 
       <div className="course-page">
-        <div className="course-main">
-          <aside className="course-filter">
-            <div className="filter-search">
-              <input
-                type="text"
-                placeholder="Search Courses"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="filter-search-input"
-              />
-              <i className="fa fa-search filter-search-icon"></i>
-            </div>
-            <div className="filter-group">
-              <h4>Categories</h4>
-              {filterOptions.categories.length === 0 ? (
-                <div className="no-options">Không có dữ liệu</div>
-              ) : (
-                filterOptions.categories.map((c) => (
-                  <label key={c.name} className="custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={selectedCategories.includes(c.name)}
-                      onChange={() =>
-                        handleCheckbox(
-                          c.name,
-                          selectedCategories,
-                          setSelectedCategories
-                        )
-                      }
-                    />
-                    <span className="checkmark"></span>
-                    {c.name}
-                    <span className="filter-count">{c.count}</span>
-                  </label>
-                ))
-              )}
-            </div>
-
-            <div className="filter-group">
-              <h4>Instructors</h4>
-              {filterOptions.instructors.length === 0 ? (
-                <div className="no-options">Không có dữ liệu</div>
-              ) : (
-                filterOptions.instructors.map((i) => (
-                  <label key={i.name} className="custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={selectedInstructors.includes(i.name)}
-                      onChange={() =>
-                        handleCheckbox(
-                          i.name,
-                          selectedInstructors,
-                          setSelectedInstructors
-                        )
-                      }
-                    />
-                    <span className="checkmark"></span>
-                    {i.name}
-                    <span className="filter-count">{i.count}</span>
-                  </label>
-                ))
-              )}
-            </div>
-
-            <div className="filter-group">
-              <h4>Ratings</h4>
-              {reviewOptions.map((star) => {
-                // Đếm từ allCourses, không phải courses đã filter
-                const count = allCourses.filter(
-                  (c) => Math.round(c.rating || 0) === star
-                ).length;
-
-                return (
-                  <label
-                    key={star}
-                    className={`custom-checkbox star-checkbox ${
-                      selectedReview.includes(star) ? "checked" : ""
-                    }`}
-                    onClick={() => handleReview(star)}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedReview.includes(star)}
-                      readOnly
-                    />
-                    <span className="checkmark"></span>
-                    <span className="star-rating">
-                      {[...Array(star)].map((_, i) => (
-                        <i key={i} className="fa fa-star"></i>
-                      ))}
-                    </span>
-                    <span className="filter-count">{count}</span>
-                  </label>
-                );
-              })}
-            </div>
-
-            <div className="filter-group filter-group-price">
-              <h4>Prices</h4>
-              <label className="custom-radio">
-                <input
-                  type="radio"
-                  name="price"
-                  checked={selectedPrice === "all"}
-                  onChange={() => setSelectedPrice("all")}
-                />
-                <span className="radiomark"></span>
-                All
-                <span className="filter-count">{allCourses.length}</span>
-              </label>
-              <label className="custom-radio">
-                <input
-                  type="radio"
-                  name="price"
-                  checked={selectedPrice === "free"}
-                  onChange={() => setSelectedPrice("free")}
-                />
-                <span className="radiomark"></span>
-                Free
-                <span className="filter-count">
-                  {allCourses.filter((c) => c.isFree).length}
-                </span>
-              </label>
-              <label className="custom-radio">
-                <input
-                  type="radio"
-                  name="price"
-                  checked={selectedPrice === "paid"}
-                  onChange={() => setSelectedPrice("paid")}
-                />
-                <span className="radiomark"></span>
-                Paid
-                <span className="filter-count">
-                  {allCourses.filter((c) => !c.isFree).length}
-                </span>
-              </label>
-            </div>
-
-            <div className="filter-group">
-              <h4>Level</h4>
-              {filterOptions.levels.length === 0 ? (
-                <div className="no-options">Không có dữ liệu</div>
-              ) : (
-                filterOptions.levels.map((l) => (
-                  <label key={l.name} className="custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={selectedLevels.includes(l.name)}
-                      onChange={() =>
-                        handleCheckbox(
-                          l.name,
-                          selectedLevels,
-                          setSelectedLevels
-                        )
-                      }
-                    />
-                    <span className="checkmark"></span>
-                    {l.name}
-                    <span className="filter-count">{l.count}</span>
-                  </label>
-                ))
-              )}
-            </div>
-          </aside>
+        <div className="course-main course-main--no-filter">
+          <div className="course-search-bar">
+            <input
+              type="text"
+              placeholder="Search Courses"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="course-search-input"
+            />
+            <i className="fa fa-search course-search-icon"></i>
+          </div>
 
           <section className={`course-list ${view}`}>
             {courses.length === 0 && !coursesLoading && (
@@ -674,18 +267,13 @@ function Course() {
                   <i className="fa fa-search"></i>
                 </div>
                 <h3>Không tìm thấy khóa học phù hợp</h3>
-                <p>Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
-                <button onClick={clearAllFilters} className="btn-clear-filters">
-                  <i className="fa fa-refresh"></i> Xóa bộ lọc
-                </button>
+                <p>Hãy thử thay đổi từ khóa tìm kiếm</p>
               </div>
             )}
 
             {courses.map((course) => (
               <div className="course-card" key={course.id}>
-                {/* Header Image - hiển thị thumbnail thật */}
                 <div className="course-card-img">
-                  {/* Hình ảnh course - hiển thị rõ ràng */}
                   <img
                     src={
                       course.image ||
@@ -698,7 +286,6 @@ function Course() {
                         "https://via.placeholder.com/400x225/9b87f5/ffffff?text=Course+Image";
                     }}
                   />
-                  {/* Badges ở dưới header */}
                   <div className="course-card-badges">
                     <div className="course-badge">
                       <i className="fa fa-book"></i>
@@ -725,7 +312,6 @@ function Course() {
                   </button>
                 </div>
                 <div className="course-card-content">
-                  {/* Rating - chỉ hiển thị khi có reviews */}
                   {course.reviews > 0 && (
                     <div className="course-card-rating">
                       <span className="stars">
@@ -764,20 +350,6 @@ function Course() {
                     </span>
                   </div>
                   <div className="course-card-desc">{course.desc}</div>
-                  {/* <div className="course-card-instructor-info">
-                    <img
-                      src={
-                        course.instructorAvatar ||
-                        "https://via.placeholder.com/32"
-                      }
-                      alt={course.instructor}
-                      className="instructor-avatar"
-                    />
-                    <span>
-                      By <strong>{course.instructor}</strong> In{" "}
-                      <strong>{course.category && course.category !== "Unknown" ? course.category : "Uncategorized"}</strong>
-                    </span>
-                  </div> */}
                   <div className="course-card-footer">
                     <div className="course-card-price">
                       {course.isFree ? (
@@ -815,7 +387,6 @@ function Course() {
           </section>
         </div>
 
-        {/* Pagination */}
         {pagination.total_pages > 1 && (
           <div className="course-pagination">
             <button
@@ -864,7 +435,6 @@ function Course() {
           </div>
         )}
 
-        {/* Course Stats */}
         <div className="course-stats">
           <div className="stat-item">
             <i className="fa fa-book"></i>

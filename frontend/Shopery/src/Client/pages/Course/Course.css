@@ -188,6 +188,65 @@ body {
   gap: 32px;
 }
 
+.course-main--no-filter {
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.course-search-bar {
+  position: relative;
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
+.course-search-input {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1f2937;
+  background: #ffffff;
+  height: 44px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.course-search-input:focus {
+  outline: none;
+  border-color: #1ec28b;
+  box-shadow: 0 0 0 3px rgba(30, 194, 139, 0.1);
+}
+
+.course-search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.course-main--no-filter .course-list {
+  width: 100%;
+}
+
+.course-main--no-filter .course-list.grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .course-main--no-filter .course-list.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-main--no-filter .course-list.grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============================================
    SIDEBAR FILTER
    ============================================ */

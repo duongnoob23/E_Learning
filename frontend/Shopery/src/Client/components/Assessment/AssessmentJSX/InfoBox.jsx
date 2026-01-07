@@ -5,7 +5,7 @@ import "../AssessmentCSS/InfoBox.css";
 const InfoBox = ({ examId, data, testId, userStats }) => {
   const [activeTab, setActiveTab] = useState("info"); // "info", "answer", "statistics"
 
-  console.log("JSON USER STATS",JSON.stringify(userStats, null, 2));
+  console.log("JSON USER STATS", JSON.stringify(userStats, null, 2));
 
   // Lấy thống kê người dùng
   const { data: userStatsData, isLoading: userStatsLoading } =
@@ -88,7 +88,7 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
                   <div className="statistics-table__cell">
                     Thời gian làm bài
                   </div>
-                  <div className="statistics-table__cell">Hành động</div>
+                  {/* <div className="statistics-table__cell">Hành động</div> */}
                 </div>
                 <div className="statistics-table__body">
                   {arrayUserStats.map((session, index) => (
@@ -134,7 +134,7 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
                             .padStart(2, "0")}
                         </div>
                       </div>
-                      <div className="statistics-table__cell">
+                      {/* <div className="statistics-table__cell">
                         <button
                           className="session-detail-btn"
                           onClick={() => {
@@ -144,7 +144,7 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
                         >
                           Xem chi tiết
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   ))}
                 </div>
