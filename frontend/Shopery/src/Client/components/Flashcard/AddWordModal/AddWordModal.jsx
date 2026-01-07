@@ -1,4 +1,3 @@
-// Client/components/Flashcard/AddWordModal/AddWordModal.jsx - Updated based on admin CreateWordModal
 import React, { useState, useEffect, useRef } from "react";
 import { HiXMark, HiPhoto, HiMusicalNote, HiXCircle, HiSpeakerWave } from "react-icons/hi2";
 import { wordApi } from "../../../api/Word/wordApi";
@@ -44,7 +43,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
     { value: "interjection", label: "Interjection" },
   ];
 
-  // Tìm từ trong hệ thống khi user nhập
   const searchWord = async (wordName) => {
     if (!wordName || wordName.trim().length < 2) {
       setFoundWord(null);
@@ -58,7 +56,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
         const word = result.DT;
         setFoundWord(word);
         
-        // Auto-fill nếu các trường đang trống
         setFormData((prev) => ({
           ...prev,
           pronunciation: prev.pronunciation || word.pronunciation || "",
@@ -101,7 +98,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
       }));
     }
 
-    // Tìm từ khi nhập vào trường word
     if (name === "word") {
       if (searchTimeoutRef.current) {
         clearTimeout(searchTimeoutRef.current);
@@ -111,7 +107,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
       }, 500);
     }
 
-    // Update image preview khi paste URL
     if (name === "image_url") {
       if (value && (value.startsWith("http://") || value.startsWith("https://"))) {
         setImagePreview(value);
@@ -120,7 +115,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
       }
     }
 
-    // Update audio preview khi paste URL
     if (name === "audio_url") {
       if (value && (value.startsWith("http://") || value.startsWith("https://"))) {
         setAudioPreview(value);
@@ -148,7 +142,6 @@ export default function AddWordModal({ isOpen, onClose, topicId, existingWords =
     }
   };
 
-  // Reset form khi modal đóng
   useEffect(() => {
     if (!isOpen) {
       setFormData({

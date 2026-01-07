@@ -1,15 +1,16 @@
-// WordListDisplay.jsx - Component hiển thị danh sách từ vựng (list/flashcard mode)
-// Tham khảo VocabularyList từ lesson vocabulary
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDeleteUserWord } from "../../../services/Word/wordMutations";
 import "./WordListDisplay.css";
 
-export default function WordListDisplay({ words = [], topicType = "system", topicId = null }) {
+export default function WordListDisplay({
+  words = [],
+  topicType = "system",
+  topicId = null,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDefinition, setShowDefinition] = useState(false);
-  const [studyMode, setStudyMode] = useState("list"); // "list" hoặc "flashcard"
-  
-  // Mutation để xóa từ
+  const [studyMode, setStudyMode] = useState("list");
+
   const deleteWordMutation = useDeleteUserWord();
 
   // Helper function để fix image URL - tự động thêm https://study4.com/ nếu chưa có
@@ -34,11 +35,10 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     return <div className="word-list-empty">Không có từ vựng nào</div>;
   }
 
-  // Transform word data để phù hợp với component
   const transformedWords = words.map((word) => ({
     id: word.user_word_id || word.word_id,
-    user_word_id: word.user_word_id, // Lưu để xóa
-    word_id: word.word_id, // Lưu để xóa
+    user_word_id: word.user_word_id,
+    word_id: word.word_id,
     en: word.word,
     vi: word.meaning_vi || word.meaning || "",
     pronunciation: word.pronunciation || `/${word.word}/`,
@@ -74,13 +74,12 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     setShowDefinition(false);
   };
 
-  // Load voices cho Web Speech API
   useEffect(() => {
-    if ('speechSynthesis' in window) {
+    if ("speechSynthesis" in window) {
       const loadVoices = () => {
         window.speechSynthesis.getVoices();
       };
-      
+
       if (window.speechSynthesis.onvoiceschanged !== undefined) {
         window.speechSynthesis.onvoiceschanged = loadVoices;
       }
@@ -88,99 +87,108 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     }
   }, []);
 
-  // Phát âm UK
   const playUKAudio = () => {
     if (!currentWord) return;
-    
+
     const word = currentWord.en || currentWord.word;
     if (!word) return;
 
-    if ('speechSynthesis' in window) {
+    if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      
+
       const utterance = new SpeechSynthesisUtterance(word.trim());
-      utterance.lang = 'en-GB'; // UK English
+      utterance.lang = "en-GB";
       utterance.rate = 0.9;
       utterance.pitch = 1;
       utterance.volume = 1;
-      
+
       const voices = window.speechSynthesis.getVoices();
-      // Tìm giọng UK
-      const ukVoice = voices.find(voice => 
-        voice.lang.startsWith('en-GB') || 
-        (voice.lang.startsWith('en') && voice.name.toLowerCase().includes('british'))
-      ) || voices.find(voice => voice.lang.startsWith('en-GB')) || voices[0];
-      
+      const ukVoice =
+        voices.find(
+          (voice) =>
+            voice.lang.startsWith("en-GB") ||
+            (voice.lang.startsWith("en") &&
+              voice.name.toLowerCase().includes("british"))
+        ) ||
+        voices.find((voice) => voice.lang.startsWith("en-GB")) ||
+        voices[0];
+
       if (ukVoice) {
         utterance.voice = ukVoice;
       }
-      
+
       window.speechSynthesis.speak(utterance);
     } else if (currentWord.audio_url) {
-      // Fallback to audio file if Web Speech API not available
       const audio = new Audio(currentWord.audio_url);
-      audio.play().catch(err => console.error('Error playing audio:', err));
+      audio.play().catch((err) => console.error("Error playing audio:", err));
     }
   };
 
-  // Phát âm US
   const playUSAudio = () => {
     if (!currentWord) return;
-    
+
     const word = currentWord.en || currentWord.word;
     if (!word) return;
 
-    if ('speechSynthesis' in window) {
+    if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      
+
       const utterance = new SpeechSynthesisUtterance(word.trim());
-      utterance.lang = 'en-US'; // US English
+      utterance.lang = "en-US";
       utterance.rate = 0.9;
       utterance.pitch = 1;
       utterance.volume = 1;
-      
+
       const voices = window.speechSynthesis.getVoices();
-      // Tìm giọng US
-      const usVoice = voices.find(voice => 
-        voice.lang.startsWith('en-US') || 
-        (voice.lang.startsWith('en') && (voice.name.toLowerCase().includes('american') || voice.name.toLowerCase().includes('us')))
-      ) || voices.find(voice => voice.lang.startsWith('en-US')) || voices[0];
-      
+      const usVoice =
+        voices.find(
+          (voice) =>
+            voice.lang.startsWith("en-US") ||
+            (voice.lang.startsWith("en") &&
+              (voice.name.toLowerCase().includes("american") ||
+                voice.name.toLowerCase().includes("us")))
+        ) ||
+        voices.find((voice) => voice.lang.startsWith("en-US")) ||
+        voices[0];
+
       if (usVoice) {
         utterance.voice = usVoice;
       }
-      
+
       window.speechSynthesis.speak(utterance);
     } else if (currentWord.audio_url) {
-      // Fallback to audio file if Web Speech API not available
       const audio = new Audio(currentWord.audio_url);
-      audio.play().catch(err => console.error('Error playing audio:', err));
+      audio.play().catch((err) => console.error("Error playing audio:", err));
     }
   };
 
-  // Helper functions để phát âm từ trong list mode
   const playWordUK = (wordText) => {
     if (!wordText) return;
 
-    if ('speechSynthesis' in window) {
+    if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      
+
       const utterance = new SpeechSynthesisUtterance(wordText.trim());
-      utterance.lang = 'en-GB'; // UK English
+      utterance.lang = "en-GB";
       utterance.rate = 0.9;
       utterance.pitch = 1;
       utterance.volume = 1;
-      
+
       const voices = window.speechSynthesis.getVoices();
-      const ukVoice = voices.find(voice => 
-        voice.lang.startsWith('en-GB') || 
-        (voice.lang.startsWith('en') && voice.name.toLowerCase().includes('british'))
-      ) || voices.find(voice => voice.lang.startsWith('en-GB')) || voices[0];
-      
+      const ukVoice =
+        voices.find(
+          (voice) =>
+            voice.lang.startsWith("en-GB") ||
+            (voice.lang.startsWith("en") &&
+              voice.name.toLowerCase().includes("british"))
+        ) ||
+        voices.find((voice) => voice.lang.startsWith("en-GB")) ||
+        voices[0];
+
       if (ukVoice) {
         utterance.voice = ukVoice;
       }
-      
+
       window.speechSynthesis.speak(utterance);
     }
   };
@@ -188,37 +196,40 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
   const playWordUS = (wordText) => {
     if (!wordText) return;
 
-    if ('speechSynthesis' in window) {
+    if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      
+
       const utterance = new SpeechSynthesisUtterance(wordText.trim());
-      utterance.lang = 'en-US'; // US English
+      utterance.lang = "en-US";
       utterance.rate = 0.9;
       utterance.pitch = 1;
       utterance.volume = 1;
-      
+
       const voices = window.speechSynthesis.getVoices();
-      const usVoice = voices.find(voice => 
-        voice.lang.startsWith('en-US') || 
-        (voice.lang.startsWith('en') && (voice.name.toLowerCase().includes('american') || voice.name.toLowerCase().includes('us')))
-      ) || voices.find(voice => voice.lang.startsWith('en-US')) || voices[0];
-      
+      const usVoice =
+        voices.find(
+          (voice) =>
+            voice.lang.startsWith("en-US") ||
+            (voice.lang.startsWith("en") &&
+              (voice.name.toLowerCase().includes("american") ||
+                voice.name.toLowerCase().includes("us")))
+        ) ||
+        voices.find((voice) => voice.lang.startsWith("en-US")) ||
+        voices[0];
+
       if (usVoice) {
         utterance.voice = usVoice;
       }
-      
+
       window.speechSynthesis.speak(utterance);
     }
   };
 
-  // Xóa từ vựng
   const handleDeleteWord = async (word) => {
-    // Chỉ cho phép xóa từ user_created
     if (topicType !== "user_created") {
       return;
     }
 
-    // Chỉ xóa được từ có user_word_id (từ cá nhân)
     if (!word.user_word_id) {
       return;
     }
@@ -226,8 +237,10 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     if (window.confirm(`Bạn có chắc muốn xóa từ "${word.en}"?`)) {
       try {
         await deleteWordMutation.mutateAsync(word.user_word_id);
-        // Nếu đang ở flashcard mode và xóa từ hiện tại, chuyển sang từ trước
-        if (studyMode === "flashcard" && currentIndex === transformedWords.findIndex(w => w.id === word.id)) {
+        if (
+          studyMode === "flashcard" &&
+          currentIndex === transformedWords.findIndex((w) => w.id === word.id)
+        ) {
           if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
           } else if (transformedWords.length > 1) {
@@ -240,7 +253,6 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     }
   };
 
-  // Chế độ Flashcard
   if (studyMode === "flashcard") {
     return (
       <div className="word-list-container word-flashcard-mode">
@@ -356,18 +368,20 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
           </div>
 
           {/* Delete button for user_created topics - chỉ hiển thị trong list mode */}
-          {studyMode !== "flashcard" && topicType === "user_created" && currentWord.user_word_id && (
-            <button
-              className="word-delete-btn-flashcard"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDeleteWord(currentWord);
-              }}
-              title="Xóa từ này"
-            >
-              ×
-            </button>
-          )}
+          {studyMode !== "flashcard" &&
+            topicType === "user_created" &&
+            currentWord.user_word_id && (
+              <button
+                className="word-delete-btn-flashcard"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteWord(currentWord);
+                }}
+                title="Xóa từ này"
+              >
+                ×
+              </button>
+            )}
 
           {/* Progress */}
           <div className="word-progress">
@@ -378,7 +392,6 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     );
   }
 
-  // Chế độ Danh sách
   return (
     <div className="word-list-container word-list-mode">
       {/* Study Mode Toggle */}
@@ -459,56 +472,3 @@ export default function WordListDisplay({ words = [], topicType = "system", topi
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

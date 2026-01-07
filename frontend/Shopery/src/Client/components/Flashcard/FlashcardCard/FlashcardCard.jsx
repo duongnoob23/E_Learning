@@ -1,4 +1,3 @@
-// Client/components/Flashcard/FlashcardCard/FlashcardCard.jsx - Redesigned
 import React from "react";
 import { FiPlus, FiBook, FiUsers, FiClock } from "react-icons/fi";
 import { HiOutlineBookOpen, HiOutlineAcademicCap } from "react-icons/hi2";
@@ -11,7 +10,6 @@ const FlashcardCard = ({
   showUserInfo = false,
   viewMode = "grid",
 }) => {
-  // Create Card
   if (isCreateCard) {
     return (
       <div
@@ -31,7 +29,6 @@ const FlashcardCard = ({
     );
   }
 
-  // Topic Card - List View
   if (viewMode === "list") {
     return (
       <div className="flashcard-card list-view" onClick={() => onClick(topic)}>
@@ -84,7 +81,6 @@ const FlashcardCard = ({
     );
   }
 
-  // Topic Card - Grid View (default)
   return (
     <div className="flashcard-card grid-view" onClick={() => onClick(topic)}>
       {/* Card Image/Icon */}

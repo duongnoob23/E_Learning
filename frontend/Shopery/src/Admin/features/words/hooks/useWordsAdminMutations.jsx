@@ -3,15 +3,9 @@ import { toast } from "react-toastify";
 import { wordsAdminApi } from "../api/wordsAdminApi";
 import { adminVocabKeys } from "./useWordsAdminQueries";
 
-// Helpers
 const isOk = (data) => (data?.EC ?? data?.data?.EC) === "0";
 const em = (data, fallback) => data?.EM || data?.data?.EM || fallback;
 
-// ==================== WORD MUTATIONS ====================
-
-/**
- * Hook tạo từ vựng mới
- */
 export const useCreateWord = () => {
   const qc = useQueryClient();
   return useMutation({
@@ -35,11 +29,14 @@ export const useCreateWord = () => {
 export const useUpdateWord = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ wordId, payload }) => wordsAdminApi.updateWord(wordId, payload),
+    mutationFn: ({ wordId, payload }) =>
+      wordsAdminApi.updateWord(wordId, payload),
     onSuccess: (data, vars) => {
       if (isOk(data)) {
         toast.success(em(data, "Cập nhật từ vựng thành công"));
-        qc.invalidateQueries({ queryKey: adminVocabKeys.wordDetail(vars.wordId) });
+        qc.invalidateQueries({
+          queryKey: adminVocabKeys.wordDetail(vars.wordId),
+        });
         qc.invalidateQueries({ queryKey: adminVocabKeys.words() });
       } else {
         toast.error(em(data, "Cập nhật từ vựng thất bại"));
@@ -55,11 +52,18 @@ export const useUpdateWord = () => {
 export const useDeleteWord = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ wordId, hard = false, delete_reason = null }) => 
+    mutationFn: ({ wordId, hard = false, delete_reason = null }) =>
       wordsAdminApi.deleteWord(wordId, hard, delete_reason),
     onSuccess: (data, variables) => {
       if (isOk(data)) {
-        toast.success(em(data, variables.hard ? "Xóa vĩnh viễn từ vựng thành công" : "Xóa từ vựng thành công"));
+        toast.success(
+          em(
+            data,
+            variables.hard
+              ? "Xóa vĩnh viễn từ vựng thành công"
+              : "Xóa từ vựng thành công"
+          )
+        );
         qc.invalidateQueries({ queryKey: adminVocabKeys.words() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {
@@ -110,15 +114,11 @@ export const useRestoreWord = () => {
   });
 };
 
-// ==================== BATCH MUTATIONS ====================
-
-/**
- * Hook import nhiều từ vựng
- */
 export const useBatchImportWords = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ words, topic_id }) => wordsAdminApi.batchImportWords(words, topic_id),
+    mutationFn: ({ words, topic_id }) =>
+      wordsAdminApi.batchImportWords(words, topic_id),
     onSuccess: (data) => {
       if (isOk(data)) {
         const { success, duplicates, errors } = data.DT || {};
@@ -142,7 +142,8 @@ export const useBatchImportWords = () => {
 export const useBatchDeleteWords = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ word_ids, hard = false }) => wordsAdminApi.batchDeleteWords(word_ids, hard),
+    mutationFn: ({ word_ids, hard = false }) =>
+      wordsAdminApi.batchDeleteWords(word_ids, hard),
     onSuccess: (data) => {
       if (isOk(data)) {
         toast.success(em(data, "Xóa hàng loạt thành công"));
@@ -162,7 +163,8 @@ export const useBatchDeleteWords = () => {
 export const useBatchToggleActive = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ word_ids, is_active }) => wordsAdminApi.batchToggleActive(word_ids, is_active),
+    mutationFn: ({ word_ids, is_active }) =>
+      wordsAdminApi.batchToggleActive(word_ids, is_active),
     onSuccess: (data) => {
       if (isOk(data)) {
         toast.success(em(data, "Thay đổi trạng thái hàng loạt thành công"));
@@ -176,11 +178,6 @@ export const useBatchToggleActive = () => {
   });
 };
 
-// ==================== TOPIC MUTATIONS ====================
-
-/**
- * Hook tạo topic mới
- */
 export const useCreateTopic = () => {
   const qc = useQueryClient();
   return useMutation({
@@ -204,7 +201,8 @@ export const useCreateTopic = () => {
 export const useUpdateTopic = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ topicId, payload }) => wordsAdminApi.updateTopic(topicId, payload),
+    mutationFn: ({ topicId, payload }) =>
+      wordsAdminApi.updateTopic(topicId, payload),
     onSuccess: (data) => {
       if (isOk(data)) {
         toast.success(em(data, "Cập nhật chủ đề thành công"));
@@ -223,11 +221,18 @@ export const useUpdateTopic = () => {
 export const useDeleteTopic = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ topicId, hard = false, delete_reason = null }) => 
+    mutationFn: ({ topicId, hard = false, delete_reason = null }) =>
       wordsAdminApi.deleteTopic(topicId, hard, delete_reason),
     onSuccess: (data, variables) => {
       if (isOk(data)) {
-        toast.success(em(data, variables.hard ? "Xóa vĩnh viễn chủ đề thành công" : "Xóa chủ đề thành công"));
+        toast.success(
+          em(
+            data,
+            variables.hard
+              ? "Xóa vĩnh viễn chủ đề thành công"
+              : "Xóa chủ đề thành công"
+          )
+        );
         qc.invalidateQueries({ queryKey: adminVocabKeys.topics() });
         qc.invalidateQueries({ queryKey: adminVocabKeys.statistics() });
       } else {
@@ -272,4 +277,3 @@ export default {
   useDeleteTopic,
   useToggleTopicActive,
 };
-

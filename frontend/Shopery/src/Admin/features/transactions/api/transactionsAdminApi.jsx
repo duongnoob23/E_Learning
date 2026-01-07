@@ -1,8 +1,6 @@
-// Dùng adminAxiosInstance để tự động thêm admin token
 import adminAxiosInstance from "../../../api/adminAuthApi";
 
 export const transactionsAdminApi = {
-  // ==================== LẤY DANH SÁCH GIAO DỊCH ==================== //
   getTransactions: async (params = {}) => {
     const queryParams = new URLSearchParams();
     if (params.page) queryParams.append("page", params.page);
@@ -21,15 +19,12 @@ export const transactionsAdminApi = {
     return (await adminAxiosInstance.get(url)).data;
   },
 
-  // ==================== LẤY CHI TIẾT GIAO DỊCH ==================== //
   getTransactionDetail: async (orderId) =>
     (await adminAxiosInstance.get(`/admin/transactions/${orderId}`)).data,
 
-  // ==================== THỐNG KÊ GIAO DỊCH ==================== //
   getTransactionStats: async () =>
     (await adminAxiosInstance.get("/admin/transactions/stats")).data,
 
-  // ==================== THỐNG KÊ DOANH THU THEO THỜI GIAN ==================== //
   getRevenueByPeriod: async (params = {}) => {
     const queryParams = new URLSearchParams();
     if (params.period) queryParams.append("period", params.period);
@@ -40,7 +35,6 @@ export const transactionsAdminApi = {
     return (await adminAxiosInstance.get(url)).data;
   },
 
-  // ==================== XUẤT BÁO CÁO ==================== //
   exportTransactions: async (params = {}) => {
     const queryParams = new URLSearchParams();
     if (params.from_date) queryParams.append("from_date", params.from_date);
