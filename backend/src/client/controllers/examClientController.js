@@ -552,3 +552,92 @@ exports.updateExamSession = async (req, res, next) => {
     next(error);
   }
 };
+
+// ========== REDIS CACHE APIs ==========
+
+// POST /api/exam-sessions/:session_id/auto-save - Auto-save đáp án
+exports.autoSaveAnswer = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+    const { question_id, selected_choice_id } = req.body;
+
+    if (!question_id) {
+      return res.status(400).json({
+        EM: "Thiếu question_id",
+        EC: "-1",
+        DT: null,
+      });
+    }
+
+    const response = await examClientService.autoSaveAnswer(
+      parseInt(session_id),
+      user_id,
+      parseInt(question_id),
+      selected_choice_id ? parseInt(selected_choice_id) : null
+    );
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET /api/exam-sessions/:session_id/restore - Restore đáp án từ cache
+exports.restoreAnswers = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+
+    const response = await examClientService.restoreAnswers(
+      parseInt(session_id),
+      user_id
+    );
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// POST /api/exam-sessions/:session_id/cancel - Hủy phiên thi
+exports.cancelExamSession = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+
+    const response = await examClientService.cancelExamSession(
+      parseInt(session_id),
+      user_id
+    );
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET /api/exam-sessions/active - Lấy tất cả active sessions
+exports.getAllActiveSessions = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+
+    const response = await examClientService.getAllActiveSessions(user_id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET /api/exam-sessions/:session_id/debug-cache - Debug: Kiểm tra Redis cache
+exports.debugCache = async (req, res, next) => {
+  try {
+    const { session_id } = req.params;
+    const user_id = req.user.userId;
+
+    const response = await examClientService.debugCache(
+      parseInt(session_id),
+      user_id
+    );
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};

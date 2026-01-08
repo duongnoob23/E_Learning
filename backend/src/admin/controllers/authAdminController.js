@@ -6,10 +6,22 @@ const authAdminService = require("../services/authAdminService");
  */
 exports.login = async (req, res, next) => {
   try {
+    console.log("=".repeat(50));
+    console.log("🔐 [ADMIN LOGIN] Request received");
+    console.log("=".repeat(50));
+    console.log("📍 Origin:", req.headers.origin);
+    console.log("📍 Referer:", req.headers.referer);
+    console.log("📍 IP:", req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress);
+    console.log("📍 User-Agent:", req.headers["user-agent"]);
+    console.log("📍 Method:", req.method);
+    console.log("📍 URL:", req.originalUrl);
+    console.log("📍 Body:", { email: req.body?.email, password: req.body?.password ? "***" : undefined });
+    
     const { email, password } = req.body;
 
     // Validate input
     if (!email || !password) {
+      console.log("❌ [ADMIN LOGIN] Missing email or password");
       return res.status(400).json({
         EM: "Email và mật khẩu là bắt buộc",
         EC: "1",
@@ -21,19 +33,32 @@ exports.login = async (req, res, next) => {
       req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
+    console.log("🔄 [ADMIN LOGIN] Calling authAdminService.login...");
     const response = await authAdminService.login(
       email,
       password,
       ipAddress,
       userAgent
     );
+    
+    console.log("📤 [ADMIN LOGIN] Service response:", {
+      EC: response.EC,
+      EM: response.EM,
+      hasToken: !!response.DT?.accessToken,
+      hasUser: !!response.DT?.user,
+    });
+    
     if (response.EC !== "0") {
+      console.log("❌ [ADMIN LOGIN] Login failed:", response.EM);
       return res.status(401).json(response);
     }
 
+    console.log("✅ [ADMIN LOGIN] Login successful for:", email);
+    console.log("=".repeat(50));
     res.json(response);
   } catch (error) {
-    console.error("Admin login controller error:", error);
+    console.error("❌ [ADMIN LOGIN] Controller error:", error);
+    console.error("❌ [ADMIN LOGIN] Error stack:", error.stack);
     next(error);
   }
 };

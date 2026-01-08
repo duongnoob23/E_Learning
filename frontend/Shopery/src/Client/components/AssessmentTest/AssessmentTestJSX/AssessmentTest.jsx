@@ -11,6 +11,8 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExamLeaveBlocker } from "../../../hooks/Assessment/useExamLeaveBlocker";
 import {
+  useAutoSaveAnswer,
+  useRestoreAnswers,
   useScoreSpeaking,
   useScoreWriting,
   useSubmitExamSession,
@@ -30,8 +32,26 @@ export default function AssessmentTest() {
   const sessionData = location.state?.sessionData;
   const partData = location.state?.partData;
 
-  console.log("sessionData", JSON.stringify(sessionData, null, 2));
-  console.log("partData", JSON.stringify(partData, null, 2));
+  // ✅ Debug: Expose debug function to window để có thể check Redis từ console
+  useEffect(() => {
+    if (sessionData?.exam_session_id && typeof window !== "undefined") {
+      window.debugExamCache = async () => {
+        try {
+          const { assessmentApi } = await import(
+            "../../../api/Assessment/assessmentApi"
+          );
+          const result = await assessmentApi.debugCache(
+            sessionData.exam_session_id
+          );
+          console.log("🔍 [REDIS DEBUG] Result:", result);
+          return result;
+        } catch (error) {
+          console.error("❌ [REDIS DEBUG] Error:", error);
+          return null;
+        }
+      };
+    }
+  }, [sessionData?.exam_session_id]);
 
   // ✅ THÊM: Xác định examType và skill từ sessionData hoặc test data
   const examType = useMemo(() => {
@@ -97,14 +117,84 @@ export default function AssessmentTest() {
   const leftContainerRef = useRef(null);
   const [questionsData, setQuestionsData] = useState({});
 
-  // ✅ Debug: Log answers state changes
+  // ✅ Debug: Log answers state changes (chỉ log khi có thay đổi)
+  // useEffect(() => {
+  //   console.log("📊 [AssessmentTest] answers state changed:", {
+  //     answersKeys: Object.keys(answers),
+  //     answersCount: Object.keys(answers).length,
+  //   });
+  // }, [answers]);
+
+  // ✅ RESTORE: Khôi phục đáp án từ Redis cache khi mount
   useEffect(() => {
-    console.log("📊 [AssessmentTest] answers state changed:", {
-      answersKeys: Object.keys(answers),
-      answersCount: Object.keys(answers).length,
-      answers,
-    });
-  }, [answers]);
+    const restoreFromCache = async () => {
+      // Ưu tiên 1: Lấy từ cached_answers trong sessionData (đã có sẵn từ startExamSession)
+      if (
+        sessionData?.cached_answers &&
+        sessionData.cached_answers.length > 0
+      ) {
+        console.log("📥 [REDIS] Restore from sessionData:", {
+          count: sessionData.cached_answers.length,
+          answers: sessionData.cached_answers,
+        });
+        const restoredAnswers = {};
+        sessionData.cached_answers.forEach((ans) => {
+          if (ans.question_id && ans.selected_choice_id) {
+            restoredAnswers[ans.question_id] = ans.selected_choice_id;
+          }
+        });
+        if (Object.keys(restoredAnswers).length > 0) {
+          setAnswers(restoredAnswers);
+          console.log("✅ [REDIS] Restored answers:", restoredAnswers);
+        }
+        return;
+      }
+
+      // Ưu tiên 2: Gọi API restore từ Redis
+      if (sessionData?.exam_session_id) {
+        try {
+          const result = await restoreAnswers(sessionData.exam_session_id);
+
+          console.log("📥 [REDIS] Restore API response:", {
+            sessionId: sessionData.exam_session_id,
+            redis_available: result?.DT?.redis_available,
+            answers_count: result?.DT?.count || 0,
+            answers: result?.DT?.answers || [],
+          });
+
+          if (result?.EC === "0" && result?.DT?.answers?.length > 0) {
+            const restoredAnswers = {};
+            result.DT.answers.forEach((ans) => {
+              if (ans.question_id && ans.selected_choice_id) {
+                restoredAnswers[ans.question_id] = ans.selected_choice_id;
+              }
+            });
+            if (Object.keys(restoredAnswers).length > 0) {
+              setAnswers(restoredAnswers);
+              console.log("✅ [REDIS] Restored answers:", restoredAnswers);
+            }
+          } else {
+            console.log("ℹ️ [REDIS] No answers in Redis yet");
+          }
+        } catch (error) {
+          console.error("❌ [REDIS] Restore error:", error);
+        }
+      }
+    };
+
+    if (sessionData?.exam_session_id) {
+      restoreFromCache();
+    }
+  }, [sessionData?.exam_session_id]); // Chỉ chạy khi session ID thay đổi
+
+  // ✅ Cleanup: Clear timer khi unmount
+  useEffect(() => {
+    return () => {
+      if (autoSaveTimerRef.current) {
+        clearTimeout(autoSaveTimerRef.current);
+      }
+    };
+  }, []);
 
   // Parse selected_parts từ sessionData, fallback về partData nếu không có
   const selectedParts = useMemo(() => {
@@ -174,6 +264,14 @@ export default function AssessmentTest() {
   const { mutateAsync: scoreSpeaking, isPending: isScoringSpeaking } =
     useScoreSpeaking();
 
+  // ✅ Hook để auto-save và restore đáp án (Redis cache)
+  const { mutateAsync: autoSaveAnswer } = useAutoSaveAnswer();
+  const { mutateAsync: restoreAnswers } = useRestoreAnswers();
+
+  // ✅ Ref để quản lý debounce timer
+  const autoSaveTimerRef = useRef(null);
+  const AUTO_SAVE_DELAY = 500; // 500ms debounce
+
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;
   }
@@ -212,19 +310,7 @@ export default function AssessmentTest() {
   }
 
   function handleAnswer(qid, answerData) {
-    console.log("📥 [AssessmentTest] handleAnswer called:", {
-      qid,
-      answerData,
-      hasRecording: !!answerData?.recording,
-      hasNotes: !!answerData?.notes,
-    });
-
     setAnswers((prev) => {
-      console.log("📋 [AssessmentTest] Current answers state:", {
-        prevKeys: Object.keys(prev),
-        existingAnswer: prev[qid],
-      });
-
       // ✅ Support cả object (Speaking/Writing) và primitive (Listening/Reading)
       if (typeof answerData === "object" && answerData !== null) {
         // Speaking/Writing: merge với existing data (giữ lại notes khi có recording mới)
@@ -234,36 +320,54 @@ export default function AssessmentTest() {
         // ✅ Nếu có recording mới nhưng không có notes trong answerData → giữ lại notes cũ
         if (answerData.recording && !answerData.notes && existing.notes) {
           merged.notes = existing.notes;
-          console.log(
-            "✅ [AssessmentTest] Preserved existing notes:",
-            existing.notes
-          );
         }
 
         // ✅ Nếu có notes mới nhưng không có recording trong answerData → giữ lại recording cũ
         if (answerData.notes && !answerData.recording && existing.recording) {
           merged.recording = existing.recording;
-          console.log(
-            "✅ [AssessmentTest] Preserved existing recording:",
-            existing.recording
-          );
         }
 
-        console.log("💾 [AssessmentTest] Saving answer:", {
-          qid,
-          merged,
-          recordingUrl: merged.recording?.url,
-          hasNotes: !!merged.notes,
-        });
-
-        const updated = { ...prev, [qid]: merged };
-        console.log("✅ [AssessmentTest] Updated answers state:", {
-          allKeys: Object.keys(updated),
-          savedAnswer: updated[qid],
-        });
-        return updated;
+        return { ...prev, [qid]: merged };
       }
+
       // Listening/Reading: replace với choiceId
+      // ✅ AUTO-SAVE: Debounce auto-save cho Listening/Reading (có selected_choice_id)
+      if (typeof answerData === "number" || typeof answerData === "string") {
+        // Clear timer cũ
+        if (autoSaveTimerRef.current) {
+          clearTimeout(autoSaveTimerRef.current);
+        }
+
+        // Set timer mới với debounce
+        autoSaveTimerRef.current = setTimeout(() => {
+          if (sessionData?.exam_session_id) {
+            autoSaveAnswer({
+              sessionId: sessionData.exam_session_id,
+              questionId: qid,
+              selectedChoiceId: answerData,
+            })
+              .then((result) => {
+                if (result?.EC === "0") {
+                  const dt = result.DT || {};
+                  console.log("💾 [REDIS] Auto-save result:", {
+                    questionId: qid,
+                    selectedChoiceId: answerData,
+                    cached: dt.cached,
+                    redis_available: dt.redis_available,
+                    total_answers_in_cache: dt.total_answers_in_cache || 0,
+                    all_answers: dt.all_answers || [],
+                  });
+                } else {
+                  console.warn("⚠️ [REDIS] Auto-save failed:", result?.EM);
+                }
+              })
+              .catch((err) => {
+                console.error("❌ [REDIS] Auto-save error:", err);
+              });
+          }
+        }, AUTO_SAVE_DELAY);
+      }
+
       return { ...prev, [qid]: answerData };
     });
   }
@@ -663,12 +767,6 @@ export default function AssessmentTest() {
       const part = partData.find((p) => p.part_number == partId);
       currentPartData = part ? [part] : partData; // Trả về array với 1 part hoặc toàn bộ nếu không tìm thấy
     }
-
-    console.log(`🎨 [AssessmentTest] Rendering Part ${partId}:`, {
-      answersKeys: answers ? Object.keys(answers) : [],
-      answersCount: answers ? Object.keys(answers).length : 0,
-      hasOnAnswer: !!handleAnswer,
-    });
 
     return (
       <Suspense fallback={<div>Đang tải Part {partId}...</div>}>

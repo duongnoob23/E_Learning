@@ -226,3 +226,71 @@ export const useScoreSpeaking = () => {
     },
   });
 };
+
+// ========== REDIS CACHE MUTATIONS ==========
+
+// Mutation để auto-save đáp án (silent - không hiển thị toast)
+export const useAutoSaveAnswer = () => {
+  return useMutation({
+    mutationFn: ({ sessionId, questionId, selectedChoiceId }) =>
+      assessmentApi.autoSaveAnswer(sessionId, questionId, selectedChoiceId),
+    onSuccess: (data) => {
+      // Silent success - không hiển thị toast để không gây phiền
+      if (data.EC !== "0") {
+        console.warn("[AutoSave] Failed:", data.EM);
+      }
+    },
+    onError: (error) => {
+      // Silent error - không gián đoạn UX
+      console.warn("[AutoSave] Error:", error.message);
+    },
+  });
+};
+
+// Mutation để restore đáp án từ cache
+export const useRestoreAnswers = () => {
+  return useMutation({
+    mutationFn: (sessionId) => assessmentApi.restoreAnswers(sessionId),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0" && DT?.count > 0) {
+        console.log(`[Restore] Restored ${DT.count} answers from cache`);
+      }
+    },
+    onError: (error) => {
+      console.error("[Restore] Error:", error);
+    },
+  });
+};
+
+// Mutation để hủy phiên thi
+export const useCancelExamSession = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (sessionId) => assessmentApi.cancelExamSession(sessionId),
+    onSuccess: (data) => {
+      const { EM, EC, DT } = data;
+      if (EC === "0") {
+        toast.success(EM || "Đã hủy phiên thi");
+        queryClient.invalidateQueries({ queryKey: queryKeys.assessment.all });
+      } else {
+        toast.error(EM || "Hủy phiên thi thất bại!");
+      }
+    },
+    onError: (error) => {
+      console.error("Cancel exam session error:", error);
+      toast.error("Có lỗi xảy ra khi hủy phiên thi");
+    },
+  });
+};
+
+// Mutation để lấy active sessions (dùng mutation vì cần trigger thủ công)
+export const useGetActiveSessions = () => {
+  return useMutation({
+    mutationFn: () => assessmentApi.getAllActiveSessions(),
+    onError: (error) => {
+      console.error("Get active sessions error:", error);
+    },
+  });
+};

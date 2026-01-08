@@ -15,6 +15,8 @@ const {
   closeDatabase,
   checkDatabaseHealth,
   database: sequelize,
+  connectRedis,
+  closeRedis,
 } = require("./config");
 
 const app = express();
@@ -40,6 +42,15 @@ app.set("io", io);
 
 // CORS - Cho phép frontend gọi API (disable all restrictions for testing)
 app.use((req, res, next) => {
+  // Log CORS request
+  if (req.path.includes("/admin/auth/login")) {
+    console.log("🌐 [CORS] Request received:");
+    console.log("   - Origin:", req.headers.origin);
+    console.log("   - Method:", req.method);
+    console.log("   - Path:", req.path);
+    console.log("   - IP:", req.ip || req.headers["x-forwarded-for"]);
+  }
+  
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Methods",
@@ -50,6 +61,9 @@ app.use((req, res, next) => {
     "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
   if (req.method === "OPTIONS") {
+    if (req.path.includes("/admin/auth/login")) {
+      console.log("✅ [CORS] OPTIONS preflight - Allowed");
+    }
     res.sendStatus(200);
   } else {
     next();
@@ -349,6 +363,14 @@ const startServer = async () => {
       process.exit(1);
     }
 
+    // Kết nối Redis (optional - không bắt buộc)
+    const redisConnected = await connectRedis();
+    if (redisConnected) {
+      console.log("✅ Redis connected - Exam answer caching enabled");
+    } else {
+      console.log("⚠️  Redis not available - Exam answer caching disabled");
+    }
+
     // Start server sau khi database đã kết nối thành công
     server.listen(PORT, () => {
       console.log("=".repeat(50));
@@ -357,6 +379,7 @@ const startServer = async () => {
       console.log(`📍 Environment: ${process.env.NODE_ENV || "development"}`);
       console.log(`🔗 API Test: http://localhost:${PORT}`);
       console.log(`🔌 Socket.IO: Enabled for discussions`);
+      console.log(`🔴 Redis: ${redisConnected ? 'Connected' : 'Not available'}`);
       console.log(
         `📦 Body Parser: JSON=${JSON_LIMIT}, URLEncoded=${URLENCODED_LIMIT}`
       );
@@ -376,6 +399,7 @@ const startServer = async () => {
 // Xử lý graceful shutdown
 process.on("SIGINT", async () => {
   console.log("\n🔄 Đang tắt server...");
+  await closeRedis();
   await closeDatabase();
   console.log("✅ Server đã tắt an toàn");
   process.exit(0);
@@ -383,6 +407,7 @@ process.on("SIGINT", async () => {
 
 process.on("SIGTERM", async () => {
   console.log("\n🔄 Đang tắt server...");
+  await closeRedis();
   await closeDatabase();
   console.log("✅ Server đã tắt an toàn");
   process.exit(0);

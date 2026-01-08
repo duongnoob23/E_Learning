@@ -16,6 +16,7 @@ const {
   QuestionTag,
 } = require("../../models");
 const { Op } = require("sequelize");
+const redisExamCache = require("../../services/redisExamCacheService");
 
 const { transcribeAudio } = require("./whisperService");
 const { scoreResponse } = require("./multiPAService");
@@ -203,6 +204,7 @@ exports.startExamSession = async (sessionData) => {
       session_type,
       selected_parts,
       time_limit_minutes,
+      force_new = false, // Flag để bắt buộc tạo session mới
     } = sessionData;
 
     // Kiểm tra đề thi có tồn tại không
@@ -215,17 +217,118 @@ exports.startExamSession = async (sessionData) => {
       };
     }
 
-    // Kiểm tra xem có phiên thi đang diễn ra không
-    const activeSession = await ExamSession.findActiveSession(user_id, test_id);
-    if (activeSession) {
-      return {
-        EM: "Bạn đang có phiên thi đang diễn ra",
-        EC: "3",
-        DT: activeSession,
-      };
+    // ========== CHECK ACTIVE SESSIONS ==========
+    if (!force_new) {
+      // ✅ ƯU TIÊN 1: Check active session cho test_id cụ thể trước
+      // Nếu user bắt đầu lại bài thi đã làm → Báo ngay (không filter)
+      const activeSessionForTest = await ExamSession.findActiveSessionForTest(user_id, test_id);
+      
+      if (activeSessionForTest) {
+        // Lấy cached answers từ Redis
+        const cachedAnswers = await redisExamCache.getAnswers(activeSessionForTest.exam_session_id);
+        
+        console.log(`[EXAM] ✅ Found active session ${activeSessionForTest.exam_session_id} for test_id ${test_id} (end_time: ${activeSessionForTest.end_time}, status: ${activeSessionForTest.status})`);
+        
+        // Trả về ngay để hiển thị modal (không cần filter)
+        // Query đã đảm bảo: status = 'IN_PROGRESS' và end_time = null
+        return {
+          EM: "Bạn đang có phiên thi chưa hoàn thành",
+          EC: "3",
+          DT: {
+            active_sessions: [{
+              exam_session_id: activeSessionForTest.exam_session_id,
+              test_id: activeSessionForTest.test_id,
+              session_type: activeSessionForTest.session_type,
+              start_time: activeSessionForTest.start_time,
+              time_limit_minutes: activeSessionForTest.time_limit_minutes,
+              selected_parts: activeSessionForTest.selected_parts,
+              test: activeSessionForTest.test,
+              cached_answers: cachedAnswers || [],
+              cached_answers_count: cachedAnswers ? cachedAnswers.length : 0,
+            }],
+            requested_test_id: test_id,
+          },
+        };
+      }
+
+      // ✅ ƯU TIÊN 2: Check tất cả active sessions (cho trường hợp user có nhiều bài thi khác)
+      // Lấy tất cả active sessions của user (trong 24h)
+      const allActiveSessions = await ExamSession.findAllActiveSessions(user_id);
+      
+      if (allActiveSessions && allActiveSessions.length > 0) {
+        // Filter: Loại bỏ sessions < 1 phút VÀ chưa có answers trong Redis
+        // (Chỉ filter khi check tất cả sessions, không filter khi check test_id cụ thể)
+        const validActiveSessions = [];
+        const oneMinuteAgo = Date.now() - 60 * 1000;
+
+        for (const session of allActiveSessions) {
+          // Bỏ qua session của test_id đang request (đã check ở trên)
+          if (session.test_id === test_id) {
+            continue;
+          }
+
+          const sessionAge = Date.now() - new Date(session.start_time).getTime();
+          const isOlderThanOneMinute = sessionAge > 60 * 1000;
+          
+          // Lấy cached answers từ Redis
+          const cachedAnswers = await redisExamCache.getAnswers(session.exam_session_id);
+          const hasAnswers = cachedAnswers && cachedAnswers.length > 0;
+
+          // Session hợp lệ nếu: > 1 phút HOẶC có answers
+          if (isOlderThanOneMinute || hasAnswers) {
+            validActiveSessions.push({
+              exam_session_id: session.exam_session_id,
+              test_id: session.test_id,
+              session_type: session.session_type,
+              start_time: session.start_time,
+              time_limit_minutes: session.time_limit_minutes,
+              selected_parts: session.selected_parts,
+              test: session.test,
+              // Thêm thông tin từ Redis
+              cached_answers: cachedAnswers || [],
+              cached_answers_count: cachedAnswers ? cachedAnswers.length : 0,
+            });
+          } else {
+            // Session < 1 phút và không có answers => có thể bỏ qua (session mới tạo)
+            console.log(`[EXAM] Skipping fresh session ${session.exam_session_id} (age: ${sessionAge}ms, no answers)`);
+          }
+        }
+
+        // Nếu có valid active sessions => trả về để hiển thị modal
+        if (validActiveSessions.length > 0) {
+          console.log(`[EXAM] User ${user_id} has ${validActiveSessions.length} active sessions (other tests)`);
+          return {
+            EM: "Bạn đang có phiên thi chưa hoàn thành",
+            EC: "3",
+            DT: {
+              active_sessions: validActiveSessions,
+              requested_test_id: test_id,
+            },
+          };
+        }
+      }
     }
 
-    // Tạo phiên thi mới
+    // ========== AUTO-CLEANUP ABANDONED SESSIONS ==========
+    // Đánh dấu ABANDONED cho các sessions > 24h (background, không block)
+    try {
+      const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      await ExamSession.update(
+        { status: 'ABANDONED' },
+        {
+          where: {
+            user_id,
+            status: 'IN_PROGRESS',
+            start_time: { [Op.lt]: twentyFourHoursAgo }
+          }
+        }
+      );
+    } catch (cleanupError) {
+      // Silent fail - không ảnh hưởng flow chính
+      console.log('[EXAM] Cleanup error (ignored):', cleanupError.message);
+    }
+
+    // ========== TẠO SESSION MỚI ==========
     const examSession = await ExamSession.createSession({
       user_id,
       test_id,
@@ -236,13 +339,34 @@ exports.startExamSession = async (sessionData) => {
       status: "IN_PROGRESS",
     });
 
+    // Lưu thông tin session vào Redis
+    await redisExamCache.saveSessionInfo(examSession.exam_session_id, {
+      user_id,
+      test_id,
+      start_time: examSession.start_time,
+      status: 'IN_PROGRESS'
+    });
+
+    // Lấy session với test info
+    const sessionWithTest = await ExamSession.findOne({
+      where: { exam_session_id: examSession.exam_session_id },
+      include: [{
+        model: Test,
+        as: "test",
+        attributes: ['test_id', 'title', 'exam_type', 'total_duration']
+      }]
+    });
+
     return {
       EM: "Bắt đầu phiên thi thành công",
       EC: "0",
-      DT: examSession,
+      DT: {
+        ...sessionWithTest.toJSON(),
+        is_newly_created: true, // Flag để frontend biết đây là session mới
+      },
     };
   } catch (error) {
-    logError("startExamSession", error, { user_id, test_id, session_type });
+    logError("startExamSession", error, { user_id: sessionData.user_id, test_id: sessionData.test_id });
     return {
       EM: "Có lỗi xảy ra trong quá trình bắt đầu phiên thi",
       EC: "-2",
@@ -702,7 +826,11 @@ exports.submitExamSession = async (session_id, user_id, answers) => {
       );
     }
 
-    // 13) Return updated session
+    // 13) Xóa Redis cache sau khi submit thành công
+    await redisExamCache.clearSessionCache(session_id);
+    console.log(`[EXAM] Cleared Redis cache for session ${session_id} after submit`);
+
+    // 14) Return updated session
     const updatedSession = await ExamSession.findById(session_id);
     return { EM: "Nộp bài thi thành công", EC: "0", DT: updatedSession };
   } catch (error) {
@@ -1861,6 +1989,312 @@ exports.updateExamSession = async ({
     return {
       EM: "Có lỗi xảy ra khi cập nhật phiên thi",
       EC: "-3",
+      DT: null,
+    };
+  }
+};
+
+// ========== REDIS CACHE APIs ==========
+
+/**
+ * Auto-save một đáp án vào Redis
+ * POST /api/exam-sessions/:session_id/auto-save
+ */
+exports.autoSaveAnswer = async (session_id, user_id, question_id, selected_choice_id) => {
+  try {
+    // Kiểm tra session có tồn tại và thuộc về user không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    if (examSession.user_id !== user_id) {
+      return {
+        EM: "Bạn không có quyền truy cập phiên thi này",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    if (examSession.status !== "IN_PROGRESS") {
+      return {
+        EM: "Phiên thi đã kết thúc",
+        EC: "4",
+        DT: null,
+      };
+    }
+
+    // Lưu vào Redis
+    const isRedisAvailable = redisExamCache.isRedisAvailable();
+    console.log(`[EXAM] 🔴 Redis available: ${isRedisAvailable} for session ${session_id}`);
+    
+    const saved = await redisExamCache.saveSingleAnswer(session_id, question_id, selected_choice_id);
+    
+    // Verify: Lấy lại để confirm
+    const verifyAnswers = await redisExamCache.getAnswers(session_id);
+    
+    if (!saved) {
+      // Redis không available - silent fail, không báo lỗi cho user
+      console.log(`[EXAM] ❌ Auto-save failed (Redis unavailable) for session ${session_id}`);
+      return {
+        EM: "Auto-save skipped (cache unavailable)",
+        EC: "0", // Vẫn trả về success để không gián đoạn UX
+        DT: { 
+          cached: false,
+          redis_available: isRedisAvailable,
+          verify_answers: verifyAnswers || [],
+        },
+      };
+    }
+
+    console.log(`[EXAM] ✅ Auto-save success for session ${session_id}, Q${question_id} = ${selected_choice_id}`);
+    console.log(`[EXAM] 📊 Verify: ${verifyAnswers?.length || 0} answers in Redis:`, verifyAnswers);
+
+    return {
+      EM: "Đã lưu đáp án",
+      EC: "0",
+      DT: { 
+        cached: true, 
+        question_id, 
+        selected_choice_id,
+        redis_available: isRedisAvailable,
+        total_answers_in_cache: verifyAnswers?.length || 0,
+        all_answers: verifyAnswers || [],
+      },
+    };
+  } catch (error) {
+    logError("autoSaveAnswer", error, { session_id, user_id, question_id });
+    return {
+      EM: "Có lỗi xảy ra",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+/**
+ * Restore đáp án từ Redis
+ * GET /api/exam-sessions/:session_id/restore
+ */
+exports.restoreAnswers = async (session_id, user_id) => {
+  try {
+    // Kiểm tra session có tồn tại và thuộc về user không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    if (examSession.user_id !== user_id) {
+      return {
+        EM: "Bạn không có quyền truy cập phiên thi này",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // Lấy từ Redis
+    const isRedisAvailable = redisExamCache.isRedisAvailable();
+    console.log(`[EXAM] 🔴 Redis available: ${isRedisAvailable} for session ${session_id}`);
+    
+    const cachedAnswers = await redisExamCache.getAnswers(session_id);
+    
+    console.log(`[EXAM] 📥 Restore answers for session ${session_id}:`, {
+      redis_available: isRedisAvailable,
+      found_answers: cachedAnswers?.length || 0,
+      answers: cachedAnswers || [],
+    });
+    
+    if (!cachedAnswers || cachedAnswers.length === 0) {
+      return {
+        EM: "Không có đáp án đã lưu",
+        EC: "0",
+        DT: { 
+          answers: [], 
+          count: 0,
+          redis_available: isRedisAvailable,
+        },
+      };
+    }
+
+    return {
+      EM: "Lấy đáp án thành công",
+      EC: "0",
+      DT: { 
+        answers: cachedAnswers, 
+        count: cachedAnswers.length,
+        redis_available: isRedisAvailable,
+      },
+    };
+  } catch (error) {
+    logError("restoreAnswers", error, { session_id, user_id });
+    return {
+      EM: "Có lỗi xảy ra",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+/**
+ * Hủy phiên thi và xóa cache
+ * POST /api/exam-sessions/:session_id/cancel
+ */
+exports.cancelExamSession = async (session_id, user_id) => {
+  try {
+    // Kiểm tra session có tồn tại và thuộc về user không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    if (examSession.user_id !== user_id) {
+      return {
+        EM: "Bạn không có quyền hủy phiên thi này",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    if (examSession.status !== "IN_PROGRESS") {
+      return {
+        EM: "Phiên thi đã kết thúc, không thể hủy",
+        EC: "4",
+        DT: null,
+      };
+    }
+
+    // Cập nhật trạng thái session
+    await ExamSession.updateSession(session_id, {
+      status: 'ABANDONED',
+      end_time: new Date(),
+    });
+
+    // Xóa cache Redis
+    await redisExamCache.clearSessionCache(session_id);
+
+    console.log(`[EXAM] Session ${session_id} cancelled by user ${user_id}`);
+
+    return {
+      EM: "Đã hủy phiên thi",
+      EC: "0",
+      DT: { session_id, status: 'ABANDONED' },
+    };
+  } catch (error) {
+    logError("cancelExamSession", error, { session_id, user_id });
+    return {
+      EM: "Có lỗi xảy ra khi hủy phiên thi",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+/**
+ * Lấy tất cả active sessions của user
+ * GET /api/exam-sessions/active
+ */
+exports.getAllActiveSessions = async (user_id) => {
+  try {
+    const allActiveSessions = await ExamSession.findAllActiveSessions(user_id);
+    
+    if (!allActiveSessions || allActiveSessions.length === 0) {
+      return {
+        EM: "Không có phiên thi đang diễn ra",
+        EC: "0",
+        DT: { sessions: [], count: 0 },
+      };
+    }
+
+    // Enrich với cached answers từ Redis
+    const sessionsWithCache = await Promise.all(
+      allActiveSessions.map(async (session) => {
+        const cachedAnswers = await redisExamCache.getAnswers(session.exam_session_id);
+        return {
+          ...session.toJSON(),
+          cached_answers: cachedAnswers || [],
+          cached_answers_count: cachedAnswers ? cachedAnswers.length : 0,
+        };
+      })
+    );
+
+    return {
+      EM: "Lấy danh sách phiên thi thành công",
+      EC: "0",
+      DT: { 
+        sessions: sessionsWithCache, 
+        count: sessionsWithCache.length 
+      },
+    };
+  } catch (error) {
+    logError("getAllActiveSessions", error, { user_id });
+    return {
+      EM: "Có lỗi xảy ra",
+      EC: "-2",
+      DT: null,
+    };
+  }
+};
+
+/**
+ * Debug: Kiểm tra dữ liệu trong Redis (chỉ dùng để debug)
+ * GET /api/exam-sessions/:session_id/debug-cache
+ */
+exports.debugCache = async (session_id, user_id) => {
+  try {
+    // Kiểm tra session có tồn tại và thuộc về user không
+    const examSession = await ExamSession.findById(session_id);
+    if (!examSession) {
+      return {
+        EM: "Không tìm thấy phiên thi",
+        EC: "2",
+        DT: null,
+      };
+    }
+
+    if (examSession.user_id !== user_id) {
+      return {
+        EM: "Bạn không có quyền truy cập phiên thi này",
+        EC: "3",
+        DT: null,
+      };
+    }
+
+    // Lấy dữ liệu từ Redis
+    const cachedAnswers = await redisExamCache.getAnswers(session_id);
+    const sessionInfo = await redisExamCache.getSessionInfo(session_id);
+    const answersCount = await redisExamCache.countAnswers(session_id);
+    const isRedisAvailable = redisExamCache.isRedisAvailable();
+
+    return {
+      EM: "Debug cache info",
+      EC: "0",
+      DT: {
+        session_id,
+        redis_available: isRedisAvailable,
+        cached_answers: cachedAnswers || [],
+        cached_answers_count: answersCount,
+        session_info: sessionInfo,
+        session_status: examSession.status,
+        session_end_time: examSession.end_time,
+      },
+    };
+  } catch (error) {
+    logError("debugCache", error, { session_id, user_id });
+    return {
+      EM: "Có lỗi xảy ra",
+      EC: "-2",
       DT: null,
     };
   }

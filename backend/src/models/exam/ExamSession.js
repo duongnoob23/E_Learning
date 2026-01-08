@@ -177,5 +177,56 @@ module.exports = (sequelize, DataTypes) => {
             ]
         });
 
+    /**
+     * Tìm tất cả active sessions (IN_PROGRESS) của user trong 24h gần nhất
+     * @param {number} user_id - ID của user
+     * @returns {Array} Danh sách active sessions
+     */
+    ExamSession.findAllActiveSessions = async (user_id) => {
+        const { Op } = require('sequelize');
+        const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        
+        return ExamSession.findAll({
+            where: {
+                user_id,
+                status: 'IN_PROGRESS',
+                start_time: {
+                    [Op.gte]: twentyFourHoursAgo
+                }
+            },
+            order: [['start_time', 'DESC']],
+            include: [
+                {
+                    model: sequelize.models.Test,
+                    as: "test",
+                    attributes: ['test_id', 'title', 'exam_type', 'total_duration']
+                }
+            ]
+        });
+    };
+
+    /**
+     * Tìm active session của user cho một test cụ thể
+     * Trả về session đầu tiên tìm thấy (IN_PROGRESS và chưa có end_time)
+     */
+    ExamSession.findActiveSessionForTest = async (user_id, test_id) => {
+        const { Op } = require('sequelize');
+        return ExamSession.findOne({
+            where: {
+                user_id,
+                test_id,
+                status: 'IN_PROGRESS',
+                end_time: null // Đảm bảo session chưa kết thúc
+            },
+            include: [
+                {
+                    model: sequelize.models.Test,
+                    as: "test",
+                    attributes: ['test_id', 'title', 'exam_type', 'total_duration']
+                }
+            ]
+        });
+    };
+
     return ExamSession;
 };
