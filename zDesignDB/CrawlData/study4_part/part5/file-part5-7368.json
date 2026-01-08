@@ -1,0 +1,704 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 114,
+    "questionText": "Eastington University just announced the _____ of all foods containing artificial preservatives from its cafeteria menu.",
+    "options": [
+      {
+        "label": "A",
+        "text": "eliminate"
+      },
+      {
+        "label": "B",
+        "text": "eliminated"
+      },
+      {
+        "label": "C",
+        "text": "elimination"
+      },
+      {
+        "label": "D",
+        "text": "eliminates"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau mạo từ “the” và đứng trước giới từ “of” → Cần tìm một danh từ. Loại A (động từ), B (phân từ) và D (động từ thêm đuôi -s/es)",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 108,
+    "questionText": "All flights were delayed three hours because of a heavy blanket of _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "fog"
+      },
+      {
+        "label": "B",
+        "text": "fogger"
+      },
+      {
+        "label": "C",
+        "text": "foggy"
+      },
+      {
+        "label": "D",
+        "text": "fogged"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần có một danh từ để đóng vai trò tân ngữ của giới từ \"of\".",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 104,
+    "questionText": "This month's _____ figures have increased five percent over the last month.",
+    "options": [
+      {
+        "label": "A",
+        "text": "selling"
+      },
+      {
+        "label": "B",
+        "text": "sold"
+      },
+      {
+        "label": "C",
+        "text": "to sell"
+      },
+      {
+        "label": "D",
+        "text": "sales"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Ta có từ cần điền đứng sau sở hữu cách “this month’s” và danh từ “figures” → Cần tìm thêm một danh từ kết hợp với “figures” để tạo nên cụm danh từ ghép.Ta có cụm \"sales figures\" có nghĩa là số liệu (doanh số) bán hàng.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 114,
+    "questionText": "Among other _____ , purchasing departments negotiate contracts to procure goods at the best possible prices.",
+    "options": [
+      {
+        "label": "A",
+        "text": "tasks"
+      },
+      {
+        "label": "B",
+        "text": "task"
+      },
+      {
+        "label": "C",
+        "text": "tasking"
+      },
+      {
+        "label": "D",
+        "text": "tasked"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Ta có cấu trúc Among other + danh từ số nhiều: bên cạnh, ngoài",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 112,
+    "questionText": "The memo sent by Mr. Lee addressed a few ------- that were discovered during the quarterly inspection.",
+    "options": [
+      {
+        "label": "A",
+        "text": "issuing"
+      },
+      {
+        "label": "B",
+        "text": "issue"
+      },
+      {
+        "label": "C",
+        "text": "issues"
+      },
+      {
+        "label": "D",
+        "text": "issued"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau từ hạn định a few (một vài), và đứng trước mệnh đề quan hệ that were… => cần điền danh từ. Vì a few + N số nhiều => đáp án CDịch: Bản ghi nhớ gửi từ ông Lee đã giải quyết một vài vấn đề được vạch ra từ cuộc thanh tra hàng quý.",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 104,
+    "questionText": "A _____ of four dental hygienists spoke about careers in their field.",
+    "options": [
+      {
+        "label": "A",
+        "text": "plan"
+      },
+      {
+        "label": "B",
+        "text": "panel"
+      },
+      {
+        "label": "C",
+        "text": "support"
+      },
+      {
+        "label": "D",
+        "text": "version"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Dựa trên nghĩa để chọn một đáp án phù hợp. A: kế hoạch, B: hội đồng, ban, C: ủng hộ, D: phiên bản",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 106,
+    "questionText": "This Friday, Zone Fly Cameras invites the public to a free aerial photography _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "picture"
+      },
+      {
+        "label": "B",
+        "text": "ticket"
+      },
+      {
+        "label": "C",
+        "text": "action"
+      },
+      {
+        "label": "D",
+        "text": "workshop"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống đứng sau tính từ + danh từ “photography” → Cần tìm một danh từ đứng sau tạo thành danh từ ghép.Dựa vào nghĩa để chọn đáp án đúng. A: bức ảnh, B: vé, C: hành động, D: hội thảo",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 107,
+    "questionText": "The Ambury Prize recognizes research that is notable for its _____ and innovation.",
+    "options": [
+      {
+        "label": "A",
+        "text": "creative"
+      },
+      {
+        "label": "B",
+        "text": "creatively"
+      },
+      {
+        "label": "C",
+        "text": "creativity"
+      },
+      {
+        "label": "D",
+        "text": "creates"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm sau đại từ sở hữu “its” → cần tìm một danh từ Loại A (tính từ đuôi -ive), B (trạng từ đuôi -ly) và D (động từ đuôi -s/es)",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 116,
+    "questionText": "The Brownsville Homeless Shelter has helped thousands of people since its _____ last year.",
+    "options": [
+      {
+        "label": "A",
+        "text": "creative"
+      },
+      {
+        "label": "B",
+        "text": "created"
+      },
+      {
+        "label": "C",
+        "text": "create"
+      },
+      {
+        "label": "D",
+        "text": "creation"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 109,
+    "questionText": "Employees who attend the workshop on improving communication skills will be given a certificate of _____ by the instructor.",
+    "options": [
+      {
+        "label": "A",
+        "text": "achieved"
+      },
+      {
+        "label": "B",
+        "text": "achieving"
+      },
+      {
+        "label": "C",
+        "text": "achieve"
+      },
+      {
+        "label": "D",
+        "text": "achievement"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 104,
+    "questionText": "The free clinic was founded by a group of doctors to give _____ for various medical conditions.",
+    "options": [
+      {
+        "label": "A",
+        "text": "treatment"
+      },
+      {
+        "label": "B",
+        "text": "treat"
+      },
+      {
+        "label": "C",
+        "text": "treated"
+      },
+      {
+        "label": "D",
+        "text": "treating"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 126,
+    "questionText": "The upscale boutique Jane's Closet is known for selling the most stylish _____ for young professionals.",
+    "options": [
+      {
+        "label": "A",
+        "text": "accessorized"
+      },
+      {
+        "label": "B",
+        "text": "accessorize"
+      },
+      {
+        "label": "C",
+        "text": "accessorizes"
+      },
+      {
+        "label": "D",
+        "text": "accessories"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 127,
+    "questionText": "The company started to recognize the increasing _____ of using resources responsibly.",
+    "options": [
+      {
+        "label": "A",
+        "text": "more important"
+      },
+      {
+        "label": "B",
+        "text": "importantly"
+      },
+      {
+        "label": "C",
+        "text": "importance"
+      },
+      {
+        "label": "D",
+        "text": "important"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 108,
+    "questionText": "The customer's order _____ will be sent by e-mail within twenty-four hours.",
+    "options": [
+      {
+        "label": "A",
+        "text": "confirmation"
+      },
+      {
+        "label": "B",
+        "text": "confirms"
+      },
+      {
+        "label": "C",
+        "text": "confirmed"
+      },
+      {
+        "label": "D",
+        "text": "confirm"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 114,
+    "questionText": "Mr. Albrecht's _____ in replying to the HR director's e-mail demonstrated that he was highly interested in the position.",
+    "options": [
+      {
+        "label": "A",
+        "text": "promptness"
+      },
+      {
+        "label": "B",
+        "text": "prompted"
+      },
+      {
+        "label": "C",
+        "text": "prompt"
+      },
+      {
+        "label": "D",
+        "text": "promptly"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 130,
+    "questionText": "The notice indicated that a first-aid training course will be provided free of charge to _____ next month.",
+    "options": [
+      {
+        "label": "A",
+        "text": "residents"
+      },
+      {
+        "label": "B",
+        "text": "residence"
+      },
+      {
+        "label": "C",
+        "text": "residential"
+      },
+      {
+        "label": "D",
+        "text": "resides"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q17",
+    "question_number": 104,
+    "questionText": "Engaging in social _____, Ms. Mason quickly expanded her network after moving to a new city.",
+    "options": [
+      {
+        "label": "A",
+        "text": "active"
+      },
+      {
+        "label": "B",
+        "text": "activities"
+      },
+      {
+        "label": "C",
+        "text": "activates"
+      },
+      {
+        "label": "D",
+        "text": "activated"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q18",
+    "question_number": 111,
+    "questionText": "The _____ of the disease can be significantly slowed by taking the medicine developed by Dr. Toft's team.",
+    "options": [
+      {
+        "label": "A",
+        "text": "progressed"
+      },
+      {
+        "label": "B",
+        "text": "progression"
+      },
+      {
+        "label": "C",
+        "text": "progressive"
+      },
+      {
+        "label": "D",
+        "text": "progressively"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q19",
+    "question_number": 114,
+    "questionText": "Ms. Carlton felt comfortable crossing the road because there were no vehicles coming in her _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "directly"
+      },
+      {
+        "label": "B",
+        "text": "direction"
+      },
+      {
+        "label": "C",
+        "text": "direct"
+      },
+      {
+        "label": "D",
+        "text": "directs"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q20",
+    "question_number": 105,
+    "questionText": "Due to his decades of experience, Mr. Finley was responsible for the training of the _____ for the new gym.",
+    "options": [
+      {
+        "label": "A",
+        "text": "instructors"
+      },
+      {
+        "label": "B",
+        "text": "instructive"
+      },
+      {
+        "label": "C",
+        "text": "instructively"
+      },
+      {
+        "label": "D",
+        "text": "instructed"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q21",
+    "question_number": 120,
+    "questionText": "To make the tour accessible to Spanish speakers, the language _____ plans to provide translation services.",
+    "options": [
+      {
+        "label": "A",
+        "text": "interpreted"
+      },
+      {
+        "label": "B",
+        "text": "to interpret"
+      },
+      {
+        "label": "C",
+        "text": "interpreting"
+      },
+      {
+        "label": "D",
+        "text": "interpreter"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q22",
+    "question_number": 103,
+    "questionText": "Please congratulate Alan Schmit, _____ of the Leadership Award in Nursing at Knoll Hospital.",
+    "options": [
+      {
+        "label": "A",
+        "text": "won"
+      },
+      {
+        "label": "B",
+        "text": "wins"
+      },
+      {
+        "label": "C",
+        "text": "winning"
+      },
+      {
+        "label": "D",
+        "text": "winner"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q23",
+    "question_number": 103,
+    "questionText": "The evening's dance _____ was made possible with support from Taglet’s Emporium.",
+    "options": [
+      {
+        "label": "A",
+        "text": "presented"
+      },
+      {
+        "label": "B",
+        "text": "presents"
+      },
+      {
+        "label": "C",
+        "text": "presenting"
+      },
+      {
+        "label": "D",
+        "text": "presentation"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q24",
+    "question_number": 126,
+    "questionText": "The _____ to review plans to replace the Tronton Bridge will be scheduled soon.",
+    "options": [
+      {
+        "label": "A",
+        "text": "heard"
+      },
+      {
+        "label": "B",
+        "text": "hears"
+      },
+      {
+        "label": "C",
+        "text": "hearing"
+      },
+      {
+        "label": "D",
+        "text": "hear"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q25",
+    "question_number": 106,
+    "questionText": "Mr. Winkel's _____ responsibilities include auditing and financial review of large clients.",
+    "options": [
+      {
+        "label": "A",
+        "text": "accounts"
+      },
+      {
+        "label": "B",
+        "text": "accounted"
+      },
+      {
+        "label": "C",
+        "text": "accounting"
+      },
+      {
+        "label": "D",
+        "text": "accountable"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q26",
+    "question_number": 111,
+    "questionText": "Candidates for the open position must have good interpersonal skills and ___ working with clients",
+    "options": [
+      {
+        "label": "A",
+        "text": "experience"
+      },
+      {
+        "label": "B",
+        "text": "experienced"
+      },
+      {
+        "label": "C",
+        "text": "experiencing"
+      },
+      {
+        "label": "D",
+        "text": "to experience"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Liên từ \"and\" có chức năng nối hai từ cùng loại, trước \"and\" là danh từ \"skill\" nên sau \"and\" cũng điền một Danh từ. Chọn A.Dịch: Các ứng cử viên cho vị trí trống phải có kỹ năng giao tiếp mềm tốt và kinh nghiệm làm việc với khách hàng.",
+    "explanation": "Đáp án đúng: A."
+  }
+]

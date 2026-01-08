@@ -1,0 +1,434 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 151,
+    "questionText": "What is Mr. Haney’s problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He is locked out of his office"
+      },
+      {
+        "label": "B",
+        "text": "He needs help finding a report"
+      },
+      {
+        "label": "C",
+        "text": "He has forgotten important information"
+      },
+      {
+        "label": "D",
+        "text": "He did not turn off his work computer"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 181,
+    "questionText": "What is the purpose of the notice?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To list volunteer opportunities at a company"
+      },
+      {
+        "label": "B",
+        "text": "To describe the history of a company"
+      },
+      {
+        "label": "C",
+        "text": "To advertise a company’s new program"
+      },
+      {
+        "label": "D",
+        "text": "To announce the retirement of a company’s president"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 149,
+    "questionText": "For whom are the instructions most likely intended?",
+    "options": [
+      {
+        "label": "A",
+        "text": "New customers"
+      },
+      {
+        "label": "B",
+        "text": "Bank loan applicants"
+      },
+      {
+        "label": "C",
+        "text": "Employees in training"
+      },
+      {
+        "label": "D",
+        "text": "Customer service representatives"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Khách hàng mới => đây là hướng dẫn kích hoạt thẻ ghi nợ (dùng cho lần đầu) --> nó dành cho khách hàng mới, chọn."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 156,
+    "questionText": "What does the press release announce?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The launch of a new product line"
+      },
+      {
+        "label": "B",
+        "text": "The relocation of a company’s headquarters"
+      },
+      {
+        "label": "C",
+        "text": "The increased earnings of a real estate firm"
+      },
+      {
+        "label": "D",
+        "text": "The start of a lengthy business partnership"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 162,
+    "questionText": "What is the purpose of the article?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To announce a company merger"
+      },
+      {
+        "label": "B",
+        "text": "To provide marketing tips"
+      },
+      {
+        "label": "C",
+        "text": "To introduce a new director"
+      },
+      {
+        "label": "D",
+        "text": "To publicize online courses"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 192,
+    "questionText": "What is the purpose of the e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To request approval of a design"
+      },
+      {
+        "label": "B",
+        "text": "To extend an offer of employment"
+      },
+      {
+        "label": "C",
+        "text": "To place an order for art materials"
+      },
+      {
+        "label": "D",
+        "text": "To arrange an appointment"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 153,
+    "questionText": "What is the purpose of the e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To reschedule a meeting"
+      },
+      {
+        "label": "B",
+        "text": "To request a monthly operating report"
+      },
+      {
+        "label": "C",
+        "text": "To introduce a new employee"
+      },
+      {
+        "label": "D",
+        "text": "To propose a new marketing strategy"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Để xếp lại lịch của một cuộc họp."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 155,
+    "questionText": "What is the purpose of the email?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To inform the suppliers of a mistake"
+      },
+      {
+        "label": "B",
+        "text": "To give an employee instructions"
+      },
+      {
+        "label": "C",
+        "text": "To order a shipment of beverages"
+      },
+      {
+        "label": "D",
+        "text": "To keep inventory of products"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Để hướng dẫn nhân viên."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 165,
+    "questionText": "What is the purpose of the e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To organize a business trip"
+      },
+      {
+        "label": "B",
+        "text": "To request updated information"
+      },
+      {
+        "label": "C",
+        "text": "To offer additional skills training"
+      },
+      {
+        "label": "D",
+        "text": "To promote a community event"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 172,
+    "questionText": "What is the main topic of the article?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Alternative energy sources"
+      },
+      {
+        "label": "B",
+        "text": "Environmentally friendly cities"
+      },
+      {
+        "label": "C",
+        "text": "The opening of a new factory"
+      },
+      {
+        "label": "D",
+        "text": "The future of car companies"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Khai trương nhà máy mới."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 184,
+    "questionText": "What is the purpose of the e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To quit a job"
+      },
+      {
+        "label": "B",
+        "text": "To postpone an appointment"
+      },
+      {
+        "label": "C",
+        "text": "To ask for an interview"
+      },
+      {
+        "label": "D",
+        "text": "To accept a job offer"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 191,
+    "questionText": "What is the purpose of the e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To introduce new members"
+      },
+      {
+        "label": "B",
+        "text": "To promote upcoming events"
+      },
+      {
+        "label": "C",
+        "text": "To announce some schedule adjustments"
+      },
+      {
+        "label": "D",
+        "text": "To solicit donations"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Để quảng bá các sự kiện sắp tới."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 155,
+    "questionText": "What is the purpose of the article?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To advertise the products of a shop"
+      },
+      {
+        "label": "B",
+        "text": "To explain the details of a new business venture"
+      },
+      {
+        "label": "C",
+        "text": "To discuss the history of a family business"
+      },
+      {
+        "label": "D",
+        "text": "To explain the prices of the products"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Để thảo luận về lịch sử của một doanh nghiệp gia đình."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 168,
+    "questionText": "Why was the letter written?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To describe a policy change"
+      },
+      {
+        "label": "B",
+        "text": "To introduce a new grocery store"
+      },
+      {
+        "label": "C",
+        "text": "To advertise a market opening"
+      },
+      {
+        "label": "D",
+        "text": "To announce election results"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Để quảng cáo mở cửa chợ."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 186,
+    "questionText": "What is the purpose of the web page information?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To announce a new company policy"
+      },
+      {
+        "label": "B",
+        "text": "To explain an upcoming relocation"
+      },
+      {
+        "label": "C",
+        "text": "To inform a user about a charge"
+      },
+      {
+        "label": "D",
+        "text": "To notify a user of phishing attempts"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Để thông báo cho người dùng về khoản phí."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 191,
+    "questionText": "What is one reason the first e-mail was sent?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To specify a warranty number"
+      },
+      {
+        "label": "B",
+        "text": "To ask for a date for a visit"
+      },
+      {
+        "label": "C",
+        "text": "To confirm an order"
+      },
+      {
+        "label": "D",
+        "text": "To apologize for a shipping delay"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Để xin ngày thăm viếng."
+  }
+]

@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "lặn xuống nước",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/jwdrtiohh6xsgdyxxd5h_Scuba_20Diving_20and_20Water_20Sports_20Combo_20Experience_20in_20Grande_20Island,_20India.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dive"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "bảng tính",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_289979367_zy4mcdP1w65bCo4lmry0jogygQLnFbG5.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "spreadsheet"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "bất cẩn, cẩu thả",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "careless"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "(thuộc) bưu điện, gửi bằng bưu điện",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_473712532_coiqWG0XaHKEVV1VxzsjMBtxjjAQZMAe.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "postal"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "trên toàn quốc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_406244799_xwLg3IhuGRWiWaMjakmULV8Uyv7pBRoz.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "nationwide"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà vệ sinh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "restroom"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "người sáng lập",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_word-image-1478.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "founder"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự tắc nghẽn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/15_92980_1006untac1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "congestion"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "làm cho phù hợp với, giống với",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/c_conform.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "conform"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "tạm biệt",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/9c_67189c13147510a679d1b33cbaf3c4b2.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bye"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "tiếp nhận, ngâm, thấm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "absorb"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sắp xếp hợp lý hoá, tổ chức cho tốt hơn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_421019853_mFBhDkldHfPzmaTzFiJGMukFzv38TON5.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "streamline"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "lặp đi lặp lại nhiều lần",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif"
+        },
+        "right": {
+          "type": "text",
+          "text": "repeatedly"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "độ ẩm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "humidity"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "Sự nhập cư, sự di cư",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/011_Pic1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "immigration"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "diễn đàn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/uploads_forum-mercedes-benz-mercedeshanoi-com-vn.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "forum"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "antique"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "làm cho ai đó không hài lòng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dissatisfy"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "gây quỹ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/MTc1MTI4MTA5MTQ5MjY3MDM5_101_ways_to_fundraise.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "fundraise"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "(dịch vụ) chăm sóc sức khỏe",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "healthcare"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "quá đủ, quá nhiều, phong phú",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "ample"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "nguy hiểm",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "hazardous"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "dọn dẹp ngăn nắp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_479294676_WPukf5THjt5BdzKPwZe09SOiC9S62Qlq.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "tidy"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "hạt đậu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_four-bowls-of-beans-1296x728.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bean"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "tập giấy (viết, vẽ)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pad"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hữu ích",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12dec_handy-idiom.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "handy"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách yên tĩnh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/52_1000_F_504125230_OVYRKXKfV3lkQMFZcCxmNJ6ZKW528NGr.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "silently"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "quản lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "administer"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "sự mâu thuẫn, sự trái ngược",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_contradiction.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "contradiction"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "sự bố trí, sắp đặt ai đó vào một công việc hoặc vị trí của một cái gì đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/21_1000_F_379872186_wjlyKGh0sHwX4qIdWNpUGevcLFoWoVqb.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "placement"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "mực máy in",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_488629209_4Q0nZQyBvt9ltvN9JHGNC8fxPADvgZ0c.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "toner"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "thú vị, thích thú",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enjoyable"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà phân phối",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "distributor"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà sưu tầm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/uploads_KAWS-sitting-in-front-of-his-extensive-art-collection.-Photo-by-Stefan-Ruiz.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "collector"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "một người hướng dẫn hoặc giáo sư tại trường đại học",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_117832869_gettyimages-911026294.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "faculty"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "Người thu ngân (nhận và trả tiền ở ngân hàng)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_232167783_v5KUxWN4zuvauZwbPyKasFlq6RW9oi0a.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "teller"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "đọc lướt qua, xem lướt qua",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "browse"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "thợ sửa chữa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-photo_young-hispanic-workwoman-repairperson-coveralls-blue-headband-gloves_274679-33989.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "repairperson"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "ngược lại với",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "contrary"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "một chi phí nhỏ bạn phải trả để sử dụng dịch vụ (ví dụ như phí cầu đường)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/41_240_F_174534119_35tdaPEBotVBhrqjuHIwnnW7EqFMSGnM.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "toll"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "có uy thế, có tầm ảnh hưởng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_165031704_jNDdxLBl4nLeplz80eYlkUuI0Qxo66Hf.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "influential"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "diễn giải lại (cùng 1 ý nghĩa nhưng sử dụng từ khác)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_507575912_IwfgaiXR6OFPlqrFzgDpyBB7OeNrpn1q.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "paraphrase"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "spa"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "đáng kể",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_496519925_BHHNoH7L0cBZNgYSmhKv4k5eAeOywFug.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "substantially"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "bằng cấp, chứng chỉ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_5c5801308f149573442a9ca980da3e14.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "diploma"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách cấp thiết",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_509516778_ISIMMMIn9xVsuxOTueEiEgn6tz60U53I.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "urgently"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự quảng cáo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_358381602_P4GlDt8cYJ0GwuywPKSMdF0ISrsavOQA.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "publicity"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "thuận lợi, có triển vọng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "favorable"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "cái kẹp ghim",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_1299345_p7V1XpUwbtYMnSFC0fJcQD1gyH5jXq.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "stapler"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "đồ họa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_Graphic-Design-Vector-Illustration.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "graphics"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "sống động, tràn đầy năng lượng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/premium-vector_little-girl-with-energetic-tired-gestures_173125-328.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "energetic"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "Đường dành cho người đi bộ",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "walkway"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "sự thất vọng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "disappointment"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "đốc công, kíp trưởng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "foreman"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "người thuê nhà",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_495202235_HG5wh2BZt2E6p71nTkktkTrUc67U2pFi.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "renter"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

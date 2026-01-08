@@ -1,0 +1,83 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 127,
+    "questionText": "Saul's Pizzeria changed its menu options after receiving _____ negative customer feedback.",
+    "options": [
+      {
+        "label": "A",
+        "text": "increase"
+      },
+      {
+        "label": "B",
+        "text": "increases"
+      },
+      {
+        "label": "C",
+        "text": "to increase"
+      },
+      {
+        "label": "D",
+        "text": "increasingly"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "chỗ trống cần có 1 trạng từ để bổ nghĩa cho tính từ \"negative\". Chọn đáp án D.Dịch: Saul's Pizzeria đã thay đổi các lựa chọn thực đơn sau việc nhận được phản hồi ngày càng tiêu cực của khách hàng.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 101,
+    "questionText": "Mr. Ashburton has been _____ recommended by all three of his references.",
+    "options": [
+      {
+        "label": "A",
+        "text": "high"
+      },
+      {
+        "label": "B",
+        "text": "higher"
+      },
+      {
+        "label": "C",
+        "text": "highly"
+      },
+      {
+        "label": "D",
+        "text": "highest"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Câu này cần tìm từ loại thích hợp. Ở đây cần 1 trạng từ bổ sung ý nghĩa cho động từ \"recommend\" nên đáp án đúng là C \"highly\".Dịch: Mr. Ashburton đã được tiến cử một cách nhiệt tình bởi cả ba người giới thiệu của anh ấy.",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 105,
+    "questionText": "Please submit each reimbursement request _____ according to its category, as outlined in last month's memo.",
+    "options": [
+      {
+        "label": "A",
+        "text": "separately"
+      },
+      {
+        "label": "B",
+        "text": "separateness"
+      },
+      {
+        "label": "C",
+        "text": "separates"
+      },
+      {
+        "label": "D",
+        "text": "separate"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  }
+]

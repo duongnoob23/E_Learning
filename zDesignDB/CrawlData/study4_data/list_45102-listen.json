@@ -1,0 +1,3577 @@
+[
+  {
+    "question_id": "listen_01",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=admission&lang=en-US&ipa=%2F%C9%99d%CB%88m%C9%AA%CA%83.%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_02",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=airplane&lang=en-US&ipa=%2F%CB%88e%C9%99.ple%C9%AAn%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phương tiện truyền thông đại chúng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_69060974_6AYH1q85hg1qXRe67dyHTWqe8PZWqsim.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "giấy tờ nhận dạng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/IDcard_860x394.png",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_03",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=appliance&lang=en-US&ipa=%2F%C9%99%CB%88pla%C9%AA.%C9%99ns%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_04",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=assignment&lang=en-US&ipa=%2F%C9%99%CB%88sa%C9%AAn.m%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_05",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=attendee&lang=en-US&ipa=%2F%C9%99%CB%8Cten%CB%88di%CB%90%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hình trái xoan, hình bầu dục",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_471527973_vqxejKcr3Yzeyi26HlUrYJTEAd9IJSQ3.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_06",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=birthday&lang=en-US&ipa=%2F%CB%88b%C9%9C%CB%90%CE%B8.de%C9%AA%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_07",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cabinet&lang=en-US&ipa=%2F%CB%88k%C3%A6b.%C9%AA.n%C9%99t%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "chiến thuật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_331480130_5OZUZqOSIGd9xXPPRJFROf5yMogImHVh.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_08",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=caf%C3%A9&lang=en-US&ipa=%2F%CB%88k%C3%A6f.e%C9%AA%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tổ chức bảo trợ, thế lực bảo vệ, sự bao trùm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_116348147_GJIRWZxtV83ljrJ1R4Hdm7tCnPuXbAMi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_09",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cellphone&lang=en-US&ipa=%2F%CB%88sel.f%C9%99%CA%8An%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "chiến thuật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_331480130_5OZUZqOSIGd9xXPPRJFROf5yMogImHVh.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": true
+        },
+        {
+          "id": 6,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_10",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=clue&lang=en-US&ipa=%2Fklu%CB%90%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_11",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compact&lang=en-US&ipa=%2Fk%C9%99m%CB%88p%C3%A6kt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_12",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=comprehension&lang=en-US&ipa=%2F%CB%8Ck%C9%92m.pr%C9%AA%CB%88hen.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_13",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=contradict&lang=en-US&ipa=%2F%CB%8Ck%C9%92n.tr%C9%99%CB%88d%C9%AAkt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hình trái xoan, hình bầu dục",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_471527973_vqxejKcr3Yzeyi26HlUrYJTEAd9IJSQ3.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_14",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=convenient&lang=en-US&ipa=%2Fk%C9%99n%CB%88vi%CB%90.ni.%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tổ chức bảo trợ, thế lực bảo vệ, sự bao trùm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_116348147_GJIRWZxtV83ljrJ1R4Hdm7tCnPuXbAMi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_15",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=coupon&lang=en-US&ipa=%2F%CB%88ku%CB%90.p%C9%92n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_16",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=coworker&lang=en-US&ipa=%2F%CB%8Ck%C9%99%CA%8A%CB%88w%C9%9C%CB%90.k%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "để giải thích hoặc làm rõ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_RS8088_GettyImages-643999205-hig.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_17",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cruise&lang=en-US&ipa=%2Fkru%CB%90z%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "chiến thuật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_331480130_5OZUZqOSIGd9xXPPRJFROf5yMogImHVh.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "để giải thích hoặc làm rõ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_RS8088_GettyImages-643999205-hig.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_18",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dentist&lang=en-US&ipa=%2F%CB%88den.t%C9%AAst%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "chiến thuật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_331480130_5OZUZqOSIGd9xXPPRJFROf5yMogImHVh.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_19",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=depart&lang=en-US&ipa=%2Fd%C9%AA%CB%88p%C9%91%CB%90t%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_20",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=destination&lang=en-US&ipa=%2F%CB%8Cdes.t%C9%AA%CB%88ne%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_21",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dine&lang=en-US&ipa=%2Fda%C9%AAn%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_22",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=electrical&lang=en-US&ipa=%2F%C9%AA%CB%88lek.tr%C9%AA.k%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhà xe , ga-ra xe",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2_12-15490541257712000439018.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "để giải thích hoặc làm rõ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_RS8088_GettyImages-643999205-hig.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_23",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=exit&lang=en-US&ipa=%2F%CB%88e%C9%A1.z%C9%AAt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_24",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=explanatory&lang=en-US&ipa=%2F%C9%AAk%CB%88spl%C3%A6n.%C9%99.t%C9%99r.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "để giải thích hoặc làm rõ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_RS8088_GettyImages-643999205-hig.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_25",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=garage&lang=en-US&ipa=%2F%C9%A1%C9%99%CB%88r%C9%91%CB%90%CA%92%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "nhà xe , ga-ra xe",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2_12-15490541257712000439018.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_26",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=identification&lang=en-US&ipa=%2Fa%C9%AA%CB%8Cden.t%C9%AA.f%C9%AA%CB%88ke%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "giấy tờ nhận dạng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/IDcard_860x394.png",
+          "is_correct": true
+        },
+        {
+          "id": 6,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "để giải thích hoặc làm rõ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_RS8088_GettyImages-643999205-hig.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_27",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inference&lang=en-US&ipa=%2F%CB%88%C9%AAn.f%C9%99r.%C9%99ns%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhà xe , ga-ra xe",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2_12-15490541257712000439018.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_28",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=instructor&lang=en-US&ipa=%2F%C9%AAn%CB%88str%CA%8Ck.t%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_29",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inventory&lang=en-US&ipa=%2F%CB%88%C9%AAn.v%C9%99n.t%C9%99r.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tổ chức bảo trợ, thế lực bảo vệ, sự bao trùm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_116348147_GJIRWZxtV83ljrJ1R4Hdm7tCnPuXbAMi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_30",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=keyboard&lang=en-US&ipa=%2F%CB%88ki%CB%90.b%C9%94%CB%90d%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phương tiện truyền thông đại chúng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_69060974_6AYH1q85hg1qXRe67dyHTWqe8PZWqsim.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "tổ chức bảo trợ, thế lực bảo vệ, sự bao trùm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_116348147_GJIRWZxtV83ljrJ1R4Hdm7tCnPuXbAMi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự thay thế, vật thay thế, người thay thế",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_replacement-vector-24918935.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_31",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=laptop&lang=en-US&ipa=%2F%CB%88l%C3%A6p.t%C9%92p%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_32",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mall&lang=en-US&ipa=%2Fm%C9%94%CB%90l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "nhà xe , ga-ra xe",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2_12-15490541257712000439018.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_33",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=manual&lang=en-US&ipa=%2F%CB%88m%C3%A6n.ju.%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_34",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=media&lang=en-US&ipa=%2F%CB%88mi%CB%90.di.%C9%99%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hình trái xoan, hình bầu dục",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_471527973_vqxejKcr3Yzeyi26HlUrYJTEAd9IJSQ3.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "phương tiện truyền thông đại chúng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_69060974_6AYH1q85hg1qXRe67dyHTWqe8PZWqsim.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_35",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=medication&lang=en-US&ipa=%2F%CB%8Cmed.%C9%AA%CB%88ke%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "phương tiện truyền thông đại chúng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_69060974_6AYH1q85hg1qXRe67dyHTWqe8PZWqsim.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_36",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=merchandise&lang=en-US&ipa=%2F%CB%88m%C9%9C%CB%90.t%CA%83%C9%99n.da%C9%AAz%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hình trái xoan, hình bầu dục",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_471527973_vqxejKcr3Yzeyi26HlUrYJTEAd9IJSQ3.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "giấy tờ nhận dạng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/IDcard_860x394.png",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "bản kiểm kê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/landing_im-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_37",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=obtain&lang=en-US&ipa=%2F%C9%99b%CB%88te%C9%AAn%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "đạt được, có được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_451034169_rMoF1nYcG1D5L40LnbyI7IndfJsqosZg.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "kết luận, sự suy luận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1610499485299-R9XMIEHC1MB89AVZHQLT_Inference+Anchor+Chart.png",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_38",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=occupation&lang=en-US&ipa=%2F%CB%8C%C9%92k.j%CA%8A%CB%88pe%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_39",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=outdoor&lang=en-US&ipa=%2F%CB%8Ca%CA%8At%CB%88d%C9%94%CB%90r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "giấy tờ nhận dạng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/IDcard_860x394.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_40",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=oval&lang=en-US&ipa=%2F%CB%88%C9%99%CA%8A.v%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự thay thế, vật thay thế, người thay thế",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_replacement-vector-24918935.webp",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "hình trái xoan, hình bầu dục",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_471527973_vqxejKcr3Yzeyi26HlUrYJTEAd9IJSQ3.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_41",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=passport&lang=en-US&ipa=%2F%CB%88p%C9%91%CB%90s.p%C9%94%CB%90t%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thuộc về điện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_electricity-cable-with-sparks-artwork-525442015-5804fee23df78cbc28a71d9f.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_42",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=postpone&lang=en-US&ipa=%2Fp%C9%99%CA%8Ast%CB%88p%C9%99%CA%8An%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 6,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "rời đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2123_pkexr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_43",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=precede&lang=en-US&ipa=%2Fpr%C9%AA%CB%88si%CB%90d%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_44",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=receptionist&lang=en-US&ipa=%2Fr%C9%AA%CB%88sep%CA%83%C9%99n%C9%AAst%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sách hướng dẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_40282368_fxkgwwMZl5tikH7R4vLezW0mjAGaqqvM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_45",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=renovation&lang=en-US&ipa=%2F%CB%8Cren.%C9%99%CB%88ve%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_46",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=replacement&lang=en-US&ipa=%2Fr%C9%AA%CB%88ple%C9%AAs.m%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự thay thế, vật thay thế, người thay thế",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_replacement-vector-24918935.webp",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "điện thoại di động",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/607812_pexels-photo-607812.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ở trước, có trước, đến trước",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_504333216_OMrstzt6eYNuZGg54VFTHd5w5HlEYyGe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_47",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reschedule&lang=en-US&ipa=%2F%CB%8Cri%CB%90%CB%88sked%CA%92u%CB%90l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_48",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=suitcase&lang=en-US&ipa=%2F%CB%88su%CB%90t.ke%C9%AAs%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "rời đi, khởi hành",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_depart5.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "hộ chiếu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_80659599_5SPrCq7oaIcin8BR8iUSxb7zz4IbwcBs.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cuộc du ngoạn biển bằng tàu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Cruise-ships-1.png.webp",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_49",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=supermarket&lang=en-US&ipa=%2F%CB%88su%CB%90.p%C9%99%CB%8Cm%C9%91%CB%90.k%C9%AAt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sinh nhật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cute-birthday-instagram-captions-1584723902.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "xếp lại lịch",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/950_depositphotos_69275789-stock-photo-reschedule-word-written-and-circled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "siêu thị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_237483080_Bs4TktR9NCc0rhzby0ZxGusczC6JNR3O.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trì hoãn, hoãn lại",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_391473254_vnlo75kfn2RsT19fdPnpLYyZAVIXSFrE.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_50",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tactic&lang=en-US&ipa=%2F%CB%88t%C3%A6k.t%C9%AAk%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "chiến thuật",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_331480130_5OZUZqOSIGd9xXPPRJFROf5yMogImHVh.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "sự hiểu, sự lĩnh hội",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_Icon_Comprehension.svg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự thay thế, vật thay thế, người thay thế",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_replacement-vector-24918935.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_51",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=umbrella&lang=en-US&ipa=%2F%CA%8Cm%CB%88brel.%C9%99%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "máy móc, thiết bị",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_home-appliance1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "bác sĩ nha khoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_iStock-510634014.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "phủ nhận/mâu thuẫn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_contradict.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ăn tối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_60636ddb390000253beb288c.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy tính xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "điểm đến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_105631.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "tổ chức bảo trợ, thế lực bảo vệ, sự bao trùm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_116348147_GJIRWZxtV83ljrJ1R4Hdm7tCnPuXbAMi.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_52",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=underline&lang=en-US&ipa=%2F%CB%8C%CA%8Cn.d%C9%99%CB%88la%C9%AAn%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "người tham gia, người tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_Attendee-management-system2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "tủ có nhiều ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/file_22fbee20a02b87e5901c1216d6502778.jpeg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_53",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=upcoming&lang=en-US&ipa=%2F%CB%88%CA%8Cp%CB%8Ck%CA%8Cm.%C9%AA%C5%8B%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "trung tâm thương mại, trung tâm mua sắm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_240_F_36947693_G8c9lgCfOa3rG0hNY6zzqvqw35UzuIf1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "vali",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_301592247_px7L6jXOpZ3Zh2WSWWOMVDRhMRsqD93s.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "nhân viên tiếp tân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_274551171_YJ4gAIt80DmvwvBEe9mprExIHBO3Av8Y.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sắp tới",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_489099803_Y8LPnn0XzzuFOhekjubOdothSBUubcol.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "người hướng dẫn (có thể là huấn luyện viên, giáo viên)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_301616800_7x5Sey38A9qsDDd7xMmVyvak4OQtTpoR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy bay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/447890_boeing-737-max-airplane-source-ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bàn phím máy tính",
+          "image_url": null,
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_54",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=upgrade&lang=en-US&ipa=%2F%CA%8Cp%CB%88%C9%A1re%C9%AAd%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "nâng cấp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_287304613_TTSeaVCmaL0brNe1zQG9hCLsCeDCK6Jd.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "đồng nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/asset_5a4c57d02100003e005f6d14.jpeg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tiện lợi, thuận tiện",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_dinh-nghia-convenient.png",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "gọn ghẽ/chật ních",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_201-W.-Madison_Small-Cars-Only.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự nâng cấp, sự tu sửa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_179601249_LAbrcLmqGjnLzq04FHreO7EUtwVQURdf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "gợi ý, manh mối",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cute-happy-gold-key-with-question-mark-idea-lightbulb_92289-648.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự thay thế, vật thay thế, người thay thế",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_replacement-vector-24918935.webp",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "thuốc thang, dược phẩm",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_118373541_ZX03zqHZ8uoehiSaLm10k6RzC04OYIAx.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_55",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=valid&lang=en-US&ipa=%2F%CB%88v%C3%A6l.%C9%AAd%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "đúng đắn, có cơ sở/căn cứ vững chắc",
+          "image_url": null,
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "một dự án hoặc nhiệm vụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22170700_Top3WritingToolsthatHelpStudentsWriteAssignments.jpg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "phiếu mua hàng, phiếu giảm giá",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_ma-coupon-la-gi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "nhấn mạnh/gạch chân",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_105570406_UBNWfnbqIsrMWktJdHCCqTdetztfKURe.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "nghề nghiệp",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_204143114_A8ErMCcsbVBBWU0VZcRpqSNQdRXnFBeF.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự nhận vào, sự thu nạp; sự thú nhận",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/cms-content_StudentsWorkingHardForCollegeAcceptance.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "quán cà phê",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog-du-lich_Cafe-de-Ante-Quan-cafe-mang-dam-chat-vintage-day-lang-man-tai-Da-Nang-01-1637013713.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ngoài trời",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_473705366_bmFuyhFjyBKk1xreMrgKlJHCyFrFElve.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hóa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_219165976_5OeFq5rQhoOD9aTYmmservbTyQWh0Jjw.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  }
+]

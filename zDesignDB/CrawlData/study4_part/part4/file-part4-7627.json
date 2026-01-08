@@ -1,0 +1,443 @@
+[
+  {
+    "question_id": "p4_q1",
+    "question_number": 75,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_74_76.mp3",
+    "questionText": "What does the speaker say the listeners should learn to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Manage their time"
+      },
+      {
+        "label": "B",
+        "text": "Negotiate prices"
+      },
+      {
+        "label": "C",
+        "text": "Give memorable presentations"
+      },
+      {
+        "label": "D",
+        "text": "Create effective advertisements"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "(74) Thanks for attending today's seminar for new real estate agents. As people just joining the industry, (75) it's very important that you learn how to create a memorable property advertisement. The way you describe a house or apartment can determine how quickly the property sells. I've invited a guest speaker to discuss this very point. (76) Insook Lee has recently won our county's agent of the year award, and she attributes her success in large part to the fact that she has mastered the art of writing a great description. Insook, welcome, and thank you for joining us today.",
+    "translation": "Cảm ơn các bạn đã tham dự buổi hội thảo hôm nay dành cho các nhà môi giới bất động sản mới. Là những người mới tham gia vào ngành, điều rất quan trọng là các bạn phải học cách tạo ra một quảng cáo bất động sản đáng nhớ. Cách các bạn mô tả một ngôi nhà hoặc căn hộ có thể quyết định mức độ bán nhanh chóng của tài sản đó. Tôi đã mời một khách mời để thảo luận về điểm này. Insook Lee gần đây đã giành được giải thưởng đại diện của năm của quận chúng ta, và cô ấy cho rằng thành công của mình một phần lớn là do cô ấy đã thành thạo trong việc viết một đoạn mô tả tuyệt vời. Insook, chào mừng và cảm ơn bạn đã tham gia với chúng tôi ngày hôm nay.",
+    "explanation": {
+      "D": "Là những người mới tham gia vào ngành, điều rất quan trọng là các bạn phải học cách tạo ra một quảng cáo bất động sản đáng nhớ- Từ vựng:Industry (n) ngành",
+      "A": "dvertisement (n) quảng cáo",
+      "B": "Thương lượng giá cả",
+      "C": "reat (v) tạo raMemorable (adj): đáng nhớProperty (n) bất động sản",
+      "note": "Câu hỏi yêu cầu, gợi ý. Câu hỏi số hai của bài nói. Nghe thông tin phần giữa- Câu chứa đáp án: As people just joining the industry, it's very important that you learn how to create a memorable property advertisement"
+    }
+  },
+  {
+    "question_id": "p4_q2",
+    "question_number": 82,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_80_82.mp3",
+    "questionText": "What are some listeners encouraged to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Sign up early for a service"
+      },
+      {
+        "label": "B",
+        "text": "Use a community space"
+      },
+      {
+        "label": "C",
+        "text": "Attend an information session"
+      },
+      {
+        "label": "D",
+        "text": "Take public transportation"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Thank you for coming to this short meeting for all residents of Atrium Apartment Complex. (80) Our power provider, Crewdson Energy Company, will be updating the electrical equipment in all units starting next week. This update is to improve the energy efficiency in our buildings. (81) Please be warned that there will be intermittent power failures while work is being done. (82) If you work from home and need alternate space to work during power failures, you're free to use the apartment complex clubhouse. We'll make sure there's power there at all times.",
+    "translation": "Cảm ơn các bạn đã đến tham dự buổi họp mặt ngắn này cho tất cả cư dân của Tổ hợp căn hộ Atrium. Nhà cung cấp điện của chúng ta, Công ty Năng lượng Crewdson, sẽ nâng cấp các thiết bị điện trong tất cả các căn hộ bắt đầu từ tuần tới. Việc nâng cấp này nhằm cải thiện hiệu quả sử dụng năng lượng trong các tòa nhà của chúng ta. Xin lưu ý rằng sẽ có sự cố mất điện liên tục trong khi công việc đang được thực hiện. Nếu các bạn làm việc tại nhà và cần không gian thay thế để làm việc khi mất điện, các bạn có thể thoải mái sử dụng câu lạc bộ khu chung cư. Chúng tôi sẽ đảm bảo luôn có điện ở đó.",
+    "explanation": {
+      "D": "Sử dụng phương tiện công cộng",
+      "A": "partment (n): căn hộ",
+      "B": "Nếu các bạn làm việc tại nhà và cần không gian thay thế để làm việc khi mất điện, các bạn có thể thoải mái sử dụng câu lạc bộ khu chung cư",
+      "C": "omplex (n): khuMake sure (v): chắc chắn",
+      "note": "Câu hỏi về yêu cầu, gợi ý. Câu hỏi cuối cùng. Nghe thông tin ở phần cuối hội thoại.- Câu chứa đáp án:  If you work from home and need alternate space to work during power failures, you're free to use the apartment complex clubhouse. We'll make sure there's power there at all times"
+    }
+  },
+  {
+    "question_id": "p4_q3",
+    "question_number": 91,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_89_91.mp3",
+    "questionText": "What does the speaker ask the listeners to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Update service numbers"
+      },
+      {
+        "label": "B",
+        "text": "Submit salary requirements"
+      },
+      {
+        "label": "C",
+        "text": "Keep a record of complaints"
+      },
+      {
+        "label": "D",
+        "text": "Post some shipping schedules"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "(89,90) We'll be rolling out some changes starting next week. When customers call the service number, they’ll be prompted to say which department they're trying to reach, and then voice-recognition software will direct their call automatically. I'm sure most of you have experiences of your own calling customer-service hotlines that utilize this kind of system. Usually, it works, but it can be frustrating when it doesn't. (90,91) Some customers might be upset with you if they were unable to reach the right department quickly. If this happens to you, please summarize the exchange in writing. I'll give the feedback to the programmers so they can make improvements to the program accordingly.",
+    "translation": "Chúng ta sẽ triển khai một số thay đổi bắt đầu từ tuần tới. Khi khách hàng gọi đến số dịch vụ, họ sẽ được hỏi ngay lập tức rằng họ đang muốn liên lạc đến bộ phận nào và sau đó phần mềm nhận dạng giọng nói sẽ tự động chuyển hướng cuộc gọi của họ. Tôi chắc rằng hầu hết các bạn đều có những kinh nghiệm về cuộc gọi khách hàng của riêng mình - đường dây nóng dịch vụ tối ưu loại tính năng hệ thống này. Thông thường, nó hoạt động, nhưng có thể gây khó chịu khi không hoạt động. Một số khách hàng có thể khó chịu với bạn nếu họ không thể được nhanh chóng kết nối đến đúng bộ phận. Nếu điều này xảy ra với bạn, vui lòng tóm tắt cuộc trao đổi bằng văn bản. Tôi sẽ đưa ra phản hồi cho các lập trình viên để họ có thể cải tiến chương trình cho phù hợp.",
+    "explanation": {
+      "D": "epartment (n): bộ phận, phòng banSummarize (v): tóm tắtExchange (n): sự trao đổiFeedback (n, v): phản hồiImprovement (n): cải thiện, khắc phục",
+      "C": "Một số khách hàng có thể khó chịu với bạn nếu họ không thể được nhanh chóng kết nối đến đúng bộ phận. Nếu điều này xảy ra với bạn, vui lòng tóm tắt cuộc trao đổi bằng văn bản. Tôi sẽ đưa ra phản hồi cho các lập trình viên để họ có thể cải tiến chương trình cho phù hợp.- Từ vựng:Upset (adj): khó chịuReach (v): tiếp cận, kết nối",
+      "B": "Nộp yêu cầu lương",
+      "note": "Câu hỏi yêu cầu, gợi ý. Câu hỏi cuối cùng. Nghe thông tin phần cuối hội thoại- Câu chứa đáp án:  Some customers might be upset with you if they were unable to reach the right department quickly. If this happens to you, please summarize the exchange in writing. I'll give the feedback to the programmers so they can make improvements to the program accordingly.Some customers might be upset with you if they were unable to reach the right department quickly"
+    }
+  },
+  {
+    "question_id": "p4_q4",
+    "question_number": 88,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_86_88.mp3",
+    "questionText": "What does the speaker tell the listeners they will have to start bringing to work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Extra uniforms"
+      },
+      {
+        "label": "B",
+        "text": "Other people's lunch"
+      },
+      {
+        "label": "C",
+        "text": "Their own lunch"
+      },
+      {
+        "label": "D",
+        "text": "A new contract"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hello, everyone. I'd like to-announce a few changes in our procedure that are designed to save us money. Firstly, we will no longer be sending statements to clients through the post. We'll be using e-mail to send monthly statements. It is a simple procedure, and when the software is installed I don't think you will need any training. The system is very straightforward. We are also renting out the catering room and installing some refrigerators in the cafeteria, so you will have to start bringing your own lunches to work.",
+    "translation": "Chào mọi người. Tôi muốn thông báo một vài thay đổi trong quy trình được thiết kế để tiết kiệm tiền cho chúng ta. Đầu tiên, chúng ta sẽ không còn gửi các báo cáo cho khách hàng thông qua bản tin. Chúng ta sẽ sử dụng e-mail để gửi báo cáo hằng tháng. Đây là quy trình đơn giản, và khi phần mềm được cài đặt, tôi không nghĩ các bạn sẽ cần hướng dẫn đâu. Hệ thống rất đơn giản. Chúng tôi cũng đang cho thuê phòng phục vụ thực phẩm và lắp đặt một số tủ lạnh trong quán ăn tự phục vụ, vì vậy các bạn sẽ phải bắt đầu mang bữa trưa của mình đến nơi làm việc.",
+    "explanation": {
+      "A": "Đồng phục bổ sung",
+      "B": "ữa trưa của chính họ",
+      "D": "Một hợp đồng mới",
+      "C": "họn",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q5",
+    "question_number": 73,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_71_73.mp3",
+    "questionText": "What does the speaker want the listener to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Contact some guests"
+      },
+      {
+        "label": "B",
+        "text": "Decorate a space"
+      },
+      {
+        "label": "C",
+        "text": "Meet special dietary needs"
+      },
+      {
+        "label": "D",
+        "text": "Prepare an estimate"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hello, my name is Alice Keller. I'm calling to reserve some tables for a private party next Thursday. I have been a loyal customer of your restaurant for years, and trust it will be the perfect place for my wedding after-party. We are expecting around fifty guests and will pay for food and drinks to be served to all guests. One of our requests is that vegetarian options be available for some guests.",
+    "translation": "Xin chào, tên tôi là Alice Keller. Tôi gọi để đặt một số bàn cho một bữa tiệc riêng tư vào thứ Năm tới. Tôi đã là một khách hàng trung thành của nhà hàng của bạn trong nhiều năm, và tin tưởng rằng nó sẽ là nơi hoàn hảo cho bữa tiệc sau đám cưới của tôi. Chúng tôi đang mong đợi khoảng năm mươi khách và sẽ trả tiền cho thức ăn và đồ uống được phục vụ cho tất cả các khách. Một trong những yêu cầu của chúng tôi là các lựa chọn ăn chay được chuẩn bị sẵn sàng cho một số khách.",
+    "explanation": {
+      "A": "Liên hệ với một số khách",
+      "B": "Trang trí không gian",
+      "C": "họn",
+      "D": "Lập dự toán",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q6",
+    "question_number": 79,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_77_79.mp3",
+    "questionText": "What are the listeners asked to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Delete unnecessary data"
+      },
+      {
+        "label": "B",
+        "text": "Submit a report"
+      },
+      {
+        "label": "C",
+        "text": "Contact clients directly"
+      },
+      {
+        "label": "D",
+        "text": "E-mail an order confirmation"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "The last item on today's meeting agenda is preparations for next week's business conference in Germany. Linda Wong from marketing and Chris Owen from sales will be representing our company at the conference. This conference will connect us with more clients and more advantageous business opportunities. Therefore, everyone is asked to e-mail a departmental status report in the first quarter to both Ms. Wong and Mr. Owen before the end of the week to help them prepare. Thank you.",
+    "translation": "Mục cuối cùng trong chương trình họp hôm nay là công tác chuẩn bị cho hội nghị doanh nghiệp vào tuần tới tại Đức. Linda Wong từ phòng tiếp thị và Chris Owen từ phòng bán hàng sẽ đại diện cho công ty chúng ta tại hội nghị. Hội nghị này sẽ kết nối chúng ta với nhiều khách hàng hơn và nhiều cơ hội kinh doanh thuận lợi hơn. Do đó, mọi người được yêu cầu gửi e-mail báo cáo tình trạng của phòng ban trong quý đầu tiên cho cả cô Wong và ông Owen trước khi kết thúc tuần để giúp họ chuẩn bị. Cảm ơn các bạn.",
+    "explanation": {
+      "A": "Xóa dữ liệu không cần thiết",
+      "B": "Gửi báo cáo",
+      "C": "họn",
+      "D": "o đó, mọi người được yêu cầu gửi e-mail báo cáo tình trạng của phòng ban trong quý đầu tiên cho cả cô Wong và ông Owen trước khi kết thúc tuần để giúp họ chuẩn bị.)",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q7",
+    "question_number": 81,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_80_82.mp3",
+    "questionText": "What are the listeners asked to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Fill out a questionnaire"
+      },
+      {
+        "label": "B",
+        "text": "Attach a name tag"
+      },
+      {
+        "label": "C",
+        "text": "Introduce themselves"
+      },
+      {
+        "label": "D",
+        "text": "Read a book"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Welcome to the opening ceremony for this year's Young Novelists Seminar. This seminar is available to students from high school to university and will help aspiring would-be novelists grow and develop into the masters of tomorrow. The first thing we ask everyone to do is to fill out a name tag and attach it to your clothes. There are over one hundred students here, and it's difficult to keep track of everyone. Next up, Natasha Marsh, the renowned literary critic, is going to give the opening speech of the ceremony. Please listen up. She has some inspiring words for everyone today.",
+    "translation": "Chào mừng đến với lễ khai mạc cho Hội thảo Tiểu thuyết gia trẻ của năm nay. Hội thảo này dành cho các học sinh từ trung học đến đại học và sẽ giúp truyền cảm hứng để các tiểu thuyết gia tương lai trưởng thành và phát triển thành những bậc thầy của ngày mai. Điều đầu tiên chúng tôi yêu cầu mọi người làm là điền vào một thẻ tên và gắn nó vào quần áo của bạn. Có hơn một trăm sinh viên ở đây, và thật khó để theo dõi tất cả mọi người. Tiếp theo, Natasha Marsh, nhà phê bình văn học nổi tiếng, sẽ phát biểu khai mạc buổi lễ. Xin hãy lắng nghe. Cô ấy có một vài lời đầy cảm hứng cho tất cả mọi người ngày hôm nay.",
+    "explanation": {
+      "A": "Điền vào bảng câu hỏi",
+      "B": "Gắn thẻ tên",
+      "C": "họn",
+      "D": "Đọc một cuốn sách",
+      "note": "Chọn B"
+    }
+  },
+  {
+    "question_id": "p4_q8",
+    "question_number": 94,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_92_94.mp3",
+    "questionText": "What is the listener asked to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Send an email confirmation"
+      },
+      {
+        "label": "B",
+        "text": "Call the man to confirm the change"
+      },
+      {
+        "label": "C",
+        "text": "Don't change the order"
+      },
+      {
+        "label": "D",
+        "text": "Cancel the whole order"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Hello, this is George Benson from Winbox Computers. We made a catering order two weeks ago but we need to make some changes. We have added some additional businesses to the luncheon, so we are going to need to increase the number of cold meat trays we ordered to 10 and the mixed salad plates to 8. Everything else can remain the same. Our order number is 5521673. Please give me a call back to confirm the changes. Thanks.",
+    "translation": "Xin chào, đây là George Benson từ Công ty máy tính Winbox. Chúng tôi đã đặt hàng phục vụ thức ăn hai tuần trước nhưng chúng tôi cần thực hiện một số các thay đổi. Chúng tôi đã thêm một số doanh nghiệp bổ sung vào bữa ăn trưa, vì vậy chúng tôi sẽ cần tăng số lượng khay thịt nguội mà chúng tôi đã đặt hàng lên 10 và các đĩa salad trộn lên 8. Mọi thứ khác có thể giữ nguyên. Mã số đặt hàng của chúng tôi là 5521673. Vui lòng gọi lại cho tôi để xác nhận những thay đổi. Cảm ơn.",
+    "explanation": {
+      "A": "Gửi email xác nhận",
+      "B": "Gọi cho người đàn ông để xác nhận sự thay đổi",
+      "C": "họn",
+      "D": "Hủy toàn bộ đơn hàng",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q9",
+    "question_number": 97,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_95_97.mp3",
+    "questionText": "What does the speaker encourage listeners to do before they leave?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Visit the tulip garden"
+      },
+      {
+        "label": "B",
+        "text": "Buy some flowers"
+      },
+      {
+        "label": "C",
+        "text": "Pick some roses"
+      },
+      {
+        "label": "D",
+        "text": "Visit the aviary"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi, all. Welcome to the annual Florist Convention. It's a pleasure to see so many people here today. My name is Juliette White and I am the president of the Maryland Florist Association. Today will be a great day filled with a lot of informative seminars and practical examples of how to improve your skills in all areas of floristry. First thing in the morning, everyone should meet at 9:00 A.M. on the street in front of the tulip garden. In the tulip garden we have the most diverse collection of tulips in England. At the moment, most are blooming so it's a fantastic opportunity to see how you can make new and exciting arrangements. One more thing I suggest is that you visit the aviary before you go home. The combination of the animal life and flowers is truly a sight to behold.",
+    "translation": "Chào mọi người. Chào mừng đến với Hội nghị Trồng hoa hằng năm. Thật vui khi thấy thật nhiều người ở đây ngày hôm nay. Tên tôi là Juliette White và tôi là chủ tịch của Hiệp hội Trồng hoa Maryland. Hôm nay sẽ là một ngày tuyệt vời với rất nhiều các hội thảo đầy thông tin và các ví dụ thực tế về cách cải thiện các kỹ năng của bạn trong tất cả các lĩnh vực trồng hoa. Đầu tiên vào buổi sáng, mọi người nên gặp nhau lúc 9 giờ sáng trên đường trước vườn hoa tulip. Trong vườn hoa tulip, chúng ta có bộ sưu tập hoa tulip đa dạng nhất ở Anh. Bây giờ, hầu hết chúng đang nở rộ vì vậy đây là một cơ hội tuyệt vời để xem làm thế nào bạn có thể tạo ra những sự bày trí mới và thú vị. Một điều nữa mà tôi khuyến khích là các bạn nên đến thăm chuồng chim trước khi về nhà. Sự kết hợp giữa đời sống động vật và hoa thực sự là một cảnh tượng đáng để chiêm ngưỡng.",
+    "explanation": {
+      "A": "Tham quan vườn hoa tulip",
+      "B": "Mua một ít hoa",
+      "C": "họn",
+      "D": "Tham quan chuồng chim",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q10",
+    "question_number": 91,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_89_91.mp3",
+    "questionText": "What does the speaker tell the listeners to do on the weekends?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Bring their lunch to work"
+      },
+      {
+        "label": "B",
+        "text": "Occasionally work on Saturdays"
+      },
+      {
+        "label": "C",
+        "text": "Work every Sunday"
+      },
+      {
+        "label": "D",
+        "text": "Have some time off on Saturday"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Hi, everyone. There have been some new regulations sent in from Head Office. Our productivity assessment was quite poor. They aren't very happy with our performance compared to last year. So we are going to have to put in some overtime to get ahead of schedule. We really need to stay on top of this, or some people might get fired. We are going to need to make a roster and work some weekend overtime shifts. We will have a rotation list, so each staff member works one Saturday every three weeks. I know this is a burden, but once we get high enough above our targets, things will go back to normal.",
+    "translation": "Chào mọi người. Đã có một số quy định mới được gửi từ Văn phòng chính. Đánh giá năng suất của chúng ta là khá kém. Họ không hài lòng với hiệu suất của chúng ta so với năm ngoái. Vì vậy, chúng ta sẽ phải làm thêm để hoàn thành công việc trước thời hạn. Chúng ta thực sự cần phải sát sao điều này, nếu không một số người có thể bị sa thải. Chúng ta sẽ cần phải lập một danh sách và tăng ca vào cuối tuần. Chúng ta sẽ có danh sách luân chuyển, vì vậy mỗi nhân viên làm việc vào một thứ Bảy mỗi ba tuần. Tôi biết đây là gánh nặng, nhưng một khi chúng ta đạt mức đủ cao so với mục tiêu của mình, mọi thứ sẽ trở lại bình thường.",
+    "explanation": {
+      "A": "Mang bữa trưa đi làm",
+      "B": "ảy mỗi ba tuần.)",
+      "C": "họn",
+      "D": "Nghỉ ngơi một chút vào thứ",
+      "note": "Chọn B"
+    }
+  },
+  {
+    "question_id": "p4_q11",
+    "question_number": 73,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_71_73.mp3",
+    "questionText": "What does the speaker ask the listener to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Return a call"
+      },
+      {
+        "label": "B",
+        "text": "Renew his credit card"
+      },
+      {
+        "label": "C",
+        "text": "Get rid of the recently delivered card"
+      },
+      {
+        "label": "D",
+        "text": "Sign an application form"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hello, Ms. Grayson. This is Michael Cook calling from Alliance Financial Bank. It has recently come to my attention that some clients who renewed their credit card this month were sent the wrong card. We have had multiple calls from bank members saying that they were sent a credit card with someone else's name on it. According to our records, you were also sent the wrong credit card. We ask that you please dispose of the credit card by cutting it with a pair of scissors. In the meantime, we will issue a new credit card and have it delivered by express mail. We apologize for the inconvenience.",
+    "translation": "Xin chào, cô Grayson. Đây là Michael Cook gọi từ Ngân hàng Tài chính Liên minh. Gần đây tôi đã nhận thấy rằng một số khách hàng gia hạn thẻ tín dụng của họ trong tháng này đều bị gửi nhầm thẻ. Chúng tôi đã có nhiều cuộc gọi từ các thành viên ngân hàng nói rằng họ được gửi một thẻ tín dụng có tên của người khác trên đó. Theo các hồ sơ của chúng tôi, cô cũng đã bị gửi nhầm thẻ tín dụng. Xin cô vui lòng hủy bỏ thẻ tín dụng bằng cách dùng kéo cắt nó. Trong thời gian này, chúng tôi sẽ phát hành một thẻ tín dụng mới và giao nó bằng thư chuyển phát nhanh. Chúng tôi xin lỗi vì sự bất tiện này.",
+    "explanation": {
+      "A": "Gọi lại",
+      "B": "ỏ thẻ được giao gần đây",
+      "D": "Kí vào mẫu đơn",
+      "C": "họn",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  },
+  {
+    "question_id": "p4_q12",
+    "question_number": 75,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_74_76.mp3",
+    "questionText": "What are the listeners asked to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Proceed to the checkout immediately"
+      },
+      {
+        "label": "B",
+        "text": "Register for a workshop"
+      },
+      {
+        "label": "C",
+        "text": "Search for a missing item"
+      },
+      {
+        "label": "D",
+        "text": "Visit a different location"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Attention, all shoppers. The West Point Mall will be closing in 10 minutes. We thank you for shopping with us and greatly appreciate your business. To purchase items, please bring them to the cashier right now. Also, we would like to inform you that a wallet that was found inside the store has been sent to the front desk. If your name is Catherine Goya, please stop by the front desk to claim the wallet. Once again, we will be closing in 10 minutes. Please finish your shopping immediately.",
+    "translation": "Xin chú ý, tất cả các khách hàng mua sắm. Trung tâm thương mại West Point sẽ đóng cửa sau 10 phút nữa. Chúng tôi cảm ơn các bạn đã mua sắm với chúng tôi và rất cảm kích việc mua sắm của bạn. Để mua hàng, vui lòng mang chúng đến quầy thu ngân ngay bây giờ. Ngoài ra, chúng tôi muốn thông báo cho các bạn rằng một chiếc ví được tìm thấy bên trong cửa hàng đã được gửi đến quầy lễ tân. Nếu tên của bạn là Catherine Goya, xin vui lòng ghé qua quầy lễ tân để yêu cầu lấy ví. Một lần nữa, chúng tôi sẽ đóng cửa sau 10 phút. Hãy hoàn thành việc mua sắm của các bạn ngay lập tức.",
+    "explanation": {
+      "A": "Tiến hành thanh toán ngay lập tức",
+      "B": "Đăng kí tham dự hội thảo",
+      "C": "họn",
+      "D": "Đến một địa điểm khác",
+      "note": "Chú ý những cấu trúc yêu cầu, đề nghị để tìm câu trả lời.Câu chứa đáp án: To purchase items, please bring them to the cashier right now. (Để mua hàng, vui lòng mang chúng đến quầy thu ngân ngay bây giờ.)"
+    }
+  },
+  {
+    "question_id": "p4_q13",
+    "question_number": 85,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_83_85.mp3",
+    "questionText": "What does the woman suggest the studio staff do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Go on vacation"
+      },
+      {
+        "label": "B",
+        "text": "Continue using the old equipment"
+      },
+      {
+        "label": "C",
+        "text": "Produce a movie"
+      },
+      {
+        "label": "D",
+        "text": "Study the new equipment"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi, thanks for coming for this special meeting today. The reason I called everyone is to announce our new partnership with Walker Studios. As the CEO of Metro Studios, it is my great pleasure to witness this amazing opportunity to work with such a high caliber company like Walker Studios. They possess a number of studios that are capable of producing cutting edge quality 3-D films. This will allow our company to begin producing 3-D films. And why wouldn't we? The majority of our films are science fiction, and I believe a transition into 3-D is an excellent path for us. I have ensured that we will have full access to Walker Studio's equipment, and in return they will become a shareholder in our company. I suggest that our studio staff should spend the next following weeks studying how this new type of equipment works, so we can begin producing content as soon as possible.",
+    "translation": "Xin chào, cảm ơn vì đã đến cuộc họp đặc biệt hôm nay. Lý do tôi gọi mọi người là để thông báo về quan hệ hợp tác mới của chúng ta với Xưởng phim Walker. Là tổng giám đốc điều hành của Xưởng phim Metro, tôi vô cùng vui mừng khi được chứng kiến ​​cơ hội tuyệt vời này để làm việc với một công ty tầm cỡ cao như Xưởng phim Walker. Họ sở hữu một số lượng xưởng phim có khả năng sản xuất những bộ phim 3-D chất lượng tiên tiến. Điều này sẽ cho phép công ty chúng ta bắt đầu sản xuất phim 3-D. Và tại sao chúng ta lại không làm chứ? Phần lớn các bộ phim của chúng ta là khoa học viễn tưởng và tôi tin rằng việc chuyển đổi sang 3-D là một con đường tuyệt vời cho chúng ta. Tôi đã đảm bảo rằng chúng ta sẽ có quyền tiếp cận đầy đủ vào thiết bị của Xưởng phim Walker và đổi lại họ sẽ trở thành cổ đông trong công ty của chúng ta. Tôi đề nghị rằng nhân viên xưởng phim của chúng ta nên dành những tuần tiếp theo để nghiên cứu cách thức các loại thiết bị mới này hoạt động, để chúng ta có thể bắt đầu sản xuất nội dung càng sớm càng tốt.",
+    "explanation": {
+      "A": "Đi nghỉ mát",
+      "B": "Tiếp tục sử dụng thiết bị cũ",
+      "C": "họn",
+      "D": "Nghiên cứu thiết bị mới",
+      "note": "Thông tin thường nằm ở những câu cuối cùng"
+    }
+  }
+]

@@ -1,0 +1,230 @@
+[
+  {
+    "question_id": "p2_q1",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_13.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The conference room",
+      "B": "Thanks for the recommendation",
+      "C": "I can, starting Wednesday"
+    },
+    "explanation": {
+      "A": "Phòng họp",
+      "B": "Cảm ơn vì lời giới thiệu",
+      "C": "Tôi có thể, bắt đầu vào  Thứ Tư",
+      "note": "Dựa vào nghĩa của từng lựa chọn→ chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p2_q2",
+    "question_number": 21,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619510794.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "On the highest shelf",
+      "B": "Martina said she could fix",
+      "C": "Yes, we'll clean the floor"
+    },
+    "explanation": {
+      "A": "Trên kệ cao nhất",
+      "B": "Martina nói rằng cô ấy có thể sửa chữa",
+      "C": "Vâng, chúng tôi sẽ lau sàn",
+      "note": "Dựa vào nghĩa của từng đáp án (không cần một nhân viên kỹ thuật vì Martina có thể sửa được)→ chọn đáp án B"
+    }
+  },
+  {
+    "question_id": "p2_q3",
+    "question_number": 16,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619593825.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "It was good, thanks",
+      "B": "At the travel agency",
+      "C": "Yes, that sounds wonderful"
+    },
+    "explanation": {
+      "A": "Thật tốt, cảm ơn",
+      "B": "Tại đại lý du lịch",
+      "C": "Vâng, nghe tuyệt vời đấy.Câu trả lời mang hàm ý rủ rê, đề xuất 1 ý tưởng nào đó",
+      "note": "Chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p2_q4",
+    "question_number": 15,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_15.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "A new senior account manager",
+      "B": "Sure, I'll drop them off now",
+      "C": "A signed contract"
+    },
+    "explanation": {
+      "A": "Người quản lý kế toán cấp cao mới",
+      "B": "Chắc chắn rồi, tôi sẽ đưa chúng ngay bây giờ",
+      "C": "Một hợp đồng đã ký",
+      "note": "Dựa vào nghĩa của từng lựa chọn→ chọn đáp án B"
+    }
+  },
+  {
+    "question_id": "p2_q5",
+    "question_number": 24,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_24.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Sure, let's do it on the steps",
+      "B": "A digital camera",
+      "C": "Yes, she looks attractive in this picture"
+    },
+    "explanation": {
+      "A": "Chắc chắn rồi, hãy chụp nó trên bậc thang",
+      "B": "Một máy ảnh kỹ thuật số",
+      "C": "Vâng, cô ấy trông thật hấp dẫn trong bức ảnh này.Đây là câu hỏi đề nghị, đáp án A đồng ý với đề nghị ‘take a picture’ và nói thêm ‘ let's do it on the steps’, chọn A"
+    }
+  },
+  {
+    "question_id": "p2_q6",
+    "question_number": 27,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_27.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Ms. Watson will be leading the team",
+      "B": "I'm going to book a table for dinner",
+      "C": "No, I'll get it from the library"
+    },
+    "explanation": {
+      "A": "Cô Watson sẽ dẫn đầu nhóm",
+      "B": "Tôi sẽ đặt bàn cho bữa tối",
+      "C": "Không, tôi sẽ lấy nó từ thư viện.Đây là câu hỏi đề nghị, loại đáp án A vì có từ ‘leading’ phát âm gần giống ‘reading’ trên câu hỏi, đáp án B loại vì có từ lặp lại với từ ‘book’ nhưng không liên quan đến câu hỏi, do đó chọn C"
+    }
+  },
+  {
+    "question_id": "p2_q7",
+    "question_number": 28,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_28.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Sure, wait a minute",
+      "B": "Yes, he applied for the post",
+      "C": "They made an announcement yesterday"
+    },
+    "explanation": {
+      "A": "Chắc chắn rồi, đợi một chút. => chọn",
+      "B": "Vâng, anh ấy đã ứng tuyển cho vị trí này. => cũng có từ \"post\" nhưng nghĩa không hề liên quan => loại",
+      "C": "Họ đã đưa ra thông báo hôm qua. => cũng có từ \"announcement\" nhưng nội dung không hề liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q8",
+    "question_number": 31,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_31.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "In a frame",
+      "B": "An amateur photographer",
+      "C": "Actually, I don't have one"
+    },
+    "explanation": {
+      "A": "Trong một khung hình. => có từ \"frame\" liên quan đến \"camera\", tuy nhiên ý nghĩa cả câu không liên quan => loại",
+      "B": "Một nhiếp ảnh gia nghiệp dư. => có từ \"photographer\" liên quan đến \"camera\", tuy nhiên ý nghĩa cả câu không liên quan => loại",
+      "C": "Thực ra, tôi không có máy ảnh. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q9",
+    "question_number": 14,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_14.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "It's a domestic flight",
+      "B": "Check the contract",
+      "C": "Sure, I'll leave now"
+    },
+    "explanation": {
+      "A": "Đó là chuyến bay nội địa. => có cụm \"domestic flight\" liên quan đến \"airport\", tuy nhiên ý nghĩa cả câu không liên quan => loại",
+      "B": "Hãy kiểm tra hợp đồng ấy. => nội dung không liên quan => loại",
+      "C": "Chắc chắn rồi, tôi sẽ đi ngay bây giờ. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q10",
+    "question_number": 17,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_17.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "I'll forward it to you",
+      "B": "It's a sale price for a limited time",
+      "C": "What a nice dress!"
+    },
+    "explanation": {
+      "A": "Tôi sẽ gửi cho bạn. => chọn",
+      "B": "Đó là giá bán trong thời gian giới hạn. => có từ \"sale\" nghe gần giống \"sales\" để bẫy, ý nghĩa không hề liên quan => loại",
+      "C": "Thật là một chiếc váy đẹp! => có từ \"dress\" nghe gần giống \"address\" để bẫy, ý nghĩa không hề liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q11",
+    "question_number": 25,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_25.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Yes, it's custom furniture",
+      "B": "That was my application form",
+      "C": "I'll let them know"
+    },
+    "explanation": {
+      "A": "Vâng, đó là đồ nội thất đặt theo yêu cầu. => có từ \"custom\" nghe gần giống \"customer\" để bẫy, ý nghĩa không hề liên quan => loại",
+      "B": "Đó là đơn đăng kí của tôi. => có từ \"form\" nghe gần giống \"inform\" để bẫy, ý nghĩa không hề liên quan => loại",
+      "C": "Tôi sẽ cho họ biết. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q12",
+    "question_number": 29,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_29.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "It was tasty",
+      "B": "The lights will go out after 7:00 P.M",
+      "C": "When is your break?"
+    },
+    "explanation": {
+      "A": "Nó rất ngon. => câu hỏi “Would you like” là lời mời, lời đề nghị, chứ không phải hỏi về cảm nhận => loại",
+      "B": "Đèn sẽ tắt sau 7 giờ tối. => cũng có \"go out\" nhưng ý nghĩa không hề liên quan => loại",
+      "C": "Khi nào bạn được nghỉ? => ý muốn hỏi khi nào được nghỉ trưa để cùng đi ăn trưa => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q13",
+    "question_number": 11,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_11.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "It's black and white",
+      "B": "This is not mine",
+      "C": "No problem. Go ahead"
+    },
+    "explanation": {
+      "A": "Nó có màu đen trắng. => nội dung không hề liên quan => loại",
+      "B": "Cái này không phải của tôi. => có từ \"mine\" nghe gần giống \"mind\" để bẫy, ý nghĩa không hề liên quan => loại",
+      "C": "Không vấn đề gì. Bạn cứ in đi. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q14",
+    "question_number": 27,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_27.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The keynote speaker",
+      "B": "Regarding consumer preferences",
+      "C": "Well, it depends on when it is"
+    },
+    "explanation": {
+      "A": "Diễn giả chính. => nội dung cả câu không liên quan => loại",
+      "B": "Liên quan đến sở thích của người tiêu dùng. => có từ \"preferences\" nghe gần giống \"conference\" để bẫy, ý nghĩa không hề liên quan => loại",
+      "C": "Chà, còn tùy xem khi nào nó diễn ra. => chọn"
+    }
+  }
+]

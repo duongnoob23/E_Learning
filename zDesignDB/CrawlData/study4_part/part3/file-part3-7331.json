@@ -1,0 +1,472 @@
+[
+  {
+    "question_id": "p3_q1",
+    "question_number": 63,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_62_64.mp3",
+    "questionText": "Look at the graphic. What ticket price will the speakers probably pay?",
+    "options": [
+      {
+        "label": "A",
+        "text": "$8"
+      },
+      {
+        "label": "B",
+        "text": "$12"
+      },
+      {
+        "label": "C",
+        "text": "$15"
+      },
+      {
+        "label": "D",
+        "text": "$20"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Tom, there's a new theater production opening at the Town Playhouse, and some of us from work are planning to go. Are you interested?Sure, I've heard it's a good play. How much do tickets cost?It depends. Look, here's the information. We already have more than ten people interested, so we should qualify for that price.That's certainly reasonable. Would that be for this weekend?Yes, after work on Friday. Do you want to go?Sure, are you going to order the tickets?No, Mary Jones in the finance department is. You could give her a call and let her know to include you.",
+    "translation": "Tom, có một vở kịch mới đang được biểu diễn tại Town Playhouse, và một số người trong  chúng tôi đang lên kế hoạch đi sau khi tan làm. Bạn có muốn đi cùng không?Chắc chắn rồi, tôi  nghe nói đó là một vở kịch hay. Giá vé là bao nhiêu thế?Cái này còn tùy. Xem này, đây là thông tin về vở kịch. Chúng ta đã có hơn mười người có hứng thú (muốn đi), vì vậy chúng ta đủ điều kiện cho mức giá đó.Giá đó chắc chắn là hợp lý. Đó có phải là cuối tuần này không?Uhm, sau giờ làm việc vào thứ Sáu. Bạn muốn đi không?Chắc chắn rồi, bạn sẽ đặt vé chứ?Không, Mary Jones trong bộ phận tài chính sẽ làm việc này. Bạn có thể gọi điện và báo cho cô ấy để cô ấy biết mà tính thêm bạn vào luôn nhé.",
+    "explanation": {
+      "A": "8 đô la",
+      "B": "Vì câu hỏi hỏi về giá vé nên khi nghe thấy người đàn ông hỏi rằng ‘...How much do tickets cost?’",
+      "C": "15 đô la",
+      "D": "20 đô la",
+      "note": "B. 12 đô la→ chọn đáp án  → đáp án sẽ xuất hiện sau đoạn nghe này. Sau đó, người phụ nữ đã trả lời rằng giá vé còn tùy vào hoàn cảnh, và họ có tất cả 10 người “We already have more than ten people interested, so we should qualify for that price.”→ như vậy nhìn vào cái bảng Giá vé vào cửa cho mỗi người, ở nhóm đối tượng thứ 2 - nhóm 10 người hoặc hơn sẽ tương đương với mức giá vé là 12 đô la"
+    }
+  },
+  {
+    "question_id": "p3_q2",
+    "question_number": 66,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_65_67.mp3",
+    "questionText": "Look at the graphic. According to the man, what event is Greg in charge of?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Networking Event"
+      },
+      {
+        "label": "B",
+        "text": "Equipment Installation"
+      },
+      {
+        "label": "C",
+        "text": "Management Meeting"
+      },
+      {
+        "label": "D",
+        "text": "Accounting Department Meeting"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Mr. Schaffer, the president of Greenwich Industries just called. He's looking for a new law firm to represent his company, and he wants to come in on Thursday afternoon at three to discuss our legal services.That's exciting news–Greenwich Industries is a huge company, and they'd be our biggest client. Could you please reserve conference room A for the meeting? It's our nicest room.Actually I already tried to, but that meeting room's already booked at three.Let me take a look... Ah, it's been reserved by Greg. Well, I'm sure Greg wouldn't mind using room B instead.Yeah, that's true. I'll give him a call and ask him if he's willing to make that change.",
+    "translation": "Anh Schaffer, chủ tịch của Greenwich Industries vừa gọi. Anh ấy đang tìm kiếm một công ty luật mới để đại diện cho công ty của chúng ta, và anh ấy muốn đến vào chiều thứ Năm lúc 3 giờ để thảo luận về các dịch vụ pháp lý của chúng ta.Đó là một tin tức thú vị – Greenwich Industries là một công ty lớn, và họ sẽ là khách hàng lớn nhất của chúng ta. Bạn có thể đặt phòng hội nghị A cho cuộc họp không? Đó là phòng đẹp nhất mà công ty chúng ta có.Thực ra tôi đã thử, nhưng phòng họp đó đã được đặt trước vào lúc ba giờ.Để tôi xem nào ... Ah, Greg đã đặt phòng đó. Mà tôi chắc Greg sẽ không phiền khi đổi sang phòng B đâu.Vâng, đúng vậy đó. Tôi sẽ gọi cho anh ấy và hỏi anh ấy liệu anh ấy có sẵn sàng thay đổi phòng không.",
+    "explanation": {
+      "A": "ccounting",
+      "B": "Lắp đặt thiết bị",
+      "C": "uộc họp Phòng kế toán",
+      "D": "epartment Meeting -",
+      "note": "A. Sự kiện mạngC. Cuộc họp quản lýD. Cuộc họp Phòng Kế toán→ chọn đáp án D. Khi người đàn ông muốn đặt phòng Hội nghị A cho buổi gặp mặt với công ty Greenwich Industries vào lúc 3h chiều thứ 5 thì người phụ nữ đã nói rằng phòng Hội nghị A đã được đặt trước. Sau đó, người đã ông đã biết rằng Greg là người đã đặt trước phòng họp A vào lúc 3h chiều ngày thứ 5→ nhìn vào hình ảnh ta thấy mốc thời gian 3:00 pm là của sự kiện Accounting Department Meeting - Cuộc họp Phòng kế toán"
+    }
+  },
+  {
+    "question_id": "p3_q3",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_68_70.mp3",
+    "questionText": "Look at the graphic. Who sent the e-mail the speakers are referring to?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Mike Collins"
+      },
+      {
+        "label": "B",
+        "text": "Jared Huber"
+      },
+      {
+        "label": "C",
+        "text": "Darla Rosenfeld"
+      },
+      {
+        "label": "D",
+        "text": "Janice West"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Hey Jenny, is the Internet working on your computer?Yeah. I'm not having any issues with it.Well, I can't connect to it, so I can't see my e-mail. Did the one with the latest budget report come yet?Hmm... Let's see. Yes, here it is. Do you want me to send a response?That won't be necessary, but could you print it out for me? I need a copy of the budget report for the meeting this afternoon.",
+    "translation": "Hey Jenny, máy tính của bạn có dùng được Internet không?Có. Tôi không gặp vấn đề gì với nó.Ồ, tôi không thể kết nối với Internet được, vì vậy tôi không thể xem e-mail của mình. Đã có email về báo cáo ngân sách mới nhất chưa?Hmm ... Để xem nào. Vâng nó đây. Bạn có muốn tôi hồi đáp lại không?Điều đó thì không cần thiết, nhưng bạn có thể in nó ra cho tôi không? Tôi cần một bản sao của báo cáo ngân sách cho cuộc họp chiều nay.",
+    "explanation": {
+      "A": "Khi người đàn ông nói rằng anh ấy không nhìn thấy cái email của mình và hỏi rằng cái email về báo cáo ngân sách mới nhất đã có chưa",
+      "C": "ollins",
+      "B": "udget Report là Mike",
+      "D": "Janice West",
+      "note": "A. Mike CollinsB. Jared HuberC. Darla Rosenfeld→ chọn đáp án → đến đây có thể tạm đoán được nội dung của email là cái gì Tuy nhiên, để chắc chắn thì ta cần nghe tiếp và nghe thấy rằng người đàn ông đã nhờ Jenny in nội dung của cái email đó ra vì anh ấy cần bản sao báo cáo ngân sách cho cuộc họp vào buổi chiều→ như vậy có thể chắc chắn nội dung của cái email này là về báo cáo ngân sách→ đối chiếu với hình ảnh có thể thấy người gửi file đính kèm Budget Report là Mike Collins"
+    }
+  },
+  {
+    "question_id": "p3_q4",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_68_70.mp3",
+    "questionText": "Look at the graphic. Where is the woman currently working?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Trinity Construction"
+      },
+      {
+        "label": "B",
+        "text": "Mulberry & co"
+      },
+      {
+        "label": "C",
+        "text": "Olive Cosmetics"
+      },
+      {
+        "label": "D",
+        "text": "Torrenz Inc"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "W: Hi, Jimmy. Just checking up on you. Are you finished installing the wiring for the lighting in the Olive Cosmetics building? M: I'm nearly finished. There were some problems with the electrical box so I had to fix some old fuses, so it took longer than expected. W: OK. I'm nearly finished the lighting on the first floor, but I need help installing some cables in the roof. Can you come downstairs when you are finished? M: Sure. This will take me another twenty minutes then I will come down.",
+    "translation": "Người phụ nữ: Xin chào, Jimmy. Tôi muốn xem anh làm đến đâu rồi. Anh đã hoàn tất việc cài đặt hệ thống dây điện cho hệ thống chiếu sáng trong tòa nhà Mỹ phẩm Olive chưa? Người đàn ông: Tôi sắp hoàn thành. Có một số vấn đề với hộp điện nên tôi phải sửa một số cầu chì cũ, vì vậy nó mất nhiều thời gian hơn dự kiến. Người phụ nữ: Được rồi. Tôi sắp hoàn thành hệ thống chiếu sáng ở tầng một, nhưng tôi cần trợ giúp lắp đặt một số dây cáp trên mái nhà. Anh có thể xuống tầng khi nào xong không? Người đàn ông: Chắc chắn rồi. Điều này sẽ mất của tôi thêm hai mươi phút nữa sau đó tôi sẽ xuống.",
+    "explanation": {
+      "C": "họn",
+      "note": "Người phụ nữ đang ở tầng một. Đối chiếu với bảng, tầng một là Trinity Construction"
+    }
+  },
+  {
+    "question_id": "p3_q5",
+    "question_number": 63,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_62_64.mp3",
+    "questionText": "Look at the graphic. What is the woman missing?",
+    "options": [
+      {
+        "label": "A",
+        "text": "90mm bolts"
+      },
+      {
+        "label": "B",
+        "text": "Wood screws"
+      },
+      {
+        "label": "C",
+        "text": "Barrel nuts"
+      },
+      {
+        "label": "D",
+        "text": "Allen key"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "M: Hello, this is Warren speaking. How can I help you today? W: Hello, Warren. I purchased a work desk from your store. I'm trying to put it together but there are some important parts missing. M: I'm sorry about that. Sometimes the manufacturer makes mistakes. What are you missing? W: Well, the biggest problem is I don't have the tool to put in the bolts. And I'm missing 3 barrel nuts. M: OK, I have those parts in the shop. I have a lunch break at 2:00 P.M. I can bring them over to your place if you like? W: Oh, wow. That would be fantastic. Wait one moment and I will give you my address.",
+    "translation": "Người đàn ông: Xin chào, đây là Warren. Hôm nay tôi giúp gì được cho bạn? Người phụ nữ: Xin chào, Warren. Tôi đã mua một bàn làm việc từ cửa hàng của bạn. Tôi đang cố gắng để lắp ráp nó nhưng có một số phần quan trọng bị thiếu. Người đàn ông: Tôi xin lỗi về điều đó. Đôi khi nhà sản xuất mắc vài lỗi. Bạn đang thiếu những gì? Người phụ nữ: Chà, vấn đề lớn nhất là tôi không có dụng cụ để vặn các bu lông. Và tôi đang thiếu 3 đai ốc trụ tròn. Người đàn ông: Được rồi, tôi có những bộ phận đó trong cửa hàng. Tôi nghỉ trưa lúc 2 giờ chiều. Tôi có thể mang chúng đến nơi của bạn nếu bạn muốn chứ? Người phụ nữ: Ồ, chà. Điều đó sẽ thật tuyệt vời. Đợi một lát và tôi sẽ cho bạn địa chỉ của tôi.",
+    "explanation": {
+      "A": "nd I'm missing 3 barrel nuts. (Và tôi đang thiếu 3 đai ốc trụ tròn.)",
+      "B": "arrel nuts. (Đai ốc trụ tròn)",
+      "C": "họn",
+      "note": "Chọn C"
+    }
+  },
+  {
+    "question_id": "p3_q6",
+    "question_number": 66,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_65_67.mp3",
+    "questionText": "Look at the graphic. Where is the sign most likely located?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The Brooklyn Bridge"
+      },
+      {
+        "label": "B",
+        "text": "The Tower Bridge"
+      },
+      {
+        "label": "C",
+        "text": "The East Bay Tunnel"
+      },
+      {
+        "label": "D",
+        "text": "The Express Tunnel"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "M: Hi, Sandra. I'm so sorry I missed our meeting this morning. I didn't realize the Tower Bridge was closed for upgrading. I had to go over the Brooklyn Bridge. W: Don't worry about it Rob. Most of the staff was late because of that. It's going to be annoying to have to go over the Brooklyn Bridge every day. I might just take the Express Tunnel. M: Yeah, I know. But the traffic is just so terrible in that tunnel. I can't really handle it. W: I agree. I think we should all just take the subway until the Tower Bridge is open again.",
+    "translation": "Người đàn ông: Xin chào, Sandra. Tôi rất xin lỗi tôi đã bỏ lỡ cuộc họp của chúng ta sáng nay. Tôi không nhận ra cầu Tower đã bị đóng để nâng cấp. Tôi phải đi qua cầu Brooklyn. Người phụ nữ: Đừng lo lắng về điều đó Rob. Hầu hết các nhân viên đã trễ vì điều đó. Sẽ rất khó chịu khi phải đi qua cầu Brooklyn mỗi ngày. Tôi chỉ có thể đi qua đường hầm Express. Người đàn ông: Vâng, tôi biết. Nhưng giao thông quá khủng khiếp trong đường hầm đó. Tôi thực sự không thể xử lý với việc đó. Người phụ nữ: Tôi đồng ý. Tôi nghĩ tất cả chúng ta chỉ nên đi tàu điện ngầm cho đến khi cầu Tower mở cửa trở lại.",
+    "explanation": {
+      "B": "ridge was closed for upgrading. (Tôi không nhận ra cầu Tower đã bị đóng để nâng cấp.)",
+      "C": "họn",
+      "D": "Đường hầm Express",
+      "note": "Câu chứa đáp án:  I didn't realize the Tower Bridge was closed for upgrading. (Tôi không nhận ra cầu Tower đã bị đóng để nâng cấp.)"
+    }
+  },
+  {
+    "question_id": "p3_q7",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_68_70.mp3",
+    "questionText": "Look at the graphic. Why is the coupon rejected?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The order was above $100"
+      },
+      {
+        "label": "B",
+        "text": "It is expired"
+      },
+      {
+        "label": "C",
+        "text": "Their order was below $100"
+      },
+      {
+        "label": "D",
+        "text": "The coupon didn't have credit on it"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W: OK, your total bill comes to seventy-five dollars. I hope you enjoyed your food tonight. Would you like to split the bill? M: No, I will pay. I have a coupon for a ten percent discount. It's in my wallet... here it is. W: OK - Hmm, it doesn't seem to work when I try to scan it. Let me get the manager. M: Oh... never mind, I can see the problem. I didn't read it properly. I'm so careless sometimes. We should have ordered more drinks! W: Well, next time you come in you should bring a bigger group, and you will get a better discount that way anyhow. If you like I can put the coupon in our computer system so next time you come in you don't need to bring the card.",
+    "translation": "Người phụ nữ: Được rồi, tổng hóa đơn của bạn lên đến bảy mươi lăm đô la. Tôi hy vọng bạn thích thức ăn của bạn tối nay. Bạn có muốn chia hóa đơn không? Người đàn ông: Không, tôi sẽ trả tiền. Tôi có một phiếu giảm giá trị giá mười phần trăm. Nó nằm trong ví của tôi ... đây rồi. Người phụ nữ: Được rồi - Ừm, nó dường như không hoạt động khi tôi cố quét nó. Để tôi gọi quản lý. Người đàn ông: Ồ ... đừng bận tâm, tôi hiểu vấn đề rồi. Tôi chưa đọc kĩ nó. Đôi khi tôi thật bất cẩn. Chúng tôi lẽ ra nên gọi thêm đồ uống! Người phụ nữ: Chà, lần tới khi bạn vào, bạn nên mang theo một nhóm lớn hơn, và dù sao bạn cũng sẽ được một khoản giảm giá tốt hơn. Nếu bạn thích tôi có thể đặt phiếu giảm giá vào hệ thống máy tính của chúng ta để lần sau bạn đến, bạn không cần phải mang theo thẻ.",
+    "explanation": {
+      "A": "Đơn hàng trị giá trên 100 US",
+      "B": "Nó đã hết hạn",
+      "C": "họn",
+      "D": "ấu hiệu thông tin sắp đến:  Hmm, it doesn't seem to work when I try to scan it. Let me get the manager. (Ừm, nó dường như không hoạt động khi tôi cố quét nó. Để tôi gọi quản lý.)",
+      "note": "Dấu hiệu thông tin sắp đến:  Hmm, it doesn't seem to work when I try to scan it. Let me get the manager. (Ừm, nó dường như không hoạt động khi tôi cố quét nó. Để tôi gọi quản lý.)"
+    }
+  },
+  {
+    "question_id": "p3_q8",
+    "question_number": 63,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_62_64.mp3",
+    "questionText": "Look at the graphic. Which subway line do the speakers need to take?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Line 6"
+      },
+      {
+        "label": "B",
+        "text": "Line 1"
+      },
+      {
+        "label": "C",
+        "text": "Line 2"
+      },
+      {
+        "label": "D",
+        "text": "Line 4"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W: Did you see this notice? The subways will be out of service during the morning peak time.M: I know. The line that we need to catch is closed during morning peak time. They are having some problems with tracks and they need to fix them. I think it's a safety issue.W: It's very irritating. That's probably the busiest line at that time of the morning. I don't know why they decided to do that.M: I think if we get a few other people together, I can drive my car into work. Traffic will be bad but it's much better than taking the bus.W: Oh, great idea. I'll ask around the office and let you know later.",
+    "translation": "Người phụ nữ: Bạn đã thấy thông báo này chưa? Các tàu điện ngầm sẽ không phục vụ trong suốt thời gian cao điểm buổi sáng.Người đàn ông: Tôi biết. Tuyến tàu mà ta cần bắt bị đóng lại trong suốt thời gian cao điểm buổi sáng. Họ đang gặp một số vấn đề với các đường ray và cần sửa chúng. Tôi nghĩ đó là một vấn đề về an toàn.Người phụ nữ: Điều này thật khó chịu. Đó có lẽ là tuyến đông nhất vào thời điểm đó của buổi sáng. Tôi không biết tại sao họ quyết định làm điều đó.Người đàn ông: Tôi nghĩ rằng nếu chúng ta tập hợp một vài người khác đi cùng nhau, tôi có thể lái xe hơi của tôi đến nơi làm. Giao thông sẽ rất tệ nhưng còn tốt hơn nhiều so với đi xe buýt.Người phụ nữ: Ồ, ý tưởng tuyệt vời. Tôi sẽ hỏi quanh văn phòng và cho bạn biết sau nhé.",
+    "explanation": {
+      "A": "Tuyến 6",
+      "B": "ảng cho biết khung giờ ngừng phục vụ các tàu điện ngầm",
+      "C": "họn",
+      "D": "Tuyến 4",
+      "note": "Đối chiếu bảng, ta thấy chỉ có tuyến 2 (Line 2) nằm trong khung giờ cao điểm buổi sáng=>"
+    }
+  },
+  {
+    "question_id": "p3_q9",
+    "question_number": 66,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_65_67.mp3",
+    "questionText": "Look at the graphic. What will the man NOT order for the woman?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Wrapping paper"
+      },
+      {
+        "label": "B",
+        "text": "A headset"
+      },
+      {
+        "label": "C",
+        "text": "Business cards"
+      },
+      {
+        "label": "D",
+        "text": "Carbon paper"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "M: Ms. Franklin, here is the inventory list in case we need to order anything. Please let me know by today because the supply company is closing for Christmas soon.W: I see. Well, Christmas is coming up so we will need to wrap a lot of gifts for the staff presents. Also, I'm tired of holding my phone while typing and we don't have anything for me to use. Can you please order me something?M: Yes, no problem. I will order that for you. Also, we are out of business cards and we have some new employees beginning after Christmas. I suggest we have business cards ready when they arrive, otherwise we may look unprofessional.W: Good idea. Go ahead and order those too. Can you please send me the order form so I can double-check it before you send it away?M: I'll email it to you soon.",
+    "translation": "Người đàn ông: Cô Franklin, đây là danh sách hàng tồn kho trong trường hợp chúng ta cần đặt mua bất cứ thứ gì. Xin vui lòng cho tôi biết vào ngày hôm nay bởi vì công ty cung cấp sẽ sớm đóng cửa vào Giáng sinh.Người phụ nữ: Tôi hiểu rồi. Chà, Giáng sinh sắp đến, vì vậy ta sẽ cần gói rất nhiều quà tặng cho nhân viên. Ngoài ra, tôi mệt mỏi với việc cầm điện thoại của mình trong khi gõ và ta không có gì để tôi sử dụng. Anh có thể vui lòng đặt hàng cho tôi không?Người đàn ông: Vâng, không vấn đề gì. Tôi sẽ đặt hàng cho cô. Ngoài ra, danh thiếp đã hết rồi, mà một số nhân viên mới sẽ bắt đầu đi làm sau Giáng sinh. Tôi gợi ý nên chuẩn bị sẵn danh thiếp khi họ đến, nếu không trông ta có thể không chuyên nghiệp cho lắm.Người phụ nữ: Ý kiến ​​hay. Hãy tiếp tục và đặt hàng những thứ đó luôn. Anh có thể vui lòng gửi cho tôi mẫu đơn đặt hàng để tôi có thể kiểm tra lại trước khi gửi nó đi không?Người đàn ông: Tôi sẽ gửi email cho cô sớm.",
+    "explanation": {
+      "A": "nh có thể vui lòng đặt hàng cho tôi không?)",
+      "B": "usiness cards. (",
+      "D": "anh thiếp)",
+      "C": "họn",
+      "note": "Nhớ nhanh các phương án để loại trừ.- Người phụ nữ: Well,"
+    }
+  },
+  {
+    "question_id": "p3_q10",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_68_70.mp3",
+    "questionText": "Look at the graphic. Which of the ingredients is the man interested in?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Fat"
+      },
+      {
+        "label": "B",
+        "text": "Sugar"
+      },
+      {
+        "label": "C",
+        "text": "Caffeine"
+      },
+      {
+        "label": "D",
+        "text": "Protein"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "M: Hi, I'm competing in a triathlon next week and I need some energy bars or drinks to have during the race. It's a six-hour race so it will be exhausting. I'd like something that is low in fat and will give me a boost of energy quickly.W: Wow! That sounds exhausting. We actually have a new range of energy gels. My personal favorite is this one; it's called Hammer Gel.M: Oh wow! I've never heard of energy gels. That's convenient. Oh, this looks great. It is basically just sugar. That's perfect!W: It also has caffeine which is really helpful. Our other products don't have that. But I suggest you don't have too much caffeine before you take this because this has quite a lot.",
+    "translation": "Người đàn ông: Xin chào, tôi sẽ thi đấu ba môn phối hợp vào tuần tới và tôi cần một số thanh năng lượng hoặc đồ uống để dùng trong suốt cuộc đua. Đó là một cuộc đua sáu giờ vì vậy nó sẽ rất tốn sức. Tôi thích thứ gì đó ít chất béo và sẽ giúp tôi tăng năng lượng nhanh chóng.Người phụ nữ: Ồ! Nghe có vẻ thật mệt mỏi. Chúng tôi thực sự có một loạt các gel năng lượng mới. Lựa chọn yêu thích của cá nhân tôi là cái này; nó được gọi là Hammer Gel.Người đàn ông: Ôi chao! Tôi chưa bao giờ nghe nói về gel năng lượng. Nó thật tiện lợi. Ồ, điều này trông thật tuyệt vời. Nó cơ bản chỉ có đường. Thật hoàn hảo!Người phụ nữ: Nó cũng có caffeine, điều mà thực sự hữu ích. Các sản phẩm khác của chúng tôi không có điều đó. Nhưng tôi khuyên bạn không nên uống quá nhiều caffeine trước khi dùng loại này vì nó có khá nhiều caffeine.",
+    "explanation": {
+      "A": "Fat. (",
+      "C": "họn",
+      "B": "Sugar. (Đường)",
+      "D": "ấu hiệu thông tin sắp đến: Oh, this looks great",
+      "note": "Thông tin sẽ đến ngay sau khi người đàn ông xem nhãn dán này"
+    }
+  },
+  {
+    "question_id": "p3_q11",
+    "question_number": 66,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q65-67.mp3",
+    "questionText": "Look at the graphic. What is the man missing?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Carry bag"
+      },
+      {
+        "label": "B",
+        "text": "Portable gas stove"
+      },
+      {
+        "label": "C",
+        "text": "Camping mats"
+      },
+      {
+        "label": "D",
+        "text": "Sleeping bags"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Good morning, this is Hardy's All Purpose. How can I help you?Hello. I picked up a camping pack this morning but it's missing some of the items. Do you know which items aren't there?I have the mats, sleeping bags and the carry bag. I thought there was supposed to be one more item in there.Ah yes, I know what it is. Are you able to drop in the store today? I will give you a 15% refund because of the mistake.Oh, really? That's very kind of you. I'll come this afternoon and pick it up.",
+    "translation": "Người phụ nữ: Chào buổi sáng, đây là Hardy’s All Purpose. Làm thế nào để tôi giúp bạn?Người đàn ông: (65) Xin chào. Sáng nay tôi đã mua một gói đồ cắm trại nhưng nó thiếu một số vật dụng.Người phụ nữ: Bạn có biết những mặt hàng nào không có ở đó?Người đàn ông: (66) Tôi có thảm, túi ngủ và túi xách. Tôi nghĩ chắc chắn phải có thêm một món đồ nữa trong đó.Người phụ nữ: À vâng, tôi biết nó là gì. Hôm nay bạn có thể ghé cửa hàng được không? (67) Tôi sẽ hoàn lại tiền cho bạn 15% vì sai sót.Người đàn ông: Ồ vậy ư? Bạn thật tốt bụng. Chiều nay tôi sẽ đến và lấy nó.",
+    "explanation": {
+      "D": "Sleeping bags (túi ngủ)Đây là câu hỏi cần suy luận và loại trừ, bởi đoạn hội thoại không nói thẳng thứ mà người đàn ông còn thiếu là gì. Ta chỉ biết người đàn ông nhận được những gì: I have the mats, sleeping bags and the carry bag",
+      "C": "họn",
+      "B": "Portable gas stove (bếp ga di động)",
+      "note": "Thiếu gas stove=>"
+    }
+  },
+  {
+    "question_id": "p3_q12",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q68-70.mp3",
+    "questionText": "Look at the graphic. What is the carpet made of?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Frieze"
+      },
+      {
+        "label": "B",
+        "text": "Shag Pile"
+      },
+      {
+        "label": "C",
+        "text": "Velvet"
+      },
+      {
+        "label": "D",
+        "text": "Woven Carpet"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hi, I have a carpet that is identical to this one here. I need it cleaned as I'm going to be selling my office soon. There are 3 rooms.Three rooms of that carpet would cost seven-hundred and fifty.Oh really? I thought you were advertising a 15% discount on all your carpets?That discount only covers our frieze and shag pile carpets.Hmm... I see. OK. I will need some time to think about it and I will come back.",
+    "translation": "Người đàn ông: Xin chào, tôi có một tấm thảm giống hệt tấm thảm này ở đây. (68) Tôi cần nó được làm sạch vì tôi sắp bán văn phòng của mình. Có 3 phòng.Người phụ nữ: (69) Ba căn phòng có tấm thảm đó sẽ có giá bảy trăm năm mươi.Người đàn ông: Ồ vậy ư? Tôi tưởng bạn đang quảng cáo giảm giá 15% cho tất cả các tấm thảm của mình?Người phụ nữ: Khoản giảm giá đó chỉ bao gồm những tấm thảm có diềm và lông xù của chúng tôi.Người đàn ông: Hmm…(70) tôi hiểu rồi. ĐƯỢC RỒI. Tôi cần thời gian suy nghĩ rồi sẽ quay lại.",
+    "explanation": {
+      "D": "ấu hiệu nhận biết thông tin sắp đến: There are 3 rooms. (Thảm trải cho ba phòng.) Mà trong bảng lại chỉ có giá per room (một phòng)",
+      "C": "họn",
+      "A": "Frieze (vải len tuyết xoăn)",
+      "B": "a phòng với loại thảm đó sẽ tốn 750 đô)",
+      "note": "Nhẩm nhanh để suy luận từ giá tiền ra loại thảm"
+    }
+  },
+  {
+    "question_id": "p3_q13",
+    "question_number": 63,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q62-64.mp3",
+    "questionText": "Look at the graphic. Why is the voucher invalid?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Their bill is under $100"
+      },
+      {
+        "label": "B",
+        "text": "The food was not good"
+      },
+      {
+        "label": "C",
+        "text": "Their bill was over $100"
+      },
+      {
+        "label": "D",
+        "text": "The voucher is expired"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "OK, your total bill is $75. Did you enjoy your food tonight?Yes, it was delicious! Oh - I have a voucher here. Let me find it... Here you go.Hmm... I'm not sure if you can use this...Oh! I see the problem. Never mind. Can we sit back down and have some drinks so I can use the voucher?Certainly. I will find a table for you now.",
+    "translation": "Người phụ nữ: (62) Được rồi, tổng hóa đơn của bạn là 75 USD. Bạn có thích món ăn tối nay không?Người đàn ông: Vâng, nó rất ngon! Ồ- Tôi có một phiếu giảm giá ở đây. Để tôi tìm nó... Đây nhé.Người phụ nữ: Hmm... Tôi không chắc liệu bạn có thể sử dụng cái này không...Người đàn ông: (63) Ồ! Tôi hiểu vấn đề. Đừng bận tâm. (64) Chúng tôi có thể ngồi lại và uống chút đồ uống để tôi có thể sử dụng phiếu thưởng không?Người phụ nữ: Chắc chắn. Tôi sẽ tìm một cái bàn cho bạn ngay bây giờ.",
+    "explanation": {
+      "D": "o đó đáp án đúng là",
+      "A": "Hóa đơn của họ dưới 100 đô la",
+      "B": "Thức ăn không ngon",
+      "C": "âu hỏi kết hợp bảng biểu yêu cầu suy luận, theo thông tin trong bài nói thì hoá đơn của người khách này là $75, trong khi theo như voucher thì ‘10% off any order over $100’ nên voucher này không thể sử dụng cho bữa ăn này",
+      "note": "..C. Hóa đơn của họ hơn 100 đô la.D. Voucher đã hết hạn sử dụng.Câu hỏi kết hợp bảng biểu yêu cầu suy luận, theo thông tin trong bài nói thì hoá đơn của người khách này là $75, trong khi theo như voucher thì ‘10% off any order over $100’ nên voucher này không thể sử dụng cho bữa ăn này. Do đó đáp án đúng là A"
+    }
+  },
+  {
+    "question_id": "p3_q14",
+    "question_number": 63,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_62_64.mp3",
+    "questionText": "Look at the graphic. How much will the speakers most likely spend per person?",
+    "options": [
+      {
+        "label": "A",
+        "text": "$6"
+      },
+      {
+        "label": "B",
+        "text": "$8"
+      },
+      {
+        "label": "C",
+        "text": "$10"
+      },
+      {
+        "label": "D",
+        "text": "$12"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W-Am: Hey, David. (62) Our clients are coming from overseas next week, and we need to order the food for the welcome dinner. Which of these dishes do you think we should get?M-Au: Well, the last time we had clients here, we ordered the vegetable pasta. Everyone really liked it.W-Am: Yeah, I remember. But this time we have a larger budget, so I wanted to order something different.M-Au: (63) Why don't we order the baked salmon?W-Am: I was thinking that, too. Also, (64) we still have to call and confirm the hotel booking for our clients. I'm going to do that now.Menu OptionsStuffed Eggplant $6 per personVegetable Pasta $8 per personRoast Chicken $10 per person(63) Bakod Salmon $12 per person",
+    "translation": "W-Am: Này, David. (62) Khách hàng của chúng ta sẽ đến từ nước ngoài vào tuần tới, và chúng ta cần đặt món ăn cho bữa tối chào mừng. Những món ăn nào bạn nghĩ rằng chúng ta nên đặt?M-Au: Chà, lần cuối cùng chúng ta có khách hàng ở đây, chúng ta đã gọi món mì ống rau. Mọi người đều thực sự thích nó.W-Am: Vâng, tôi nhớ. Nhưng lần này chúng ta có ngân sách lớn hơn, vì vậy tôi muốn đặt một vài món khác biệt.M-Au: (63) Tại sao chúng ta không gọi món cá hồi nướng?W-Am: Tôi cũng đã nghĩ vậy. Ngoài ra, (64) chúng ta vẫn phải gọi và xác nhận đặt phòng khách sạn cho khách hàng của chúng ta. Tôi sẽ làm điều đó bây giờ.Tùy chọn menuCà tím nhồi $6 mỗi ngườiPasta rau củ $8 mỗi ngườiGà nướng $10 mỗi người(63) Cá hồi nướng $12 mỗi người",
+    "explanation": {
+      "A": "$6",
+      "B": "$8",
+      "C": "$10",
+      "D": "o đó họ sẽ đặt ‘baked salmon’",
+      "note": "So với menu trên hình thì chọn"
+    }
+  }
+]

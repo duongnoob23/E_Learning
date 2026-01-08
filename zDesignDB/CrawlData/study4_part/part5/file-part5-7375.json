@@ -1,0 +1,164 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 105,
+    "questionText": "Mr. Kim would like _____ a meeting about the Jasper account as soon as possible.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to arrange"
+      },
+      {
+        "label": "B",
+        "text": "arranging"
+      },
+      {
+        "label": "C",
+        "text": "having arranged"
+      },
+      {
+        "label": "D",
+        "text": "arrangement"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Ta có cấu trúc \"would like to do something\" nghĩa là \"muốn làm điều gì đó\"",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 121,
+    "questionText": "On Thursday, the technician will be on Sratus Road ------ two gas stoves.",
+    "options": [
+      {
+        "label": "A",
+        "text": "serviced"
+      },
+      {
+        "label": "B",
+        "text": "service"
+      },
+      {
+        "label": "C",
+        "text": "to service"
+      },
+      {
+        "label": "D",
+        "text": "is servicing"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước cụm danh từ “two gas stoves”, trước đó đã có động từ chính “will be” → Loại B (động từ thường) và D (động từ chia thì hiện tại tiếp diễn)Xét theo nghĩa, chọn đáp án CLưu ý: Cấu trúc “to do something” ~ để làm gì đó được dùng chỉ mục đích.Tạm dịch: Vào thứ Năm, kỹ thuật viên sẽ có mặt trên đường Sratus để bảo dưỡng hai bếp gas.",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 107,
+    "questionText": "Join us for dinner on Friday _____ Mr. Yi's promotion to Vice President of Marketing.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to celebrate"
+      },
+      {
+        "label": "B",
+        "text": "celebrates"
+      },
+      {
+        "label": "C",
+        "text": "will celebrate"
+      },
+      {
+        "label": "D",
+        "text": "celebrated"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Trong câu đã có động từ chính (câu cầu khiến)",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 106,
+    "questionText": "City officials are still debating Irving Enterprises' request ------- the outdated building.",
+    "options": [
+      {
+        "label": "A",
+        "text": "demolishes"
+      },
+      {
+        "label": "B",
+        "text": "have demolished"
+      },
+      {
+        "label": "C",
+        "text": "to demolish"
+      },
+      {
+        "label": "D",
+        "text": "demolished"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 103,
+    "questionText": "When customers have a complaint, employees have been instructed ------- the supervisor on duty.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to inform"
+      },
+      {
+        "label": "B",
+        "text": "to have informed"
+      },
+      {
+        "label": "C",
+        "text": "to informing"
+      },
+      {
+        "label": "D",
+        "text": "to be informed"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 129,
+    "questionText": "Please be patient as the IT department works _____ service to your business application",
+    "options": [
+      {
+        "label": "A",
+        "text": "to restore"
+      },
+      {
+        "label": "B",
+        "text": "restoration"
+      },
+      {
+        "label": "C",
+        "text": "restored"
+      },
+      {
+        "label": "D",
+        "text": "had restored"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Đây là câu hỏi về dạng của động từ. Do câu đã có động từ chính \"work\" nên câu sẽ không cần chia động từ chính nữa (nguyên tắc 1 câu chỉ có một động từ chính) --> Loại C,D. Câu đã có danh từ nên không cần danh từ nữa --> Loại B (trường hợp này đây hai danh từ không thể đi cùng với nhau để tạo thành danh từ ghép được). --> Chọn A, To V để chỉ mục đích (để làm gì).Dịch: Vui lòng kiên nhẫn vì phòng công nghệ thông tin đang làm việc để khôi phục dịch vụ cho ứng dụng của bạn.",
+    "explanation": "Đáp án đúng: A."
+  }
+]

@@ -1,0 +1,387 @@
+[
+  {
+    "question_id": "p1_q1",
+    "question_number": 4,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening/image11.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619407464_1619418568.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Light bulbs are being replaced in street lamps",
+      "B": "Trees are lining a walkway",
+      "C": "Some bricks are stacked in a pile",
+      "D": "People are watching an outdoor performance"
+    },
+    "explanation": {
+      "A": "Các cột đèn đường đang được thay bóng đèn",
+      "B": "Cây cối trải khắp lối đi",
+      "C": "Một vài viên gạch được xếp thành một chồng",
+      "D": "Mọi người đang xem một buổi biểu diễn ngoài trời",
+      "note": "Chọn đáp án B"
+    }
+  },
+  {
+    "question_id": "p1_q2",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening/image20.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619407464_1619418645.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The man is taking a lab coat from a hook",
+      "B": "A customer is paying for some items",
+      "C": "Merchandise is being displayed in a case",
+      "D": "A glass counter is being wiped off"
+    },
+    "explanation": {
+      "A": "Người đàn ông đang lấy một chiếc áo khoác phòng thí nghiệm treo ở trên móc",
+      "B": "Một khách hàng đang trả tiền cho một số sản phẩm",
+      "C": "Hàng hóa được trưng bày trong hộp đựng",
+      "D": "Một quầy bán ly thủy tinh đang được lau sạch",
+      "note": "Chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p1_q3",
+    "question_number": 4,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening/image4.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619509175.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "One of the men is removing his hat",
+      "B": "One of the men is replacing a tire",
+      "C": "A car is parked on the side of a road",
+      "D": "Some people are washing a car"
+    },
+    "explanation": {
+      "A": "Một trong số những người đàn ông đang cởi bỏ mũ",
+      "B": "Một trong những người đàn ông đang thay lốp xe",
+      "C": "Một chiếc ô tô đang đậu bên lề đường",
+      "D": "Một số người đang rửa xe",
+      "note": "Chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p1_q4",
+    "question_number": 4,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening/image18.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578230.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The man is removing a safety vest",
+      "B": "The man is securing an umbrella to a base",
+      "C": "A checkpoint barrier has been raised",
+      "D": "A ladder is leaning against a truck"
+    },
+    "explanation": {
+      "A": "Người đàn ông đang cởi bỏ áo bảo hộ",
+      "B": "Người đàn ông đang cố định một chiếc ô vào một chỗ cố định.",
+      "C": "Hàng rào trạm kiểm soát đã được nâng lên",
+      "D": "Một cái thang đang dựa vào một chiếc xe tải",
+      "note": "Chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p1_q5",
+    "question_number": 6,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening/image19.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578432.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "The entrance to a shop has been closed",
+      "B": "Some fruit has been separated into containers",
+      "C": "A storekeeper is bagging some groceries",
+      "D": "Some men are harvesting pineapples"
+    },
+    "explanation": {
+      "A": "Lối vào một cửa hàng đã bị đóng",
+      "B": "Một số loại trái cây đã được để riêng ở trong các thùng chứa",
+      "C": "Một người thủ kho đang đóng gói một số hàng tạp hóa",
+      "D": "Một số người đàn ông đang thu hoạch dứa",
+      "note": "Chọn đáp án B"
+    }
+  },
+  {
+    "question_id": "p1_q6",
+    "question_number": 6,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening_p1/image11.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619593000.mp3",
+    "correct_choice": "D",
+    "transcript": {
+      "A": "There's a ladder leaning against the trunk of a tree",
+      "B": "A man is standing on the roof of a building",
+      "C": "Some potted plants are hanging from a pole",
+      "D": "Some vegetables have been arranged on wooden platforms"
+    },
+    "explanation": {
+      "A": "Có một cái thang dựa vào một thân cây",
+      "B": "Một người đàn ông đang đứng trên mái nhà",
+      "C": "Vài chậu cây đang treo trên một cái cột",
+      "D": "Rau đã được xếp trên những cái bục bằng gỗ. => đáp án",
+      "note": "(D)"
+    }
+  },
+  {
+    "question_id": "p1_q7",
+    "question_number": 1,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening_p1/image7.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619603010.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Some bags have been set on the floor",
+      "B": "The woman is facing a fireplace",
+      "C": "A flower basket is hanging from the ceiling",
+      "D": "The woman is placing a binder on a table"
+    },
+    "explanation": {
+      "A": "Vài cái túi đã được đặt trên sàn nhà. => đúng",
+      "B": "Người phụ nữ đang hướng mặt về phía lò sưởi. => sai tư thế người phụ nữ => loại",
+      "C": "Một lẵng hoa đang treo trên trần nhà. => sai vị trí lẵng hoa => loại",
+      "D": "Người phụ nữ đang đặt một cái bìa rời lên bàn. => sai vị trí tấm bìa => loại=> đáp án",
+      "note": "(A)"
+    }
+  },
+  {
+    "question_id": "p1_q8",
+    "question_number": 6,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening_p1/image1.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619603794.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "There are some vehicles lining the side of a street",
+      "B": "There are trees planted on the roof of a building",
+      "C": "Some bicycles are parked on a walkway",
+      "D": "Some people are driving through an intersection"
+    },
+    "explanation": {
+      "A": "Có vài chiếc xe đang xếp hàng ở một bên đường. => đúng",
+      "B": "Có cây được trồng trên mái một tòa nhà. => cây được trồng ven đường => loại",
+      "C": "Vài cái xe đạp được đỗ trên vỉa hè. => không có xe đạp => loại",
+      "D": "Vài người đang lái xe qua một ngã tư. => không có ngã tư, không có xe đang chạy => loại=> đáp án",
+      "note": "(A)"
+    }
+  },
+  {
+    "question_id": "p1_q9",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening_p1/image9.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_5_5.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "B": "A man is painting a wall",
+      "C": "Some boxes are stacked on a cart",
+      "D": "Some carts are being pushed outdoors"
+    },
+    "explanation": {
+      "A": "Một người đàn ông đang lau sàn. => sai hành động người => loại",
+      "B": "Một người đàn ông đang sơn tường. => sai hành động người => loại",
+      "C": "Vài cái hộp được xếp trên một cái xe đẩy. => đúng",
+      "D": "Vài cái xe đẩy đang được đẩy ra ngoài. => chỉ có 1 chiếc xe => loại => đáp án",
+      "note": "(C)"
+    }
+  },
+  {
+    "question_id": "p1_q10",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/listening_p1/image3.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_6_5.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The women are facing a desk",
+      "B": "One of the women is holding a jacket",
+      "C": "A drawer has been left open",
+      "D": "Some folders have been placed on top of a file cabinet"
+    },
+    "explanation": {
+      "A": "Những người phụ nữ đang đứng đối diện một cái bàn. => một trong hai người không đứng đối diện => loại",
+      "B": "Một trong hai người phụ nữ đang cầm một cái áo khoác. => sai hành động => loại",
+      "C": "Một cái ngăn kéo bị để mở. => đúng",
+      "D": "Vài cái kẹp tài liệu đã được đặt lên trên một cái tủ để tài liệu. => không có kẹp tài liệu => loại => đáp án",
+      "note": "(C)"
+    }
+  },
+  {
+    "question_id": "p1_q11",
+    "question_number": 1,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image30.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_1.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "The plane is docked at the airport",
+      "B": "There is luggage being put onto the plane",
+      "C": "There are many people boarding the plane",
+      "D": "There are maintenance workers fixing the plane"
+    },
+    "explanation": {
+      "A": "Máy bay đang đậu ở sân bay. => mô tả đúng đặc điểm của vật => chọn",
+      "B": "Có hành lý đang được đưa lên máy bay. => mô tả vật không có trong hình => loại",
+      "C": "Có nhiều người lên máy bay. => mô tả người không có trong hình => loại",
+      "D": "Có công nhân bảo trì đang sửa máy bay. => mô tả người không có trong hình => loại"
+    }
+  },
+  {
+    "question_id": "p1_q12",
+    "question_number": 2,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image10.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_2.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "She is looking at the laptop",
+      "B": "The vegetables are behind the laptop",
+      "C": "She is writing an email",
+      "D": "She is cutting some cucumber and carrot"
+    },
+    "explanation": {
+      "A": "Cô ấy đang nhìn vào máy tính xách tay. => mô tả đúng hành động của người => chọn",
+      "B": "Rau củ nằm ở phía sau máy tính xách tay. => mô tả sai vị trí của vật => loại",
+      "C": "Cô ấy đang viết một email. => mô tả sai hành động của người => loại",
+      "D": "Cô ấy đang cắt dưa chuột và cà rốt. => mô tả sai hành động của người => loại"
+    }
+  },
+  {
+    "question_id": "p1_q13",
+    "question_number": 3,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image11.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_3.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "All of the men are wearing glasses",
+      "B": "All of the people are looking at the laptop",
+      "C": "There are glasses of water on the table",
+      "D": "All of the men are leaning over the table"
+    },
+    "explanation": {
+      "B": "Tất cả mọi người đang nhìn vào máy tính xách tay. => mô tả sai hành động của người => loại",
+      "C": "Có những cốc nước trên bàn. => mô tả đúng đặc điểm sự vật => chọn",
+      "D": "Tất cả những người đàn ông đang cúi xuống bàn. => mô tả sai hành động của người => loại"
+    }
+  },
+  {
+    "question_id": "p1_q14",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image1.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_5.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "All of the chairs are the same",
+      "B": "There are a lot of people swimming in the water",
+      "C": "The pool is nearby the sea",
+      "D": "The umbrellas are closed"
+    },
+    "explanation": {
+      "A": "Tất cả các ghế đều giống nhau. => mô tả đúng đặc điểm của vật => chọn",
+      "B": "Có rất nhiều người đang bơi dưới nước. => mô tả người không xuất hiện trong hình => loại",
+      "C": "Hồ bơi ở gần biển. => mô tả sai đặc điểm của vật => loại",
+      "D": "Những chiếc ô đã đóng lại. => mô tả sai đặc điểm của vật => loại"
+    }
+  },
+  {
+    "question_id": "p1_q15",
+    "question_number": 4,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image19.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_4.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "She is cooking a steak in a frying pan",
+      "B": "She is tasting the food while cooking",
+      "C": "There are many fruits on the counter",
+      "D": "She is cutting vegetables"
+    },
+    "explanation": {
+      "A": "Cô ấy đang nấu bít tết trong chảo rán. => mô tả sai hành động của người => loại",
+      "B": "Cô ấy đang nếm thức ăn trong khi nấu ăn. => mô tả đúng hành động của người => chọn",
+      "C": "Có rất nhiều trái cây trên quầy. => mô tả sự vật không có trong hình => loại",
+      "D": "Cô ấy đang cắt rau. => mô tả sai hành động của người => loại"
+    }
+  },
+  {
+    "question_id": "p1_q16",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image20.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_5.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "They are running on the treadmills",
+      "B": "They are using exercise bikes",
+      "C": "All of the treadmills are being used",
+      "D": "The man is pressing some buttons on the treadmill"
+    },
+    "explanation": {
+      "A": "Họ đang chạy trên máy chạy bộ. => mô tả đúng hành động của người => chọn",
+      "B": "Họ đang sử dụng xe đạp tập thể dục. => mô tả sai hành động của người => loại",
+      "C": "Tất cả các máy chạy bộ đang được sử dụng. => mô tả sai trạng thái của vật => loại",
+      "D": "Người đàn ông đang nhấn một số nút trên máy chạy bộ. => mô tả sai hành động của người => loại"
+    }
+  },
+  {
+    "question_id": "p1_q17",
+    "question_number": 2,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image27.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_2.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "He is wearing a tool belt",
+      "B": "The man is loading a cart",
+      "C": "He is changing the tire in the garage",
+      "D": "The tire is brand new"
+    },
+    "explanation": {
+      "A": "Anh ấy đang đeo đai đeo đồ nghề. => mô tả sai đặc điểm của người => loại",
+      "B": "Người đàn ông đang chất hàng lên xe đẩy. => mô tả sai hành động của người => loại",
+      "C": "Anh ấy đang thay lốp xe trong nhà để xe. => mô tả đúng địa điểm và hành động của người => chọn",
+      "D": "Lốp xe mới tinh. => mô tả sai đặc điểm của vật => loại"
+    }
+  },
+  {
+    "question_id": "p1_q18",
+    "question_number": 4,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra3/image28.jpg",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_4.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "The lecture theater is full of students",
+      "B": "The lecture theater is empty",
+      "C": "All of the students are outside the lecture theater",
+      "D": "There is a man giving a lecture"
+    },
+    "explanation": {
+      "A": "Giảng đường đầy sinh viên. => mô tả người không xuất hiện trong hình => loại",
+      "B": "Giảng đường vắng tanh. => mô tả đúng đặc điểm của nơi chốn => chọn",
+      "C": "Tất cả sinh viên đang ở bên ngoài giảng đường.  => mô tả người không xuất hiện trong hình => loại",
+      "D": "Có một người đàn ông đang giảng bài.  => mô tả người không xuất hiện trong hình => loại"
+    }
+  },
+  {
+    "question_id": "p1_q19",
+    "question_number": 3,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra1/image30.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q3.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "He is washing the fruits",
+      "B": "He is cutting up some vegetables",
+      "C": "There are some glasses of water on the table",
+      "D": "She is standing next to him"
+    },
+    "explanation": {
+      "A": "Anh ấy đang rửa hoa quả => mô tả sai hành động của người đàn ông => loại",
+      "B": "Anh ấy đang cắt rau củ => mô tả đúng hành động của người đàn ông => chọn"
+    }
+  },
+  {
+    "question_id": "p1_q20",
+    "question_number": 5,
+    "image_file": "https://study4.com/media/toeic_course_problems/extra1/image31.png",
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q5.mp3",
+    "correct_choice": "D",
+    "transcript": {
+      "A": "There are some building designs on the table",
+      "B": "The woman is drinking a cup of coffee",
+      "C": "The woman is writing a recipe",
+      "D": "The woman is talking on the phone"
+    },
+    "explanation": {
+      "B": "Người phụ nữ đang uống cà phê => mô tả sai hành động của người phụ nữ => loại",
+      "C": "Người phụ nữ đang viết công thức nấu ăn => mô tả sai hành động của người phụ nữ => loại",
+      "D": "Người phụ nữ đang nói chuyện điện thoại => mô tả đúng hành động của người phụ nữ => chọn"
+    }
+  }
+]

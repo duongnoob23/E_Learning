@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "accountant",
+    "vi": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+    "pronunciation": "/əˈkaʊn.tənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accountant&lang=en-US&ipa=%2F%C9%99%CB%88ka%CA%8An.t%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+    "example": "My accountant takes care of my taxes"
+  },
+  {
+    "word_id": 2,
+    "en": "airport",
+    "vi": "sân bay",
+    "pronunciation": "/ˈeə.pɔːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=airport&lang=en-US&ipa=%2F%CB%88e%C9%99.p%C9%94%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+    "example": "Security checks have become really strict at the airport."
+  },
+  {
+    "word_id": 3,
+    "en": "applicant",
+    "vi": "ứng viên",
+    "pronunciation": "/ˈæp.lɪ.kənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=applicant&lang=en-US&ipa=%2F%CB%88%C3%A6p.l%C9%AA.k%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+    "example": "Many applicant simply don't meet hiring requirements."
+  },
+  {
+    "word_id": 4,
+    "en": "attendant",
+    "vi": "người phục vụ",
+    "pronunciation": "/ə'ten.dənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=attendant&lang=en-US&ipa=%2F%C9%99%27ten.d%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+    "example": "There are around 20 parking attendant employed in Bolton who hand out 28,000 tickets a year."
+  },
+  {
+    "word_id": 5,
+    "en": "bicycle",
+    "vi": "xe đạp",
+    "pronunciation": "/ˈbaɪ.sɪ.kəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bicycle&lang=en-US&ipa=%2F%CB%88ba%C9%AA.s%C9%AA.k%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg",
+    "example": "You should never ride your bicycle without lights at night."
+  },
+  {
+    "word_id": 6,
+    "en": "brochure",
+    "vi": "tờ gấp quảng cáo",
+    "pronunciation": "/ˈbrəʊ.ʃər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=brochure&lang=en-US&ipa=%2F%CB%88br%C9%99%CA%8A.%CA%83%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+    "example": "Enclosed is a brochure that highlights the benefits that you can receive as a corporate donor."
+  },
+  {
+    "word_id": 7,
+    "en": "cafeteria",
+    "vi": "quán ăn tự phục vụ",
+    "pronunciation": "/ˌkæf.əˈtɪə.ri.ə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cafeteria&lang=en-US&ipa=%2F%CB%8Ck%C3%A6f.%C9%99%CB%88t%C9%AA%C9%99.ri.%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg",
+    "example": "Employees have four different salads to choose from for lunch in the company cafeteria."
+  },
+  {
+    "word_id": 8,
+    "en": "caller",
+    "vi": "người đang gọi điện cho bạn",
+    "pronunciation": "/ˈkɔː.lər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=caller&lang=en-US&ipa=%2F%CB%88k%C9%94%CB%90.l%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+    "example": "On Wednesday nearly all the phone lines were continuously busy, with caller waiting approximately 30 minutes."
+  },
+  {
+    "word_id": 9,
+    "en": "candidate",
+    "vi": "ứng cử viên",
+    "pronunciation": "/ˈkæn.dɪ.dət/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=candidate&lang=en-US&ipa=%2F%CB%88k%C3%A6n.d%C9%AA.d%C9%99t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+    "example": "There are three candidate standing in the election."
+  },
+  {
+    "word_id": 10,
+    "en": "chef",
+    "vi": "đầu bếp",
+    "pronunciation": "/ʃef/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=chef&lang=en-US&ipa=%2F%CA%83ef%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_chef-la-gi-1.jpg",
+    "example": "The head chef runs the hotel kitchen with strict discipline and efficiency."
+  },
+  {
+    "word_id": 11,
+    "en": "clerk",
+    "vi": "nhân viên bán hàng",
+    "pronunciation": "/klɑːrk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=clerk&lang=en-US&ipa=%2Fkl%C9%91%CB%90rk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg",
+    "example": "Take your purchases to the clerk, and he will wrap them for you."
+  },
+  {
+    "word_id": 12,
+    "en": "client",
+    "vi": "khách hàng",
+    "pronunciation": "/ˈklaɪənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=client&lang=en-US&ipa=%2F%CB%88kla%C9%AA%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_tu-dong-nghia-voi-customer-va-client-trong-tieng-anh-1.jpg",
+    "example": "We always aim to give our client personal attention."
+  },
+  {
+    "word_id": 13,
+    "en": "cloth",
+    "vi": "cái khăn",
+    "pronunciation": "/klɒθ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cloth&lang=en-US&ipa=%2Fkl%C9%92%CE%B8%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg",
+    "example": "It's the fineness of the thread that makes the cloth so soft."
+  },
+  {
+    "word_id": 14,
+    "en": "conference",
+    "vi": "hội nghị, hội thảo",
+    "pronunciation": "/ˈkɒn.fər.əns/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=conference&lang=en-US&ipa=%2F%CB%88k%C9%92n.f%C9%99r.%C9%99ns%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+    "example": "An international medical conference was established for the interchange of new ideas and approaches."
+  },
+  {
+    "word_id": 15,
+    "en": "correctly",
+    "vi": "một cách chính xác, đúng đắn",
+    "pronunciation": "/kəˈrekt.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=correctly&lang=en-US&ipa=%2Fk%C9%99%CB%88rekt.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+    "example": "correctly answer this question for your chance to win a car!"
+  },
+  {
+    "word_id": 16,
+    "en": "deadline",
+    "vi": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+    "pronunciation": "/ˈded.laɪn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=deadline&lang=en-US&ipa=%2F%CB%88ded.la%C9%AAn%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+    "example": "Now that the deadline is approaching we all feel under pressure."
+  },
+  {
+    "word_id": 17,
+    "en": "downtown",
+    "vi": "khu vực trung tâm của thành phố",
+    "pronunciation": "/ˌdaʊnˈtaʊn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=downtown&lang=en-US&ipa=%2F%CB%8Cda%CA%8An%CB%88ta%CA%8An%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+    "example": "In these areas, the historic downtown often were only marginally important."
+  },
+  {
+    "word_id": 18,
+    "en": "e-book",
+    "vi": "sách điện tử",
+    "pronunciation": "/ˈiː.bʊk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=e-book&lang=en-US&ipa=%2F%CB%88i%CB%90.b%CA%8Ak%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg_300px-Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg",
+    "example": "An e-book can be browsed like an ordinary book if you have the right software installed on your computer."
+  },
+  {
+    "word_id": 19,
+    "en": "elevator",
+    "vi": "thang máy",
+    "pronunciation": "/ˈel.ɪ.veɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=elevator&lang=en-US&ipa=%2F%CB%88el.%C9%AA.ve%C9%AA.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/mid_rise_20211030_tke_chq_content_models_shoot_1259_l_image_w900_h550.jpg",
+    "example": "I took the elevator to her office on the fourteenth floor."
+  },
+  {
+    "word_id": 20,
+    "en": "enclose",
+    "vi": "vây quanh, rào quanh",
+    "pronunciation": "/ɪnˈkləʊz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=enclose&lang=en-US&ipa=%2F%C9%AAn%CB%88kl%C9%99%CA%8Az%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/overview_enclose-frameless-glass-whitesweep-haworth.jpg",
+    "example": "The park that enclose the monument has recently been enlarged."
+  },
+  {
+    "word_id": 21,
+    "en": "fare",
+    "vi": "tiền xe, tiền vé",
+    "pronunciation": "/feər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fare&lang=en-US&ipa=%2Ffe%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_taxi-fare-1561717.jpg",
+    "example": "The airline's decision to cut air fare is likely to unsettle the market."
+  },
+  {
+    "word_id": 22,
+    "en": "fax",
+    "vi": "gửi bằng máy fax",
+    "pronunciation": "/fæks/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fax&lang=en-US&ipa=%2Ff%C3%A6ks%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg",
+    "example": "Please fax me a copy of your passport."
+  },
+  {
+    "word_id": 23,
+    "en": "goods",
+    "vi": "hàng hóa, mặt hàng",
+    "pronunciation": "/ɡʊdz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=goods&lang=en-US&ipa=%2F%C9%A1%CA%8Adz%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/8_vnf-hang-hoa-la-gi.webp",
+    "example": "There is a 25% discount on all electrical goods until the end of the week."
+  },
+  {
+    "word_id": 24,
+    "en": "infer",
+    "vi": "suy ra, phỏng đoán",
+    "pronunciation": "/ɪnˈfɜːr/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=infer&lang=en-US&ipa=%2F%C9%AAn%CB%88f%C9%9C%CB%90r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/videos_infer.jpg",
+    "example": "Readers are left to infer the killer's motives."
+  },
+  {
+    "word_id": 25,
+    "en": "invoice",
+    "vi": "hóa đơn",
+    "pronunciation": "/ˈɪn.vɔɪs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=invoice&lang=en-US&ipa=%2F%CB%88%C9%AAn.v%C9%94%C9%AAs%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_338776785_o6kmZ3XDYpWD9MJg4mCwS9lzH8KELlbz.jpg",
+    "example": "The timber merchants sent an invoice for £250."
+  },
+  {
+    "word_id": 26,
+    "en": "lease",
+    "vi": "thuê",
+    "pronunciation": "/liːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lease&lang=en-US&ipa=%2Fli%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+    "example": "We lease all our computer equipment."
+  },
+  {
+    "word_id": 27,
+    "en": "lobby",
+    "vi": "tiền sảnh (của khách sạn)",
+    "pronunciation": "/ˈlɒb.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lobby&lang=en-US&ipa=%2F%CB%88l%C9%92b.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg",
+    "example": "In the hotel lobby you'll find an inviting sitting area next to reception."
+  },
+  {
+    "word_id": 28,
+    "en": "logical",
+    "vi": "theo logic, hợp lý",
+    "pronunciation": "/ˈlɒdʒ.ɪ.kəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=logical&lang=en-US&ipa=%2F%CB%88l%C9%92d%CA%92.%C9%AA.k%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_279578746_WuyJ2nnCsu4v3ddhxu3hIKzYEZNhpE7B.jpg",
+    "example": "It was a logical conclusion from the child's point of view."
+  },
+  {
+    "word_id": 29,
+    "en": "luggage",
+    "vi": "hành lý",
+    "pronunciation": "/ˈlʌɡ.ɪdʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=luggage&lang=en-US&ipa=%2F%CB%88l%CA%8C%C9%A1.%C9%AAd%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+    "example": "They like you to check your luggage in an hour before the flight."
+  },
+  {
+    "word_id": 30,
+    "en": "memo",
+    "vi": "giấy ghi chú",
+    "pronunciation": "/ˈmem.əʊ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=memo&lang=en-US&ipa=%2F%CB%88mem.%C9%99%CA%8A%2F",
+    "image_url": null,
+    "example": "She circulated a memo to the staff."
+  },
+  {
+    "word_id": 31,
+    "en": "mister",
+    "vi": "một cách xưng hô lịch sự với 1 người đàn ông",
+    "pronunciation": "/ˈmɪs.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mister&lang=en-US&ipa=%2F%CB%88m%C9%AAs.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_479748022_q3PWQjBVT8JgabcCOmRCTK8c96IMTjcv.jpg",
+    "example": "Look, mister, we know our job, so don't try to tell us what to do."
+  },
+  {
+    "word_id": 32,
+    "en": "noon",
+    "vi": "giữa trưa",
+    "pronunciation": "/nuːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=noon&lang=en-US&ipa=%2Fnu%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_301230325_XE8lPUdFbNs2eVsGYe6aqk7shBfU4iLR.jpg",
+    "example": "We should be there by noon."
+  },
+  {
+    "word_id": 33,
+    "en": "notify",
+    "vi": "thông báo, cho biết",
+    "pronunciation": "/ˈnəʊ.tɪ.faɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=notify&lang=en-US&ipa=%2F%CB%88n%C9%99%CA%8A.t%C9%AA.fa%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+    "example": "Changes must be notify to the chairman."
+  },
+  {
+    "word_id": 34,
+    "en": "o'clock",
+    "vi": "giờ trong ngày",
+    "pronunciation": "/əˈklɒk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=o%27clock&lang=en-US&ipa=%2F%C9%99%CB%88kl%C9%92k%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_405284677_yE6WlvOeMRRns0D3DwbjEdbgKcczhqfW.jpg",
+    "example": "The trouble began just after ten o'clock last night."
+  },
+  {
+    "word_id": 35,
+    "en": "preview",
+    "vi": "Sự xem trước, sự duyệt trước",
+    "pronunciation": "/ˈpriː.vjuː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=preview&lang=en-US&ipa=%2F%CB%88pri%CB%90.vju%CB%90%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+    "example": "There was a preview screening of the movie on Monday night."
+  },
+  {
+    "word_id": 36,
+    "en": "publish",
+    "vi": "xuất bản, công bố, đăng tải",
+    "pronunciation": "/ˈpʌb.lɪʃ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=publish&lang=en-US&ipa=%2F%CB%88p%CA%8Cb.l%C9%AA%CA%83%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+    "example": "The government publish figures every six months showing how many people are unemployed."
+  },
+  {
+    "word_id": 37,
+    "en": "receipt",
+    "vi": "hóa đơn",
+    "pronunciation": "/rɪˈsiːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=receipt&lang=en-US&ipa=%2Fr%C9%AA%CB%88si%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_234382675_IDhCYbxmtSN0fExmTAw9aH39daLiMihV.jpg",
+    "example": "Make sure you are given a receipt for everything you buy."
+  },
+  {
+    "word_id": 38,
+    "en": "reception",
+    "vi": "sự đón tiếp, tiệc chiêu đãi",
+    "pronunciation": "/rɪˈsep.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reception&lang=en-US&ipa=%2Fr%C9%AA%CB%88sep.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+    "example": "She was buoyed (up) by the warm reception her audience gave her."
+  },
+  {
+    "word_id": 39,
+    "en": "refund",
+    "vi": "hoàn tiền",
+    "pronunciation": "/rɪˈfʌnd, ˈriˌfʌnd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=refund&lang=en-US&ipa=%2Fr%C9%AA%CB%88f%CA%8Cnd%2C+%CB%88ri%CB%8Cf%CA%8Cnd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg",
+    "example": "When I went on business to Peru, the office refund my expenses."
+  },
+  {
+    "word_id": 40,
+    "en": "rental",
+    "vi": "sự cho thuê",
+    "pronunciation": "/ˈren.təl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rental&lang=en-US&ipa=%2F%CB%88ren.t%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_315224308_fm5CYsM0O9aB7OYG2C6KMv5JSBRveoqA.jpg",
+    "example": "Property rental is quite expensive here."
+  },
+  {
+    "word_id": 41,
+    "en": "reservation",
+    "vi": "sự đặt trước",
+    "pronunciation": "/ˌrez.əˈveɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reservation&lang=en-US&ipa=%2F%CB%8Crez.%C9%99%CB%88ve%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/2791_122_08_Making-a-Dinner-Reservation.png",
+    "example": "I'd like to make a table reservation for two people for nine o'clock."
+  },
+  {
+    "word_id": 42,
+    "en": "seminar",
+    "vi": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+    "pronunciation": "/ˈsem.ɪ.nɑːr/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=seminar&lang=en-US&ipa=%2F%CB%88sem.%C9%AA.n%C9%91%CB%90r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg",
+    "example": "I attended practically every lecture and seminar when I was a student."
+  },
+  {
+    "word_id": 43,
+    "en": "shipment",
+    "vi": "sự giao hàng",
+    "pronunciation": "/ˈʃɪp.mənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=shipment&lang=en-US&ipa=%2F%CB%88%CA%83%C9%AAp.m%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_189180080_fRgPD63I35pkQXxgUF3SLj3DzCkCzpeV.jpg",
+    "example": "A shipment of urgent medical supplies is expected to arrive very soon."
+  },
+  {
+    "word_id": 44,
+    "en": "sincerely",
+    "vi": "một cách chân thành",
+    "pronunciation": "/sɪnˈsɪə.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=sincerely&lang=en-US&ipa=%2Fs%C9%AAn%CB%88s%C9%AA%C9%99.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_486963889_W8gVYrDtPOM0qy4qjGFUKFPDSyaZdXAp.jpg",
+    "example": "I sincerely believe that this is the right decision."
+  },
+  {
+    "word_id": 45,
+    "en": "sometime",
+    "vi": "một lúc nào đó",
+    "pronunciation": "/ˈsʌm.taɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=sometime&lang=en-US&ipa=%2F%CB%88s%CA%8Cm.ta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/36_1000_F_299573644_hl36ijMAfYBQhV7LMeB0F9ep4IqaoQwL.jpg",
+    "example": "We really should meet sometime soon to discuss the details."
+  },
+  {
+    "word_id": 46,
+    "en": "subscription",
+    "vi": "sự đăng ký",
+    "pronunciation": "/səbˈskrɪp.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=subscription&lang=en-US&ipa=%2Fs%C9%99b%CB%88skr%C9%AAp.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_488132093_kziuWGxcr8NXAaguMpds9du7Y9nYkEOf.jpg",
+    "example": "I decided to take out (= pay for) a subscription to a gardening magazine."
+  },
+  {
+    "word_id": 47,
+    "en": "subway",
+    "vi": "đường hầm",
+    "pronunciation": "/ˈsʌb.weɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=subway&lang=en-US&ipa=%2F%CB%88s%CA%8Cb.we%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg",
+    "example": "He ran through the pedestrian subway."
+  },
+  {
+    "word_id": 48,
+    "en": "supervisor",
+    "vi": "người giám sát",
+    "pronunciation": "/ˈsuː.pə.vaɪ.zər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=supervisor&lang=en-US&ipa=%2F%CB%88su%CB%90.p%C9%99.va%C9%AA.z%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_269989133_kAnsHXDsEOGz4MFsOD9mAeP5J0TAC9fn.jpg",
+    "example": "All managers and supervisor should be familiar with policy and procedures relating to equal employment opportunities."
+  },
+  {
+    "word_id": 49,
+    "en": "technician",
+    "vi": "kỹ thuật viên",
+    "pronunciation": "/tekˈnɪʃ.ən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=technician&lang=en-US&ipa=%2Ftek%CB%88n%C9%AA%CA%83.%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg",
+    "example": "He became a lab technician for Technicolor and worked his way up."
+  },
+  {
+    "word_id": 50,
+    "en": "traveler",
+    "vi": "khách du lịch",
+    "pronunciation": "/ˈtræv.əl.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=traveler&lang=en-US&ipa=%2F%CB%88tr%C3%A6v.%C9%99l.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_318718670_86Nd3s244FZT3kSIAZ7plbilLhxfNqiM.jpg",
+    "example": "I'm not a great traveler. I'm happiest staying at home."
+  },
+  {
+    "word_id": 51,
+    "en": "vacation",
+    "vi": "kỳ nghỉ",
+    "pronunciation": "/veɪˈkeɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vacation&lang=en-US&ipa=%2Fve%C9%AA%CB%88ke%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+    "example": "He injured himself on the next-to-last day of his vacation."
+  },
+  {
+    "word_id": 52,
+    "en": "waiter",
+    "vi": "nhân viên phục vụ (nam giới)",
+    "pronunciation": "/ˈweɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=waiter&lang=en-US&ipa=%2F%CB%88we%C9%AA.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_265810309_0fUfIqx9w05jtZKrMJhl1jbl3Y0JuB8k.jpg",
+    "example": "The waiter smiled contemptuously at anyone who didn't know which wine to order."
+  },
+  {
+    "word_id": 53,
+    "en": "warranty",
+    "vi": "sự bảo hành",
+    "pronunciation": "/ˈwɒr.ən.ti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=warranty&lang=en-US&ipa=%2F%CB%88w%C9%92r.%C9%99n.ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg",
+    "example": "The laptop can be repaired for free if it's still under warranty."
+  },
+  {
+    "word_id": 54,
+    "en": "website",
+    "vi": "trang web",
+    "pronunciation": "/ˈweb.saɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=website&lang=en-US&ipa=%2F%CB%88web.sa%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+    "example": "This website is currently under construction."
+  },
+  {
+    "word_id": 55,
+    "en": "workshop",
+    "vi": "phân xưởng",
+    "pronunciation": "/ˈwɜːk.ʃɒp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=workshop&lang=en-US&ipa=%2F%CB%88w%C9%9C%CB%90k.%CA%83%C9%92p%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg",
+    "example": "The amber products are produced in the workshop."
+  }
+]

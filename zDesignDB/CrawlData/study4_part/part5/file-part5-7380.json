@@ -1,0 +1,353 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 106,
+    "questionText": "A second order for 500 recycled paper cups _____ last week.",
+    "options": [
+      {
+        "label": "A",
+        "text": "was placed"
+      },
+      {
+        "label": "B",
+        "text": "was placing"
+      },
+      {
+        "label": "C",
+        "text": "to place"
+      },
+      {
+        "label": "D",
+        "text": "placed"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Câu thiếu động từ chính, chủ ngữ là “a second order” - đơn hàng thứ hai, cuối câu có “last week” - dấu hiệu thì quá khứ đơn→ Cần điền một động từ chính ở thể bị động và chia ở thì quá khứ đơn",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 119,
+    "questionText": "The product development team for Herbeve Cosmetics is ____ a package redesign to try to increase sales.",
+    "options": [
+      {
+        "label": "A",
+        "text": "considered"
+      },
+      {
+        "label": "B",
+        "text": "considering"
+      },
+      {
+        "label": "C",
+        "text": "considers"
+      },
+      {
+        "label": "D",
+        "text": "consider"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Câu này cần tìm cách chia động từ thích hợp. Ở đây sau \"is\" ta loại D \"consider\" và C \"considers\". Giữa B \"considering\" và A \"considered\", nhận thấy đây là ý chủ động nên chọn \"considering\". Đáp án đúng B. Dịch: Đội phát triển sản phẩm của Herbeve Cosmetics đang xem xét việc thiết kế lại đóng gói bao bì nhằm nỗ lực tăng doanh số.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 122,
+    "questionText": "Payments made to your account after the invoice was generated are not _____ in the balance shown.",
+    "options": [
+      {
+        "label": "A",
+        "text": "reflected"
+      },
+      {
+        "label": "B",
+        "text": "reflects"
+      },
+      {
+        "label": "C",
+        "text": "reflecting"
+      },
+      {
+        "label": "D",
+        "text": "reflect"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Ta nhận thấy từ loại cần điền đứng sau động từ to be ‘are not’ và đứng trước giới từ ‘in’ → Cần tìm một động từ chia thì→ Loại đáp án B và D (động từ chia ở thì hiện tại đơn) vì theo sau động từ to be không có động từ thườngTa xét nghĩa của câu, ‘các khoản thanh toán sau khi hóa đơn được tạo’ cần được phản ánh chứ bản thân nó không thể tự phản ánh → Động từ chia ở thể bị động ⇒ Chọn ADịch: Các khoản thanh toán được thực hiện sau khi hóa đơn được tạo không được phản ánh trong bảng cân đối kế toán.",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 114,
+    "questionText": "The company-sponsored five-kilometer run will be held on October 15, and all employees _____ to participate.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to invite"
+      },
+      {
+        "label": "B",
+        "text": "invite"
+      },
+      {
+        "label": "C",
+        "text": "inviting"
+      },
+      {
+        "label": "D",
+        "text": "are invited"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Câu này cần chia động từ ở thì và thể thích hợp. Ở đây, ta phải chọn D để câu có nghĩa \"được mời\"Dịch: Cuộc chạy đua 5 km được công ty tài trợ sẽ được diễn ra vào ngày 15 tháng 10, và tất cả nhân viên đều được mời tham gia.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 113,
+    "questionText": "Last week Parmax Corporation _____ a disagreement with its main competitor concerning patent infringement.",
+    "options": [
+      {
+        "label": "A",
+        "text": "settling"
+      },
+      {
+        "label": "B",
+        "text": "settler"
+      },
+      {
+        "label": "C",
+        "text": "settle"
+      },
+      {
+        "label": "D",
+        "text": "settled"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D. Tạm dịch: Tuần trước Tập đoàn Parmax đã giải quyết một bất đồng với đối thủ chính của họ, liên quan đến xâm phạm bằng sáng chế."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 120,
+    "questionText": "The color of the new chairs was not _____ on the invoice",
+    "options": [
+      {
+        "label": "A",
+        "text": "specify"
+      },
+      {
+        "label": "B",
+        "text": "specified"
+      },
+      {
+        "label": "C",
+        "text": "specifying"
+      },
+      {
+        "label": "D",
+        "text": "specification"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 101,
+    "questionText": "With the help of one of the IT technicians, the missing accounting files have been _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "recover"
+      },
+      {
+        "label": "B",
+        "text": "recovers"
+      },
+      {
+        "label": "C",
+        "text": "recovering"
+      },
+      {
+        "label": "D",
+        "text": "recovered"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 103,
+    "questionText": "The charity's new reading program is _____ to increase literacy rates in developing countries over the next ten years.",
+    "options": [
+      {
+        "label": "A",
+        "text": "project"
+      },
+      {
+        "label": "B",
+        "text": "projecting"
+      },
+      {
+        "label": "C",
+        "text": "projected"
+      },
+      {
+        "label": "D",
+        "text": "projects"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 126,
+    "questionText": "When you return an item by mail, be sure the receipt is _____ to the request form to expedite processing.",
+    "options": [
+      {
+        "label": "A",
+        "text": "attachment"
+      },
+      {
+        "label": "B",
+        "text": "attached"
+      },
+      {
+        "label": "C",
+        "text": "attaching"
+      },
+      {
+        "label": "D",
+        "text": "attach"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 129,
+    "questionText": "Because the weather was warmer than usual this summer, the crops _____ a few weeks early.",
+    "options": [
+      {
+        "label": "A",
+        "text": "have been harvesting"
+      },
+      {
+        "label": "B",
+        "text": "will have harvested"
+      },
+      {
+        "label": "C",
+        "text": "are harvesting"
+      },
+      {
+        "label": "D",
+        "text": "will be harvested"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 102,
+    "questionText": "Some of the leather used in this handbag must ------- from Italy.",
+    "options": [
+      {
+        "label": "A",
+        "text": "will import"
+      },
+      {
+        "label": "B",
+        "text": "be imported"
+      },
+      {
+        "label": "C",
+        "text": "to import"
+      },
+      {
+        "label": "D",
+        "text": "have imported"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 116,
+    "questionText": "Using a fingerprint system is generally ------- as the primary means of security at laboratories in this country.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to accept"
+      },
+      {
+        "label": "B",
+        "text": "accept"
+      },
+      {
+        "label": "C",
+        "text": "accepting"
+      },
+      {
+        "label": "D",
+        "text": "accepted"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 130,
+    "questionText": "According to the physician, Ms. Oliver's pain ------- within two hours of taking the medication.",
+    "options": [
+      {
+        "label": "A",
+        "text": "alleviated"
+      },
+      {
+        "label": "B",
+        "text": "will be alleviated"
+      },
+      {
+        "label": "C",
+        "text": "is alleviating"
+      },
+      {
+        "label": "D",
+        "text": "should alleviate"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  }
+]

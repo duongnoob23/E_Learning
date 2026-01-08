@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'amenity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thường lệ, theo thói quen",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ngoại lai",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_47929525-0-image-a-7_1631660140068.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'approximate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "bài kiểm tra tổng quát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/article_img_cardiac-procedures-and-preventive-health-checkups-thumb.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'await' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tổng quát hoá, sự tổng hợp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_694e87de0c5b8f3db3a6a773d3cf04db.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Vật liệu, vải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_fabric-la-gi-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "vật lý học (Nghiên cứu khoa học về vật chất và năng lượng và các mối quan hệ giữa chúng, bao gồm nghiên cứu lực, nhiệt, ánh sáng, âm thanh, điện và cấu trúc của nguyên tử)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_115712387_b5P3N0qexf60lmXwPpQfdJ840PznzFaQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'barbecue' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiệc nướng ngoài trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'beginner' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vỉ nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/S42d246eaf93d451ea3959254310d25998_Smokeless-Barbecue-Grill-Pan-Non-Stick-Gas-Stove-Plate-Electric-Stove-Baking-Tray-BBQ-Grill-Barbecue.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người phụ trách một cuộc họp, chủ tọa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_Property-management-company.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không thoải mái hoặc hài lòng với một tình huống hoặc điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_490266713_O8Mq26ot2bv00DZDmyjm1Rlg2q2spcqB.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'biology' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thang cuốn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sinh học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_biology-la-gi2.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tiệc nướng ngoài trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'blanket' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "có tổ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_277712550_auc7F8wkxXFcJYLITt3eGcA6meMlbiU1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'chairperson' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thang cuốn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phụ trách một cuộc họp, chủ tọa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_Property-management-company.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'charitable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "từ thiện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_2019_02_8-Types-of-Charitable-Giving-for-Philanthropy-and-Tax-Benefits-1200x628.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'checkup' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trên bình diện quốc tế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_103342011_AXPJTtL4J6vh7l2vL82HQ6Dfd1AyBABC.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bài kiểm tra tổng quát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/article_img_cardiac-procedures-and-preventive-health-checkups-thumb.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "it tuổi hơn; ít thâm niên hơn; ở cấp dưới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_28168014_e9CMDnAPVjL7siLATIVIrLaZ8SBkupdO.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'cooler' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liên quan đến môi trường tự nhiên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploaded_4-ways-for-governments-to-be-more-environmentally-friendly.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "máy làm lạnh, hộp giữ lạnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tiệc nướng ngoài trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vỉ nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/S42d246eaf93d451ea3959254310d25998_Smokeless-Barbecue-Grill-Pan-Non-Stick-Gas-Stove-Plate-Electric-Stove-Baking-Tray-BBQ-Grill-Barbecue.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'crane' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiệc nướng ngoài trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "quan điểm, cách nhìn nhận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_291877047_qki5vuGAFSrpX8P2DwEkbl2GZRZ3nJ6T.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy trục, cần cẩu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_kiL8jgmMSafPY6mv15PCVtAJzUpv0QGE1604495671-3.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự tổng quát hoá, sự tổng hợp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_694e87de0c5b8f3db3a6a773d3cf04db.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'dealership' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đại lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/s3fs-public_1LOT-MAIN_i.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "trên bình diện quốc tế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_103342011_AXPJTtL4J6vh7l2vL82HQ6Dfd1AyBABC.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không thoải mái hoặc hài lòng với một tình huống hoặc điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_490266713_O8Mq26ot2bv00DZDmyjm1Rlg2q2spcqB.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vỉ nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/S42d246eaf93d451ea3959254310d25998_Smokeless-Barbecue-Grill-Pan-Non-Stick-Gas-Stove-Plate-Electric-Stove-Baking-Tray-BBQ-Grill-Barbecue.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'dependable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đáng tin cậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_betrouwbaarheid23.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "số tiền được chiết khấu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_498229793_sJusSAfXw4gWQLR74wsjlXVm3WmkXHyt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách hăng hái, nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ban nhạc, dàn nhạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_68957026_BR1lT05rDzLZKkxunlpFmRMZTNK3JImK.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'disconnect' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "năng động, sôi nổi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_why-organizational-maturity-matters-for-organic-marketing-6093a6f48b753-1520x800.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "số tiền được chiết khấu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_498229793_sJusSAfXw4gWQLR74wsjlXVm3WmkXHyt.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'dispose' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người phụ trách một cuộc họp, chủ tọa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_Property-management-company.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "máy làm lạnh, hộp giữ lạnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm việc tự do",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'disrupt' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm gián đoạn và gây ra sự hỗn loạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_bigstock-Hand-Blocking-The-Growth-Arrow-364138390.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "do dự, lưỡng lự",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thang cuốn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'dynamic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "năng động, sôi nổi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_why-organizational-maturity-matters-for-organic-marketing-6093a6f48b753-1520x800.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "làm gián đoạn và gây ra sự hỗn loạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_bigstock-Hand-Blocking-The-Growth-Arrow-364138390.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'enthusiastically' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vấn đề khó giải quyết, vấn đề nan giải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/73_1000_F_33407359_C4NyWB1PinM17Cy2Og4cFmfocTSAsHIu.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cũng như thế, cũng như vậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_110244872_PEr8meZjtbD2r46d5HgnP71uBEYU6U2M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy làm lạnh, hộp giữ lạnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách hăng hái, nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'environmentally' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách hăng hái, nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sách bìa mềm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_316472318_TfeOtvhlyCi1pGBGCMson8HLlH5qYFmr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liên quan đến môi trường tự nhiên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploaded_4-ways-for-governments-to-be-more-environmentally-friendly.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'escalator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm việc tự do",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự chỉ đạo, sự hướng dẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_businessman-following-arrow-sign-under-260nw-2045369363.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "có tổ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_277712550_auc7F8wkxXFcJYLITt3eGcA6meMlbiU1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thang cuốn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'exotic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngoại lai",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_47929525-0-image-a-7_1631660140068.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "vấn đề khó giải quyết, vấn đề nan giải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/73_1000_F_33407359_C4NyWB1PinM17Cy2Og4cFmfocTSAsHIu.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vật lý học (Nghiên cứu khoa học về vật chất và năng lượng và các mối quan hệ giữa chúng, bao gồm nghiên cứu lực, nhiệt, ánh sáng, âm thanh, điện và cấu trúc của nguyên tử)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_115712387_b5P3N0qexf60lmXwPpQfdJ840PznzFaQ.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'fabric' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Vật liệu, vải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_fabric-la-gi-1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'freelance' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách hăng hái, nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm việc tự do",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ngoại lai",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_47929525-0-image-a-7_1631660140068.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'generalization' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự tổng quát hoá, sự tổng hợp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_694e87de0c5b8f3db3a6a773d3cf04db.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "máy trục, cần cẩu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_kiL8jgmMSafPY6mv15PCVtAJzUpv0QGE1604495671-3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "máy làm lạnh, hộp giữ lạnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'grill' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vỉ nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/S42d246eaf93d451ea3959254310d25998_Smokeless-Barbecue-Grill-Pan-Non-Stick-Gas-Stove-Plate-Electric-Stove-Baking-Tray-BBQ-Grill-Barbecue.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "làm việc tự do",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "liên quan đến môi trường tự nhiên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploaded_4-ways-for-governments-to-be-more-environmentally-friendly.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'guidance' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự chỉ đạo, sự hướng dẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_businessman-following-arrow-sign-under-260nw-2045369363.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ban nhạc, dàn nhạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_68957026_BR1lT05rDzLZKkxunlpFmRMZTNK3JImK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tinh thần, chí khí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_473433471_Mzw3B9Z4VMGRUL9fBdyIPqrVkY3CC3TT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'gum' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "trên bình diện quốc tế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_103342011_AXPJTtL4J6vh7l2vL82HQ6Dfd1AyBABC.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy làm lạnh, hộp giữ lạnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'habitual' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thường lệ, theo thói quen",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "do dự, lưỡng lự",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'hesitant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "do dự, lưỡng lự",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vật lý học (Nghiên cứu khoa học về vật chất và năng lượng và các mối quan hệ giữa chúng, bao gồm nghiên cứu lực, nhiệt, ánh sáng, âm thanh, điện và cấu trúc của nguyên tử)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_115712387_b5P3N0qexf60lmXwPpQfdJ840PznzFaQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm việc tự do",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'indicator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tinh thần, chí khí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_473433471_Mzw3B9Z4VMGRUL9fBdyIPqrVkY3CC3TT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự chỉ thị, tín hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/138885-050-B1E3988A_Indicator-paper-liquid-pH-solution.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'individually' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách riêng biệt, riêng lẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Official_13873.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "từ thiện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_2019_02_8-Types-of-Charitable-Giving-for-Philanthropy-and-Tax-Benefits-1200x628.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'internationally' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trên bình diện quốc tế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_103342011_AXPJTtL4J6vh7l2vL82HQ6Dfd1AyBABC.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "đại lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/s3fs-public_1LOT-MAIN_i.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không thoải mái hoặc hài lòng với một tình huống hoặc điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_490266713_O8Mq26ot2bv00DZDmyjm1Rlg2q2spcqB.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'invaluable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "kịp thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_490131803_QcyCYKa0FDDD9g6rP8GCWLPOMgRWA3Yh.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vô giá",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_351871576_RYU3U90LSVZwUkWLTXhIfP8uEW0N9dIR.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một cách riêng biệt, riêng lẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Official_13873.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quan điểm, cách nhìn nhận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_291877047_qki5vuGAFSrpX8P2DwEkbl2GZRZ3nJ6T.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'junior' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "it tuổi hơn; ít thâm niên hơn; ở cấp dưới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_28168014_e9CMDnAPVjL7siLATIVIrLaZ8SBkupdO.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "do dự, lưỡng lự",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'lifestyle' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lối sống, cách sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_126191981_Dwbz5ceqLAYxQ8qwsNAUOAUIBZ7hSU6V.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xảy ra một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/29_1000_F_508842986_YlYuMK4Y5Cl1R2G82OZoDKUvltnzOaPN.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'likewise' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách hăng hái, nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lối sống, cách sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_126191981_Dwbz5ceqLAYxQ8qwsNAUOAUIBZ7hSU6V.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cũng như thế, cũng như vậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_110244872_PEr8meZjtbD2r46d5HgnP71uBEYU6U2M.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'messenger' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đáng tin cậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_betrouwbaarheid23.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "số tiền được chiết khấu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_498229793_sJusSAfXw4gWQLR74wsjlXVm3WmkXHyt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'morale' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "ngoại lai",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_47929525-0-image-a-7_1631660140068.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "do dự, lưỡng lự",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tinh thần, chí khí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_473433471_Mzw3B9Z4VMGRUL9fBdyIPqrVkY3CC3TT.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'orchestra' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ban nhạc, dàn nhạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_68957026_BR1lT05rDzLZKkxunlpFmRMZTNK3JImK.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự chỉ thị, tín hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/138885-050-B1E3988A_Indicator-paper-liquid-pH-solution.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'organizational' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có tổ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_277712550_auc7F8wkxXFcJYLITt3eGcA6meMlbiU1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "it tuổi hơn; ít thâm niên hơn; ở cấp dưới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_28168014_e9CMDnAPVjL7siLATIVIrLaZ8SBkupdO.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thường lệ, theo thói quen",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "viễn thông",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_263924573_wuJrFc39SK9pD2j9CPkHZfECoicz6PLs.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'outlook' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "quan điểm, cách nhìn nhận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_291877047_qki5vuGAFSrpX8P2DwEkbl2GZRZ3nJ6T.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "có tổ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_277712550_auc7F8wkxXFcJYLITt3eGcA6meMlbiU1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đưa tin",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'paperback' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sách bìa mềm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_316472318_TfeOtvhlyCi1pGBGCMson8HLlH5qYFmr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thường lệ, theo thói quen",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'physics' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vật lý học (Nghiên cứu khoa học về vật chất và năng lượng và các mối quan hệ giữa chúng, bao gồm nghiên cứu lực, nhiệt, ánh sáng, âm thanh, điện và cấu trúc của nguyên tử)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_115712387_b5P3N0qexf60lmXwPpQfdJ840PznzFaQ.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "keo dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'pole' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Một cây gậy dài",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_1000_F_434041017_pwTc3ad4defSv154mpfvKrshISFalXhQ.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "lối sống, cách sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_126191981_Dwbz5ceqLAYxQ8qwsNAUOAUIBZ7hSU6V.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hình dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_318502708_LhSkwCkNJPtkgF1POki1P8xtZ7p4qzo1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'puzzle' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vấn đề khó giải quyết, vấn đề nan giải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/73_1000_F_33407359_C4NyWB1PinM17Cy2Og4cFmfocTSAsHIu.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "năng động, sôi nổi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_why-organizational-maturity-matters-for-organic-marketing-6093a6f48b753-1520x800.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tinh thần, chí khí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_473433471_Mzw3B9Z4VMGRUL9fBdyIPqrVkY3CC3TT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cũng như thế, cũng như vậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_110244872_PEr8meZjtbD2r46d5HgnP71uBEYU6U2M.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'rebate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "số tiền được chiết khấu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_498229793_sJusSAfXw4gWQLR74wsjlXVm3WmkXHyt.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiệc nướng ngoài trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "máy trục, cần cẩu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_kiL8jgmMSafPY6mv15PCVtAJzUpv0QGE1604495671-3.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'recur' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thang cuốn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xảy ra một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/29_1000_F_508842986_YlYuMK4Y5Cl1R2G82OZoDKUvltnzOaPN.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự chỉ thị, tín hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/138885-050-B1E3988A_Indicator-paper-liquid-pH-solution.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'reflexive' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "có tuyết rơi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_298961354_1HX1nh6Xx4v61Od2o2emmSGWC3GiRC1I.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sinh học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_biology-la-gi2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'snowy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Vật liệu, vải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_fabric-la-gi-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "có tuyết rơi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_298961354_1HX1nh6Xx4v61Od2o2emmSGWC3GiRC1I.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "bỏ một thứ gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'steak' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "it tuổi hơn; ít thâm niên hơn; ở cấp dưới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_28168014_e9CMDnAPVjL7siLATIVIrLaZ8SBkupdO.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "phản thân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấm chăn, cái mền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'sticker' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "xấp xỉ, gần đúng với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Cắt hoặc tách ra",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hình dán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_318502708_LhSkwCkNJPtkgF1POki1P8xtZ7p4qzo1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "miếng cá để nướng, miếng thịt để nướng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'telecommunication' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Một cây gậy dài",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_1000_F_434041017_pwTc3ad4defSv154mpfvKrshISFalXhQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lối sống, cách sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_126191981_Dwbz5ceqLAYxQ8qwsNAUOAUIBZ7hSU6V.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "viễn thông",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_263924573_wuJrFc39SK9pD2j9CPkHZfECoicz6PLs.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'timely' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "năng động, sôi nổi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_why-organizational-maturity-matters-for-organic-marketing-6093a6f48b753-1520x800.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cơ sở vật chất tiện nghi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "kịp thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_490131803_QcyCYKa0FDDD9g6rP8GCWLPOMgRWA3Yh.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "ban nhạc, dàn nhạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_68957026_BR1lT05rDzLZKkxunlpFmRMZTNK3JImK.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'uncomfortable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không thoải mái hoặc hài lòng với một tình huống hoặc điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_490266713_O8Mq26ot2bv00DZDmyjm1Rlg2q2spcqB.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "quan điểm, cách nhìn nhận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_291877047_qki5vuGAFSrpX8P2DwEkbl2GZRZ3nJ6T.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cũng như thế, cũng như vậy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_110244872_PEr8meZjtbD2r46d5HgnP71uBEYU6U2M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Một cây gậy dài",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_1000_F_434041017_pwTc3ad4defSv154mpfvKrshISFalXhQ.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

@@ -1,0 +1,438 @@
+[
+  {
+    "question_id": "p3_q1",
+    "question_number": 32,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_32_34.mp3",
+    "questionText": "Where are the speakers?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a museum"
+      },
+      {
+        "label": "B",
+        "text": "At a public library"
+      },
+      {
+        "label": "C",
+        "text": "At an art supply shop"
+      },
+      {
+        "label": "D",
+        "text": "At a botanical garden"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "(32) Welcome to the Trellisville Museum of Art. How can I help you?(33) I'd like an all-day pass, please.Sure. Just so you know, (33) we've introduced resident and nonresident prices for the museum. Do you happen to be a resident of Trellisville?(33) Yes, I've lived here for more than twenty years.Wonderful. (34) All I need to see is a piece of ID with your address.OK, here's my driver's license.",
+    "translation": "Chào mừng đến với Bảo tàng Nghệ thuật Trellisville. Tôi có thể giúp gì được cho bạn?Tôi muốn mua một vé tham quan cả ngày.Chắc chắn rồi. Xin hãy lưu ý rằng chúng tôi đã áp dụng mức giá cho cư dân địa phương và người không cư trú ở đây cho tour tham quan bảo tàng. Bạn có tình cờ là cư dân của Trellisville không?Vâng, tôi đã sống ở đây hơn hai mươi năm.Tuyệt vời. Tất cả những gì tôi cần xem là một loại giấy tờ tùy thân có địa chỉ của bạn.OK, đây là bằng lái xe của tôi.",
+    "explanation": {
+      "D": "Tại vườn bách thảo",
+      "A": "rt (n) nghệ thuật",
+      "B": "ảo tàng Nghệ thuật Trellisville- Từ vựng:Museum (n): bảo tàng",
+      "C": "hào mừng đến với",
+      "note": "Câu hỏi địa điểm hội thoại"
+    }
+  },
+  {
+    "question_id": "p3_q2",
+    "question_number": 41,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_41_43.mp3",
+    "questionText": "Where do the speakers work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a grocery store"
+      },
+      {
+        "label": "B",
+        "text": "At a cooking school"
+      },
+      {
+        "label": "C",
+        "text": "At a restaurant"
+      },
+      {
+        "label": "D",
+        "text": "At a food-processing plant"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Good morning, Ms. Osman. I arrived a little early, so (41) I already swept the aisles and I'm in the process of restocking the frozen foods section. Is there anything else you need me to do to get the store ready for the day?(42,43) Can you also open up the second cash register?Sure, (43) I'll do that as soon as I finish restocking the frozen vegetables.OK... Remember, though, we open at seven.Got it. I just have a few boxes of vegetables left.",
+    "translation": "Chào buổi sáng, cô Osman. Tôi đến hơi sớm, vì vậy tôi đã quét các lối đi và tôi đang cung cấp thêm đồ cho phần thực phẩm đông lạnh. Cô có cần tôi làm gì khác để chuẩn bị cho cửa hàng trong ngày không?Bạn có thể mở máy tính tiền thứ hai không?Chắc chắn rồi, tôi sẽ làm điều đó ngay sau khi hoàn thành việc bổ sung rau quả đông lạnh.OK ... Tuy nhiên, hãy nhớ rằng, chúng ta mở cửa lúc bảy giờ.Tôi hiểu rồi. Tôi chỉ còn lại một vài hộp rau thôi.",
+    "explanation": {
+      "A": "isle (n): lối đi\nSweep (v): quét\nProcess (n): quá trình\nRestock (v): bổ sung, cũng cấp thêm\nFrozen (adj): đông lạnh, được cấp đông\nSection (n) phần",
+      "B": "Tại trường dạy nấu ăn",
+      "C": "òn gì cô cần tôi phải làm để chuẩn bị mở cửa hàng cho ngày mới không?\n- Từ vựng:",
+      "D": "Tại nhà máy chế biến thực phẩm",
+      "note": "Câu hỏi địa điểm của hội thoại. Nghe thông tin ngay phần đầu\n- Câu chứa đáp án: Good morning, Ms. Osman. I arrived a little early, so I already swept the aisles and I'm in the process of restocking the frozen foods section. Is there anything else you need me to do to get the store ready for the day?\nKeywords cần chú ý: the aisles, in the process of restocking the frozen foods section, the store, ready for the day"
+    }
+  },
+  {
+    "question_id": "p3_q3",
+    "question_number": 47,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_47_49.mp3",
+    "questionText": "Where does the conversation take place?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a bookshop"
+      },
+      {
+        "label": "B",
+        "text": "At a supermarket"
+      },
+      {
+        "label": "C",
+        "text": "At a furniture store"
+      },
+      {
+        "label": "D",
+        "text": "At a craft store"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "(47) Welcome to Sandelman's Rare Books. How can I help you?Hi, (48) I have this first edition book that I'd like to know the value of. I called yesterday to confirm that you do book appraisals here...Yes, my colleague, Margaret, assesses the value of books.Hi, (49) I'm Margaret. I see that your book is in... fair condition. Where do you store it?(49) I keep it on my bookcase at home.I ask because it looks like it's got some sun damage. (49) It's a good idea to use a plastic cover to protect a book like this from exposure to the sunlight. We have some near the entrance with the other maintenance products, if you're interested.",
+    "translation": "(47) Chào mừng đến với Sandelman's Rare Books. Tôi có thể giúp gì cho bạn?Xin chào, tôi có cuốn sách ấn bản đầu tiên này mà tôi muốn biết giá trị của nó. Tôi đã gọi ngày hôm qua để xác nhận rằng các bạn thực hiện thẩm định sách ở đây ...Vâng, đồng nghiệp của tôi, Margaret, định ước giá trị của những cuốn sách.Xin chào, tôi là Margaret. Tôi thấy rằng cuốn sách của bạn đang ở ... tình trạng khá tốt. Bạn lưu trữ nó ở đâu?Tôi để nó trên tủ sách của tôi ở nhà.Tôi hỏi vì có vẻ như nó bị tổn hại do ánh nắng mặt trời. Bạn nên sử dụng bìa nhựa để bảo vệ một cuốn sách như thế này khỏi tiếp xúc với ánh sáng mặt trời. Chúng tôi có một số loại bìa đó gần lối vào với các sản phẩm khác cần được giữ gìn, nếu bạn quan tâm.",
+    "explanation": {
+      "D": "Tại cửa hàng đồ thủ công",
+      "C": "hào mừng đến với Sandelman's Rare",
+      "A": "Tại hiệu sách",
+      "B": "ooks. Tôi có thể giúp gì cho bạn?",
+      "note": "Câu hỏi về địa điểm hội thoại. Nghe thông tin phần đầu.- Câu chứa đáp án:  Welcome to Sandelman's Rare Books. How can I help you?"
+    }
+  },
+  {
+    "question_id": "p3_q4",
+    "question_number": 41,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q41-43.mp3",
+    "questionText": "Where most likely are the speakers?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a pet shop"
+      },
+      {
+        "label": "B",
+        "text": "At a catering company"
+      },
+      {
+        "label": "C",
+        "text": "At a fire station"
+      },
+      {
+        "label": "D",
+        "text": "At an animal shelter"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi, I'd like to adopt a pet that doesn't have a home. I live alone and feel that a dog would be great company.You came to the right place. We have many cute dogs here who were rescued from the street and don't have a home. What kind of dog are you looking for specifically?Well, my house is not that big, so I was hoping for a dog small enough to hold in my lap.All right. Before we can allow you to adopt a dog, we need you to complete some official paperwork. If you have a seat in the lobby, I'll bring you the documents immediately.",
+    "translation": "Người phụ nữ: (41) Xin chào, tôi muốn nhận nuôi một con vật cưng không có nhà. Tôi sống một mình và cảm thấy rằng một con chó sẽ là người bạn đồng hành tuyệt vời.Người đàn ông: Bạn đến đúng chỗ rồi. (41) Ở đây chúng tôi có rất nhiều chú chó dễ thương được cứu khỏi đường phố và không có nhà. Bạn đang tìm kiếm loại chó cụ thể nào?Người phụ nữ: (42) Chà, nhà tôi không lớn đến thế nên tôi hy vọng có một con chó đủ nhỏ để tôi ôm vào lòng.Người đàn ông: Được rồi. (43) Trước khi chúng tôi có thể cho phép bạn nhận nuôi một chú chó, chúng tôi cần bạn hoàn thành một số thủ tục giấy tờ chính thức. Nếu bạn có chỗ ngồi ở sảnh, tôi sẽ mang tài liệu cho bạn ngay.",
+    "explanation": {
+      "D": "Nơi trú ẩn cho động vậtNếu chỉ nghe câu đầu “I'd like to adopt a pet that doesn't have a home” (Tôi muốn nhận nuôi thú cưng chưa có mái ấm) sẽ dễ lầm tưởng địa điểm là pet shop (cửa hàng thú cưng). Tuy nhiên đây là bẫy và phải nghe tiếp để xác định đúng đáp án",
+      "C": "húng tôi có nhiều bé chó đáng yêu được giải cứu ở đường phố, chưa có mái ấm)",
+      "A": "nimal shelter là trung tâm cưu mang động vật đi lạc hoặc bị bỏ rơi",
+      "note": "“We have many cute dogs here who were rescued from the street and don't have a home“ ("
+    }
+  },
+  {
+    "question_id": "p3_q5",
+    "question_number": 65,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q65-67.mp3",
+    "questionText": "Where does the woman likely work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A camping store"
+      },
+      {
+        "label": "B",
+        "text": "A hardware store"
+      },
+      {
+        "label": "C",
+        "text": "A medical clinic"
+      },
+      {
+        "label": "D",
+        "text": "A shipping company"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Good morning, this is Hardy's All Purpose. How can I help you?Hello. I picked up a camping pack this morning but it's missing some of the items. Do you know which items aren't there?I have the mats, sleeping bags and the carry bag. I thought there was supposed to be one more item in there.Ah yes, I know what it is. Are you able to drop in the store today? I will give you a 15% refund because of the mistake.Oh, really? That's very kind of you. I'll come this afternoon and pick it up.",
+    "translation": "Người phụ nữ: Chào buổi sáng, đây là Hardy’s All Purpose. Làm thế nào để tôi giúp bạn?Người đàn ông: (65) Xin chào. Sáng nay tôi đã mua một gói đồ cắm trại nhưng nó thiếu một số vật dụng.Người phụ nữ: Bạn có biết những mặt hàng nào không có ở đó?Người đàn ông: (66) Tôi có thảm, túi ngủ và túi xách. Tôi nghĩ chắc chắn phải có thêm một món đồ nữa trong đó.Người phụ nữ: À vâng, tôi biết nó là gì. Hôm nay bạn có thể ghé cửa hàng được không? (67) Tôi sẽ hoàn lại tiền cho bạn 15% vì sai sót.Người đàn ông: Ồ vậy ư? Bạn thật tốt bụng. Chiều nay tôi sẽ đến và lấy nó.",
+    "explanation": {
+      "D": "ịch: Người phụ nữ rất có thể đang làm việc ở đâu?",
+      "C": "họn",
+      "A": "ll Purpose nhưng cái tên này không mang lại thông tin gì",
+      "note": "Nghe tiếp.- Người đàn ông nói I picked up a camping pack this morning => sáng nay anh ta đến lấy bộ đồ dùng cắm trại => người phụ nữ làm ở cửa hàng liên quan đến cắm trại=>"
+    }
+  },
+  {
+    "question_id": "p3_q6",
+    "question_number": 38,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q38-40.mp3",
+    "questionText": "Where most likely does the man work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a hospital"
+      },
+      {
+        "label": "B",
+        "text": "At a factory"
+      },
+      {
+        "label": "C",
+        "text": "At a clothing store"
+      },
+      {
+        "label": "D",
+        "text": "At a restaurant"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "M: Ms. Simpson, can you tell me why you applied to work at our store? Judging from your résumé, it appears you have no retail experience. What do you think makes you qualified for selling apparel?W: You're right. I previously worked as a secretary at a hospital. At that time, I learned that I really enjoy working with people. So I thought working in retail would be a good fit for me.M: Yes, that is very important. Here at our store, we expect all employees to be kind and helpful with each and every customer. Next, I'd like to ask about your availability during the week.",
+    "translation": "Người đàn ông: Cô Simpson, cô có thể cho tôi biết lý do tại sao cô lại nộp đơn xin làm việc tại cửa hàng của chúng tôi không? (38) Đánh giá từ sơ yếu lý lịch của bạn, có vẻ như bạn không có kinh nghiệm bán lẻ. Bạn nghĩ điều gì khiến bạn đủ điều kiện để bán quần áo?Người phụ nữ: Bạn nói đúng. Trước đây tôi từng làm thư ký tại một bệnh viện. (39) Vào thời điểm đó, tôi biết được rằng tôi thực sự thích làm việc với mọi người. Vì vậy, tôi nghĩ làm việc trong lĩnh vực bán lẻ sẽ phù hợp với mình.Người đàn ông: Vâng, điều đó rất quan trọng. Tại cửa hàng của chúng tôi, chúng tôi mong đợi tất cả nhân viên đều tử tế và hữu ích với mọi khách hàng. (40) Tiếp theo, tôi muốn hỏi về tình trạng sẵn sàng của bạn trong tuần.",
+    "explanation": {
+      "D": "Tại một nhà hàngĐây là một câu hỏi về địa điểm, tuy người nói không trực tiếp đề cập đến từ clothing store nhưng ở đoạn cuối phần đầu tiên người đàn ông có hỏi ‘What do you think makes you qualified for selling apparel?’ -",
+      "A": "Tại bệnh viện",
+      "B": "ạn nghĩ điều gì khiến bạn đủ tiêu chuẩn để bán quần áo?; vì vậy đáp án đúng là",
+      "C": "Tại một cửa hàng quần áo",
+      "note": "B. Tại một nhà máy Bạn nghĩ điều gì khiến bạn đủ tiêu chuẩn để bán quần áo?; vì vậy đáp án đúng là C"
+    }
+  },
+  {
+    "question_id": "p3_q7",
+    "question_number": 44,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q44-46.mp3",
+    "questionText": "Where most likely do the speakers work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a souvenir shop"
+      },
+      {
+        "label": "B",
+        "text": "At a language school"
+      },
+      {
+        "label": "C",
+        "text": "At a restaurant"
+      },
+      {
+        "label": "D",
+        "text": "At a travel agency"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "I have noticed that a lot of our customers are from all over the world. I think it's because we provide exotic and delicious food, and we are near very popular tourist attractions.You're right. I have noticed that too. I was thinking maybe it would be very helpful if some of our servers could speak other languages fluently. That would make things much more comfortable for our customers.Actually, I have already scheduled two interviews next week with potential employees. I'm going to interview a woman who can speak Japanese and a man who can speak Spanish.",
+    "translation": "Người phụ nữ: Tôi nhận thấy rằng rất nhiều khách hàng của chúng ta đến từ khắp nơi trên thế giới. (44) Tôi nghĩ đó là vì chúng ta cung cấp những món ăn lạ và ngon, đồng thời chúng ta ở gần những điểm du lịch rất nổi tiếng.Người đàn ông: Bạn đúng. Tôi cũng đã nhận thấy điều đó. (45) Tôi đã nghĩ có lẽ sẽ rất hữu ích nếu một số phục vụ của chúng ta có thể nói thông thạo các ngôn ngữ khác. Điều đó sẽ làm cho mọi thứ trở nên thoải mái hơn nhiều đối với khách hàng của chúng ta.Người phụ nữ: (46) Thực ra, tôi đã lên lịch hai cuộc phỏng vấn vào tuần tới với những nhân viên tiềm năng. Tôi sẽ phỏng vấn một người phụ nữ có thể nói tiếng Nhật và một người đàn ông có thể nói tiếng Tây Ban Nha.",
+    "explanation": {
+      "D": "Tại một công ty du lịchĐây là một câu hỏi về địa điểm nhưng không nhắc đến một cách trực tiếp, dựa vào từ khoá như ‘provide exotic and delicious food’ và ‘servers’, có thể suy ra người nói đang làm việc tại một nhà hàng. Đáp án",
+      "A": "Tại một cửa hàng lưu niệm",
+      "B": "Tại một trường ngôn ngữ",
+      "C": "đúng",
+      "note": "C. Tại một nhà hàng C đúng"
+    }
+  },
+  {
+    "question_id": "p3_q8",
+    "question_number": 53,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q53-55.mp3",
+    "questionText": "Where do the speakers most likely work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A plumbing company"
+      },
+      {
+        "label": "B",
+        "text": "An electrical company"
+      },
+      {
+        "label": "C",
+        "text": "A construction company"
+      },
+      {
+        "label": "D",
+        "text": "In an office"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Hi, Angela. I just got an e-mail from UHP incorporated. They are asking about installing the plumbing systems in their new offices. They want to know when we will begin.I intended to call them today, but I'm waiting for a call from some workers. They are at the building site now testing the ground. It seems as though there may be some problems installing the pipes underground. We may need to dig deeper than we expected. I will let them know by this afternoon.I see. I'll call UHP and let them know the situation. They didn't sound like they were angry, they were just curious to know what was going on. Let me know when you hear back from the workers.",
+    "translation": "Người đàn ông: Xin chào Angela. Tôi vừa nhận được e-mail từ UHP. (53) Họ đang hỏi về việc lắp đặt hệ thống ống nước trong văn phòng mới của họ. Họ muốn biết khi nào chúng ta sẽ bắt đầu.Người phụ nữ: (54) Tôi định gọi cho họ hôm nay nhưng tôi đang đợi cuộc gọi từ một số công nhân. Họ đang ở công trường xây dựng để kiểm tra mặt bằng. (55) Có vẻ như có một số vấn đề khi lắp đặt đường ống dưới lòng đất. Chúng ta có thể cần phải đào sâu hơn chúng ta mong đợi. Tôi sẽ cho họ biết vào chiều nay.Người đàn ông: Tôi hiểu rồi. Tôi sẽ gọi cho UHP và cho họ biết tình hình. Họ không có vẻ tức giận mà chỉ tò mò muốn biết chuyện gì đang xảy ra. Hãy cho tôi biết khi bạn nhận được phản hồi từ công nhân.",
+    "explanation": {
+      "D": "Trong văn phòngĐây là câu hỏi tìm địa điểm hội thoại, tuy người nói không nhắc đến cụm từ ‘a plumbing company’ nhưng qua các từ như ‘installing the plumbing systems’, ‘dig’, ‘installing the pipes underground’, có thể thấy đáp án",
+      "A": "đúng",
+      "B": "Một công ty điện lực",
+      "C": "Một công ty xây dựng",
+      "note": "A. Một công ty ống nước A đúng"
+    }
+  },
+  {
+    "question_id": "p3_q9",
+    "question_number": 62,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q62-64.mp3",
+    "questionText": "Where most likely are the speakers?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The hospital"
+      },
+      {
+        "label": "B",
+        "text": "A cafe"
+      },
+      {
+        "label": "C",
+        "text": "A restaurant"
+      },
+      {
+        "label": "D",
+        "text": "The airport"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "OK, your total bill is $75. Did you enjoy your food tonight?Yes, it was delicious! Oh - I have a voucher here. Let me find it... Here you go.Hmm... I'm not sure if you can use this...Oh! I see the problem. Never mind. Can we sit back down and have some drinks so I can use the voucher?Certainly. I will find a table for you now.",
+    "translation": "Người phụ nữ: (62) Được rồi, tổng hóa đơn của bạn là 75 USD. Bạn có thích món ăn tối nay không?Người đàn ông: Vâng, nó rất ngon! Ồ- Tôi có một phiếu giảm giá ở đây. Để tôi tìm nó... Đây nhé.Người phụ nữ: Hmm... Tôi không chắc liệu bạn có thể sử dụng cái này không...Người đàn ông: (63) Ồ! Tôi hiểu vấn đề. Đừng bận tâm. (64) Chúng tôi có thể ngồi lại và uống chút đồ uống để tôi có thể sử dụng phiếu thưởng không?Người phụ nữ: Chắc chắn. Tôi sẽ tìm một cái bàn cho bạn ngay bây giờ.",
+    "explanation": {
+      "B": "Q, là một nhà hàng đồ nướng. Trong bài nghe cũng có các keyword ‘food’, ‘delicious’, ‘drinks’, ‘table’ cũng liên quan đến nhà hàng",
+      "C": "âu hỏi về địa điểm nói có thể tìm thấy ở cả hình ảnh và bài nghe. Trên ảnh là hoá đơn của Sizzling Sam’s",
+      "D": "o đó chọn",
+      "note": "A. Bệnh việnB. Một quán cà phêC. Một nhà hàngD. Sân bayCâu hỏi về địa điểm nói có thể tìm thấy ở cả hình ảnh và bài nghe. Trên ảnh là hoá đơn của Sizzling Sam’s BBQ, là một nhà hàng đồ nướng. Trong bài nghe cũng có các keyword ‘food’, ‘delicious’, ‘drinks’, ‘table’ cũng liên quan đến nhà hàng. Do đó chọn C"
+    }
+  },
+  {
+    "question_id": "p3_q10",
+    "question_number": 68,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q68-70.mp3",
+    "questionText": "Where does the woman most likely work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hardware store"
+      },
+      {
+        "label": "B",
+        "text": "Furniture store"
+      },
+      {
+        "label": "C",
+        "text": "Home appliance store"
+      },
+      {
+        "label": "D",
+        "text": "Electronics store"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W: Hello. This is Will's Hi-Fi, Margaret speaking. How can I help you today?M: Hi, I bought a laptop package from you today. It was supposed to have a free gift but it wasn't in the bag.W: Oh, is this Graham? I served you today. I'm sorry that we left out the free gift.M: Yes, this is Graham. Do I need to come and pick up the gift?W: No. We can send it to you by post. I will have the delivery driver drop it off tomorrow. Can you give me your address?M: Oh, that's great! My address is 1900 Forest Street, West Hampton.",
+    "translation": "Người phụ nữ: Xin chào. Đây là Will’s Hi-Fi, Margaret đang nói. Hôm nay tôi giúp gì được cho bạn?Người đàn ông: (68) Xin chào, hôm nay tôi đã mua một gói máy tính xách tay từ bạn. (69) Đáng lẽ phải có quà tặng nhưng lại không có trong túi.Người phụ nữ: Ồ, đây có phải là Graham không? Tôi đã phục vụ bạn ngày hôm nay. Tôi xin lỗi vì chúng tôi đã bỏ qua món quà miễn phí.Người đàn ông: Vâng, đây là Graham. Có cần tôi đến nhận quà không?Người phụ nữ: Không. (70) Chúng tôi có thể gửi nó cho bạn qua đường bưu điện. Tôi sẽ bảo tài xế giao hàng đến giao hàng vào ngày mai. Bạn có thể cho tôi địa chỉ của bạn không?Người đàn ông: Ồ, thật tuyệt! Địa chỉ của tôi là 1900 Forest Street, West Hampton.",
+    "explanation": {
+      "C": "ửa hàng điện máy",
+      "D": "đúng",
+      "note": "A. Cửa hàng sắt thépB. Cửa hàng nội thấtC. Cửa hàng đồ gia dụngD. Cửa hàng điện máyDựa vào các từ khoá như ‘Will's Hi-Fi’, ‘laptop package’ và hình ảnh quảng cáo về một cái máy tính, có thể thấy người phụ nữ là nhân viên của một cửa hàng điện máy. Đáp án D đúng"
+    }
+  },
+  {
+    "question_id": "p3_q11",
+    "question_number": 44,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q44-46.mp3",
+    "questionText": "Where does the man work?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At an immigration office"
+      },
+      {
+        "label": "B",
+        "text": "At a public school"
+      },
+      {
+        "label": "C",
+        "text": "At a post office"
+      },
+      {
+        "label": "D",
+        "text": "At a travel agency"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hello, I need to send a package to my brother who lives overseas in Germany. What delivery method would be best?Well, it really depends on what you're sending. Because we are a public post office, we don't offer that many options.Actually, it was my brother's birthday last week, but I forgot. So I'm in a hurry to send this package. Also, what I'm sending is somewhat fragile.In that case, I suggest you use a private delivery service. Private companies provide a larger variety of services that we don't offer.",
+    "translation": "Xin chào, tôi cần gửi một gói hàng cho anh trai tôi đang sống ở nước ngoài tại Đức. Phương thức giao hàng nào sẽ là tốt nhất?Vâng, nó thực sự phụ thuộc vào những gì bạn đang gửi. (44)Vì chúng tôi là bưu điện công cộng nên chúng tôi không cung cấp nhiều lựa chọn.(45)Thực ra tuần trước là sinh nhật anh trai tôi nhưng tôi quên mất. Vì vậy tôi vội vàng gửi gói hàng này. Ngoài ra, những gì tôi đang gửi có phần dễ vỡ.(46)Trong trường hợp đó, tôi khuyên bạn nên sử dụng dịch vụ giao hàng riêng. Các công ty tư nhân cung cấp nhiều loại dịch vụ hơn mà chúng tôi không cung cấp.",
+    "explanation": {
+      "D": "Tại một công ty du lịchNgay khi người phụ nữ nói “I need to send a package to my brother who lives overseas in Germany. What delivery method would be best?” (Tôi cần gửi kiện hàng cho anh trai sống ở Đức",
+      "A": "Tại văn phòng nhập cư",
+      "B": "ecause we are a public post office, we don't offer that many options. (Vì chúng tôi là bưu điện công cộng nên không cung cấp nhiều lựa chọn cho lắm.)",
+      "C": "họn",
+      "note": "Chọn C"
+    }
+  },
+  {
+    "question_id": "p3_q12",
+    "question_number": 44,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test10_audios_q44-46.mp3",
+    "questionText": "Where is the conversation taking place?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a theater"
+      },
+      {
+        "label": "B",
+        "text": "At a furniture store"
+      },
+      {
+        "label": "C",
+        "text": "At a pet store"
+      },
+      {
+        "label": "D",
+        "text": "At a restaurant"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Excuse me. I bought a fishbowl and some goldfish here yesterday. However, the water filter doesn't seem to be working properly.Ah, yes. I remember you from yesterday. I'm sorry to hear that. Could you tell me more?Well, I turned it on, but it doesn't appear to be running. I'm worried the fish won't survive without the filter functioning. I brought it for you to take a look at.Hmm, you're right. It appears to be broken. I'm so sorry about that. I'll give you a new one immediately. Wait a moment, please.",
+    "translation": "Xin lỗi. (44)Hôm qua tôi đã mua một bể cá và một ít cá vàng ở đây. (45)Tuy nhiên, bộ lọc nước dường như không hoạt động bình thường.À, vâng. Tôi nhớ bạn từ hôm qua. Tôi rất tiếc khi nghe điều đó. Bạn có thể cho tôi biết thêm?À, tôi đã bật nó lên nhưng có vẻ như nó không chạy. Tôi lo cá sẽ không thể sống sót nếu bộ lọc không hoạt động. Tôi mang nó đến cho bạn xem.Ừm, bạn nói đúng. Nó dường như bị hỏng. Tôi rất xin lỗi về việc đó. (46)Tôi sẽ đưa cho bạn một cái mới ngay lập tức. Xin vui lòng chờ trong giây lát.",
+    "explanation": {
+      "D": "Nhà hàng",
+      "C": "họn",
+      "A": "Nhà hát",
+      "note": "Từ khóa bought, fishbowl, goldfish giúp ta ngầm hiểu đây là nơi bán cá cảnh/thú cưng=>"
+    }
+  },
+  {
+    "question_id": "p3_q13",
+    "question_number": 59,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test10_audios_q59-61.mp3",
+    "questionText": "Where most likely are the speakers?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At an office"
+      },
+      {
+        "label": "B",
+        "text": "At a lawyer's office"
+      },
+      {
+        "label": "C",
+        "text": "At a hardware store"
+      },
+      {
+        "label": "D",
+        "text": "At a local mall"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Harry, Anne, what kind of tools did you say we need?Look over there in the hardware section. We need a drill, and two hammers. We don't need anything else because I'm getting all the small equipment delivered to the office today.What about paint?We don't need paint; we already have it.OK But we do need some nails. I know you didn't order those. I saw the invoiceYes, you're right. Let's get what we need here and then go.",
+    "translation": "Harry, Anne, bạn nói chúng ta cần loại công cụ nào?(59)Nhìn vào gian đồ sắt thép ở đằng kia. Chúng ta cần một cái khoan và hai cái búa. Chúng tôi không cần bất cứ điều gì khác bởi vì (60)Tôi sẽ nhận được tất cả các thiết bị nhỏ được chuyển đến văn phòng ngày hôm nay.Còn sơn thì sao?Chúng tôi không cần sơn; chúng tôi đã có nó rồi.Được. (61)Nhưng chúng ta cần vài cái đinh. Tôi biết bạn đã không đặt hàng những thứ đó. Tôi đã thấy hóa đơnVâng bạn đã đúng. Hãy lấy những gì chúng ta cần ở đây và sau đó đi.",
+    "explanation": {
+      "D": "Trung tâm mua sắm địa phương",
+      "C": "họn",
+      "A": "Văn phòng",
+      "B": "Văn phòng luật sư",
+      "note": "Những từ khóa như hardware section, drill, hammers giúp ta xác định đây là cửa hàng kim khí.=>"
+    }
+  }
+]

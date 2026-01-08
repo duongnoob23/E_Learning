@@ -1,0 +1,507 @@
+[
+  {
+    "question_id": "p3_q1",
+    "question_number": 33,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_32_34.mp3",
+    "questionText": "What does the man ask about?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The prices"
+      },
+      {
+        "label": "B",
+        "text": "The battery life"
+      },
+      {
+        "label": "C",
+        "text": "The warranty"
+      },
+      {
+        "label": "D",
+        "text": "The color options"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "I'm glad your store carries the new EPG8 smartphone. I've been waiting a long time to get it.Yes, there's been a lot of interest in this phone.What colors does it come in?Three: white, black, and gold. However, since the phone has been in such high demand, our store doesn't have all three colors in stock now.Oh. What colors do you have?Let's see. We have black phones, but no white or gold. We can place an order from the warehouse...The black phone looks nice. I think that's the one I'll get.OK. Follow me to the register and I'll ring up your purchase. Then I'll activate the device for you.",
+    "translation": "Tôi vui vì cửa hàng của bạn có loại điện thoại thông minh EPG8 mới. Tôi đã đợi lâu rồi để mua nó.Vâng, dạo này người ta yêu thích mẫu điện thoại này lắm.Nó có những màu gì vậy?3 màu: trắng, đen và vàng. Tuy nhiên, do chiếc điện thoại này được săn đón quá, cửa hàng chúng tôi không còn đủ 3 màu bây giờ.Oh. Vậy bạn có màu gì?Để xem. Chúng tôi có màu đen, không có trắng hoặc vàng. Chúng tôi có thể đặt hàng từ kho...Cái màu đen đẹp đấy. Tôi nghĩ tôi sẽ lấy cái đó.Được ạ. Xin hãy theo tôi để đăng ký và tôi sẽ tính tiền cho bạn. Sau đó tôi sẽ kích hoạt thiết bị cho bạn luôn.",
+    "explanation": {
+      "A": "Giá cả",
+      "B": "ảo hành",
+      "C": "ác tùy chọn về màu sắc",
+      "note": "Trong bài người đàn ông có hỏi là “What colors does it come in?” nghĩa là “Nó có những màu gì vậy?”, chọn"
+    }
+  },
+  {
+    "question_id": "p3_q2",
+    "question_number": 36,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_35_37.mp3",
+    "questionText": "What does the man say he needs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Keys to a vehicle"
+      },
+      {
+        "label": "B",
+        "text": "A telephone number"
+      },
+      {
+        "label": "C",
+        "text": "A price list"
+      },
+      {
+        "label": "D",
+        "text": "Directions to a store"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi, Charlie. The driver who usually delivers our merchandise to the J.M. Cuisine store is out today. Do you think you could make his four o'clock delivery for him this afternoon?Alright, but I've never made any deliveries to that store before, so I'll need some directions. How do I get there from our warehouse?I suggest taking Route Five and getting off at the Sixth Street exit. Once you're there, don't forget to have the store manager sign the delivery confirmation form.",
+    "translation": "Xin chào, Charlie. Người lái xe mà thường giao hàng của chúng tôi đến cửa hàng Ẩm thực J.M. đã nghỉ làm hôm nay. Bạn có nghĩ rằng bạn có thể giao hàng lúc bốn giờ thay cho anh ấy chiều nay không?Được rồi, nhưng trước đây tôi chưa bao giờ giao hàng đến cửa hàng đó, vì vậy tôi sẽ cần được chỉ đường. Làm thế nào để tôi đến đó từ kho của chúng ta?Tôi đề nghị bạn đi Tuyến 5 và xuống ở lối ra Đường thứ Sáu. Khi bạn ở đó, đừng quên để người quản lý cửa hàng ký tên vào mẫu xác nhận giao hàng nhé.",
+    "explanation": {
+      "C": "hỉ đường đến cửa hàng",
+      "B": "Một số điện thoại",
+      "A": "lright, but I've never made any deliveries to that store before, so I'll need some directions” nghĩa là “Được rồi, nhưng trước đây tôi chưa bao giờ giao hàng đến cửa hàng đó, vì vậy tôi sẽ cần được chỉ đường”",
+      "note": "Người đàn ông nói rằng: “"
+    }
+  },
+  {
+    "question_id": "p3_q3",
+    "question_number": 56,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_56_58.mp3",
+    "questionText": "What was the woman doing in Australia?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Going on a business trip"
+      },
+      {
+        "label": "B",
+        "text": "Studying abroad"
+      },
+      {
+        "label": "C",
+        "text": "Taking a vacation"
+      },
+      {
+        "label": "D",
+        "text": "Searching for employees"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "M: Rachel, how was your vacation in Australia?W: It was fantastic. It is a beautiful country, but we did not get to see everything we wanted to see. Maybe we will go back in the future. Have you managed to find a new account manager yet? We are starting to get busy and we need some more staff.M: Actually, there is someone we are looking to hire. His CV is quite impressive. Here, take a look.W: What's this? Is this Robert Wilder's application? I have known him for years! We play tennis together on the weekends. So you are thinking about hiring him?M: Yeah. The interview went really well and he has all the qualifications. I think he can be a great member of our team.W: I agree. I have never worked with him, but personally, I think he will be an excellent employee. I'm just surprised to see him applying here.",
+    "translation": "Người đàn ông: Rachel, kỳ nghỉ của bạn ở Úc diễn ra thế nào?Người phụ nữ: Nó thật tuyệt vời. Đó là một đất nước xinh đẹp, nhưng chúng ta đã không được nhìn thấy mọi thứ chúng ta muốn thấy. Có lẽ chúng ta sẽ quay lại trong tương lai. Bạn đã xoay xở để tìm một người quản lý khách hàng mới chưa? Chúng ta đang bắt đầu trở nên bận rộn và chúng ta cần thêm một số nhân viên.Người đàn ông: Thật ra, có một người mà chúng ta đang muốn thuê. Hồ sơ xin việc của anh ấy khá ấn tượng. Đây, hãy xem qua đi.Người phụ nữ: Cái gì đây? Đây có phải là đơn xin việc của Robert Wilder không? Tôi đã biết anh ấy trong nhiều năm! Chúng tôi chơi tennis cùng nhau vào các ngày cuối tuần. Vậy bạn đang suy nghĩ về việc thuê anh ta sao?Người đàn ông: Vâng. Cuộc phỏng vấn đã diễn ra rất tốt và anh ấy có tất cả các khả năng chuyên môn. Tôi nghĩ anh ấy có thể là một thành viên tuyệt vời trong đội ngũ của chúng ta.Người phụ nữ: Tôi đồng ý. Tôi chưa bao giờ làm việc với anh ta, nhưng theo quan điểm cá nhân tôi, tôi nghĩ anh ta sẽ là một nhân viên xuất sắc. Tôi chỉ ngạc nhiên khi thấy anh ấy nộp đơn ở đây.",
+    "explanation": {
+      "A": "ustralia’",
+      "D": "Tìm kiếm nhân viên.Đây là câu hỏi về chi tiết bài nói, cần nghe từ khoá ‘",
+      "C": "Đi nghỉ",
+      "note": "Suy ra chọn"
+    }
+  },
+  {
+    "question_id": "p3_q4",
+    "question_number": 58,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_56_58.mp3",
+    "questionText": "How does the woman know Robert Wilder?",
+    "options": [
+      {
+        "label": "A",
+        "text": "They went to college together"
+      },
+      {
+        "label": "B",
+        "text": "They work in the same department"
+      },
+      {
+        "label": "C",
+        "text": "They play baseball together"
+      },
+      {
+        "label": "D",
+        "text": "They play tennis together"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "M: Rachel, how was your vacation in Australia?W: It was fantastic. It is a beautiful country, but we did not get to see everything we wanted to see. Maybe we will go back in the future. Have you managed to find a new account manager yet? We are starting to get busy and we need some more staff.M: Actually, there is someone we are looking to hire. His CV is quite impressive. Here, take a look.W: What's this? Is this Robert Wilder's application? I have known him for years! We play tennis together on the weekends. So you are thinking about hiring him?M: Yeah. The interview went really well and he has all the qualifications. I think he can be a great member of our team.W: I agree. I have never worked with him, but personally, I think he will be an excellent employee. I'm just surprised to see him applying here.",
+    "translation": "Người đàn ông: Rachel, kỳ nghỉ của bạn ở Úc diễn ra thế nào?Người phụ nữ: Nó thật tuyệt vời. Đó là một đất nước xinh đẹp, nhưng chúng ta đã không được nhìn thấy mọi thứ chúng ta muốn thấy. Có lẽ chúng ta sẽ quay lại trong tương lai. Bạn đã xoay xở để tìm một người quản lý khách hàng mới chưa? Chúng ta đang bắt đầu trở nên bận rộn và chúng ta cần thêm một số nhân viên.Người đàn ông: Thật ra, có một người mà chúng ta đang muốn thuê. Hồ sơ xin việc của anh ấy khá ấn tượng. Đây, hãy xem qua đi.Người phụ nữ: Cái gì đây? Đây có phải là đơn xin việc của Robert Wilder không? Tôi đã biết anh ấy trong nhiều năm! Chúng tôi chơi tennis cùng nhau vào các ngày cuối tuần. Vậy bạn đang suy nghĩ về việc thuê anh ta sao?Người đàn ông: Vâng. Cuộc phỏng vấn đã diễn ra rất tốt và anh ấy có tất cả các khả năng chuyên môn. Tôi nghĩ anh ấy có thể là một thành viên tuyệt vời trong đội ngũ của chúng ta.Người phụ nữ: Tôi đồng ý. Tôi chưa bao giờ làm việc với anh ta, nhưng theo quan điểm cá nhân tôi, tôi nghĩ anh ta sẽ là một nhân viên xuất sắc. Tôi chỉ ngạc nhiên khi thấy anh ấy nộp đơn ở đây.",
+    "explanation": {
+      "A": "Họ cùng học đại học",
+      "B": "Họ làm việc trong cùng một bộ phận",
+      "C": "Họ chơi bóng chày cùng nhau",
+      "D": "ấu hiệu thông tin sắp đến là ‘What's this? Is this Robert Wilder's application? I have known him for years!’, keyword nghe được là ‘play tennis together’",
+      "note": "Chọn"
+    }
+  },
+  {
+    "question_id": "p3_q5",
+    "question_number": 62,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_62_64.mp3",
+    "questionText": "What does the woman have on Friday?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A dinner meeting"
+      },
+      {
+        "label": "B",
+        "text": "A seminar"
+      },
+      {
+        "label": "C",
+        "text": "A meeting"
+      },
+      {
+        "label": "D",
+        "text": "A work party"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W: Hi, we are renovating our boardroom and I'd like to purchase some cherry wood tables for our conference room. I am having a meeting with some very important clients on Friday. So I'd like to have them delivered tomorrow. What is the cost for an emergency delivery?M: Hold a moment please... Next day delivery is an extra seventy-five dollars.W: Really? That is expensive. I thought if my order was over three hundred dollars, delivery would be free of charge.M: Well, yes. Are you planning to order the cherry wood tables?W: Yes, I would like two of them.M: OK then, I will make sure that your order arrives tomorrow morning before midday, and delivery will be free of charge.",
+    "translation": "Người phụ nữ: Xin chào, chúng tôi đang tu sửa phòng họp của mình và tôi muốn mua một số bàn gỗ anh đào cho phòng hội nghị của chúng tôi. Tôi sẽ có một cuộc họp với một số khách hàng rất quan trọng vào thứ sáu. Vì vậy, tôi muốn chúng được chuyển đến vào ngày mai. Chi phí cho một việc giao hàng khẩn cấp thế nào?Người đàn ông: Xin vui lòng giữ máy một lát ... Giao hàng ngay ngày tiếp theo là thêm bảy mươi lăm đô la.Người phụ nữ: Thật sao? Nó thật đắt. Tôi đã nghĩ rằng nếu đơn đặt hàng của tôi hơn ba trăm đô la, việc giao hàng sẽ được miễn phí.Người đàn ông: Vâng, đúng vậy. Bạn đang dự định đặt các bàn gỗ anh đào phải không?Người phụ nữ: Vâng, tôi muốn hai trong số chúng.Người đàn ông: Được rồi, tôi sẽ đảm bảo rằng đơn đặt hàng của bạn đến vào sáng mai trước giữa trưa, và việc giao hàng sẽ được miễn phí.",
+    "explanation": {
+      "A": "tương đối giống đáp án",
+      "B": "Một cuộc hội thảo",
+      "C": "họn",
+      "D": "Một bữa tiệc làm việc.Đây là câu hỏi về chi tiết, do vị trí nên thông tin chứa đáp án sẽ nằm ở phần đầu tiên",
+      "note": "A. Một cuộc họp ăn tối..C. Một cuộc họp.. Các từ khóa nghe được là ‘having a meeting’ và ‘on Friday’, đáp án A tương đối giống đáp án C nhưng người nói không nhắc đến ‘dinner’ nên loại. Chọn C"
+    }
+  },
+  {
+    "question_id": "p3_q6",
+    "question_number": 69,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_1_68_70.mp3",
+    "questionText": "What does the woman want to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Keep losing the game"
+      },
+      {
+        "label": "B",
+        "text": "Make more money than he does"
+      },
+      {
+        "label": "C",
+        "text": "Get to work faster than he does"
+      },
+      {
+        "label": "D",
+        "text": "Participate in a car race"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W: You beat me again! You always get to work before I do even though I leave before you. How do you do that?M: Which road do you take?W: I just follow my GPS and it shows that Kingsley Road is the most direct route to work.M: No, don't follow your GPS. Your route passes through several residential areas and school zones as well as traffic signs, so it takes much longer to get here.W: Which route do you take then?M: I go to Cambridge Street, which takes a bit of a detour from our apartments, but it's practically a highway. I even have enough time to stop for some coffee before work.W: Wow, I always thought Cambridge would take much longer.M: No, it's really quick. I can show you next time.",
+    "translation": "Người phụ nữ: Bạn lại đánh bại tôi rồi! Bạn luôn luôn đến nơi làm trước khi tôi đến mặc dù tôi rời đi trước bạn. Làm thế nào để bạn làm điều đó?Người đàn ông: Bạn đi con đường nào?Người phụ nữ: Tôi chỉ đi theo GPS của mình và nó cho thấy Kingsley Road là con đường trực tiếp nhất để đến nơi làm.Người đàn ông: Không, đừng đi theo GPS của bạn. Tuyến đường của bạn đi qua một số khu dân cư và khu vực trường học cũng như các biển báo giao thông, vì vậy mất nhiều thời gian hơn để đến đây.Người phụ nữ: Vậy thì bạn đi con đường nào?Người đàn ông: Tôi đến đường Cambridge, mà sẽ đi chút đường vòng từ những căn hộ của chúng ta, nhưng thực tế nó là một đường cao tốc. Tôi thậm chí có đủ thời gian để dừng lại để uống cà phê trước khi làm việc.Người phụ nữ: Ồ, tôi luôn nghĩ Cambridge sẽ mất nhiều thời gian hơn.Người đàn ông: Không, nó thực sự nhanh. Tôi có thể chỉ cho bạn thấy lần sau.",
+    "explanation": {
+      "A": "và",
+      "B": "không được nhắc đến, đáp án",
+      "C": "họn",
+      "D": "không đúng vì họ không đua xe",
+      "note": "A. Tiếp tục thua trò chơi.B. Kiếm được nhiều tiền hơn anh ta.C. Đi làm nhanh hơn anh ấy.D. Tham gia một cuộc đua xe.Đây là câu hỏi về chi tiết cuộc hội thoại. Từ câu ‘You always get to work before I do even though I leave before you’, người này muốn đi làm nhanh hơn, các đáp án A và B không được nhắc đến, đáp án D không đúng vì họ không đua xe. Chọn C"
+    }
+  },
+  {
+    "question_id": "p3_q7",
+    "question_number": 33,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_32_34.mp3",
+    "questionText": "What problem does the woman mention?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The address is no longer relevant"
+      },
+      {
+        "label": "B",
+        "text": "A company has gone bankrupt"
+      },
+      {
+        "label": "C",
+        "text": "A budget must be revised"
+      },
+      {
+        "label": "D",
+        "text": "A flight has been canceled"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "M: Ms. Potter, the package that you sent to the advertising agency in Tokyo was returned today. It seems that you sent it to the wrong address.W: Actually, I received an e-mail from the Tokyo office today informing me that they relocated their office yesterday. I wish they had told me earlier.M: Well, that's unfortunate. It seems unfair that you had to pay for the postage. It must have been expensive to send such a large package.W: Yes, it was. I'm going to request that the company in Tokyo pay me back.",
+    "translation": "Người đàn ông: Cô Potter, kiện hàng mà cô gửi cho đại lý quảng cáo ở Tokyo đã được trả lại hôm nay. Có vẻ như cô gửi sai địa chỉ rồi.Người phụ nữ: Thực ra, hôm nay tôi đã nhận được e-mail từ văn phòng Tokyo thông báo rằng họ đã chuyển văn phòng hôm qua. Giá mà họ nói với tôi sớm hơn.Người đàn ông: Chà, thật không may. Có vẻ như không công bằng khi cô phải trả tiền cho bưu phẩm. Nó hẳn phải tốn kém để gửi một kiện hàng lớn như vậy.Người phụ nữ: Vâng, đúng vậy. Tôi sẽ yêu cầu công ty ở Tokyo trả lại tiền cho tôi.",
+    "explanation": {
+      "A": "ctually, I received an e-mail from the Tokyo office today informing me that they relocated their office yesterday. (Thực ra, hôm nay tôi đã nhận được e-mail từ văn phòng Tokyo thông báo rằng họ đã chuyển văn phòng hôm qua.)",
+      "B": "Một công ty đã phá sản",
+      "C": "họn",
+      "D": "ấu hiệu thông tin sắp đến: It seems that you sent it to the wrong address. (",
+      "note": "Câu chứa đáp án: Actually, I received an e-mail from the Tokyo office today informing me that they relocated their office yesterday. (Thực ra, hôm nay tôi đã nhận được e-mail từ văn phòng Tokyo thông báo rằng họ đã chuyển văn phòng hôm qua.)"
+    }
+  },
+  {
+    "question_id": "p3_q8",
+    "question_number": 36,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_35_37.mp3",
+    "questionText": "What did the woman want to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Make use of her education"
+      },
+      {
+        "label": "B",
+        "text": "Open a fitness center"
+      },
+      {
+        "label": "C",
+        "text": "Appear on radio"
+      },
+      {
+        "label": "D",
+        "text": "Teach food and nutrition"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "M: This is Mike Judge, your host for the morning news here at QQBC 99.5. Today our guest is business leader Karen Chambers. She recently opened a chain of health food stores across the state. How did you get the idea, Ms. Chambers?W: Well, I majored in food and nutrition and I minored in business administration. So, my goal was to utilize what I learned in college to open a successful company.M: Ah, I see. What factor do you think has contributed most to the success of your chain of stores?W: I think it's due to the recent trend of people showing enormous interest in health and fitness.",
+    "translation": "Người đàn ông: Đây là Mike Judge, người dẫn chương trình của bạn cho tin tức sáng nay tại đài QQBC 99.5. Hôm nay khách mời của chúng ta là lãnh đạo doanh nghiệp Karen Chambers. Gần đây cô ấy đã mở một chuỗi các cửa hàng thực phẩm tốt cho sức khỏe trên toàn tiểu bang. Làm thế nào cô có được ý tưởng này, cô Chambers?Người phụ nữ: Vâng, tôi học chuyên ngành thực phẩm và dinh dưỡng và ngành phụ là quản trị kinh doanh. Vì vậy, mục tiêu của tôi là tận dụng những gì tôi học được ở trường đại học để mở một công ty thành công.Người đàn ông: À, tôi hiểu rồi. Theo cô, yếu tố nào đã đóng góp nhiều nhất cho sự thành công của chuỗi các cửa hàng của mình?Người phụ nữ: Tôi nghĩ là do gần đây mọi người có xu hướng thể hiện sự quan tâm rất lớn đến sức khỏe và vóc dáng.",
+    "explanation": {
+      "A": "Tận dụng vốn tri thức của cô ấy",
+      "B": "Mở trung tâm thể hình",
+      "C": "họn",
+      "D": "ạy về thực phẩm và dinh dưỡng.Nghe thông tin từ người phụ nữ",
+      "note": "Chọn A"
+    }
+  },
+  {
+    "question_id": "p3_q9",
+    "question_number": 37,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_35_37.mp3",
+    "questionText": "According to the woman, what is the main reason for her success?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Effective advertisements"
+      },
+      {
+        "label": "B",
+        "text": "Considerable interest in nutrition"
+      },
+      {
+        "label": "C",
+        "text": "Long-term investments"
+      },
+      {
+        "label": "D",
+        "text": "Government policies"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "M: This is Mike Judge, your host for the morning news here at QQBC 99.5. Today our guest is business leader Karen Chambers. She recently opened a chain of health food stores across the state. How did you get the idea, Ms. Chambers?W: Well, I majored in food and nutrition and I minored in business administration. So, my goal was to utilize what I learned in college to open a successful company.M: Ah, I see. What factor do you think has contributed most to the success of your chain of stores?W: I think it's due to the recent trend of people showing enormous interest in health and fitness.",
+    "translation": "Người đàn ông: Đây là Mike Judge, người dẫn chương trình của bạn cho tin tức sáng nay tại đài QQBC 99.5. Hôm nay khách mời của chúng ta là lãnh đạo doanh nghiệp Karen Chambers. Gần đây cô ấy đã mở một chuỗi các cửa hàng thực phẩm tốt cho sức khỏe trên toàn tiểu bang. Làm thế nào cô có được ý tưởng này, cô Chambers?Người phụ nữ: Vâng, tôi học chuyên ngành thực phẩm và dinh dưỡng và ngành phụ là quản trị kinh doanh. Vì vậy, mục tiêu của tôi là tận dụng những gì tôi học được ở trường đại học để mở một công ty thành công.Người đàn ông: À, tôi hiểu rồi. Theo cô, yếu tố nào đã đóng góp nhiều nhất cho sự thành công của chuỗi các cửa hàng của mình?Người phụ nữ: Tôi nghĩ là do gần đây mọi người có xu hướng thể hiện sự quan tâm rất lớn đến sức khỏe và vóc dáng.",
+    "explanation": {
+      "A": "Quảng cáo hiệu quả",
+      "B": "Sự quan tâm lớn đến vấn đề dinh dưỡng",
+      "C": "họn",
+      "D": "ấu hiệu thông tin sắp đến: What factor do you think has contributed most to the success of your chain of stores? (Theo cô, yếu tố nào đã đóng góp nhiều nhất cho sự thành công của chuỗi các cửa hàng của mình?)",
+      "note": "Thông tin thường nằm ở cuối đoạn hội thoại"
+    }
+  },
+  {
+    "question_id": "p3_q10",
+    "question_number": 40,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_38_40.mp3",
+    "questionText": "What does the woman give the man?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A receipt"
+      },
+      {
+        "label": "B",
+        "text": "A business card"
+      },
+      {
+        "label": "C",
+        "text": "A map"
+      },
+      {
+        "label": "D",
+        "text": "A pamphlet"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "M: Hello, I'm here because I'm interested in buying an instrument. My son just turned seven years old today and I thought it would be a great birthday present. Could you give me some advice on what to buy?W: Well, I usually suggest that children start by learning the piano. String instruments such as guitars or violins can be difficult for children to hold. On the other hand, a piano is fine for children as they can learn musical principles easily.M: I see. However, do you think my son is too young to begin learning an instrument?W: Not at all. Actually, children can learn as young as three years old. Here is a pamphlet that will give you some information about the lessons for children that we offer.",
+    "translation": "Người đàn ông: Xin chào, tôi ở đây vì tôi muốn mua một nhạc cụ. Con trai tôi vừa tròn bảy tuổi hôm nay và tôi nghĩ nó sẽ là một món quà sinh nhật tuyệt vời. Bạn có thể cho tôi vài lời khuyên nên mua gì không?Người phụ nữ: Chà, tôi thường đề xuất rằng trẻ em bắt đầu bằng cách học piano. Các nhạc cụ dây như guitar hoặc violin có thể gây khó khăn cho trẻ khi cầm. Mặt khác, một cây đàn piano là tốt cho trẻ em vì chúng có thể học các nhạc lý một cách dễ dàng.Người đàn ông: Tôi hiểu rồi. Tuy nhiên, bạn có nghĩ rằng con trai tôi còn quá nhỏ để bắt đầu học một nhạc cụ không?Người phụ nữ: Không hề. Thật ra, trẻ em có thể học ngay từ khi ba tuổi. Đây là tờ gấp quảng cáo sẽ cung cấp cho bạn một số thông tin về các bài học cho trẻ em mà chúng tôi cung cấp.",
+    "explanation": {
+      "A": "Hóa đơn",
+      "D": "Tờ gấp quảng cáo.Nghe thông tin từ người phụ nữ",
+      "B": "ản đồ",
+      "C": "họn",
+      "note": "Thông tin thường nằm ở cuối đoạn hội thoại"
+    }
+  },
+  {
+    "question_id": "p3_q11",
+    "question_number": 42,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_41_43.mp3",
+    "questionText": "According to the woman, what is the reason for the problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A new product was recalled"
+      },
+      {
+        "label": "B",
+        "text": "An actor was injured"
+      },
+      {
+        "label": "C",
+        "text": "A television show was canceled"
+      },
+      {
+        "label": "D",
+        "text": "A new host is not well-liked"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W: Steve, did you notice that this month there was a slight decrease in the number of viewers for our show? I'm worried our new host, Jim Cruz, isn't very popular with viewers.M: I know. I was expecting a lot more viewers. I think we need to spend more money on advertising.W: I see. Maybe a lot of people are just unaware of the show. I'll get in touch with an advertising agency right away.M: Thanks. Tell me if you need any assistance.",
+    "translation": "Người phụ nữ: Steve, bạn có nhận thấy rằng tháng này có sự giảm nhẹ trong số lượng người xem chương trình của chúng ta không? Tôi lo lắng rằng người dẫn chương trình mới của chúng ta, Jim Cruz, không được khán giả yêu thích lắm.Người đàn ông: Tôi biết. Tôi đã mong đợi nhiều người xem hơn. Tôi nghĩ rằng chúng ta cần phải chi nhiều tiền hơn cho quảng cáo.Người phụ nữ: Tôi hiểu rồi. Có lẽ rất nhiều người chỉ là không biết về chương trình. Tôi sẽ liên lạc với một công ty quảng cáo ngay lập tức.Người đàn ông: Cảm ơn. Hãy cho tôi biết nếu bạn cần bất kỳ sự trợ giúp nào.",
+    "explanation": {
+      "A": "Một sản phẩm mới bị thu hồi",
+      "B": "Một diễn viên bị thương",
+      "C": "họn",
+      "D": "Một người dẫn chương trình mới không được yêu thích.Nghe thông tin từ người phụ nữ",
+      "note": "Chọn D"
+    }
+  },
+  {
+    "question_id": "p3_q12",
+    "question_number": 48,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_47_49.mp3",
+    "questionText": "What does the man want to do with the website?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Make the interface easier"
+      },
+      {
+        "label": "B",
+        "text": "Enlarge the font"
+      },
+      {
+        "label": "C",
+        "text": "Change the colors"
+      },
+      {
+        "label": "D",
+        "text": "Reduce the number of menus"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "W: Marcus, have you finished designing the layout for our new online clothing store? I'm really excited to start selling our clothes online as well as at the offline store. Can I see the website?M: Sure, but there are still a few changes I would like to make. I'm worried that some customers might get confused while navigating the website. I think I need to simplify the interface more. What do you think?W: Actually, I like it the way it is. I don't think it's too confusing. However, I think we need to add more photographs of the products. If customers can't see exactly how the products look, they might be discouraged from making a purchase online.",
+    "translation": "Người phụ nữ: Marcus, bạn đã hoàn thành thiết kế bố trí cho cửa hàng quần áo trực tuyến mới của chúng ta chưa? Tôi thực sự hào hứng khi bắt đầu bán quần áo của chúng ta trực tuyến cũng như tại cửa hàng ngoại tuyến. Tôi có thể xem trang web không?Người đàn ông: Chắc chắn rồi, nhưng vẫn có một vài thay đổi tôi muốn thực hiện. Tôi lo lắng rằng một số khách hàng có thể bị nhầm lẫn khi xem thông tin trên trang web. Có lẽ tôi cần đơn giản hóa giao diện hơn. Bạn nghĩ sao?Người phụ nữ: Thật ra, tôi thích nó như vậy. Tôi không nghĩ nó quá khó hiểu. Tuy nhiên, tôi nghĩ rằng chúng ta cần thêm nhiều hình ảnh sản phẩm hơn. Nếu khách hàng không thể thấy chính xác các sản phẩm trông như thế nào, họ có thể không thấy sự khuyến khích để mua một món hàng trực tuyến.",
+    "explanation": {
+      "A": "Làm cho giao diện dễ dùng hơn",
+      "B": "Phóng to cỡ chữ",
+      "C": "họn",
+      "D": "ấu hiệu thông tin sắp đến: I'm worried that some customers might get confused while navigating the website. (Tôi lo lắng rằng một số khách hàng có thể bị nhầm lẫn khi xem thông tin trên trang web.)",
+      "note": "Chọn A"
+    }
+  },
+  {
+    "question_id": "p3_q13",
+    "question_number": 55,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_53_55.mp3",
+    "questionText": "What does the woman ask the man to do?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Charge a credit card"
+      },
+      {
+        "label": "B",
+        "text": "Obtain a supervisor's approval"
+      },
+      {
+        "label": "C",
+        "text": "Close an account"
+      },
+      {
+        "label": "D",
+        "text": "Update a contract"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "M-Au: Hi, (53) this is Takumi from ColorPrinting Solutions. (54) I e-mailed you the mock-up ofyour company's flyer this morning. Have you had time to review it?W-Am: Oh hi, Takumi. (54) I just saw your draft of the flyer and was about to call you myself. We actually have a new company logo.M-Au: OK, no problem. Can you send it to me before lunch? That way I can be sure to finish the print job by the end of today as promised.W-Am: Sure! (55) Please charge the order to the credit card you have on file for our account.",
+    "translation": "M-Au: Xin chào, (53) đây là Takumi từ ColorPrinting Solutions. (54) Tôi đã gửi mail cho bạn bản nháp tờ rơi của công ty bạn sáng nay. Bạn đã có thời gian để xem xét nó chưa? W-Am: Oh hi, Takumi. (54) Tôi vừa xem bản nháp của bạn và đang định gọi bạn. Chúng tôi thực ra có một logo mới của công ty. M-Au: OK, không vấn đề gì. Bạn có thể gửi nó cho tôi trước khi ăn trưa chứ? Bằng cách đó tôi có thể chắc chắn hoàn thành công việc in vào cuối ngày hôm nay như đã hứa. W-Am: Chắc chắn rồi! (55) Vui lòng tính phí đơn hàng vào thẻ tín dụng bạn có trong hồ sơ cho tài khoản của chúng tôi.",
+    "explanation": {
+      "A": "Tính phí thẻ tín dụng",
+      "C": "ập nhật hợp đồngĐây là câu hỏi về chi tiết, cần chú ý nội dung từ lời nói của ‘the woman’ và các cấu trúc yêu cầu đề nghị",
+      "D": "ấu hiệu ở đây là từ ‘Please’, từ khoá nghe được là ‘charge’ và ‘to the credit card’",
+      "note": "Chọn"
+    }
+  },
+  {
+    "question_id": "p3_q14",
+    "question_number": 57,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_56_58.mp3",
+    "questionText": "What most likely caused an increase in museum visitors?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Free parking"
+      },
+      {
+        "label": "B",
+        "text": "Extended hours of operation"
+      },
+      {
+        "label": "C",
+        "text": "A new exhibit"
+      },
+      {
+        "label": "D",
+        "text": "Lower ticket prices"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W-Br: A lot more people have been visiting the museum lately-(56) my tours have been completely full! What about yours, Emily?W-Am: (56) Mine, too. (57) I think it's because of the new art exhibit - the one that was donated by Juno Siska. It would be interesting to know how she started collecting art.M-Au: Well, I just heard that (58) Ms. Siska will be here next Thursday afternoon to talk about her collection. I'm sure there'll be a chance to ask her questions.W-Am: That sounds great. How much are tickets to that event?M-Au: Oh, you won't have to pay. Everyone who works at the museum gets in free of charge.",
+    "translation": "W-Br: Gần đây có rất nhiều người đã đến thăm bảo tàng (56) các tour du lịch của tôi đã hoàn toàn kín! Còn bạn thì sao Emily? W-Am: (56) Của tôi cũng vậy. (57) Tôi nghĩ rằng đó là vì triển lãm nghệ thuật mới - tác phẩm được tặng bởi Juno Siska. Thật thú vị khi biết cô ấy bắt đầu sưu tập nghệ thuật như thế nào. M-Au: Chà, tôi vừa nghe rằng (58) Cô Siska sẽ ở đây vào chiều thứ năm tới để nói về bộ sưu tập của cô ấy. Tôi chắc chắn sẽ có cơ hội để hỏi cô ấy câu hỏi. W-Am: Nghe thật tuyệt. Bao nhiêu tiền cho vé của sự kiện đó? M-Au: Ồ, bạn sẽ không phải trả tiền. Mọi người làm việc tại bảo tàng đều được miễn phí.",
+    "explanation": {
+      "B": "Kéo dài thời gian hoạt động",
+      "C": "ác từ khoá nghe được là ‘I think it's because’ và ‘new art exhibit’",
+      "D": "Giá vé thấp hơnĐây là câu hỏi về chi tiết cuộc hội thoại",
+      "note": "Chọn"
+    }
+  },
+  {
+    "question_id": "p3_q15",
+    "question_number": 43,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_41_43.mp3",
+    "questionText": "What solution does the man suggest?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Rewriting the script"
+      },
+      {
+        "label": "B",
+        "text": "Replacing the host"
+      },
+      {
+        "label": "C",
+        "text": "Conducting a survey"
+      },
+      {
+        "label": "D",
+        "text": "Placing an advertisement"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W: Steve, did you notice that this month there was a slight decrease in the number of viewers for our show? I'm worried our new host, Jim Cruz, isn't very popular with viewers.M: I know. I was expecting a lot more viewers. I think we need to spend more money on advertising.W: I see. Maybe a lot of people are just unaware of the show. I'll get in touch with an advertising agency right away.M: Thanks. Tell me if you need any assistance.",
+    "translation": "Người phụ nữ: Steve, bạn có nhận thấy rằng tháng này có sự giảm nhẹ trong số lượng người xem chương trình của chúng ta không? Tôi lo lắng rằng người dẫn chương trình mới của chúng ta, Jim Cruz, không được khán giả yêu thích lắm.Người đàn ông: Tôi biết. Tôi đã mong đợi nhiều người xem hơn. Tôi nghĩ rằng chúng ta cần phải chi nhiều tiền hơn cho quảng cáo.Người phụ nữ: Tôi hiểu rồi. Có lẽ rất nhiều người chỉ là không biết về chương trình. Tôi sẽ liên lạc với một công ty quảng cáo ngay lập tức.Người đàn ông: Cảm ơn. Hãy cho tôi biết nếu bạn cần bất kỳ sự trợ giúp nào.",
+    "explanation": {
+      "A": "Viết lại kịch bản",
+      "B": "Thay người dẫn chương trình",
+      "C": "họn",
+      "D": "Đặt quảng cáo.Nghe thông tin từ người đàn ông",
+      "note": "Chọn D"
+    }
+  }
+]

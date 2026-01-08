@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "tích lũy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_esc_cumulative_sum_example.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "cumulative"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "nhượng quyền kinh doanh, chi nhánh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_franchise-la-gi.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "franchise"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "người quản lý, người cầm quyền",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_operations-administrator-job-description-5616x3744-2020124.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "administrator"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "chi tiết, đặc điểm, sự chỉ rõ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_specification-t2informatik.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "specification"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "nước ép (từ trái cây hoặc rau củ quả)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Orangejuice.jpg_640px-Orangejuice.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "juice"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà bán lẻ, cửa hàng bán lẻ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/photo_76159933.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "retailer"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "xe hơi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/salon_l_1583135818.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "auto"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự nổi tiếng, sự yêu mến của quần chúng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/articles-l_authorityorpopularity-lg.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "popularity"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "tấm áp phích, quảng cáo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_hinh-anh-thiet-ke-poster.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "poster"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "ghế dài (thường thấy trong công viên)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Garden_bench_001.jpg_800px-Garden_bench_001.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bench"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách hữu hiệu, một cách hiệu quả",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/24_efficient-la-gi-1-1658597374.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "efficiently"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "làm thất vọng, làm bực mình",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_Frustrated-Businessperson.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "frustrate"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "Sự lấy đi, sự khấu trừ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/64_88-512.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "deduction"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "nơi trưng bày, phòng trưng bày",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_313488779_34a6XVhzDgTNlHYzJ6EHJ5LeehtYdXKX.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "showroom"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "dầu xả cho tóc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/products_BeforeAfter_f9f1324a-eab6-43fa-b1e3-81c013aee7f2_1200x1200.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "conditioner"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "ghi danh, đăng ký",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/posterpreviews_school-enrollment-design-template-2a0f9836d62813ac22d3183a52662644_screen.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enroll"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "làm gián đoạn, làm ngắt quãng",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "interrupt"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "nhanh chóng, ngay lập tức",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/b_promptly-soon-there-short-time-clock-symbolizes-reminder-near-will-happen-finish-quickly-little-d-164307553.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "promptly"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "công việc hoặc vị trí còn bỏ trống",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/original_vector-job-vacancy-banner.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vacancy"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người tổ chức",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Hfbdeb53a99684eb7a63ccb284d46333b7_Pen-holder-Desk-Organizer-pencil-holder-Organizers-For-Desktop-Stand-Pens-Office-Accessories-school-Stationery-Storage.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "organizer"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "đường nhỏ/làn đường",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-vector_three-lane-road-overtaking-middle-260nw-1909522345.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lane"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "quá hạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/41382257_missed-deadline_orig.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "overdue"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "kì thực tập",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/25_2020_05_25______6c09451c9e97ee2ba2a557636503ba80.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "internship"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự vứt bỏ đi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_105194.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "disposal"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "am hiểu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-vector_school-knowledge-concept_23-2147503320.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "knowledgeable"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "cuốn sách nhỏ, chứa thông tin quảng cáo hoặc hướng dẫn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-upload_BookletDesign034.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "booklet"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "người ăn chay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_254451278_7AAYmhYkBEVQ9MYnZYIomTI5WdFCif1g.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vegetarian"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người đăng kí",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_e-1.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "subscriber"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "Người quản gia, nhân viên dọn dẹp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_become_a_housekeeper.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "housekeeper"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "hoàn lại tiền, bồi hoàn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_206882405_S5tRUZYXwKIJMCRQv9bll4y6nBeNDKMV.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "reimburse"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "rộng lượng, hào phóng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1603337485881-T8DCLG6311SW89ZTIGQY_Screen+Shot+2020-10-22+at+2.28.44+pm.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "generous"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "trang trí, trang hoàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12180402_232224514-H.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "decorate"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "lò nướng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_oooven.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "oven"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sinh ra, đẻ ra",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_Newborn.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "born"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "có lợi nhuận",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_coin-stacks-with-increasing-count.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "profitable"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "Đài phun nước",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/SELLER-2440121_outdoor-water-fountain-500x500.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fountain"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "khoan lỗ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/4998dd3ae72d8ca1_Drupal_Large-DCD800D1E1_A5.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "drill"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "chắc chắn, chính xác",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/bleakstar150700393_42543391-satisfaction-guaranteed-stamp-on-white-background.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "definite"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự định hướng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_new-employee-orientation-7.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "orientation"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "nhân viên thu ngân",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_5-common-questions-for-cashier.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cashier"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "người môi giới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/cms_1026040678PartTimeMortgageBroker.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "broker"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "không thường xuyên, không có kế hoạch",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_Part-Time-Job-vs-Casual-Job.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "casual"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "thở hổn hển",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-photo_outdoor-shot-tired-fitness-woman-260nw-1845237781.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pant"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "ví, bao da",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_238236019_7KTbLrcn1VBCp2UVSD0jLtQdJXuDbnWZ.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "wallet"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "thợ sửa ống nước",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_Emergency-Plumber-Atlanta.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "plumber"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "thùng nhỏ, gói nhỏ, kiện hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/info_packet-la-gi.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "packet"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự phỏng đoán về tương lai",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_Prediction-crystal-ball_gmnhgp.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "prediction"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tủ lạnh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/cach-v-sinh-t-lnh_electrolux-10850.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "refrigerator"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "tờ gấp quảng cáo, tờ rơi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_phat-to-roi-7.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "flyer"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sự hủy bỏ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_cancellation.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "cancellation"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "bảo mật",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/04_7-confidential-info.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "confidential"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "tiết kiệm, kinh tế",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/dISDBd2J4a4_maxresdefault.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "economical"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "danh bạ, thư mục",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/18_Root-Directory.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "directory"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "Áo quần, hàng may mặc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/June_clothes_rail1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "garment"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "cửa hàng bán lẻ bán đồ xả, đồ giảm giá chính hãng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_outlet-la-gi.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "outlet"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

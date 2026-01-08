@@ -1,0 +1,353 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 117,
+    "questionText": "Having proper ventilation throughout the building is _____ for protecting the health and well-being of the workers.",
+    "options": [
+      {
+        "label": "A",
+        "text": "cooperative"
+      },
+      {
+        "label": "B",
+        "text": "visible"
+      },
+      {
+        "label": "C",
+        "text": "essential"
+      },
+      {
+        "label": "D",
+        "text": "alternative"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 110,
+    "questionText": "Following Ms. Rivera's _____ statement, the official awards ceremony for Plex Industries will commence.",
+    "options": [
+      {
+        "label": "A",
+        "text": "brief"
+      },
+      {
+        "label": "B",
+        "text": "straight"
+      },
+      {
+        "label": "C",
+        "text": "former"
+      },
+      {
+        "label": "D",
+        "text": "steep"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 127,
+    "questionText": "Because of _____ fuel costs, some people are choosing to stay home for the summer vacation rather than drive to tourist sites.",
+    "options": [
+      {
+        "label": "A",
+        "text": "rising"
+      },
+      {
+        "label": "B",
+        "text": "above"
+      },
+      {
+        "label": "C",
+        "text": "dependable"
+      },
+      {
+        "label": "D",
+        "text": "lengthy"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 103,
+    "questionText": "Entrepreneur James Mosby is featured in the most _____ issue of the magazine.",
+    "options": [
+      {
+        "label": "A",
+        "text": "final"
+      },
+      {
+        "label": "B",
+        "text": "former"
+      },
+      {
+        "label": "C",
+        "text": "recent"
+      },
+      {
+        "label": "D",
+        "text": "later"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 109,
+    "questionText": "The library has requested funding for _____ doors for the convenience of patrons.",
+    "options": [
+      {
+        "label": "A",
+        "text": "underway"
+      },
+      {
+        "label": "B",
+        "text": "automatic"
+      },
+      {
+        "label": "C",
+        "text": "frequent"
+      },
+      {
+        "label": "D",
+        "text": "energetic"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 115,
+    "questionText": "Buying a home for the first time can be complicated and even _____ without help from a licensed real estate agent.",
+    "options": [
+      {
+        "label": "A",
+        "text": "nervous"
+      },
+      {
+        "label": "B",
+        "text": "risky"
+      },
+      {
+        "label": "C",
+        "text": "decreased"
+      },
+      {
+        "label": "D",
+        "text": "initial"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 124,
+    "questionText": "The terms of the licensing agreement are quite _____ and do not require legal experience to be understood.",
+    "options": [
+      {
+        "label": "A",
+        "text": "energetic"
+      },
+      {
+        "label": "B",
+        "text": "frequent"
+      },
+      {
+        "label": "C",
+        "text": "straightforward"
+      },
+      {
+        "label": "D",
+        "text": "accomplished"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 103,
+    "questionText": "There is a ------- difference between the business's revenues during the peak season compared to the off-peak season.",
+    "options": [
+      {
+        "label": "A",
+        "text": "prosperous"
+      },
+      {
+        "label": "B",
+        "text": "rural"
+      },
+      {
+        "label": "C",
+        "text": "significant"
+      },
+      {
+        "label": "D",
+        "text": "preparatory"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 120,
+    "questionText": "Patients should call the emergency line immediately if they experience ------- changes in temperature.",
+    "options": [
+      {
+        "label": "A",
+        "text": "sudden"
+      },
+      {
+        "label": "B",
+        "text": "contemporary"
+      },
+      {
+        "label": "C",
+        "text": "ideal"
+      },
+      {
+        "label": "D",
+        "text": "reasonable"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. đột ngột."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 122,
+    "questionText": "The supervisor allowed Mr. Martin to take three additional vacation days because of his ------- achievement.",
+    "options": [
+      {
+        "label": "A",
+        "text": "unlimited"
+      },
+      {
+        "label": "B",
+        "text": "noteworthy"
+      },
+      {
+        "label": "C",
+        "text": "identical"
+      },
+      {
+        "label": "D",
+        "text": "satisfied"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. nổi bật."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 127,
+    "questionText": "The witness saw only a _____ figure standing near the lamp post shortly before the crime was committed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "solitary"
+      },
+      {
+        "label": "B",
+        "text": "spare"
+      },
+      {
+        "label": "C",
+        "text": "previous"
+      },
+      {
+        "label": "D",
+        "text": "random"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 102,
+    "questionText": "To help the arts center improve its programming, please indicate which aspect of the workshop was most _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "informative"
+      },
+      {
+        "label": "B",
+        "text": "primary"
+      },
+      {
+        "label": "C",
+        "text": "enthusiastic"
+      },
+      {
+        "label": "D",
+        "text": "financial"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Tạm dịch: Để giúp trung tâm nghệ thuật cải thiện chương trình của mình, vui lòng chỉ ra phần nào của buổi hội thảo có nhiều thông tin nhất."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 108,
+    "questionText": "Present this postcard to a sales _____ at any of our stores and receive a £00 gift",
+    "options": [
+      {
+        "label": "A",
+        "text": "accessory"
+      },
+      {
+        "label": "B",
+        "text": "associate"
+      },
+      {
+        "label": "C",
+        "text": "faculty"
+      },
+      {
+        "label": "D",
+        "text": "formula"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Tạm dịch: Đưa tấm bưu thiếp này cho một cộng tác viên bán hàng của chúng tôi ở bất cứ cửa hàng nào để nhận được thẻ quà tặng 5 bảng."
+  }
+]

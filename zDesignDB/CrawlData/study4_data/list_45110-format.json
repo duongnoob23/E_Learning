@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "accessory",
+    "vi": "đồng phạm",
+    "pronunciation": "/əkˈses.ər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accessory&lang=en-US&ipa=%2F%C9%99k%CB%88ses.%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_AdobeStock_106341413-1140x791.jpeg",
+    "example": "He was charged as an accessory to murder"
+  },
+  {
+    "word_id": 2,
+    "en": "airfare",
+    "vi": "tiền máy bay, phí hàng không",
+    "pronunciation": "/ˈeə.feər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=airfare&lang=en-US&ipa=%2F%CB%88e%C9%99.fe%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/s980_Airfare_Boarding_Pass_Flights.jpg",
+    "example": "Transatlantic airfare are going up."
+  },
+  {
+    "word_id": 3,
+    "en": "alert",
+    "vi": "tỉnh táo, cảnh giác",
+    "pronunciation": "/əˈlɜːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=alert&lang=en-US&ipa=%2F%C9%99%CB%88l%C9%9C%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_How-to-set-a-Google-Alert-Tips-and-Benefits.jpg",
+    "example": "Parents should be alert to sudden changes in children's behaviour."
+  },
+  {
+    "word_id": 4,
+    "en": "assembly",
+    "vi": "cuộc tụ tập, cuộc họp, hội đồng",
+    "pronunciation": "/əˈsem.bli/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=assembly&lang=en-US&ipa=%2F%C9%99%CB%88sem.bli%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1136x640_cut.jpg",
+    "example": "She has been tipped as a future member of the Welsh assembly."
+  },
+  {
+    "word_id": 5,
+    "en": "auditorium",
+    "vi": "khán phòng, giảng đường",
+    "pronunciation": "/ˌɔː.dɪˈtɔː.ri.əm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=auditorium&lang=en-US&ipa=%2F%CB%8C%C9%94%CB%90.d%C9%AA%CB%88t%C9%94%CB%90.ri.%C9%99m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/65725008_shutterstock_118022083.0.jpg",
+    "example": "The ten-thousand seat auditorium was filled to capacity."
+  },
+  {
+    "word_id": 6,
+    "en": "bake",
+    "vi": "nướng bằng lò",
+    "pronunciation": "/beɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bake&lang=en-US&ipa=%2Fbe%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_25-fun-things-to-bake-when-you-have-nothing-to-do.jpg",
+    "example": "bake for 5–7 minutes in a preheated oven"
+  },
+  {
+    "word_id": 7,
+    "en": "basket",
+    "vi": "giỏ, rổ",
+    "pronunciation": "/ˈbɑː.skɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=basket&lang=en-US&ipa=%2F%CB%88b%C9%91%CB%90.sk%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-photo_wicker-basket-isolated_2829-18051.jpg",
+    "example": "The little kittens and their mother were all curled up asleep in the same basket."
+  },
+  {
+    "word_id": 8,
+    "en": "businessperson",
+    "vi": "doanh nhân",
+    "pronunciation": "/ˈbɪz.nɪsˌpɜː.sən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=businessperson&lang=en-US&ipa=%2F%CB%88b%C9%AAz.n%C9%AAs%CB%8Cp%C9%9C%CB%90.s%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_adult-businessman-ceo-618613-1024x709.jpg",
+    "example": "He was a successful businessperson before becoming a writer."
+  },
+  {
+    "word_id": 9,
+    "en": "celebrity",
+    "vi": "người nổi tiếng",
+    "pronunciation": "/səˈlebrəti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=celebrity&lang=en-US&ipa=%2Fs%C9%99%CB%88lebr%C9%99ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/923749_Taylor-Swift-Nu-Nghe.jpg",
+    "example": "The magazine is all about the lives of celebrity."
+  },
+  {
+    "word_id": 10,
+    "en": "certification",
+    "vi": "giấy chứng nhận, chứng chỉ",
+    "pronunciation": "/ˌsɜː.tɪ.fɪˈkeɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=certification&lang=en-US&ipa=%2F%CB%8Cs%C9%9C%CB%90.t%C9%AA.f%C9%AA%CB%88ke%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_certificate_gold_seal_certification_by_dny59_gettyimages-942721178_2400x1600-100788472-orig-1.jpg",
+    "example": "He will seek organic certification of his beef and poultry products."
+  },
+  {
+    "word_id": 11,
+    "en": "closure",
+    "vi": "sự đóng cửa (cơ sở kinh doanh)",
+    "pronunciation": "/ˈkləʊ.ʒər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=closure&lang=en-US&ipa=%2F%CB%88kl%C9%99%CA%8A.%CA%92%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/image_closedbusiness_0.jpg",
+    "example": "The shop is now facing closure after local councillors dismissed the licence application."
+  },
+  {
+    "word_id": 12,
+    "en": "considerably",
+    "vi": "một cách đáng kể",
+    "pronunciation": "/kənˈsɪd.ər.ə.bli/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=considerably&lang=en-US&ipa=%2Fk%C9%99n%CB%88s%C9%AAd.%C9%99r.%C9%99.bli%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_considerably.jpg",
+    "example": "The interests of both parties may not be identical, but they do overlap considerably."
+  },
+  {
+    "word_id": 13,
+    "en": "deduct",
+    "vi": "trừ hoặc lấy đi",
+    "pronunciation": "/dɪˈdʌkt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=deduct&lang=en-US&ipa=%2Fd%C9%AA%CB%88d%CA%8Ckt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Rnw5ixvU074_maxresdefault.jpg",
+    "example": "Each week a small amount is deduct from her wages for the pension plan."
+  },
+  {
+    "word_id": 14,
+    "en": "dislike",
+    "vi": "không thích, ghét",
+    "pronunciation": "/dɪsˈlaɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dislike&lang=en-US&ipa=%2Fd%C9%AAs%CB%88la%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dislike_facebook-100627022-large.jpg",
+    "example": "The producer dislike the script and said it must be rewritten."
+  },
+  {
+    "word_id": 15,
+    "en": "disruption",
+    "vi": "hành động gián đoạn và gây ra sự hỗn loạn",
+    "pronunciation": "/dɪsˈrʌp.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=disruption&lang=en-US&ipa=%2Fd%C9%AAs%CB%88r%CA%8Cp.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/innovation_960x0.jpg",
+    "example": "It would cause a tremendous disruption to our work schedule to install a different computer system."
+  },
+  {
+    "word_id": 16,
+    "en": "downstairs",
+    "vi": "tầng dưới",
+    "pronunciation": "/ˌdaʊnˈsteəz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=downstairs&lang=en-US&ipa=%2F%CB%8Cda%CA%8An%CB%88ste%C9%99z%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-photo_teen-schoolgirl-walking-downstairs-with-book_23-2148204282.jpg",
+    "example": "I went downstairs to answer the phone."
+  },
+  {
+    "word_id": 17,
+    "en": "electrician",
+    "vi": "thợ điện",
+    "pronunciation": "/ɪˌlekˈtrɪʃ.ən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=electrician&lang=en-US&ipa=%2F%C9%AA%CB%8Clek%CB%88tr%C9%AA%CA%83.%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploaded_electricians.jpg",
+    "example": "The electrician has diagnosed a fault in the wiring."
+  },
+  {
+    "word_id": 18,
+    "en": "enthusiastic",
+    "vi": "hăng hái, nhiệt tình",
+    "pronunciation": "/ɪnˌθjuːziˈæstɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=enthusiastic&lang=en-US&ipa=%2F%C9%AAn%CB%8C%CE%B8ju%CB%90zi%CB%88%C3%A6st%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_how-to-be-enthusiastic-702x336.jpg",
+    "example": "The officers from Manchester are enthusiastic and keen to take on the challenge."
+  },
+  {
+    "word_id": 19,
+    "en": "faulty",
+    "vi": "bị lỗi, mắc khuyết điểm",
+    "pronunciation": "/ˈfɔːl.ti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=faulty&lang=en-US&ipa=%2F%CB%88f%C9%94%CB%90l.ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1500_750_gm-a0feff54-d5e6-4221-b32f-a1e457c6e891-1-faultyproduct-repair-replacement.jpg",
+    "example": "The company recalled over 500,000 cars last year because of a faulty connection in their new model."
+  },
+  {
+    "word_id": 20,
+    "en": "graduation",
+    "vi": "lễ tốt nghiệp, sự tốt nghiệp",
+    "pronunciation": "/ˌɡrædʒuˈeɪʃn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=graduation&lang=en-US&ipa=%2F%CB%8C%C9%A1r%C3%A6d%CA%92u%CB%88e%C9%AA%CA%83n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/USAT_6717a231-f65a-48f9-ba0d-4486a3785a71-gradpic.jpg",
+    "example": "Clinton gave an antiwar speech at her graduation from Wellesley College."
+  },
+  {
+    "word_id": 21,
+    "en": "hobby",
+    "vi": "sở thích",
+    "pronunciation": "/ˈhɒb.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=hobby&lang=en-US&ipa=%2F%CB%88h%C9%92b.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_haveProductiveHobby_00.jpg",
+    "example": "Sonya's hobby include traveling, sailing, and reading fiction."
+  },
+  {
+    "word_id": 22,
+    "en": "icy",
+    "vi": "Đóng băng, băng giá",
+    "pronunciation": "/ˈaɪ.si/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=icy&lang=en-US&ipa=%2F%CB%88a%C9%AA.si%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1606429198741-H8SSR1T6Y83N44D4W5N5_Icy+colour+18.png",
+    "example": "Too cold and too much snow, rail signal systems freeze and roads become icy."
+  },
+  {
+    "word_id": 23,
+    "en": "informal",
+    "vi": "(trang phục) thông thường, thoải mái; (sự kiện) không trang trọng",
+    "pronunciation": "/ɪnˈfɔː.məl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=informal&lang=en-US&ipa=%2F%C9%AAn%CB%88f%C9%94%CB%90.m%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_438548876_n9itf50K9GbB0hMWrXHLR2GPuf8hnHaR.jpg",
+    "example": "Discussions are held on an informal basis within the department."
+  },
+  {
+    "word_id": 24,
+    "en": "irregular",
+    "vi": "không đều, không theo quy luật",
+    "pronunciation": "/ɪˈreɡ.jə.lər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=irregular&lang=en-US&ipa=%2F%C9%AA%CB%88re%C9%A1.j%C9%99.l%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_366556939_8ugl7MzGIzXmh4MGzzc9JwlGhRVLU8TT.jpg",
+    "example": "The cells are slightly irregular in shape."
+  },
+  {
+    "word_id": 25,
+    "en": "kilometer",
+    "vi": "kilômet",
+    "pronunciation": "/ˈkɪl.əˌmiː.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=kilometer&lang=en-US&ipa=%2F%CB%88k%C9%AAl.%C9%99%CB%8Cmi%CB%90.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_349857596_QIKyEv1EqOmVJE2S34RlucZ8l162lEI1.jpg",
+    "example": "The industrial estate is 6 kilometer from the city centre."
+  },
+  {
+    "word_id": 26,
+    "en": "lawn",
+    "vi": "bãi cỏ",
+    "pronunciation": "/lɔːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lawn&lang=en-US&ipa=%2Fl%C9%94%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/83_1000_F_315898390_ADiYhEhja2PpbqVHsUcj6ArQO1pb5486.jpg",
+    "example": "They were sitting on the lawn under a large beech tree."
+  },
+  {
+    "word_id": 27,
+    "en": "login",
+    "vi": "đăng nhập",
+    "pronunciation": "/ˈlɒɡ.ɪn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=login&lang=en-US&ipa=%2F%CB%88l%C9%92%C9%A1.%C9%AAn%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/21_1000_F_352992191_RRDlsq7U4N0qBZztiI5ehJtIjjHRvIxC.jpg",
+    "example": "You need a password to login"
+  },
+  {
+    "word_id": 28,
+    "en": "managerial",
+    "vi": "(thuộc) giám đốc; (thuộc) quản lý",
+    "pronunciation": "/ˌmæn.ɪˈdʒɪə.ri.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=managerial&lang=en-US&ipa=%2F%CB%8Cm%C3%A6n.%C9%AA%CB%88d%CA%92%C9%AA%C9%99.ri.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_37193170_BE9uPPlPwPJcV1IMh259eWwGvqusZ3qb.jpg",
+    "example": "Does she have any managerial experience?"
+  },
+  {
+    "word_id": 29,
+    "en": "microscope",
+    "vi": "kính hiển vi",
+    "pronunciation": "/ˈmaɪ.krə.skoʊp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=microscope&lang=en-US&ipa=%2F%CB%88ma%C9%AA.kr%C9%99.sko%CA%8Ap%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_312508645_XZCzHrzg7aAgCkiW7ws9BFNX1uejfO53.jpg",
+    "example": "The bacteria were then examined under the microscope."
+  },
+  {
+    "word_id": 30,
+    "en": "mineral",
+    "vi": "khoáng chất",
+    "pronunciation": "/ˈmɪn.ər.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mineral&lang=en-US&ipa=%2F%CB%88m%C9%AAn.%C9%99r.%C9%99l%2F",
+    "image_url": null,
+    "example": "Low bone mineral density is linked with vitamin deficiency."
+  },
+  {
+    "word_id": 31,
+    "en": "mislead",
+    "vi": "làm cho lạc đường; lừa dối",
+    "pronunciation": "/ˌmɪsˈliːd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mislead&lang=en-US&ipa=%2F%CB%8Cm%C9%AAs%CB%88li%CB%90d%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_62840954_kvoiAvCUUBhoaWU9uR63TEbRQfY505Aa.jpg",
+    "example": "He deliberately mislead us about the nature of their relationship."
+  },
+  {
+    "word_id": 32,
+    "en": "misplace",
+    "vi": "để nhầm chỗ",
+    "pronunciation": "/mɪsˈpleɪs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=misplace&lang=en-US&ipa=%2Fm%C9%AAs%CB%88ple%C9%AAs%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_265973396_TznwWqHOPNpH84BjklR60gFTB7vcklP4.jpg",
+    "example": "He misplace his reading glasses with such regularity that aides carry extras."
+  },
+  {
+    "word_id": 33,
+    "en": "motorcycle",
+    "vi": "Xe môtô",
+    "pronunciation": "/ˈməʊ.təˌsaɪ.kəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=motorcycle&lang=en-US&ipa=%2F%CB%88m%C9%99%CA%8A.t%C9%99%CB%8Csa%C9%AA.k%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_94361385_T7Waoo8QAL7zxb39RUVXO4730H9fZ1at.jpg",
+    "example": "He never learned to ride a motorcycle or to drive a car."
+  },
+  {
+    "word_id": 34,
+    "en": "necessity",
+    "vi": "vật dụng cần thiết",
+    "pronunciation": "/nəˈses.ə.ti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=necessity&lang=en-US&ipa=%2Fn%C9%99%CB%88ses.%C9%99.ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/74_1000_F_212747436_WqoVHgxiXlNDXswHcrMYT0cG77yFnv9A.jpg",
+    "example": "Many people cannot even afford basic necessity such as food and clothing."
+  },
+  {
+    "word_id": 35,
+    "en": "newsstand",
+    "vi": "quầy bán báo",
+    "pronunciation": "/ˈnjuːz.stænd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=newsstand&lang=en-US&ipa=%2F%CB%88nju%CB%90z.st%C3%A6nd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_367730937_I2FBJpS8880Y8b1H24dmuaxHMlQvd4vm.jpg",
+    "example": "It is the best-selling holiday magazine on the newsstand."
+  },
+  {
+    "word_id": 36,
+    "en": "overhead",
+    "vi": "chi phí cố định của một doanh nghiệp",
+    "pronunciation": "/ˈoʊ.vɚ.hed/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=overhead&lang=en-US&ipa=%2F%CB%88o%CA%8A.v%C9%9A.hed%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_484733754_16FHuoynFU9JAAaaoLwQ2RBPXj1bUx94.jpg",
+    "example": "One way of increasing profit margins is to cut overhead costs."
+  },
+  {
+    "word_id": 37,
+    "en": "planner",
+    "vi": "người đặt kế hoạch",
+    "pronunciation": "/ˈplæn.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=planner&lang=en-US&ipa=%2F%CB%88pl%C3%A6n.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_294609375_MhVTCdwdCqSEHoD3wTHCTHJmy5cwB3gO.jpg",
+    "example": "It is designed as a guide for curriculum planner and materials writers."
+  },
+  {
+    "word_id": 38,
+    "en": "portfolio",
+    "vi": "danh mục đầu tư (của công ty, ngân hàng)",
+    "pronunciation": "/pɔːrtˈfəʊ.li.əʊ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=portfolio&lang=en-US&ipa=%2Fp%C9%94%CB%90rt%CB%88f%C9%99%CA%8A.li.%C9%99%CA%8A%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_110971861_nX7uv93YhlPmucwjv0ZFe4vPdVUDB6Vo.jpg",
+    "example": "These funds are less risky because you hold a portfolio selected and monitored by a specialist manager."
+  },
+  {
+    "word_id": 39,
+    "en": "programmer",
+    "vi": "lập trình viên",
+    "pronunciation": "/ˈprəʊ.ɡræm.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=programmer&lang=en-US&ipa=%2F%CB%88pr%C9%99%CA%8A.%C9%A1r%C3%A6m.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_335348056_yY8QyHP966KePjyutnns1Puwt2bnngZc.jpg",
+    "example": "He used to work as a computer programmer for a software company."
+  },
+  {
+    "word_id": 40,
+    "en": "proofread",
+    "vi": "Đọc rà soát (để tìm ra lỗi)",
+    "pronunciation": "/ˈpruːf.riːd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=proofread&lang=en-US&ipa=%2F%CB%88pru%CB%90f.ri%CB%90d%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_281162060_CQV8S6Ti80x5zAujNJoYOJmknwVrdVCg.jpg",
+    "example": "Tondra proofread (books) for a small publishing company."
+  },
+  {
+    "word_id": 41,
+    "en": "rack",
+    "vi": "giá đỡ, kệ để đồ",
+    "pronunciation": "/ræk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rack&lang=en-US&ipa=%2Fr%C3%A6k%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_118321714_CnwwwQrK3PkirGmYllS0pPCCKj0wBpfE.jpg",
+    "example": "I looked through a rack of clothes at the back of the shop."
+  },
+  {
+    "word_id": 42,
+    "en": "recruiter",
+    "vi": "nhà tuyển dụng",
+    "pronunciation": "/rɪˈkruː.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=recruiter&lang=en-US&ipa=%2Fr%C9%AA%CB%88kru%CB%90.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_505066554_ixoNpvQhKWtXXVmGJG2BIiEDhKeoBxjN.jpg",
+    "example": "Executive recruiter placed him in two previous jobs."
+  },
+  {
+    "word_id": 43,
+    "en": "remainder",
+    "vi": "phần còn lại, phần dư",
+    "pronunciation": "/rɪˈmeɪn.dər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=remainder&lang=en-US&ipa=%2Fr%C9%AA%CB%88me%C9%AAn.d%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_351526981_K1QXnZKI2aIXqRe8rciOKFyYevRkp3Lz.jpg",
+    "example": "It rained the first day but was sunny for the remainder of the trip."
+  },
+  {
+    "word_id": 44,
+    "en": "remodel",
+    "vi": "tu sửa",
+    "pronunciation": "/ˌriːˈmɒd.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=remodel&lang=en-US&ipa=%2F%CB%8Cri%CB%90%CB%88m%C9%92d.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_199730117_UtoLhmaLFYR701P4TMmQzl9Ytj0BtLrE.jpg",
+    "example": "The warehouse is being cleaned and will be remodel into 20 lofts."
+  },
+  {
+    "word_id": 45,
+    "en": "rose",
+    "vi": "hoa hồng",
+    "pronunciation": "/rəʊz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rose&lang=en-US&ipa=%2Fr%C9%99%CA%8Az%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_105573812_cvD4P5jo6tMPhZULX324qUYFbNpXlisD.jpg",
+    "example": "A rose is the national emblem of England."
+  },
+  {
+    "word_id": 46,
+    "en": "statistics",
+    "vi": "số liệu thống kê",
+    "pronunciation": "/stəˈtɪs.tɪks/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=statistics&lang=en-US&ipa=%2Fst%C9%99%CB%88t%C9%AAs.t%C9%AAks%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/28_1000_F_211732841_GknumxwhSdceiB38k7s8fpueXhZQ6RDC.jpg",
+    "example": "The statistics show that, in general, women live longer than men."
+  },
+  {
+    "word_id": 47,
+    "en": "statue",
+    "vi": "tượng",
+    "pronunciation": "/ˈstætʃ.uː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=statue&lang=en-US&ipa=%2F%CB%88st%C3%A6t%CA%83.u%CB%90%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_469525583_5MJ8JcZyDzNl8W4OifbmfGGNEUMjevI8.jpg",
+    "example": "In the centre of the hall stood a colossal wooden statue, decorated in ivory and gold."
+  },
+  {
+    "word_id": 48,
+    "en": "steadily",
+    "vi": "một cách đều đặn, từ từ",
+    "pronunciation": "/ˈsted.əl.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=steadily&lang=en-US&ipa=%2F%CB%88sted.%C9%99l.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_506350293_NP1jPl0STzatfP5mkkL8ngJGcVwrFXVR.jpg",
+    "example": "Prices have been rising steadily during the summer."
+  },
+  {
+    "word_id": 49,
+    "en": "stockholder",
+    "vi": "cổ đông, người góp vốn",
+    "pronunciation": "/ˈstɒkˌhəʊl.dər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=stockholder&lang=en-US&ipa=%2F%CB%88st%C9%92k%CB%8Ch%C9%99%CA%8Al.d%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_274909311_pc5x4tWN0YdGkl6VBg0lIWSisEDOBLxq.jpg",
+    "example": "stockholder will be voting on the proposed merger of the companies next week."
+  },
+  {
+    "word_id": 50,
+    "en": "superior",
+    "vi": "cấp trên",
+    "pronunciation": "/suːˈpɪəriər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=superior&lang=en-US&ipa=%2Fsu%CB%90%CB%88p%C9%AA%C9%99ri%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_198061648_QDfgE3LK0j8lFVnmx1vCarIpRgJd8ICP.jpg",
+    "example": "I will pass your complaint on to my superior."
+  },
+  {
+    "word_id": 51,
+    "en": "tunnel",
+    "vi": "đường hầm",
+    "pronunciation": "/ˈtʌn.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tunnel&lang=en-US&ipa=%2F%CB%88t%CA%8Cn.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_130524085_dcNhyPOdRc2zjQBDFmco3FyUmnxySb7w.jpg",
+    "example": "The tunnel was dug with the aid of heavy machinery."
+  },
+  {
+    "word_id": 52,
+    "en": "unlimited",
+    "vi": "không giới hạn",
+    "pronunciation": "/ʌnˈlɪm.ɪ.tɪd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unlimited&lang=en-US&ipa=%2F%CA%8Cn%CB%88l%C9%AAm.%C9%AA.t%C9%AAd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_371295141_ZG968MTGlOsTFCkib5OmwXDIGNhdQWap.jpg",
+    "example": "Passes are available for one month's unlimited travel within Europe."
+  },
+  {
+    "word_id": 53,
+    "en": "vacant",
+    "vi": "trống không",
+    "pronunciation": "/ˈveɪ.kənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vacant&lang=en-US&ipa=%2F%CB%88ve%C9%AA.k%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_447239630_M5PWcclRDyTRbauFvy2hlaxswQDvfh7i.jpg",
+    "example": "The hospital has no vacant beds."
+  },
+  {
+    "word_id": 54,
+    "en": "vitamin",
+    "vi": "vitamin",
+    "pronunciation": "/ˈvɪt.ə.mɪn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vitamin&lang=en-US&ipa=%2F%CB%88v%C9%AAt.%C9%99.m%C9%AAn%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_408791737_FHTk3YJpMNwSpkW3MQjmgBwCC4LRUVWa.jpg",
+    "example": "A diet deficient in vitamin D may cause the disease rickets."
+  },
+  {
+    "word_id": 55,
+    "en": "zoo",
+    "vi": "sở thú",
+    "pronunciation": "/zuː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=zoo&lang=en-US&ipa=%2Fzu%CB%90%2F",
+    "image_url": null,
+    "example": "The bad weather really took the gloss off our trip to the zoo."
+  }
+]

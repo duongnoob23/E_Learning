@@ -1,0 +1,353 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 101,
+    "questionText": "When filling out the order form, please _____ your address clearly to prevent delays.",
+    "options": [
+      {
+        "label": "A",
+        "text": "fix"
+      },
+      {
+        "label": "B",
+        "text": "write"
+      },
+      {
+        "label": "C",
+        "text": "send"
+      },
+      {
+        "label": "D",
+        "text": "direct"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 120,
+    "questionText": "The library staff posted signs to _____ patrons of the upcoming closure for renovations.",
+    "options": [
+      {
+        "label": "A",
+        "text": "notify"
+      },
+      {
+        "label": "B",
+        "text": "agree"
+      },
+      {
+        "label": "C",
+        "text": "generate"
+      },
+      {
+        "label": "D",
+        "text": "perform"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 112,
+    "questionText": "The Master Gardeners Club had to _____ its monthly meeting because the community center's conference room was double-booked.",
+    "options": [
+      {
+        "label": "A",
+        "text": "prepare"
+      },
+      {
+        "label": "B",
+        "text": "oppose"
+      },
+      {
+        "label": "C",
+        "text": "postpone"
+      },
+      {
+        "label": "D",
+        "text": "extend"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 116,
+    "questionText": "Mr. Hicks _____ seating near the stage in the concert hall for important clients.",
+    "options": [
+      {
+        "label": "A",
+        "text": "cooperated"
+      },
+      {
+        "label": "B",
+        "text": "entertained"
+      },
+      {
+        "label": "C",
+        "text": "loosened"
+      },
+      {
+        "label": "D",
+        "text": "reserved"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 119,
+    "questionText": "Landlords are required to _____ with the regulations set by the Regional Department of Safe Housing.",
+    "options": [
+      {
+        "label": "A",
+        "text": "reinforce"
+      },
+      {
+        "label": "B",
+        "text": "comply"
+      },
+      {
+        "label": "C",
+        "text": "fulfill"
+      },
+      {
+        "label": "D",
+        "text": "interfere"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 114,
+    "questionText": "During the holiday season, Schwartz Department Store will _____ special make-up gift sets.",
+    "options": [
+      {
+        "label": "A",
+        "text": "solve"
+      },
+      {
+        "label": "B",
+        "text": "carry"
+      },
+      {
+        "label": "C",
+        "text": "impress"
+      },
+      {
+        "label": "D",
+        "text": "occupy"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 117,
+    "questionText": "The semi-finalists for the community art contest will be _____ by a panel of judges tomorrow.",
+    "options": [
+      {
+        "label": "A",
+        "text": "selected"
+      },
+      {
+        "label": "B",
+        "text": "ignored"
+      },
+      {
+        "label": "C",
+        "text": "prevented"
+      },
+      {
+        "label": "D",
+        "text": "complemented"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 102,
+    "questionText": "For Friday's dinner reservation, please _____ the number of seats from eight to ten guests.",
+    "options": [
+      {
+        "label": "A",
+        "text": "increase"
+      },
+      {
+        "label": "B",
+        "text": "reflect"
+      },
+      {
+        "label": "C",
+        "text": "merge"
+      },
+      {
+        "label": "D",
+        "text": "invite"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 114,
+    "questionText": "As we expect to receive hundreds of applications for the position, please _____ your resume to two pages.",
+    "options": [
+      {
+        "label": "A",
+        "text": "limit"
+      },
+      {
+        "label": "B",
+        "text": "follow"
+      },
+      {
+        "label": "C",
+        "text": "refrain"
+      },
+      {
+        "label": "D",
+        "text": "unfold"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 120,
+    "questionText": "Because of her hearing disability, Ms. Frasier will be _____ by a sign language expert so she can participate in the meeting.",
+    "options": [
+      {
+        "label": "A",
+        "text": "convinced"
+      },
+      {
+        "label": "B",
+        "text": "anticipated"
+      },
+      {
+        "label": "C",
+        "text": "accompanied"
+      },
+      {
+        "label": "D",
+        "text": "cautioned"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 102,
+    "questionText": "A private reception for gallery donors will be _____ on March 5, prior to the grand opening of the exhibit.",
+    "options": [
+      {
+        "label": "A",
+        "text": "held"
+      },
+      {
+        "label": "B",
+        "text": "faced"
+      },
+      {
+        "label": "C",
+        "text": "claimed"
+      },
+      {
+        "label": "D",
+        "text": "made"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 121,
+    "questionText": "Eco Unite is a non-profit organization _____ to educating the public about environmental issues.",
+    "options": [
+      {
+        "label": "A",
+        "text": "proposed"
+      },
+      {
+        "label": "B",
+        "text": "deferred"
+      },
+      {
+        "label": "C",
+        "text": "dedicated"
+      },
+      {
+        "label": "D",
+        "text": "observed"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 126,
+    "questionText": "The Green Society is dedicated to ------- public parks and other natural areas for future generations.",
+    "options": [
+      {
+        "label": "A",
+        "text": "preserving"
+      },
+      {
+        "label": "B",
+        "text": "consulting"
+      },
+      {
+        "label": "C",
+        "text": "escorting"
+      },
+      {
+        "label": "D",
+        "text": "inquiring"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. gìn giữ."
+  }
+]

@@ -1,0 +1,353 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 199,
+    "questionText": "Who will NOT have a meeting on March 12?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The Sales team"
+      },
+      {
+        "label": "B",
+        "text": "The marketing group"
+      },
+      {
+        "label": "C",
+        "text": "Management"
+      },
+      {
+        "label": "D",
+        "text": "Human Resources"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 154,
+    "questionText": "What has the user of the instructions most likely NOT done yet?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Clicked the “Agree” button"
+      },
+      {
+        "label": "B",
+        "text": "Received an e-mail message"
+      },
+      {
+        "label": "C",
+        "text": "Connected all of the cables"
+      },
+      {
+        "label": "D",
+        "text": "Reset the service password"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D. Đặt lại mật khẩu sử dụng dịch vụ => trong mục 5 có nhắc đến bước cài đặt lại mật khẩu và bước này có thể làm hoặc không, chọn."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 153,
+    "questionText": "What is NOT indicated about the workshop?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It requires a fee to attend"
+      },
+      {
+        "label": "B",
+        "text": "It includes a meal"
+      },
+      {
+        "label": "C",
+        "text": "It is a one-day event"
+      },
+      {
+        "label": "D",
+        "text": "It will focus on new software"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D. Nó sẽ tập trung vào phần mềm mới. =>  hội thảo không nói gì về phần mềm, chọn."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 171,
+    "questionText": "What is NOT mentioned as a benefit of shopping at the venue?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A boost for the local economy"
+      },
+      {
+        "label": "B",
+        "text": "Competitive prices"
+      },
+      {
+        "label": "C",
+        "text": "Healthy produce"
+      },
+      {
+        "label": "D",
+        "text": "Longer opening hours"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 187,
+    "questionText": "What is NOT mentioned as being checked using the mobile banking service?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Account balances"
+      },
+      {
+        "label": "B",
+        "text": "Interest rates"
+      },
+      {
+        "label": "C",
+        "text": "Unresolved transactions"
+      },
+      {
+        "label": "D",
+        "text": "Account history"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Lãi suất."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 170,
+    "questionText": "What is NOT mentioned as a recommendation for participants?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Bringing food"
+      },
+      {
+        "label": "B",
+        "text": "Purchasing tickets in advance"
+      },
+      {
+        "label": "C",
+        "text": "Consulting a schedule"
+      },
+      {
+        "label": "D",
+        "text": "Arriving early"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Mua vé trước."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 183,
+    "questionText": "What is NOT suggested about the Director of Ticket Operations?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He or she has to manage various types of events"
+      },
+      {
+        "label": "B",
+        "text": "He or she must direct the work of other employees"
+      },
+      {
+        "label": "C",
+        "text": "He or she can watch any shows free of charge"
+      },
+      {
+        "label": "D",
+        "text": "He or she must plan promotional events"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 154,
+    "questionText": "What is NOT mentioned as a benefit of shopping local?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It facilitates a job market"
+      },
+      {
+        "label": "B",
+        "text": "It is environmentally friendly"
+      },
+      {
+        "label": "C",
+        "text": "It supports the local economy"
+      },
+      {
+        "label": "D",
+        "text": "It encourages foreign investments"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 166,
+    "questionText": "What is NOT mentioned as a benefit of the reservation?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Exclusive use of an entire floor"
+      },
+      {
+        "label": "B",
+        "text": "Complimentary meals"
+      },
+      {
+        "label": "C",
+        "text": "Access to a conference room"
+      },
+      {
+        "label": "D",
+        "text": "Free Internet access"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 177,
+    "questionText": "According to the web page, what is NOT mentioned as a purpose of an Institute of Rural Service grant?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Providing funds for local business people"
+      },
+      {
+        "label": "B",
+        "text": "Building the basic systems for communications"
+      },
+      {
+        "label": "C",
+        "text": "Organizing community health check-ups"
+      },
+      {
+        "label": "D",
+        "text": "Purchasing farming equipment"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Tổ chức khám sức khỏe cộng đồng."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 198,
+    "questionText": "What information is NOT included in Ms. Lee's e-mail?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The cost of the stay"
+      },
+      {
+        "label": "B",
+        "text": "The travel insurance"
+      },
+      {
+        "label": "C",
+        "text": "The location of the hotel"
+      },
+      {
+        "label": "D",
+        "text": "Staff contact information"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 167,
+    "questionText": "When most likely is the construction NOT being performed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "On Monday"
+      },
+      {
+        "label": "B",
+        "text": "On Wednesday"
+      },
+      {
+        "label": "C",
+        "text": "On Saturday"
+      },
+      {
+        "label": "D",
+        "text": "On Sunday"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 170,
+    "questionText": "What is NOT mentioned as a feature of the Palmer Standard Cabin Yacht?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Capability to play music"
+      },
+      {
+        "label": "B",
+        "text": "A lightweight construction material"
+      },
+      {
+        "label": "C",
+        "text": "Ample sleeping accommodations"
+      },
+      {
+        "label": "D",
+        "text": "A fuel-efficient engine"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  }
+]

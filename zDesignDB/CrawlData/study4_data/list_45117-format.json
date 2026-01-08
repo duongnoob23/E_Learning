@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "amateur",
+    "vi": "người mới bắt đầu, dân nghiệp dư",
+    "pronunciation": "/ˈæm.ə.tʃər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=amateur&lang=en-US&ipa=%2F%CB%88%C3%A6m.%C9%99.t%CA%83%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+    "example": "This tennis tournament is open to both amateur and professionals."
+  },
+  {
+    "word_id": 2,
+    "en": "ambassador",
+    "vi": "đại sứ, người đại diện (thường cho một quốc gia)",
+    "pronunciation": "/æmˈbæs.ə.dər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ambassador&lang=en-US&ipa=%2F%C3%A6m%CB%88b%C3%A6s.%C9%99.d%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+    "example": "She's a former ambassador to the United States."
+  },
+  {
+    "word_id": 3,
+    "en": "anew",
+    "vi": "bắt đầu lại từ đầu, một lần nữa",
+    "pronunciation": "/əˈnjuː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=anew&lang=en-US&ipa=%2F%C9%99%CB%88nju%CB%90%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+    "example": "The film tells anew the story of his rise to fame and power"
+  },
+  {
+    "word_id": 4,
+    "en": "architectural",
+    "vi": "thuộc về kiến trúc",
+    "pronunciation": "/ˌɑːkɪˈtek.tʃər.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=architectural&lang=en-US&ipa=%2F%CB%8C%C9%91%CB%90k%C9%AA%CB%88tek.t%CA%83%C9%99r.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+    "example": "Several architectural styles are being considered for the proposed housing development."
+  },
+  {
+    "word_id": 5,
+    "en": "attain",
+    "vi": "để có được hoặc đạt được",
+    "pronunciation": "/əˈteɪn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=attain&lang=en-US&ipa=%2F%C9%99%CB%88te%C9%AAn%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+    "example": "We need to identify the best ways of attain our objectives"
+  },
+  {
+    "word_id": 6,
+    "en": "balloon",
+    "vi": "bóng bay",
+    "pronunciation": "/bəˈluːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=balloon&lang=en-US&ipa=%2Fb%C9%99%CB%88lu%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_Balloon-Bunch.jpeg",
+    "example": "She pricked the balloon with a pin and it burst with a loud bang."
+  },
+  {
+    "word_id": 7,
+    "en": "blueprint",
+    "vi": "bản vẽ thiết kế",
+    "pronunciation": "/ˈbluː.prɪnt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=blueprint&lang=en-US&ipa=%2F%CB%88blu%CB%90.pr%C9%AAnt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+    "example": "The report provided a blueprint for relieving the county's crowded jail facilities."
+  },
+  {
+    "word_id": 8,
+    "en": "bug",
+    "vi": "con bọ, côn trùng nhỏ",
+    "pronunciation": "/bʌɡ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bug&lang=en-US&ipa=%2Fb%CA%8C%C9%A1%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Bugs.jpg",
+    "example": "Will this spray get rid of those little black bug that are attacking my shrubs?"
+  },
+  {
+    "word_id": 9,
+    "en": "cautious",
+    "vi": "cẩn thận, cảnh giác",
+    "pronunciation": "/ˈkɔː.ʃəs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cautious&lang=en-US&ipa=%2F%CB%88k%C9%94%CB%90.%CA%83%C9%99s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/original_careful.jpeg",
+    "example": "Most doctors are cautious about advising you to have surgery."
+  },
+  {
+    "word_id": 10,
+    "en": "circuit",
+    "vi": "đường đi vòng quanh",
+    "pronunciation": "/ˈsɜː.kɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=circuit&lang=en-US&ipa=%2F%CB%88s%C9%9C%CB%90.k%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06140051_F1Hanoi.jpg",
+    "example": "They test the car tyres on a motor racing circuit."
+  },
+  {
+    "word_id": 11,
+    "en": "clap",
+    "vi": "vỗ tay",
+    "pronunciation": "/klæp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=clap&lang=en-US&ipa=%2Fkl%C3%A6p%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_crop,f_auto,h_1154,q_auto,w_1846,x_40,y_542_4MVM424_image_crop_99069.jpeg",
+    "example": "The band played a familiar tune which had everyone clap along."
+  },
+  {
+    "word_id": 12,
+    "en": "commerce",
+    "vi": "thương mại, kinh doanh, công nghiệp",
+    "pronunciation": "/ˈkɒm.ɜːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=commerce&lang=en-US&ipa=%2F%CB%88k%C9%92m.%C9%9C%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg",
+    "example": "Online commerce is expected to continue to increase."
+  },
+  {
+    "word_id": 13,
+    "en": "convey",
+    "vi": "truyền đạt, truyển tải",
+    "pronunciation": "/kənˈveɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=convey&lang=en-US&ipa=%2Fk%C9%99n%CB%88ve%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+    "example": "Few journalists have managed to convey the full horror of the situation."
+  },
+  {
+    "word_id": 14,
+    "en": "cord",
+    "vi": "dây cáp điện",
+    "pronunciation": "/kɔːd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cord&lang=en-US&ipa=%2Fk%C9%94%CB%90d%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg",
+    "example": "Each lamp has an electrical cord that leads from the top of the star."
+  },
+  {
+    "word_id": 15,
+    "en": "counselor",
+    "vi": "tham vấn viên, cố vấn",
+    "pronunciation": "/ˈkaʊn.səl.ɚ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=counselor&lang=en-US&ipa=%2F%CB%88ka%CA%8An.s%C9%99l.%C9%9A%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_social-worker-vs-counselor_hero.jpg",
+    "example": "The college now has a counselor to help students with both personal and work problems."
+  },
+  {
+    "word_id": 16,
+    "en": "debit",
+    "vi": "sự ghi nợ",
+    "pronunciation": "/ˈdeb.ɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=debit&lang=en-US&ipa=%2F%CB%88deb.%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg",
+    "example": "Once your contract with them ends, the company should no longer take monthly debit from your account."
+  },
+  {
+    "word_id": 17,
+    "en": "delicate",
+    "vi": "mỏng manh, dễ tổn thương",
+    "pronunciation": "/ˈdelɪkət/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=delicate&lang=en-US&ipa=%2F%CB%88del%C9%AAk%C9%99t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Product_5f8bd7111ba443a0ad6eed1587746081.jpeg",
+    "example": "delicate plants need to be kept in a greenhouse during the winter."
+  },
+  {
+    "word_id": 18,
+    "en": "dependence",
+    "vi": "sự phụ thuộc",
+    "pronunciation": "/dɪˈpen.dəns/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dependence&lang=en-US&ipa=%2Fd%C9%AA%CB%88pen.d%C9%99ns%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_dependence-screen-shot.png",
+    "example": "The company needs to reduce its dependence on just one particular product."
+  },
+  {
+    "word_id": 19,
+    "en": "distraction",
+    "vi": "sự làm xao lãng",
+    "pronunciation": "/dɪˈstræk.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=distraction&lang=en-US&ipa=%2Fd%C9%AA%CB%88str%C3%A6k.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_bigstock-Distraction-Social-Media-Or-E-412721176.jpeg",
+    "example": "It's impossible to work with all this distraction."
+  },
+  {
+    "word_id": 20,
+    "en": "downsize",
+    "vi": "Giảm kích thước hoặc số",
+    "pronunciation": "/ˈdaʊnˌsaɪz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=downsize&lang=en-US&ipa=%2F%CB%88da%CA%8An%CB%8Csa%C9%AAz%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Blog_workforce-downsizing.png",
+    "example": "The plight of the economy is forcing businesses to downsize."
+  },
+  {
+    "word_id": 21,
+    "en": "elephant",
+    "vi": "con voi",
+    "pronunciation": "/ˈel.ɪ.fənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=elephant&lang=en-US&ipa=%2F%CB%88el.%C9%AA.f%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+    "example": "Measures must be taken to protect the world's depleted elephant population."
+  },
+  {
+    "word_id": 22,
+    "en": "enthusiasm",
+    "vi": "sự hăng hái, sự nhiệt tình",
+    "pronunciation": "/ɪnˈθjuː.zi.æz.əm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=enthusiasm&lang=en-US&ipa=%2F%C9%AAn%CB%88%CE%B8ju%CB%90.zi.%C3%A6z.%C9%99m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg",
+    "example": "One of the good things about teaching young children is their enthusiasm."
+  },
+  {
+    "word_id": 23,
+    "en": "enthusiast",
+    "vi": "người đam mê về điều gì đó",
+    "pronunciation": "/ɪnˈθjuː.zi.æst/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=enthusiast&lang=en-US&ipa=%2F%C9%AAn%CB%88%CE%B8ju%CB%90.zi.%C3%A6st%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/images.huffingtonpost.com_2016-09-27-1475000926-901492-2016bestworstcitiesforsoccerfans.jpg",
+    "example": "It is certain to appeal to field-sports enthusiast and to nature lovers."
+  },
+  {
+    "word_id": 24,
+    "en": "evident",
+    "vi": "hiển nhiên, rõ ràng",
+    "pronunciation": "/ˈev.ɪ.dənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=evident&lang=en-US&ipa=%2F%CB%88ev.%C9%AA.d%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/o_obvious.jpg",
+    "example": "The full extent of the damage only became evident the following morning."
+  },
+  {
+    "word_id": 25,
+    "en": "flexibility",
+    "vi": "tính linh hoạt, tính linh động",
+    "pronunciation": "/ˌflɛk.səˈbɪl.ə.ti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=flexibility&lang=en-US&ipa=%2F%CB%8Cfl%C9%9Bk.s%C9%99%CB%88b%C9%AAl.%C9%99.ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_flexibility1.jpg",
+    "example": "The standards were established to allow greater flexibility in court decisions."
+  },
+  {
+    "word_id": 26,
+    "en": "flextime",
+    "vi": "hệ thống giờ làm việc linh hoạt",
+    "pronunciation": "/ˈfleks.taɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=flextime&lang=en-US&ipa=%2F%CB%88fleks.ta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+    "example": "For employers, flextime can aid the recruitment and retention of staff."
+  },
+  {
+    "word_id": 27,
+    "en": "fortunately",
+    "vi": "một cách may mắn, may mắn thay",
+    "pronunciation": "/ˈfɔː.tʃən.ət.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fortunately&lang=en-US&ipa=%2F%CB%88f%C9%94%CB%90.t%CA%83%C9%99n.%C9%99t.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+    "example": "Finally the agency sent the girl to go and find them, which she fortunately did."
+  },
+  {
+    "word_id": 28,
+    "en": "freighter",
+    "vi": "Tàu chở hàng",
+    "pronunciation": "/ˈfreɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=freighter&lang=en-US&ipa=%2F%CB%88fre%C9%AA.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+    "example": "This will allow freighter to drop parts of their cargo when they are destroyed, just like other ships."
+  },
+  {
+    "word_id": 29,
+    "en": "generator",
+    "vi": "máy phát điện",
+    "pronunciation": "/ˈdʒen.ə.reɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=generator&lang=en-US&ipa=%2F%CB%88d%CA%92en.%C9%99.re%C9%AA.t%C9%99r%2F",
+    "image_url": null,
+    "example": "The hospital's emergency generator are designed to cope with power cuts."
+  },
+  {
+    "word_id": 30,
+    "en": "hallway",
+    "vi": "hành lang",
+    "pronunciation": "/ˈhɔːl.weɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=hallway&lang=en-US&ipa=%2F%CB%88h%C9%94%CB%90l.we%C9%AA%2F",
+    "image_url": null,
+    "example": "The buyers reportedly have a large hallway in which to display their new purchase."
+  },
+  {
+    "word_id": 31,
+    "en": "hamburger",
+    "vi": "bánh mì kẹp thịt xay",
+    "pronunciation": "/ˈhæmˌbɜː.ɡər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=hamburger&lang=en-US&ipa=%2F%CB%88h%C3%A6m%CB%8Cb%C9%9C%CB%90.%C9%A1%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Hatch_Green_Chile_Hamburger.jpg_1200px-Hatch_Green_Chile_Hamburger.jpg",
+    "example": "Go anywhere in the world and you'll find some sort of hamburger restaurant."
+  },
+  {
+    "word_id": 32,
+    "en": "hazard",
+    "vi": "mối nguy",
+    "pronunciation": "/ˈhæz.əd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=hazard&lang=en-US&ipa=%2F%CB%88h%C3%A6z.%C9%99d%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/m_dmeu_hz170a1_std.lang.all.jpg",
+    "example": "The busy traffic entrance was a hazard to pedestrians."
+  },
+  {
+    "word_id": 33,
+    "en": "homeowner",
+    "vi": "chủ nhà, người sở hữu nhà",
+    "pronunciation": "/ˈhəʊmˌəʊ.nər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=homeowner&lang=en-US&ipa=%2F%CB%88h%C9%99%CA%8Am%CB%8C%C9%99%CA%8A.n%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_home-ownership.jpg",
+    "example": "Many homeowner do not have enough insurance for their property."
+  },
+  {
+    "word_id": 34,
+    "en": "imperative",
+    "vi": "rất quan trọng và khẩn cấp",
+    "pronunciation": "/ɪmˈper.ə.tɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=imperative&lang=en-US&ipa=%2F%C9%AAm%CB%88per.%C9%99.t%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+    "example": "It's imperative to act now before the problem gets really serious."
+  },
+  {
+    "word_id": 35,
+    "en": "inflate",
+    "vi": "thổi phồng, bơm phồng",
+    "pronunciation": "/ɪnˈfleɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inflate&lang=en-US&ipa=%2F%C9%AAn%CB%88fle%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg",
+    "example": "They inflate their part in the rescue every time they told the story."
+  },
+  {
+    "word_id": 36,
+    "en": "insert",
+    "vi": "chèn vào, thêm vào",
+    "pronunciation": "/ɪnˈsɜːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=insert&lang=en-US&ipa=%2F%C9%AAn%CB%88s%C9%9C%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+    "example": "The program will automatically insert the replacement text.."
+  },
+  {
+    "word_id": 37,
+    "en": "lecturer",
+    "vi": "người hướng dẫn hoặc giảng viên đại học",
+    "pronunciation": "/ˈlek.tʃər.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lecturer&lang=en-US&ipa=%2F%CB%88lek.t%CA%83%C9%99r.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_377340603_1LGXt7MMHeqKoZixHxWk2tVa0wig9RN1.jpg",
+    "example": "Obviously, university lecturer have so much knowledge and experience that you can gain from."
+  },
+  {
+    "word_id": 38,
+    "en": "meaningful",
+    "vi": "có ý nghĩa hoặc mục đích",
+    "pronunciation": "/ˈmiː.nɪŋ.fəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=meaningful&lang=en-US&ipa=%2F%CB%88mi%CB%90.n%C9%AA%C5%8B.f%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+    "example": "She believes these talks will be the start of a constructive and meaningful dialogue."
+  },
+  {
+    "word_id": 39,
+    "en": "memorize",
+    "vi": "ghi nhớ",
+    "pronunciation": "/ˈmem.ə.raɪz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=memorize&lang=en-US&ipa=%2F%CB%88mem.%C9%99.ra%C9%AAz%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+    "example": "Each night I tried to memorize long lists of verbs."
+  },
+  {
+    "word_id": 40,
+    "en": "merchant",
+    "vi": "thương gia",
+    "pronunciation": "/ˈmɜː.tʃənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=merchant&lang=en-US&ipa=%2F%CB%88m%C9%9C%CB%90.t%CA%83%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+    "example": "Venice was once a city of rich merchant."
+  },
+  {
+    "word_id": 41,
+    "en": "modification",
+    "vi": "sự điều chỉnh",
+    "pronunciation": "/ˌmɒdɪfɪˈkeɪʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=modification&lang=en-US&ipa=%2F%CB%8Cm%C9%92d%C9%AAf%C9%AA%CB%88ke%C9%AA%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg",
+    "example": "Considerable modification of the existing system is needed."
+  },
+  {
+    "word_id": 42,
+    "en": "occupant",
+    "vi": "người cư trú, người sử dụng",
+    "pronunciation": "/ˈɒk.jə.pənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=occupant&lang=en-US&ipa=%2F%CB%88%C9%92k.j%C9%99.p%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg",
+    "example": "All outstanding bills will be paid by the previous occupant."
+  },
+  {
+    "word_id": 43,
+    "en": "reproduce",
+    "vi": "sao chép lại, mô phỏng",
+    "pronunciation": "/ˌriː.prəˈduːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reproduce&lang=en-US&ipa=%2F%CB%8Cri%CB%90.pr%C9%99%CB%88du%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_example-of-asexual-reproduction.jpg",
+    "example": "His work was reproduce on leaflets and magazines."
+  },
+  {
+    "word_id": 44,
+    "en": "spray",
+    "vi": "xịt, phun",
+    "pronunciation": "/spreɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spray&lang=en-US&ipa=%2Fspre%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg",
+    "example": "She spray herself with perfume."
+  },
+  {
+    "word_id": 45,
+    "en": "staple",
+    "vi": "kim bấm",
+    "pronunciation": "/ˈsteɪ.pəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=staple&lang=en-US&ipa=%2F%CB%88ste%C9%AA.p%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+    "example": "Put a staple in the upper left-hand corner."
+  },
+  {
+    "word_id": 46,
+    "en": "strategic",
+    "vi": "thuộc về chiến lược",
+    "pronunciation": "/strəˈtiː.dʒɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=strategic&lang=en-US&ipa=%2Fstr%C9%99%CB%88ti%CB%90.d%CA%92%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_502430987_DB1JEZjc9EzrNJ2jlmV4wKGLSnCdzeiT.jpg",
+    "example": "Cameras were set up at strategic points (= in places where they would be most effective) along the route."
+  },
+  {
+    "word_id": 47,
+    "en": "stripe",
+    "vi": "vạch sọc",
+    "pronunciation": "/straɪp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=stripe&lang=en-US&ipa=%2Fstra%C9%AAp%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_209520217_fcUxodL6bzVphCt09M0ufHpWf9HRssyN.jpg",
+    "example": "The zebra is a wild African horse with black and white stripe."
+  },
+  {
+    "word_id": 48,
+    "en": "teen",
+    "vi": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+    "pronunciation": "/tiːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=teen&lang=en-US&ipa=%2Fti%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+    "example": "Amazingly, all the performers are still in their teen."
+  },
+  {
+    "word_id": 49,
+    "en": "tempt",
+    "vi": "xúi giục",
+    "pronunciation": "/tempt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tempt&lang=en-US&ipa=%2Ftempt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_25427126_yiAGLkrFqttMMr9vlHn5xtuf8zjYt8Ei.jpg",
+    "example": "The offer of free credit tempt her into buying a new car."
+  },
+  {
+    "word_id": 50,
+    "en": "timer",
+    "vi": "thiết bị bấm giờ",
+    "pronunciation": "/ˈtaɪ.mər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=timer&lang=en-US&ipa=%2F%CB%88ta%C9%AA.m%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_308205563_jJqE0wuc6IjgIHreCWXPQ30afi4FALdk.jpg",
+    "example": "He set the timer on the oven to/for 20 minutes (= to record when 20 minutes had gone past)"
+  },
+  {
+    "word_id": 51,
+    "en": "unload",
+    "vi": "dỡ hàng",
+    "pronunciation": "/ʌnˈləʊd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unload&lang=en-US&ipa=%2F%CA%8Cn%CB%88l%C9%99%CA%8Ad%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_229954023_NpU3huQ2OtxkIoLmQwsNDAgiIlPSR0te.jpg",
+    "example": "Trucking companies are trying to cut the time drivers spend waiting in line to load or unload."
+  },
+  {
+    "word_id": 52,
+    "en": "unusually",
+    "vi": "không bình thường",
+    "pronunciation": "/ʌnˈjuː.ʒu.ə.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unusually&lang=en-US&ipa=%2F%CA%8Cn%CB%88ju%CB%90.%CA%92u.%C9%99.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg",
+    "example": "We had unusually warm weather in December."
+  },
+  {
+    "word_id": 53,
+    "en": "vacate",
+    "vi": "để trống; di chuyển ra khỏi",
+    "pronunciation": "/veɪˈkeɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vacate&lang=en-US&ipa=%2Fve%C9%AA%CB%88ke%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_485542459_doMiUPjKncHsJF0rg06VoxvIY0f7eUgn.jpg",
+    "example": "Hotel guests are requested to vacate their rooms by noon."
+  },
+  {
+    "word_id": 54,
+    "en": "whale",
+    "vi": "cá voi",
+    "pronunciation": "/weɪl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=whale&lang=en-US&ipa=%2Fwe%C9%AAl%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg",
+    "example": "The communicative ability of the whale is thought to be highly developed."
+  },
+  {
+    "word_id": 55,
+    "en": "wisely",
+    "vi": "một cách khôn khéo",
+    "pronunciation": "/ˈwaɪz.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=wisely&lang=en-US&ipa=%2F%CB%88wa%C9%AAz.li%2F",
+    "image_url": null,
+    "example": "Sienna had very wisely left the party before all the trouble started."
+  }
+]

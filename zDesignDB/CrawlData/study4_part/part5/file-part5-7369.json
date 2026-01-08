@@ -1,0 +1,461 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 115,
+    "questionText": "The recently _____ mayor said she plans to address the town's traffic problems soon.",
+    "options": [
+      {
+        "label": "A",
+        "text": "electing"
+      },
+      {
+        "label": "B",
+        "text": "election"
+      },
+      {
+        "label": "C",
+        "text": "elected"
+      },
+      {
+        "label": "D",
+        "text": "elects"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống đứng trước danh từ \"mayor\" nên có thể điền một tính từ để bổ nghĩa cho danh từ này. Trạng từ \"recently\" lại bổ nghĩa cho tính từ điền vào.  → Loại B, D. Dựa vào nghĩa để chọn đáp án đúng",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 103,
+    "questionText": "For a _____ time, Marco Bank is offering first-time customers a $100 bonus when a they open an account.",
+    "options": [
+      {
+        "label": "A",
+        "text": "limits"
+      },
+      {
+        "label": "B",
+        "text": "limiting"
+      },
+      {
+        "label": "C",
+        "text": "limit"
+      },
+      {
+        "label": "D",
+        "text": "limited"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Cần chọn tính từ bổ nghĩa cho danh từ “time” đi liền sau. → Loại A, CChọn tính từ limited có nghĩa là có giới hạn, bị giới hạn.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 107,
+    "questionText": "The department's most _____ production unit will receive a bonus at the end of the quarter.",
+    "options": [
+      {
+        "label": "A",
+        "text": "effective"
+      },
+      {
+        "label": "B",
+        "text": "effect"
+      },
+      {
+        "label": "C",
+        "text": "effectively"
+      },
+      {
+        "label": "D",
+        "text": "effecting"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau so sánh nhất “most” và đứng trước danh từ ghép “production unit” → Cần tìm một tính từ (Loại B: danh từ, C: trạng từ, D: không tồn tại dạng)",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 103,
+    "questionText": "Hillsdale Fabrics' _____ collection of leathers was imported from Italy.",
+    "options": [
+      {
+        "label": "A",
+        "text": "diversity"
+      },
+      {
+        "label": "B",
+        "text": "diversely"
+      },
+      {
+        "label": "C",
+        "text": "diversify"
+      },
+      {
+        "label": "D",
+        "text": "diverse"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau danh từ “collection” → cần tìm một tính từ Loại A (danh từ đuôi -ity), B (trạng từ đuôi -ly) và C (động từ đuôi -ify)",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 101,
+    "questionText": "Should the customer believe that the proposed color scheme is not _____, the interior designer can make adjustments.",
+    "options": [
+      {
+        "label": "A",
+        "text": "attract"
+      },
+      {
+        "label": "B",
+        "text": "attractive"
+      },
+      {
+        "label": "C",
+        "text": "attracted"
+      },
+      {
+        "label": "D",
+        "text": "attractively"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống nằm sau động từ \"to be\" (is not) → chỉ có thể điền tính từ hoặc danh từ → Loại A (động từ), C(động từ đuôi -ed) và D (trạng từ) Dịch: Nếu khách hàng đều tin tưởng rằng sự phối màu được đề xuất không thu hút, người thiết kế nội thất có thể điều chỉnh.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 128,
+    "questionText": "Call Gislason Insurance today to speak to a _____ agent for a free quote.",
+    "options": [
+      {
+        "label": "A",
+        "text": "licensed"
+      },
+      {
+        "label": "B",
+        "text": "maximum"
+      },
+      {
+        "label": "C",
+        "text": "required"
+      },
+      {
+        "label": "D",
+        "text": "former"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước mạo từ “a” và sau danh từ “agent” → Cần tìm một tính từ. Ở đây ta thấy cả 4 đáp án đều là tính từ → Dựa vào nghĩa để chọn. A: được cấp phép, B: tối đa, C: được yêu cầu; D: cựu",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 112,
+    "questionText": "Departments should not spend an _____ amount of their budgets on office supplies.",
+    "options": [
+      {
+        "label": "A",
+        "text": "equal"
+      },
+      {
+        "label": "B",
+        "text": "exciting"
+      },
+      {
+        "label": "C",
+        "text": "excessive"
+      },
+      {
+        "label": "D",
+        "text": "unknown"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước danh từ “amount” → cần tìm một tính từ có nghĩa phù hợp. A: bình đẳng, B: thú vị, C: quá mức, D: không rõ",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 107,
+    "questionText": "The figures that accompany the financial statement should be _____ to the spending category.",
+    "options": [
+      {
+        "label": "A",
+        "text": "relevance"
+      },
+      {
+        "label": "B",
+        "text": "relevantly"
+      },
+      {
+        "label": "C",
+        "text": "more relevantly"
+      },
+      {
+        "label": "D",
+        "text": "relevant"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 111,
+    "questionText": "During the peak season, it is _____ to hire additional workers for the weekend shifts.",
+    "options": [
+      {
+        "label": "A",
+        "text": "necessitate"
+      },
+      {
+        "label": "B",
+        "text": "necessarily"
+      },
+      {
+        "label": "C",
+        "text": "necessary"
+      },
+      {
+        "label": "D",
+        "text": "necessity"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 124,
+    "questionText": "The governmental department used to provide financial aid, but now it offers _____ services only.",
+    "options": [
+      {
+        "label": "A",
+        "text": "legal"
+      },
+      {
+        "label": "B",
+        "text": "legalize"
+      },
+      {
+        "label": "C",
+        "text": "legally"
+      },
+      {
+        "label": "D",
+        "text": "legalizes"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 105,
+    "questionText": "We will make a final decision about changing the landscaping of the property after reviewing the _____ costs.",
+    "options": [
+      {
+        "label": "A",
+        "text": "estimation"
+      },
+      {
+        "label": "B",
+        "text": "estimate"
+      },
+      {
+        "label": "C",
+        "text": "estimated"
+      },
+      {
+        "label": "D",
+        "text": "estimating"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 117,
+    "questionText": "Despite having some problems with the sound system during the performance, the concert was an _____ experience for everyone.",
+    "options": [
+      {
+        "label": "A",
+        "text": "enjoyable"
+      },
+      {
+        "label": "B",
+        "text": "enjoyment"
+      },
+      {
+        "label": "C",
+        "text": "enjoys"
+      },
+      {
+        "label": "D",
+        "text": "enjoyably"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 120,
+    "questionText": "A sturdy support beam was added to the first story of the building for _____ reasons.",
+    "options": [
+      {
+        "label": "A",
+        "text": "structures"
+      },
+      {
+        "label": "B",
+        "text": "structurally"
+      },
+      {
+        "label": "C",
+        "text": "structure"
+      },
+      {
+        "label": "D",
+        "text": "structural"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 124,
+    "questionText": "Mr. Burrows was praised for creating _____ user manuals which can be easily understood.",
+    "options": [
+      {
+        "label": "A",
+        "text": "inform"
+      },
+      {
+        "label": "B",
+        "text": "informant"
+      },
+      {
+        "label": "C",
+        "text": "informs"
+      },
+      {
+        "label": "D",
+        "text": "informative"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 122,
+    "questionText": "Prior to a viewing by potential buyers, the real estate agent makes sure the home is _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "presentation"
+      },
+      {
+        "label": "B",
+        "text": "presenting"
+      },
+      {
+        "label": "C",
+        "text": "presentable"
+      },
+      {
+        "label": "D",
+        "text": "present"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 113,
+    "questionText": "The train delays on the Trenton line were caused by a _____ error at one of the stations.",
+    "options": [
+      {
+        "label": "A",
+        "text": "proceed"
+      },
+      {
+        "label": "B",
+        "text": "proceeded"
+      },
+      {
+        "label": "C",
+        "text": "procedural"
+      },
+      {
+        "label": "D",
+        "text": "procedurally"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q17",
+    "question_number": 125,
+    "questionText": "As long as there are no further delays, the factory will be fully _____ by June 18.",
+    "options": [
+      {
+        "label": "A",
+        "text": "operational"
+      },
+      {
+        "label": "B",
+        "text": "operate"
+      },
+      {
+        "label": "C",
+        "text": "operates"
+      },
+      {
+        "label": "D",
+        "text": "operation"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  }
+]

@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "accent",
+    "vi": "giọng đặc trưng",
+    "pronunciation": "/ˈæk.sənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accent&lang=en-US&ipa=%2F%CB%88%C3%A6k.s%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+    "example": "She's French but she speaks with an impeccable English accent"
+  },
+  {
+    "word_id": 2,
+    "en": "advisory",
+    "vi": "liên quan đến tư vấn, cố vấn",
+    "pronunciation": "/ədˈvaɪ.zər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=advisory&lang=en-US&ipa=%2F%C9%99d%CB%88va%C9%AA.z%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+    "example": "She is employed by the president in an advisory capacity"
+  },
+  {
+    "word_id": 3,
+    "en": "asleep",
+    "vi": "ngủ, đang ngủ",
+    "pronunciation": "/ə'sliːp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=asleep&lang=en-US&ipa=%2F%C9%99%27sli%CB%90p%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+    "example": "She slipped between the cool cotton sheets and was soon asleep."
+  },
+  {
+    "word_id": 4,
+    "en": "authentic",
+    "vi": "thật, xác thực, không phải là giả",
+    "pronunciation": "/ɔːˈθen.tɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=authentic&lang=en-US&ipa=%2F%C9%94%CB%90%CB%88%CE%B8en.t%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+    "example": "How can we be sure the signature is authentic?"
+  },
+  {
+    "word_id": 5,
+    "en": "bakery",
+    "vi": "cửa hàng bánh",
+    "pronunciation": "/ˈbeɪ.kər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bakery&lang=en-US&ipa=%2F%CB%88be%C9%AA.k%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+    "example": "All the star hotels had cake sales and most bakery ended up selling cakes at discount prices."
+  },
+  {
+    "word_id": 6,
+    "en": "carton",
+    "vi": "hộp bìa cứng, hộp đựng hàng",
+    "pronunciation": "/ˈkɑː.tən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=carton&lang=en-US&ipa=%2F%CB%88k%C9%91%CB%90.t%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+    "example": "Empty egg carton can be reused or recycled."
+  },
+  {
+    "word_id": 7,
+    "en": "compartment",
+    "vi": "gian, ngăn",
+    "pronunciation": "/kəmˈpɑːt.mənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compartment&lang=en-US&ipa=%2Fk%C9%99m%CB%88p%C9%91%CB%90t.m%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+    "example": "She folded her coat and put it in the overhead luggage compartment."
+  },
+  {
+    "word_id": 8,
+    "en": "compatible",
+    "vi": "phù hợp với, tương thích",
+    "pronunciation": "/kəmˈpæt.ə.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compatible&lang=en-US&ipa=%2Fk%C9%99m%CB%88p%C3%A6t.%C9%99.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+    "example": "Such policies are not compatible with democratic government."
+  },
+  {
+    "word_id": 9,
+    "en": "consumption",
+    "vi": "sự tiêu thụ",
+    "pronunciation": "/kənˈsʌmp.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=consumption&lang=en-US&ipa=%2Fk%C9%99n%CB%88s%CA%8Cmp.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+    "example": "These products are not for national consumption, but for export."
+  },
+  {
+    "word_id": 10,
+    "en": "conveniently",
+    "vi": "một cách dễ dàng, tiện lợi",
+    "pronunciation": "/kənˈviː.ni.ənt.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=conveniently&lang=en-US&ipa=%2Fk%C9%99n%CB%88vi%CB%90.ni.%C9%99nt.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+    "example": "The house is conveniently situated near the station and the shops."
+  },
+  {
+    "word_id": 11,
+    "en": "cosmetic",
+    "vi": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+    "pronunciation": "/kɒzˈmet.ɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cosmetic&lang=en-US&ipa=%2Fk%C9%92z%CB%88met.%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+    "example": "Whether the change is more cosmetic than concrete is a matter of opinion."
+  },
+  {
+    "word_id": 12,
+    "en": "courtesy",
+    "vi": "sự lịch sự, sự nhã nhặn",
+    "pronunciation": "/ˈkɜː.tə.si/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=courtesy&lang=en-US&ipa=%2F%CB%88k%C9%9C%CB%90.t%C9%99.si%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+    "example": "The president welcomed her visitors with the usual courtesy."
+  },
+  {
+    "word_id": 13,
+    "en": "creativity",
+    "vi": "óc sáng tạo, tính sáng tạo",
+    "pronunciation": "/ˌkriː.eɪˈtɪv.ə.t̬i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=creativity&lang=en-US&ipa=%2F%CB%8Ckri%CB%90.e%C9%AA%CB%88t%C9%AAv.%C9%99.t%CC%ACi%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+    "example": "The aim of the award is to encourage creativity and innovation."
+  },
+  {
+    "word_id": 14,
+    "en": "criteria",
+    "vi": "tiêu chuẩn, chỉ tiêu",
+    "pronunciation": "/kraɪˈtɪəriə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=criteria&lang=en-US&ipa=%2Fkra%C9%AA%CB%88t%C9%AA%C9%99ri%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+    "example": "They award a green label to products that meet certain environmental criteria"
+  },
+  {
+    "word_id": 15,
+    "en": "disagreement",
+    "vi": "sự bất đồng ý kiến",
+    "pronunciation": "/ˌdɪs.əˈɡriː.mənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=disagreement&lang=en-US&ipa=%2F%CB%8Cd%C9%AAs.%C9%99%CB%88%C9%A1ri%CB%90.m%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+    "example": "We had a disagreement about/over the fee for the work."
+  },
+  {
+    "word_id": 16,
+    "en": "discontinue",
+    "vi": "ngừng, làm gián đoạn",
+    "pronunciation": "/ˌdɪs.kənˈtɪn.juː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=discontinue&lang=en-US&ipa=%2F%CB%8Cd%C9%AAs.k%C9%99n%CB%88t%C9%AAn.ju%CB%90%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+    "example": "The airline announced that weekday flights to Kansas City would be discontinue."
+  },
+  {
+    "word_id": 17,
+    "en": "dishwasher",
+    "vi": "máy rửa chén",
+    "pronunciation": "/ˈdɪʃˌwɒʃ.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dishwasher&lang=en-US&ipa=%2F%CB%88d%C9%AA%CA%83%CB%8Cw%C9%92%CA%83.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+    "example": "This dishwasher even washes pots and pans ."
+  },
+  {
+    "word_id": 18,
+    "en": "drought",
+    "vi": "hạn hán",
+    "pronunciation": "/draʊt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=drought&lang=en-US&ipa=%2Fdra%CA%8At%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+    "example": "This year (a) severe drought has ruined the crops."
+  },
+  {
+    "word_id": 19,
+    "en": "economize",
+    "vi": "tiết kiệm tiền, tránh lãng phí",
+    "pronunciation": "/ɪˈkɒn.ə.maɪz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=economize&lang=en-US&ipa=%2F%C9%AA%CB%88k%C9%92n.%C9%99.ma%C9%AAz%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+    "example": "A lot of companies are trying to economize by not taking on new staff."
+  },
+  {
+    "word_id": 20,
+    "en": "entrée",
+    "vi": "quyền được tham gia, tham dự",
+    "pronunciation": "/ˈɒn.treɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=entr%C3%A9e&lang=en-US&ipa=%2F%CB%88%C9%92n.tre%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+    "example": "That initial contact gave her entrée into other university offerings."
+  },
+  {
+    "word_id": 21,
+    "en": "firework",
+    "vi": "pháo hoa",
+    "pronunciation": "/ˈfaɪə.wɜːk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=firework&lang=en-US&ipa=%2F%CB%88fa%C9%AA%C9%99.w%C9%9C%CB%90k%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+    "example": "They let off a big firework as a signal that the festival had started."
+  },
+  {
+    "word_id": 22,
+    "en": "freight",
+    "vi": "hàng hoá chuyên chở",
+    "pronunciation": "/freɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=freight&lang=en-US&ipa=%2Ffre%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+    "example": "The ship carries both freight and passengers."
+  },
+  {
+    "word_id": 23,
+    "en": "fry",
+    "vi": "chiên rán",
+    "pronunciation": "/fraɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fry&lang=en-US&ipa=%2Ffra%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+    "example": "fry four chicken joints in a pan with some mushrooms and garlic."
+  },
+  {
+    "word_id": 24,
+    "en": "gallon",
+    "vi": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+    "pronunciation": "/ˈɡæl.ən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=gallon&lang=en-US&ipa=%2F%CB%88%C9%A1%C3%A6l.%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+    "example": "An imperial gallon, used in Britain, is equal to 4,546 cubic centimetres."
+  },
+  {
+    "word_id": 25,
+    "en": "gardener",
+    "vi": "người làm vườn",
+    "pronunciation": "/ˈɡɑː.dən.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=gardener&lang=en-US&ipa=%2F%CB%88%C9%A1%C9%91%CB%90.d%C9%99n.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+    "example": "These young trees were carefully nursed by the head gardener."
+  },
+  {
+    "word_id": 26,
+    "en": "ideally",
+    "vi": "trong lý tưởng, một cách lý tưởng",
+    "pronunciation": "/aɪˈdɪə.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ideally&lang=en-US&ipa=%2Fa%C9%AA%CB%88d%C9%AA%C9%99.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+    "example": "ideally, I'd like to work at home but it's just not practical."
+  },
+  {
+    "word_id": 27,
+    "en": "inclusive",
+    "vi": "Bao gồm tất cả mọi thứ",
+    "pronunciation": "/ɪnˈkluː.sɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inclusive&lang=en-US&ipa=%2F%C9%AAn%CB%88klu%CB%90.s%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+    "example": "The governments want to reach a settlement that is as inclusive as possible."
+  },
+  {
+    "word_id": 28,
+    "en": "insufficient",
+    "vi": "không đủ",
+    "pronunciation": "/ˌɪn.səˈfɪʃ.ənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=insufficient&lang=en-US&ipa=%2F%CB%8C%C9%AAn.s%C9%99%CB%88f%C9%AA%CA%83.%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+    "example": "The management paid insufficient attention to working conditions."
+  },
+  {
+    "word_id": 29,
+    "en": "introductory",
+    "vi": "để giới thiệu, mở đầu",
+    "pronunciation": "/ˌɪn.trəˈdʌk.tər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=introductory&lang=en-US&ipa=%2F%CB%8C%C9%AAn.tr%C9%99%CB%88d%CA%8Ck.t%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+    "example": "introductory chapters/paragraphs/remarks"
+  },
+  {
+    "word_id": 30,
+    "en": "junk",
+    "vi": "vật phẩm vô dụng; rác",
+    "pronunciation": "/dʒʌŋk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=junk&lang=en-US&ipa=%2Fd%CA%92%CA%8C%C5%8Bk%2F",
+    "image_url": null,
+    "example": "I've cleared out all that old junk in the attic."
+  },
+  {
+    "word_id": 31,
+    "en": "ma'am",
+    "vi": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+    "pronunciation": "/mæm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ma%27am&lang=en-US&ipa=%2Fm%C3%A6m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+    "example": "How can I help you, ma'am?"
+  },
+  {
+    "word_id": 32,
+    "en": "mileage",
+    "vi": "tổng số dặm đã đi được",
+    "pronunciation": "/ˈmaɪ.lɪdʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mileage&lang=en-US&ipa=%2F%CB%88ma%C9%AA.l%C9%AAd%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+    "example": "My annual mileage is about 10 000."
+  },
+  {
+    "word_id": 33,
+    "en": "noisy",
+    "vi": "ồn ào",
+    "pronunciation": "/ˈnɔɪ.zi/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=noisy&lang=en-US&ipa=%2F%CB%88n%C9%94%C9%AA.zi%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+    "example": "The kids were even noisy than the dogs."
+  },
+  {
+    "word_id": 34,
+    "en": "pan",
+    "vi": "cái chảo",
+    "pronunciation": "/pæn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pan&lang=en-US&ipa=%2Fp%C3%A6n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+    "example": "Heat a large non-stick saute pan over a medium heat."
+  },
+  {
+    "word_id": 35,
+    "en": "parcel",
+    "vi": "kiện hàng",
+    "pronunciation": "/ˈpɑː.səl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=parcel&lang=en-US&ipa=%2F%CB%88p%C9%91%CB%90.s%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+    "example": "There's a parcel and some letters for you."
+  },
+  {
+    "word_id": 36,
+    "en": "pasta",
+    "vi": "mì ống và nui",
+    "pronunciation": "/ˈpæs.tə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pasta&lang=en-US&ipa=%2F%CB%88p%C3%A6s.t%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+    "example": "Toss the pasta with the hot sauce."
+  },
+  {
+    "word_id": 37,
+    "en": "periodical",
+    "vi": "tạp chí xuất bản định kỳ",
+    "pronunciation": "/ˌpɪəriˈɒdɪkl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=periodical&lang=en-US&ipa=%2F%CB%8Cp%C9%AA%C9%99ri%CB%88%C9%92d%C9%AAkl%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+    "example": "The university library stocks some 5 000 current periodical."
+  },
+  {
+    "word_id": 38,
+    "en": "pill",
+    "vi": "thuốc dạng viên nén",
+    "pronunciation": "/pɪl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pill&lang=en-US&ipa=%2Fp%C9%AAl%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+    "example": "The doctor prescribed her some pill to help her sleep."
+  },
+  {
+    "word_id": 39,
+    "en": "portable",
+    "vi": "vật xách tay",
+    "pronunciation": "/ˈpɔː.tə.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=portable&lang=en-US&ipa=%2F%CB%88p%C9%94%CB%90.t%C9%99.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+    "example": "We specialize in handheld PCs and other portable."
+  },
+  {
+    "word_id": 40,
+    "en": "punctual",
+    "vi": "đúng giờ",
+    "pronunciation": "/ˈpʌŋk.tʃu.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=punctual&lang=en-US&ipa=%2F%CB%88p%CA%8C%C5%8Bk.t%CA%83u.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+    "example": "The successful candidate will be efficient, neat, and punctual."
+  },
+  {
+    "word_id": 41,
+    "en": "recreation",
+    "vi": "thời gian rảnh rỗi",
+    "pronunciation": "/ˌrek.riˈeɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=recreation&lang=en-US&ipa=%2F%CB%8Crek.ri%CB%88e%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+    "example": "His favourite recreation are golf and playing Scrabble."
+  },
+  {
+    "word_id": 42,
+    "en": "relieve",
+    "vi": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+    "pronunciation": "/rɪˈliːv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=relieve&lang=en-US&ipa=%2Fr%C9%AA%CB%88li%CB%90v%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+    "example": "There must be some way you can relieve the pain."
+  },
+  {
+    "word_id": 43,
+    "en": "reminder",
+    "vi": "cái làm nhớ lại (một điều gì)",
+    "pronunciation": "/rɪˈmaɪn.dər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reminder&lang=en-US&ipa=%2Fr%C9%AA%CB%88ma%C9%AAn.d%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+    "example": "The monument stands as a chilling reminder of man's inhumanity to man."
+  },
+  {
+    "word_id": 44,
+    "en": "rumor",
+    "vi": "tin đồn",
+    "pronunciation": "/ˈruː.mər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rumor&lang=en-US&ipa=%2F%CB%88ru%CB%90.m%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+    "example": "rumor are going around (the school) about Mr. Mason and his assistant."
+  },
+  {
+    "word_id": 45,
+    "en": "scarf",
+    "vi": "khăn quàng cổ",
+    "pronunciation": "/skɑːrf/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=scarf&lang=en-US&ipa=%2Fsk%C9%91%CB%90rf%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+    "example": "He had a woollen scarf around his neck."
+  },
+  {
+    "word_id": 46,
+    "en": "seaside",
+    "vi": "bên bờ biển",
+    "pronunciation": "/ˈsiː.saɪd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=seaside&lang=en-US&ipa=%2F%CB%88si%CB%90.sa%C9%AAd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+    "example": "a trip to the seaside"
+  },
+  {
+    "word_id": 47,
+    "en": "shorten",
+    "vi": "rút ngắn",
+    "pronunciation": "/ˈʃɔː.tən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=shorten&lang=en-US&ipa=%2F%CB%88%CA%83%C9%94%CB%90.t%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+    "example": "I'd like to have this jacket shorten by about two inches."
+  },
+  {
+    "word_id": 48,
+    "en": "specially",
+    "vi": "đặc biệt",
+    "pronunciation": "/ˈspeʃ.əl.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=specially&lang=en-US&ipa=%2F%CB%88spe%CA%83.%C9%99l.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+    "example": "She seemed specially keen to talk to him."
+  },
+  {
+    "word_id": 49,
+    "en": "spill",
+    "vi": "làm đổ",
+    "pronunciation": "/spɪl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spill&lang=en-US&ipa=%2Fsp%C9%AAl%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+    "example": "I spill coffee on my silk shirt."
+  },
+  {
+    "word_id": 50,
+    "en": "spouse",
+    "vi": "chồng; vợ",
+    "pronunciation": "/spaʊs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spouse&lang=en-US&ipa=%2Fspa%CA%8As%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+    "example": "In 60 percent of the households surveyed both spouse went out to work."
+  },
+  {
+    "word_id": 51,
+    "en": "subtract",
+    "vi": "trừ đi, lấy đi",
+    "pronunciation": "/səbˈtrækt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=subtract&lang=en-US&ipa=%2Fs%C9%99b%CB%88tr%C3%A6kt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+    "example": "The costs of manufacturing are subtract from revenue."
+  },
+  {
+    "word_id": 52,
+    "en": "tablet",
+    "vi": "Tấm, bản, thẻ, phiến",
+    "pronunciation": "/ˈtæb.lət/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tablet&lang=en-US&ipa=%2F%CB%88t%C3%A6b.l%C9%99t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+    "example": "The poem was engraved on a tablet of stone."
+  },
+  {
+    "word_id": 53,
+    "en": "ton",
+    "vi": "tấn (đơn vị đo)",
+    "pronunciation": "/tʌn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ton&lang=en-US&ipa=%2Ft%CA%8Cn%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+    "example": "Customs officers have seized nearly a ton of heroin destined for New York."
+  },
+  {
+    "word_id": 54,
+    "en": "vend",
+    "vi": "bán (hàng hóa)",
+    "pronunciation": "/vend/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vend&lang=en-US&ipa=%2Fvend%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+    "example": "Some websites vend a bizarre array of items."
+  },
+  {
+    "word_id": 55,
+    "en": "yoga",
+    "vi": "yoga",
+    "pronunciation": "/ˈjəʊ.ɡə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=yoga&lang=en-US&ipa=%2F%CB%88j%C9%99%CA%8A.%C9%A1%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+    "example": "He attends regular yoga classes."
+  }
+]

@@ -1,0 +1,440 @@
+[
+  {
+    "question_id": "p4_q1",
+    "question_number": 71,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_3_71_73.mp3",
+    "questionText": "Where is the announcement most likely being made?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a train station"
+      },
+      {
+        "label": "B",
+        "text": "At a bus station"
+      },
+      {
+        "label": "C",
+        "text": "At an airport"
+      },
+      {
+        "label": "D",
+        "text": "At a ferry terminal"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "(71) Attention, passengers. On Monday, some of our major bus routes will begin departing from another part of the station. All buses to Freeport, Johnstown, and Grant City will be leaving from gates 300 through 305 on the west side of the building. (72) This change will help us to improve traffic flow. (73) Since the new gates are a ten-minute walk from the ticket counter, we recommend allowing yourself extra time to walk there.",
+    "translation": "(71) Hành khách chú ý. Vào thứ Hai, một số tuyến xe buýt chính của chúng tôi sẽ bắt đầu khởi hành từ một phần khác của nhà ga. Tất cả các chuyến xe buýt đến Freeport, Johnstown và Grant City sẽ khởi hành từ cổng 300 đến 305 ở phía tây của tòa nhà. (72) Thay đổi này sẽ giúp chúng ta cải thiện lưu lượng giao thông. (73) Vì các cổng mới cách quầy vé mười phút đi bộ, chúng tôi khuyên bạn nên cho phép mình có thêm thời gian để đi bộ đến đó.",
+    "explanation": {
+      "D": "ựa vào mạch nói, thường là câu đầu tiên, thông tin nằm ở phần chào hỏi, giới thiệu, thông báo vấn đề. Nghe được",
+      "A": "ttention, passengers. On Monday, some of our major bus routes will begin departing from another part of the station",
+      "C": "âu hỏi về địa điểm diễn ra thông báo",
+      "note": "Dạng bài Announcement - Thông báo. Câu hỏi về địa điểm diễn ra thông báo. Dựa vào mạch nói, thường là câu đầu tiên, thông tin nằm ở phần chào hỏi, giới thiệu, thông báo vấn đề. Nghe được Attention, passengers. On Monday, some of our major bus routes will begin departing from another part of the station. → Hành khách chú ý. Vào thứ Hai, một số tuyến xe buýt chính của chúng tôi sẽ bắt đầu khởi hành từ một phần khác của nhà ga. Keyword: passengers (hành khách), bus routes (tuyến xe buýt), departing (khởi hành), station (nhà ga)→ Đáp án: B"
+    }
+  },
+  {
+    "question_id": "p4_q2",
+    "question_number": 83,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_2_83_85.mp3",
+    "questionText": "Where is the announcement being made?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a technology firm"
+      },
+      {
+        "label": "B",
+        "text": "At a repair shop"
+      },
+      {
+        "label": "C",
+        "text": "At a factory"
+      },
+      {
+        "label": "D",
+        "text": "At a law office"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "(83) Attention, Home Furniture factory employees. The software program we use for clocking in and out isn't working. This means you cannot enter your hours electronically. Instead, (84) when your shift's over, please write your start and end time on the form that's on the receptionist's desk. The form already includes your name and the machine you operate. I know this is a hassle, but it's only temporary - (85) the time reporting software will be working when you get to the factory tomorrow morning.",
+    "translation": "(83) Chú ý, nhân viên nhà máy Home Furniture. Chương trình phần mềm chúng ta sử dụng để theo dõi thời gian ra vào không hoạt động. Điều này có nghĩa là các bạn không thể nhập giờ của mình theo cách điện tử. Thay vào đó, (84) khi ca làm việc của các bạn kết thúc, vui lòng viết thời gian bắt đầu và kết thúc của bạn vào biểu mẫu trên bàn tiếp tân. Biểu mẫu đã bao gồm tên của bạn và máy bạn vận hành. Tôi biết đây là một rắc rối, nhưng đó chỉ là tạm thời - (85) phần mềm báo cáo thời gian sẽ hoạt động khi các bạn đến nhà máy vào sáng mai.",
+    "explanation": {
+      "D": "ạng bài",
+      "A": "ttention, Home Furniture factory employees",
+      "C": "họn",
+      "note": "Dạng bài Announcement - Thông báo. Câu hỏi về địa điểm thông báo → Thông tin thường nằm ở phần đầu tiên. Nghe được Attention, Home Furniture factory employees. → Tất cả công nhân của nhà máy Home Furniture chú ý. → Thông báo tại nhà máy Home Furniture. Keyword: factory (nhà máy)→ Chọn C"
+    }
+  },
+  {
+    "question_id": "p4_q3",
+    "question_number": 83,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_83_85.mp3",
+    "questionText": "What is the purpose of the plan?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To support local businesses"
+      },
+      {
+        "label": "B",
+        "text": "To promote tourism"
+      },
+      {
+        "label": "C",
+        "text": "To decrease traffic"
+      },
+      {
+        "label": "D",
+        "text": "To reduce government spending"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Welcome, everyone. (83) On behalf of the Department of Transportation, I'd like to announce a new experimental program to reduce traffic in Greenville. Beginning in January, there will be a ten-dollar fee for each car that enters the city. (84) There will, however, be a lower fee for people who commute to Greenville for work. They will be asked to pay five dollars rather than ten dollars. These charges are aimed at deterring drivers from coming into this very crowded area. (85) The program will be in effect for three months. After that, we will determine if the program has decreased traffic congestion enough to continue it permanently.",
+    "translation": "Chào mừng tất cả mọi người. (83) Thay mặt Sở Giao thông vận tải, tôi muốn thông báo một chương trình thử nghiệm mới để giảm lưu lượng giao thông ở Greenville. Bắt đầu từ tháng Giêng, sẽ có một khoản phí 10 đô la cho mỗi chiếc xe hơi vào thành phố. (84) Tuy nhiên, sẽ có mức phí thấp hơn cho những người đến Greenville để làm việc. Họ sẽ được yêu cầu trả năm đô la thay vì mười đô la. Những khoản phí này nhằm mục đích răn đe các tài xế đi vào khu vực rất đông đúc này. (85) Chương trình sẽ có hiệu lực trong ba tháng. Sau đó, chúng tôi sẽ xác định xem chương trình đã giảm tắc nghẽn giao thông đủ để tiếp tục nó vĩnh viễn hay chưa.",
+    "explanation": {
+      "D": "ựa trên mạch nói của bài thông báo, thông tin sẽ nằm ở câu thứ hai sau phần chào hỏi/ giới thiệu người nói. Nghe được I'd like to announce a new experimental program to reduce traffic in Greenville",
+      "A": "nnouncement (thông báo)",
+      "C": "âu hỏi về mục đích của thông báo",
+      "note": "Dạng bài: Announcement (thông báo). Câu hỏi về mục đích của thông báo. Dựa trên mạch nói của bài thông báo, thông tin sẽ nằm ở câu thứ hai sau phần chào hỏi/ giới thiệu người nói. Nghe được I'd like to announce a new experimental program to reduce traffic in Greenville. → tôi muốn thông báo một chương trình thử nghiệm mới để giảm lưu lượng giao thông ở Greenville → Thông báo này nhằm mục đích nói về chương trình thử nghiệm mới. Keyword: reduce (giảm)→ Đáp án: C"
+    }
+  },
+  {
+    "question_id": "p4_q4",
+    "question_number": 77,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_77_79.mp3",
+    "questionText": "Where does the announcement take place?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a sports arena"
+      },
+      {
+        "label": "B",
+        "text": "At a concert hall"
+      },
+      {
+        "label": "C",
+        "text": "At an art museum"
+      },
+      {
+        "label": "D",
+        "text": "At a movie theater"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W-Br Attention, everyone. (77) Unfortunately, we've had to stop the movie. As you've probably noticed, (78) we're having technical difficulties with the audio. I'm very sorry about this-we take our sound quality seriously and want you to know we'll have technicians here as soon as possible to resolve this issue. As you exit, (79) please stop by the customer service desk in the lobby to pick up two free tickets for your next movie. Again, my apologies for the inconvenience.",
+    "translation": "W-Br Xin hãy chú ý, mọi người. (77) Thật không may, chúng tôi đã phải dừng bộ phim. Như các bạn có thể đã nhận thấy, (78) chúng tôi đang gặp sự cố kỹ thuật với âm thanh. Tôi rất tiếc về điều này - chúng tôi rất coi trọng chất lượng âm thanh của mình và muốn các bạn biết rằng chúng tôi sẽ có kỹ thuật viên ở đây sớm nhất có thể để giải quyết vấn đề này. Khi bạn ra về, (79) vui lòng ghé lại quầy dịch vụ khách hàng ở sảnh đợi để nhận hai vé miễn phí cho bộ phim tiếp theo của các bạn. Một lần nữa, tôi xin lỗi vì sự bất tiện này.",
+    "explanation": {
+      "A": "Tại một đấu trường thể thao",
+      "B": "Tại phòng hòa nhạc",
+      "C": "Tại một bảo tàng nghệ thuật",
+      "D": "Tại rạp chiếu phimĐây là một câu hỏi về địa điểm hội thoại, cần nghe toàn bộ bài và chú ý vào các từ khóa liên quan. Trong đoạn có những từ khoá ‘movie’, ‘audio’, ‘tickets’, tất cả đều dẫn đến đáp án",
+      "note": "D"
+    }
+  },
+  {
+    "question_id": "p4_q5",
+    "question_number": 71,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_4_71_73.mp3",
+    "questionText": "Who are the listeners?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Residents in an apartment building"
+      },
+      {
+        "label": "B",
+        "text": "Employees in an office building"
+      },
+      {
+        "label": "C",
+        "text": "Visitors to a historical site"
+      },
+      {
+        "label": "D",
+        "text": "Guests in a hotel"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "W-Am (71) Hello, Fairview Apartment residents. This is your property manager. (72) Due to repairs to the main water line along Chasman Boulevard, water service to all units at Fairview will be temporarily shut off on July fifteenth. I estimate that regular service will resume fully by five o'clock, though (73) I recommend checking the building's social media page periodically. There'll be updates posted about possible delays. Thank you in advance for your patience and understanding.",
+    "translation": "W-Am (71) Xin chào, cư dân Fairview Apartment. Đây là người quản lý khu nhà của bạn. (72) Do việc sửa chữa đường nước chính dọc theo Đại lộ Chasman, dịch vụ cấp nước cho tất cả các dãy nhà tại Fairview sẽ tạm thời ngừng hoạt động vào ngày 15 tháng 7. Tôi ước tính rằng dịch vụ bình thường sẽ hoạt động trở lại hoàn toàn trước 5 giờ, tuy nhiên (73) tôi khuyên các bạn nên kiểm tra trang mạng xã hội của tòa nhà theo định kỳ. Sẽ có thông tin cập nhật được đăng về sự chậm trễ có thể xảy ra. Cảm ơn các bạn trước vì sự kiên nhẫn và sự hiểu biết của các bạn.",
+    "explanation": {
+      "C": "âu chứa đáp án là ‘Hello, Fairview",
+      "B": "Nhân viên trong tòa nhà văn phòng",
+      "D": "Khách trong khách sạnĐây là câu hỏi danh tính người nghe",
+      "A": "partment residents.’, từ khoá nghe được là apartment và residents",
+      "note": "Do đó chọn"
+    }
+  },
+  {
+    "question_id": "p4_q6",
+    "question_number": 74,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_4_74_76.mp3",
+    "questionText": "Where does the announcement most likely take place?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a train station"
+      },
+      {
+        "label": "B",
+        "text": "At a convention center"
+      },
+      {
+        "label": "C",
+        "text": "At a restaurant"
+      },
+      {
+        "label": "D",
+        "text": "At an outdoor market"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W-Br (74) Before we begin tonight's dinner shift, I have some announcements. (75) Our grilled tuna dish was so popular last night that we actually sold out of it for the rest of the weekend. Please let diners know that it's not available. Also, we'll be dividing up the servers this evening-half of you will be working in the main dining room, and the rest of you will be in the special-events room for a private party. (76) It's going to be a busy evening, so I encourage you to help each other provide great service for our customers.",
+    "translation": "W-Br (74) Trước khi chúng ta bắt đầu ca ăn tối tối nay, tôi có một số thông báo. (75) Món cá ngừ nướng của chúng ta tối qua nổi tiếng đến nỗi chúng ta thực sự đã bán hết sạch cho những ngày cuối tuần còn lại. Xin vui lòng cho thực khách biết rằng nó không còn có sẵn. Ngoài ra, chúng ta sẽ chia những người phục vụ vào buổi tối này, một nửa số các bạn sẽ làm việc trong phòng ăn chính và phần còn lại của các bạn sẽ ở trong phòng sự kiện đặc biệt cho một bữa tiệc riêng. (76) Sẽ là một buổi tối bận rộn, vì vậy tôi khuyến khích các bạn giúp đỡ lẫn nhau để cung cấp dịch vụ tuyệt vời cho khách hàng của chúng ta.",
+    "explanation": {
+      "A": "Tại một nhà ga xe lửa",
+      "B": "Tại một trung tâm hội nghị",
+      "C": "họn đáp án",
+      "D": "Tại một khu chợ ngoài trờiĐây là câu hỏi về địa điểm, thông tin sẽ nằm ở đầu đoạn văn khi người nói nói về mục đích thông báo. Từ khoá nghe được là ‘tonight's dinner shift’, nên người nói làm việc ở nhà hàng",
+      "note": "C. Tại một nhà hàng. Chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p4_q7",
+    "question_number": 95,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_4_95_97.mp3",
+    "questionText": "Where is the announcement being made?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a supermarket"
+      },
+      {
+        "label": "B",
+        "text": "At a clothing store"
+      },
+      {
+        "label": "C",
+        "text": "At an office supply store"
+      },
+      {
+        "label": "D",
+        "text": "At a home garden center"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W-Br Attention shoppers! (95) Thanks for coming to Link Office Superstore's annual sale. We offer the best prices in town on office supplies, desks, and chairs. There are a lot of people here for our special deals today, so lines for the cashiers are rather long. (96) To help speed up the checkout process, please use the express lane located near the exit if you're buying five items or fewer. Also, (97) if you're purchasing a large item and need help moving it, just let one of the employees know and they'll help you bring the item to your vehicle.",
+    "translation": "W-Br Người mua sắm chú ý! (95) Cảm ơn các bạn đã đến tham gia chương trình giảm giá hàng năm của Link Office Superstore. Chúng tôi cung cấp giá tốt nhất trong thị trấn về đồ dùng văn phòng, bàn và ghế. Có rất nhiều người ở đây cho các deal đặc biệt của chúng tôi ngày hôm nay, vì vậy hàng cho nhân viên thu ngân khá dài. (96) Để giúp đẩy nhanh quá trình thanh toán, vui lòng sử dụng làn nhanh gần lối ra nếu bạn đang mua năm mặt hàng trở xuống. Ngoài ra, (97) nếu bạn đang mua một món hàng lớn và cần hỗ trợ di chuyển, chỉ cần cho một trong các nhân viên biết và họ sẽ giúp bạn mang món hàng đó lên xe của bạn.",
+    "explanation": {
+      "A": "Ở siêu thị",
+      "B": "Tại một cửa hàng quần áo",
+      "C": "âu chứa đáp án là ‘Thanks for coming to Link Office Superstore's annual sale. We offer the best prices in town on office supplies, desks, and chairs.’, các keyword nghe được là ‘Office Superstore's’, ‘office supplies, desks, and chairs’. Đáp án",
+      "D": "Tại một trung tâm vườn nhàĐây là câu hỏi về địa điểm",
+      "note": "C. Tại cửa hàng văn phòng phẩm. Câu chứa đáp án là ‘Thanks for coming to Link Office Superstore's annual sale. We offer the best prices in town on office supplies, desks, and chairs.’, các keyword nghe được là ‘Office Superstore's’, ‘office supplies, desks, and chairs’. Đáp án C"
+    }
+  },
+  {
+    "question_id": "p4_q8",
+    "question_number": 95,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_5_95_97.mp3",
+    "questionText": "According to the speaker, what will happen this Friday?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A delivery will arrive"
+      },
+      {
+        "label": "B",
+        "text": "A holiday sale will begin"
+      },
+      {
+        "label": "C",
+        "text": "An employee will retire"
+      },
+      {
+        "label": "D",
+        "text": "An author will visit"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "W-Br Attention, book lovers! The Regal Reader bookstore is excited to announce the beginning of its summer author series. (95) Join us this Friday when renowned author Karima Samir will visit the store to read from her books, sign copies, and chat with customers. (96) Stop by our history aisle to find her latest book about fascinating North Africa. And (97) make sure you enter our annual drawing while you're here to win a five-dollar gift card for our café! Use it to purchase any of our freshly brewed coffees or homemade pastries.",
+    "translation": "W-Br Chú ý, những người yêu sách! Hiệu sách Regal Reader vui mừng thông báo bắt đầu loạt tác giả mùa hè của mình. (95) Tham gia với chúng tôi vào thứ Sáu tuần này khi tác giả nổi tiếng Karima Samir sẽ ghé thăm cửa hàng để đọc sách của cô ấy, ký các bản sao và trò chuyện với khách hàng. (96) Dừng lại trên lối đi lịch sử của chúng tôi để tìm cuốn sách mới nhất của cô ấy về Bắc Phi hấp dẫn. Và (97) hãy đảm bảo rằng bạn tham gia chương trình rút thăm hàng năm của chúng tôi khi bạn ở đây để giành được thẻ quà tặng trị giá 5 đô la cho quán cà phê của chúng tôi! Sử dụng nó để mua bất kỳ loại cà phê mới pha hoặc bánh ngọt tự làm nào của chúng tôi.",
+    "explanation": {
+      "A": "Một giao hàng sẽ đến",
+      "B": "Một đợt giảm giá vào dịp lễ sẽ bắt đầu",
+      "C": "họn đáp án",
+      "D": "Một tác giả sẽ đến thăm.Đây là câu hỏi về hành động trong tương lai. Từ khoá cần chú ý là ‘Friday’, dấu hiệu thông tin sắp đến là ‘announce the beginning of its summer author series’, thông tin sắp tới sẽ liên quan đến sự kiện của tác giả mùa hè",
+      "note": "..C. Một nhân viên sẽ nghỉ hưu.. Câu chứa đáp án là ‘Join us this Friday when renowned author Karima Samir will visit the store’, các từ khoá nghe được là ‘this Friday’, ‘author’ và ‘visit the store’. Chọn đáp án D"
+    }
+  },
+  {
+    "question_id": "p4_q9",
+    "question_number": 77,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_77_79.mp3",
+    "questionText": "What has caused the problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A traffic accident"
+      },
+      {
+        "label": "B",
+        "text": "A heavy workload"
+      },
+      {
+        "label": "C",
+        "text": "Inclement weather"
+      },
+      {
+        "label": "D",
+        "text": "A vehicle malfunction"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Attention, passengers. Our arrival in Chicago is expected to be somewhat behind schedule. Due to the heavy snowfall, our bus driver must use appropriate caution and drive at a slower speed. Therefore, we will probably be arriving an hour later than our scheduled arrival time, which was 5:00 P.M. Although these circumstances are out of our control, we do apologize for any inconvenience it may cause you. We would like to remind passengers that this bus offers a free Wi-Fi connection. This is just one of the amenities that make riding with us more comfortable than with our competitors.",
+    "translation": "Chú ý, các hành khách. Thời gian đến Chicago dự kiến ​​sẽ trễ hơn so với lịch trình. Do tuyết rơi dày, tài xế xe buýt của chúng ta phải có sự thận trọng cần thiết và lái xe với tốc độ chậm hơn. Do đó, chúng ta có thể sẽ đến muộn hơn một tiếng so với thời gian đến dự kiến ​​của chúng ta là 5 giờ chiều. Mặc dù những trường hợp này nằm ngoài tầm kiểm soát của chúng tôi, chúng tôi xin lỗi vì bất kỳ sự bất tiện nào mà nó có thể gây ra cho bạn. Chúng tôi muốn nhắc các hành khách rằng xe buýt này cung cấp kết nối Wi-Fi miễn phí. Đây chỉ là một trong những tiện nghi giúp cho việc đi xe với chúng tôi thoải mái hơn so với các hãng cạnh tranh của chúng tôi.",
+    "explanation": {
+      "A": "Một vụ tai nạn giao thông",
+      "B": "Khối lượng công việc nặng nề",
+      "C": "họn",
+      "D": "o tuyết rơi dày, tài xế xe buýt của chúng ta phải có sự thận trọng cần thiết và lái xe với tốc độ chậm hơn.)",
+      "note": "Thông tin thường nằm ở những câu thoại đầu tiên"
+    }
+  },
+  {
+    "question_id": "p4_q10",
+    "question_number": 83,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_83_85.mp3",
+    "questionText": "What type of products are being discussed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Computer parts"
+      },
+      {
+        "label": "B",
+        "text": "Hair products"
+      },
+      {
+        "label": "C",
+        "text": "Beauty products"
+      },
+      {
+        "label": "D",
+        "text": "Cell phones"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Great news everybody! Quarterly profits are up 23%. The introduction of our new range of body washes has exceeded all of our expectations. Our other products have continued to sell well, particularly our facial creams and hand creams. Last month our products were featured in En Vogue magazine, and they had a three-page story on the quality of our manufacturing process. This must have helped with our sales increase. We are expecting more media exposure in the following months, and the release of several new products. How about that? I'm proud of all the work you have put into this quarter. Let's keep it up!",
+    "translation": "Tin tốt đây mọi người! Lợi nhuận hằng quý tăng 23%. Việc giới thiệu một loạt các dòng sữa tắm toàn thân mới của chúng ta đã vượt qua mọi sự kì vọng của chúng ta. Các sản phẩm khác của chúng ta đã tiếp tục được bán tốt, đặc biệt là kem thoa mặt và kem thoa tay. Tháng trước các sản phẩm của chúng ta đã được đăng trên tạp chí En Vogue, và họ đã có một câu chuyện dài ba trang về chất lượng quy trình sản xuất của chúng ta. Điều này hẳn phải giúp tăng doanh số bán hàng của chúng ta. Dự kiến những tháng tiếp theo sẽ tăng mức độ tiếp xúc với truyền thông hơn, và ra mắt một số sản phẩm mới. Thật bất ngờ phải không? Tôi tự hào về tất cả công việc mà các bạn đã làm vào quý này. Hãy giữ vững thành tích này!",
+    "explanation": {
+      "C": "họn",
+      "B": "Sản phẩm dành cho tóc",
+      "D": "Điện thoại di động",
+      "note": "Thông tin thường nằm ở những câu đầu tiên"
+    }
+  },
+  {
+    "question_id": "p4_q11",
+    "question_number": 95,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_8_95_97.mp3",
+    "questionText": "What is the speaker's company planning to purchase?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A 3-D printer"
+      },
+      {
+        "label": "B",
+        "text": "A large-screen television"
+      },
+      {
+        "label": "C",
+        "text": "Some new laptops"
+      },
+      {
+        "label": "D",
+        "text": "Some adjustable desks"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "W-Am I have an announcement for the team. (95) We'll be making a big purchase-a top-of the-line 3-D printer. (96) We've been outsourcing the work to a printing company, but it recently doubled its prices. We think it's time to have our own in-house printer. The only issue is size-the only space big enough for the new machine is the office next to the reception area, so we'll be rearranging our work space. (97) Jerome, I'm sorry, but you'll have to move. We hope you won't mind using the office in the corner across from the conference room.",
+    "translation": "W-Am Tôi có một thông báo cho nhóm. (95) Chúng ta sẽ thực hiện một vụ mua bán lớn - một máy in 3-D hàng đầu. (96) Chúng ta đã thuê gia công tác phẩm cho một công ty in, nhưng gần đây giá của nó đã tăng gấp đôi. Chúng tôi nghĩ rằng đã đến lúc có máy in của riêng chúng ta ngay ở đây. Vấn đề duy nhất là kích thước - không gian duy nhất đủ lớn cho chiếc máy mới là văn phòng bên cạnh khu vực lễ tân, vì vậy chúng ta sẽ sắp xếp lại không gian làm việc của mình. (97) Jerome, tôi xin lỗi, nhưng bạn sẽ phải dịch chuyển không gian làm việc. Chúng tôi hy vọng bạn sẽ không phiền khi sử dụng văn phòng ở góc đối diện với phòng họp.",
+    "explanation": {
+      "C": "Một số laptop mới",
+      "A": "Máy in 3-",
+      "B": "Một chiếc tivi màn hình lớn",
+      "D": "printer’",
+      "note": "Do vậy chọn"
+    }
+  },
+  {
+    "question_id": "p4_q12",
+    "question_number": 74,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_10_74_76.mp3",
+    "questionText": "What award is being announced?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Best design"
+      },
+      {
+        "label": "B",
+        "text": "Top salesperson"
+      },
+      {
+        "label": "C",
+        "text": "Employee of the month"
+      },
+      {
+        "label": "D",
+        "text": "Excellence in research"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "W-Am Good afternoon, everyone. As you know, (74) it's time to announce our newest employee of the month, and it goes to Haru Watanabe. Congratulations! Haru did outstanding work this month securing the Thompson Limited account. He also volunteers in the community. (75) As our winner, Haru will receive a preferred parking space right outside the building for the next 30 days. Haru, please come up here to have your picture taken. (76) Like all our employees of the month, your photo will be featured on the company Web site.",
+    "translation": "W-Am Chào buổi chiều, tất cả mọi người. Như các bạn đã biết, (74) đã đến lúc công bố nhân viên của tháng mới nhất của chúng ta, và đó là Haru Watanabe. Xin chúc mừng! Haru đã làm việc xuất sắc trong tháng này để đảm bảo tài khoản Thompson Limited. Anh ấy cũng là tình nguyện viên trong cộng đồng. (75) Là người chiến thắng của chúng ta, Haru sẽ nhận được một chỗ đậu xe ưu tiên ngay bên ngoài tòa nhà trong 30 ngày tới. Haru, hãy lên đây để chụp ảnh. (76) Giống như tất cả nhân viên của chúng ta trong tháng, ảnh của bạn sẽ được đăng trên trang Web của công ty.",
+    "explanation": {
+      "A": "Thiết kế tốt nhất",
+      "B": "Nhân viên bán hàng hàng đầu",
+      "C": "Nhân viên của tháng",
+      "D": "Sự xuất sắc trong nghiên cứuĐây là câu hỏi tìm thông tin, từ khóa cần nghe là ‘award’ và ‘announced’, dấu hiệu thông tin sắp đến là ‘t's time to announce’, từ khoá chứa đáp án là ‘employee of the month’, tương ứng với đáp án",
+      "note": "C"
+    }
+  },
+  {
+    "question_id": "p4_q13",
+    "question_number": 77,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619575624.mp3",
+    "questionText": "Where is the announcement being made?",
+    "options": [
+      {
+        "label": "A",
+        "text": "At a public park"
+      },
+      {
+        "label": "B",
+        "text": "At a fitness center"
+      },
+      {
+        "label": "C",
+        "text": "At a pool-cleaning company"
+      },
+      {
+        "label": "D",
+        "text": "At a hotel"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "M: (77) Attention, Bly Street Fitness Center members. We apologize for interrupting your workout, but we thought you might like to know that our indoor pool complex is now complete! This means that you, as a fitness center member, can enjoy all the benefits of (78) our new Olympic Size pool, including enough lanes to accommodate a large number of swimmers. (79) The pool hours will be slightly different than the rest of the center's, so please check our Web site for details about that.",
+    "translation": "M: Xin chú ý, các thành viên của Trung tâm thể dục phố Bly. Chúng tôi xin lỗi vì đã làm gián đoạn buổi tập của bạn, nhưng chúng tôi nghĩ rằng bạn có thể muốn biết rằng khu phức hợp hồ bơi trong nhà của chúng tôi hiện đã hoàn thành! Điều này có nghĩa là bạn, với tư cách là thành viên của trung tâm thể dục, có thể tận hưởng tất cả các lợi ích của hồ bơi mới với kích thước Olympic của chúng tôi, bao gồm đủ làn bơi để đáp ứng một số lượng lớn người bơi. Giờ hoạt động hồ bơi sẽ hơi khác so với các hoạt động khác của trung tâm, vì vậy vui lòng kiểm tra trang Web của chúng tôi để biết thêm chi tiết.",
+    "explanation": {
+      "A": "Tại công viên công cộng",
+      "B": "ly Street Fitness",
+      "C": "enter’",
+      "D": "Tại một khách sạnĐây là câu hỏi về địa điểm bài nói, thông tin về địa điểm có ở phần đầu khi người nói giới thiệu ‘",
+      "note": "Chọn"
+    }
+  }
+]

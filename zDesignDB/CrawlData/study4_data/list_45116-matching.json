@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "lối sống, cách sống",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_126191981_Dwbz5ceqLAYxQ8qwsNAUOAUIBZ7hSU6V.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lifestyle"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "bài kiểm tra tổng quát",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/article_img_cardiac-procedures-and-preventive-health-checkups-thumb.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "checkup"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "Vật liệu, vải",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_fabric-la-gi-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fabric"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "ngoại lai",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/23_47929525-0-image-a-7_1631660140068.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "exotic"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "vỉ nướng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/S42d246eaf93d451ea3959254310d25998_Smokeless-Barbecue-Grill-Pan-Non-Stick-Gas-Stove-Plate-Electric-Stove-Baking-Tray-BBQ-Grill-Barbecue.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "grill"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "vấn đề khó giải quyết, vấn đề nan giải",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/73_1000_F_33407359_C4NyWB1PinM17Cy2Og4cFmfocTSAsHIu.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "puzzle"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "vô giá",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_351871576_RYU3U90LSVZwUkWLTXhIfP8uEW0N9dIR.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "invaluable"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự tổng quát hoá, sự tổng hợp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/87_694e87de0c5b8f3db3a6a773d3cf04db.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "generalization"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thường lệ, theo thói quen",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "habitual"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "cũng như thế, cũng như vậy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_110244872_PEr8meZjtbD2r46d5HgnP71uBEYU6U2M.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "likewise"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "vật lý học (Nghiên cứu khoa học về vật chất và năng lượng và các mối quan hệ giữa chúng, bao gồm nghiên cứu lực, nhiệt, ánh sáng, âm thanh, điện và cấu trúc của nguyên tử)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_115712387_b5P3N0qexf60lmXwPpQfdJ840PznzFaQ.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "physics"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "số tiền được chiết khấu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_498229793_sJusSAfXw4gWQLR74wsjlXVm3WmkXHyt.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rebate"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "có tuyết rơi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_298961354_1HX1nh6Xx4v61Od2o2emmSGWC3GiRC1I.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "snowy"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "sự chỉ đạo, sự hướng dẫn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-vector_businessman-following-arrow-sign-under-260nw-2045369363.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "guidance"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "chờ đợi, hoặc mong đợi, một cái gì đó sẽ xảy ra",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/img_await.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "await"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách riêng biệt, riêng lẻ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Official_13873.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "individually"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "ban nhạc, dàn nhạc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_68957026_BR1lT05rDzLZKkxunlpFmRMZTNK3JImK.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "orchestra"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "xấp xỉ, gần đúng với",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-vector_approximately-equal-symbol-two-waves-260nw-404350573.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "approximate"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "viễn thông",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_263924573_wuJrFc39SK9pD2j9CPkHZfECoicz6PLs.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "telecommunication"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "tấm chăn, cái mền",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/products_DSC07746_1_6177bc9b-1f76-4e57-ba00-0c09846375a8_1024x1024.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "blanket"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "Một cây gậy dài",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_1000_F_434041017_pwTc3ad4defSv154mpfvKrshISFalXhQ.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pole"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "it tuổi hơn; ít thâm niên hơn; ở cấp dưới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_28168014_e9CMDnAPVjL7siLATIVIrLaZ8SBkupdO.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "junior"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "làm gián đoạn và gây ra sự hỗn loạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_bigstock-Hand-Blocking-The-Growth-Arrow-364138390.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "disrupt"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "không thoải mái hoặc hài lòng với một tình huống hoặc điều gì đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_490266713_O8Mq26ot2bv00DZDmyjm1Rlg2q2spcqB.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "uncomfortable"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "máy trục, cần cẩu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/uploads_kiL8jgmMSafPY6mv15PCVtAJzUpv0QGE1604495671-3.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "crane"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "xảy ra một lần nữa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/29_1000_F_508842986_YlYuMK4Y5Cl1R2G82OZoDKUvltnzOaPN.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "recur"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "năng động, sôi nổi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_why-organizational-maturity-matters-for-organic-marketing-6093a6f48b753-1520x800.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "dynamic"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "từ thiện",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_2019_02_8-Types-of-Charitable-Giving-for-Philanthropy-and-Tax-Benefits-1200x628.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "charitable"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "làm việc tự do",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_freelance-community.jpg.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "freelance"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "do dự, lưỡng lự",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "hesitant"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "liên quan đến môi trường tự nhiên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/uploaded_4-ways-for-governments-to-be-more-environmentally-friendly.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "environmentally"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "có tổ chức",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_277712550_auc7F8wkxXFcJYLITt3eGcA6meMlbiU1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "organizational"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "người đưa tin",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_439395098_mYf0bPlmyOvHnuFSFl07xMQ2y6BYansD.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "messenger"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "đáng tin cậy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_betrouwbaarheid23.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dependable"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "quan điểm, cách nhìn nhận",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/70_1000_F_291877047_qki5vuGAFSrpX8P2DwEkbl2GZRZ3nJ6T.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "outlook"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "bỏ một thứ gì đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_recycling.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dispose"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "máy làm lạnh, hộp giữ lạnh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1564417398000_Cooler-TBRN-Hero.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cooler"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "sách bìa mềm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_316472318_TfeOtvhlyCi1pGBGCMson8HLlH5qYFmr.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "paperback"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "người phụ trách một cuộc họp, chủ tọa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/content_Property-management-company.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "chairperson"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự chỉ thị, tín hiệu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/138885-050-B1E3988A_Indicator-paper-liquid-pH-solution.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "indicator"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "keo dán",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_AdobeStock_57332507.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "gum"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hình dán",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_318502708_LhSkwCkNJPtkgF1POki1P8xtZ7p4qzo1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "sticker"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "miếng cá để nướng, miếng thịt để nướng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_235139347_p5zIyK0h6APlXspCIXsTW5GpmJhMnHcT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "steak"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "Cắt hoặc tách ra",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_Disconnect-Header-Scissors.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "disconnect"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "trên bình diện quốc tế",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_103342011_AXPJTtL4J6vh7l2vL82HQ6Dfd1AyBABC.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "internationally"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "người mới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/server_mKpHv94ae8t1p9H5.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "beginner"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "kịp thời",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_490131803_QcyCYKa0FDDD9g6rP8GCWLPOMgRWA3Yh.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "timely"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tinh thần, chí khí",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_473433471_Mzw3B9Z4VMGRUL9fBdyIPqrVkY3CC3TT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "morale"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "phản thân",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_130228834_tu4kcBZKdd6xgVZ55ACw2VlwJMcp8cbr.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "reflexive"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "đại lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/s3fs-public_1LOT-MAIN_i.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dealership"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "cơ sở vật chất tiện nghi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/may_May-Unilock-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "amenity"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "tiệc nướng ngoài trời",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/46609_gettyimages-475200404.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "barbecue"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách hăng hái, nhiệt tình",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_enthusiastic-woman.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enthusiastically"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "thang cuốn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/kf_HTB1wSUAFntYBeNjy1Xdq6xXyVXaP.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "escalator"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sinh học",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/04_biology-la-gi2.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "biology"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

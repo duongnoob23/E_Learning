@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "Mất tích, không có mặt",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "absent"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sự hết hạn, sự kết thúc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/600xx_16-Expiration_20date.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "expiration"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "không ngờ tới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "unexpected"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự đánh giá, thẩm định",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg"
+        },
+        "right": {
+          "type": "text",
+          "text": "appraisal"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "lính cứu hỏa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_firefightercarhose.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "firefighter"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "giờ ăn trưa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lunchtime"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "tay áo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_316129211_14kSLW9jnSYFwygYX2jKw57dLQqwdONU.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "sleeve"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "lạc quan, tích cực",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_493349404_Pwr37QnSoizYR8ZdrRxED9Nb9zCXK6kA.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "optimistic"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "lời cảnh báo, sự cảnh giác",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_cautious.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "caution"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "khoản tiền trả thêm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_309009345_ZVh3MTQ5IS5Z9g79UGLPkwmsQrf2Sejr.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "premium"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "đau đầu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/news_ImageForNews_711050_16503171059359722.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "headache"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "tổng lương, bảng lương",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "payroll"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tầng trên, gác, lầu (của một ngôi nhà..)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_378993171_haVpDLLww0HJRhpMQJRtlj6ZMMMjpMLN.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "upstairs"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "loài hoang dã",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "wildlife"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "bài xã luận",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/posts_1mBuenhNKYOhlZC6ixZ3Kp8O2vXyK4RqX5LsLJH8.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "editorial"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tuân theo, làm theo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "comply"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "dầu xăng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_gasoline2.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "gasoline"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hợp lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "plausible"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "cắt ngắn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/20112515_gettyimages-1218257318-crop-1639999591-1680x1120.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "clip"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "liên quan đến dược phẩm hoặc liên quan đến việc mua bán, sử dụng thuốc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_244609855_yUA8MEZL0iOxqcNg7t4GbPfgOLxYp3Ie.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pharmaceutical"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "phá sản, vỡ nợ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/04_pearlbankrupty3.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bankrupt"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "đơn giản hóa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "simplify"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "bằng lời nói, bằng miệng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_492944523_FZSWG69Zh7rWedofW0GStoDiZ1ieXrOo.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "verbal"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "chuyên môn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_367846901_YtM6diLW5myIG6NwDSPh3Bh5UR5DtC2I.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "specialty"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà kinh tế học",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "economist"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "liên quan đến mặt trời",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "solar"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "không thích hợp, không thích đáng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "inappropriate"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "costume"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "thị thực",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "visa"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "từ viết tắt của technology - công nghệ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_226982007_WtWlNuKwxAy7VbXEyiACzlyow76jZVKw.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "tech"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự sắp đặt, dàn bài tổng thể",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "layout"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tạo điều kiện thuận lợi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_build-a-better-solution.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "facilitate"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "hăng hái, háo hức",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "eager"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "không chắc chắn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_314842797_5bnHOEQCkU16O0ELXQGi3vYJs2QaiJCe.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "unsure"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "colorful"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự dự đoán về tương lai (ví dụ: dự đoán về doanh số hay thu nhập)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_304996094_8FF4MFNWklIbn9JKeVTPxAGHngkdC10A.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "projection"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tuân theo, tuân thủ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "adhere"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "đinh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "nail"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "chủ nhà",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "landlord"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tính hữu hiệu, tính hiệu quả",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "effectiveness"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách an toàn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/78_1000_F_94437898_hhG7qaXJ0Gi89SEn3AG2Xc97VczuWX13.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "safely"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "lực lượng lao động",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_345407586_7xzMvNxw14ryW8Ckh4cmlsi6We71q1in.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "workforce"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "sự mua lại để giành quyền kiểm soát công ty",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_396231642_tw31dw2xtBjvl7SlUpYxpRSVz8XKSS8C.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "takeover"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "không xác định",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "unspecified"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "trả tiền, trả thù lao",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "compensate"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "mạng internet",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "internet"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "quán ăn rẻ tiền",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "diner"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "ngoại ô",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_345423233_QEeGOYOCOCHWTk6Os8YKvG3DwL6xuQKB.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "suburb"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "người học việc, người học nghề",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "apprentice"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "tích lũy, gom góp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/z_hand-accumulating-money-men-who-stack-up-hold-their-hands-93665753.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "accumulate"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "người đi bộ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pedestrian"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "trần nhà",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Armstrong_RS737.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "ceiling"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "doanh nhân",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "businessman"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "nhồi nhét, ấn chặt",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_shutterstock-220553194-finger-vladimir-gjorgiev-1486051737.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "jam"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "nhân bản, sao chép",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "duplicate"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

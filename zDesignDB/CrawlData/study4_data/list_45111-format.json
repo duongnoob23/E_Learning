@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "absent",
+    "vi": "Mất tích, không có mặt",
+    "pronunciation": "/ˈæb.sənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=absent&lang=en-US&ipa=%2F%CB%88%C3%A6b.s%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+    "example": "John has been absent from school/work for three days now"
+  },
+  {
+    "word_id": 2,
+    "en": "accumulate",
+    "vi": "tích lũy, gom góp",
+    "pronunciation": "/əˈkjuː.mjə.leɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accumulate&lang=en-US&ipa=%2F%C9%99%CB%88kju%CB%90.mj%C9%99.le%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/z_hand-accumulating-money-men-who-stack-up-hold-their-hands-93665753.jpg",
+    "example": "As people accumulate more wealth, they tend to spend a greater proportion of their incomes"
+  },
+  {
+    "word_id": 3,
+    "en": "adhere",
+    "vi": "tuân theo, tuân thủ",
+    "pronunciation": "/ədˈhɪər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=adhere&lang=en-US&ipa=%2F%C9%99d%CB%88h%C9%AA%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg",
+    "example": "I do not adhere to any organized religion"
+  },
+  {
+    "word_id": 4,
+    "en": "appraisal",
+    "vi": "sự đánh giá, thẩm định",
+    "pronunciation": "/əˈpreɪ.zəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=appraisal&lang=en-US&ipa=%2F%C9%99%CB%88pre%C9%AA.z%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+    "example": "The newspaper gave an editorial appraisal of the government's achievements of the past year."
+  },
+  {
+    "word_id": 5,
+    "en": "apprentice",
+    "vi": "người học việc, người học nghề",
+    "pronunciation": "/əˈpren.tɪs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=apprentice&lang=en-US&ipa=%2F%C9%99%CB%88pren.t%C9%AAs%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+    "example": "He worked for two years as a plumber's apprentice"
+  },
+  {
+    "word_id": 6,
+    "en": "bankrupt",
+    "vi": "phá sản, vỡ nợ",
+    "pronunciation": "/ˈbæŋ.krʌpt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bankrupt&lang=en-US&ipa=%2F%CB%88b%C3%A6%C5%8B.kr%CA%8Cpt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_pearlbankrupty3.jpg",
+    "example": "The recession has led to many small businesses going bankrupt."
+  },
+  {
+    "word_id": 7,
+    "en": "businessman",
+    "vi": "doanh nhân",
+    "pronunciation": "/ˈbɪz.nɪs.mæn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=businessman&lang=en-US&ipa=%2F%CB%88b%C9%AAz.n%C9%AAs.m%C3%A6n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+    "example": "As a wealthy businessman, he couldn't even begin to imagine real poverty."
+  },
+  {
+    "word_id": 8,
+    "en": "caution",
+    "vi": "lời cảnh báo, sự cảnh giác",
+    "pronunciation": "/ˈkɔː.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=caution&lang=en-US&ipa=%2F%CB%88k%C9%94%CB%90.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cautious.jpg",
+    "example": "Just a word of caution - the cheaper models probably aren't worth buying."
+  },
+  {
+    "word_id": 9,
+    "en": "ceiling",
+    "vi": "trần nhà",
+    "pronunciation": "/ˈsiː.lɪŋ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ceiling&lang=en-US&ipa=%2F%CB%88si%CB%90.l%C9%AA%C5%8B%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Armstrong_RS737.jpeg",
+    "example": "On the bathroom ceiling, some pieces of plaster had fallen away."
+  },
+  {
+    "word_id": 10,
+    "en": "clip",
+    "vi": "cắt ngắn",
+    "pronunciation": "/klɪp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=clip&lang=en-US&ipa=%2Fkl%C9%AAp%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20112515_gettyimages-1218257318-crop-1639999591-1680x1120.jpg",
+    "example": "She clip the coupons out of the newspaper."
+  },
+  {
+    "word_id": 11,
+    "en": "colorful",
+    "vi": "Có nhiều màu sắc khác nhau, sặc sỡ",
+    "pronunciation": "/ˈkʌl·ə·fəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=colorful&lang=en-US&ipa=%2F%CB%88k%CA%8Cl%C2%B7%C9%99%C2%B7f%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+    "example": "The scenery was bright and colorful, as were the costumes"
+  },
+  {
+    "word_id": 12,
+    "en": "compensate",
+    "vi": "trả tiền, trả thù lao",
+    "pronunciation": "/ˈkɒm.pən.seɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compensate&lang=en-US&ipa=%2F%CB%88k%C9%92m.p%C9%99n.se%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+    "example": "Corporations often rely on stock options to compensate executives"
+  },
+  {
+    "word_id": 13,
+    "en": "comply",
+    "vi": "tuân theo, làm theo",
+    "pronunciation": "/kəmˈplaɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=comply&lang=en-US&ipa=%2Fk%C9%99m%CB%88pla%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg",
+    "example": "There are serious penalties for failure to comply with the regulations."
+  },
+  {
+    "word_id": 14,
+    "en": "costume",
+    "vi": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+    "pronunciation": "/ˈkɒs.tʃuːm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=costume&lang=en-US&ipa=%2F%CB%88k%C9%92s.t%CA%83u%CB%90m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+    "example": "The movie won Oscars for best costume and best screenplay in this year's awards."
+  },
+  {
+    "word_id": 15,
+    "en": "diner",
+    "vi": "quán ăn rẻ tiền",
+    "pronunciation": "/ˈdaɪ.nər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=diner&lang=en-US&ipa=%2F%CB%88da%C9%AA.n%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+    "example": "Before heading home to New York, we stop and eat lunch in a road-side diner."
+  },
+  {
+    "word_id": 16,
+    "en": "duplicate",
+    "vi": "nhân bản, sao chép",
+    "pronunciation": "/ˈdjuː.plɪ.keɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=duplicate&lang=en-US&ipa=%2F%CB%88dju%CB%90.pl%C9%AA.ke%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+    "example": "Businesses should make sure important records and files are duplicate and stored in another location."
+  },
+  {
+    "word_id": 17,
+    "en": "eager",
+    "vi": "hăng hái, háo hức",
+    "pronunciation": "/ˈiː.ɡər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=eager&lang=en-US&ipa=%2F%CB%88i%CB%90.%C9%A1%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+    "example": "They crowded around the spokesperson, eager for any news."
+  },
+  {
+    "word_id": 18,
+    "en": "economist",
+    "vi": "nhà kinh tế học",
+    "pronunciation": "/ɪˈkɒn.ə.mɪst/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=economist&lang=en-US&ipa=%2F%C9%AA%CB%88k%C9%92n.%C9%99.m%C9%AAst%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+    "example": "Many economist expect unemployment to fall over the next couple of months."
+  },
+  {
+    "word_id": 19,
+    "en": "editorial",
+    "vi": "bài xã luận",
+    "pronunciation": "/ˌed.ɪˈtɔː.ri.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=editorial&lang=en-US&ipa=%2F%CB%8Ced.%C9%AA%CB%88t%C9%94%CB%90.ri.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/posts_1mBuenhNKYOhlZC6ixZ3Kp8O2vXyK4RqX5LsLJH8.jpg",
+    "example": "All the papers deal with the same subject in their editorial."
+  },
+  {
+    "word_id": 20,
+    "en": "effectiveness",
+    "vi": "tính hữu hiệu, tính hiệu quả",
+    "pronunciation": "/ɪˈfek.tɪv.nəs, əˈfek.tɪv.nəs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=effectiveness&lang=en-US&ipa=%2F%C9%AA%CB%88fek.t%C9%AAv.n%C9%99s%2C+%C9%99%CB%88fek.t%C9%AAv.n%C9%99s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg",
+    "example": "The study will review the effectiveness of reading and mathematics software products."
+  },
+  {
+    "word_id": 21,
+    "en": "expiration",
+    "vi": "sự hết hạn, sự kết thúc",
+    "pronunciation": "/ˌek.spɪˈreɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=expiration&lang=en-US&ipa=%2F%CB%8Cek.sp%C9%AA%CB%88re%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/600xx_16-Expiration_20date.jpg",
+    "example": "Our automated auto-renewal system will notify you when your domain name is nearing expiration."
+  },
+  {
+    "word_id": 22,
+    "en": "facilitate",
+    "vi": "tạo điều kiện thuận lợi",
+    "pronunciation": "/fəˈsɪl.ɪ.teɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=facilitate&lang=en-US&ipa=%2Ff%C9%99%CB%88s%C9%AAl.%C9%AA.te%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_build-a-better-solution.jpg",
+    "example": "The current structure does not facilitate efficient work flow."
+  },
+  {
+    "word_id": 23,
+    "en": "firefighter",
+    "vi": "lính cứu hỏa",
+    "pronunciation": "/ˈfaɪəˌfaɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=firefighter&lang=en-US&ipa=%2F%CB%88fa%C9%AA%C9%99%CB%8Cfa%C9%AA.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_firefightercarhose.jpg",
+    "example": "Several of the firefighter received commendation for their bravery."
+  },
+  {
+    "word_id": 24,
+    "en": "gasoline",
+    "vi": "dầu xăng",
+    "pronunciation": "/ˈɡæs.əˌliːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=gasoline&lang=en-US&ipa=%2F%CB%88%C9%A1%C3%A6s.%C9%99%CB%8Cli%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_gasoline2.png",
+    "example": "The price of gasoline has risen sharply in recent years."
+  },
+  {
+    "word_id": 25,
+    "en": "headache",
+    "vi": "đau đầu",
+    "pronunciation": "/ˈhed.eɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=headache&lang=en-US&ipa=%2F%CB%88hed.e%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/news_ImageForNews_711050_16503171059359722.jpg",
+    "example": "I tried taking tablets for the headache but they didn't have any effect."
+  },
+  {
+    "word_id": 26,
+    "en": "inappropriate",
+    "vi": "không thích hợp, không thích đáng",
+    "pronunciation": "/ˌɪnəˈprəʊpriət/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inappropriate&lang=en-US&ipa=%2F%CB%8C%C9%AAn%C9%99%CB%88pr%C9%99%CA%8Apri%C9%99t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg",
+    "example": "His casual clothes were inappropriate for such a formal occasion."
+  },
+  {
+    "word_id": 27,
+    "en": "internet",
+    "vi": "mạng internet",
+    "pronunciation": "/ˈɪn.tə.net/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=internet&lang=en-US&ipa=%2F%CB%88%C9%AAn.t%C9%99.net%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+    "example": "She likes to go on the internet in the evenings."
+  },
+  {
+    "word_id": 28,
+    "en": "jam",
+    "vi": "nhồi nhét, ấn chặt",
+    "pronunciation": "/dʒæm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=jam&lang=en-US&ipa=%2Fd%CA%92%C3%A6m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_shutterstock-220553194-finger-vladimir-gjorgiev-1486051737.jpg",
+    "example": "He jam his fingers in his ears."
+  },
+  {
+    "word_id": 29,
+    "en": "landlord",
+    "vi": "chủ nhà",
+    "pronunciation": "/ˈlænd.lɔːd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=landlord&lang=en-US&ipa=%2F%CB%88l%C3%A6nd.l%C9%94%CB%90d%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg",
+    "example": "His landlord doubled the rent."
+  },
+  {
+    "word_id": 30,
+    "en": "layout",
+    "vi": "sự sắp đặt, dàn bài tổng thể",
+    "pronunciation": "/ˈleɪ.aʊt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=layout&lang=en-US&ipa=%2F%CB%88le%C9%AA.a%CA%8At%2F",
+    "image_url": null,
+    "example": "There is no single correct layout for business letters."
+  },
+  {
+    "word_id": 31,
+    "en": "lunchtime",
+    "vi": "giờ ăn trưa",
+    "pronunciation": "/ˈlʌn.tʃ.taɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lunchtime&lang=en-US&ipa=%2F%CB%88l%CA%8Cn.t%CA%83.ta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg",
+    "example": "The package still hadn't arrived by lunchtime."
+  },
+  {
+    "word_id": 32,
+    "en": "nail",
+    "vi": "đinh",
+    "pronunciation": "/neɪl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=nail&lang=en-US&ipa=%2Fne%C9%AAl%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+    "example": "She hammered the nail in."
+  },
+  {
+    "word_id": 33,
+    "en": "optimistic",
+    "vi": "lạc quan, tích cực",
+    "pronunciation": "/ˌɒp.tɪˈmɪs.tɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=optimistic&lang=en-US&ipa=%2F%CB%8C%C9%92p.t%C9%AA%CB%88m%C9%AAs.t%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_493349404_Pwr37QnSoizYR8ZdrRxED9Nb9zCXK6kA.jpg",
+    "example": "he's not very optimistic about the outcome of the talks."
+  },
+  {
+    "word_id": 34,
+    "en": "payroll",
+    "vi": "tổng lương, bảng lương",
+    "pronunciation": "/ˈpeɪ.rəʊl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=payroll&lang=en-US&ipa=%2F%CB%88pe%C9%AA.r%C9%99%CA%8Al%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg",
+    "example": "The firm is growing fast with a monthly payroll of $1 million."
+  },
+  {
+    "word_id": 35,
+    "en": "pedestrian",
+    "vi": "người đi bộ",
+    "pronunciation": "/pəˈdestriən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pedestrian&lang=en-US&ipa=%2Fp%C9%99%CB%88destri%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg",
+    "example": "Two pedestrian were injured when the car skidded."
+  },
+  {
+    "word_id": 36,
+    "en": "pharmaceutical",
+    "vi": "liên quan đến dược phẩm hoặc liên quan đến việc mua bán, sử dụng thuốc",
+    "pronunciation": "/ˌfɑː.məˈsuː.tɪ.kəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pharmaceutical&lang=en-US&ipa=%2F%CB%8Cf%C9%91%CB%90.m%C9%99%CB%88su%CB%90.t%C9%AA.k%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_244609855_yUA8MEZL0iOxqcNg7t4GbPfgOLxYp3Ie.jpg",
+    "example": "An American pharmaceutical company has produced a remarkable new drug."
+  },
+  {
+    "word_id": 37,
+    "en": "plausible",
+    "vi": "hợp lý",
+    "pronunciation": "/ˈplɔː.zə.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=plausible&lang=en-US&ipa=%2F%CB%88pl%C9%94%CB%90.z%C9%99.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg",
+    "example": "There was no way the story could be made to sound even remotely plausible."
+  },
+  {
+    "word_id": 38,
+    "en": "premium",
+    "vi": "khoản tiền trả thêm",
+    "pronunciation": "/ˈpriː.mi.əm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=premium&lang=en-US&ipa=%2F%CB%88pri%CB%90.mi.%C9%99m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_309009345_ZVh3MTQ5IS5Z9g79UGLPkwmsQrf2Sejr.jpg",
+    "example": "Car insurance premium have increased this year."
+  },
+  {
+    "word_id": 39,
+    "en": "projection",
+    "vi": "sự dự đoán về tương lai (ví dụ: dự đoán về doanh số hay thu nhập)",
+    "pronunciation": "/prəˈdʒek.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=projection&lang=en-US&ipa=%2Fpr%C9%99%CB%88d%CA%92ek.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_304996094_8FF4MFNWklIbn9JKeVTPxAGHngkdC10A.jpg",
+    "example": "The company has failed to achieve last year's sales projection by 30 percent."
+  },
+  {
+    "word_id": 40,
+    "en": "safely",
+    "vi": "một cách an toàn",
+    "pronunciation": "/ˈseɪf.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=safely&lang=en-US&ipa=%2F%CB%88se%C9%AAf.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/78_1000_F_94437898_hhG7qaXJ0Gi89SEn3AG2Xc97VczuWX13.jpg",
+    "example": "I'm pleased the parcel arrived safely."
+  },
+  {
+    "word_id": 41,
+    "en": "simplify",
+    "vi": "đơn giản hóa",
+    "pronunciation": "/ˈsɪm.plɪ.faɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=simplify&lang=en-US&ipa=%2F%CB%88s%C9%AAm.pl%C9%AA.fa%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg",
+    "example": "They are trying to simplify the regulations."
+  },
+  {
+    "word_id": 42,
+    "en": "sleeve",
+    "vi": "tay áo",
+    "pronunciation": "/sliːv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=sleeve&lang=en-US&ipa=%2Fsli%CB%90v%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_316129211_14kSLW9jnSYFwygYX2jKw57dLQqwdONU.jpg",
+    "example": "The sleeve of my jacket got caught on the door handle and ripped."
+  },
+  {
+    "word_id": 43,
+    "en": "solar",
+    "vi": "liên quan đến mặt trời",
+    "pronunciation": "/ˈsəʊ.lər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=solar&lang=en-US&ipa=%2F%CB%88s%C9%99%CA%8A.l%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg",
+    "example": "They are searching for intelligent life forms in other solar systems."
+  },
+  {
+    "word_id": 44,
+    "en": "specialty",
+    "vi": "chuyên môn",
+    "pronunciation": "/ˈspeʃ.əl.ti/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=specialty&lang=en-US&ipa=%2F%CB%88spe%CA%83.%C9%99l.ti%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_367846901_YtM6diLW5myIG6NwDSPh3Bh5UR5DtC2I.jpg",
+    "example": "Her specialty is heart surgery."
+  },
+  {
+    "word_id": 45,
+    "en": "suburb",
+    "vi": "ngoại ô",
+    "pronunciation": "/ˈsʌb.ɜːb/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=suburb&lang=en-US&ipa=%2F%CB%88s%CA%8Cb.%C9%9C%CB%90b%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_345423233_QEeGOYOCOCHWTk6Os8YKvG3DwL6xuQKB.jpg",
+    "example": "Box Hill is a suburb of Melbourne."
+  },
+  {
+    "word_id": 46,
+    "en": "takeover",
+    "vi": "sự mua lại để giành quyền kiểm soát công ty",
+    "pronunciation": "/ˈteɪkˌəʊ.vər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=takeover&lang=en-US&ipa=%2F%CB%88te%C9%AAk%CB%8C%C9%99%CA%8A.v%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_396231642_tw31dw2xtBjvl7SlUpYxpRSVz8XKSS8C.jpg",
+    "example": "It has emerged that secret talks had been going on between the two companies before the takeover was announced."
+  },
+  {
+    "word_id": 47,
+    "en": "tech",
+    "vi": "từ viết tắt của technology - công nghệ",
+    "pronunciation": "/tek/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tech&lang=en-US&ipa=%2Ftek%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_226982007_WtWlNuKwxAy7VbXEyiACzlyow76jZVKw.jpg",
+    "example": "tech industry/sector/economy"
+  },
+  {
+    "word_id": 48,
+    "en": "unexpected",
+    "vi": "không ngờ tới",
+    "pronunciation": "/ˌʌnɪkˈspektɪd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unexpected&lang=en-US&ipa=%2F%CB%8C%CA%8Cn%C9%AAk%CB%88spekt%C9%AAd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg",
+    "example": "The president made an unexpected announcement this morning."
+  },
+  {
+    "word_id": 49,
+    "en": "unspecified",
+    "vi": "không xác định",
+    "pronunciation": "/ˌʌn.spəˈsɪf.aɪd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unspecified&lang=en-US&ipa=%2F%CB%8C%CA%8Cn.sp%C9%99%CB%88s%C9%AAf.a%C9%AAd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png",
+    "example": "The court awarded her an unspecified amount of money."
+  },
+  {
+    "word_id": 50,
+    "en": "unsure",
+    "vi": "không chắc chắn",
+    "pronunciation": "/ʌnˈʃɔːr/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unsure&lang=en-US&ipa=%2F%CA%8Cn%CB%88%CA%83%C9%94%CB%90r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_314842797_5bnHOEQCkU16O0ELXQGi3vYJs2QaiJCe.jpg",
+    "example": "I'm unsure about what to do next - can you help me?"
+  },
+  {
+    "word_id": 51,
+    "en": "upstairs",
+    "vi": "tầng trên, gác, lầu (của một ngôi nhà..)",
+    "pronunciation": "/ˌʌpˈsteəz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=upstairs&lang=en-US&ipa=%2F%CB%8C%CA%8Cp%CB%88ste%C9%99z%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_378993171_haVpDLLww0HJRhpMQJRtlj6ZMMMjpMLN.jpg",
+    "example": "He's upstairs doing his homework."
+  },
+  {
+    "word_id": 52,
+    "en": "verbal",
+    "vi": "bằng lời nói, bằng miệng",
+    "pronunciation": "/ˈvɜː.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=verbal&lang=en-US&ipa=%2F%CB%88v%C9%9C%CB%90.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_492944523_FZSWG69Zh7rWedofW0GStoDiZ1ieXrOo.jpg",
+    "example": "Do you have it down in writing, or was it just a verbal agreement?"
+  },
+  {
+    "word_id": 53,
+    "en": "visa",
+    "vi": "thị thực",
+    "pronunciation": "/ˈviː.zə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=visa&lang=en-US&ipa=%2F%CB%88vi%CB%90.z%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg",
+    "example": "I've applied for an extension to my visa."
+  },
+  {
+    "word_id": 54,
+    "en": "wildlife",
+    "vi": "loài hoang dã",
+    "pronunciation": "/ˈwaɪld.laɪf/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=wildlife&lang=en-US&ipa=%2F%CB%88wa%C9%AAld.la%C9%AAf%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg",
+    "example": "At the museum there was a diorama of local wildlife."
+  },
+  {
+    "word_id": 55,
+    "en": "workforce",
+    "vi": "lực lượng lao động",
+    "pronunciation": "/ˈwɜːk.fɔːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=workforce&lang=en-US&ipa=%2F%CB%88w%C9%9C%CB%90k.f%C9%94%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_345407586_7xzMvNxw14ryW8Ckh4cmlsi6We71q1in.jpg",
+    "example": "The majority of factories in the region have a workforce of 50 to 100 (people)."
+  }
+]

@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "(thuộc) giám đốc; (thuộc) quản lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_37193170_BE9uPPlPwPJcV1IMh259eWwGvqusZ3qb.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "managerial"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "giỏ, rổ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-photo_wicker-basket-isolated_2829-18051.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "basket"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "không thích, ghét",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_dislike_facebook-100627022-large.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dislike"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "lễ tốt nghiệp, sự tốt nghiệp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/USAT_6717a231-f65a-48f9-ba0d-4486a3785a71-gradpic.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "graduation"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "doanh nhân",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_adult-businessman-ceo-618613-1024x709.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "businessperson"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "lập trình viên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_335348056_yY8QyHP966KePjyutnns1Puwt2bnngZc.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "programmer"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sở thú",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "zoo"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách đáng kể",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/c_considerably.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "considerably"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "tầng dưới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/free-photo_teen-schoolgirl-walking-downstairs-with-book_23-2148204282.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "downstairs"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "chi phí cố định của một doanh nghiệp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_484733754_16FHuoynFU9JAAaaoLwQ2RBPXj1bUx94.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "overhead"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "giấy chứng nhận, chứng chỉ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_certificate_gold_seal_certification_by_dny59_gettyimages-942721178_2400x1600-100788472-orig-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "certification"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "khán phòng, giảng đường",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/65725008_shutterstock_118022083.0.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "auditorium"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "bị lỗi, mắc khuyết điểm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1500_750_gm-a0feff54-d5e6-4221-b32f-a1e457c6e891-1-faultyproduct-repair-replacement.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "faulty"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "kilômet",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_349857596_QIKyEv1EqOmVJE2S34RlucZ8l162lEI1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "kilometer"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự đóng cửa (cơ sở kinh doanh)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image_closedbusiness_0.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "closure"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "quầy bán báo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_367730937_I2FBJpS8880Y8b1H24dmuaxHMlQvd4vm.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "newsstand"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "đồng phạm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_AdobeStock_106341413-1140x791.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "accessory"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "để nhầm chỗ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_265973396_TznwWqHOPNpH84BjklR60gFTB7vcklP4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "misplace"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "Xe môtô",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_94361385_T7Waoo8QAL7zxb39RUVXO4730H9fZ1at.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "motorcycle"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người nổi tiếng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/923749_Taylor-Swift-Nu-Nghe.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "celebrity"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "phần còn lại, phần dư",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_351526981_K1QXnZKI2aIXqRe8rciOKFyYevRkp3Lz.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "remainder"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "hoa hồng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_105573812_cvD4P5jo6tMPhZULX324qUYFbNpXlisD.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rose"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "danh mục đầu tư (của công ty, ngân hàng)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_110971861_nX7uv93YhlPmucwjv0ZFe4vPdVUDB6Vo.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "portfolio"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "số liệu thống kê",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/28_1000_F_211732841_GknumxwhSdceiB38k7s8fpueXhZQ6RDC.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "statistics"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "làm cho lạc đường; lừa dối",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_62840954_kvoiAvCUUBhoaWU9uR63TEbRQfY505Aa.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "mislead"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "đăng nhập",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/21_1000_F_352992191_RRDlsq7U4N0qBZztiI5ehJtIjjHRvIxC.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "login"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "cổ đông, người góp vốn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_274909311_pc5x4tWN0YdGkl6VBg0lIWSisEDOBLxq.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "stockholder"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "cuộc tụ tập, cuộc họp, hội đồng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1136x640_cut.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "assembly"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tiền máy bay, phí hàng không",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/s980_Airfare_Boarding_Pass_Flights.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "airfare"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "không đều, không theo quy luật",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_366556939_8ugl7MzGIzXmh4MGzzc9JwlGhRVLU8TT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "irregular"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "vật dụng cần thiết",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/74_1000_F_212747436_WqoVHgxiXlNDXswHcrMYT0cG77yFnv9A.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "necessity"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "hành động gián đoạn và gây ra sự hỗn loạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/innovation_960x0.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "disruption"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thợ điện",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/uploaded_electricians.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "electrician"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "người đặt kế hoạch",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_294609375_MhVTCdwdCqSEHoD3wTHCTHJmy5cwB3gO.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "planner"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "vitamin",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_408791737_FHTk3YJpMNwSpkW3MQjmgBwCC4LRUVWa.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vitamin"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "khoáng chất",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "mineral"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "Đóng băng, băng giá",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1606429198741-H8SSR1T6Y83N44D4W5N5_Icy+colour+18.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "icy"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách đều đặn, từ từ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_506350293_NP1jPl0STzatfP5mkkL8ngJGcVwrFXVR.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "steadily"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "(trang phục) thông thường, thoải mái; (sự kiện) không trang trọng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_438548876_n9itf50K9GbB0hMWrXHLR2GPuf8hnHaR.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "informal"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tỉnh táo, cảnh giác",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_How-to-set-a-Google-Alert-Tips-and-Benefits.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "alert"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "giá đỡ, kệ để đồ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_118321714_CnwwwQrK3PkirGmYllS0pPCCKj0wBpfE.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rack"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "không giới hạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_371295141_ZG968MTGlOsTFCkib5OmwXDIGNhdQWap.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "unlimited"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "hăng hái, nhiệt tình",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_how-to-be-enthusiastic-702x336.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enthusiastic"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "trống không",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_447239630_M5PWcclRDyTRbauFvy2hlaxswQDvfh7i.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vacant"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "nướng bằng lò",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_25-fun-things-to-bake-when-you-have-nothing-to-do.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bake"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "trừ hoặc lấy đi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Rnw5ixvU074_maxresdefault.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "deduct"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "cấp trên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_198061648_QDfgE3LK0j8lFVnmx1vCarIpRgJd8ICP.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "superior"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "đường hầm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_130524085_dcNhyPOdRc2zjQBDFmco3FyUmnxySb7w.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "tunnel"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà tuyển dụng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_505066554_ixoNpvQhKWtXXVmGJG2BIiEDhKeoBxjN.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "recruiter"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sở thích",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_haveProductiveHobby_00.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "hobby"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "bãi cỏ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/83_1000_F_315898390_ADiYhEhja2PpbqVHsUcj6ArQO1pb5486.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lawn"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "kính hiển vi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_312508645_XZCzHrzg7aAgCkiW7ws9BFNX1uejfO53.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "microscope"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tu sửa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_199730117_UtoLhmaLFYR701P4TMmQzl9Ytj0BtLrE.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "remodel"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "Đọc rà soát (để tìm ra lỗi)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_281162060_CQV8S6Ti80x5zAujNJoYOJmknwVrdVCg.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "proofread"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "tượng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_469525583_5MJ8JcZyDzNl8W4OifbmfGGNEUMjevI8.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "statue"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

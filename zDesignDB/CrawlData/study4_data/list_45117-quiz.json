@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'amateur' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hiển nhiên, rõ ràng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/o_obvious.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "dỡ hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_229954023_NpU3huQ2OtxkIoLmQwsNDAgiIlPSR0te.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'ambassador' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuộc về chiến lược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_502430987_DB1JEZjc9EzrNJ2jlmV4wKGLSnCdzeiT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "kim bấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'anew' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thương mại, kinh doanh, công nghiệp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Tàu chở hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bắt đầu lại từ đầu, một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'architectural' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sao chép lại, mô phỏng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_example-of-asexual-reproduction.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "vỗ tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_crop,f_auto,h_1154,q_auto,w_1846,x_40,y_542_4MVM424_image_crop_99069.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Tàu chở hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'attain' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cá voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "để có được hoặc đạt được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "rất quan trọng và khẩn cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự điều chỉnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'balloon' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bóng bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_Balloon-Bunch.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hành lang",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "mối nguy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/m_dmeu_hz170a1_std.lang.all.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'blueprint' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "truyền đạt, truyển tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "kim bấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'bug' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "con bọ, côn trùng nhỏ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Bugs.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "cá voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "vạch sọc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_209520217_fcUxodL6bzVphCt09M0ufHpWf9HRssyN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'cautious' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "để có được hoặc đạt được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cẩn thận, cảnh giác",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/original_careful.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người cư trú, người sử dụng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'circuit' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đường đi vòng quanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06140051_F1Hanoi.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "không bình thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'clap' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "xịt, phun",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thương gia",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vỗ tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_crop,f_auto,h_1154,q_auto,w_1846,x_40,y_542_4MVM424_image_crop_99069.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'commerce' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thiết bị bấm giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_308205563_jJqE0wuc6IjgIHreCWXPQ30afi4FALdk.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người hướng dẫn hoặc giảng viên đại học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_377340603_1LGXt7MMHeqKoZixHxWk2tVa0wig9RN1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thương mại, kinh doanh, công nghiệp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'convey' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "truyền đạt, truyển tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành lang",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'cord' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có ý nghĩa hoặc mục đích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "để trống; di chuyển ra khỏi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_485542459_doMiUPjKncHsJF0rg06VoxvIY0f7eUgn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dây cáp điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'counselor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không bình thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tham vấn viên, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_social-worker-vs-counselor_hero.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'debit' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "máy phát điện",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự ghi nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'delicate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mỏng manh, dễ tổn thương",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Product_5f8bd7111ba443a0ad6eed1587746081.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "không bình thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xịt, phun",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'dependence' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách khôn khéo",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự phụ thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_dependence-screen-shot.png",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'distraction' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bắt đầu lại từ đầu, một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thương mại, kinh doanh, công nghiệp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự làm xao lãng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_bigstock-Distraction-Social-Media-Or-E-412721176.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'downsize' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thổi phồng, bơm phồng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Giảm kích thước hoặc số",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Blog_workforce-downsizing.png",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "xúi giục",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_25427126_yiAGLkrFqttMMr9vlHn5xtuf8zjYt8Ei.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'elephant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự điều chỉnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "đường đi vòng quanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06140051_F1Hanoi.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'enthusiasm' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Tàu chở hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự hăng hái, sự nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "để có được hoặc đạt được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tính linh hoạt, tính linh động",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_flexibility1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'enthusiast' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Giảm kích thước hoặc số",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Blog_workforce-downsizing.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đam mê về điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images.huffingtonpost.com_2016-09-27-1475000926-901492-2016bestworstcitiesforsoccerfans.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'evident' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cẩn thận, cảnh giác",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/original_careful.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hiển nhiên, rõ ràng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/o_obvious.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thổi phồng, bơm phồng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'flexibility' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành lang",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự phụ thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_dependence-screen-shot.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự ghi nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tính linh hoạt, tính linh động",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_flexibility1.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'flextime' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "bóng bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_Balloon-Bunch.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ghi nhớ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'fortunately' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "kim bấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "dây cáp điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'freighter' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Tàu chở hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hành lang",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "con bọ, côn trùng nhỏ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Bugs.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ghi nhớ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'generator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thương mại, kinh doanh, công nghiệp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "có ý nghĩa hoặc mục đích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "máy phát điện",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'hallway' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành lang",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "để có được hoặc đạt được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'hamburger' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "xịt, phun",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "có ý nghĩa hoặc mục đích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Tàu chở hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bánh mì kẹp thịt xay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Hatch_Green_Chile_Hamburger.jpg_1200px-Hatch_Green_Chile_Hamburger.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'hazard' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mối nguy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/m_dmeu_hz170a1_std.lang.all.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ghi nhớ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "rất quan trọng và khẩn cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'homeowner' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "kim bấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "truyền đạt, truyển tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chủ nhà, người sở hữu nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_home-ownership.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'imperative' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "dây cáp điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "chủ nhà, người sở hữu nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_home-ownership.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "rất quan trọng và khẩn cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'inflate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy phát điện",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thổi phồng, bơm phồng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "truyền đạt, truyển tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chủ nhà, người sở hữu nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_home-ownership.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'insert' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự hăng hái, sự nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "có ý nghĩa hoặc mục đích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "máy phát điện",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'lecturer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người hướng dẫn hoặc giảng viên đại học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_377340603_1LGXt7MMHeqKoZixHxWk2tVa0wig9RN1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người cư trú, người sử dụng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự làm xao lãng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_bigstock-Distraction-Social-Media-Or-E-412721176.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sao chép lại, mô phỏng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_example-of-asexual-reproduction.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'meaningful' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bắt đầu lại từ đầu, một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "có ý nghĩa hoặc mục đích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "bản vẽ thiết kế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'memorize' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự làm xao lãng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_bigstock-Distraction-Social-Media-Or-E-412721176.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thương gia",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đam mê về điều gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images.huffingtonpost.com_2016-09-27-1475000926-901492-2016bestworstcitiesforsoccerfans.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ghi nhớ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'merchant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Giảm kích thước hoặc số",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Blog_workforce-downsizing.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bóng bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_Balloon-Bunch.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thương gia",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'modification' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bánh mì kẹp thịt xay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Hatch_Green_Chile_Hamburger.jpg_1200px-Hatch_Green_Chile_Hamburger.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự điều chỉnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'occupant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dây cáp điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người cư trú, người sử dụng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'reproduce' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thương gia",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sao chép lại, mô phỏng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_example-of-asexual-reproduction.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tham vấn viên, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_social-worker-vs-counselor_hero.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự hăng hái, sự nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'spray' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "xịt, phun",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chèn vào, thêm vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'staple' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "kim bấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "bắt đầu lại từ đầu, một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự ghi nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hiển nhiên, rõ ràng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/o_obvious.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'strategic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bắt đầu lại từ đầu, một lần nữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy phát điện",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuộc về chiến lược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_502430987_DB1JEZjc9EzrNJ2jlmV4wKGLSnCdzeiT.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'stripe' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vạch sọc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_209520217_fcUxodL6bzVphCt09M0ufHpWf9HRssyN.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người cư trú, người sử dụng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bánh mì kẹp thịt xay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Hatch_Green_Chile_Hamburger.jpg_1200px-Hatch_Green_Chile_Hamburger.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự ghi nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'teen' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách khôn khéo",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "rất quan trọng và khẩn cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự điều chỉnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'tempt' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dỡ hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_229954023_NpU3huQ2OtxkIoLmQwsNDAgiIlPSR0te.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "xúi giục",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_25427126_yiAGLkrFqttMMr9vlHn5xtuf8zjYt8Ei.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "cá voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'timer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thiết bị bấm giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_308205563_jJqE0wuc6IjgIHreCWXPQ30afi4FALdk.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "con bọ, côn trùng nhỏ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Bugs.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thổi phồng, bơm phồng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ghi nhớ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'unload' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dỡ hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_229954023_NpU3huQ2OtxkIoLmQwsNDAgiIlPSR0te.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thương gia",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "để có được hoặc đạt được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'unusually' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không bình thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "rất quan trọng và khẩn cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tham vấn viên, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_social-worker-vs-counselor_hero.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'vacate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "để trống; di chuyển ra khỏi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_485542459_doMiUPjKncHsJF0rg06VoxvIY0f7eUgn.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "truyền đạt, truyển tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuộc về kiến trúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách may mắn, may mắn thay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'whale' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vạch sọc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_209520217_fcUxodL6bzVphCt09M0ufHpWf9HRssyN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hệ thống giờ làm việc linh hoạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự hăng hái, sự nhiệt tình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cá voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'wisely' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vỗ tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_crop,f_auto,h_1154,q_auto,w_1846,x_40,y_542_4MVM424_image_crop_99069.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "con voi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mới bắt đầu, dân nghiệp dư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách khôn khéo",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

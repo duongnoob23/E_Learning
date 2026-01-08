@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "accordingly",
+    "vi": "do đó, cho phù hợp",
+    "pronunciation": "/əˈkɔː.dɪŋ.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accordingly&lang=en-US&ipa=%2F%C9%99%CB%88k%C9%94%CB%90.d%C9%AA%C5%8B.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/z_handwriting-text-writing-follow-guidelines-concept-meaning-manual-style-follow-specified-rule-accordingly-handwriting-127001493.jpg",
+    "example": "When we receive your instructions we will act accordingly"
+  },
+  {
+    "word_id": 2,
+    "en": "apple",
+    "vi": "quả táo",
+    "pronunciation": "/ˈæp.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=apple&lang=en-US&ipa=%2F%CB%88%C3%A6p.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Red_Apple.jpg_847px-Red_Apple.jpg",
+    "example": "Newton reasoned that there must be a force such as gravity, when an apple fell on his head"
+  },
+  {
+    "word_id": 3,
+    "en": "applicable",
+    "vi": "liên quan đến/thích hợp",
+    "pronunciation": "/ˈæp.lɪ.kə.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=applicable&lang=en-US&ipa=%2F%CB%88%C3%A6p.l%C9%AA.k%C9%99.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/p_applicable1.jpg",
+    "example": "This part of the law is only applicable to companies employing more than five people."
+  },
+  {
+    "word_id": 4,
+    "en": "auction",
+    "vi": "buổi bán đấu giá",
+    "pronunciation": "/ˈɔːk.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=auction&lang=en-US&ipa=%2F%CB%88%C9%94%CB%90k.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_b80b9382d7ebf2e0b25525255805f731.png",
+    "example": "They're holding an auction of jewellery on Thursday."
+  },
+  {
+    "word_id": 5,
+    "en": "balcony",
+    "vi": "ban công",
+    "pronunciation": "/ˈbæl.kə.ni/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=balcony&lang=en-US&ipa=%2F%CB%88b%C3%A6l.k%C9%99.ni%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/upload_balcony-la-gi-7.jpg",
+    "example": "Our hotel room has a balcony that looks out over the pool."
+  },
+  {
+    "word_id": 6,
+    "en": "basement",
+    "vi": "tầng hầm",
+    "pronunciation": "/ˈbeɪs.mənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=basement&lang=en-US&ipa=%2F%CB%88be%C9%AAs.m%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/agent-1_what-are-the-different-types-of-basements.jpg",
+    "example": "The hardware department is in the basement."
+  },
+  {
+    "word_id": 7,
+    "en": "beforehand",
+    "vi": "trước đó",
+    "pronunciation": "/bɪˈfɔː.hænd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=beforehand&lang=en-US&ipa=%2Fb%C9%AA%CB%88f%C9%94%CB%90.h%C3%A6nd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Official_8329.png",
+    "example": "I knew she was coming that afternoon because she had phoned beforehand to say so."
+  },
+  {
+    "word_id": 8,
+    "en": "culinary",
+    "vi": "liên quan đến nấu ăn",
+    "pronunciation": "/ˈkʌl.ɪ.nər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=culinary&lang=en-US&ipa=%2F%CB%88k%CA%8Cl.%C9%AA.n%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Blog-Header-EHL-Insights_skills_20culinary_20arts.jpeg",
+    "example": "Making soup requires very little in the way of culinary skills apart from an ability to chop vegetables."
+  },
+  {
+    "word_id": 9,
+    "en": "documentary",
+    "vi": "phim tài liệu",
+    "pronunciation": "/ˌdɒk.jʊˈmen.tər.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=documentary&lang=en-US&ipa=%2F%CB%8Cd%C9%92k.j%CA%8A%CB%88men.t%C9%99r.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/grad-programs_mfa-doc-slider.jpg",
+    "example": "The documentary went through all the graphic details of the operation in unsparing detail."
+  },
+  {
+    "word_id": 10,
+    "en": "downturn",
+    "vi": "sự suy thoái, sự suy giảm",
+    "pronunciation": "/ˈdaʊn.tɜːn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=downturn&lang=en-US&ipa=%2F%CB%88da%CA%8An.t%C9%9C%CB%90n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_shutterstock_93854494-min.jpg",
+    "example": "There is evidence of a downturn in the housing market."
+  },
+  {
+    "word_id": 11,
+    "en": "earthquake",
+    "vi": "động đất",
+    "pronunciation": "/ˈɜːθ.kweɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=earthquake&lang=en-US&ipa=%2F%CB%88%C9%9C%CB%90%CE%B8.kwe%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/4604593-3-eng-US_earthquake-lead.jpg",
+    "example": "In 1906 an earthquake destroyed much of San Francisco."
+  },
+  {
+    "word_id": 12,
+    "en": "elegant",
+    "vi": "tao nhã, thanh lịch",
+    "pronunciation": "/ˈel.ɪ.ɡənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=elegant&lang=en-US&ipa=%2F%CB%88el.%C9%AA.%C9%A1%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1600_depositphotos_318861262-stock-photo-beautiful-sexy-woman-in-elegant.jpg",
+    "example": "This is a fine building of elegant proportions."
+  },
+  {
+    "word_id": 13,
+    "en": "embassy",
+    "vi": "đại sứ quán",
+    "pronunciation": "/ˈem.bə.si/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=embassy&lang=en-US&ipa=%2F%CB%88em.b%C9%99.si%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_dai-su-quan-la-gi-lanh-su-quan-la-gi-phan-biet-dai-su-quan-va-lanh-su-quan.jpg",
+    "example": "The embassy compound has been closed to the public because of a bomb threat."
+  },
+  {
+    "word_id": 14,
+    "en": "excessive",
+    "vi": "quá mức, thừa",
+    "pronunciation": "/ɪkˈses.ɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=excessive&lang=en-US&ipa=%2F%C9%AAk%CB%88ses.%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/945_businessman-with-a-lot-of-work.jpg",
+    "example": "excessive exercise can sometimes cause health problems."
+  },
+  {
+    "word_id": 15,
+    "en": "fasten",
+    "vi": "buộc chặt, đóng chặt",
+    "pronunciation": "/ˈfɑː.sən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fasten&lang=en-US&ipa=%2F%CB%88f%C9%91%CB%90.s%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/r_traffic-safety-sign-nhe-14493_1000.gif",
+    "example": "Make sure your seat belt is securely fasten."
+  },
+  {
+    "word_id": 16,
+    "en": "generic",
+    "vi": "có đặc điểm chung",
+    "pronunciation": "/dʒəˈner.ɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=generic&lang=en-US&ipa=%2Fd%CA%92%C9%99%CB%88ner.%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_apple_idea.jpg",
+    "example": "The new range of engines all had a generic problem with their fan blades."
+  },
+  {
+    "word_id": 17,
+    "en": "harmful",
+    "vi": "gây tổn hại, đau đớn",
+    "pronunciation": "/ˈhɑːm.fəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=harmful&lang=en-US&ipa=%2F%CB%88h%C9%91%CB%90m.f%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_toxic-56a128c75f9b58b7d0bc9515.jpg",
+    "example": "This group of chemicals is known to be harmful to people with asthma."
+  },
+  {
+    "word_id": 18,
+    "en": "informative",
+    "vi": "cung cấp nhiều thông tin hữu ích",
+    "pronunciation": "/ɪnˈfɔː.mə.tɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=informative&lang=en-US&ipa=%2F%C9%AAn%CB%88f%C9%94%CB%90.m%C9%99.t%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_260351621_wCjp9vhMR3guCeZGSsmqLhvwOd1cc56O.jpg",
+    "example": "The survey proved highly informative."
+  },
+  {
+    "word_id": 19,
+    "en": "institute",
+    "vi": "viện, học viện",
+    "pronunciation": "/ˈɪn.stɪ.tjuːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=institute&lang=en-US&ipa=%2F%CB%88%C9%AAn.st%C9%AA.tju%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_345701214_m6vX4NhY2kcHtW36FKtIOhqGWvi38LKk.jpg",
+    "example": "The report was compiled by Germany's five leading economic research institute."
+  },
+  {
+    "word_id": 20,
+    "en": "jazz",
+    "vi": "nhạc jazz",
+    "pronunciation": "/dʒæz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=jazz&lang=en-US&ipa=%2Fd%CA%92%C3%A6z%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/sp-images_4df8682042e511e99eacb3a642f191c8.png",
+    "example": "a jazz band/club"
+  },
+  {
+    "word_id": 21,
+    "en": "kit",
+    "vi": "hộp dụng cụ, bộ đồ nghề",
+    "pronunciation": "/kɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=kit&lang=en-US&ipa=%2Fk%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/79_1000_F_488977966_vxtXfTb1zUwjcmuUsIpJr4DPvpo4sFon.jpg",
+    "example": "Check the acidity of the soil with a test kit."
+  },
+  {
+    "word_id": 22,
+    "en": "lifetime",
+    "vi": "cả cuộc đời",
+    "pronunciation": "/ˈlaɪf.taɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lifetime&lang=en-US&ipa=%2F%CB%88la%C9%AAf.ta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_119764602_hQzoE8R27aTQmzKmI9aMfjej3LaB2NWZ.jpg",
+    "example": "During my lifetime I haven't got around to much travelling."
+  },
+  {
+    "word_id": 23,
+    "en": "locally",
+    "vi": "bản địa, bản xứ, địa phương",
+    "pronunciation": "/ˈləʊ.kəl.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=locally&lang=en-US&ipa=%2F%CB%88l%C9%99%CA%8A.k%C9%99l.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_509348127_sFfO8eCsviF9eYrGElKuEdypn54JrZxo.jpg",
+    "example": "Do you live locally?"
+  },
+  {
+    "word_id": 24,
+    "en": "massage",
+    "vi": "xoa bóp, mát xa",
+    "pronunciation": "/məˈsɑːʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=massage&lang=en-US&ipa=%2Fm%C9%99%CB%88s%C9%91%CB%90%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_410384074_vjRPB5dKmLcxBdBgCImPKKNhXtV0x5Sj.jpg",
+    "example": "He massage the aching muscles in her feet."
+  },
+  {
+    "word_id": 25,
+    "en": "maximize",
+    "vi": "tận dụng tối đa, tối đa hóa",
+    "pronunciation": "/ˈmæk.sɪ.maɪz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=maximize&lang=en-US&ipa=%2F%CB%88m%C3%A6k.s%C9%AA.ma%C9%AAz%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_96611572_N4YHqd2P0agRODaXYUS2hOwHuHM2NtDb.jpg",
+    "example": "to maximize opportunities/resources"
+  },
+  {
+    "word_id": 26,
+    "en": "mentor",
+    "vi": "người cố vấn hoặc giáo viên",
+    "pronunciation": "/ˈmen.tɔːr/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mentor&lang=en-US&ipa=%2F%CB%88men.t%C9%94%CB%90r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_421909359_p4NnCrdkdUA6wYV62zijpcA5RozAiOtO.jpg",
+    "example": "She was a friend and mentor to many young actors."
+  },
+  {
+    "word_id": 27,
+    "en": "mild",
+    "vi": "nhẹ, êm dịu",
+    "pronunciation": "/maɪld/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mild&lang=en-US&ipa=%2Fma%C9%AAld%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_250260520_TR1VLKtZmwYy1u8XWLJZjiOaYsTO353N.jpg",
+    "example": "The infection seems quite mild, so she should be better soon."
+  },
+  {
+    "word_id": 28,
+    "en": "nominate",
+    "vi": "đề cử",
+    "pronunciation": "/ˈnɒm.ɪ.neɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=nominate&lang=en-US&ipa=%2F%CB%88n%C9%92m.%C9%AA.ne%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/76_1000_F_386917660_aDRCRLl2EIVVNLmUgbpSyhkp8DJ73wuT.jpg",
+    "example": "She has been nominate for the presidency."
+  },
+  {
+    "word_id": 29,
+    "en": "ongoing",
+    "vi": "Vẫn đang xảy ra",
+    "pronunciation": "/ˈɒŋˌɡəʊ.ɪŋ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ongoing&lang=en-US&ipa=%2F%CB%88%C9%92%C5%8B%CB%8C%C9%A1%C9%99%CA%8A.%C9%AA%C5%8B%2F",
+    "image_url": null,
+    "example": "an ongoing debate/discussion/process"
+  },
+  {
+    "word_id": 30,
+    "en": "opt",
+    "vi": "lựa chọn",
+    "pronunciation": "/ɒpt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=opt&lang=en-US&ipa=%2F%C9%92pt%2F",
+    "image_url": null,
+    "example": "After graduating she opt for a career in music."
+  },
+  {
+    "word_id": 31,
+    "en": "parade",
+    "vi": "diễu hành, tuần hành",
+    "pronunciation": "/pəˈreɪd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=parade&lang=en-US&ipa=%2Fp%C9%99%CB%88re%C9%AAd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_1000_F_316880860_srjuZqvMDLokL1jrLYu9wHyvnzM7LyK4.jpg",
+    "example": "The victorious team will parade through the city tomorrow morning."
+  },
+  {
+    "word_id": 32,
+    "en": "periodically",
+    "vi": "theo chu kỳ, định kỳ",
+    "pronunciation": "/ˌpɪə.riˈɒd.ɪ.kəl.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=periodically&lang=en-US&ipa=%2F%CB%8Cp%C9%AA%C9%99.ri%CB%88%C9%92d.%C9%AA.k%C9%99l.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/img_features-1.png",
+    "example": "Mailing lists are updated periodically."
+  },
+  {
+    "word_id": 33,
+    "en": "physician",
+    "vi": "bác sĩ",
+    "pronunciation": "/fɪˈzɪʃ.ən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=physician&lang=en-US&ipa=%2Ff%C9%AA%CB%88z%C9%AA%CA%83.%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_296904883_sQs2dkq9ngILyVgoTCaRGxnA4PucOit6.jpg",
+    "example": "Please consult your physician before beginning any new exercise program."
+  },
+  {
+    "word_id": 34,
+    "en": "pie",
+    "vi": "loại bánh nướng với vỏ bánh phủ một phần hay bao toàn bộ phần nhân làm từ nhiều nguyên liệu khác nhau từ ngọt đến mặn",
+    "pronunciation": "/paɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pie&lang=en-US&ipa=%2Fpa%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_78621342_Xe8H6UxGcZ4cdxpRBYOdEXrvunkYdj31.jpg",
+    "example": "...a chicken pie."
+  },
+  {
+    "word_id": 35,
+    "en": "plug",
+    "vi": "bít (lỗ) lại bằng nút; nút lại",
+    "pronunciation": "/plʌɡ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=plug&lang=en-US&ipa=%2Fpl%CA%8C%C9%A1%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_1000_F_484344123_boHrZnBQeS5LKoC9Qp8wh7So6Dt9dWNj.jpg",
+    "example": "He plug the hole in the pipe with an old rag."
+  },
+  {
+    "word_id": 36,
+    "en": "polish",
+    "vi": "đánh bóng",
+    "pronunciation": "/ˈpɒl.ɪʃ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=polish&lang=en-US&ipa=%2F%CB%88p%C9%92l.%C9%AA%CA%83%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_1000_F_97620410_NxmtNn3IcCHIf4bLlgqfIGplqw3mowU1.jpg",
+    "example": "polish your shoes regularly to protect the leather."
+  },
+  {
+    "word_id": 37,
+    "en": "postage",
+    "vi": "bưu phí",
+    "pronunciation": "/ˈpəʊ.stɪdʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=postage&lang=en-US&ipa=%2F%CB%88p%C9%99%CA%8A.st%C9%AAd%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_209566710_HH2Toz9eAUX39equKNwSS0Kr7S2TlwUt.jpg",
+    "example": "Please enclose £15.99, plus £2 for postage."
+  },
+  {
+    "word_id": 38,
+    "en": "recreational",
+    "vi": "có tính chất giải trí, có tính chất tiêu khiển",
+    "pronunciation": "/ˌrek.riˈeɪ.ʃən.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=recreational&lang=en-US&ipa=%2F%CB%8Crek.ri%CB%88e%C9%AA.%CA%83%C9%99n.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_336105129_lb7exwAeNWINgkP3VTCEseE0yZgXs0FU.jpg",
+    "example": "They provide recreational opportunities for all age groups."
+  },
+  {
+    "word_id": 39,
+    "en": "recruitment",
+    "vi": "sự tuyển dụng",
+    "pronunciation": "/rɪˈkruːt.mənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=recruitment&lang=en-US&ipa=%2Fr%C9%AA%CB%88kru%CB%90t.m%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_463644972_o0GOJQ7qnIk85UXnQHYPrqwjOE7JbSa6.jpg",
+    "example": "The recession has forced a lot of companies to cut down on graduate recruitment."
+  },
+  {
+    "word_id": 40,
+    "en": "referee",
+    "vi": "trọng tài",
+    "pronunciation": "/ˌref.əˈriː/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=referee&lang=en-US&ipa=%2F%CB%8Cref.%C9%99%CB%88ri%CB%90%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_73753974_ND3i5BdRTO1yxTFu1peMy8ISQ5c4A2FN.jpg",
+    "example": "The footballer appealed to the referee for a free kick."
+  },
+  {
+    "word_id": 41,
+    "en": "referral",
+    "vi": "sự giới thiệu (ai hoặc cái gì)",
+    "pronunciation": "/rɪˈfɜː.rəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=referral&lang=en-US&ipa=%2Fr%C9%AA%CB%88f%C9%9C%CB%90.r%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_382770233_zKNGaJlz8BPs7vOXmPVJ5k9UX2VxKZK9.jpg",
+    "example": "The doctor gave him a referral to (= arranged for him to see) the consultant."
+  },
+  {
+    "word_id": 42,
+    "en": "rehearse",
+    "vi": "diễn tập",
+    "pronunciation": "/rɪˈhɜːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rehearse&lang=en-US&ipa=%2Fr%C9%AA%CB%88h%C9%9C%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_202900904_WOQUhjvqaQY3Pli7qHt7Ze3Y9eObSlZo.jpg",
+    "example": "We'd rehearse so many times we were sick of the show before we'd started."
+  },
+  {
+    "word_id": 43,
+    "en": "removal",
+    "vi": "sự dời đi, sự di chuyển",
+    "pronunciation": "/rɪˈmuː.vəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=removal&lang=en-US&ipa=%2Fr%C9%AA%CB%88mu%CB%90.v%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_335072014_pix8O44mBdYZ9mb117Ym2OwmeegpHhkx.jpg",
+    "example": "The kidney plays a vital role in the removal of waste products from the blood."
+  },
+  {
+    "word_id": 44,
+    "en": "renown",
+    "vi": "sự nổi tiếng",
+    "pronunciation": "/rɪˈnaʊn/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=renown&lang=en-US&ipa=%2Fr%C9%AA%CB%88na%CA%8An%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_444953546_nAIAT8UUJDj4ibXNdy2VR4WZTJRy1Psd.jpg",
+    "example": "He won renown as a fair judge."
+  },
+  {
+    "word_id": 45,
+    "en": "runner",
+    "vi": "người chạy bộ",
+    "pronunciation": "/ˈrʌn.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=runner&lang=en-US&ipa=%2F%CB%88r%CA%8Cn.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_314211720_yq8VarIpkvvNwMc6VqL2SXeMHb4GLJ09.jpg",
+    "example": "Given his age, he's a remarkably fast runner."
+  },
+  {
+    "word_id": 46,
+    "en": "satisfactory",
+    "vi": "hài lòng, có thể chấp nhận được",
+    "pronunciation": "/ˌsætɪsˈfæktəri/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=satisfactory&lang=en-US&ipa=%2F%CB%8Cs%C3%A6t%C9%AAs%CB%88f%C3%A6kt%C9%99ri%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_332117273_615bAgCiNWRQzTsOcKUUydqZxnA4DHk9.jpg",
+    "example": "The teachers seem to think his work is satisfactory."
+  },
+  {
+    "word_id": 47,
+    "en": "seasonal",
+    "vi": "theo mùa",
+    "pronunciation": "/ˈsiː.zən.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=seasonal&lang=en-US&ipa=%2F%CB%88si%CB%90.z%C9%99n.%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_473772416_TcGhvsymPm5qAhUokJ9jpMPUA2DYPnum.jpg",
+    "example": "Temperatures are well below the seasonal average."
+  },
+  {
+    "word_id": 48,
+    "en": "separately",
+    "vi": "một cách riêng biệt",
+    "pronunciation": "/ˈsep.ər.ət.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=separately&lang=en-US&ipa=%2F%CB%88sep.%C9%99r.%C9%99t.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_450026002_UJpSQ1wGklce61O4cOyaqty3fFcR95Np.jpg",
+    "example": "Detectives interviewed the men separately over several days."
+  },
+  {
+    "word_id": 49,
+    "en": "sock",
+    "vi": "tất",
+    "pronunciation": "/sɒk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=sock&lang=en-US&ipa=%2Fs%C9%92k%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_279659510_ZLR9GBqsWxnNI8ueXW11UJb6P56aU07t.jpg",
+    "example": "nylon/woollen/cotton sock"
+  },
+  {
+    "word_id": 50,
+    "en": "spam",
+    "vi": "Thư rác",
+    "pronunciation": "/spæm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spam&lang=en-US&ipa=%2Fsp%C3%A6m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/58_1000_F_187045814_UMxOG88aOqsXXOxEwHDunuPU80vkJSLd.jpg",
+    "example": "I get so much spam at work."
+  },
+  {
+    "word_id": 51,
+    "en": "surf",
+    "vi": "lướt Web",
+    "pronunciation": "/sɜːf/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=surf&lang=en-US&ipa=%2Fs%C9%9C%CB%90f%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_266754876_BqIOYsOzR4GPbkDe8Ja3gWAfm5s99vvB.jpg",
+    "example": "He spends a lot of time surf the internet/Net/Web."
+  },
+  {
+    "word_id": 52,
+    "en": "timetable",
+    "vi": "kế hoạch, thời gian biểu",
+    "pronunciation": "/ˈtaɪmˌteɪ.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=timetable&lang=en-US&ipa=%2F%CB%88ta%C9%AAm%CB%8Cte%C9%AA.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_499633985_JpMPdvFZ85BLhthbf9rv3epasSyzFtj5.jpg",
+    "example": "The timetable for our trip to Paris includes visits to Notre-Dame and the Louvre."
+  },
+  {
+    "word_id": 53,
+    "en": "turnover",
+    "vi": "doanh số; doanh thu",
+    "pronunciation": "/ˈtɜːnˌəʊ.vər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=turnover&lang=en-US&ipa=%2F%CB%88t%C9%9C%CB%90n%CB%8C%C9%99%CA%8A.v%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_366128220_rp7CcCsabSv2QQ7Cv05EOUIyZnSM6zzn.jpg",
+    "example": "The seven companies have an aggregate turnover of £5.2 million."
+  },
+  {
+    "word_id": 54,
+    "en": "unnecessary",
+    "vi": "không cần thiết",
+    "pronunciation": "/ʌnˈnes.ə.ser.i/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unnecessary&lang=en-US&ipa=%2F%CA%8Cn%CB%88nes.%C9%99.ser.i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_357471924_3coQtpi72Mgz0MDW66A6dzxrJ6ZZt1en.jpg",
+    "example": "This new computer system is completely unnecessary and a misuse of taxpayers' money."
+  },
+  {
+    "word_id": 55,
+    "en": "vase",
+    "vi": "cái bình hoa",
+    "pronunciation": "/vɑːz/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vase&lang=en-US&ipa=%2Fv%C9%91%CB%90z%2F",
+    "image_url": null,
+    "example": "The vase landed on the floor with a crash."
+  }
+]

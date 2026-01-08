@@ -1,0 +1,299 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 109,
+    "questionText": "The Northwick Orchestra will perform later this month _____ Reverbury Hall.",
+    "options": [
+      {
+        "label": "A",
+        "text": "at"
+      },
+      {
+        "label": "B",
+        "text": "up"
+      },
+      {
+        "label": "C",
+        "text": "on"
+      },
+      {
+        "label": "D",
+        "text": "of"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Câu còn thiếu một giới từ phù hợp. “Reverbury Hall” → danh từ chỉ địa điểm",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 112,
+    "questionText": "Bray Farm Mart is located _____ Elm Road, near its intersection with Wye Lane.",
+    "options": [
+      {
+        "label": "A",
+        "text": "about"
+      },
+      {
+        "label": "B",
+        "text": "inside"
+      },
+      {
+        "label": "C",
+        "text": "beneath"
+      },
+      {
+        "label": "D",
+        "text": "along"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Cần tìm một giới từ phù hợp để đi cùng “Elm Road” Theo nghĩa chọn phương án phù hợp. A: về, B: bên trong, C: bên dưới, D: dọc theoTạm dịch:Bray Farm Mart nằm dọc theo đường Elm, gần giao lộ với Wye Lane",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 106,
+    "questionText": "My Health Co. has produced a wide range of vitamin supplements for _____ two decades.",
+    "options": [
+      {
+        "label": "A",
+        "text": "along"
+      },
+      {
+        "label": "B",
+        "text": "during"
+      },
+      {
+        "label": "C",
+        "text": "over"
+      },
+      {
+        "label": "D",
+        "text": "when"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 121,
+    "questionText": "The short story cannot be reprinted _____ explicit permission from the writer.",
+    "options": [
+      {
+        "label": "A",
+        "text": "without"
+      },
+      {
+        "label": "B",
+        "text": "regarding"
+      },
+      {
+        "label": "C",
+        "text": "among"
+      },
+      {
+        "label": "D",
+        "text": "unlike"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. without: không có."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 101,
+    "questionText": "Not far _____ the train station lies Starlight Park, which is a popular destination for tourists and locals alike.",
+    "options": [
+      {
+        "label": "A",
+        "text": "from"
+      },
+      {
+        "label": "B",
+        "text": "with"
+      },
+      {
+        "label": "C",
+        "text": "next"
+      },
+      {
+        "label": "D",
+        "text": "until"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 115,
+    "questionText": "_____ the television coverage of the general election, a number of high-profile candidates were interviewed live on air.",
+    "options": [
+      {
+        "label": "A",
+        "text": "During"
+      },
+      {
+        "label": "B",
+        "text": "About"
+      },
+      {
+        "label": "C",
+        "text": "While"
+      },
+      {
+        "label": "D",
+        "text": "Since"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 122,
+    "questionText": "It is essential that the logo for Prime Vitamins be integrated _____ all of its catalogs and mailings.",
+    "options": [
+      {
+        "label": "A",
+        "text": "into"
+      },
+      {
+        "label": "B",
+        "text": "of"
+      },
+      {
+        "label": "C",
+        "text": "as"
+      },
+      {
+        "label": "D",
+        "text": "than"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 108,
+    "questionText": "The experts at Prime Carpentry can handle any piece of wooden furniture, restoring it _____ its original condition.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to"
+      },
+      {
+        "label": "B",
+        "text": "by"
+      },
+      {
+        "label": "C",
+        "text": "at"
+      },
+      {
+        "label": "D",
+        "text": "with"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 103,
+    "questionText": "Mr. Brandt asked for the banner to be hung _____ the exterior wall of the building.",
+    "options": [
+      {
+        "label": "A",
+        "text": "up"
+      },
+      {
+        "label": "B",
+        "text": "next"
+      },
+      {
+        "label": "C",
+        "text": "on"
+      },
+      {
+        "label": "D",
+        "text": "with"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 105,
+    "questionText": "If the patient's nasal problem does not show signs of improvement _____ two days, he should visit the clinic again.",
+    "options": [
+      {
+        "label": "A",
+        "text": "because of"
+      },
+      {
+        "label": "B",
+        "text": "regarding"
+      },
+      {
+        "label": "C",
+        "text": "apart from"
+      },
+      {
+        "label": "D",
+        "text": "within"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 116,
+    "questionText": "The welcome activity is an opportunity to improve communication _____ volunteers before the project begins.",
+    "options": [
+      {
+        "label": "A",
+        "text": "among"
+      },
+      {
+        "label": "B",
+        "text": "like"
+      },
+      {
+        "label": "C",
+        "text": "above"
+      },
+      {
+        "label": "D",
+        "text": "under"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  }
+]

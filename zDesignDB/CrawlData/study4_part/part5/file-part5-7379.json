@@ -1,0 +1,488 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 129,
+    "questionText": "By this time next year, Grasswell Industries _____ two new plants in eastern Europe.",
+    "options": [
+      {
+        "label": "A",
+        "text": "opens"
+      },
+      {
+        "label": "B",
+        "text": "will have opened"
+      },
+      {
+        "label": "C",
+        "text": "is opening"
+      },
+      {
+        "label": "D",
+        "text": "had opened"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Trong câu có “by this time next year” → dấu hiệu của thì tương lai hoàn thành",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 109,
+    "questionText": "Questwiz, the library's newest database, _____ a wide range of resource materials.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to contain"
+      },
+      {
+        "label": "B",
+        "text": "contains"
+      },
+      {
+        "label": "C",
+        "text": "container"
+      },
+      {
+        "label": "D",
+        "text": "containing"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Câu còn thiếu động từ chính (được chia thì). Loại A (động từ nguyên mẫu có to), C (danh từ) và D (phân từ đuôi -ing)Chọn đáp án phù hợp là B.Dịch: Questwiz, cơ sở dữ liệu mới nhất của thư viện, chứa một loạt các tài liệu nguồn.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 110,
+    "questionText": "The lights in the cinema _____ before a movie begins.",
+    "options": [
+      {
+        "label": "A",
+        "text": "dim"
+      },
+      {
+        "label": "B",
+        "text": "dimming"
+      },
+      {
+        "label": "C",
+        "text": "dimmer"
+      },
+      {
+        "label": "D",
+        "text": "dims"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Câu còn thiếu động từ chính, loại B và C. Do chủ ngữ là số nhiều nên loại D.",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 101,
+    "questionText": "Free Internet service ____ available in the lobby but not in the guest rooms",
+    "options": [
+      {
+        "label": "A",
+        "text": "being"
+      },
+      {
+        "label": "B",
+        "text": "to be"
+      },
+      {
+        "label": "C",
+        "text": "are"
+      },
+      {
+        "label": "D",
+        "text": "is"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống đứng sau chủ ngữ “free internet service”, câu thiếu động từ chính → Cần tìm một động từ chính được chia thì ở dạng số ít",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 106,
+    "questionText": "Whenever company costs ____ significantly, the budget is adjusted",
+    "options": [
+      {
+        "label": "A",
+        "text": "rise"
+      },
+      {
+        "label": "B",
+        "text": "rises"
+      },
+      {
+        "label": "C",
+        "text": "risen"
+      },
+      {
+        "label": "D",
+        "text": "rising"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống đứng sau chủ ngữ “company costs” - danh từ số nhiều, cần điền động từ chính chia ở dạng số nhiều",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 124,
+    "questionText": "The National Health Agency's latest report _____ that recently adopted health-care regulations have been successful.",
+    "options": [
+      {
+        "label": "A",
+        "text": "concludes"
+      },
+      {
+        "label": "B",
+        "text": "concluding"
+      },
+      {
+        "label": "C",
+        "text": "conclusion"
+      },
+      {
+        "label": "D",
+        "text": "to conclude"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Câu còn thiếu một động từ chính được chia thì",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 107,
+    "questionText": "The Zans Corporation _____ manufacturing all of its luxury wallets and footwear domestically next year.",
+    "options": [
+      {
+        "label": "A",
+        "text": "was starting"
+      },
+      {
+        "label": "B",
+        "text": "started"
+      },
+      {
+        "label": "C",
+        "text": "will start"
+      },
+      {
+        "label": "D",
+        "text": "has started"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 111,
+    "questionText": "The donations received from the fundraiser _____ among the charity's three locations equally.",
+    "options": [
+      {
+        "label": "A",
+        "text": "have divided"
+      },
+      {
+        "label": "B",
+        "text": "is being divided"
+      },
+      {
+        "label": "C",
+        "text": "are dividing"
+      },
+      {
+        "label": "D",
+        "text": "will be divided"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 115,
+    "questionText": "The lecturer _____ on the country's struggle for independence when he gives his talk.",
+    "options": [
+      {
+        "label": "A",
+        "text": "has focused"
+      },
+      {
+        "label": "B",
+        "text": "is focused"
+      },
+      {
+        "label": "C",
+        "text": "will focus"
+      },
+      {
+        "label": "D",
+        "text": "focusing"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 129,
+    "questionText": "The crew members _____ the main section of the building by the time the waste removal trucks arrive at 3:30.",
+    "options": [
+      {
+        "label": "A",
+        "text": "demolish"
+      },
+      {
+        "label": "B",
+        "text": "will have demolished"
+      },
+      {
+        "label": "C",
+        "text": "demolished"
+      },
+      {
+        "label": "D",
+        "text": "had demolished"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 113,
+    "questionText": "The chairperson ------- by an anonymous vote involving all members.",
+    "options": [
+      {
+        "label": "A",
+        "text": "has been selecting"
+      },
+      {
+        "label": "B",
+        "text": "had to select"
+      },
+      {
+        "label": "C",
+        "text": "is selecting"
+      },
+      {
+        "label": "D",
+        "text": "will be selected"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 111,
+    "questionText": "Your current online banking session ____, so please log on to your account again",
+    "options": [
+      {
+        "label": "A",
+        "text": "has expired"
+      },
+      {
+        "label": "B",
+        "text": "expiring"
+      },
+      {
+        "label": "C",
+        "text": "expiration"
+      },
+      {
+        "label": "D",
+        "text": "to expire"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "\"So\" là từ nối giữa 2 mệnh đề, cụm ‘Your current online banking session’ trước đó là chủ ngữ, vậy mệnh đề phía trước đang thiếu động từ chính, chọn đáp án A.Dịch: Phiên giao dịch trực tuyến hiện tại của bạn đã hết hạn, vui lòng đăng nhập lại.",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 110,
+    "questionText": "Later today, Mr. Warken ____ interview times for job applicant finalists",
+    "options": [
+      {
+        "label": "A",
+        "text": "has been arranging"
+      },
+      {
+        "label": "B",
+        "text": "will be arranging"
+      },
+      {
+        "label": "C",
+        "text": "was arranged"
+      },
+      {
+        "label": "D",
+        "text": "have arranged"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Đây là dạng câu hỏi ngữ pháp, cần chọn dạng đúng của động từ ‘arrange’. Chủ ngữ ‘Mr. Warken’ là một người nên cần chọn thì chủ động, dấu hiệu về thì của động từ là \"later today\": muộn hơn trong ngày hôm nay nên câu sẽ ở thì tương lai. Vì vậy lựa chọn phương án B.Dịch: Cuối ngày hôm nay, ông Warken sẽ sắp xếp thời gian phỏng vấn cho những người nộp đơn xin việc vào vòng chung kết.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 104,
+    "questionText": "None of the employees _____ that Mr. Annan planned to retire at the end of the year.",
+    "options": [
+      {
+        "label": "A",
+        "text": "knowingly"
+      },
+      {
+        "label": "B",
+        "text": "known"
+      },
+      {
+        "label": "C",
+        "text": "knew"
+      },
+      {
+        "label": "D",
+        "text": "to know"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 101,
+    "questionText": "Mr. Guo _____ with an electrician yesterday about the rewiring project.",
+    "options": [
+      {
+        "label": "A",
+        "text": "consults"
+      },
+      {
+        "label": "B",
+        "text": "is consulting"
+      },
+      {
+        "label": "C",
+        "text": "to consult"
+      },
+      {
+        "label": "D",
+        "text": "consulted"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 111,
+    "questionText": "So far, the Grantley store _____ 20 percent more mobile phones than it did last year.",
+    "options": [
+      {
+        "label": "A",
+        "text": "will sell"
+      },
+      {
+        "label": "B",
+        "text": "was sold"
+      },
+      {
+        "label": "C",
+        "text": "has sold"
+      },
+      {
+        "label": "D",
+        "text": "are selling"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q17",
+    "question_number": 105,
+    "questionText": "If you have recently _____ a digital camera and want to learn how to use it, this course is for you.",
+    "options": [
+      {
+        "label": "A",
+        "text": "purchased"
+      },
+      {
+        "label": "B",
+        "text": "purchase"
+      },
+      {
+        "label": "C",
+        "text": "purchasing"
+      },
+      {
+        "label": "D",
+        "text": "to purchase"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. purchasedTạm dịch: Nếu gần đây bạn có mua một chiếc máy ảnh kỹ thuật số và muốn tìm hiểu cách sử dụng nó thì khóa học này là dành cho bạn."
+  },
+  {
+    "question_id": "p5_q18",
+    "question_number": 111,
+    "questionText": "For the past decade, Henley Vivian _____ to be a talented and motivated journalist.",
+    "options": [
+      {
+        "label": "A",
+        "text": "is proving"
+      },
+      {
+        "label": "B",
+        "text": "proving"
+      },
+      {
+        "label": "C",
+        "text": "prove"
+      },
+      {
+        "label": "D",
+        "text": "has proven"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  }
+]

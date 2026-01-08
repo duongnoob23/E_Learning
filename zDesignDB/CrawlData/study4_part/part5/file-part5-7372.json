@@ -1,0 +1,191 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 105,
+    "questionText": "Summer interns may _____ either free company housing or a stipend of $2,",
+    "options": [
+      {
+        "label": "A",
+        "text": "choose"
+      },
+      {
+        "label": "B",
+        "text": "wonder"
+      },
+      {
+        "label": "C",
+        "text": "apply"
+      },
+      {
+        "label": "D",
+        "text": "rent"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau động từ khiếm khuyết “may” và đứng trước vế vị ngữ → Cần tìm một động từ nguyên thể Dựa vào nghĩa để chọn. A: chọn, B: băn khoăn, C: ứng tuyển, D: thuê",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 107,
+    "questionText": "When booking a flight, it is wise to ----- the guidelines for luggage size on the airline's Website.",
+    "options": [
+      {
+        "label": "A",
+        "text": "check"
+      },
+      {
+        "label": "B",
+        "text": "close"
+      },
+      {
+        "label": "C",
+        "text": "approve"
+      },
+      {
+        "label": "D",
+        "text": "list"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống đứng sau giới từ “to”, nằm trong vế sau của câu Dựa vào nghĩa chọn đáp án. A: kiểm tra, B: đóng, C: chấp thuận, D: liệt kê",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 111,
+    "questionText": "We cannot _____ the filming of our documentary, Morning after Night, without sufficient funding.",
+    "options": [
+      {
+        "label": "A",
+        "text": "completely"
+      },
+      {
+        "label": "B",
+        "text": "completion"
+      },
+      {
+        "label": "C",
+        "text": "complete"
+      },
+      {
+        "label": "D",
+        "text": "completing"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau động từ khiếm khuyết “cannot” → Cần tìm một động từ nguyên thể",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 109,
+    "questionText": "The Delmar Highway Department _____ an online list of current road closures.",
+    "options": [
+      {
+        "label": "A",
+        "text": "maintenance"
+      },
+      {
+        "label": "B",
+        "text": "maintains"
+      },
+      {
+        "label": "C",
+        "text": "maintaining"
+      },
+      {
+        "label": "D",
+        "text": "is maintained"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 103,
+    "questionText": "Consumers _____ enthusiastically to the new colors developed by Sanwell Paint.",
+    "options": [
+      {
+        "label": "A",
+        "text": "responding"
+      },
+      {
+        "label": "B",
+        "text": "response"
+      },
+      {
+        "label": "C",
+        "text": "responsively"
+      },
+      {
+        "label": "D",
+        "text": "responded"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 108,
+    "questionText": "Mr. Brennel _____ positions in various areas of the company before he became president.",
+    "options": [
+      {
+        "label": "A",
+        "text": "occupation"
+      },
+      {
+        "label": "B",
+        "text": "occupational"
+      },
+      {
+        "label": "C",
+        "text": "occupying"
+      },
+      {
+        "label": "D",
+        "text": "occupied"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 111,
+    "questionText": "Companies without information technology specialists can _____ on Vyber Software Advisers for assistance with online services.",
+    "options": [
+      {
+        "label": "A",
+        "text": "reliable"
+      },
+      {
+        "label": "B",
+        "text": "reliably"
+      },
+      {
+        "label": "C",
+        "text": "rely"
+      },
+      {
+        "label": "D",
+        "text": "relying"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  }
+]

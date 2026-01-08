@@ -1,0 +1,812 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 127,
+    "questionText": "_____ Peura Insurance has located a larger office space, it will begin negotiating the rental agreement.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Happily"
+      },
+      {
+        "label": "B",
+        "text": "Now that"
+      },
+      {
+        "label": "C",
+        "text": "Despite"
+      },
+      {
+        "label": "D",
+        "text": "In fact"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống đứng trước 1 vế câu hoàn chỉnh, sau đó cũng là một vế câu đầy đủ. → Cần xác định một liên từ để kết hợp 2 vế câu. → Loại A, CCâu này phải dựa vào nghĩa để chọn đáp án phù hợp, B: Bây giờ, D: Trên thực tế → Đáp án đúng là B.Dịch: Bây giờ Bảo hiểm Peura đã tìm được một văn phòng lớn hơn, họ sẽ bắt đầu đàm phán về hợp đồng cho thuê.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 114,
+    "questionText": "_____ Mr. Kamau has worked for Mombasa Communications for two years, he has never taken time off.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Although"
+      },
+      {
+        "label": "B",
+        "text": "But"
+      },
+      {
+        "label": "C",
+        "text": "Neither"
+      },
+      {
+        "label": "D",
+        "text": "Yet"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước vế câu 1, sau đó là vế câu 2. → Cần tìm một liên từ kết nối 2 vế câu mang nghĩa phù hợp. A: mặc dù, B: tuy nhiên, C: không cái nào, D: chưa",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 116,
+    "questionText": "Conference attendees will share accommodations _____ they submit a special request for a single room.",
+    "options": [
+      {
+        "label": "A",
+        "text": "even"
+      },
+      {
+        "label": "B",
+        "text": "unless"
+      },
+      {
+        "label": "C",
+        "text": "similarly"
+      },
+      {
+        "label": "D",
+        "text": "also"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm giữa 2 vế câu hoàn chỉnh → cần tìm một liên từ kết hợp 2 vế câu này. → Loại CDựa vào nghĩa để chọn đáp án phù hợp. A: kể cả khi, B: trừ khi, D: đồng thời",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 106,
+    "questionText": "Our company's efforts to hire new workers have intensified _____ so many employees have recently retired.",
+    "options": [
+      {
+        "label": "A",
+        "text": "because"
+      },
+      {
+        "label": "B",
+        "text": "although"
+      },
+      {
+        "label": "C",
+        "text": "instead"
+      },
+      {
+        "label": "D",
+        "text": "unless"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm giữa 2 vế câu → tìm một liên từ nối 2 vế câu.Dựa vào nghĩa của các phương án. A: bởi vì, B: mặc dù, C: thay vào đó, D: trừ khi",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 109,
+    "questionText": "Mr. Liu will not be in the office this morning _____ he has a dentist appointment.",
+    "options": [
+      {
+        "label": "A",
+        "text": "following"
+      },
+      {
+        "label": "B",
+        "text": "because"
+      },
+      {
+        "label": "C",
+        "text": "including"
+      },
+      {
+        "label": "D",
+        "text": "likewise"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống cần tìm nằm giữa 2 vế câu hoàn chỉnh → cần tìm một liên từ liên kết 2 vếDựa trên nghĩa để chọn đáp án phù hợp. A: theo sau đó, B: bởi vì, C: bao gồm, D: tương tự như vậy",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 122,
+    "questionText": "_____ the rock band Captain Zino decided to offer free tickets to their concert, sales of their album have reached record numbers.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Since"
+      },
+      {
+        "label": "B",
+        "text": "Besides"
+      },
+      {
+        "label": "C",
+        "text": "As much as"
+      },
+      {
+        "label": "D",
+        "text": "Not only"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Vế câu chính trong câu sử dụng thì hiện tại hoàn thành “have reached”, vế trước sử dụng thì quá khứ đơn “decided”",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 101,
+    "questionText": "Ms. Abe will order supplies tomorrow, _____ tell her right away if you need anything.",
+    "options": [
+      {
+        "label": "A",
+        "text": "than"
+      },
+      {
+        "label": "B",
+        "text": "wait"
+      },
+      {
+        "label": "C",
+        "text": "so"
+      },
+      {
+        "label": "D",
+        "text": "about"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm giữa 2 vế câu hoàn chỉnh → cần tìm một liên từ phù hợp để nối 2 vế câu",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 102,
+    "questionText": "The Knysya Theater requests that all electronic devices be silenced _____ the play begins.",
+    "options": [
+      {
+        "label": "A",
+        "text": "also"
+      },
+      {
+        "label": "B",
+        "text": "but"
+      },
+      {
+        "label": "C",
+        "text": "unless"
+      },
+      {
+        "label": "D",
+        "text": "before"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền giữa hai vế câu hoàn chỉnh → Cần tìm liên từ kết nối 2 vế.Xét theo nghĩa, A: cũng như, B: tuy nhiên, C: trừ khi, D: trước khi Tạm dịch: Nhà hát Knysya yêu cầu tắt tiếng tất cả các thiết bị điện tử trước khi vở kịch bắt đầu.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 102,
+    "questionText": "The community program features classes in photography, drawing, _____ other arts.",
+    "options": [
+      {
+        "label": "A",
+        "text": "yet"
+      },
+      {
+        "label": "B",
+        "text": "but"
+      },
+      {
+        "label": "C",
+        "text": "and"
+      },
+      {
+        "label": "D",
+        "text": "thus"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống nằm trong vế sau của câu, trong phần liệt kê một loạt các đặc điểm của chương trình cộng đồng “the community program” → Cần tìm một liên từ kết hợp chúngDựa vào nghĩa để chọn một đáp án phù hợp. A: chưa, B: nhưng, C: và, D: vì vậy",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 102,
+    "questionText": "Rain is predicted this weekend,------ the office picnic will have to be postponed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "so"
+      },
+      {
+        "label": "B",
+        "text": "for"
+      },
+      {
+        "label": "C",
+        "text": "but"
+      },
+      {
+        "label": "D",
+        "text": "nor"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau dấu phẩy, trước và sau nó đều có 2 vế câu hoàn chỉnh→ Cần tìm một liên từ kết hợp 2 vếDựa vào nghĩa để xác định. A: vì thế, B: cho, C: tuy nhiên, D: cũng không",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 130,
+    "questionText": "Garstein Furniture specializes in functional products that are inexpensive _____ beautifully crafted.",
+    "options": [
+      {
+        "label": "A",
+        "text": "thus"
+      },
+      {
+        "label": "B",
+        "text": "as well as"
+      },
+      {
+        "label": "C",
+        "text": "at last"
+      },
+      {
+        "label": "D",
+        "text": "accordingly"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống nằm sau chủ ngữ và động từ của vế câu, nằm giữa 2 thành phần nhỏ trong vị ngữ → tìm một liên từ kết hợp 2 thành phần mang vai trò tương đươngDựa vào nghĩa để chọn đáp án phù hợp. A: vì thế, B: cũng như là, C: cuối cùng thì, D: một cách tương tự.→ Đáp án đúng là B.Dịch: Nội thất Garstein chuyên về các sản phẩm chức năng có giá thành rẻ cũng như được chế tác thủ công đẹp mắt.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 117,
+    "questionText": "Enjoy one month free when you start your company on Rooster's e-mail _____ Web hosting service.",
+    "options": [
+      {
+        "label": "A",
+        "text": "then"
+      },
+      {
+        "label": "B",
+        "text": "yet"
+      },
+      {
+        "label": "C",
+        "text": "but"
+      },
+      {
+        "label": "D",
+        "text": "and"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm giữa 2 cụm danh từ “Rooster’s e-mail” và “Web hosting service” → cần tìm một từ liên kết chúng. Dựa vào nghĩa. A: sau đó, B: chưa, C: nhưng, D: và.Tạm dịch: Tận hưởng một tháng miễn phí khi bạn sử dụng dịch vụ email và lưu trữ web của Rooster cho công ty của bạn.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 118,
+    "questionText": "_____ sales of junk food have been steadily declining indicates that consumers are becoming more health-conscious.",
+    "options": [
+      {
+        "label": "A",
+        "text": "In addition to"
+      },
+      {
+        "label": "B",
+        "text": "The fact that"
+      },
+      {
+        "label": "C",
+        "text": "As long as"
+      },
+      {
+        "label": "D",
+        "text": "In keeping with"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 123,
+    "questionText": "_____ an ankle injury, the baseball player participated in the last game of the season.",
+    "options": [
+      {
+        "label": "A",
+        "text": "In spite of"
+      },
+      {
+        "label": "B",
+        "text": "Even if"
+      },
+      {
+        "label": "C",
+        "text": "Whether"
+      },
+      {
+        "label": "D",
+        "text": "Given that"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 128,
+    "questionText": "_____ restructuring several departments within the company, the majority of the problems with miscommunication have disappeared.",
+    "options": [
+      {
+        "label": "A",
+        "text": "After"
+      },
+      {
+        "label": "B",
+        "text": "Until"
+      },
+      {
+        "label": "C",
+        "text": "Below"
+      },
+      {
+        "label": "D",
+        "text": "Like"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 118,
+    "questionText": "_____ the building has an excellent location and a modern interior, it is popular among visitors.",
+    "options": [
+      {
+        "label": "A",
+        "text": "In view of"
+      },
+      {
+        "label": "B",
+        "text": "Provided that"
+      },
+      {
+        "label": "C",
+        "text": "Other than"
+      },
+      {
+        "label": "D",
+        "text": "Seeing that"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q17",
+    "question_number": 128,
+    "questionText": "The green light on the side of the water purifier lights up _____ the filter needs to be replaced.",
+    "options": [
+      {
+        "label": "A",
+        "text": "likewise"
+      },
+      {
+        "label": "B",
+        "text": "whenever"
+      },
+      {
+        "label": "C",
+        "text": "therefore"
+      },
+      {
+        "label": "D",
+        "text": "whereas"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q18",
+    "question_number": 110,
+    "questionText": "The leaky faucet has been repaired, so visitors may _____ use the first-floor restroom.",
+    "options": [
+      {
+        "label": "A",
+        "text": "however"
+      },
+      {
+        "label": "B",
+        "text": "once"
+      },
+      {
+        "label": "C",
+        "text": "now"
+      },
+      {
+        "label": "D",
+        "text": "quite"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q19",
+    "question_number": 125,
+    "questionText": "Even though Ms. Garcia had a small account at the financial institution, the employee treated her _____ she were a major investor.",
+    "options": [
+      {
+        "label": "A",
+        "text": "rather than"
+      },
+      {
+        "label": "B",
+        "text": "in spite of"
+      },
+      {
+        "label": "C",
+        "text": "as if"
+      },
+      {
+        "label": "D",
+        "text": "provided that"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q20",
+    "question_number": 130,
+    "questionText": "_____ auditing the financial records of Rockford Consulting, the accountant will submit an official report.",
+    "options": [
+      {
+        "label": "A",
+        "text": "In addition"
+      },
+      {
+        "label": "B",
+        "text": "Given"
+      },
+      {
+        "label": "C",
+        "text": "For example"
+      },
+      {
+        "label": "D",
+        "text": "Upon"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q21",
+    "question_number": 119,
+    "questionText": "_____ the researcher's report, eating fresh fruits and vegetables more often is a better health goal than avoiding fast food.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Even though"
+      },
+      {
+        "label": "B",
+        "text": "Rather than"
+      },
+      {
+        "label": "C",
+        "text": "According to"
+      },
+      {
+        "label": "D",
+        "text": "Because of"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q22",
+    "question_number": 124,
+    "questionText": "Everyone is in favor of shortening working hours, but _____ the president approves the change, nothing will happen.",
+    "options": [
+      {
+        "label": "A",
+        "text": "without"
+      },
+      {
+        "label": "B",
+        "text": "until"
+      },
+      {
+        "label": "C",
+        "text": "yet"
+      },
+      {
+        "label": "D",
+        "text": "because"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q23",
+    "question_number": 102,
+    "questionText": "The sales director will give a brief talk _____ the keynote speaker is introduced.",
+    "options": [
+      {
+        "label": "A",
+        "text": "before"
+      },
+      {
+        "label": "B",
+        "text": "opposite"
+      },
+      {
+        "label": "C",
+        "text": "about"
+      },
+      {
+        "label": "D",
+        "text": "between"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. before: trước, trước khi."
+  },
+  {
+    "question_id": "p5_q24",
+    "question_number": 120,
+    "questionText": "There will be a software upgrade tomorrow, _____ please back up any important files you have stored on the server.",
+    "options": [
+      {
+        "label": "A",
+        "text": "rather"
+      },
+      {
+        "label": "B",
+        "text": "while"
+      },
+      {
+        "label": "C",
+        "text": "so"
+      },
+      {
+        "label": "D",
+        "text": "because"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q25",
+    "question_number": 117,
+    "questionText": "------ the hospital experiences a power outage, power generators will turn on automatically to supply the necessary electricity.",
+    "options": [
+      {
+        "label": "A",
+        "text": "If"
+      },
+      {
+        "label": "B",
+        "text": "Until"
+      },
+      {
+        "label": "C",
+        "text": "What"
+      },
+      {
+        "label": "D",
+        "text": "So"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Nếu."
+  },
+  {
+    "question_id": "p5_q26",
+    "question_number": 105,
+    "questionText": "------- the necessary safety precautions are not taken, there could be a higher risk of injury.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Just"
+      },
+      {
+        "label": "B",
+        "text": "If"
+      },
+      {
+        "label": "C",
+        "text": "That"
+      },
+      {
+        "label": "D",
+        "text": "From"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. Nếu."
+  },
+  {
+    "question_id": "p5_q27",
+    "question_number": 120,
+    "questionText": "_____ two additional designers are hired, current staffers will not need to work overtime to complete projects on time.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Whether"
+      },
+      {
+        "label": "B",
+        "text": "Already"
+      },
+      {
+        "label": "C",
+        "text": "Instead"
+      },
+      {
+        "label": "D",
+        "text": "If"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q28",
+    "question_number": 124,
+    "questionText": "_____ it does not rain tomorrow, tents will be set up for any scheduled outdoor events.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Though"
+      },
+      {
+        "label": "B",
+        "text": "Even if"
+      },
+      {
+        "label": "C",
+        "text": "Almost"
+      },
+      {
+        "label": "D",
+        "text": "Besides that"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q29",
+    "question_number": 113,
+    "questionText": "Please be advised _____ we have had to cancel your order because of a difficulty with our shipping agent.",
+    "options": [
+      {
+        "label": "A",
+        "text": "that"
+      },
+      {
+        "label": "B",
+        "text": "of"
+      },
+      {
+        "label": "C",
+        "text": "whether"
+      },
+      {
+        "label": "D",
+        "text": "between"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Tạm dịch: Xin lưu ý rằng chúng tôi đã phải hủy đơn hàng của bạn vì một khó khăn với đại lý giao nhận của chúng tôi."
+  },
+  {
+    "question_id": "p5_q30",
+    "question_number": 115,
+    "questionText": "_____ Jemburger opened its newest franchise, the first 100 customers were given free hamburgers.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Now"
+      },
+      {
+        "label": "B",
+        "text": "When"
+      },
+      {
+        "label": "C",
+        "text": "As if"
+      },
+      {
+        "label": "D",
+        "text": "After all"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  }
+]

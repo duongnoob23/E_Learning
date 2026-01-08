@@ -1,0 +1,218 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 102,
+    "questionText": "The manager often leads new employees through the safety procedures _____",
+    "options": [
+      {
+        "label": "A",
+        "text": "her"
+      },
+      {
+        "label": "B",
+        "text": "herself"
+      },
+      {
+        "label": "C",
+        "text": "hers"
+      },
+      {
+        "label": "D",
+        "text": "she"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "Người quản lý thường tự mình hướng dẫn cho những nhân viên mới về quy trình an toàn",
+    "analysis": "Câu đã đủ thành phần, chủ ngữ “the manager”, động từ “leads”, tân ngữ “new employees”, vì vậy cần chọn đại từ phản thân.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 104,
+    "questionText": "Professor Phuong will go over the use of the laboratory____with the interns next week",
+    "options": [
+      {
+        "label": "A",
+        "text": "instruments"
+      },
+      {
+        "label": "B",
+        "text": "instrumental"
+      },
+      {
+        "label": "C",
+        "text": "instrumentally"
+      },
+      {
+        "label": "D",
+        "text": "instrumented"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "Giáo sư Phuong sẽ kiểm tra cách sử dụng của các dụng cụ phòng thí nghiệm với các thực tập sinh vào tuần sau.",
+    "analysis": "vì laboratory là một danh từ → từ cần điền theo sau nó cần là một danh từ để tạo thành một cụm từ cố định “laboratory instrument(s)” nghĩa là dụng cụ phòng thí nghiệm",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 116,
+    "questionText": "Studies show that the average audience forms its___of the speaker within the first few seconds of the presentation",
+    "options": [
+      {
+        "label": "A",
+        "text": "impress"
+      },
+      {
+        "label": "B",
+        "text": "impressive"
+      },
+      {
+        "label": "C",
+        "text": "impressively"
+      },
+      {
+        "label": "D",
+        "text": "impression"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "Các nghiên cứu chỉ ra trung bình khán giả hình thành ấn tượng của họ về các người diễn thuyết trong vài giây đầu của buổi thuyết trình.",
+    "analysis": "từ cầu điền đứng sau tính từ sở hữu its, đứng trước cụm “of the speaker\" => cần điền 1 danh từ để tạo thành cụm danh từ đứng sau tính từ sở hữu.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 118,
+    "questionText": "Cranford Culinary Academy offers 35 different classes for ____chefs",
+    "options": [
+      {
+        "label": "A",
+        "text": "aspires"
+      },
+      {
+        "label": "B",
+        "text": "aspirations"
+      },
+      {
+        "label": "C",
+        "text": "aspiring"
+      },
+      {
+        "label": "D",
+        "text": "to aspire"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "Học viện ẩm thực Cranford cung cấp 35 lớp học khác nhau cho những người có tham vọng  trở thành đầu bếp.",
+    "analysis": "vì cả cụm từ cần điền (____chefs)  đứng sau giới từ for → cần 1 danh từ ở đây. Vì ‘chefs’ là danh từ nên từ cần điền là một tính từ bổ nghĩa cho danh từ ‘chefs’",
+    "explanation": "Đáp án đúng: C. có tham vọng trở thành (adj)."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 122,
+    "questionText": "Dolores Guierrez excels as an estate planning attorney who helps clients manage their assets _______.",
+    "options": [
+      {
+        "label": "A",
+        "text": "effect"
+      },
+      {
+        "label": "B",
+        "text": "effectively"
+      },
+      {
+        "label": "C",
+        "text": "effects"
+      },
+      {
+        "label": "D",
+        "text": "effective"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Ở đây là cần một trạng từ để bổ nghĩa cho động từ ‘manage’ trước đó",
+    "explanation": "Đáp án đúng: B. một cách hiệu quả (adv)."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 125,
+    "questionText": "Immediately after the decrease in production was announced, everyone began discussing how ____ would impact work schedules",
+    "options": [
+      {
+        "label": "A",
+        "text": "us"
+      },
+      {
+        "label": "B",
+        "text": "it"
+      },
+      {
+        "label": "C",
+        "text": "theirs"
+      },
+      {
+        "label": "D",
+        "text": "yours"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "vì chỗ trống cần điền đứng ở vai trò là chủ ngữ và nằm ở vế sau",
+    "explanation": "Đáp án đúng: B. nó."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 127,
+    "questionText": "Tomorrow morning, both escalators in the store will be turned off periodically in order to perform____maintenance",
+    "options": [
+      {
+        "label": "A",
+        "text": "required"
+      },
+      {
+        "label": "B",
+        "text": "require"
+      },
+      {
+        "label": "C",
+        "text": "requiring"
+      },
+      {
+        "label": "D",
+        "text": "requires"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Vì chỗ trống cần điền đứng sau động từ ‘perform’ và đứng trước danh từ ‘maintenance’→ chỗ trống cần điền phải là một tính từ để bổ nghĩa cho danh từ sau nó → Loại B và DVì việc bảo dưỡng là cần thiết, bị bắt buộc",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 130,
+    "questionText": "A recent____found that property values in the Agate Valley region had increased by 3 percent between January and June",
+    "options": [
+      {
+        "label": "A",
+        "text": "assessment"
+      },
+      {
+        "label": "B",
+        "text": "assessed"
+      },
+      {
+        "label": "C",
+        "text": "assessable"
+      },
+      {
+        "label": "D",
+        "text": "to assess"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Từ cần điền phải là một danh từ vì nó đứng sau tính từ recent",
+    "explanation": "Đáp án đúng: A. bản đánh giá (n)."
+  }
+]

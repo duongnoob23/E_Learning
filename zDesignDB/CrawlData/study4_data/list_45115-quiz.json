@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'absorb' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có uy thế, có tầm ảnh hưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_165031704_jNDdxLBl4nLeplz80eYlkUuI0Qxo66Hf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "(thuộc) bưu điện, gửi bằng bưu điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_473712532_coiqWG0XaHKEVV1VxzsjMBtxjjAQZMAe.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ngược lại với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'administer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "(dịch vụ) chăm sóc sức khỏe",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trên toàn quốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_406244799_xwLg3IhuGRWiWaMjakmULV8Uyv7pBRoz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'ample' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một chi phí nhỏ bạn phải trả để sử dụng dịch vụ (ví dụ như phí cầu đường)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_240_F_174534119_35tdaPEBotVBhrqjuHIwnnW7EqFMSGnM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'antique' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhà phân phối",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn đàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_forum-mercedes-benz-mercedeshanoi-com-vn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'bean' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho phù hợp với, giống với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_conform.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách yên tĩnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/52_1000_F_504125230_OVYRKXKfV3lkQMFZcCxmNJ6ZKW528NGr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "(dịch vụ) chăm sóc sức khỏe",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hạt đậu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_four-bowls-of-beans-1296x728.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'browse' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mực máy in",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_488629209_4Q0nZQyBvt9ltvN9JHGNC8fxPADvgZ0c.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự mâu thuẫn, sự trái ngược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_contradiction.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà phân phối",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đọc lướt qua, xem lướt qua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'bye' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự tắc nghẽn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_92980_1006untac1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tạm biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/9c_67189c13147510a679d1b33cbaf3c4b2.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'careless' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người sáng lập",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_word-image-1478.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'collector' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dọn dẹp ngăn nắp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_479294676_WPukf5THjt5BdzKPwZe09SOiC9S62Qlq.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhà sưu tầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_KAWS-sitting-in-front-of-his-extensive-art-collection.-Photo-by-Stefan-Ruiz.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'conform' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tạm biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/9c_67189c13147510a679d1b33cbaf3c4b2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho phù hợp với, giống với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_conform.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sắp xếp hợp lý hoá, tổ chức cho tốt hơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_421019853_mFBhDkldHfPzmaTzFiJGMukFzv38TON5.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một chi phí nhỏ bạn phải trả để sử dụng dịch vụ (ví dụ như phí cầu đường)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_240_F_174534119_35tdaPEBotVBhrqjuHIwnnW7EqFMSGnM.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'congestion' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tắc nghẽn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_92980_1006untac1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự mâu thuẫn, sự trái ngược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_contradiction.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà phân phối",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đọc lướt qua, xem lướt qua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'contradiction' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hữu ích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12dec_handy-idiom.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự mâu thuẫn, sự trái ngược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_contradiction.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'contrary' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngược lại với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cái kẹp ghim",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_1299345_p7V1XpUwbtYMnSFC0fJcQD1gyH5jXq.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'diploma' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tắc nghẽn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_92980_1006untac1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bằng cấp, chứng chỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_5c5801308f149573442a9ca980da3e14.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'disappointment' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nguy hiểm",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Đường dành cho người đi bộ",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "ngược lại với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'dissatisfy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'distributor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhà phân phối",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'dive' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "gây quỹ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MTc1MTI4MTA5MTQ5MjY3MDM5_101_ways_to_fundraise.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người thuê nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_495202235_HG5wh2BZt2E6p71nTkktkTrUc67U2pFi.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lặn xuống nước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/jwdrtiohh6xsgdyxxd5h_Scuba_20Diving_20and_20Water_20Sports_20Combo_20Experience_20in_20Grande_20Island,_20India.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'energetic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nguy hiểm",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sống động, tràn đầy năng lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/premium-vector_little-girl-with-energetic-tired-gestures_173125-328.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'enjoyable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thú vị, thích thú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "(thuộc) bưu điện, gửi bằng bưu điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_473712532_coiqWG0XaHKEVV1VxzsjMBtxjjAQZMAe.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm cho phù hợp với, giống với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_conform.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhà sưu tầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_KAWS-sitting-in-front-of-his-extensive-art-collection.-Photo-by-Stefan-Ruiz.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'faculty' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự bố trí, sắp đặt ai đó vào một công việc hoặc vị trí của một cái gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/21_1000_F_379872186_wjlyKGh0sHwX4qIdWNpUGevcLFoWoVqb.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một người hướng dẫn hoặc giáo sư tại trường đại học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_117832869_gettyimages-911026294.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'favorable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đọc lướt qua, xem lướt qua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn đàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_forum-mercedes-benz-mercedeshanoi-com-vn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'foreman' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'forum' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn đàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_forum-mercedes-benz-mercedeshanoi-com-vn.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn giải lại (cùng 1 ý nghĩa nhưng sử dụng từ khác)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_507575912_IwfgaiXR6OFPlqrFzgDpyBB7OeNrpn1q.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hạt đậu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_four-bowls-of-beans-1296x728.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'founder' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người sáng lập",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_word-image-1478.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'fundraise' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "gây quỹ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MTc1MTI4MTA5MTQ5MjY3MDM5_101_ways_to_fundraise.webp",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đồ họa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Graphic-Design-Vector-Illustration.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'graphics' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_358381602_P4GlDt8cYJ0GwuywPKSMdF0ISrsavOQA.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người sáng lập",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_word-image-1478.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đồ họa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_Graphic-Design-Vector-Illustration.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'handy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hữu ích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12dec_handy-idiom.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'hazardous' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người hướng dẫn hoặc giáo sư tại trường đại học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_117832869_gettyimages-911026294.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đọc lướt qua, xem lướt qua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nguy hiểm",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'healthcare' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bằng cấp, chứng chỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_5c5801308f149573442a9ca980da3e14.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "(dịch vụ) chăm sóc sức khỏe",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'humidity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thú vị, thích thú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách cấp thiết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_509516778_ISIMMMIn9xVsuxOTueEiEgn6tz60U53I.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'immigration' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Sự nhập cư, sự di cư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/011_Pic1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự thất vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_disappointed.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'influential' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có uy thế, có tầm ảnh hưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/17_1000_F_165031704_jNDdxLBl4nLeplz80eYlkUuI0Qxo66Hf.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người thuê nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_495202235_HG5wh2BZt2E6p71nTkktkTrUc67U2pFi.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'nationwide' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngược lại với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trên toàn quốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_406244799_xwLg3IhuGRWiWaMjakmULV8Uyv7pBRoz.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dọn dẹp ngăn nắp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_479294676_WPukf5THjt5BdzKPwZe09SOiC9S62Qlq.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'pad' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "độ ẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_vlhkost-na-skle-origo-768x512.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đáng kể",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_496519925_BHHNoH7L0cBZNgYSmhKv4k5eAeOywFug.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'paraphrase' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "diễn giải lại (cùng 1 ý nghĩa nhưng sử dụng từ khác)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_507575912_IwfgaiXR6OFPlqrFzgDpyBB7OeNrpn1q.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "nhà sưu tầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/uploads_KAWS-sitting-in-front-of-his-extensive-art-collection.-Photo-by-Stefan-Ruiz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hữu ích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12dec_handy-idiom.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'placement' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự bố trí, sắp đặt ai đó vào một công việc hoặc vị trí của một cái gì đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/21_1000_F_379872186_wjlyKGh0sHwX4qIdWNpUGevcLFoWoVqb.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thú vị, thích thú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sắp xếp hợp lý hoá, tổ chức cho tốt hơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_421019853_mFBhDkldHfPzmaTzFiJGMukFzv38TON5.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'postal' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho phù hợp với, giống với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/c_conform.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mực máy in",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_488629209_4Q0nZQyBvt9ltvN9JHGNC8fxPADvgZ0c.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "(thuộc) bưu điện, gửi bằng bưu điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_473712532_coiqWG0XaHKEVV1VxzsjMBtxjjAQZMAe.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'publicity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trên toàn quốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_406244799_xwLg3IhuGRWiWaMjakmULV8Uyv7pBRoz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_358381602_P4GlDt8cYJ0GwuywPKSMdF0ISrsavOQA.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'renter' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngược lại với",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_Financial-Marketing-Contrary-Positioning.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người thuê nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_495202235_HG5wh2BZt2E6p71nTkktkTrUc67U2pFi.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thú vị, thích thú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'repairperson' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dọn dẹp ngăn nắp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_479294676_WPukf5THjt5BdzKPwZe09SOiC9S62Qlq.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thợ sửa chữa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-photo_young-hispanic-workwoman-repairperson-coveralls-blue-headband-gloves_274679-33989.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "nhà phân phối",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_DMS-Page-Header-1-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đọc lướt qua, xem lướt qua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_bzW1mmL0BdVhka1GYNmTwXWpVEaiIqfZGg8OwsN1rgl.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'repeatedly' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tạm biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/9c_67189c13147510a679d1b33cbaf3c4b2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bất cẩn, cẩu thả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/graphics_careless1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'restroom' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người hướng dẫn hoặc giáo sư tại trường đại học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_117832869_gettyimages-911026294.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhà vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'silently' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Sự nhập cư, sự di cư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/011_Pic1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách yên tĩnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/52_1000_F_504125230_OVYRKXKfV3lkQMFZcCxmNJ6ZKW528NGr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'spa' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "(dịch vụ) chăm sóc sức khỏe",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đồ cổ, thường là đồ nội thất hoặc đồ trang sức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/705_b2ap3_large_antiques-in-ho-chi-minh-cover.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "quản lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22211858_business-management-team.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một nơi bạn có thể đến để thư giãn và cải thiện sức khỏe của bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_478936515_WVdIOKMdQCCrbHa0okbzjgqxVdSyz18N.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'spreadsheet' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhà vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "diễn giải lại (cùng 1 ý nghĩa nhưng sử dụng từ khác)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_507575912_IwfgaiXR6OFPlqrFzgDpyBB7OeNrpn1q.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nguy hiểm",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bảng tính",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_289979367_zy4mcdP1w65bCo4lmry0jogygQLnFbG5.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'stapler' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái kẹp ghim",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_1299345_p7V1XpUwbtYMnSFC0fJcQD1gyH5jXq.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "nhà vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lặp đi lặp lại nhiều lần",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_Em5mO.gif",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'streamline' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lặn xuống nước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/jwdrtiohh6xsgdyxxd5h_Scuba_20Diving_20and_20Water_20Sports_20Combo_20Experience_20in_20Grande_20Island,_20India.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sắp xếp hợp lý hoá, tổ chức cho tốt hơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_421019853_mFBhDkldHfPzmaTzFiJGMukFzv38TON5.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một cách cấp thiết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_509516778_ISIMMMIn9xVsuxOTueEiEgn6tz60U53I.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một chi phí nhỏ bạn phải trả để sử dụng dịch vụ (ví dụ như phí cầu đường)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_240_F_174534119_35tdaPEBotVBhrqjuHIwnnW7EqFMSGnM.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'substantially' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiếp nhận, ngâm, thấm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_sponge.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "(dịch vụ) chăm sóc sức khỏe",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thú vị, thích thú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_joy1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đáng kể",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_496519925_BHHNoH7L0cBZNgYSmhKv4k5eAeOywFug.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'teller' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sống động, tràn đầy năng lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/premium-vector_little-girl-with-energetic-tired-gestures_173125-328.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thuận lợi, có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_favorable-dui-case-defense.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Người thu ngân (nhận và trả tiền ở ngân hàng)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_232167783_v5KUxWN4zuvauZwbPyKasFlq6RW9oi0a.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "(thuộc) bưu điện, gửi bằng bưu điện",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_473712532_coiqWG0XaHKEVV1VxzsjMBtxjjAQZMAe.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'tidy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dọn dẹp ngăn nắp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_479294676_WPukf5THjt5BdzKPwZe09SOiC9S62Qlq.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Người thu ngân (nhận và trả tiền ở ngân hàng)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_232167783_v5KUxWN4zuvauZwbPyKasFlq6RW9oi0a.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn giải lại (cùng 1 ý nghĩa nhưng sử dụng từ khác)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_507575912_IwfgaiXR6OFPlqrFzgDpyBB7OeNrpn1q.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người thuê nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_495202235_HG5wh2BZt2E6p71nTkktkTrUc67U2pFi.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'toll' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Sự nhập cư, sự di cư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/011_Pic1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho ai đó không hài lòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dissatisfied-customers-750-x-340.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tạm biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/9c_67189c13147510a679d1b33cbaf3c4b2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một chi phí nhỏ bạn phải trả để sử dụng dịch vụ (ví dụ như phí cầu đường)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/41_240_F_174534119_35tdaPEBotVBhrqjuHIwnnW7EqFMSGnM.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'toner' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mực máy in",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_488629209_4Q0nZQyBvt9ltvN9JHGNC8fxPADvgZ0c.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "quá đủ, quá nhiều, phong phú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/common-images_0uwrecjhcx3cvdnl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đáng kể",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_496519925_BHHNoH7L0cBZNgYSmhKv4k5eAeOywFug.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự mâu thuẫn, sự trái ngược",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_contradiction.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'urgently' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhà vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021_HS1121-restroomcare-1596802678.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nguy hiểm",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách cấp thiết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_509516778_ISIMMMIn9xVsuxOTueEiEgn6tz60U53I.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'walkway' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hữu ích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12dec_handy-idiom.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đốc công, kíp trưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_forman.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tập giấy (viết, vẽ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_40986118_g2SM3gHimsF9CAYAH3b51EE6vKKvOQru.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Đường dành cho người đi bộ",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

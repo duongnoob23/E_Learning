@@ -1,0 +1,326 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 122,
+    "questionText": "The guidelines for the monthly publication are _____ revised to adapt to the changing readers.",
+    "options": [
+      {
+        "label": "A",
+        "text": "courteously"
+      },
+      {
+        "label": "B",
+        "text": "initially"
+      },
+      {
+        "label": "C",
+        "text": "periodically"
+      },
+      {
+        "label": "D",
+        "text": "physically"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 104,
+    "questionText": "A minor electrical malfunction was discovered by the pilot _____ before the plane took off.",
+    "options": [
+      {
+        "label": "A",
+        "text": "barely"
+      },
+      {
+        "label": "B",
+        "text": "shortly"
+      },
+      {
+        "label": "C",
+        "text": "absolutely"
+      },
+      {
+        "label": "D",
+        "text": "exclusively"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 112,
+    "questionText": "Unfortunately, when the hurricane hit the area, residents as well as public officials were _____ unprepared.",
+    "options": [
+      {
+        "label": "A",
+        "text": "subsequently"
+      },
+      {
+        "label": "B",
+        "text": "totally"
+      },
+      {
+        "label": "C",
+        "text": "beneficially"
+      },
+      {
+        "label": "D",
+        "text": "currently"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 104,
+    "questionText": "The official decision made by the judge must be based _____ on the evidence presented.",
+    "options": [
+      {
+        "label": "A",
+        "text": "cooperatively"
+      },
+      {
+        "label": "B",
+        "text": "strictly"
+      },
+      {
+        "label": "C",
+        "text": "tensely"
+      },
+      {
+        "label": "D",
+        "text": "remarkably"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 127,
+    "questionText": "The Garrison Theater will _____ allow student groups to view rehearsals during the day.",
+    "options": [
+      {
+        "label": "A",
+        "text": "vaguely"
+      },
+      {
+        "label": "B",
+        "text": "substantially"
+      },
+      {
+        "label": "C",
+        "text": "occasionally"
+      },
+      {
+        "label": "D",
+        "text": "previously"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 124,
+    "questionText": "The novelist said that his writing was ------- influenced by the late writer Edward Truitt.",
+    "options": [
+      {
+        "label": "A",
+        "text": "manually"
+      },
+      {
+        "label": "B",
+        "text": "insecurely"
+      },
+      {
+        "label": "C",
+        "text": "regretfully"
+      },
+      {
+        "label": "D",
+        "text": "profoundly"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 103,
+    "questionText": "Rockwell Bank's automated teller machines are ------- located in various sections of the city.",
+    "options": [
+      {
+        "label": "A",
+        "text": "abruptly"
+      },
+      {
+        "label": "B",
+        "text": "conveniently"
+      },
+      {
+        "label": "C",
+        "text": "fluently"
+      },
+      {
+        "label": "D",
+        "text": "periodically"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. thuận tiện."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 115,
+    "questionText": "-------, the cabin will be rented out for the entire month, but the owner would agree to four weekly rentals instead.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Reluctantly"
+      },
+      {
+        "label": "B",
+        "text": "Absolutely"
+      },
+      {
+        "label": "C",
+        "text": "Ideally"
+      },
+      {
+        "label": "D",
+        "text": "Mutually"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C. Lý tưởng."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 129,
+    "questionText": "The receptionists change the artwork in the clinic's waiting room ------- and rearrange the layout of the furniture.",
+    "options": [
+      {
+        "label": "A",
+        "text": "periodically"
+      },
+      {
+        "label": "B",
+        "text": "relatively"
+      },
+      {
+        "label": "C",
+        "text": "tightly"
+      },
+      {
+        "label": "D",
+        "text": "narrowly"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. định kì."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 105,
+    "questionText": "After hours of searching, the source of the water leak was ------- identified by the plumber.",
+    "options": [
+      {
+        "label": "A",
+        "text": "routinely"
+      },
+      {
+        "label": "B",
+        "text": "finally"
+      },
+      {
+        "label": "C",
+        "text": "rarely"
+      },
+      {
+        "label": "D",
+        "text": "strongly"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. cuối cùng cũng."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 126,
+    "questionText": "Please provide the exact dimensions of the custom fence you would like built, and your quote will be adjusted _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "namely"
+      },
+      {
+        "label": "B",
+        "text": "accordingly"
+      },
+      {
+        "label": "C",
+        "text": "frequently"
+      },
+      {
+        "label": "D",
+        "text": "supposedly"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 116,
+    "questionText": "Rather than archiving routine e-mails, please delete them _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "especially"
+      },
+      {
+        "label": "B",
+        "text": "likewise"
+      },
+      {
+        "label": "C",
+        "text": "quite"
+      },
+      {
+        "label": "D",
+        "text": "instead"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  }
+]

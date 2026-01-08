@@ -1,0 +1,3577 @@
+[
+  {
+    "question_id": "listen_01",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=accent&lang=en-US&ipa=%2F%CB%88%C3%A6k.s%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_02",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=advisory&lang=en-US&ipa=%2F%C9%99d%CB%88va%C9%AA.z%C9%99r.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "liên quan đến tư vấn, cố vấn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_03",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=asleep&lang=en-US&ipa=%2F%C9%99%27sli%CB%90p%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_04",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=authentic&lang=en-US&ipa=%2F%C9%94%CB%90%CB%88%CE%B8en.t%C9%AAk%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "vật phẩm vô dụng; rác",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_05",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=bakery&lang=en-US&ipa=%2F%CB%88be%C9%AA.k%C9%99r.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_06",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=carton&lang=en-US&ipa=%2F%CB%88k%C9%91%CB%90.t%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_07",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compartment&lang=en-US&ipa=%2Fk%C9%99m%CB%88p%C9%91%CB%90t.m%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_08",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=compatible&lang=en-US&ipa=%2Fk%C9%99m%CB%88p%C3%A6t.%C9%99.b%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_09",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=consumption&lang=en-US&ipa=%2Fk%C9%99n%CB%88s%CA%8Cmp.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 6,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_10",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=conveniently&lang=en-US&ipa=%2Fk%C9%99n%CB%88vi%CB%90.ni.%C9%99nt.li%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "một cách dễ dàng, tiện lợi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_11",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=cosmetic&lang=en-US&ipa=%2Fk%C9%92z%CB%88met.%C9%AAk%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_12",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=courtesy&lang=en-US&ipa=%2F%CB%88k%C9%9C%CB%90.t%C9%99.si%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_13",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=creativity&lang=en-US&ipa=%2F%CB%8Ckri%CB%90.e%C9%AA%CB%88t%C9%AAv.%C9%99.t%CC%ACi%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "vật phẩm vô dụng; rác",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_14",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=criteria&lang=en-US&ipa=%2Fkra%C9%AA%CB%88t%C9%AA%C9%99ri%C9%99%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "tiết kiệm tiền, tránh lãng phí",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_15",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=disagreement&lang=en-US&ipa=%2F%CB%8Cd%C9%AAs.%C9%99%CB%88%C9%A1ri%CB%90.m%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_16",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=discontinue&lang=en-US&ipa=%2F%CB%8Cd%C9%AAs.k%C9%99n%CB%88t%C9%AAn.ju%CB%90%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_17",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=dishwasher&lang=en-US&ipa=%2F%CB%88d%C9%AA%CA%83%CB%8Cw%C9%92%CA%83.%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_18",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=drought&lang=en-US&ipa=%2Fdra%CA%8At%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "vật phẩm vô dụng; rác",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_19",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=economize&lang=en-US&ipa=%2F%C9%AA%CB%88k%C9%92n.%C9%99.ma%C9%AAz%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tiết kiệm tiền, tránh lãng phí",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_20",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=entr%C3%A9e&lang=en-US&ipa=%2F%CB%88%C9%92n.tre%C9%AA%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_21",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=firework&lang=en-US&ipa=%2F%CB%88fa%C9%AA%C9%99.w%C9%9C%CB%90k%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "vật phẩm vô dụng; rác",
+          "image_url": null,
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_22",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=freight&lang=en-US&ipa=%2Ffre%C9%AAt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_23",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=fry&lang=en-US&ipa=%2Ffra%C9%AA%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_24",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=gallon&lang=en-US&ipa=%2F%CB%88%C9%A1%C3%A6l.%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_25",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=gardener&lang=en-US&ipa=%2F%CB%88%C9%A1%C9%91%CB%90.d%C9%99n.%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_26",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ideally&lang=en-US&ipa=%2Fa%C9%AA%CB%88d%C9%AA%C9%99.li%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_27",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inclusive&lang=en-US&ipa=%2F%C9%AAn%CB%88klu%CB%90.s%C9%AAv%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 7,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_28",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=insufficient&lang=en-US&ipa=%2F%CB%8C%C9%AAn.s%C9%99%CB%88f%C9%AA%CA%83.%C9%99nt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_29",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=introductory&lang=en-US&ipa=%2F%CB%8C%C9%AAn.tr%C9%99%CB%88d%CA%8Ck.t%C9%99r.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_30",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=junk&lang=en-US&ipa=%2Fd%CA%92%CA%8C%C5%8Bk%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "vật phẩm vô dụng; rác",
+          "image_url": null,
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_31",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ma%27am&lang=en-US&ipa=%2Fm%C3%A6m%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "liên quan đến tư vấn, cố vấn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_32",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mileage&lang=en-US&ipa=%2F%CB%88ma%C9%AA.l%C9%AAd%CA%92%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tiết kiệm tiền, tránh lãng phí",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_33",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=noisy&lang=en-US&ipa=%2F%CB%88n%C9%94%C9%AA.zi%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_34",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pan&lang=en-US&ipa=%2Fp%C3%A6n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_35",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=parcel&lang=en-US&ipa=%2F%CB%88p%C9%91%CB%90.s%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_36",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pasta&lang=en-US&ipa=%2F%CB%88p%C3%A6s.t%C9%99%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tiết kiệm tiền, tránh lãng phí",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "liên quan đến tư vấn, cố vấn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_37",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=periodical&lang=en-US&ipa=%2F%CB%8Cp%C9%AA%C9%99ri%CB%88%C9%92d%C9%AAkl%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 9,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_38",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pill&lang=en-US&ipa=%2Fp%C9%AAl%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tiết kiệm tiền, tránh lãng phí",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hạn hán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_39",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=portable&lang=en-US&ipa=%2F%CB%88p%C9%94%CB%90.t%C9%99.b%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 6,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_40",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=punctual&lang=en-US&ipa=%2F%CB%88p%CA%8C%C5%8Bk.t%CA%83u.%C9%99l%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_41",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=recreation&lang=en-US&ipa=%2F%CB%8Crek.ri%CB%88e%C9%AA.%CA%83%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_42",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=relieve&lang=en-US&ipa=%2Fr%C9%AA%CB%88li%CB%90v%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_43",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reminder&lang=en-US&ipa=%2Fr%C9%AA%CB%88ma%C9%AAn.d%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "quyền được tham gia, tham dự",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_44",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rumor&lang=en-US&ipa=%2F%CB%88ru%CB%90.m%C9%99r%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thời gian rảnh rỗi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "phù hợp với, tương thích",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_45",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=scarf&lang=en-US&ipa=%2Fsk%C9%91%CB%90rf%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "khăn quàng cổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 8,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_46",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=seaside&lang=en-US&ipa=%2F%CB%88si%CB%90.sa%C9%AAd%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "pháo hoa",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_47",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=shorten&lang=en-US&ipa=%2F%CB%88%CA%83%C9%94%CB%90.t%C9%99n%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "ngủ, đang ngủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "liên quan đến tư vấn, cố vấn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "kiện hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "ồn ào",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_48",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=specially&lang=en-US&ipa=%2F%CB%88spe%CA%83.%C9%99l.i%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "trong lý tưởng, một cách lý tưởng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "chiên rán",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "óc sáng tạo, tính sáng tạo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_49",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spill&lang=en-US&ipa=%2Fsp%C9%AAl%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "làm đổ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "Bao gồm tất cả mọi thứ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_50",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spouse&lang=en-US&ipa=%2Fspa%CA%8As%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 3,
+          "vi_text": "hộp bìa cứng, hộp đựng hàng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "bên bờ biển",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "rút ngắn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_51",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=subtract&lang=en-US&ipa=%2Fs%C9%99b%CB%88tr%C3%A6kt%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "mì ống và nui",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tiêu chuẩn, chỉ tiêu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "trừ đi, lấy đi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 5,
+          "vi_text": "chồng; vợ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "tin đồn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "người làm vườn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_52",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tablet&lang=en-US&ipa=%2F%CB%88t%C3%A6b.l%C9%99t%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "tạp chí xuất bản định kỳ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "thuốc dạng viên nén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_53",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=ton&lang=en-US&ipa=%2Ft%CA%8Cn%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "sự tiêu thụ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 4,
+          "vi_text": "đúng giờ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "một cách dễ dàng, tiện lợi",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "cửa hàng bánh",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "ngừng, làm gián đoạn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "đặc biệt",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_54",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vend&lang=en-US&ipa=%2Fvend%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "bán (hàng hóa)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+          "is_correct": true
+        },
+        {
+          "id": 2,
+          "vi_text": "máy rửa chén",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "cái làm nhớ lại (một điều gì)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "hàng hoá chuyên chở",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "thật, xác thực, không phải là giả",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "để giới thiệu, mở đầu",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự lịch sự, sự nhã nhặn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "giọng đặc trưng",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+          "is_correct": false
+        }
+      ]
+    },
+    "play_count": 3
+  },
+  {
+    "question_id": "listen_55",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=yoga&lang=en-US&ipa=%2F%CB%88j%C9%99%CA%8A.%C9%A1%C9%99%2F",
+    "grid": {
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        {
+          "id": 1,
+          "vi_text": "tổng số dặm đã đi được",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 2,
+          "vi_text": "tấn (đơn vị đo)",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 3,
+          "vi_text": "gian, ngăn",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 4,
+          "vi_text": "không đủ",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 5,
+          "vi_text": "Tấm, bản, thẻ, phiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 6,
+          "vi_text": "vật xách tay",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 7,
+          "vi_text": "sự bất đồng ý kiến",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+          "is_correct": false
+        },
+        {
+          "id": 8,
+          "vi_text": "cái chảo",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+          "is_correct": false
+        },
+        {
+          "id": 9,
+          "vi_text": "yoga",
+          "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+          "is_correct": true
+        }
+      ]
+    },
+    "play_count": 3
+  }
+]

@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'accountant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hóa đơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_338776785_o6kmZ3XDYpWD9MJg4mCwS9lzH8KELlbz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kỳ nghỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'airport' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách chân thành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_486963889_W8gVYrDtPOM0qy4qjGFUKFPDSyaZdXAp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sân bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'applicant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "gửi bằng máy fax",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khu vực trung tâm của thành phố",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'attendant' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xuất bản, công bố, đăng tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'bicycle' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khu vực trung tâm của thành phố",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xe đạp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'brochure' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quán ăn tự phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhân viên phục vụ (nam giới)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_265810309_0fUfIqx9w05jtZKrMJhl1jbl3Y0JuB8k.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tờ gấp quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'cafeteria' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quán ăn tự phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hoàn tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "kỳ nghỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đón tiếp, tiệc chiêu đãi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'caller' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tiền sảnh (của khách sạn)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'candidate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hàng hóa, mặt hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/8_vnf-hang-hoa-la-gi.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'chef' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vây quanh, rào quanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/overview_enclose-frameless-glass-whitesweep-haworth.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một lúc nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/36_1000_F_299573644_hl36ijMAfYBQhV7LMeB0F9ep4IqaoQwL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hội nghị, hội thảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đầu bếp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_chef-la-gi-1.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'clerk' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhân viên bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'client' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kỹ thuật viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khách hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_tu-dong-nghia-voi-customer-va-client-trong-tieng-anh-1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "cái khăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'cloth' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khu vực trung tâm của thành phố",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cái khăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "hội nghị, hội thảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'conference' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "xe đạp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhân viên phục vụ (nam giới)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_265810309_0fUfIqx9w05jtZKrMJhl1jbl3Y0JuB8k.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hội nghị, hội thảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'correctly' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự bảo hành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự đón tiếp, tiệc chiêu đãi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "đường hầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'deadline' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiền xe, tiền vé",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_taxi-fare-1561717.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'downtown' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khu vực trung tâm của thành phố",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "gửi bằng máy fax",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách xưng hô lịch sự với 1 người đàn ông",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_479748022_q3PWQjBVT8JgabcCOmRCTK8c96IMTjcv.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'e-book' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự đăng ký",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_488132093_kziuWGxcr8NXAaguMpds9du7Y9nYkEOf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sách điện tử",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg_300px-Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "cái khăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'elevator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thang máy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/mid_rise_20211030_tke_chq_content_models_shoot_1259_l_image_w900_h550.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "giấy ghi chú",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'enclose' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sân bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "vây quanh, rào quanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/overview_enclose-frameless-glass-whitesweep-haworth.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "tiền sảnh (của khách sạn)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'fare' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiền xe, tiền vé",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_taxi-fare-1561717.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giấy ghi chú",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tờ gấp quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'fax' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "gửi bằng máy fax",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "phân xưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'goods' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hàng hóa, mặt hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/8_vnf-hang-hoa-la-gi.webp",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sân bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'infer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đầu bếp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_chef-la-gi-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "suy ra, phỏng đoán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/videos_infer.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'invoice' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hóa đơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_338776785_o6kmZ3XDYpWD9MJg4mCwS9lzH8KELlbz.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "hoàn tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'lease' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiền xe, tiền vé",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_taxi-fare-1561717.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đường hầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'lobby' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "giữa trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_301230325_XE8lPUdFbNs2eVsGYe6aqk7shBfU4iLR.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tiền sảnh (của khách sạn)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'logical' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách xưng hô lịch sự với 1 người đàn ông",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_479748022_q3PWQjBVT8JgabcCOmRCTK8c96IMTjcv.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "theo logic, hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_279578746_WuyJ2nnCsu4v3ddhxu3hIKzYEZNhpE7B.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "hàng hóa, mặt hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/8_vnf-hang-hoa-la-gi.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'luggage' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự đón tiếp, tiệc chiêu đãi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tờ gấp quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'memo' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự đăng ký",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_488132093_kziuWGxcr8NXAaguMpds9du7Y9nYkEOf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giấy ghi chú",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "kỳ nghỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'mister' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cách xưng hô lịch sự với 1 người đàn ông",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_479748022_q3PWQjBVT8JgabcCOmRCTK8c96IMTjcv.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "suy ra, phỏng đoán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/videos_infer.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách chính xác, đúng đắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'noon' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự bảo hành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "suy ra, phỏng đoán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/videos_infer.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sách điện tử",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg_300px-Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "giữa trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_301230325_XE8lPUdFbNs2eVsGYe6aqk7shBfU4iLR.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'notify' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự đón tiếp, tiệc chiêu đãi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phân xưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xuất bản, công bố, đăng tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'o'clock' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhân viên bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "giờ trong ngày",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_405284677_yE6WlvOeMRRns0D3DwbjEdbgKcczhqfW.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tiền sảnh (của khách sạn)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hội nghị, hội thảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'preview' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "khu vực trung tâm của thành phố",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xe đạp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'publish' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhân viên bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xuất bản, công bố, đăng tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'receipt' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hóa đơn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_234382675_IDhCYbxmtSN0fExmTAw9aH39daLiMihV.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "theo logic, hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_279578746_WuyJ2nnCsu4v3ddhxu3hIKzYEZNhpE7B.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hoàn tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự giao hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_189180080_fRgPD63I35pkQXxgUF3SLj3DzCkCzpeV.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'reception' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quán ăn tự phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự đón tiếp, tiệc chiêu đãi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "gửi bằng máy fax",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'refund' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hoàn tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "xuất bản, công bố, đăng tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ứng viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "giấy ghi chú",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'rental' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kỳ nghỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự cho thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_315224308_fm5CYsM0O9aB7OYG2C6KMv5JSBRveoqA.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'reservation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cái khăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đặt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2791_122_08_Making-a-Dinner-Reservation.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'seminar' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sân bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kỹ thuật viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'shipment' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đường hầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tờ gấp quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự giao hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_189180080_fRgPD63I35pkQXxgUF3SLj3DzCkCzpeV.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'sincerely' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quán ăn tự phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "khách du lịch",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_318718670_86Nd3s244FZT3kSIAZ7plbilLhxfNqiM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người giám sát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_269989133_kAnsHXDsEOGz4MFsOD9mAeP5J0TAC9fn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cách chân thành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_486963889_W8gVYrDtPOM0qy4qjGFUKFPDSyaZdXAp.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'sometime' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một lúc nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/36_1000_F_299573644_hl36ijMAfYBQhV7LMeB0F9ep4IqaoQwL.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ứng viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự bảo hành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kỹ thuật viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'subscription' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự đăng ký",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_488132093_kziuWGxcr8NXAaguMpds9du7Y9nYkEOf.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "khách hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_tu-dong-nghia-voi-customer-va-client-trong-tieng-anh-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xuất bản, công bố, đăng tải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phân xưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'subway' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đường hầm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khách hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_tu-dong-nghia-voi-customer-va-client-trong-tieng-anh-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hành lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'supervisor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sân bay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người giám sát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_269989133_kAnsHXDsEOGz4MFsOD9mAeP5J0TAC9fn.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'technician' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vây quanh, rào quanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/overview_enclose-frameless-glass-whitesweep-haworth.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người phục vụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kỹ thuật viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'traveler' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tờ gấp quảng cáo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khách du lịch",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_318718670_86Nd3s244FZT3kSIAZ7plbilLhxfNqiM.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "nhân viên bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'vacation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kỳ nghỉ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "thuê",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hội nghị, hội thảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'waiter' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đang gọi điện cho bạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhân viên phục vụ (nam giới)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_265810309_0fUfIqx9w05jtZKrMJhl1jbl3Y0JuB8k.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'warranty' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự giao hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_189180080_fRgPD63I35pkQXxgUF3SLj3DzCkCzpeV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thông báo, cho biết",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự bảo hành",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'website' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ứng cử viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang web",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thang máy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/mid_rise_20211030_tke_chq_content_models_shoot_1259_l_image_w900_h550.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'workshop' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phân xưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Sự xem trước, sự duyệt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xe đạp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đặt trước",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2791_122_08_Making-a-Dinner-Reservation.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

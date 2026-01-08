@@ -1,0 +1,212 @@
+[
+  {
+    "question_id": "p2_q1",
+    "question_number": 9,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619407464_1619421170.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Yes, it just left",
+      "B": "No, it shouldn't rain",
+      "C": "Only ten dollars"
+    },
+    "explanation": {
+      "A": "Vâng, nó vừa rời đi",
+      "B": "Không, trời sẽ không mưa",
+      "C": "Chỉ mười đô la",
+      "note": "Vì dạng câu hỏi là câu hỏi đuôi nên khi nghe thấy đáp án A và B người nghe thường hay bị đánh lừa (câu trả lời cần ở dạng Yes/No). Vì vậy, cần nghe hết câu cho từng đáp án→ chọn đáp án A (không thể chọn đáp án B vì mặc dù đáp án B bắt đầu bằng từ phủ định ‘no’ nhưng sau đó nội dung vế câu không liên quan tới câu hỏi)"
+    }
+  },
+  {
+    "question_id": "p2_q2",
+    "question_number": 25,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_25.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Tickets for front-row seats",
+      "B": "Some are even quite famous",
+      "C": "The tractor needs repairs"
+    },
+    "explanation": {
+      "A": "Vé cho hàng ghế đầu",
+      "B": "Một số người thậm chí còn khá nổi tiếng",
+      "C": "Máy kéo cần sửa chữa",
+      "note": "Chọn B (ngoài tài năng ra thì một số diễn viên còn nổi tiếng)"
+    }
+  },
+  {
+    "question_id": "p2_q3",
+    "question_number": 8,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619509508.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "I like hardwood floors",
+      "B": "An expired credit card",
+      "C": "No, he hasn't called yet"
+    },
+    "explanation": {
+      "A": "Tôi thích sàn gỗ cứng",
+      "B": "Thẻ tín dụng hết hạn",
+      "C": "Không, anh ấy vẫn chưa gọi",
+      "note": "Vì câu hỏi là một dạng câu hỏi đuôi → câu trả lời cần có từ yes/no→ chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p2_q4",
+    "question_number": 15,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q15.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Yeah, he is very hard-working",
+      "B": "Well, the clock is a few minutes slow",
+      "C": "No, he just moved last week"
+    },
+    "explanation": {
+      "A": "Ừ, anh ấy rất chăm chỉ => chọn",
+      "B": "Chà, cái đồng hồ chậm vài phút => có từ “clock” nghe gần giống “clerk” để bẫy thí sinh, nội dung không hề liên quan => loại",
+      "C": "Không, anh ấy mới chuyển đến tuần trước => nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q5",
+    "question_number": 24,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q24.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Can you pick it up for me?",
+      "B": "No, he said he's too busy",
+      "C": "Yes, it was his first visit"
+    },
+    "explanation": {
+      "B": "Không, ông ấy bảo bận quá => chọn",
+      "note": "C) Vâng, đó là chuyến thăm đầu tiên của ông ấy => dù bắt đầu bằng Yes nhưng nội dung phía sau không ăn nhập: was = đã xảy ra, còn câu hỏi đang hỏi về sự việc sẽ xảy ra trong tương lai (will be) => loại"
+    }
+  },
+  {
+    "question_id": "p2_q6",
+    "question_number": 22,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q22.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "A few co-workers",
+      "B": "Of course. It's no trouble at all",
+      "C": "They booked tickets in advance"
+    },
+    "explanation": {
+      "A": "Một vài đồng nghiệp",
+      "B": "Tất nhiên. Nó không có vấn đề gì cả",
+      "C": "Họ đã đặt vé trước.Các đáp án A và C không liên quan nên bị loại. Đáp án B đúng, ta có thể hiểu là người trả lời đồng ý cho người hỏi mượn cuốn sách"
+    }
+  },
+  {
+    "question_id": "p2_q7",
+    "question_number": 28,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q28.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "It was my birthday party",
+      "B": "It's scheduled to arrive at 6 o'clock",
+      "C": "No, he isn't registered here"
+    },
+    "explanation": {
+      "A": "Đó là bữa tiệc sinh nhật của tôi",
+      "B": "Dự kiến ​​sẽ đến lúc 6 giờ",
+      "C": "Không, anh ấy không đăng ký ở đây.Đây là một dạng câu hỏi đuôi, câu hỏi về tonight’s party nên loại được các đáp án A và B vì không phù hợp với ngữ cảnh. Tuy câu trả lời đúng không có yes nhưng vẫn có thể hiểu hàm ý của câu là tối nay có phục vụ đồ ăn. Đáp án đúng là B"
+    }
+  },
+  {
+    "question_id": "p2_q8",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q13.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "The dinner was a vegetarian meal",
+      "B": "He worked all night",
+      "C": "Let me check the schedule"
+    },
+    "explanation": {
+      "A": "Bữa tối là một bữa ăn chay. => hỏi về giờ giấc chứ không hỏi về món ăn => Loại",
+      "B": "Anh ấy làm việc cả đêm. => hỏi về giờ giấc chứ không hỏi về người => loại",
+      "C": "Để tôi kiểm tra lịch trình. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q9",
+    "question_number": 30,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q30.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "We replaced the item at no cost to the customer",
+      "B": "A trusted brand for over 30 years",
+      "C": "I believe it expired just a month ago"
+    },
+    "explanation": {
+      "A": "Chúng tôi đã thay thế sản phẩm cho khách hàng mà không tính phí. => nội dung không liên quan => loại",
+      "B": "Một thương hiệu đáng tin cậy hơn 30 năm. => nội dung không liên quan => loại",
+      "C": "Tôi tin rằng nó đã hết hạn chỉ một tháng trước. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q10",
+    "question_number": 20,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q20.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "It was in the meeting room",
+      "B": "Yes, the last person just left",
+      "C": "Where did you put the applications?"
+    },
+    "explanation": {
+      "A": "Nó ở trong phòng họp. => nội dung không liên quan => loại",
+      "B": "Vâng, người cuối cùng vừa rời đi. => câu hỏi đuôi nên cách trả lời sẽ là Yes/No hoặc lược bỏ Yes/No nhưng vẫn trả lời đúng trọng tâm câu hỏi => chọn",
+      "C": "Cô để đơn ứng tuyển ở đâu rồi? => nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q11",
+    "question_number": 25,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q25.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "We are still considering multiple options",
+      "B": "It's a luxury apartment complex",
+      "C": "He will cite a passage from his book"
+    },
+    "explanation": {
+      "A": "Chúng tôi vẫn đang xem xét nhiều lựa chọn. => trả lời gián tiếp, không rõ ý Yes/No nhưng ý nghĩa vẫn phù hợp => chọn",
+      "B": "Đó là một khu chung cư cao cấp. => câu hỏi là về nơi xây dựng, chứ không phải về tòa chung cư => loại",
+      "C": "Anh ấy sẽ trích dẫn một đoạn văn trong cuốn sách của mình. => có từ “cite” nghe gần giống “site” nhưng nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q12",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test10_audios_q7.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "After 3:30 PM",
+      "B": "I prefer Japanese food",
+      "C": "No, never"
+    },
+    "explanation": {
+      "A": "Sau 3:30 chiều. => nội dung không liên quan => loại",
+      "B": "Tôi thích đồ ăn Nhật Bản hơn. => có nhắc đến Nhật Bản, tuy nhiên nội dung không liên quan => loại",
+      "C": "Không, chưa đến bao giờ. => trả lời rõ ý No, nội dung liên quan => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q13",
+    "question_number": 15,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test10_audios_q15.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "No, something urgent came up",
+      "B": "He tends to speak indirectly",
+      "C": "Yes, it was very good"
+    },
+    "explanation": {
+      "A": "Không, có việc gấp xảy ra. => trả lời rõ ý No, giải thích nguyên nhân, phù hợp với câu hỏi => chọn",
+      "B": "Anh ấy thường nói gián tiếp. => có từ “tends” nghe gần giống “attend” để bẫy, nội dung không liên quan => loại",
+      "C": "Vâng, nó rất hay. => câu hỏi đang hỏi về dự định tương lai, chứ không hỏi về sự việc trong quá khứ => loại"
+    }
+  }
+]

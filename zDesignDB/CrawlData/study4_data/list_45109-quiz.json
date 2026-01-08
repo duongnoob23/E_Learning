@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'actress' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự thiếu kinh nghiệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_Training-Employees-768x644.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bên cạnh, gần đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/oakImage-1563226693389_oakImage-1563226693389-jumbo.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "khay để đồ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_131116650_5Y3RHjw2SyHu3SPsSuvT48ufm676pz3k.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'adjacent' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sắp xếp lại, bố trí lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_343625917_Bw6YhKoqepUWsRJeRA6CjboJ9nQ2RN3S.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự từ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_letter-of-resignation-1024x664.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bên cạnh, gần đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/oakImage-1563226693389_oakImage-1563226693389-jumbo.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'alternate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phòng họp của ban giám đốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bên cạnh, gần đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/oakImage-1563226693389_oakImage-1563226693389-jumbo.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'anytime' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có giá thấp; rẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1339783_trader-joes-today-180516-tease.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự từ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_letter-of-resignation-1024x664.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'badge' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dịch thuật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_291680676_Nte7hTr3ruTjAVmnWY1aIxpZuePyatxo.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự trục trặc, sự hỏng hóc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "quả cà chua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'boardroom' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phòng họp của ban giám đốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đắt tiền, tốn kém",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01162657_Smart-Ways-to-Manage-Your-Expenses-in-Costly-Cities-of-India-547096873.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "quả cà chua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dược sĩ, người bán dược phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'brake' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mặt nạ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cuộc hội ý, sự bàn bạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_two-human-outlines-against-shuttered-office-window-sitting-opposite-each-other-negotiating-1536x1025.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phân loại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/introimages_0513vsm_VogelPracNETLong.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'calculation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nghiêm ngặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_508093573_97g8XQ6SakOBtGXel4CFcNjY1ZiQdJhV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự tính toán, phép tính",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_calculating-graphs-760.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'carpenter' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "khay để đồ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_131116650_5Y3RHjw2SyHu3SPsSuvT48ufm676pz3k.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thợ mộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Anh-TCN-Hong_carpenter-la-gi-6.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'caterer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự trục trặc, sự hỏng hóc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự thu hồi, sự rút khỏi",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'classify' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người mua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_504502232_MowwoQt0oQepF0U5dsC8xc5ktYAcItQx.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự thiếu kinh nghiệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_Training-Employees-768x644.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phân loại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/introimages_0513vsm_VogelPracNETLong.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'congratulate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sắp xếp lại, bố trí lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_343625917_Bw6YhKoqepUWsRJeRA6CjboJ9nQ2RN3S.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trong khi chờ đợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "chúc mừng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_cau-truc-congratulate-2.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'consultation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cuộc hội ý, sự bàn bạc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_two-human-outlines-against-shuttered-office-window-sitting-opposite-each-other-negotiating-1536x1025.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_216185055_IlV8hOlZDXv6mJ2zE6LaMkqM5IjhPLpY.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người phát ngôn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_479026458_8xV7mmYrHm2YRdO8298BqBv28LlwOb0R.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'coordinator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không quen, lạ lẫm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_37671507_cYeftTWXl5HWxJbIe0ax5asaMREJVJBy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'costly' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đắt tiền, tốn kém",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01162657_Smart-Ways-to-Manage-Your-Expenses-in-Costly-Cities-of-India-547096873.webp",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Kết thúc, chấm dứt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_507808431_5AfaiJI9pg9nUHgi8SmI81p2uW1sQCUK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự tính toán, phép tính",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_calculating-graphs-760.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'durable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuộc đồ họa, hình ảnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_what-is-graphic-design-header.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'equip' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "dịch thuật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_291680676_Nte7hTr3ruTjAVmnWY1aIxpZuePyatxo.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trang bị",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_tools.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'escort' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự kiên nhẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thợ mộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Anh-TCN-Hong_carpenter-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hộ tống, đi theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'excursion' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không quen, lạ lẫm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_37671507_cYeftTWXl5HWxJbIe0ax5asaMREJVJBy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cuộc du ngoạn, chuyến tham quan",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/e9_ad.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'glove' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dịch thuật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_291680676_Nte7hTr3ruTjAVmnWY1aIxpZuePyatxo.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mặt nạ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hộ tống, đi theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "găng tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_about_image_1.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'graphic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự từ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_letter-of-resignation-1024x664.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trong khi chờ đợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuộc đồ họa, hình ảnh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_what-is-graphic-design-header.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'hardware' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người phê bình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_283796307_MpetBErDrFgiLrehokcFfhlDJ7Ie0YjD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự soát lại, sửa lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_258549104_3tt2Zr3Ewd9QcrjXCK8p684PQ4Z4fJgZ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đồ kim khí, phần cứng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_computer-hardware-2625895-5d9007ac0d44404588321d255fc82049.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'inexpensive' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "túi xách tay (của phụ nữ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_484981972_K5ggNU3huD1gFv8SNyD7zWXKVzmWQT5P.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "có giá thấp; rẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1339783_trader-joes-today-180516-tease.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "chúc mừng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_cau-truc-congratulate-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phòng họp của ban giám đốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'inexperience' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người mua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_504502232_MowwoQt0oQepF0U5dsC8xc5ktYAcItQx.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự thiếu kinh nghiệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_Training-Employees-768x644.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'lengthy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự kiên nhẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'librarian' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tính toán, phép tính",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_calculating-graphs-760.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thủ thư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_472881516_IXqv2dsgXr3WNEVsz8vqKchS4ClSrjPz.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "dược sĩ, người bán dược phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'malfunction' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự trục trặc, sự hỏng hóc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hộ tống, đi theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'mask' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mặt nạ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "xà phòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_322346099_GoQWWkTQhKPMco96OUiGgbiingzJFuOL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự trục trặc, sự hỏng hóc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'meantime' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trong khi chờ đợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'merge' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có giá thấp; rẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1339783_trader-joes-today-180516-tease.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'outdate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thợ mộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Anh-TCN-Hong_carpenter-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "phân loại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/introimages_0513vsm_VogelPracNETLong.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dược sĩ, người bán dược phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'patience' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự kiên nhẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trang bị",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_tools.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phòng họp của ban giám đốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'performer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người biểu diễn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_351130953_pE8SNw3aKmHfW2nsmCPQLQFH3FNXUzlA.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không quen, lạ lẫm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_37671507_cYeftTWXl5HWxJbIe0ax5asaMREJVJBy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bên cạnh, gần đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/oakImage-1563226693389_oakImage-1563226693389-jumbo.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'pharmacist' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mở cửa lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_370306952_mdtiWLsEZJtCyb7xCC2o3lbFyLnqhb1J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người phê bình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_283796307_MpetBErDrFgiLrehokcFfhlDJ7Ie0YjD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dược sĩ, người bán dược phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'pizza' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trong khi chờ đợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bánh pizza",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_235475371_4DIuPavX5taHjv7zdDF6cCBKCOUlxKZr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "thợ mộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Anh-TCN-Hong_carpenter-la-gi-6.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'postcard' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bưu thiếp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_262979352_LzQxGsPqC63VbA41smysq8Her3A218aC.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "dược sĩ, người bán dược phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'prospective' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự kiên nhẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "huy hiệu, phù hiệu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người mua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_504502232_MowwoQt0oQepF0U5dsC8xc5ktYAcItQx.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/62_1000_F_16506201_KFI7ZV5PQxrGcAz9y6EBc4ZTv23mTope.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'purchaser' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người mua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_504502232_MowwoQt0oQepF0U5dsC8xc5ktYAcItQx.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "mặt nạ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "có giá thấp; rẻ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1339783_trader-joes-today-180516-tease.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'purse' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trong khi chờ đợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "túi xách tay (của phụ nữ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_484981972_K5ggNU3huD1gFv8SNyD7zWXKVzmWQT5P.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'realtor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "túi xách tay (của phụ nữ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_484981972_K5ggNU3huD1gFv8SNyD7zWXKVzmWQT5P.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người môi giới (mua bán) bất động sản",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_282399441_M6cxcqNTYlOfl7pBxh7Frv5aRxdHwHo9.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'rearrange' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sắp xếp lại, bố trí lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_343625917_Bw6YhKoqepUWsRJeRA6CjboJ9nQ2RN3S.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "có triển vọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/62_1000_F_16506201_KFI7ZV5PQxrGcAz9y6EBc4ZTv23mTope.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "quả cà chua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kết hợp, hợp nhất",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'reopen' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mở cửa lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_370306952_mdtiWLsEZJtCyb7xCC2o3lbFyLnqhb1J.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "găng tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_about_image_1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'resignation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hộ tống, đi theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nghiêm ngặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_508093573_97g8XQ6SakOBtGXel4CFcNjY1ZiQdJhV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trang bị",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_tools.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự từ chức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_letter-of-resignation-1024x664.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'reviewer' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "khay để đồ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_131116650_5Y3RHjw2SyHu3SPsSuvT48ufm676pz3k.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phê bình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_283796307_MpetBErDrFgiLrehokcFfhlDJ7Ie0YjD.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'revision' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Kết thúc, chấm dứt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_507808431_5AfaiJI9pg9nUHgi8SmI81p2uW1sQCUK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự soát lại, sửa lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_258549104_3tt2Zr3Ewd9QcrjXCK8p684PQ4Z4fJgZ.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'soap' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "xà phòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_322346099_GoQWWkTQhKPMco96OUiGgbiingzJFuOL.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đắt tiền, tốn kém",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01162657_Smart-Ways-to-Manage-Your-Expenses-in-Costly-Cities-of-India-547096873.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bánh pizza",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_235475371_4DIuPavX5taHjv7zdDF6cCBKCOUlxKZr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự tính toán, phép tính",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_calculating-graphs-760.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'spokesperson' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mở cửa lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_370306952_mdtiWLsEZJtCyb7xCC2o3lbFyLnqhb1J.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người biểu diễn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_351130953_pE8SNw3aKmHfW2nsmCPQLQFH3FNXUzlA.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người phát ngôn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_479026458_8xV7mmYrHm2YRdO8298BqBv28LlwOb0R.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'strictly' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phanh lại, hãm lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lựa chọn thay thế, người thay thế",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nghiêm ngặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_508093573_97g8XQ6SakOBtGXel4CFcNjY1ZiQdJhV.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "xà phòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_322346099_GoQWWkTQhKPMco96OUiGgbiingzJFuOL.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'terminate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phòng họp của ban giám đốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự trục trặc, sự hỏng hóc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Kết thúc, chấm dứt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_507808431_5AfaiJI9pg9nUHgi8SmI81p2uW1sQCUK.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "người phê bình",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_283796307_MpetBErDrFgiLrehokcFfhlDJ7Ie0YjD.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'tomato' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "quả cà chua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự kiên nhẫn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'translation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bất kỳ thời điểm, thời gian nào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "dịch thuật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_291680676_Nte7hTr3ruTjAVmnWY1aIxpZuePyatxo.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "túi xách tay (của phụ nữ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_484981972_K5ggNU3huD1gFv8SNyD7zWXKVzmWQT5P.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dài (về thời gian hoặc kích thước)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'tray' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khay để đồ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_131116650_5Y3RHjw2SyHu3SPsSuvT48ufm676pz3k.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sắp xếp lại, bố trí lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_343625917_Bw6YhKoqepUWsRJeRA6CjboJ9nQ2RN3S.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm cho lỗi thời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đắt tiền, tốn kém",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01162657_Smart-Ways-to-Manage-Your-Expenses-in-Costly-Cities-of-India-547096873.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'unfamiliar' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "diễn viên nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thủ thư",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_472881516_IXqv2dsgXr3WNEVsz8vqKchS4ClSrjPz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "quả cà chua",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không quen, lạ lẫm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_37671507_cYeftTWXl5HWxJbIe0ax5asaMREJVJBy.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'vendor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_216185055_IlV8hOlZDXv6mJ2zE6LaMkqM5IjhPLpY.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người phối hợp, điều phối viên",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lâu bền, bền vững",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người cung cấp thực phẩm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'withdrawal' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hộ tống, đi theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự thu hồi, sự rút khỏi",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "xà phòng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_322346099_GoQWWkTQhKPMco96OUiGgbiingzJFuOL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "mặt nạ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

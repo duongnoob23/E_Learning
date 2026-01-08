@@ -1,0 +1,494 @@
+[
+  {
+    "question_id": "p3_q1",
+    "question_number": 42,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_41_43.mp3",
+    "questionText": "What does the woman mean when she says, \"I really can't say\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "She is not allowed to repeat certain information"
+      },
+      {
+        "label": "B",
+        "text": "She cannot make a commitment yet"
+      },
+      {
+        "label": "C",
+        "text": "She should leave for an appointment"
+      },
+      {
+        "label": "D",
+        "text": "She has to correct some errors in a report"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Hi Tricia, I was just looking over the advertisement that you finished for Jenning Bank, and you did a wonderful job.Thanks, it was a great campaign to work on.Would you consider joining my team for our new contract with Circle Bookings? They're a popular travel Web site, and they're looking to expand their market with some new advertisements.It sounds exciting, but at this point I really can't say. I have a meeting with my manager tomorrow morning though.OK. Would it help if I stop by your meeting and go over the details with both of you? This way, your manager will know what the project entails.That sounds good.",
+    "translation": "Xin chào Tricia, tôi đã xem qua quảng cáo mà bạn đã làm cho Jenning Bank, và bạn đã làm rất tốt.Cảm ơn, đó quả là một chiến dịch quảng cáo hay để thực hiện.Bạn sẽ cân nhắc việc tham gia cùng nhóm chúng tôi cho hợp đồng mới với Circle Bookings chứ? Đó  là một trang web du lịch nổi tiếng và họ đang tìm cách mở rộng thị trường với một số quảng cáo mới.Nghe có vẻ thú vị, nhưng tại thời điểm này tôi thực sự không thể nói trước được. Tôi có một cuộc họp với quản lý của tôi vào buổi sáng ngày mai nữa.Được rồi. Có tiện không nếu tôi ghé qua chỗ họp của bạn của và cùng thảo luận chi tiết về dự án này với cả hai bạn? Như vậy, người quản lý của bạn sẽ biết dự án này cần những gì.Nghe được đấy.",
+    "explanation": {
+      "C": "ircle",
+      "B": "ookings và hỏi Tricia có muốn cân nhắc điều này không. Sau đó Tricia đã nói rằng lời đề nghị rất thú vị nhưng ở thời điểm này thì cô ấy không thể nói trước được. Như vậy, cụm ‘I can’t say’ ở đây để nói rằng cô Tricia này không thể hứa hẹn hoặc cam kết được rằng cô ấy sẽ tham gia làm cùng hay không",
+      "note": "→ Đây là câu hỏi yêu cầu người nghe phải dựa vào ngữ cảnh để hiểu được ý nghĩa câu nói này là gìA. Cô ấy không được phép lặp lại một số thông tin nhất định.B. Cô ấy chưa thể đưa ra cam kết.C. Cô ấy cần  đi đến một cuộc hẹn.D. Cô ấy phải sửa một số lỗi trong một bản báo cáo.→ chọn đáp án B. Trước khi Tricia nói rằng ‘I can’t say’ thì người đàn ông đã đưa ra lời đề nghị làm chung trong 1 dự án quảng cáo mới với công ty Circle Bookings và hỏi Tricia có muốn cân nhắc điều này không. Sau đó Tricia đã nói rằng lời đề nghị rất thú vị nhưng ở thời điểm này thì cô ấy không thể nói trước được. Như vậy, cụm ‘I can’t say’ ở đây để nói rằng cô Tricia này không thể hứa hẹn hoặc cam kết được rằng cô ấy sẽ tham gia làm cùng hay không"
+    }
+  },
+  {
+    "question_id": "p3_q2",
+    "question_number": 49,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_2_47_49.mp3",
+    "questionText": "What does the woman imply when she says, \"Mr. Lehmann's in a meeting with clients right now\" ?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Mr. Lehmann has a document she needs"
+      },
+      {
+        "label": "B",
+        "text": "A meeting room cannot be used"
+      },
+      {
+        "label": "C",
+        "text": "Mr. Lehmann is not available"
+      },
+      {
+        "label": "D",
+        "text": "An interview had to be cancelled"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Welcome to Lehmann Law Offices. How can I help you? I'm with Hannover Express Shipping, and I have a package here for Mr. Dennis Lehmann. Is he available to sign this form? I can sign it for him, if that's all right. Sorry, this package must be signed for by Mr. Lehmann himself. Well, Mr. Lehmann's in a meeting with clients right now. OK, I'll stop by later.",
+    "translation": "Chào mừng đến với văn phòng luật Lehmann. Tôi có thể giúp gì cho bạn? Tôi từ công ty vận chuyển nhanh Hannover,  tôi có một kiện hàng ở đây cho ông Dennis Lehmann. Ông ấy có ở đây để ký đơn nhận không ạ? Nếu được thì tôi có thể ký thay ông ấy. Xin lỗi, gói hàng này phải do chính ông Lehmann ký. À, ông Lehmann đang họp với khách hàng ngay bây giờ. Ok, để tôi sẽ quay lại sau.",
+    "explanation": {
+      "A": "Ông Lehmann có một tài liệu mà cô ấy cần",
+      "B": "Không thể sử dụng phòng họp",
+      "C": "Ông Lehmann hiện không có mặt ở đó",
+      "D": "Một cuộc phỏng vấn đã phải bị hủy bỏ.Để chọn được đáp án đúng cho câu này, ta cần xem nội dung và ngữ cảnh của đoạn hội thoại trước khi người phụ nữ nói câu này. Trước đó, nhân viên giao hàng đã giao hàng đến và muốn gặp ông Lehmann để ký xác nhận đơn hàng, và sau đó thì người phụ nữ nói rằng \"Mr. Lehmann's in a meeting with clients right now\" - \"Hiện tại ông Lehmann đang họp với khách hàng\"",
+      "note": "...→ như vậy có thể suy luận rằng người phụ nữ nói vậy nhằm muốn nói với người giao hàng rằng hiện tại ông Lehmann không thể ở đây để ký vào đơn trực tiếp được→ chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p3_q3",
+    "question_number": 48,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_3_47_49.mp3",
+    "questionText": "What does the man imply when he says, \"and who can do that\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He is asking for a volunteer"
+      },
+      {
+        "label": "B",
+        "text": "He wants to know the name of a staff member"
+      },
+      {
+        "label": "C",
+        "text": "He thinks a task is impossible"
+      },
+      {
+        "label": "D",
+        "text": "He is interested in an applicant's qualifications"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hi, Carlos. Did you see the new schedule for next month's fitness classes? I scheduled you to teach the two classes you requested. Oh wow, thanks. Hmm, I see the two classes are back-to-back. Yes, is that a problem? Well, the aerobics class is scheduled to start right after my weight-lifting class. This means there's only five minutes to put away the exercise equipment and get ready for the next class, and who can do that? Ahh, good point. Why don't I just change the start time of your aerobics class? Let's have it start ten minutes later.",
+    "translation": "Chào Carlos. Bạn có thấy lịch mới cho các lớp thể dục vào tháng tới không? Tôi đã lên lịch dạy của bạn cho hai lớp mà bạn yêu cầu. Ồ wow, cảm ơn. Hmm, tôi thấy hai lớp liên tiếp nhau. Vâng, điều đó có vấn đề gì không? Chà, lớp thể dục nhịp điệu dự kiến ​​sẽ bắt đầu ngay sau lớp tập tạ của tôi. Điều này có nghĩa là chỉ có năm phút để cất thiết bị tập thể dục và sẵn sàng cho lớp tiếp theo, và ai có thể làm điều đó cơ chứ? Ahh, có lý. Vậy tôi sẽ thay đổi thời gian bắt đầu lớp thể dục nhịp điệu của bạn nhé? Hãy để nó bắt đầu mười phút sau.",
+    "explanation": {
+      "A": "nh ấy quan tâm đến trình độ của ứng viên.Trước khi người đàn ông nói câu này, ta thấy rằng anh ấy đã nói lớp thể dục nhịp điệu ​​sẽ bắt đầu ngay sau lớp tập tạ của anh ấy, và anh ấy chỉ có năm phút để cất thiết bị tập thể dục và sẵn sàng cho lớp học tiếp theo",
+      "note": "A. Anh ấy đang yêu cầu một tình nguyện viên (làm công việc đó).B. Anh ấy muốn biết tên của một nhân viên.C. Anh ấy nghĩ rằng việc này là bất khả thi.D. Anh ấy quan tâm đến trình độ của ứng viên.Trước khi người đàn ông nói câu này, ta thấy rằng anh ấy đã nói lớp thể dục nhịp điệu ​​sẽ bắt đầu ngay sau lớp tập tạ của anh ấy, và anh ấy chỉ có năm phút để cất thiết bị tập thể dục và sẵn sàng cho lớp học tiếp theo→ như vậy có thể thấy người đàn ông đang cho rằng việc này là không thể vì thời gian quá ngắn, bởi vậy anh ấy mới nói rằng \"and who can do that?\" - ‘và ai có thể làm được điều này cơ chứ?’→ chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p3_q4",
+    "question_number": 57,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_56_58.mp3",
+    "questionText": "What does the woman mean when she says \"it's about time!\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "She thinks the company deserves new offices"
+      },
+      {
+        "label": "B",
+        "text": "She thinks construction has taken too long"
+      },
+      {
+        "label": "C",
+        "text": "She doesn't like the new offices"
+      },
+      {
+        "label": "D",
+        "text": "She wants a raise in her salary"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "M: Hey Judy, did you see the new offices the company built? They look fantastic. W: Yeah, it's about time! M: I know we had some slow years, but the last five years everyone has worked so hard and now it's finally paying off. W: Our company's growth has been fast, but there has been a lot of long nights and hard work. M: I agree with you. But it is nice to see it finally paying off. I can't wait to move into my new office!",
+    "translation": "Người đàn ông: Này Judy, bạn có thấy các văn phòng mới mà công ty xây dựng không? Chúng trông thật tuyệt vời. Người phụ nữ: Vâng, cũng đã đến lúc rồi! Người đàn ông: Tôi biết chúng ta đã có một số năm chậm nhịp, nhưng năm năm qua mọi người đã làm việc rất chăm chỉ và bây giờ cuối cùng nó cũng được đền đáp. Người phụ nữ: Tăng trưởng của công ty chúng ta đã rất nhanh, nhưng đã có rất nhiều đêm dài và sự làm việc chăm chỉ. Người đàn ông: Tôi đồng ý với bạn. Nhưng thật tuyệt khi thấy nó cuối cùng cũng được đền đáp. Tôi không thể chờ đợi để chuyển đến văn phòng mới của mình!",
+    "explanation": {
+      "C": "họn",
+      "note": "Dựa vào câu nói trước đó để nắm ngữ cảnh.Trước đó người đàn ông nói \"Hey Judy, did you see the new offices the company built? They look fantastic.\" (Này Judy, bạn có thấy các văn phòng mới mà công ty xây dựng không?"
+    }
+  },
+  {
+    "question_id": "p3_q5",
+    "question_number": 55,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_53_55.mp3",
+    "questionText": "What does the man mean when he says \"That's not a bad idea\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He wants a better solution"
+      },
+      {
+        "label": "B",
+        "text": "He agrees with the proposed solution"
+      },
+      {
+        "label": "C",
+        "text": "He would like to hear more options"
+      },
+      {
+        "label": "D",
+        "text": "He wants to keep the plane ticket"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "W: Hi, this is Shelly from Bafta Airlines. Unfortunately, your flight to Vancouver tomorrow has been cancelled due to weather conditions. The earliest we can fly you out is tomorrow night at 11:00 P.M.M: Oh... I actually have an important meeting tomorrow. It won't be easy to reschedule. Is there any way you can get me on an earlier flight?W: I'm sorry sir, but we are not allowed to fly under certain weather conditions. We understand the inconvenience and would like to off your return ticket free of charge. There is an overnight bus that will get you there by the morning. I can make the booking for you.M: Hmm... That's not a bad idea. Let me phone my client in Vancouver and I will call you back shortly.",
+    "translation": "Người phụ nữ: Xin chào, đây là Shelly từ Hãng hàng không Bafta. Thật không may, chuyến bay của anh đến Vancouver vào ngày mai đã bị hủy do các điều kiện thời tiết. Sớm nhất chúng tôi có thể đưa anh bay đi là vào tối mai lúc 11 giờ tối.Người đàn ông: Ồ ... Tôi thực sự có một cuộc họp quan trọng vào ngày mai. Nó sẽ không dễ dàng để sắp xếp lịch lại. Có cách nào có thể đưa tôi lên chuyến bay sớm hơn không?Người phụ nữ: Tôi xin lỗi thưa anh, nhưng chúng tôi không được phép bay trong những điều kiện thời tiết nhất định. Chúng tôi hiểu sự bất tiện và muốn miễn phí vé khứ hồi của anh. Có một xe buýt qua đêm sẽ đưa anh đến đó vào buổi sáng. Tôi có thể đặt cho anh.Người đàn ông: Ừm ... Đó không phải ý tưởng tồi. Để tôi gọi điện cho khách hàng của mình ở Vancouver và tôi sẽ gọi lại cho cô ngay.",
+    "explanation": {
+      "A": "nh ấy muốn giữ lại vé máy bay.Hỏi về hàm ý câu nói",
+      "C": "họn",
+      "note": "Dựa vào câu nói trước đó để nắm ngữ cảnh.Trước đó người phụ nữ nói: We understand the inconvenience and would like to off your return ticket free of charge. There is an overnight bus that will get you there by the morning. I can make the booking for you. ("
+    }
+  },
+  {
+    "question_id": "p3_q6",
+    "question_number": 57,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_56_58.mp3",
+    "questionText": "What does the woman imply when she says \"Are they real?\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "The flowers look really good"
+      },
+      {
+        "label": "B",
+        "text": "The flowers look fake"
+      },
+      {
+        "label": "C",
+        "text": "She is surprised to see them"
+      },
+      {
+        "label": "D",
+        "text": "She thinks they are real"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "M: Hi, Carol. How was the recruitment fair in New York?W: It was good. We recruited two new customer service managers, and I got to look around the city. New York is a beautiful place! When did you start having flowers in your office?M: Oh... You noticed them? I had them delivered today to freshen up the place a bit.W: Um... Are they real?M: Of course! Go and smell them. They are beautiful. I can have some delivered to your office if you like.W: No, don't worry about it. That's too much bother but I appreciate the offer!",
+    "translation": "Người đàn ông: Xin chào, Carol. Hội chợ tuyển dụng ở New York diễn ra thế nào?Người phụ nữ: Nó đã diễn ra tốt đẹp. Chúng tôi đã tuyển được hai quản lý dịch vụ khách hàng mới và tôi đã được đi khắp thành phố. New York là một nơi vô cùng xinh đẹp! Từ khi nào bạn bắt đầu đặt hoa trong văn phòng của mình vậy?Người đàn ông: Ồ ... Bạn nhận ra chúng à? Chúng đã được giao đến hôm nay để làm sáng sủa nơi này một chút.Người phụ nữ: Ừm ... Chúng có phải hoa thật không?Người đàn ông: Đương nhiên rồi! Đến và ngửi chúng đi. Chúng thật đẹp. Tôi có thể giao một số đến văn phòng của bạn nếu bạn thích.Người phụ nữ: Không, đừng lo lắng về nó. Điều đó quá phiền phức nhưng tôi rất cảm kích với lời đề nghị!",
+    "explanation": {
+      "A": "re they real?\" (",
+      "B": "ạn nhận ra chúng à?",
+      "C": "họn",
+      "note": "Dựa vào câu nói trước đó để nắm ngữ cảnh.Trước đó người đàn ông nói: You noticed them? I had them delivered today to freshen up the place a bit. ("
+    }
+  },
+  {
+    "question_id": "p3_q7",
+    "question_number": 58,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q56-58.mp3",
+    "questionText": "Why does the man say I thought you would like them?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To express disappointment"
+      },
+      {
+        "label": "B",
+        "text": "To show appreciation"
+      },
+      {
+        "label": "C",
+        "text": "To show respect"
+      },
+      {
+        "label": "D",
+        "text": "To show he thinks it's funny"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Hi, Susan. This is Rob. Did you get the flowers I sent you?Yes, I did, but unfortunately, I'm allergic to sunflowers. I had to go to the hospital because they were in my office for several hours.Oh, I thought you would like them.You know I'm allergic to pollen Rob. How could you forget? You should take me to dinner tomorrow night to apologize.OK. I will! I'll take you somewhere nice. Sorry about the flowers!",
+    "translation": "Người đàn ông: Chào Susan. Đây là Rob. (56) Bạn đã nhận được hoa tôi gửi chưa?Người phụ nữ: Có, nhưng thật không may, tôi bị dị ứng với hoa hướng dương. Tôi phải đến bệnh viện vì chúng đã ở trong văn phòng tôi vài giờ.Người đàn ông: (58) Ồ, tôi tưởng bạn sẽ thích chúng.Người phụ nữ: Bạn biết tôi bị dị ứng với phấn hoa mà Rob. Làm thế nào bạn có thể quên? (57) Tối mai bạn nên đưa tôi đi ăn tối để xin lỗi.Người đàn ông: ĐƯỢC RỒI. Tôi sẽ làm vậy! Tôi sẽ đưa bạn đến một nơi nào đó tốt đẹp. Xin lỗi về những bông hoa!",
+    "explanation": {
+      "D": "id you get the flowers I sent you?",
+      "A": "Để bày tỏ sự thất vọng",
+      "B": "Để thể hiện sự đánh giá cao",
+      "C": "họn",
+      "note": "Rob gửi hoa cho Susan- Yes, I did, but unfortunately, I'm allergic to sunflowers. I had to go to the hospital because they were in my office for several hours => Susan đã nhận được hoa, nhưng cô bị dị ứng với hoa hướng dương và phải vào viện- Oh, I thought you would like them => Rob nghĩ là Susan sẽ thích chỗ hoa (nên mới gửi cho cô)=> Rob bày tỏ sự thất vọng qua câu nói trên=>"
+    }
+  },
+  {
+    "question_id": "p3_q8",
+    "question_number": 54,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q53-55.mp3",
+    "questionText": "What does the woman mean when she says \"I intended to call them today\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "She wasn't going to call her"
+      },
+      {
+        "label": "B",
+        "text": "They were going to call her back"
+      },
+      {
+        "label": "C",
+        "text": "She was going to call them that day"
+      },
+      {
+        "label": "D",
+        "text": "She was going to send them an e-mail"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hi, Angela. I just got an e-mail from UHP incorporated. They are asking about installing the plumbing systems in their new offices. They want to know when we will begin.I intended to call them today, but I'm waiting for a call from some workers. They are at the building site now testing the ground. It seems as though there may be some problems installing the pipes underground. We may need to dig deeper than we expected. I will let them know by this afternoon.I see. I'll call UHP and let them know the situation. They didn't sound like they were angry, they were just curious to know what was going on. Let me know when you hear back from the workers.",
+    "translation": "Người đàn ông: Xin chào Angela. Tôi vừa nhận được e-mail từ UHP. (53) Họ đang hỏi về việc lắp đặt hệ thống ống nước trong văn phòng mới của họ. Họ muốn biết khi nào chúng ta sẽ bắt đầu.Người phụ nữ: (54) Tôi định gọi cho họ hôm nay nhưng tôi đang đợi cuộc gọi từ một số công nhân. Họ đang ở công trường xây dựng để kiểm tra mặt bằng. (55) Có vẻ như có một số vấn đề khi lắp đặt đường ống dưới lòng đất. Chúng ta có thể cần phải đào sâu hơn chúng ta mong đợi. Tôi sẽ cho họ biết vào chiều nay.Người đàn ông: Tôi hiểu rồi. Tôi sẽ gọi cho UHP và cho họ biết tình hình. Họ không có vẻ tức giận mà chỉ tò mò muốn biết chuyện gì đang xảy ra. Hãy cho tôi biết khi bạn nhận được phản hồi từ công nhân.",
+    "explanation": {
+      "D": "ịch câu hỏi:Người phụ nữ có ý gì khi cô ấy nói \"Tôi định gọi cho họ hôm nay\"?",
+      "C": "âu nói trên bài được sử dụng để đáp lại câu ‘They want to know when we will begin’, vậy nên câu trả lời của người phụ nữ hàm ý rằng cô ấy sẽ gọi cho khách hàng vào hôm đó để thông báo ngày bắt đầu. Đáp án đúng là",
+      "B": "Họ sẽ gọi lại cho cô ấy",
+      "note": "A. Cô ấy sẽ không gọi cho cô ấy..C. Cô ấy sẽ gọi cho họ vào ngày hôm đó.D. Cô ấy định gửi cho họ một e-mail.Để tìm đáp án cho câu hỏi hàm ý này, cần đọc các câu nói trước đó để tìm thông tin. Câu nói trên bài được sử dụng để đáp lại câu ‘They want to know when we will begin’, vậy nên câu trả lời của người phụ nữ hàm ý rằng cô ấy sẽ gọi cho khách hàng vào hôm đó để thông báo ngày bắt đầu. Đáp án đúng là C"
+    }
+  },
+  {
+    "question_id": "p3_q9",
+    "question_number": 56,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q56-58.mp3",
+    "questionText": "What does the man mean when he says ‘Are you serious’?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He believes the woman is correct"
+      },
+      {
+        "label": "B",
+        "text": "He doesn't believe she is correct"
+      },
+      {
+        "label": "C",
+        "text": "He is going to pay by card"
+      },
+      {
+        "label": "D",
+        "text": "He will pay with cash"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "W: Okay sir, your total bill comes to one thousand dollars. Would you like to pay with cash or card?M: One thousand dollars? Are you serious?W: Yes sir. You ordered a lot of room service over the last few days and spent a lot of money at the downstairs bar and restaurant. You stayed in room 208, didn't you?M: No. I was in room 207. I think you've made a mistake.W: Oh, I'm sorry sir. I will give you a 10% discount next time you stay with us. I apologize for the confusion.",
+    "translation": "Người phụ nữ: Được rồi thưa ông, tổng hóa đơn của ông là một nghìn đô la. Ông muốn thanh toán bằng tiền mặt hay thẻ?Người đàn ông: Một ngàn đô la? (56) Bạn nghiêm túc chứ?Người phụ nữ: Vâng thưa ngài. Ông đã đặt rất nhiều dịch vụ phòng trong vài ngày qua và tiêu rất nhiều tiền ở quán bar và nhà hàng ở tầng dưới. (57) Ông ở phòng 208 phải không?Người đàn ông: Không. Tôi ở phòng 207. Tôi nghĩ bạn đã nhầm lẫn.Người phụ nữ: Ồ, tôi xin lỗi thưa ông. (58) Tôi sẽ giảm giá 10% cho ông vào lần ghé thăm tiếp theo. Tôi xin lỗi vì sự hiểu nhầm.",
+    "explanation": {
+      "D": "o nhân viên thông báo hoá đơn là 1 số tiền lớn - one thousand dollars; người đàn ông đã hỏi lại",
+      "B": "ạn có nghiêm túc không'?",
+      "A": "nh ấy sẽ trả bằng tiền mặt",
+      "note": "Do ông ấy bị bất ngờ và không tin vào điều đó. Đáp án cần chọn là"
+    }
+  },
+  {
+    "question_id": "p3_q10",
+    "question_number": 51,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q50-52.mp3",
+    "questionText": "What does the woman mean when she says I'm actually on my way to a meeting?",
+    "options": [
+      {
+        "label": "A",
+        "text": "She doesn't have a lot of time to talk"
+      },
+      {
+        "label": "B",
+        "text": "She can stay and chat for a long time"
+      },
+      {
+        "label": "C",
+        "text": "She is asking the man out to lunch"
+      },
+      {
+        "label": "D",
+        "text": "She will send him an e-mail later on"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Hello, Judy, Have you got a moment to discuss last week's sales figures?I'm actually on my way to a meeting, but you can ask me something briefly.The sales figures for your branch are much lower than they have ever been. The board of directors is pretty upset about it. Is everything OK at the office?Well, not really. There are some problems with my staff at the moment and they aren't working like they used to. There is a conflict between some of the staff. I know it's affecting sales figures and it is a serious problem.Really? Do you think we need to fire someone?I think that's the only solution. I'm going to see how they go in the next week and I will make a decision.",
+    "translation": "Xin chào, Judy. (50)Bạn có thời gian để thảo luận về số liệu bán hàng của tuần trước không?(51)Thực ra tôi đang trên đường đi họp, nhưng bạn có thể hỏi tôi vài điều ngắn gọn.(50) Số liệu bán hàng của chi nhánh bạn thấp hơn nhiều so với trước đây. Ban giám đốc khá khó chịu về việc này. Mọi việc ở văn phòng có ổn không?Vâng, không thực sự. Hiện tại có một số vấn đề với nhân viên của tôi và họ không làm việc như trước nữa. Có mâu thuẫn giữa một số nhân viên. Tôi biết nó ảnh hưởng đến số liệu bán hàng và đó là một vấn đề nghiêm trọng.Thật sự? (52)Bạn có nghĩ chúng ta cần sa thải ai đó không?Tôi nghĩ đó là giải pháp duy nhất. Tôi sẽ xem họ diễn biến thế nào trong tuần tới và tôi sẽ đưa ra quyết định.",
+    "explanation": {
+      "D": "ịch: Người phụ nữ có ý gì khi nói “I'm actually on my way to a meeting”?",
+      "C": "họn",
+      "note": "Người phụ nữ đang bận, không có nhiều thời gian, nên sau đó cô ta nói “but you can ask me something briefly” (nhưng anh có thể hỏi ngắn gọn)=>"
+    }
+  },
+  {
+    "question_id": "p3_q11",
+    "question_number": 55,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q53-55.mp3",
+    "questionText": "What does the man imply when he says \"Thanks, but I'll have to pass on it\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He will deliver the speech"
+      },
+      {
+        "label": "B",
+        "text": "He doesn't want to deliver the speech"
+      },
+      {
+        "label": "C",
+        "text": "He will talk to the board of directors"
+      },
+      {
+        "label": "D",
+        "text": "He needs some more information"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Hello, Mr. Morgan. This is Debra, We have a bit of a problem. The person that was supposed to give the keynote speech next week is sick. So we need to find a replacement. Would you be able to do it?I'll be out of town for the next four days on business and when I get back I'll be quite busy.I see. The board of directors would love to have you do the speech. They really liked it last time you delivered it.Thanks, but I'll have to pass on it. I just have too much on my plate at the moment. If I had some more time to prepare, I would have considered it.OK, I understand. I'll let the board know. I hope you have a safe trip.Thanks for your understanding, Debra.",
+    "translation": "Xin chào, ông Morgan. Đây là Debra. (53)Chúng tôi có một chút vấn đề. Người đáng lẽ phải có bài phát biểu quan trọng vào tuần tới đang bị ốm. Vì vậy chúng ta cần tìm người thay thế. Bạn có thể làm được điều đó không?Tôi sẽ đi công tác xa trong bốn ngày tới và khi trở về tôi sẽ khá bận rộn.Tôi hiểu rồi. (54) Ban giám đốc rất muốn bạn phát biểu. Họ thực sự thích bài phát biểu vào lần cuối cùng bạn truyền đạt nó.(55)Cảm ơn, nhưng tôi sẽ phải từ chối nó. Hiện tại tôi đang có quá nhiều việc cần làm. Nếu tôi có thêm thời gian để chuẩn bị, tôi sẽ cân nhắc.Vâng tôi hiểu. Tôi sẽ báo cho hội đồng biết. Tôi hy vọng bạn có một chuyến đi an toàn.Cảm ơn sự thông cảm của bạn, Debra.",
+    "explanation": {
+      "D": "ịch: Người đàn ông có ý gì khi nói “Thanks, but I'll have to pass on it\"?",
+      "A": "nh ta từ chối đọc bài phát biểu",
+      "B": "an giám đốc rất muốn anh đọc bài phát biểu. Lần trước anh phát biểu khiến họ rất thích.)",
+      "C": "họn",
+      "note": "Người phụ nữ muốn mời người đàn ông phát biểu. => Người đàn ông đáp, “Thanks, but I'll have to pass on it.” =>"
+    }
+  },
+  {
+    "question_id": "p3_q12",
+    "question_number": 57,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q56-58.mp3",
+    "questionText": "What does he imply when he says That won't work for me?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It contains important documents"
+      },
+      {
+        "label": "B",
+        "text": "He will pay with a money order"
+      },
+      {
+        "label": "C",
+        "text": "He doesn't want them to leave it with someone at the office"
+      },
+      {
+        "label": "D",
+        "text": "He wants it left at the office"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Tristar Logistics, how can I help you?Hello.I have a delivery coming today but I won't be at the office all day. Can you reschedule to deliver for another day?No problem. If you prefer, we can leave it with someone at your office?That won't work for me. The delivery contains some expensive pieces of art so I want to personally receive it.That's fine. When would you like it delivered? Before midday would be perfect.OK, if you could give me your cell phone number, I can have the delivery man call you when he is in your neighborhood.",
+    "translation": "Tristar Logistics, tôi có thể giúp gì cho bạn?Xin chào. (56)Hôm nay tôi có một chuyến hàng nhưng tôi sẽ không ở văn phòng cả ngày. Bạn có thể dời lịch giao hàng sang ngày khác được không?Không có gì. Nếu bạn muốn, chúng tôi có thể để nó cho ai đó ở văn phòng của bạn?(57) Điều đó không phù hợp với tôi. Hàng giao có chứa một số tác phẩm nghệ thuật đắt tiền nên tôi muốn đích thân nhận nó.Ổn thôi. Khi nào bạn muốn nó được giao?Trước giữa trưa sẽ là hoàn hảo.(58)Được rồi, nếu bạn có thể cho tôi số điện thoại di động của bạn, tôi có thể nhờ người giao hàng gọi cho bạn khi anh ấy ở gần bạn.",
+    "explanation": {
+      "D": "ịch: Người đàn ông có ý gì khi nói “That won't work for me”?",
+      "A": "nh ấy muốn nó được để lại ở văn phòng.(it/that) works for me = đúng theo ý muốn của tôiTrước đó người phụ nữ đề nghị “If you prefer, we can leave it with someone at your office?” (Nếu anh muốn, chúng tôi có thể đưa nó (gói hàng) cho ai đó ở văn phòng của anh?), và người đàn ông đáp “That won’t work for me”",
+      "C": "họn",
+      "note": "Người đàn ông không muốn bên vận chuyển đưa gói hàng cho người ở văn phòng mình=>"
+    }
+  },
+  {
+    "question_id": "p3_q13",
+    "question_number": 54,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q53-55.mp3",
+    "questionText": "What does the man imply when he says “It doesn't make sense to keep going like this”?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He wants to take action immediately"
+      },
+      {
+        "label": "B",
+        "text": "He wants to continue business as usual"
+      },
+      {
+        "label": "C",
+        "text": "He wants to repair the software"
+      },
+      {
+        "label": "D",
+        "text": "He doesn't agree with the woman"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "I'm concerned about the output of some of our machinery. Production has slowed by 8% since June. I think there must be a problem with the software. We are losing money over this, and I'm not sure who to ask about it.We had it repaired once in the past but it was so expensive we ended up just buying a new one. Now it is slowing down as well. Do you think we should just replace the machine again?Yeah, it doesn't make sense to keep going like this.I'll call the machine repair shop and get a quote on the repairs and we can decide whatto do.OK, but let's get it done as quickly as possible please.",
+    "translation": "Tôi lo ngại về sản lượng của một số máy móc của chúng tôi. (53)Sản xuất đã chậm lại 8% kể từ tháng Sáu. Tôi nghĩ chắc chắn phần mềm có vấn đề. Chúng tôi đang mất tiền vì chuyện này và tôi không biết phải hỏi ai về điều đó.Trước đây chúng tôi đã sửa nó một lần nhưng nó quá đắt nên cuối cùng chúng tôi quyết định mua một cái mới. Bây giờ nó cũng đang chậm lại. Bạn có nghĩ chúng ta nên thay máy lần nữa không?(54)Ừ, cứ tiếp tục như thế này chẳng có ý nghĩa gì cả.(55)Tôi sẽ gọi cho cửa hàng sửa chữa máy và nhận báo giá về việc sửa chữa và chúng ta có thể quyết định phải làm gì.Được rồi, nhưng hãy làm việc đó càng nhanh càng tốt nhé.",
+    "explanation": {
+      "D": "o you think we should just replace the machine again? (",
+      "A": "nh ta cảm thấy không nên kéo dài tình trạng này, mà cần có giải pháp khắc phục ngay",
+      "C": "họn",
+      "note": "Anh ta cảm thấy không nên kéo dài tình trạng này, mà cần có giải pháp khắc phục ngay"
+    }
+  },
+  {
+    "question_id": "p3_q14",
+    "question_number": 54,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_53_55.mp3",
+    "questionText": "Why does the woman say, \"We actually have a new company logo”?",
+    "options": [
+      {
+        "label": "A",
+        "text": "To compliment a colleague"
+      },
+      {
+        "label": "B",
+        "text": "To reassure a client"
+      },
+      {
+        "label": "C",
+        "text": "To request an update to an order"
+      },
+      {
+        "label": "D",
+        "text": "To express surprise at a decision"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "M-Au: Hi, (53) this is Takumi from ColorPrinting Solutions. (54) I e-mailed you the mock-up ofyour company's flyer this morning. Have you had time to review it?W-Am: Oh hi, Takumi. (54) I just saw your draft of the flyer and was about to call you myself. We actually have a new company logo.M-Au: OK, no problem. Can you send it to me before lunch? That way I can be sure to finish the print job by the end of today as promised.W-Am: Sure! (55) Please charge the order to the credit card you have on file for our account.",
+    "translation": "M-Au: Xin chào, (53) đây là Takumi từ ColorPrinting Solutions. (54) Tôi đã gửi mail cho bạn bản nháp tờ rơi của công ty bạn sáng nay. Bạn đã có thời gian để xem xét nó chưa? W-Am: Oh hi, Takumi. (54) Tôi vừa xem bản nháp của bạn và đang định gọi bạn. Chúng tôi thực ra có một logo mới của công ty. M-Au: OK, không vấn đề gì. Bạn có thể gửi nó cho tôi trước khi ăn trưa chứ? Bằng cách đó tôi có thể chắc chắn hoàn thành công việc in vào cuối ngày hôm nay như đã hứa. W-Am: Chắc chắn rồi! (55) Vui lòng tính phí đơn hàng vào thẻ tín dụng bạn có trong hồ sơ cho tài khoản của chúng tôi.",
+    "explanation": {
+      "C": "âu trước đó người nói đã nói ‘saw your draft of the flyer’ và ‘call you myself’, người phụ nữ nói về một bản nháp và vấn đề là công ty của họ ‘have a new company logo’, người này muốn cập nhật với người đàn ông về logo mới, tương ứng với đáp án",
+      "A": "Để khen ngợi đồng nghiệp",
+      "B": "Để trấn an khách hàng",
+      "D": "Để bày tỏ sự ngạc nhiên trước một quyết địnhĐây là câu hỏi về hàm ý câu nói",
+      "note": "C. Để yêu cầu cập nhật đơn hàng. Câu trước đó người nói đã nói ‘saw your draft of the flyer’ và ‘call you myself’, người phụ nữ nói về một bản nháp và vấn đề là công ty của họ ‘have a new company logo’, người này muốn cập nhật với người đàn ông về logo mới, tương ứng với đáp án C"
+    }
+  },
+  {
+    "question_id": "p3_q15",
+    "question_number": 43,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_2_41_43.mp3",
+    "questionText": "What does the man imply when he says, \"I used to work at a hardware store”?",
+    "options": [
+      {
+        "label": "A",
+        "text": "He can fix a problem"
+      },
+      {
+        "label": "B",
+        "text": "He has experience in customer service"
+      },
+      {
+        "label": "C",
+        "text": "He is not interested in an offer"
+      },
+      {
+        "label": "D",
+        "text": "He is excited about teaching a new course"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "W-Br: Hi, Jin-Sung. Oh, I was wondering... (41) have you noticed how cold it's been here in the coffee shop lately?M-Cn: (42) Actually, yes. I wonder if it's because the side door hasn't been closing properly - that door should close automatically. Maybe a hinge is broken or needs to be adjusted.W-Br: Well, (42) I'm really concerned about the temperature. Our customers don't want to sit in a cold coffee shop! (43) I'll try to get a repair person to come and fix it today.M-Cn: (43) Actually... you don't need to call. I used to work at a hardware store.",
+    "translation": "W-Br: Xin chào, Jin-Sung. Ồ, tôi đã tự hỏi... (41) bạn có nhận thấy trời lạnh ở quán cà phê gần đây không?M-Cn: (42) Thật ra, vâng. Tôi đang nghĩ có phải vì cánh cửa bên đã đóng không đúng cách - cánh cửa đó sẽ tự động đóng lại. Có thể một bản lề bị hỏng hoặc cần phải điều chỉnh.W-Br: Chà, (42) Tôi thực sự lo lắng về nhiệt độ. Khách hàng của chúng tôi không muốn ngồi trong một quán cà phê lạnh! (43) Tôi sẽ cố gắng nhờ một người sửa chữa đến và sửa nó ngay hôm nay.M-Cn: (43) Thật ra ... bạn không cần gọi. Tôi đã từng làm việc tại một cửa hàng đồ kim khí.",
+    "explanation": {
+      "A": "nh ấy rất hào hứng với việc dạy một khóa học mới.Đây là dạng câu hỏi hàm ý, cần chú ý các câu gần đó để hiểu ngữ cảnh. Trước đó người phụ nữ đã nói về ‘get a repair person’ ‘come and fix’, Sau đó người đàn ông đã nói ‘don't need to call’ và câu trên",
+      "D": "o người này từng làm ở cửa hàng đồ kim khí, nên ẩn ý của người đàn ông là anh ấy có thể sửa nó",
+      "C": "họn",
+      "note": "A. Anh ấy có thể giải quyết vấn đề.B. Anh ấy có kinh nghiệm trong lĩnh vực dịch vụ khách hàng.C. Anh ấy không quan tâm đến lời đề nghị.D. Anh ấy rất hào hứng với việc dạy một khóa học mới.Đây là dạng câu hỏi hàm ý, cần chú ý các câu gần đó để hiểu ngữ cảnh. Trước đó người phụ nữ đã nói về ‘get a repair person’ ‘come and fix’, Sau đó người đàn ông đã nói ‘don't need to call’ và câu trên. Do người này từng làm ở cửa hàng đồ kim khí, nên ẩn ý của người đàn ông là anh ấy có thể sửa nó. Chọn A"
+    }
+  }
+]

@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một phần",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "partial"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "lấy lại",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_3-ways-to-teach-your-dog-to-want-to-retrieve-250x300.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "retrieve"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "phạt",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_185994075_wMrCSrSmSq85qyPyu9ewfwJBOjSknuna.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "penalize"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "những người nghèo và không có đủ để sống",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_472219101_M5NpbPzfC8RXEQaJppBImbFJR0gbQX1n.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "needy"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "quan trọng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/83_1000_F_505268346_r7ij4vDGx0MyOHBe7uazSQ9ZU0KUQWUC.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "prominent"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "trả tiền quá cao",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_60499919_7fVVCzVDIPceZbdyqJheNBVRRK0PbqTY.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "overpay"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "những người bán hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_358079157_4c5qNjZbYlZWYXiAi44ygEQRKty6UFsO.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "salespeople"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "khuyết điểm, lỗi hỏng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/4039_large.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "flaw"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "xúc tiến, đẩy nhanh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/original_Stopwatch_flames.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "expedite"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "có thể (nhưng không chắc chắn trở thành sự thật)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_67853087_fNc3iImyTjSJDvRP04eRggJ9pZ52efFA.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "probable"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "dao động, thay đổi bất thường",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/image-vector_risk-uncertainty-investment-volatility-stock-260nw-2138645749.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fluctuate"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người lái",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rider"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "ra lệnh, quy định, bắt phải",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_196708467_naZLfUdZKxhtA0zxYTMPZs2KdqztfsRI.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "prescribe"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "làm ô nhiễm môi trường",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pollute"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "nhà kho",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_271196577_NoaPRvNhiB2lIhlXWxS9AwJVdcUlPmCc.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "storeroom"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự giống nhau",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "similarity"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "lượng mưa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_366903907_RzCXMYTOdWnfEmm8wZ3fKnfEOLE2Qhmh.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rainfall"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "cao su",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_85334746_Uy5CpU4h2iTP4y25zKGJToQ492reRcil.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rubber"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "chăm sóc và dọn dẹp nhà cửa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "housekeep"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "ngon",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_302903936_Gj0UPO6NAl6poqegeDmRcd7yKrGsGSGN.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "tasty"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "không lương",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "unpaid"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "bình chữa cháy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/blogImages_5cd4bb87daed4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "extinguisher"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "lưu loát, trôi chảy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_fluency-b.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fluent"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự quen thuộc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "familiarity"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một thời điểm nào đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_266513285_3fiuXIp1ju8ExoGQEUXk7uxGP2GvrrZl.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "someday"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sơ tán",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_evacuations2-1024x626.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "evacuate"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "vệ sinh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_hand-washing-1000x675.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "hygiene"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "hành động tuân theo các quy tắc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "compliance"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tuyệt vời",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "terrific"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "dưới lòng đất",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "underground"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "máy thu phát",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "stereo"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự co lại, sự thu nhỏ lại",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "contraction"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "pamphlet"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hoài nghi, nghi ngờ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_392978877_jWq6ohc8088XNEZw1jfPNKpxAHJ09cGj.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "suspicious"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "nhẹ cân",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lightweight"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cookbook"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "ấn vào, đóng vào, gắn vào",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_product_72c9755c.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "embed"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "bão nhiệt đới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/121674-050-C458B2B5_satellite-image-National-Oceanic-and-Atmospheric-Administration-August-28-2005.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "hurricane"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "cái trống",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "drum"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "nơi cư trú",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/newsletter_-_Featured_Image.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "residence"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "kilôgam (một đơn vị trọng lượng; Một kg có cùng trọng lượng với 2,2 pounds",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_495149645_MAASOoVb1tAv0BGo1b0CvLwATH16Kkrn.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "kilogram"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "can thiệp, xen vào",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_423598861_FxJ0REQ6Nb3pblxwjlIhEeln0uTKX55d.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "interfere"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "hành động của chủ lao động đình chỉ hoặc chấm dứt công việc của một nhân viên, tạm thời hoặc vĩnh viễn, vì những lí do ngoài hiệu suất thực tế của nhân viên.",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_141401154_7aRx3snV695NCuMLL68wiTszKrUmUuDR.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "layoff"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "vòng cổ, dây chuyền",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_418826106_aGJWp7izvyuyzgSioAoeyCxS6UaBeUk4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "necklace"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "Thực sự, một cách thành thật",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/19233944_interview-questions.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "honestly"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "trợ cấp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_501006409_MwPf2cWDrCqPQulFUgl4dJL6lVRl2laP.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "subsidize"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự di dời đến 1 địa điểm mới",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_452274634_hC9b5a4gAyH2boMdKjEtuBqf08scYgQT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "relocation"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "khán giả",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "spectator"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thảm trải sàn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_1000_F_487960803_M7qjw6ogY5xdaivgv1veEWqRaGJR1MG5.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rug"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách mạnh mẽ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_345683475_JP0e4waI6vgcIC3DBYnPbArJmTFDhFZr.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "sharply"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "xứng đáng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_43882549_5lk1EjHtC3P9zLRz8OnYXFDwE6v7FxaB.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "merit"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "tương tác lẫn nhau",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "interactive"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "quan trọng, thiết yếu",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "integral"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "cái đệm, cái nệm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cushion"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "liều lượng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "dose"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

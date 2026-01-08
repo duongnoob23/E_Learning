@@ -1,0 +1,83 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 128,
+    "questionText": "Marliet Marketing can help any business _____ its products through multimedia advertising packages.",
+    "options": [
+      {
+        "label": "A",
+        "text": "promote"
+      },
+      {
+        "label": "B",
+        "text": "promoted"
+      },
+      {
+        "label": "C",
+        "text": "promotable"
+      },
+      {
+        "label": "D",
+        "text": "promoter"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Trong câu có sử dụng cấu trúc \"help somebody do something\" có nghĩa là \"giúp ai đó làm điều gì\".",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 122,
+    "questionText": "A successful digital marketing campaign has helped Fossler Electronics _____ its profit margins.",
+    "options": [
+      {
+        "label": "A",
+        "text": "stabilized"
+      },
+      {
+        "label": "B",
+        "text": "stability"
+      },
+      {
+        "label": "C",
+        "text": "stabilizing"
+      },
+      {
+        "label": "D",
+        "text": "stabilize"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 108,
+    "questionText": "The head chef has the restaurant manager ------- the order for the ingredients every evening.",
+    "options": [
+      {
+        "label": "A",
+        "text": "authoritative"
+      },
+      {
+        "label": "B",
+        "text": "authority"
+      },
+      {
+        "label": "C",
+        "text": "authorities"
+      },
+      {
+        "label": "D",
+        "text": "authorize"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  }
+]

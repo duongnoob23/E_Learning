@@ -1,0 +1,513 @@
+[
+  {
+    "question_id": "p2_q1",
+    "question_number": 8,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619407464_1619421086.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Mr. Bora does",
+      "B": "I was just there yesterday",
+      "C": "Our most recent event"
+    },
+    "explanation": {
+      "A": "Ông Bora có",
+      "B": "Tôi vừa ở đó ngày hôm qua",
+      "C": "Sự kiện gần đây nhất của chúng tôi",
+      "note": "Dựa vào nghĩa của từng đáp án→ chọn đáp án A (câu hỏi who - ai có bảng điểm danh và đáp án A nhắc đến việc ông Bora có)"
+    }
+  },
+  {
+    "question_id": "p2_q2",
+    "question_number": 28,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_28.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Didn't you get the e-mail this morning?",
+      "B": "Here are the sales reports from last year",
+      "C": "No, I'd like to buy that one"
+    },
+    "explanation": {
+      "A": "Bạn không nhận được e-mail sáng nay sao?",
+      "B": "Đây là các báo cáo bán hàng từ năm ngoái",
+      "C": "Không, tôi muốn mua cái đó",
+      "note": "Dựa vào ý nghĩa của các lựa chọn→ chọn đáp án A (việc người trả lời hỏi 1 câu khác để đáp lại câu hỏi ở trên ngụ ý rằng thông tin về người sẽ tổ chức chuyến đi nghỉ mát đã được đề cập trong email gửi vào buổi sáng)"
+    }
+  },
+  {
+    "question_id": "p2_q3",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619509415.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Joseph is",
+      "B": "All sales are final",
+      "C": "The Mayfield Conference Room"
+    },
+    "explanation": {
+      "A": "Là Joseph",
+      "B": "Tất cả doanh số bán hàng là cuối cùng",
+      "C": "Phòng Hội nghị Mayfield",
+      "note": "Vì câu hỏi bắt đầu  bằng ‘who’ - ai → câu trả lời cần đề cập đến 1 đối tượng→ chọn đáp án A (Joseph)"
+    }
+  },
+  {
+    "question_id": "p2_q4",
+    "question_number": 11,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578770.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Ms.Perez , the woman in green",
+      "B": "Yes, he is very patient",
+      "C": "A new prescription"
+    },
+    "explanation": {
+      "A": "Ms.Perez, người phụ nữ mặc áo xanh",
+      "B": "Vâng, anh ấy rất kiên nhẫn",
+      "C": "Một đơn thuốc mới",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi who (ai) → câu trả lời cần đề cập đến 1 đối tượng cụ thể nào đó→ chọn đáp án A (Ms.Perez - người mặc áo xanh)"
+    }
+  },
+  {
+    "question_id": "p2_q5",
+    "question_number": 26,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619579920.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Some free samples",
+      "B": "Sorry, my car won't start",
+      "C": "Everyone here works so hard"
+    },
+    "explanation": {
+      "A": "Một số mẫu miễn phí",
+      "B": "Xin lỗi, xe của tôi không khởi động được.",
+      "C": "Mọi người ở đây đều làm việc rất chăm chỉ",
+      "note": "Dựa vào nghĩa của từng đáp án→ chọn đáp án C (cụ thể, người nói không nhắc đến trực tiếp về 1 đối tượng cụ thể mà nói rằng ‘Mọi người ở đây đều làm việc rất chăm chỉ’ nhằm ngụ ý với người hỏi rằng ai cũng có thể được thăng chức vì ai cũng đều làm  việc chăm chỉ)"
+    }
+  },
+  {
+    "question_id": "p2_q6",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619593257.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Sure, sounds great",
+      "B": "How much does it cost?",
+      "C": "Ms. Kim takes care of it"
+    },
+    "explanation": {
+      "A": "Chắc chắn rồi, nghe tuyệt đấy",
+      "B": "Nó có giá bao nhiêu?",
+      "C": "Cô Kim phụ trách",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi ‘who’ (ai)→ câu trả lời cần đề cập đến 1 đối tượng cụ thể nào đó (cô Kim)→ chọn đáp án C"
+    }
+  },
+  {
+    "question_id": "p2_q7",
+    "question_number": 22,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619659994.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Well, I used the last 50 sheets",
+      "B": "Black ink and light bulbs",
+      "C": "Just a sandwich, please"
+    },
+    "explanation": {
+      "A": "Chà, tôi đã sử dụng 50 tờ cuối cùng",
+      "B": "Mực đen và bóng đèn",
+      "C": "Chỉ một chiếc bánh mì nhé",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi ‘who’ (ai)→ xét về nghĩa có thể loại đáp án B và C→ chọn đáp án A (cụ thể, người trả lời không đề cập trực tiếp mình là người đặt giấy nhưng nói rằng ‘tôi đã sử dụng 50 tờ cuối cùng’ với hàm ý rằng tôi đã sử dụng 50 tờ cuối cùng nên tôi mới đặt thêm giấy)"
+    }
+  },
+  {
+    "question_id": "p2_q8",
+    "question_number": 29,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619602861_1619660472.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "I thought I closed it",
+      "B": "My sister’s in town this week",
+      "C": "Photography and sculptures"
+    },
+    "explanation": {
+      "A": "Tôi nghĩ rằng tôi đã đóng nó",
+      "B": "Em gái tôi ở thị trấn vào tuần này",
+      "C": "Nhiếp ảnh và tác phẩm điêu khắc",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi ‘who’ (ai)→ xét về nghĩa có thể loại đáp án A và C→ chọn đáp án B (cụ thể, người trả lời không đề cập trực tiếp mình muốn tham gia nhưng nói rằng ‘Em gái tôi ở thị trấn vào tuần này’ có thể với hàm ý rằng vì em gái tôi ở thị trấn, nên tôi muốn tham dự buổi khai mạc để có thể dẫn nó đi cùng)"
+    }
+  },
+  {
+    "question_id": "p2_q9",
+    "question_number": 22,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_22.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "That bus station is closed, sorry",
+      "B": "I'm leaving for New York at lunchtime",
+      "C": "Let me show you a few more"
+    },
+    "explanation": {
+      "A": "Bến xe buýt đóng rồi, xin lỗi nhé => nói về địa điểm, loại",
+      "B": "Tôi sẽ đi New York vào giờ ăn trưa => nói về việc người nói sẽ rời đi vào buổi trưa nên không thể trình bày sản phẩm vào buổi chiều, chọn",
+      "C": "Hãy để tôi cho bạn xem  kỹ hơn về nó => không liên quan đến câu hỏi về danh tính, loại"
+    }
+  },
+  {
+    "question_id": "p2_q10",
+    "question_number": 29,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2022_test_1_29.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "The senior director is heading up that team",
+      "B": "Every morning at ten o'clock",
+      "C": "Yes, it's on Main Street"
+    },
+    "explanation": {
+      "A": "Tổng giám đốc điều hành cấp cao đang chỉ đạo nhóm đó. => nói về danh tính người chỉ đạo là tổng giám đốc điều hành cấp cao, chọn",
+      "B": "Mỗi sáng vào 10h => nói về thời gian, loại",
+      "C": "Đúng vậy, nó ở đường chính => nói về địa điểm, loại"
+    }
+  },
+  {
+    "question_id": "p2_q11",
+    "question_number": 15,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_2_15.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Sorry, I just got into the office",
+      "B": "The sports team is doing well",
+      "C": "Two years of technical school"
+    },
+    "explanation": {
+      "A": "Xin lỗi, tôi vừa mới vào văn phòng. => đây là câu trả lời gián tiếp, vì mới đến  văn phòng nên không biết ai đã yêu cầu hỗ trợ kỹ thuật, chọn",
+      "B": "Đội thể thao đang làm tốt. => đội thể thao và việc yêu cầu hỗ trợ kỹ thuật không liên quan đến nhau, loại",
+      "C": "2 năm ở trường kỹ thuật. => đưa ra số năm học trường kỹ thuật, không liên quan đến câu hỏi về danh tính người yêu cầu hỗ trợ kỹ thuật, loại"
+    }
+  },
+  {
+    "question_id": "p2_q12",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_7.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "I think Jason is",
+      "B": "It's already been sold",
+      "C": "At the nearest port"
+    },
+    "explanation": {
+      "A": "Tôi nghĩ là Jason. => chọn",
+      "B": "Nó đã được bán rồi. => có từ \"sold\" liên quan đến \"sales\" để bẫy, tuy nhiên ý nghĩa cả câu không liên quan => loại",
+      "C": "Tại cảng gần nhất. => có từ \"port\" nghe gần giống \"report\" để bẫy, nội dung cả câu không hề liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q13",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q7.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "I've picked Susan in accounting",
+      "B": "It was a very rewarding trip",
+      "C": "At the start of next year"
+    },
+    "explanation": {
+      "A": "Tôi đã chọn Susan trong bộ phận kế toán",
+      "B": "Đó là một chuyến đi rất bổ ích",
+      "note": "(C) Vào đầu năm tới.Câu hỏi này có câu trả lời là tên người (Susan), đồng thời các đáp án B và C đều không phù hợp nên đáp án A chính xác"
+    }
+  },
+  {
+    "question_id": "p2_q14",
+    "question_number": 17,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q17.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Mr. Franks wrote a reference letter",
+      "B": "It was very impressive",
+      "C": "A famous novelist"
+    },
+    "explanation": {
+      "A": "Ông Franks đã viết một lá thư giới thiệu. => có nhắc tên người nhưng nội dung không liên quan => loại",
+      "C": "Một tiểu thuyết gia nổi tiếng. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q15",
+    "question_number": 12,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q12.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Suzy did this morning",
+      "B": "In the shopping cart",
+      "C": "It's a brand-new printer"
+    },
+    "explanation": {
+      "A": "Suzy đã làm sáng nay. => chọn",
+      "B": "Trong giỏ hàng. => câu hỏi Who chứ không phải Where => loại",
+      "C": "Đó là chiếc máy in hoàn toàn mới. => nội dung không ăn nhập => loại"
+    }
+  },
+  {
+    "question_id": "p2_q16",
+    "question_number": 31,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q31.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Mr. Wilson was promoted to sales manager",
+      "B": "The man wearing the blue shirt",
+      "C": "We don't charge for delivery"
+    },
+    "explanation": {
+      "A": "Ông Wilson được thăng chức quản lý bán hàng. => có tên người nhưng nội dung không liên quan => loại",
+      "B": "Người đàn ông mặc áo xanh. => chọn",
+      "C": "Chúng tôi không tính phí giao hàng. => có từ “charge” nhưng nghĩa khác với “in charge”, nội dung cũng không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q17",
+    "question_number": 12,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_1_12.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "No, a monthly order",
+      "B": "Some yellow roses, please",
+      "C": "Marta did it"
+    },
+    "explanation": {
+      "A": "Không, đơn hàng hàng tháng",
+      "B": "Làm ơn cho một ít hoa hồng vàng",
+      "C": "Marta đã làm điều đó.Đây là câu hỏi Who, chọn đáp án C vì trả lời trực tiếp bằng tên người ‘Marta’ và thì của câu là ‘did’ giống với thì của câu hỏi"
+    }
+  },
+  {
+    "question_id": "p2_q18",
+    "question_number": 8,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_2_8.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "By the sink",
+      "B": "Yes, every day",
+      "C": "Jack is"
+    },
+    "explanation": {
+      "A": "Bên bồn rửa",
+      "B": "Vâng, hàng ngày",
+      "C": "Jack có.Đây là câu hỏi Who, đáp án chọn C vì có tên người ‘Jack’, câu này trả lời trực tiếp với tên riêng. Loại A vì đáp án này là một vị trí, B loại vì bắt đầu bằng ‘Yes’, do vậy chọn C"
+    }
+  },
+  {
+    "question_id": "p2_q19",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_3_13.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Several pages",
+      "B": "I'll be on vacation then",
+      "C": "The charger is broken"
+    },
+    "explanation": {
+      "A": "Một số trang",
+      "B": "Vậy thì tôi sẽ đi nghỉ",
+      "note": "Vì người trả lời hàm ý là người đó không biết ai sẽ làm việc đó vì người này sẽ đi du lịch"
+    }
+  },
+  {
+    "question_id": "p2_q20",
+    "question_number": 20,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_3_20.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "At twelve o'clock",
+      "B": "The phone number's on your desk",
+      "C": "The weather forecast"
+    },
+    "explanation": {
+      "A": "Vào lúc 12 giờ",
+      "B": "Số điện thoại ở trên bàn của bạn",
+      "C": "Dự báo thời tiết.Câu này cần hiểu nghĩa của các phương án trả lời để chọn đáp án đúng. Chú ý key word trong câu hỏi và câu trả lời có liên quan với nhau: \"call\" và \"phone number\". Đây là câu trả lời gián tiếp, người trả lời cho người hỏi số điện thoại để cài đặt máy in",
+      "note": "Chọn B"
+    }
+  },
+  {
+    "question_id": "p2_q21",
+    "question_number": 24,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_3_24.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "Within an hour or so",
+      "B": "Yes, about the budget",
+      "C": "Someone in the accounting department"
+    },
+    "explanation": {
+      "A": "Trong vòng một giờ hoặc lâu hơn",
+      "B": "Vâng, về ngân sách",
+      "C": "Một người nào đó ở phòng kế toán.Đây là câu hỏi có từ hỏi WHO nên câu trả lời thường chỉ người, trong 3 đáp án chỉ đáp án C có từ chỉ người ‘Someone’, chọn C"
+    }
+  },
+  {
+    "question_id": "p2_q22",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_4_7.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Ms. Park did",
+      "B": "You can use the printer",
+      "C": "No, I have enough"
+    },
+    "explanation": {
+      "A": "Cô Park đã làm vậy",
+      "B": "Bạn có thể sử dụng máy in",
+      "C": "Không, tôi có đủ rồi.Đây là câu hỏi ‘who’, đáp án A đúng vì câu này trả lời trực tiếp bằng tên một người ‘Ms. Park’, đáp án B đánh lừa vì có từ ‘printer’ liên quan đến từ khoá ‘office supplies’ trên câu hỏi, C loại vì trả lời bằng ‘No’",
+      "note": "Chọn A"
+    }
+  },
+  {
+    "question_id": "p2_q23",
+    "question_number": 10,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_5_10.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Just a few",
+      "B": "One of our marketing assistants",
+      "C": "Probably next month"
+    },
+    "explanation": {
+      "A": "Chỉ một số thôi",
+      "B": "Một trong những trợ lý tiếp thị của chúng tôi",
+      "C": "Có lẽ là vào tháng tới.Đây là câu hỏi Who nên cần tìm câu trả lời về một người hoặc có liên quan đến ‘commercial’, đáp án A, C loại vì đáp án ‘a few’ và ‘next month’ không trả lời cho câu hỏi ‘who’, chọn B vì câu trả lời trực tiếp cho câu hỏi bằng một người ‘marketing assistants’",
+      "note": "Chọn B"
+    }
+  },
+  {
+    "question_id": "p2_q24",
+    "question_number": 25,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_5_25.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "I noticed that it was messy, too",
+      "B": "Sure, I could use a break",
+      "C": "How did you make this dessert?"
+    },
+    "explanation": {
+      "A": "Tôi nhận thấy nó cũng lộn xộn",
+      "B": "Chắc chắn rồi, tôi có thể nghỉ giải lao",
+      "C": "Bạn làm món tráng miệng này như thế nào?Đây là câu hỏi về ‘who’ nhưng câu trả lời gián tiếp không phải tên một người",
+      "note": "Vì hàm ý của người trả lời là người này không biết, các đáp án B sai vì bắt đầu với ‘Sure’, loại C vì đây là câu hỏi không liên quan đến ‘dessert’. Chọn A"
+    }
+  },
+  {
+    "question_id": "p2_q25",
+    "question_number": 10,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_6_10.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "A driver will pick him up at twelve",
+      "B": "They’re my favorite airline",
+      "C": "At the baggage claim"
+    },
+    "explanation": {
+      "A": "Một tài xế sẽ đón anh ta lúc 12 giờ",
+      "B": "Họ là hãng hàng không yêu thích của tôi",
+      "C": "Tại khu vực lấy hành lý.Đây là câu hỏi who, từ khóa tại câu hỏi là \"Pick up\", câu trả lời hợp lý là chỉ người/những người nào đó có liên quan",
+      "note": "Vì từ khoá ‘driver’ và ‘pick him up’ có liên quan đến câu hỏi. Chọn A"
+    }
+  },
+  {
+    "question_id": "p2_q26",
+    "question_number": 15,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_6_15.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "My dinner was delicious, thanks",
+      "B": "Just a few minutes after three o'clock",
+      "C": "It still hasn't been announced"
+    },
+    "explanation": {
+      "A": "Bữa tối của tôi rất ngon, cảm ơn",
+      "B": "Chỉ vài phút sau ba giờ",
+      "C": "Nó vẫn chưa được công bố.Đây là câu hỏi ‘Who’, nhưng ở câu này không có tên hoặc các danh từ chỉ người nên sẽ có câu trả lời gián tiếp. Chúng ta buộc phải nghe hiểu được cả câu hỏi và các câu trả lời để chọn được đáp án đúng. Đáp án A và B không liên quan vì nhắc đến ‘dinner’ và ‘three o’clock’, đáp án C phù hợp vì ý của người trả lời là người này không biết vì chưa công bố ai nhận được giải thưởng",
+      "note": "Chọn C"
+    }
+  },
+  {
+    "question_id": "p2_q27",
+    "question_number": 17,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_7_17.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "It was an interesting article",
+      "B": "The company president",
+      "C": "About a new product"
+    },
+    "explanation": {
+      "A": "Đó là một bài viết thú vị",
+      "B": "Chủ tịch công ty",
+      "C": "Về một sản phẩm mới.Đây là câu hỏi Who, câu trả lời thường chỉ người, nghe được keyword ‘Who’ và ‘spokeperson’ ở câu hỏi và ‘company president’ ở đáp án, chọn B"
+    }
+  },
+  {
+    "question_id": "p2_q28",
+    "question_number": 27,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_7_27.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "I'll be on vacation",
+      "B": "Some training manuals",
+      "C": "They'll be eating soon"
+    },
+    "explanation": {
+      "A": "Tôi sẽ đi nghỉ",
+      "B": "Một số sách hướng dẫn đào tạo",
+      "C": "Họ sẽ ăn sớm thôi.Đây là câu hỏi Who, trong câu này, câu trả lời là gián tiếp với câu hỏi: Tôi sẽ đi nghỉ, ngụ ý người trả lời không chủ trì hội thảo được. Loại B và C vì không liên quan. Đáp án đúng là A"
+    }
+  },
+  {
+    "question_id": "p2_q29",
+    "question_number": 7,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_8_7.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Mr. Chen did",
+      "B": "I can pay",
+      "C": "Next to the farmers market"
+    },
+    "explanation": {
+      "A": "Ông Chen đã làm vậy",
+      "B": "Tôi có thể trả",
+      "C": "Bên cạnh chợ nông sản.Đây là câu hỏi ‘Who’, A đúng vì trả lời trực tiếp tên người ‘Mr. Chen’, các đáp án B và C sai vì câu trả lời không liên quan",
+      "note": "Chọn A"
+    }
+  },
+  {
+    "question_id": "p2_q30",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_9_13.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "It starts at three-thirty",
+      "B": "Sure, that's fine with me",
+      "C": "I'll ask Daniel to do it"
+    },
+    "explanation": {
+      "A": "Nó bắt đầu lúc ba giờ ba mươi",
+      "B": "Chắc chắn, điều đó ổn với tôi",
+      "C": "Tôi sẽ nhờ Daniel làm việc đó.Đây là câu hỏi Who, nếu có câu trả lời chỉ người thì chọn, chọn đáp án C vì có từ khoá ‘Daniel’. A loại vì ‘three-thirty’ là khoảng thời gian, B loại vì câu trả lời bắt đầu bằng ‘sure’"
+    }
+  },
+  {
+    "question_id": "p2_q31",
+    "question_number": 20,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2020_test_9_20.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "It hasn't been announced",
+      "B": "Right, a large account",
+      "C": "OK, I'll think about it"
+    },
+    "explanation": {
+      "A": "Nó chưa được công bố",
+      "B": "Đúng vậy, một tài khoản lớn",
+      "C": "Được rồi, tôi sẽ suy nghĩ về điều đó.Đây là câu hỏi Who nhưng các đáp án không có từ chỉ người. Đáp án B loại vì ‘a large account’ không liên quan, C loại vì trả lời bằng ‘OK’, chọn A, câu này gián tiếp trả lời về việc thông tin thăng chức chưa được công bố",
+      "note": "Chọn A"
+    }
+  }
+]

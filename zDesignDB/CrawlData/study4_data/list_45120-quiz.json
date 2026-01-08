@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'compliance' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'contraction' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trả tiền quá cao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_60499919_7fVVCzVDIPceZbdyqJheNBVRRK0PbqTY.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người lái",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự co lại, sự thu nhỏ lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'cookbook' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_185994075_wMrCSrSmSq85qyPyu9ewfwJBOjSknuna.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "xứng đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_43882549_5lk1EjHtC3P9zLRz8OnYXFDwE6v7FxaB.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'cushion' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự di dời đến 1 địa điểm mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_452274634_hC9b5a4gAyH2boMdKjEtuBqf08scYgQT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cái đệm, cái nệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'dose' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'drum' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "cái đệm, cái nệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'embed' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "ấn vào, đóng vào, gắn vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_product_72c9755c.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'evacuate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "có thể (nhưng không chắc chắn trở thành sự thật)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_67853087_fNc3iImyTjSJDvRP04eRggJ9pZ52efFA.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sơ tán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_evacuations2-1024x626.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'expedite' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ấn vào, đóng vào, gắn vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_product_72c9755c.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bão nhiệt đới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/121674-050-C458B2B5_satellite-image-National-Oceanic-and-Atmospheric-Administration-August-28-2005.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xúc tiến, đẩy nhanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/original_Stopwatch_flames.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'extinguisher' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "bình chữa cháy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blogImages_5cd4bb87daed4.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "hoài nghi, nghi ngờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_392978877_jWq6ohc8088XNEZw1jfPNKpxAHJ09cGj.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một thời điểm nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_266513285_3fiuXIp1ju8ExoGQEUXk7uxGP2GvrrZl.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'familiarity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự co lại, sự thu nhỏ lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'flaw' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khuyết điểm, lỗi hỏng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/4039_large.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_hand-washing-1000x675.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự giống nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'fluctuate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "khán giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "dao động, thay đổi bất thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_risk-uncertainty-investment-volatility-stock-260nw-2138645749.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "ấn vào, đóng vào, gắn vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_product_72c9755c.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'fluent' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lưu loát, trôi chảy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_fluency-b.jpeg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'honestly' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Thực sự, một cách thành thật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19233944_interview-questions.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khán giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'housekeep' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ngon",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_302903936_Gj0UPO6NAl6poqegeDmRcd7yKrGsGSGN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự co lại, sự thu nhỏ lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xúc tiến, đẩy nhanh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/original_Stopwatch_flames.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'hurricane' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhà kho",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_271196577_NoaPRvNhiB2lIhlXWxS9AwJVdcUlPmCc.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bão nhiệt đới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/121674-050-C458B2B5_satellite-image-National-Oceanic-and-Atmospheric-Administration-August-28-2005.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "những người nghèo và không có đủ để sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_472219101_M5NpbPzfC8RXEQaJppBImbFJR0gbQX1n.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'hygiene' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_hand-washing-1000x675.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'integral' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trợ cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_501006409_MwPf2cWDrCqPQulFUgl4dJL6lVRl2laP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lưu loát, trôi chảy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_fluency-b.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "khán giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'interactive' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vòng cổ, dây chuyền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_418826106_aGJWp7izvyuyzgSioAoeyCxS6UaBeUk4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự giống nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tương tác lẫn nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "Thực sự, một cách thành thật",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/19233944_interview-questions.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'interfere' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sơ tán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_evacuations2-1024x626.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "can thiệp, xen vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_423598861_FxJ0REQ6Nb3pblxwjlIhEeln0uTKX55d.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'kilogram' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kilôgam (một đơn vị trọng lượng; Một kg có cùng trọng lượng với 2,2 pounds",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_495149645_MAASOoVb1tAv0BGo1b0CvLwATH16Kkrn.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'layoff' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hành động của chủ lao động đình chỉ hoặc chấm dứt công việc của một nhân viên, tạm thời hoặc vĩnh viễn, vì những lí do ngoài hiệu suất thực tế của nhân viên.",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_141401154_7aRx3snV695NCuMLL68wiTszKrUmUuDR.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lấy lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_3-ways-to-teach-your-dog-to-want-to-retrieve-250x300.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người lái",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'lightweight' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "khán giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "có thể (nhưng không chắc chắn trở thành sự thật)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_67853087_fNc3iImyTjSJDvRP04eRggJ9pZ52efFA.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dao động, thay đổi bất thường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/image-vector_risk-uncertainty-investment-volatility-stock-260nw-2138645749.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'merit' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ra lệnh, quy định, bắt phải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_196708467_naZLfUdZKxhtA0zxYTMPZs2KdqztfsRI.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "xứng đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_43882549_5lk1EjHtC3P9zLRz8OnYXFDwE6v7FxaB.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "kilôgam (một đơn vị trọng lượng; Một kg có cùng trọng lượng với 2,2 pounds",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_495149645_MAASOoVb1tAv0BGo1b0CvLwATH16Kkrn.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'necklace' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_hand-washing-1000x675.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "chăm sóc và dọn dẹp nhà cửa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_housekeep_cleaner_-400x267.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vòng cổ, dây chuyền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_418826106_aGJWp7izvyuyzgSioAoeyCxS6UaBeUk4.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'needy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một thời điểm nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_266513285_3fiuXIp1ju8ExoGQEUXk7uxGP2GvrrZl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cao su",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_85334746_Uy5CpU4h2iTP4y25zKGJToQ492reRcil.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "những người nghèo và không có đủ để sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_472219101_M5NpbPzfC8RXEQaJppBImbFJR0gbQX1n.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'overpay' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tương tác lẫn nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trợ cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_501006409_MwPf2cWDrCqPQulFUgl4dJL6lVRl2laP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trả tiền quá cao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_60499919_7fVVCzVDIPceZbdyqJheNBVRRK0PbqTY.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'pamphlet' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "những người bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_358079157_4c5qNjZbYlZWYXiAi44ygEQRKty6UFsO.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lượng mưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_366903907_RzCXMYTOdWnfEmm8wZ3fKnfEOLE2Qhmh.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'partial' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "trả tiền quá cao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_60499919_7fVVCzVDIPceZbdyqJheNBVRRK0PbqTY.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "xứng đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_43882549_5lk1EjHtC3P9zLRz8OnYXFDwE6v7FxaB.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'penalize' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_185994075_wMrCSrSmSq85qyPyu9ewfwJBOjSknuna.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "tương tác lẫn nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hành động của chủ lao động đình chỉ hoặc chấm dứt công việc của một nhân viên, tạm thời hoặc vĩnh viễn, vì những lí do ngoài hiệu suất thực tế của nhân viên.",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_141401154_7aRx3snV695NCuMLL68wiTszKrUmUuDR.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'pollute' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái đệm, cái nệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'prescribe' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "xứng đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_1000_F_43882549_5lk1EjHtC3P9zLRz8OnYXFDwE6v7FxaB.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ra lệnh, quy định, bắt phải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_196708467_naZLfUdZKxhtA0zxYTMPZs2KdqztfsRI.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "người lái",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'probable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "có thể (nhưng không chắc chắn trở thành sự thật)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/30_1000_F_67853087_fNc3iImyTjSJDvRP04eRggJ9pZ52efFA.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "bình chữa cháy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blogImages_5cd4bb87daed4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'prominent' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nơi cư trú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/newsletter_-_Featured_Image.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "quan trọng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/83_1000_F_505268346_r7ij4vDGx0MyOHBe7uazSQ9ZU0KUQWUC.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sự co lại, sự thu nhỏ lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hoài nghi, nghi ngờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_392978877_jWq6ohc8088XNEZw1jfPNKpxAHJ09cGj.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'rainfall' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lấy lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_3-ways-to-teach-your-dog-to-want-to-retrieve-250x300.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lượng mưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_366903907_RzCXMYTOdWnfEmm8wZ3fKnfEOLE2Qhmh.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'relocation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái đệm, cái nệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự di dời đến 1 địa điểm mới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_452274634_hC9b5a4gAyH2boMdKjEtuBqf08scYgQT.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "tương tác lẫn nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'residence' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nơi cư trú",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/newsletter_-_Featured_Image.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự co lại, sự thu nhỏ lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_how-our-world-is-becoming-smaller.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'retrieve' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trả tiền quá cao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_60499919_7fVVCzVDIPceZbdyqJheNBVRRK0PbqTY.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không lương",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "lấy lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_3-ways-to-teach-your-dog-to-want-to-retrieve-250x300.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'rider' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_185994075_wMrCSrSmSq85qyPyu9ewfwJBOjSknuna.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người lái",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'rubber' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm ô nhiễm môi trường",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_295096353_OcDPXOnl8e40LvZtIx8ubDr2VoIdGBXV.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cao su",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_85334746_Uy5CpU4h2iTP4y25zKGJToQ492reRcil.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không lương",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'rug' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "những người nghèo và không có đủ để sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_472219101_M5NpbPzfC8RXEQaJppBImbFJR0gbQX1n.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thảm trải sàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_1000_F_487960803_M7qjw6ogY5xdaivgv1veEWqRaGJR1MG5.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "một phần",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'salespeople' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người lái",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/81_1000_F_438928174_V8QGybuxlI4fAosEcHIDWNn6yuibOaik.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "những người nghèo và không có đủ để sống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_472219101_M5NpbPzfC8RXEQaJppBImbFJR0gbQX1n.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "những người bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_358079157_4c5qNjZbYlZWYXiAi44ygEQRKty6UFsO.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'sharply' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách mạnh mẽ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_345683475_JP0e4waI6vgcIC3DBYnPbArJmTFDhFZr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ấn vào, đóng vào, gắn vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_product_72c9755c.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sơ tán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_evacuations2-1024x626.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'similarity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một thời điểm nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_266513285_3fiuXIp1ju8ExoGQEUXk7uxGP2GvrrZl.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự giống nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'someday' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một thời điểm nào đó",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_266513285_3fiuXIp1ju8ExoGQEUXk7uxGP2GvrrZl.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "liều lượng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_renue-rx-What-Should-I-Do-If-I-Forget-To-Take-My-Medication-Medication-Dosage-And-Adherence.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ngon",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_302903936_Gj0UPO6NAl6poqegeDmRcd7yKrGsGSGN.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'spectator' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khán giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_502281647_uc6TYsUOXZaOkLrAVg8oT0RstuzhIK9X.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự quen thuộc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_familiarity.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phạt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_185994075_wMrCSrSmSq85qyPyu9ewfwJBOjSknuna.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tương tác lẫn nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_474919233_bn9wOTWyB8TkIuCBv8iVM4pWM11uhuEc.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'stereo' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vòng cổ, dây chuyền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_418826106_aGJWp7izvyuyzgSioAoeyCxS6UaBeUk4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cái đệm, cái nệm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/asr_ba064fc2-a3e6-4451-ae66-8aa6b5467fdf_3.23aa3e31f957db10d085f2985ec41481.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hành động của chủ lao động đình chỉ hoặc chấm dứt công việc của một nhân viên, tạm thời hoặc vĩnh viễn, vì những lí do ngoài hiệu suất thực tế của nhân viên.",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_1000_F_141401154_7aRx3snV695NCuMLL68wiTszKrUmUuDR.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'storeroom' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhà kho",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_271196577_NoaPRvNhiB2lIhlXWxS9AwJVdcUlPmCc.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự giống nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "những người bán hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_358079157_4c5qNjZbYlZWYXiAi44ygEQRKty6UFsO.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'subsidize' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hành động tuân theo các quy tắc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_Rules-BI1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trợ cấp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_501006409_MwPf2cWDrCqPQulFUgl4dJL6lVRl2laP.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "lấy lại",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_3-ways-to-teach-your-dog-to-want-to-retrieve-250x300.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'suspicious' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cao su",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/47_1000_F_85334746_Uy5CpU4h2iTP4y25zKGJToQ492reRcil.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cái trống",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/play-lh.googleusercontent.com_EwLxwqqemBer-JgzUrzQuZzDOA6OEIIec_GBUZHDchXi6hCxhEe5raXjyK10YmjPGr4.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hoài nghi, nghi ngờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_392978877_jWq6ohc8088XNEZw1jfPNKpxAHJ09cGj.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "ra lệnh, quy định, bắt phải",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_196708467_naZLfUdZKxhtA0zxYTMPZs2KdqztfsRI.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'tasty' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "can thiệp, xen vào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_423598861_FxJ0REQ6Nb3pblxwjlIhEeln0uTKX55d.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một cuốn sách đưa ra hướng dẫn về cách chuẩn bị và nấu thức ăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_IMG_41325-2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách mạnh mẽ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_345683475_JP0e4waI6vgcIC3DBYnPbArJmTFDhFZr.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "ngon",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_302903936_Gj0UPO6NAl6poqegeDmRcd7yKrGsGSGN.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'terrific' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quan trọng, thiết yếu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_350120584_yaAHf0zYNrSTzdBd9rXasJzxkLHY4F5s.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "một quyến sách nhỏ hay một tập sách chứa đựng những thông tin chung về một chủ đề nào đấy",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_309148516_EDNlYB5JUQRDj6rfa5O1K8llLn3fLisQ.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "nhẹ cân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_482536772_djj0tmV4JMEg6EfU5OeCUitxtJeH8Igz.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'underground' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy thu phát",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_35863174_0VQgbWg4Ndv3yAg8KS4m1nhqgwMuyzBp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vệ sinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_hand-washing-1000x675.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự giống nhau",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/34_1000_F_13023433_IgkgEFzbbJQeF2aixD5DDdG9qRJNKRnT.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "dưới lòng đất",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_81626785_PjW6gNVv1bjWUgLBh00qXcYgQIAAlUf0.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'unpaid' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sơ tán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_evacuations2-1024x626.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "không lương",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "ngon",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_302903936_Gj0UPO6NAl6poqegeDmRcd7yKrGsGSGN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuyệt vời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/72_1000_F_96927201_vifpzuxirFnkKJJT6X81jMjH7St3U4JF.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

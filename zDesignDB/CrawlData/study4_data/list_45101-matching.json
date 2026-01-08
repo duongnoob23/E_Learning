@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một người chịu trách nhiệm về tiền trong một doanh nghiệp, kế toán",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_Accounting.jpg.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "accountant"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "người phục vụ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_Before-You-Become-A-Flight-Attendant-1024x538.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "attendant"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "xe đạp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/products_BirdBike3_2_83e0e074-f50e-4cd1-abef-e0f7caf51917.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bicycle"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "giờ trong ngày",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/46_1000_F_405284677_yE6WlvOeMRRns0D3DwbjEdbgKcczhqfW.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "o'clock"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "đường hầm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_35097174_QupM7R7601ZOQVDJ3ERmIiYsDoAhove4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "subway"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "sách điện tử",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg_300px-Bouquin__C3_A9lectronique_iLiad_en_plein_soleil.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "e-book"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sự giao hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_189180080_fRgPD63I35pkQXxgUF3SLj3DzCkCzpeV.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "shipment"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "hóa đơn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/67_1000_F_338776785_o6kmZ3XDYpWD9MJg4mCwS9lzH8KELlbz.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "invoice"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "trang web",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/77_1000_F_234707797_AIUCf02v6nSmO6nnJaxmDUA6GPg133N4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "website"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hạn chót, thời gian cụ thể hoàn thành một nhiệm vụ hoặc công việc được giao",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_deadline-la-gi-1.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "deadline"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "vây quanh, rào quanh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/overview_enclose-frameless-glass-whitesweep-haworth.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enclose"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sân bay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/01_shutterstock_758602234-min-1038x778.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "airport"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "tiền sảnh (của khách sạn)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_374284006_F9Xl2s03giwM3WrcMyn3Jc13MiqisfUx.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lobby"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "tờ gấp quảng cáo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_iconic-canada-printing-tri-fold-mockup2048x2048-157346198382155702592.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "brochure"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "tiền xe, tiền vé",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/b_taxi-fare-1561717.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fare"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "ứng viên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_shutterstock_366213614.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "applicant"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "sự đặt trước",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/2791_122_08_Making-a-Dinner-Reservation.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "reservation"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hội nghị, hội thảo",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/2000_20190409175112-GettyImages-954610134.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "conference"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "khách du lịch",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/86_1000_F_318718670_86Nd3s244FZT3kSIAZ7plbilLhxfNqiM.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "traveler"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "hoàn tiền",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_1000_F_484241272_Co1rGwyEylKtH1BBNOUv3JQioFNNO3P1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "refund"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "một lúc nào đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/36_1000_F_299573644_hl36ijMAfYBQhV7LMeB0F9ep4IqaoQwL.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "sometime"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "hàng hóa, mặt hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/8_vnf-hang-hoa-la-gi.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "goods"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "giấy ghi chú",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "memo"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "kỹ thuật viên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/57_1000_F_316865733_mDUKF9rkAf82RTOzjbtAYlU49mRSrp3T.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "technician"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách chân thành",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/38_1000_F_486963889_W8gVYrDtPOM0qy4qjGFUKFPDSyaZdXAp.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "sincerely"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "gửi bằng máy fax",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_dreamstime_s_126183369.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fax"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "người giám sát",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_269989133_kAnsHXDsEOGz4MFsOD9mAeP5J0TAC9fn.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "supervisor"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự đón tiếp, tiệc chiêu đãi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_329045080_8V4T4oUBjdvsEVWIWYzhFQpRirJc93w7.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "reception"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "quán ăn tự phục vụ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images_cafeteria-la-gi-6.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cafeteria"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "khách hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_tu-dong-nghia-voi-customer-va-client-trong-tieng-anh-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "client"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "kỳ nghỉ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_270048422_EeOeFgmqMRGxHF4KszqzG7lga86pBIbG.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vacation"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "giữa trưa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_301230325_XE8lPUdFbNs2eVsGYe6aqk7shBfU4iLR.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "noon"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thang máy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/mid_rise_20211030_tke_chq_content_models_shoot_1259_l_image_w900_h550.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "elevator"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sự bảo hành",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_98259239_HPphwMt7cHS6O7SWCc9rgvoMSwtJxVv4.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "warranty"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "phân xưởng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_279225144_FeGLeMBE66fonz0Yv9A9AoDAagquB79H.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "workshop"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự đăng ký",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_488132093_kziuWGxcr8NXAaguMpds9du7Y9nYkEOf.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "subscription"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "buổi hội thảo, nghiên cứu khoa học, nghiên cứu chuyên đề hay có thể đơn giản là một buổi báo cáo công việc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_120753558_8wVS9bqI8JBR6gg5cTc9xsgQDAIRNEQL.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "seminar"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "thông báo, cho biết",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_273719900_6RzHZ2HFBeQh5PMk9Oc5EodW95hT06qw.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "notify"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách chính xác, đúng đắn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/05_dreamstime_m_40557888-e1525786851102.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "correctly"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "Sự xem trước, sự duyệt trước",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/00_1000_F_508400067_Ik2ismon5YFZqUQflD29mhQG1deYlVSM.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "preview"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thuê",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_43472421_S9iTSyQWFXum8vZDkRTmfRu3pJenFAOX.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lease"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "nhân viên phục vụ (nam giới)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_1000_F_265810309_0fUfIqx9w05jtZKrMJhl1jbl3Y0JuB8k.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "waiter"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "suy ra, phỏng đoán",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/videos_infer.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "infer"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "hành lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_503905951_CDRQ9hAu6DKJSx1f2aQDyPMJphwBlG6o.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "luggage"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "khu vực trung tâm của thành phố",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/517000_517193-downtown-toronto.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "downtown"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "ứng cử viên",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/04_candidate-election.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "candidate"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách xưng hô lịch sự với 1 người đàn ông",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_479748022_q3PWQjBVT8JgabcCOmRCTK8c96IMTjcv.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "mister"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "nhân viên bán hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/MEDIA_1748ed09-eb29-411e-9d59-7d18338bb072.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "clerk"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "xuất bản, công bố, đăng tải",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_468966481_iTaDg019rRLgYPVCT5Apov9sslRdhmr3.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "publish"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "theo logic, hợp lý",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_279578746_WuyJ2nnCsu4v3ddhxu3hIKzYEZNhpE7B.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "logical"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "người đang gọi điện cho bạn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_callerid-768x512.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "caller"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự cho thuê",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_315224308_fm5CYsM0O9aB7OYG2C6KMv5JSBRveoqA.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "rental"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "đầu bếp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_chef-la-gi-1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "chef"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "cái khăn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/large_26281_B.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cloth"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "hóa đơn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_234382675_IDhCYbxmtSN0fExmTAw9aH39daLiMihV.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "receipt"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

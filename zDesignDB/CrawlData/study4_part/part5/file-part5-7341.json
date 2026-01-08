@@ -1,0 +1,353 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 102,
+    "questionText": "Mr. Yamamoto's farewell party was____in the cafeteria on Tuesday",
+    "options": [
+      {
+        "label": "A",
+        "text": "meant"
+      },
+      {
+        "label": "B",
+        "text": "held"
+      },
+      {
+        "label": "C",
+        "text": "taken"
+      },
+      {
+        "label": "D",
+        "text": "build"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Các từ trên đều là động từ, dựa vào nghĩa của từ",
+    "explanation": "Đáp án đúng: B. tổ chức."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 105,
+    "questionText": "Arnby Cable_____$25 to all Internet subscribers after the weeklong service interruption",
+    "options": [
+      {
+        "label": "A",
+        "text": "refunded"
+      },
+      {
+        "label": "B",
+        "text": "accepted"
+      },
+      {
+        "label": "C",
+        "text": "divided"
+      },
+      {
+        "label": "D",
+        "text": "deposited"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Các từ trên đều là động từ ở thì quá khứ đơn, như vậy dựa vào ý nghĩa của mỗi từ",
+    "explanation": "Đáp án đúng: A. đã hoàn lại."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 106,
+    "questionText": "The board of directors will meet next Monday to examine the current hiring____",
+    "options": [
+      {
+        "label": "A",
+        "text": "purpose"
+      },
+      {
+        "label": "B",
+        "text": "intent"
+      },
+      {
+        "label": "C",
+        "text": "assembly"
+      },
+      {
+        "label": "D",
+        "text": "policy"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Dựa trên nghĩa để chọn từ hợp lý nhất",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 119,
+    "questionText": "____, items sold at the Scottville Craft Fair are unique and of very high quality",
+    "options": [
+      {
+        "label": "A",
+        "text": "Fairly"
+      },
+      {
+        "label": "B",
+        "text": "Typically"
+      },
+      {
+        "label": "C",
+        "text": "Simply"
+      },
+      {
+        "label": "D",
+        "text": "Entirely"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Các từ trên đều là trạng từ,dựa vào nghĩa của từ",
+    "explanation": "Đáp án đúng: B. Thông thường (adv)."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 108,
+    "questionText": "The goal of the committee was to evaluate the company's bylaws and offer____for improvement",
+    "options": [
+      {
+        "label": "A",
+        "text": "renewals"
+      },
+      {
+        "label": "B",
+        "text": "registrations"
+      },
+      {
+        "label": "C",
+        "text": "recommendations"
+      },
+      {
+        "label": "D",
+        "text": "reimbursements"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "Mục tiêu của ủy ban là đánh giá những quy định của công ty và đề xuất những khuyến nghị cho sự cải thiện",
+    "analysis": "Những từ trên đều là danh từ ở dạng số nhiều. Dựa trên nghĩa để chọn, đáp án đúng là C",
+    "explanation": "Đáp án đúng: C. những khuyến nghị."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 123,
+    "questionText": "Mr. Signh was____about sales of the fragrance after the first round of customer focus groups",
+    "options": [
+      {
+        "label": "A",
+        "text": "extensive"
+      },
+      {
+        "label": "B",
+        "text": "distinct"
+      },
+      {
+        "label": "C",
+        "text": "optimistic"
+      },
+      {
+        "label": "D",
+        "text": "superior"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Các từ trên đều là tính từ, vì vậy dựa trên nghĩa của từ",
+    "explanation": "Đáp án đúng: C. lạc quan."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 111,
+    "questionText": "The theater doors will close and the show will start at precisely 8:00 p.m., so guests are reminded to be____",
+    "options": [
+      {
+        "label": "A",
+        "text": "rapid"
+      },
+      {
+        "label": "B",
+        "text": "sudden"
+      },
+      {
+        "label": "C",
+        "text": "punctual"
+      },
+      {
+        "label": "D",
+        "text": "instant"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "Nhà hát sẽ đóng cửa và buổi biểu diễn sẽ bắt đầu đúng 8 giờ tối , vì vậy các khán giả được nhắc nhở là phải đúng giờ",
+    "analysis": "Các từ trên đều là tính từ. Dựa trên nghĩa của từ",
+    "explanation": "Đáp án đúng: C. đúng giờ."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 126,
+    "questionText": "Every year Arrow Mill, Inc., processes a ___ amount of grain",
+    "options": [
+      {
+        "label": "A",
+        "text": "durable"
+      },
+      {
+        "label": "B",
+        "text": "direct"
+      },
+      {
+        "label": "C",
+        "text": "resolute"
+      },
+      {
+        "label": "D",
+        "text": "substantial"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "a large/substantial/huge amount of sth: một lượng lớn…Dựa vào nghĩa chọn đáp án DDịch: Mỗi năm Arrow Mill Inc chế biến một lượng ngũ cốc lớn.",
+    "explanation": "Đáp án đúng: D. đáng kể,lớn."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 114,
+    "questionText": "Construction at Langhall Plaza is going so well that shops might open before expected___date",
+    "options": [
+      {
+        "label": "A",
+        "text": "completion"
+      },
+      {
+        "label": "B",
+        "text": "selection"
+      },
+      {
+        "label": "C",
+        "text": "decision"
+      },
+      {
+        "label": "D",
+        "text": "option"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Tất cả các từ trên đều là danh từ, vì vậy dựa vào nghĩa của từ",
+    "explanation": "Đáp án đúng: A. hoàn thành."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 117,
+    "questionText": "Mr. Culter has been asked to _____ domestic sales of low-calorie beverages",
+    "options": [
+      {
+        "label": "A",
+        "text": "oversee"
+      },
+      {
+        "label": "B",
+        "text": "possess"
+      },
+      {
+        "label": "C",
+        "text": "succeed"
+      },
+      {
+        "label": "D",
+        "text": "persist"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Các từ trên đều là động từ, vì vậy dựa trên nghĩa của từ",
+    "explanation": "Đáp án đúng: A. giám sát."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 118,
+    "questionText": "The heads of _____ department in the company must attend the training session in Kolkata.",
+    "options": [
+      {
+        "label": "A",
+        "text": "its"
+      },
+      {
+        "label": "B",
+        "text": "each"
+      },
+      {
+        "label": "C",
+        "text": "most"
+      },
+      {
+        "label": "D",
+        "text": "several"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Sau chỗ trống là danh từ số ít “department” → Loại C và D (đều đi với danh từ số nhiều). Dựa vào nghĩa. A: của nó, B: mỗi",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 114,
+    "questionText": "Our factory in Mannheim was upgraded last year, but the loading dock _____ needs work.",
+    "options": [
+      {
+        "label": "A",
+        "text": "such"
+      },
+      {
+        "label": "B",
+        "text": "very"
+      },
+      {
+        "label": "C",
+        "text": "still"
+      },
+      {
+        "label": "D",
+        "text": "even"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước động từ “needs” → Cần tìm một trạng từ bổ nghĩa cho nó. Dựa trên nghĩa để chọn một trạng từ phù hợp. A: như là, B: rất, C: vẫn, D: thậm chí",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 114,
+    "questionText": "Management at the Sidol Factory is researching different ____ to enhancing employee productivity.",
+    "options": [
+      {
+        "label": "A",
+        "text": "instincts"
+      },
+      {
+        "label": "B",
+        "text": "decisions"
+      },
+      {
+        "label": "C",
+        "text": "occasions"
+      },
+      {
+        "label": "D",
+        "text": "approaches"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Ta nhận thấy vị trí của từ loại cần điền đứng sau tính từ ‘different’ → Cần tìm một danh từXét nghĩa của các đáp án bản năngquyết địnhdịpcách tiếp cậnTa nhận thấy đáp án D có ý nghĩa phù hợp nhất với câu⇒ Chọn DDịch: Ban quản lý tại Nhà máy Sidol đang nghiên cứu các cách tiếp cận khác nhau để nâng cao năng suất nhân viên.",
+    "explanation": "Đáp án đúng: D."
+  }
+]

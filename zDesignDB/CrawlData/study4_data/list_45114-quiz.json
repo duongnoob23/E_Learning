@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'accent' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự bất đồng ý kiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'advisory' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liên quan đến tư vấn, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "gian, ngăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người làm vườn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bán (hàng hóa)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'asleep' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngủ, đang ngủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự bất đồng ý kiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'authentic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thật, xác thực, không phải là giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'bakery' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "cửa hàng bánh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "gian, ngăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'carton' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiêu chuẩn, chỉ tiêu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "óc sáng tạo, tính sáng tạo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'compartment' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "gian, ngăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "cửa hàng bánh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'compatible' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cái chảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tấn (đơn vị đo)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'consumption' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'conveniently' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách dễ dàng, tiện lợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thật, xác thực, không phải là giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "vật phẩm vô dụng; rác",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'cosmetic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiết kiệm tiền, tránh lãng phí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'courtesy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "chiên rán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự lịch sự, sự nhã nhặn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "chồng; vợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'creativity' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bên bờ biển",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "để giới thiệu, mở đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "óc sáng tạo, tính sáng tạo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'criteria' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm đổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiêu chuẩn, chỉ tiêu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự lịch sự, sự nhã nhặn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'disagreement' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự bất đồng ý kiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "không đủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tiêu chuẩn, chỉ tiêu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'discontinue' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy rửa chén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đặc biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'dishwasher' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ồn ào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tạp chí xuất bản định kỳ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "máy rửa chén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "gian, ngăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'drought' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hạn hán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tổng số dặm đã đi được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chiên rán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'economize' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiết kiệm tiền, tránh lãng phí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bán (hàng hóa)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thật, xác thực, không phải là giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'entrée' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "máy rửa chén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/what-is-a-built-in-dishwasher_built-in-dishwasher-thumbnail.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quyền được tham gia, tham dự",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/L564xH318_c7ec4c530ce1cb51-7a447.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'firework' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "pháo hoa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vật xách tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thuốc dạng viên nén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liên quan đến tư vấn, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'freight' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tiết kiệm tiền, tránh lãng phí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'fry' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "chiên rán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "kiện hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liên quan đến tư vấn, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'gallon' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Tấm, bản, thẻ, phiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'gardener' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuốc dạng viên nén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hạn hán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/2021-09_shutterstock_1205889976.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người làm vườn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'ideally' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trong lý tưởng, một cách lý tưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "tiêu chuẩn, chỉ tiêu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_icon-cat-_grants-criteria.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ồn ào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "rút ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'inclusive' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiết kiệm tiền, tránh lãng phí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "vật xách tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "yoga",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'insufficient' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Tấm, bản, thẻ, phiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "người làm vườn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách dễ dàng, tiện lợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không đủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'introductory' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "yoga",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "để giới thiệu, mở đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'junk' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "vật phẩm vô dụng; rác",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "kiện hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'ma'am' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm đổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "làm cho tốt hơn mà không thay đổi nó quá nhiều",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_MMB-IMAGE-JPG-35.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "óc sáng tạo, tính sáng tạo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'mileage' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "gian, ngăn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/large_jamie-westaway-shot-01.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tổng số dặm đã đi được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "đúng giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'noisy' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tiết kiệm tiền, tránh lãng phí",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_436014-PEA2PZ-994-scaled.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Galông (đơn vị đo lường chất lỏng bằng 3, 78 lít ở Mỹ)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/55_1569840944_wehmrhv7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ồn ào",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/87_1000_F_431568789_cBY8zZCaKiAQ23mK0Ti7L575ht3lzJBR.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "pháo hoa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'pan' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hộp bìa cứng, hộp đựng hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_thung-carton-3-lop.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "thật, xác thực, không phải là giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "để giới thiệu, mở đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "cái chảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'parcel' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "làm đổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trong lý tưởng, một cách lý tưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "kiện hàng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/33_1000_F_298003317_N5HW5uDxcJlfqLGi12cpeH2KGp2iRBPf.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'pasta' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mì ống và nui",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/18_1000_F_217681851_TjAHWNawXPUcMcMN4TCVV8NsxDGJTeSn.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "không đủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/80_1000_F_501308018_DcLlw5395ijcqo7Q3d96l38GoSEtT8SR.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "làm đổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'periodical' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người làm vườn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tổng số dặm đã đi được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tạp chí xuất bản định kỳ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'pill' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đúng giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "rút ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thuốc dạng viên nén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'portable' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vật xách tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "thật, xác thực, không phải là giả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1920x1080_getty_951131842_365491.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'punctual' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái chảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "cửa hàng bánh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/b5_photo1jpg.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đúng giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "chiên rán",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_How-to-Maintain-Deep-Fryer-Fry-Oil.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'recreation' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "liên quan đến tư vấn, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thời gian rảnh rỗi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'relieve' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bên bờ biển",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trong lý tưởng, một cách lý tưởng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_pexels-photo-60219-large.jpeg.webp",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm dịu đi, làm mất đi (cơn đau, lo âu, phiền muộn...); làm khuây khoả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_331226048_Id2YWbG4ApmmfUUes7KfbkXXC2t8Ex9N.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'reminder' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái làm nhớ lại (một điều gì)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_496266618_4P9jgjdBUD0KIgUEvmDnF2kvGE3TocHi.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thời gian rảnh rỗi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_493530952_cyOal2axaeQK0vbVd1Wdkq4TA3YpNcx1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ngừng, làm gián đoạn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_baidu-raven-h-smart-speaker-stop-prodcution.webp",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người làm vườn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_MG_Main_1.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'rumor' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngủ, đang ngủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "pháo hoa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "liên quan đến tư vấn, cố vấn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_acedemicadvisor-blog-01.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tin đồn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/56_1000_F_181635645_W386wAhNSgff93Jr5jNrBJ0qqWPpfGv2.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'scarf' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "khăn quàng cổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_482338527_KBikmbGuT8rAHPcfs5NBqsFKujcLO8Pr.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vật phẩm vô dụng; rác",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "pháo hoa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "giọng đặc trưng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/219_Learntalk_BlogPosts_02-12-2018_Accent.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'seaside' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "bên bờ biển",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/89_1000_F_256438966_2A3UeO14g9ST5s0Jrl577jL9VSwmmlle.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "thuốc dạng viên nén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'shorten' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái chảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vật phẩm vô dụng; rác",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "pháo hoa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/203482-050-E2ABDA79_People-fireworks.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "rút ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'specially' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đặc biệt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/96_1000_F_503259607_Uh3UiAGdS4iMityTo6bDfMOgq1wPeAlP.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "sự lịch sự, sự nhã nhặn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/blog_customer-courtesy-blog-header.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tổng số dặm đã đi được",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/05_1000_F_177280515_W7hu2D1jW7Zf28H8Ir2tM9Ij1qjcQb7n.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Thưa bà *đây là từ viết tắt của 'madam' - phu nhân, đây là một cách lịch sự để gọi/xưng hộ với một người phụ nữ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_483905928_6C7bn2KZjbPgT5jklPPGmKlMaZ3CbSp9.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'spill' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "rút ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_313444354_fauAKebnUClY2DoqqzeGrAlLpPEEqlzM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "yoga",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "làm đổ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_335149783_wV5Ka1p6Ld2IC2T5NmnwQzgTO0xKGl63.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'spouse' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cái chảo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/39_1000_F_233563961_kE9T55F8EoBCKpKuXnrXTV1bIgQIve7W.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "phù hợp với, tương thích",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_fit-together.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chồng; vợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_328932056_kxqjG9lQwkqmtP7yIgZ4iBzaxV35F0up.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'subtract' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trừ đi, lấy đi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_134971658_ODU5hA5BLdSTxZkRV5BQ3XRjH9H7kyRy.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "một cách dễ dàng, tiện lợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_dat-cau-voi-convenient.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "óc sáng tạo, tính sáng tạo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_creativity-in-instructional-design.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tấn (đơn vị đo)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'tablet' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Tấm, bản, thẻ, phiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_194002227_crFKpuazEUFQXe71f3KiqqgRBaQXskGL.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "vật phẩm vô dụng; rác",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đúng giờ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_287539802_FD2apt51TPWtq8f70m3XxJ4sHRDPG73M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "để giới thiệu, mở đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_41649778_fSFI0MbsQPU6C2pwqsMAR6QBPiJlXxD2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'ton' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngủ, đang ngủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự bất đồng ý kiến",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/files_untitled-2_05.gif",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tấn (đơn vị đo)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_72314392_HwyYUWTxzHsBS4FHDo5iZGQhexXJHjDP.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "tạp chí xuất bản định kỳ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_210186916_zygbU0DH2soq0OFWwaDHlfcoVJG7Jwr8.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'vend' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự tiêu thụ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-168066972-58b886865f9b58af5c2a71ba.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "vật xách tay",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/44_1000_F_462804489_daIgBq7AyFIAZVsFR8Gva0HaMeDJTPGa.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "hàng hoá chuyên chở",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_difference-between-cargo-and-freight.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bán (hàng hóa)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_396989416_hkLwe301Esx25AO3ctC8mRAZsuz4zIiW.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'yoga' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "thuốc dạng viên nén",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/61_1000_F_251386152_imQTm9tz1BGguush0iWASjbwHa0CPE4x.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Bao gồm tất cả mọi thứ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_inclusive-education-lede.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "ngủ, đang ngủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/fitbit_woman-asleep-in-bed.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "yoga",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_473668480_vNiOKGPaM9TgRbDdK6F8jq4VB252HTNX.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

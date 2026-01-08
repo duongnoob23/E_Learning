@@ -1,0 +1,497 @@
+[
+  {
+    "word_id": 1,
+    "en": "actress",
+    "vi": "diễn viên nữ",
+    "pronunciation": "/ˈæk.trəs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=actress&lang=en-US&ipa=%2F%CB%88%C3%A6k.tr%C9%99s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/2022_02_07_3-5279.jpg",
+    "example": "She's the highest-paid actress in Hollywood"
+  },
+  {
+    "word_id": 2,
+    "en": "adjacent",
+    "vi": "bên cạnh, gần đó",
+    "pronunciation": "/əˈdʒeɪ.sənt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=adjacent&lang=en-US&ipa=%2F%C9%99%CB%88d%CA%92e%C9%AA.s%C9%99nt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/oakImage-1563226693389_oakImage-1563226693389-jumbo.jpg",
+    "example": "They lived in a house adjacent to the railway"
+  },
+  {
+    "word_id": 3,
+    "en": "alternate",
+    "vi": "lựa chọn thay thế, người thay thế",
+    "pronunciation": "/ˈɔːl.tə.nət/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=alternate&lang=en-US&ipa=%2F%CB%88%C9%94%CB%90l.t%C9%99.n%C9%99t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_Getty_alternate_and_alternative-98856095-56af90de5f9b58b7d01a9d58.jpg",
+    "example": "He shall be entitled to exercise the vote of the director for whom he is an alternate"
+  },
+  {
+    "word_id": 4,
+    "en": "anytime",
+    "vi": "bất kỳ thời điểm, thời gian nào",
+    "pronunciation": "/ˈen.i.taɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=anytime&lang=en-US&ipa=%2F%CB%88en.i.ta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1289_1289317.png",
+    "example": "We don't expect the economic situation to change anytime soon"
+  },
+  {
+    "word_id": 5,
+    "en": "badge",
+    "vi": "huy hiệu, phù hiệu",
+    "pronunciation": "/bædʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=badge&lang=en-US&ipa=%2Fb%C3%A6d%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/thumb_badge_noun_004_0157.jpg",
+    "example": "New security measures require all visitors to sign in at reception and wear a visitor's badge."
+  },
+  {
+    "word_id": 6,
+    "en": "boardroom",
+    "vi": "phòng họp của ban giám đốc",
+    "pronunciation": "/ˈbɔːd.ruːm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=boardroom&lang=en-US&ipa=%2F%CB%88b%C9%94%CB%90d.ru%CB%90m%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_Simon-Kucher-2-2.jpg",
+    "example": "Shareholders felt mistakes had been made at boardroom level."
+  },
+  {
+    "word_id": 7,
+    "en": "brake",
+    "vi": "phanh lại, hãm lại",
+    "pronunciation": "/breɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=brake&lang=en-US&ipa=%2Fbre%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Step-On-The-Car-Pedals.jpg",
+    "example": "He would drive very fast and brake hard at the last minute"
+  },
+  {
+    "word_id": 8,
+    "en": "calculation",
+    "vi": "sự tính toán, phép tính",
+    "pronunciation": "/ˌkæl.kjəˈleɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=calculation&lang=en-US&ipa=%2F%CB%8Ck%C3%A6l.kj%C9%99%CB%88le%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_calculating-graphs-760.jpg",
+    "example": "The calculation that you did/made contained a few inaccuracies."
+  },
+  {
+    "word_id": 9,
+    "en": "carpenter",
+    "vi": "thợ mộc",
+    "pronunciation": "/ˈkɑː.pɪn.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=carpenter&lang=en-US&ipa=%2F%CB%88k%C9%91%CB%90.p%C9%AAn.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/Anh-TCN-Hong_carpenter-la-gi-6.jpg",
+    "example": "A self-employed boat repairer and carpenter, he had difficulty getting a mortgage."
+  },
+  {
+    "word_id": 10,
+    "en": "caterer",
+    "vi": "người cung cấp thực phẩm",
+    "pronunciation": "/ˈkeɪ.tər.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=caterer&lang=en-US&ipa=%2F%CB%88ke%C9%AA.t%C9%99r.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/03_Caterer-for-the-Wedding.jpg",
+    "example": "The group included representatives from hotels, restaurants, retail companies, and contract caterer."
+  },
+  {
+    "word_id": 11,
+    "en": "classify",
+    "vi": "phân loại",
+    "pronunciation": "/ˈklæs.ɪ.faɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=classify&lang=en-US&ipa=%2F%CB%88kl%C3%A6s.%C9%AA.fa%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/introimages_0513vsm_VogelPracNETLong.jpg",
+    "example": "The books in the library are classify by/according to subject."
+  },
+  {
+    "word_id": 12,
+    "en": "congratulate",
+    "vi": "chúc mừng",
+    "pronunciation": "/kənˈɡrætʃ.ə.leɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=congratulate&lang=en-US&ipa=%2Fk%C9%99n%CB%88%C9%A1r%C3%A6t%CA%83.%C9%99.le%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_cau-truc-congratulate-2.jpg",
+    "example": "He had taken the chance to congratulate him on his marriage"
+  },
+  {
+    "word_id": 13,
+    "en": "consultation",
+    "vi": "cuộc hội ý, sự bàn bạc",
+    "pronunciation": "/ˌkɒn.səlˈteɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=consultation&lang=en-US&ipa=%2F%CB%8Ck%C9%92n.s%C9%99l%CB%88te%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_two-human-outlines-against-shuttered-office-window-sitting-opposite-each-other-negotiating-1536x1025.jpg",
+    "example": "The consultation on these options showed that Option 1 was widely rejected."
+  },
+  {
+    "word_id": 14,
+    "en": "coordinator",
+    "vi": "người phối hợp, điều phối viên",
+    "pronunciation": "/kəʊˈɔː.dɪ.neɪ.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=coordinator&lang=en-US&ipa=%2Fk%C9%99%CA%8A%CB%88%C9%94%CB%90.d%C9%AA.ne%C9%AA.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/free_resources_article_thumb_What_is_a_project_coordinator.jpg",
+    "example": "We've just appointed a coordinator who will oversee the whole project."
+  },
+  {
+    "word_id": 15,
+    "en": "costly",
+    "vi": "đắt tiền, tốn kém",
+    "pronunciation": "/ˈkɒst.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=costly&lang=en-US&ipa=%2F%CB%88k%C9%92st.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/01162657_Smart-Ways-to-Manage-Your-Expenses-in-Costly-Cities-of-India-547096873.webp",
+    "example": "The industry gradually recovered after suffering two costly setbacks."
+  },
+  {
+    "word_id": 16,
+    "en": "durable",
+    "vi": "lâu bền, bền vững",
+    "pronunciation": "/ˈdjʊə.rə.bəl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=durable&lang=en-US&ipa=%2F%CB%88dj%CA%8A%C9%99.r%C9%99.b%C9%99l%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/b_durable-knot-24904213.jpg",
+    "example": "The machines have to be made of durable materials."
+  },
+  {
+    "word_id": 17,
+    "en": "equip",
+    "vi": "trang bị",
+    "pronunciation": "/ɪˈkwɪp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=equip&lang=en-US&ipa=%2F%C9%AA%CB%88kw%C9%AAp%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_tools.jpg",
+    "example": "All the police officers were equip with shields to defend themselves against the rioters."
+  },
+  {
+    "word_id": 18,
+    "en": "escort",
+    "vi": "hộ tống, đi theo",
+    "pronunciation": "/ɪˈskɔːt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=escort&lang=en-US&ipa=%2F%C9%AA%CB%88sk%C9%94%CB%90t%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/MY-21569595_security-escort-services-500x500.jpeg",
+    "example": "Several little boats escort the sailing ship into the harbour."
+  },
+  {
+    "word_id": 19,
+    "en": "excursion",
+    "vi": "cuộc du ngoạn, chuyến tham quan",
+    "pronunciation": "/ɪkˈskɜː.ʒən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=excursion&lang=en-US&ipa=%2F%C9%AAk%CB%88sk%C9%9C%CB%90.%CA%92%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/e9_ad.jpg",
+    "example": "This year's annual excursion will be to Lincoln."
+  },
+  {
+    "word_id": 20,
+    "en": "glove",
+    "vi": "găng tay",
+    "pronunciation": "/ɡlʌv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=glove&lang=en-US&ipa=%2F%C9%A1l%CA%8Cv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_about_image_1.jpg",
+    "example": "Tuck your glove in your pocket so that you don't lose them."
+  },
+  {
+    "word_id": 21,
+    "en": "graphic",
+    "vi": "thuộc đồ họa, hình ảnh",
+    "pronunciation": "/ˈɡræfɪk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=graphic&lang=en-US&ipa=%2F%CB%88%C9%A1r%C3%A6f%C9%AAk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_what-is-graphic-design-header.png",
+    "example": "The network has upgraded the graphic look of the show."
+  },
+  {
+    "word_id": 22,
+    "en": "hardware",
+    "vi": "đồ kim khí, phần cứng",
+    "pronunciation": "/ˈhɑːd.weər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=hardware&lang=en-US&ipa=%2F%CB%88h%C9%91%CB%90d.we%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_computer-hardware-2625895-5d9007ac0d44404588321d255fc82049.jpg",
+    "example": "The machine allows multitasking without the need to buy extra hardware."
+  },
+  {
+    "word_id": 23,
+    "en": "inexpensive",
+    "vi": "có giá thấp; rẻ",
+    "pronunciation": "/ˌɪnɪkˈspensɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inexpensive&lang=en-US&ipa=%2F%CB%8C%C9%AAn%C9%AAk%CB%88spens%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/1339783_trader-joes-today-180516-tease.jpg",
+    "example": "Paper is relatively inexpensive here."
+  },
+  {
+    "word_id": 24,
+    "en": "inexperience",
+    "vi": "sự thiếu kinh nghiệm",
+    "pronunciation": "/ˌɪn.ɪkˈsper.i.əns/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=inexperience&lang=en-US&ipa=%2F%CB%8C%C9%AAn.%C9%AAk%CB%88sper.i.%C9%99ns%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_Training-Employees-768x644.jpg",
+    "example": "Taking advantage of her inexperience, he set out to trick and seduce her."
+  },
+  {
+    "word_id": 25,
+    "en": "lengthy",
+    "vi": "dài (về thời gian hoặc kích thước)",
+    "pronunciation": "/ˈleŋ.θi/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=lengthy&lang=en-US&ipa=%2F%CB%88le%C5%8B.%CE%B8i%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_504440958_sHBDeXwKJmHCn73CCMBBwQgrTcwdzG8J.jpg",
+    "example": "I had to go through the lengthy process of obtaining a visa."
+  },
+  {
+    "word_id": 26,
+    "en": "librarian",
+    "vi": "thủ thư",
+    "pronunciation": "/laɪˈbreəriən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=librarian&lang=en-US&ipa=%2Fla%C9%AA%CB%88bre%C9%99ri%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_472881516_IXqv2dsgXr3WNEVsz8vqKchS4ClSrjPz.jpg",
+    "example": "He writes poetry and would like to be an English teacher or librarian, but lacks the necessary qualifications."
+  },
+  {
+    "word_id": 27,
+    "en": "malfunction",
+    "vi": "sự trục trặc, sự hỏng hóc",
+    "pronunciation": "/ˌmælˈfʌŋkʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=malfunction&lang=en-US&ipa=%2F%CB%8Cm%C3%A6l%CB%88f%CA%8C%C5%8Bk%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_125954845_Xrh0B5OldkqQAqerwWtG4ZB6tXIkPvmn.jpg",
+    "example": "The drug caused a malfunction in the brain."
+  },
+  {
+    "word_id": 28,
+    "en": "mask",
+    "vi": "mặt nạ",
+    "pronunciation": "/mɑːsk/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=mask&lang=en-US&ipa=%2Fm%C9%91%CB%90sk%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_252824829_BYEe5DFFjTeFYNsUtmHYIjayJQLDfc6h.jpg",
+    "example": "mask were compulsory on public transport for health reasons."
+  },
+  {
+    "word_id": 29,
+    "en": "meantime",
+    "vi": "trong khi chờ đợi",
+    "pronunciation": "/ˈmiːnˌtaɪm/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=meantime&lang=en-US&ipa=%2F%CB%88mi%CB%90n%CB%8Cta%C9%AAm%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/51_1000_F_110245140_XXRn8yvIGoBCxAWFx1oHAr3UPya6sXyG.jpg",
+    "example": "My first novel was rejected by six publishers. In the meantime I had written a play."
+  },
+  {
+    "word_id": 30,
+    "en": "merge",
+    "vi": "kết hợp, hợp nhất",
+    "pronunciation": "/mɜːdʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=merge&lang=en-US&ipa=%2Fm%C9%9C%CB%90d%CA%92%2F",
+    "image_url": null,
+    "example": "His department will merge with mine."
+  },
+  {
+    "word_id": 31,
+    "en": "outdate",
+    "vi": "làm cho lỗi thời",
+    "pronunciation": "/aʊtˈdeɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=outdate&lang=en-US&ipa=%2Fa%CA%8At%CB%88de%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_453139112_ldF6ubBIJ9xksM6kB6wY1AtA69jMUOf4.jpg",
+    "example": "Readers can still benefit from reading his account, although subsequent anthropological work outdate it."
+  },
+  {
+    "word_id": 32,
+    "en": "patience",
+    "vi": "sự kiên nhẫn",
+    "pronunciation": "/ˈpeɪ.ʃəns/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=patience&lang=en-US&ipa=%2F%CB%88pe%C9%AA.%CA%83%C9%99ns%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_234738553_cPxGimxMEtvX3JvtpCnU2Zg4EgYoTkCw.jpg",
+    "example": "Teaching children with special needs requires patience and understanding."
+  },
+  {
+    "word_id": 33,
+    "en": "performer",
+    "vi": "người biểu diễn",
+    "pronunciation": "/pəˈfɔː.mər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=performer&lang=en-US&ipa=%2Fp%C9%99%CB%88f%C9%94%CB%90.m%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_351130953_pE8SNw3aKmHfW2nsmCPQLQFH3FNXUzlA.jpg",
+    "example": "She's a seasoned concert performer."
+  },
+  {
+    "word_id": 34,
+    "en": "pharmacist",
+    "vi": "dược sĩ, người bán dược phẩm",
+    "pronunciation": "/ˈfɑː.mə.sɪst/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pharmacist&lang=en-US&ipa=%2F%CB%88f%C9%91%CB%90.m%C9%99.s%C9%AAst%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_249272016_SpLzD7neN9TyAJpb72s0U4bnAe5r2ziK.jpg",
+    "example": "We had to wait for the pharmacist to make up her prescription."
+  },
+  {
+    "word_id": 35,
+    "en": "pizza",
+    "vi": "bánh pizza",
+    "pronunciation": "/ˈpiːt.sə/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=pizza&lang=en-US&ipa=%2F%CB%88pi%CB%90t.s%C9%99%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/53_1000_F_235475371_4DIuPavX5taHjv7zdDF6cCBKCOUlxKZr.jpg",
+    "example": "What do you want on your pizza?"
+  },
+  {
+    "word_id": 36,
+    "en": "postcard",
+    "vi": "bưu thiếp",
+    "pronunciation": "/ˈpoʊst.kɑrd/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=postcard&lang=en-US&ipa=%2F%CB%88po%CA%8Ast.k%C9%91rd%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_262979352_LzQxGsPqC63VbA41smysq8Her3A218aC.jpg",
+    "example": "The local shop has a good stock of postcard and guidebooks."
+  },
+  {
+    "word_id": 37,
+    "en": "prospective",
+    "vi": "có triển vọng",
+    "pronunciation": "/prəˈspek.tɪv/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=prospective&lang=en-US&ipa=%2Fpr%C9%99%CB%88spek.t%C9%AAv%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/62_1000_F_16506201_KFI7ZV5PQxrGcAz9y6EBc4ZTv23mTope.jpg",
+    "example": "There were offers from several prospective buyers."
+  },
+  {
+    "word_id": 38,
+    "en": "purchaser",
+    "vi": "người mua",
+    "pronunciation": "/ˈpɜː.tʃə.sər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=purchaser&lang=en-US&ipa=%2F%CB%88p%C9%9C%CB%90.t%CA%83%C9%99.s%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/22_1000_F_504502232_MowwoQt0oQepF0U5dsC8xc5ktYAcItQx.jpg",
+    "example": "We haven't been able to find a purchaser for our house yet."
+  },
+  {
+    "word_id": 39,
+    "en": "purse",
+    "vi": "túi xách tay (của phụ nữ)",
+    "pronunciation": "/pɜːs/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=purse&lang=en-US&ipa=%2Fp%C9%9C%CB%90s%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/19_1000_F_484981972_K5ggNU3huD1gFv8SNyD7zWXKVzmWQT5P.jpg",
+    "example": "She tipped the contents of her purse out onto the table."
+  },
+  {
+    "word_id": 40,
+    "en": "realtor",
+    "vi": "người môi giới (mua bán) bất động sản",
+    "pronunciation": "/ˈriːəl.tər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=realtor&lang=en-US&ipa=%2F%CB%88ri%CB%90%C9%99l.t%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_282399441_M6cxcqNTYlOfl7pBxh7Frv5aRxdHwHo9.jpg",
+    "example": "The conference attracted more than 400 local architects, developers, and realtor."
+  },
+  {
+    "word_id": 41,
+    "en": "rearrange",
+    "vi": "sắp xếp lại, bố trí lại",
+    "pronunciation": "/ˌriː.əˈreɪndʒ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=rearrange&lang=en-US&ipa=%2F%CB%8Cri%CB%90.%C9%99%CB%88re%C9%AAnd%CA%92%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/59_1000_F_343625917_Bw6YhKoqepUWsRJeRA6CjboJ9nQ2RN3S.jpg",
+    "example": "The new sofa was bigger than the old one, so they had to rearrange the rest of the furniture."
+  },
+  {
+    "word_id": 42,
+    "en": "reopen",
+    "vi": "mở cửa lại",
+    "pronunciation": "/ˌriːˈəʊ.pən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reopen&lang=en-US&ipa=%2F%CB%8Cri%CB%90%CB%88%C9%99%CA%8A.p%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_370306952_mdtiWLsEZJtCyb7xCC2o3lbFyLnqhb1J.jpg",
+    "example": "The museum has reopen after nearly two years of reconstruction."
+  },
+  {
+    "word_id": 43,
+    "en": "resignation",
+    "vi": "sự từ chức",
+    "pronunciation": "/ˌrez.ɪɡˈneɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=resignation&lang=en-US&ipa=%2F%CB%8Crez.%C9%AA%C9%A1%CB%88ne%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/assets_letter-of-resignation-1024x664.jpg",
+    "example": "Her resignation came as quite a shock."
+  },
+  {
+    "word_id": 44,
+    "en": "reviewer",
+    "vi": "người phê bình",
+    "pronunciation": "/rɪˈvjuː.ər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=reviewer&lang=en-US&ipa=%2Fr%C9%AA%CB%88vju%CB%90.%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_283796307_MpetBErDrFgiLrehokcFfhlDJ7Ie0YjD.jpg",
+    "example": "A Food and Drug Agency reviewer said the new treatment appears to be working effectively."
+  },
+  {
+    "word_id": 45,
+    "en": "revision",
+    "vi": "sự soát lại, sửa lại",
+    "pronunciation": "/rɪˈvɪʒ.ən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=revision&lang=en-US&ipa=%2Fr%C9%AA%CB%88v%C9%AA%CA%92.%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/91_1000_F_258549104_3tt2Zr3Ewd9QcrjXCK8p684PQ4Z4fJgZ.jpg",
+    "example": "These proposals will need a lot of revision."
+  },
+  {
+    "word_id": 46,
+    "en": "soap",
+    "vi": "xà phòng",
+    "pronunciation": "/səʊp/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=soap&lang=en-US&ipa=%2Fs%C9%99%CA%8Ap%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_322346099_GoQWWkTQhKPMco96OUiGgbiingzJFuOL.jpg",
+    "example": "She bought me a box of nice-smelling soap."
+  },
+  {
+    "word_id": 47,
+    "en": "spokesperson",
+    "vi": "người phát ngôn",
+    "pronunciation": "/ˈspoʊksˌpɜː.sən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=spokesperson&lang=en-US&ipa=%2F%CB%88spo%CA%8Aks%CB%8Cp%C9%9C%CB%90.s%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/64_1000_F_479026458_8xV7mmYrHm2YRdO8298BqBv28LlwOb0R.jpg",
+    "example": "A spokesperson for the airline said that flights would run as scheduled."
+  },
+  {
+    "word_id": 48,
+    "en": "strictly",
+    "vi": "nghiêm ngặt",
+    "pronunciation": "/ˈstrɪkt.li/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=strictly&lang=en-US&ipa=%2F%CB%88str%C9%AAkt.li%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_508093573_97g8XQ6SakOBtGXel4CFcNjY1ZiQdJhV.jpg",
+    "example": "The speed limit is strictly enforced on urban roads."
+  },
+  {
+    "word_id": 49,
+    "en": "terminate",
+    "vi": "Kết thúc, chấm dứt",
+    "pronunciation": "/ˈtɜː.mɪ.neɪt/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=terminate&lang=en-US&ipa=%2F%CB%88t%C9%9C%CB%90.m%C9%AA.ne%C9%AAt%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/84_1000_F_507808431_5AfaiJI9pg9nUHgi8SmI81p2uW1sQCUK.jpg",
+    "example": "They terminate my contract in October."
+  },
+  {
+    "word_id": 50,
+    "en": "tomato",
+    "vi": "quả cà chua",
+    "pronunciation": "/təˈmɑː.təʊ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tomato&lang=en-US&ipa=%2Ft%C9%99%CB%88m%C9%91%CB%90.t%C9%99%CA%8A%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_327962332_6mb5jQLnTOjhYeXML7v45Hc5eED2GYOD.jpg",
+    "example": "All the tomato plants are infected with a virus."
+  },
+  {
+    "word_id": 51,
+    "en": "translation",
+    "vi": "dịch thuật",
+    "pronunciation": "/trænzˈleɪ.ʃən/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=translation&lang=en-US&ipa=%2Ftr%C3%A6nz%CB%88le%C9%AA.%CA%83%C9%99n%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_291680676_Nte7hTr3ruTjAVmnWY1aIxpZuePyatxo.jpg",
+    "example": "Students will do one Spanish translation a week."
+  },
+  {
+    "word_id": 52,
+    "en": "tray",
+    "vi": "khay để đồ",
+    "pronunciation": "/treɪ/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=tray&lang=en-US&ipa=%2Ftre%C9%AA%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/66_1000_F_131116650_5Y3RHjw2SyHu3SPsSuvT48ufm676pz3k.jpg",
+    "example": "She was carrying a tray of drinks."
+  },
+  {
+    "word_id": 53,
+    "en": "unfamiliar",
+    "vi": "không quen, lạ lẫm",
+    "pronunciation": "/ˌʌnfəˈmɪliər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=unfamiliar&lang=en-US&ipa=%2F%CB%8C%CA%8Cnf%C9%99%CB%88m%C9%AAli%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/15_1000_F_37671507_cYeftTWXl5HWxJbIe0ax5asaMREJVJBy.jpg",
+    "example": "Many of the technical terms were unfamiliar to me."
+  },
+  {
+    "word_id": 54,
+    "en": "vendor",
+    "vi": "người bán hàng",
+    "pronunciation": "/ˈven.dər/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=vendor&lang=en-US&ipa=%2F%CB%88ven.d%C9%99r%2F",
+    "image_url": "https://study4.com/media/toeic_course_vocabs/media/50_1000_F_216185055_IlV8hOlZDXv6mJ2zE6LaMkqM5IjhPLpY.jpg",
+    "example": "For the past few months she's been working as a street vendor, selling fruit and vegetables."
+  },
+  {
+    "word_id": 55,
+    "en": "withdrawal",
+    "vi": "sự thu hồi, sự rút khỏi",
+    "pronunciation": "/wɪðˈdrɔː.əl/",
+    "audio_url": "https://study4.com/ai_services/tts3/?q=withdrawal&lang=en-US&ipa=%2Fw%C9%AA%C3%B0%CB%88dr%C9%94%CB%90.%C9%99l%2F",
+    "image_url": null,
+    "example": "The UN will dictate the terms of troop withdrawal from the region."
+  }
+]

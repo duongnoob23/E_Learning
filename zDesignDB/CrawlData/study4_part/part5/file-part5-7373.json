@@ -1,0 +1,596 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 129,
+    "questionText": "Ms. Rosen did not say _____ about the plans for a new employee break room.",
+    "options": [
+      {
+        "label": "A",
+        "text": "several"
+      },
+      {
+        "label": "B",
+        "text": "anything"
+      },
+      {
+        "label": "C",
+        "text": "each"
+      },
+      {
+        "label": "D",
+        "text": "someone"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Dựa vào nghĩa của các phương án để chọn đáp án. A: một số, B: bất kỳ gì, C: mỗi, D: ai đó",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 113,
+    "questionText": "_____ can be done to revise your order, since the merchandise has already shipped.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ours"
+      },
+      {
+        "label": "B",
+        "text": "Nobody"
+      },
+      {
+        "label": "C",
+        "text": "Others"
+      },
+      {
+        "label": "D",
+        "text": "Nothing"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng trước động từ “can be done” → Cần tìm một chủ ngữ phù hợp. Dựa vào nghĩa: A: của chúng tôi (ours là đại từ sở hữu), B: không một ai, C: những thứ khác, D: không thể Tạm dịch: Không thể làm bất cứ hành động gì để sửa lại đơn đặt hàng của bạn bởi vì hàng hoá của bạn đã được vận chuyển rồi.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 113,
+    "questionText": "Ms. Daly will prepare a marketing budget and propose ------ during the client meeting.",
+    "options": [
+      {
+        "label": "A",
+        "text": "those"
+      },
+      {
+        "label": "B",
+        "text": "its"
+      },
+      {
+        "label": "C",
+        "text": "it"
+      },
+      {
+        "label": "D",
+        "text": "her"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng ở vế vị ngữ sau (quan hệ ngang bằng với vị ngữ trước) và đứng sau động từ → tìm một đại từ thay thế cho danh từ đứng trước “a marketing budget”.",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 101,
+    "questionText": "Chef Daniel impresses customers with _____ sophisticated entrées.",
+    "options": [
+      {
+        "label": "A",
+        "text": "his"
+      },
+      {
+        "label": "B",
+        "text": "him"
+      },
+      {
+        "label": "C",
+        "text": "himself"
+      },
+      {
+        "label": "D",
+        "text": "he"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống đứng trước cụm danh từ \"sophisticated entrées\" → Cần tìm một tính từ sở hữu bổ nghĩa cho nó. Chủ ngữ chính trong câu là “Chef Daniel”",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 120,
+    "questionText": "Of the people who have publicly introduced ----- at the Carpentry Club meetings, about half are commercial contractors.",
+    "options": [
+      {
+        "label": "A",
+        "text": "their"
+      },
+      {
+        "label": "B",
+        "text": "their own"
+      },
+      {
+        "label": "C",
+        "text": "they"
+      },
+      {
+        "label": "D",
+        "text": "themselves"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau động từ “introduced”, đứng trước đã có chủ ngữ “the people” → Cần tìm một đại từ phản thân đóng vai trò tân ngữ cho động từ introduce. “the people” là danh từ số nhiều",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 111,
+    "questionText": "------ of the two candidates for the position had the necessary qualifications.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Neither"
+      },
+      {
+        "label": "B",
+        "text": "Nobody"
+      },
+      {
+        "label": "C",
+        "text": "None"
+      },
+      {
+        "label": "D",
+        "text": "Nothing"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Dựa vào nghĩa và từ loại của 4 phương án:A. Neither of + plural noun ~ Cả hai đều khôngB. Nobody ~ Không một ai. Tuy nghe hợp nghĩa nhưng ta không dùng nobody ofC. None of + plural noun ~không một ai hay bất cứ thứ gì.Phương án này cũng nghe có vẻ hợp lý nhưng none dùng cho từ 3 đối tượng trở lên. Còn khi đề cập 2 đối tượng, người ta lại dùng neither.D. Nothing ~ không có gì. Đại từ này có xuất hiện trong câu 13 đề số 5.",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 128,
+    "questionText": "_____ the CEO and the CFO are authorized to sign checks over $10,",
+    "options": [
+      {
+        "label": "A",
+        "text": "Each"
+      },
+      {
+        "label": "B",
+        "text": "Either"
+      },
+      {
+        "label": "C",
+        "text": "Both"
+      },
+      {
+        "label": "D",
+        "text": "Whoever"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Có 2 danh từ cùng đóng vai trò chủ ngữ “the CEO” và “the CFO”, động từ chia ở dạng số nhiều “are” → Cần chọn từ kết hợp chúng (ngang bằng về vai trò trong câu)",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 110,
+    "questionText": "Managers can access information about _____ staff members by contacting Human Resources.",
+    "options": [
+      {
+        "label": "A",
+        "text": "whose"
+      },
+      {
+        "label": "B",
+        "text": "while"
+      },
+      {
+        "label": "C",
+        "text": "their"
+      },
+      {
+        "label": "D",
+        "text": "much"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống đang đứng trước cụm danh từ “staff members” → Cần một tính từ sở hữu để bổ nghĩa cho cụm từ này. Chủ ngữ “managers”",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 114,
+    "questionText": "Monday will be the best day for _____ to clean the carpet in the lobby.",
+    "options": [
+      {
+        "label": "A",
+        "text": "we"
+      },
+      {
+        "label": "B",
+        "text": "us"
+      },
+      {
+        "label": "C",
+        "text": "ours"
+      },
+      {
+        "label": "D",
+        "text": "ourselves"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Trong câu có sử dụng cấu trúc \"for somebody to do something\", nghĩa là \"để cho ai đó làm gì\". Chỗ trống cần có 1 tân ngữ",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 101,
+    "questionText": "____ is currently Ms. Wonderle's first year working as our office's administrative assistant",
+    "options": [
+      {
+        "label": "A",
+        "text": "This"
+      },
+      {
+        "label": "B",
+        "text": "That"
+      },
+      {
+        "label": "C",
+        "text": "These"
+      },
+      {
+        "label": "D",
+        "text": "Those"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Ta thấy động từ chính chia dạng số ít “is” → Loại C, D. \"That\" thường dùng để diễn tả khoảng thời gian ở xa, thường là trong quá khứ → loại B\"this\" thường được dùng khi giới thiệu khoảng thời gian liên quan đến hiện tại",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 130,
+    "questionText": "_____ seeking a position at Tulare Designs must submit a portfolio of previous work.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anyone"
+      },
+      {
+        "label": "B",
+        "text": "Whenever"
+      },
+      {
+        "label": "C",
+        "text": "Other"
+      },
+      {
+        "label": "D",
+        "text": "Fewer"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q12",
+    "question_number": 116,
+    "questionText": "The accountants were unable to produce a full report by the deadline but promised that _____ would give a summary of the important points.",
+    "options": [
+      {
+        "label": "A",
+        "text": "their"
+      },
+      {
+        "label": "B",
+        "text": "themselves"
+      },
+      {
+        "label": "C",
+        "text": "they"
+      },
+      {
+        "label": "D",
+        "text": "theirs"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q13",
+    "question_number": 118,
+    "questionText": "The monthly staff dinners give employees from different departments the chance to interact with _____ on a personal level.",
+    "options": [
+      {
+        "label": "A",
+        "text": "other"
+      },
+      {
+        "label": "B",
+        "text": "neither"
+      },
+      {
+        "label": "C",
+        "text": "every"
+      },
+      {
+        "label": "D",
+        "text": "each other"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q14",
+    "question_number": 106,
+    "questionText": "Customers at Blaze Restaurant may use the valet parking service or park the vehicles _____.",
+    "options": [
+      {
+        "label": "A",
+        "text": "their"
+      },
+      {
+        "label": "B",
+        "text": "themselves"
+      },
+      {
+        "label": "C",
+        "text": "they"
+      },
+      {
+        "label": "D",
+        "text": "theirs"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q15",
+    "question_number": 112,
+    "questionText": "_____ who suffers from sleep problems could benefit from drinking this herbal tea.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ourselves"
+      },
+      {
+        "label": "B",
+        "text": "Whichever"
+      },
+      {
+        "label": "C",
+        "text": "Anyone"
+      },
+      {
+        "label": "D",
+        "text": "Others"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q16",
+    "question_number": 108,
+    "questionText": "_____ making structural changes to a house must first apply for a building permit.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Our"
+      },
+      {
+        "label": "B",
+        "text": "Who"
+      },
+      {
+        "label": "C",
+        "text": "Them"
+      },
+      {
+        "label": "D",
+        "text": "Anyone"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q17",
+    "question_number": 126,
+    "questionText": "You may have the merchandise sent directly to your home or pick it up in person at the store, _____ you prefer.",
+    "options": [
+      {
+        "label": "A",
+        "text": "both"
+      },
+      {
+        "label": "B",
+        "text": "whichever"
+      },
+      {
+        "label": "C",
+        "text": "everybody"
+      },
+      {
+        "label": "D",
+        "text": "another"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q18",
+    "question_number": 122,
+    "questionText": "Through his extensive research into acquiring language skills, Dr. Harvey Ward has proven ------- to be a leader in the field.",
+    "options": [
+      {
+        "label": "A",
+        "text": "he"
+      },
+      {
+        "label": "B",
+        "text": "his"
+      },
+      {
+        "label": "C",
+        "text": "himself"
+      },
+      {
+        "label": "D",
+        "text": "him"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q19",
+    "question_number": 126,
+    "questionText": "Mr. Brannon can assemble the shelves for the booth ------- as long as he has a set of tools.",
+    "options": [
+      {
+        "label": "A",
+        "text": "his"
+      },
+      {
+        "label": "B",
+        "text": "himself"
+      },
+      {
+        "label": "C",
+        "text": "him"
+      },
+      {
+        "label": "D",
+        "text": "his own"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. tự ông ấy."
+  },
+  {
+    "question_id": "p5_q20",
+    "question_number": 102,
+    "questionText": "To keep _____ park beautiful, please place your non recyclables in the available trash cans.",
+    "options": [
+      {
+        "label": "A",
+        "text": "our"
+      },
+      {
+        "label": "B",
+        "text": "we"
+      },
+      {
+        "label": "C",
+        "text": "us"
+      },
+      {
+        "label": "D",
+        "text": "ours"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A. Tạm dịch: Để giữ cho công viên của chúng ta thật đẹp, vui lòng để rác thải không thể tái chế vào thùng rác ở đó."
+  },
+  {
+    "question_id": "p5_q21",
+    "question_number": 105,
+    "questionText": "Apply to Joneston Stores today so as not to miss _____ chance to join a great sales team",
+    "options": [
+      {
+        "label": "A",
+        "text": "you"
+      },
+      {
+        "label": "B",
+        "text": "your"
+      },
+      {
+        "label": "C",
+        "text": "yours"
+      },
+      {
+        "label": "D",
+        "text": "yourself"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B. your."
+  },
+  {
+    "question_id": "p5_q22",
+    "question_number": 101,
+    "questionText": "If _____ are not satisfied with an item, return it for a full refund within 30 days of purchase.",
+    "options": [
+      {
+        "label": "A",
+        "text": "you"
+      },
+      {
+        "label": "B",
+        "text": "your"
+      },
+      {
+        "label": "C",
+        "text": "yours"
+      },
+      {
+        "label": "D",
+        "text": "yourself"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  }
+]

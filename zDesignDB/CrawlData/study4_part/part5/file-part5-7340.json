@@ -1,0 +1,299 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 101,
+    "questionText": "Mr. Sokolov_____a positive review of this stay at the Olana Hotel",
+    "options": [
+      {
+        "label": "A",
+        "text": "write"
+      },
+      {
+        "label": "B",
+        "text": "wrote"
+      },
+      {
+        "label": "C",
+        "text": "writing"
+      },
+      {
+        "label": "D",
+        "text": "was written"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "Ông Sokolov đã viết 1 đánh giá tích cực về về kỳ nghỉ này tại khách sạn Olana",
+    "analysis": "Câu thiếu động từ chính => loại C (dạng Ving không thể đứng 1 mình làm động từ chính). Chủ ngữ là ngôi thứ 3 số ít nên loại A (động từ thì hiện tại đơn cho ngôi thứ nhất hoặc ngôi thứ 3 số nhiều). Xét về nghĩa loại đáp án D (thể bị động).",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 109,
+    "questionText": "The building's new ventilation system circulates heat much____than before",
+    "options": [
+      {
+        "label": "A",
+        "text": "even"
+      },
+      {
+        "label": "B",
+        "text": "most even"
+      },
+      {
+        "label": "C",
+        "text": "evenly"
+      },
+      {
+        "label": "D",
+        "text": "more evenly"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "Hệ thống thông gió mới của tòa nhà luân chuyển nhiệt chạy êm hơn trước đây.",
+    "analysis": "vì sau từ cần điền là ‘than’ → từ cần điền phải là một tính từ ở dạng so sánh hơn",
+    "explanation": "Đáp án đúng: D. đồng đều hơn."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 113,
+    "questionText": "Most banks now offer clients the option of receiving their statements electronically or____mail",
+    "options": [
+      {
+        "label": "A",
+        "text": "from"
+      },
+      {
+        "label": "B",
+        "text": "of"
+      },
+      {
+        "label": "C",
+        "text": "in"
+      },
+      {
+        "label": "D",
+        "text": "by"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "ta có cấu trúc by + phương thức di chuyển/giao tiếp",
+    "explanation": "Đáp án đúng: D. bằng, bởi."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 115,
+    "questionText": "Kohmek, Inc., is seeking a suitable site____the construction of its electronics factory",
+    "options": [
+      {
+        "label": "A",
+        "text": "for"
+      },
+      {
+        "label": "B",
+        "text": "so"
+      },
+      {
+        "label": "C",
+        "text": "to"
+      },
+      {
+        "label": "D",
+        "text": "more"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "Tập đoàn Kohmek đang tìm kiếm một địa điểm thích hợp cho việc xây dựng nhà máy sản xuất đồ điện tử của họ.",
+    "analysis": "ta thấy vì sau chỗ trống cần điền là một cụm danh từ, trước đó là mộ vế câu hoàn chỉnh  → chỗ trống cần điền phải là giới  từ để liên kết → loại đáp án B và D. Xét về cách dùng và nghĩa, giới từ ‘for’ được dùng để chỉ mục đích sử dụng của cái gì đó",
+    "explanation": "Đáp án đúng: A. cho (preposition)."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 128,
+    "questionText": "Those who wish to volunteer at the annual Sebastian Park flower-planting events this Sarturday___to arrive early",
+    "options": [
+      {
+        "label": "A",
+        "text": "asks"
+      },
+      {
+        "label": "B",
+        "text": "are asked"
+      },
+      {
+        "label": "C",
+        "text": "has been asking"
+      },
+      {
+        "label": "D",
+        "text": "to ask"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Vì chủ ngữ của câu là số nhiều ‘those’ (Lưu ý là mệnh đề who wish to volunteer at the annual Sebastian Park flower-planting events this Saturday dùng để bổ nghĩa cho ‘those’) → động từ cần phải chia dưới dạng số nhiều",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 120,
+    "questionText": "Mamton Home Funishings____customized furniture in Pennsylvania for more than a century",
+    "options": [
+      {
+        "label": "A",
+        "text": "manufactures"
+      },
+      {
+        "label": "B",
+        "text": "is manufacturing"
+      },
+      {
+        "label": "C",
+        "text": "has manufactured"
+      },
+      {
+        "label": "D",
+        "text": "manufacture"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "vì ở cuối câu xuất hiện cụm trạng từ chỉ thời gian \"for more than a century\" → đây là dấu hiệu của thì HTHT",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 107,
+    "questionText": "Passengers should not leave their seats____a flight attendant gives them permission to do so",
+    "options": [
+      {
+        "label": "A",
+        "text": "unless"
+      },
+      {
+        "label": "B",
+        "text": "rather"
+      },
+      {
+        "label": "C",
+        "text": "instead"
+      },
+      {
+        "label": "D",
+        "text": "otherwise"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "Các hành khách không được rời khỏi ghế của họ trừ khi các tiếp viên hàng không cho phép họ làm vậy.",
+    "analysis": "dựa vào nghĩa của từng lựa chọn",
+    "explanation": "Đáp án đúng: A. trừ khi (conj.)."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 110,
+    "questionText": "Glowood Appliances promises customers their money back____they are not satisfied with their purchase",
+    "options": [
+      {
+        "label": "A",
+        "text": "while"
+      },
+      {
+        "label": "B",
+        "text": "and"
+      },
+      {
+        "label": "C",
+        "text": "if"
+      },
+      {
+        "label": "D",
+        "text": "then"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "Công ty thiết bị Glowood cam kết hoàn lại tiền cho khách hàng nếu họ không hài lòng với đơn hàng mua sắm của họ.",
+    "analysis": "Vì các từ trên đều là từ nối. Dựa trên nghĩa của từ",
+    "explanation": "Đáp án đúng: C. nếu."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 112,
+    "questionText": "All vacation requests must be made to your supervisor____the requested date",
+    "options": [
+      {
+        "label": "A",
+        "text": "prior to"
+      },
+      {
+        "label": "B",
+        "text": "except for"
+      },
+      {
+        "label": "C",
+        "text": "previously"
+      },
+      {
+        "label": "D",
+        "text": "because"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "Tất cả các yêu cầu xin nghỉ phép phải được gửi cho giám sát viên trước ngày xin nghỉ.",
+    "analysis": "Vì đằng sau từ cần điền là một cụm danh từ → xét về từ loại của 4 từ trên, từ cần điền phải là một giới từ. Xét về nghĩa của 2 giới từ ‘prior to và ‘except for’",
+    "explanation": "Đáp án đúng: A. trước (preposition)."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 121,
+    "questionText": "Please hold any phone calls for Ms. Tanaka___she will be in meetings all day",
+    "options": [
+      {
+        "label": "A",
+        "text": "as"
+      },
+      {
+        "label": "B",
+        "text": "but"
+      },
+      {
+        "label": "C",
+        "text": "despite"
+      },
+      {
+        "label": "D",
+        "text": "similarly"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Vì trước và sau chỗ trống cần điền là 2 mệnh đề→ cần 1 liên từ để nối hai mệnh đề với nhau → có thể loại đáp án C và DDựa trên nghĩa của 2 liên từ ở lựa chọn A, B",
+    "explanation": "Đáp án đúng: A. vì (liên từ)."
+  },
+  {
+    "question_id": "p5_q11",
+    "question_number": 124,
+    "questionText": "Data from the finance department was used to____predict the company's future expenses",
+    "options": [
+      {
+        "label": "A",
+        "text": "either"
+      },
+      {
+        "label": "B",
+        "text": "ever"
+      },
+      {
+        "label": "C",
+        "text": "yet"
+      },
+      {
+        "label": "D",
+        "text": "better"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Các từ trên đề là trạng từ nên cần dựa vào nghĩa của từ để chọn đáp án",
+    "explanation": "Đáp án đúng: D. tốt hơn."
+  }
+]

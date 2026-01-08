@@ -1,0 +1,399 @@
+[
+  {
+    "question_id": "p4_q1",
+    "question_number": 99,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_1_98_100.mp3",
+    "questionText": "Look at the graphic. Which trail is closed to visitors?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Trail 1"
+      },
+      {
+        "label": "B",
+        "text": "Trail 2"
+      },
+      {
+        "label": "C",
+        "text": "Trail 3"
+      },
+      {
+        "label": "D",
+        "text": "Trail 4"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Welcome to the new employee orientation at Tockney Nature Center. We're happy that you'll be guiding our bird-watching tours! Behind me there's a trail map of the Nature Center. We'll be walking down trail two so I can show you some interesting spots to take visitors. You can use the other trails as well, except for this trail right here because there's a family of bald eagles nesting nearby. For the first time, the Center's collaborating with the state university on a research project about eagles. We've positioned a live camera on one tree there, and we don't want anything to disturb the birds for the duration of the study.",
+    "translation": "Chào mừng bạn đến với buổi định hướng dành cho nhân viên mới tại Tockney Nature Center. Chúng tôi rất vui mừng khi bạn sẽ hướng dẫn chuyến tham quan về các loài chim. Phía sau tôi là bản đồ của Nature Center. Chúng ta sẽ đi bộ xuống con đường mòn số 2 và ở đó tôi sẽ chỉ cho các bạn những điểm tham quan hấp dẫn để dẫn du khách tới. Bạn cũng có thể sử dụng các con đường mòn khác, ngoại trừ con đường mòn này ngay tại đây vì có đàn đại bàng đầu trắng làm tổ gần đó. Đây là lần đầu tiên trung tâm có sự hợp tác  với đại học của bang về dự án nghiên cứu đại bàng. Chúng tôi đã đặt một camera trực tiếp trên một cái cây ở đó và chúng tôi không muốn bất cứ điều gì làm phiền loài chim trong suốt thời gian nghiên cứu.",
+    "explanation": {
+      "A": "Trail 1",
+      "B": "Trail 2",
+      "C": "Trail 3",
+      "D": "Trail 4",
+      "note": "→ chọn đáp án D. Trong đoạn nghe, người hướng dẫn nói rằng sẽ đưa du khách đi vào đường mòn số 2 để giới thiệu cho họ về 1 số địa điểm hấp dẫn. Bên cạnh đó, người hướng dẫn nói rằng du khách có thể sử dụng những lối đi khác ngoại trừ lối đi mà có đàn đại bàng đầu trắng đang làm tổ ở đó. Nhìn vào bản đồ, ta thấy Eagle Nest - Tổ chim đại bàng nằm ở đường đi số 4→ lối đi số 4 là lối đi đóng cửa đối với du khách"
+    }
+  },
+  {
+    "question_id": "p4_q2",
+    "question_number": 96,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_ets_toeic_2018_test_2_95_97.mp3",
+    "questionText": "Look at the graphic. Why is the speaker unable to use the coupon for the event?",
+    "options": [
+      {
+        "label": "A",
+        "text": "There are not enough people in the group"
+      },
+      {
+        "label": "B",
+        "text": "The length of the event is too long"
+      },
+      {
+        "label": "C",
+        "text": "All of the locations in the area are booked"
+      },
+      {
+        "label": "D",
+        "text": "The event will take place after the expiration date"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi. It's Maria, and I'm calling with some information about the party that we're organizing for Nadia's retirement. Now, um... you and I decided that the party would be on August fifth. And, I'm really glad to hear that forty people from the office are coming. But, unfortunately, it looks like we can't use the coupon from Dinner Delights after all. We might want to make a reservation someplace else... Also, Marc agreed to play Nadia's favorite song on his guitar during the party. Do you think you could make photocopies of the lyrics so that everyone can sing along?",
+    "translation": "Xin chào. Đây là Maria và tôi gọi vì một số thông tin về bữa tiệc mà chúng ta sẽ tổ chức cho Nadia khi cô ấy về hưu. Bây giờ, ừm ... bạn và tôi đã quyết định rằng bữa tiệc sẽ diễn ra vào ngày 5 tháng 8. Và tôi thực sự vui mừng khi biết rằng 40 người trong văn phòng sẽ đến tham dự. Nhưng thật không may, có vẻ như chúng ta không thể sử dụng phiếu giảm giá từ Dinner Delights. Chúng ta có thể sẽ phải đặt chỗ ở một nơi khác ... Ngoài ra, Marc đã đồng ý chơi bài hát yêu thích của Nadia bằng  cây đàn guitar của anh ấy trong bữa tiệc. Bạn có thể phô tô lời bài hát để mọi người có thể hát theo không?",
+    "explanation": {
+      "A": "ugust fifth..), nhưng nhìn vào hình ảnh ta có thể thấy phiếu giảm giá của",
+      "B": "Thời lượng của sự kiện quá dài",
+      "C": "Tất cả các địa điểm trong khu vực đều được đặt trước",
+      "D": "elights đã hết hạn vào ngày 1 tháng 8",
+      "note": "A. Không có đủ người trong nhóm...D. Sự kiện sẽ diễn ra sau ngày hết hạn của phiếuVì bữa tiệc dành cho Nadia sẽ được tổ chức vào ngày 5 tháng 8 (‘...you and I decided that the party would be on August fifth..), nhưng nhìn vào hình ảnh ta có thể thấy phiếu giảm giá của Dinner Delights đã hết hạn vào ngày 1 tháng 8→ đó chính là lý do tại sao người nói không thể dùng phiếu giảm giá cho sự kiện→ chọn đáp án D"
+    }
+  },
+  {
+    "question_id": "p4_q3",
+    "question_number": 94,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_92_94.mp3",
+    "questionText": "Look at the graphic. Who can give the listener planning advice?",
+    "options": [
+      {
+        "label": "A",
+        "text": "John Trizz"
+      },
+      {
+        "label": "B",
+        "text": "Don Trenton"
+      },
+      {
+        "label": "C",
+        "text": "Shubert Mendez"
+      },
+      {
+        "label": "D",
+        "text": "Sally Howle"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hi, this message is for Ronald Benson. My name is Stuart Lawson, the manager at Rosewood Printing Company. We just received an online order from you for 2000 wedding invitations with lace and gold fabric wrappings. I'm calling just to confirm your order is for 2000 invitations and not 200. It is unusual to get such a large order so I just want to make sure it is correct. Please call me back to confirm when you have a chance. We will not proceed with the order until you confirm. Also, if you are planning such a large event, we have an excellent planner in the office named Shubert Mendez. If you want to speak with him just ask for extension 12 when you call to confirm. I will make sure he gives you a free consultation.",
+    "translation": "Xin chào, tin nhắn này là dành cho Ronald Benson. Tên tôi là Stuart Lawson, quản lý tại Công ty In ấn Rosewood. Chúng tôi vừa nhận được một đơn đặt hàng trực tuyến từ bạn cho 2000 thiệp mời đám cưới với giấy gói bằng vải ren và vàng. Tôi đang gọi chỉ để xác nhận đơn đặt hàng của bạn là 2000 lời mời chứ không phải 200. Thật bất thường khi nhận được một đơn đặt hàng lớn như vậy vì vậy tôi chỉ muốn chắc chắn rằng đó là chính xác. Hãy gọi lại cho tôi để xác nhận khi bạn có cơ hội. Chúng tôi sẽ không tiến hành đặt hàng cho đến khi bạn xác nhận. Ngoài ra, nếu bạn đang lên kế hoạch cho một sự kiện lớn như vậy, chúng tôi có một người tổ chức sự kiện xuất sắc trong văn phòng tên là Shubert Mendez. Nếu bạn muốn nói chuyện với anh ta, chỉ cần yêu cầu máy nhánh 12 khi bạn gọi để xác nhận. Tôi sẽ đảm bảo để anh ấy cho bạn một cuộc tư vấn miễn phí.",
+    "explanation": {
+      "A": "lso, if you are planning such a large event, we have an excellent planner in the office named Shubert Mendez. If you want to speak with him just ask for extension 12 when you call to confirm. I will make sure he gives you a free consultation. (Ngoài ra, nếu bạn đang lên kế hoạch cho một sự kiện lớn như vậy, chúng tôi có một người tổ chức sự kiện xuất sắc trong văn phòng tên là Shubert Mendez. Nếu bạn muốn nói chuyện với anh ta, chỉ cần yêu cầu máy nhánh 12 khi bạn gọi để xác nhận. Tôi sẽ đảm bảo để anh ấy tư vấn miễn phí cho bạn.)",
+      "C": "họn",
+      "note": "Thông tin thường nằm ở những câu cuối cùng. Từ khóa: planning.Đoạn chứa đáp án:"
+    }
+  },
+  {
+    "question_id": "p4_q4",
+    "question_number": 95,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_95_97.mp3",
+    "questionText": "Look at the graphic. What is the name of the guest's new album?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Valleys of Fire"
+      },
+      {
+        "label": "B",
+        "text": "Step It Up"
+      },
+      {
+        "label": "C",
+        "text": "Tunnel Vision"
+      },
+      {
+        "label": "D",
+        "text": "Talk Down"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi everybody, this is the late shift with Joey Denton on Free Net Radio. Today we have George Farrelli in the studio to talk about his hit new album, which has been number one on the charts for six weeks. Earlier today, George was telling me how his album was heavily influenced by his recent move to London, and the growing rock and roll scene there. You can definitely hear the British influence in the title track \"Frankly Speaking\". Coming up next, we will discuss George's up and coming marriage to his longtime girlfriend Cindy Pullman. Thanks for joining us today George.",
+    "translation": "Xin chào mọi người, đây là chương trình muộn với Joey Denton trên Đài Free Net. Hôm nay chúng ta có George Farrelli trong phòng thu để nói về album đình đám mới của anh ấy, đã chiếm vị trí số một trên bảng xếp hạng trong sáu tuần. Đầu ngày hôm nay, George đã nói với tôi rằng album của anh ấy bị ảnh hưởng nặng nề như thế nào bởi việc anh ấy chuyển đến London gần đây, và làn sóng rock and roll đang phát triển ở đó. Bạn chắc chắn có thể nghe thấy ảnh hưởng của chất Anh trong ca khúc chủ đề \"Nói thật lòng\". Tiếp theo, chúng ta sẽ thảo luận về cuộc hôn nhân sắp tới của George với cô bạn gái lâu năm của mình Cindy Pullman. Cảm ơn đã tham gia với chúng tôi hôm nay George.",
+    "explanation": {
+      "C": "họn",
+      "D": "own",
+      "note": "Thông tin thường nằm ở những câu đầu tiên. Từ khóa: album"
+    }
+  },
+  {
+    "question_id": "p4_q5",
+    "question_number": 98,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_2_98_100.mp3",
+    "questionText": "Look at the graphic. What floor are they on?",
+    "options": [
+      {
+        "label": "A",
+        "text": "3rd"
+      },
+      {
+        "label": "B",
+        "text": "4th"
+      },
+      {
+        "label": "C",
+        "text": "5th"
+      },
+      {
+        "label": "D",
+        "text": "6th"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hi, everybody. Welcome to the retirement celebration of our long time president Mr. Jang. Mr. Jang has served as president for the last 22 years and has helped build our business from its humble beginnings to a fortune 500 company. It's a pleasure to host this special event in the famous Gloria Westwood Ballroom. I consider it an indication of the success we have experienced. My name is Bob Hopkins, and I've worked with Mr. Jang for over 20 years. I consider him to be one of the most talented, honest, and hardworking people I know and I feel privileged to call him my friend. So, with no further ado, please put your hands together for Mr. Jang.",
+    "translation": "Chào mọi người. Chào mừng đến với tiệc nghỉ hưu của chủ tịch lâu năm của chúng ta, ông Jang. Ông Jang đã giữ chức chủ tịch 22 năm qua và đã giúp xây dựng doanh nghiệp của chúng ta từ những khởi đầu khiêm tốn thành công ty trong top 500 của fortune. Thật vinh dự khi được tổ chức sự kiện đặc biệt này trong Phòng khiêu vũ nổi tiếng Gloria Westwood. Tôi coi đó là một dấu hiệu của sự thành công mà chúng ta đã được trải qua. Tên tôi là Bob Hopkins và tôi đã làm việc với ông Jang trong hơn 20 năm. Tôi coi ông ấy là một trong những người tài năng, trung thực và chăm chỉ nhất mà tôi biết và tôi cảm thấy vinh dự khi gọi ông ấy là bạn của tôi. Vì vậy, không dài dòng nữa, xin hãy dành một tràng pháo tay cho ông Jang.",
+    "explanation": {
+      "C": "họn",
+      "B": "allroom nằm ở tầng 5",
+      "note": "Chọn C"
+    }
+  },
+  {
+    "question_id": "p4_q6",
+    "question_number": 93,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_92_94.mp3",
+    "questionText": "Look at the graphic. Which items were not changed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Cold meat trays and mixed salad plates"
+      },
+      {
+        "label": "B",
+        "text": "12 pack of bread rolls"
+      },
+      {
+        "label": "C",
+        "text": "Cutlery sets"
+      },
+      {
+        "label": "D",
+        "text": "Cutlery sets and bread rolls"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hello, this is George Benson from Winbox Computers. We made a catering order two weeks ago but we need to make some changes. We have added some additional businesses to the luncheon, so we are going to need to increase the number of cold meat trays we ordered to 10 and the mixed salad plates to 8. Everything else can remain the same. Our order number is 5521673. Please give me a call back to confirm the changes. Thanks.",
+    "translation": "Xin chào, đây là George Benson từ Công ty máy tính Winbox. Chúng tôi đã đặt hàng phục vụ thức ăn hai tuần trước nhưng chúng tôi cần thực hiện một số các thay đổi. Chúng tôi đã thêm một số doanh nghiệp bổ sung vào bữa ăn trưa, vì vậy chúng tôi sẽ cần tăng số lượng khay thịt nguội mà chúng tôi đã đặt hàng lên 10 và các đĩa salad trộn lên 8. Mọi thứ khác có thể giữ nguyên. Mã số đặt hàng của chúng tôi là 5521673. Vui lòng gọi lại cho tôi để xác nhận những thay đổi. Cảm ơn.",
+    "explanation": {
+      "A": "Khay thịt nguội và đĩa salad trộn",
+      "B": "ộ đồ ăn và bánh mì ổ",
+      "C": "họn",
+      "note": "Khay thịt nguội và đĩa salad trộn sẽ tăng số lượng, bộ đồ ăn và bánh mì ổ không thay đổi số lượng.=>"
+    }
+  },
+  {
+    "question_id": "p4_q7",
+    "question_number": 96,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_95_97.mp3",
+    "questionText": "Look at the graphic. Where will the listeners go first?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The aviary"
+      },
+      {
+        "label": "B",
+        "text": "Begonia Street"
+      },
+      {
+        "label": "C",
+        "text": "Dragon Lake"
+      },
+      {
+        "label": "D",
+        "text": "Azalea Road"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Hi, all. Welcome to the annual Florist Convention. It's a pleasure to see so many people here today. My name is Juliette White and I am the president of the Maryland Florist Association. Today will be a great day filled with a lot of informative seminars and practical examples of how to improve your skills in all areas of floristry. First thing in the morning, everyone should meet at 9:00 A.M. on the street in front of the tulip garden. In the tulip garden we have the most diverse collection of tulips in England. At the moment, most are blooming so it's a fantastic opportunity to see how you can make new and exciting arrangements. One more thing I suggest is that you visit the aviary before you go home. The combination of the animal life and flowers is truly a sight to behold.",
+    "translation": "Chào mọi người. Chào mừng đến với Hội nghị Trồng hoa hằng năm. Thật vui khi thấy thật nhiều người ở đây ngày hôm nay. Tên tôi là Juliette White và tôi là chủ tịch của Hiệp hội Trồng hoa Maryland. Hôm nay sẽ là một ngày tuyệt vời với rất nhiều các hội thảo đầy thông tin và các ví dụ thực tế về cách cải thiện các kỹ năng của bạn trong tất cả các lĩnh vực trồng hoa. Đầu tiên vào buổi sáng, mọi người nên gặp nhau lúc 9 giờ sáng trên đường trước vườn hoa tulip. Trong vườn hoa tulip, chúng ta có bộ sưu tập hoa tulip đa dạng nhất ở Anh. Bây giờ, hầu hết chúng đang nở rộ vì vậy đây là một cơ hội tuyệt vời để xem làm thế nào bạn có thể tạo ra những sự bày trí mới và thú vị. Một điều nữa mà tôi khuyến khích là các bạn nên đến thăm chuồng chim trước khi về nhà. Sự kết hợp giữa đời sống động vật và hoa thực sự là một cảnh tượng đáng để chiêm ngưỡng.",
+    "explanation": {
+      "C": "họn",
+      "B": "egonia",
+      "D": "Đường",
+      "A": "zalea",
+      "note": "Chọn D"
+    }
+  },
+  {
+    "question_id": "p4_q8",
+    "question_number": 100,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_3_98_100.mp3",
+    "questionText": "Look at the graphic. Why is the Brandywine such a good deal?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is cheaper than the Black Krim"
+      },
+      {
+        "label": "B",
+        "text": "It is a delicious tomato"
+      },
+      {
+        "label": "C",
+        "text": "It is normally over a dollar more expensive per pound"
+      },
+      {
+        "label": "D",
+        "text": "It is normally not in season"
+      }
+    ],
+    "correctAnswer": "C",
+    "transcript": "Hello, Granville Produce shoppers. It's our first birthday, and we're commemorating it with a special offer this week through Sunday. You'll be able to take advantage of our great savings. Make sure you stop by our heirloom tomato corner, where you can find our award-winning selection of heirloom tomatoes of every variety and color. By far the best deal is the Brandywine this season. Normally at $2.50 per pound, the Brandywine won't last long. Don't wait! Come into Granville Produce right away before all of the fresh, delicious vegetables are gone. Thank you for being our loyal customers over the past year. We hope to make this birthday the first of many!",
+    "translation": "Xin chào, những tín đồ mua sắm của Granville Produce. Đây là sinh nhật đầu tiên của chúng tôi, và chúng tôi sẽ kỷ niệm ngày sinh nhật với một ưu đãi đặc biệt trong tuần này đến Chủ nhật. Bạn sẽ có thể tận dụng những gói tiết kiệm tuyệt vời của chúng tôi. Hãy chắc chắn rằng bạn ghé qua ở góc cà chua leo giàn của chúng tôi, nơi bạn có thể tìm thấy các lựa chọn cà chua leo giàn đoạt giải thưởng của chúng tôi với đủ loại và màu sắc. Cho đến nay, giá tốt nhất của mùa này là Brandywine. Thông thường ở mức 2,50 đô la một pound, Brandywine sẽ không còn hàng lâu. Đừng chờ đợi! Hãy đến Granville Produce ngay trước khi tất cả các loại rau quả tươi, ngon hết hàng. Cảm ơn bạn đã là những khách hàng trung thành của chúng tôi trong năm qua. Chúng tôi hy vọng sẽ làm cho sinh nhật này là đầu tiên trong nhiều lần tiếp theo!",
+    "explanation": {
+      "B": "randywine được bán với giá 1,39 đô la một pound, mà bình thường mức giá là 2,50 đô la một pound",
+      "A": "Nó rẻ hơn",
+      "C": "họn",
+      "D": "Nó thường bán trái mùa",
+      "note": "Thông tin thường nằm ở những câu cuối cùng. Từ khóa:"
+    }
+  },
+  {
+    "question_id": "p4_q9",
+    "question_number": 94,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_92_94.mp3",
+    "questionText": "Look at the graphic. What activity will still be available for the passengers to participate in when they arrive in Columbia?",
+    "options": [
+      {
+        "label": "A",
+        "text": "None"
+      },
+      {
+        "label": "B",
+        "text": "Friday Night Concert in the Park"
+      },
+      {
+        "label": "C",
+        "text": "Afternoon Theater"
+      },
+      {
+        "label": "D",
+        "text": "Midnight Wine Tasting"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Attention, passengers. Welcome aboard Continental Lines, with bus service to Columbia, Charleston, and terminating in Eastport. We will be spending the majority of our trip on the highways, so please make sure you have your seatbelts buckled. We will reach our first destination, Columbia, in approximately 2 hours, making our time at arrival 10:30 P.M., Friday the 15th. We'll be getting on the road shortly; please make sure all of your luggage is secure and out of your neighbor's way. You can learn about attractions in Columbia and all of our destinations in the travel brochure located in the seat pocket. Now sit back, relax, and enjoy the scenery!",
+    "translation": "Chú ý, các hành khách. Chào mừng bạn đến với Công ty vận chuyển Lục địa, với dịch vụ xe buýt đến Columbia, Charleston và chấm dứt ở Eastport. Chúng ta sẽ dành phần lớn chuyến đi của mình trên các đường cao tốc, vì vậy hãy chắc chắn rằng bạn đã thắt dây an toàn. Chúng ta sẽ đến điểm đến đầu tiên của mình, Columbia, trong khoảng 2 giờ, vậy thời gian tới nơi là 10 giờ 30 tối, thứ Sáu ngày 15. Chúng ta sẽ sớm lên đường; vui lòng đảm bảo tất cả hành lý của bạn được an toàn và tránh xa đường bên cạnh của bạn. Bạn có thể tìm hiểu về các điểm tham quan ở Columbia và tất cả các điểm đến của chúng ta trong tờ quảng cáo du lịch nằm trong túi ghế ngồi. Bây giờ hãy ngồi lại, thư giãn, và thưởng thức phong cảnh!",
+    "explanation": {
+      "C": "họn",
+      "A": "fternoon Theater chỉ diễn ra vào buổi trưa (at noon), Friday Night",
+      "B": "Friday Night",
+      "D": "Midnight Wine Tasting.Từ khóa:",
+      "note": "Chọn D"
+    }
+  },
+  {
+    "question_id": "p4_q10",
+    "question_number": 96,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_95_97.mp3",
+    "questionText": "Look at the graphic. What areas should team leaders focus their training on?",
+    "options": [
+      {
+        "label": "A",
+        "text": "How to deal with customers being upset by overcharges"
+      },
+      {
+        "label": "B",
+        "text": "Knowledge of all of the service plans"
+      },
+      {
+        "label": "C",
+        "text": "Helping customers replace phones"
+      },
+      {
+        "label": "D",
+        "text": "Knowledge of Monster Telecom's cellular coverage area"
+      }
+    ],
+    "correctAnswer": "A",
+    "transcript": "Hello everyone, I wanted to get you together to go over the recent failures in our customer service department here at Monster Telecom. As you know, customer service is at the heart of everything we do. We receive on average 3,000 calls per week from customers with a wide range of needs. In order to prepare you all to handle the most frequently asked questions from our customers, I have distributed the graph in front of you. Please go over this graph with your team leader and develop a plan to improve our customer service. Next quarter's reviews will be in two months. We aim to have half as many weekly calls by then.",
+    "translation": "Xin chào tất cả mọi người, tôi muốn giúp các bạn cùng nhau vượt qua những thất bại gần đây trong bộ phận dịch vụ khách hàng của chúng ta tại Viễn thông Monster. Như các bạn đã biết, dịch vụ khách hàng là trung tâm của mọi công việc chúng ta làm. Chúng ta nhận được trung bình 3000 cuộc gọi mỗi tuần từ các khách hàng với nhiều nhu cầu khác nhau. Để giúp các bạn xử lý các câu hỏi thường gặp nhất từ các ​​khách hàng, tôi đã phân phát biểu đồ trước mặt các bạn. Vui lòng xem biểu đồ này với trưởng nhóm của các bạn và phát triển một kế hoạch để cải thiện dịch vụ khách hàng của chúng ta. Các đánh giá quý tiếp theo sẽ có trong hai tháng tới. Chúng ta đặt mục tiêu có một nửa số cuộc gọi hàng tuần trước lúc đó.",
+    "explanation": {
+      "C": "họn",
+      "B": "Kiến thức về tất cả các gói dịch vụ",
+      "D": "isputed long distance/Overage charges (cước phí đường dài/cước phí quá cao gây tranh cãi) là câu hỏi có tần suất cao nhất",
+      "note": "Hình này liệt kê những câu hỏi mà khách hàng hay đặt ra nhất, trong đó"
+    }
+  },
+  {
+    "question_id": "p4_q11",
+    "question_number": 99,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_98_100.mp3",
+    "questionText": "Look at the graphic. What are the hours of the lap pool?",
+    "options": [
+      {
+        "label": "A",
+        "text": "8 A.M.-5 P.M"
+      },
+      {
+        "label": "B",
+        "text": "9 A.M.-5 P.M"
+      },
+      {
+        "label": "C",
+        "text": "9 A.M.-6 P.M"
+      },
+      {
+        "label": "D",
+        "text": "8 A.M.-6 P.M"
+      }
+    ],
+    "correctAnswer": "B",
+    "transcript": "Springdale Fitness Club has just expanded its swimming facilities to include a lap pool. We are extremely excited to be able to build on our already impressive offerings of aquatic fitness! We'll be having a ribbon cutting ceremony this Saturday at noon, and to celebrate we will be holding a timed lap race! Because we created the lap pool for our members who are serious about training, we must enforce a policy that requires members to sign up for times to use the pool. Additionally, the pool is not to be used for free style play. Please come down to Springdale Fitness Club on Saturday and join us in the good time!",
+    "translation": "Câu lạc bộ thể dục Springdale vừa mở rộng các cơ sở bơi lội của mình để bao gồm thêm một hồ bơi thể thao. Chúng tôi vô cùng phấn khích khi có thể củng cố thêm cho các dịch vụ thể dục dưới nước vốn đã rất ấn tượng của mình! Chúng tôi sẽ có một buổi lễ cắt băng khánh thành vào thứ bảy này vào buổi trưa, và để ăn mừng chúng tôi sẽ tổ chức một cuộc đua theo vòng tính giờ! Bởi vì chúng tôi đã tạo ra hồ bơi thể thao cho các thành viên nghiêm túc luyện tập của mình, chúng tôi phải thực thi một chính sách yêu cầu các thành viên đăng ký số lần sử dụng hồ. Ngoài ra, hồ bơi không được sử dụng để chơi tự do. Hãy đến Câu lạc bộ thể hình Springdale vào thứ bảy và tham gia với chúng tôi thật sớm!",
+    "explanation": {
+      "C": "họn",
+      "note": "Chọn B"
+    }
+  },
+  {
+    "question_id": "p4_q12",
+    "question_number": 94,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_92_94.mp3",
+    "questionText": "Look at the graphic. On what day will the listeners meet with the company president?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Monday"
+      },
+      {
+        "label": "B",
+        "text": "Tuesday"
+      },
+      {
+        "label": "C",
+        "text": "Wednesday"
+      },
+      {
+        "label": "D",
+        "text": "Thursday"
+      }
+    ],
+    "correctAnswer": "D",
+    "transcript": "Welcome to your first training session at Jarret's! The next four days will be quite intense as you will be shown a lot of different equipment you will be required to handle in your daily job. Try not to get too overwhelmed. Once you get used to the assembly process, the machines will become very easy for your efficiency at working the line will grow rapidly within a year. At Jarret's we pride ourselves on producing quality materials in a positive environment. We hold weekly team building exercises and a monthly staff get away. I'm sure you will enjoy our company events and become good friends with your colleagues. Today we will have a tour of the factory and meet the workers. The next three days are spent on machine training. One of the days we will have a special team lunch and the president will be coming in to meet everybody.",
+    "translation": "Chào mừng đến với buổi đào tạo đầu tiên của các bạn tại Jarret's! Bốn ngày tiếp theo sẽ khá căng thẳng vì các bạn sẽ được cho xem rất nhiều thiết bị khác nhau mà các bạn sẽ được yêu cầu xử lý trong công việc hằng ngày của mình. Cố gắng đừng để bị quá tải. Khi đã quen với quy trình lắp ráp, các máy móc sẽ trở nên rất dễ dàng vì hiệu quả của các bạn khi làm việc trong dây chuyền sẽ tăng nhanh chóng trong vòng một năm. Tại Jarret's, chúng tôi tự hào trong việc sản xuất các vật liệu đạt chất lượng trong một môi trường tích cực. Chúng tôi tổ chức các bài tập thể dục xây dựng đội ngũ hằng tuần và kì nghỉ hằng tháng cho nhân viên. Tôi chắc chắn các bạn sẽ thích các sự kiện của công ty và trở thành bạn tốt với các đồng nghiệp. Hôm nay chúng ta sẽ có một chuyến tham quan nhà máy và gặp gỡ các công nhân. Ba ngày tiếp theo được dành cho đào tạo dùng máy. Một trong những ngày đó chúng ta sẽ có một bữa ăn trưa đặc biệt với nhóm và chủ tịch sẽ đến để gặp gỡ mọi người.",
+    "explanation": {
+      "A": "Thứ Hai",
+      "B": "a",
+      "C": "họn",
+      "D": "Thứ Năm.Nhìn hình ta thấy ngay ở cột Thursday có hoạt động Lunch meeting with president",
+      "note": "Chọn D"
+    }
+  }
+]

@@ -1,0 +1,725 @@
+[
+  {
+    "question_id": "match_01",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "kim bấm",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_54516943_MwunokVffqsxD4t6FzhYocN1Fvac2j1E.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "staple"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "vỗ tay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/c_crop,f_auto,h_1154,q_auto,w_1846,x_40,y_542_4MVM424_image_crop_99069.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "clap"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "mối nguy",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/m_dmeu_hz170a1_std.lang.all.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "hazard"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "mỏng manh, dễ tổn thương",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Product_5f8bd7111ba443a0ad6eed1587746081.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "delicate"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "chủ nhà, người sở hữu nhà",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_home-ownership.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "homeowner"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "cẩn thận, cảnh giác",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/original_careful.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cautious"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "sao chép lại, mô phỏng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/10_example-of-asexual-reproduction.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "reproduce"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "thương mại, kinh doanh, công nghiệp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/noticias_E-commerce.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "commerce"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_02",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "Giảm kích thước hoặc số",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Blog_workforce-downsizing.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "downsize"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "hành lang",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "hallway"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "đại sứ, người đại diện (thường cho một quốc gia)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/getty_ac144846406f4074993f6550215d9279.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "ambassador"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "xịt, phun",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/88_1000_F_136128866_GDcyxQr464jShCi3EH9Xcx7s59lV33Q9.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "spray"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "truyền đạt, truyển tải",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_communication-problems.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "convey"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "sự phụ thuộc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/08_dependence-screen-shot.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "dependence"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách khôn khéo",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "wisely"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "tuổi teen (độ tuổi nằm trong khoản 13 - 19 tuổi)",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/49_1000_F_295104907_E3VzOt1WQKhrCqx6uRyIsMX37rXuObJT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "teen"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_03",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "rất quan trọng và khẩn cấp",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_Distinguishing-between-urgent-Vs.-important-by-PCR-Accounting-Advisory-in-Melbourne.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "imperative"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "sự ghi nợ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/1326319_debit-note-la-gi-su-dung-debit-note-trong-xuat-nhap-khau1-800x533.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "debit"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "không bình thường",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_432029556_aNd2XedUHLKK1LxAqvDjf1Ywhu2HEMTf.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "unusually"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người mới bắt đầu, dân nghiệp dư",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/blog_blog-Fat-footballer-300x229.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "amateur"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "dây cáp điện",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Edelweiss_20Cord_cord-6mm_R6.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "cord"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "xúi giục",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/71_1000_F_25427126_yiAGLkrFqttMMr9vlHn5xtuf8zjYt8Ei.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "tempt"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "để có được hoặc đạt được",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)_GettyImages-948655480-5c8328ef46e0fb0001a0be57.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "attain"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "thương gia",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/82_1000_F_454518200_gaw0xEho7tDlYYQiDfj11Qh87FYWjPBQ.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "merchant"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_04",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "dỡ hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/40_1000_F_229954023_NpU3huQ2OtxkIoLmQwsNDAgiIlPSR0te.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "unload"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "ghi nhớ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/43_1000_F_499864309_wz9y4kgWg1OaEg44egdWgL0ZPLwmJUOY.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "memorize"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "Tàu chở hàng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/dd_AMAnderson.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "freighter"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "cá voi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_184976931_DY8xt4pVm8o5gYLdEvcOufwohyWDntMq.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "whale"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "thuộc về chiến lược",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/09_1000_F_502430987_DB1JEZjc9EzrNJ2jlmV4wKGLSnCdzeiT.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "strategic"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "chèn vào, thêm vào",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_135846365_W9kycoakT0tn1Qa8HXnENohBCUEq3maP.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "insert"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "bản vẽ thiết kế",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/G35FEF_physics-science-school-blueprint-G35FEF.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "blueprint"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự hăng hái, sự nhiệt tình",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_iStock-1137620220-1024x683.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enthusiasm"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_05",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "thuộc về kiến trúc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/03_inut-768x371.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "architectural"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "vạch sọc",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_1000_F_209520217_fcUxodL6bzVphCt09M0ufHpWf9HRssyN.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "stripe"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "để trống; di chuyển ra khỏi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/24_1000_F_485542459_doMiUPjKncHsJF0rg06VoxvIY0f7eUgn.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "vacate"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "sự điều chỉnh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/23_1000_F_419412333_awwdj0fF2O6ggK24edWFAFkztdTKicY9.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "modification"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "con bọ, côn trùng nhỏ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/12_Bugs.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "bug"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "thổi phồng, bơm phồng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/13_1000_F_275481307_9CYeoVktT9p40Qgws04msiqMQajmWxYW.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "inflate"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "người đam mê về điều gì đó",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/images.huffingtonpost.com_2016-09-27-1475000926-901492-2016bestworstcitiesforsoccerfans.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "enthusiast"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "sự làm xao lãng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/02_bigstock-Distraction-Social-Media-Or-E-412721176.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "distraction"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_06",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "hiển nhiên, rõ ràng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/o_obvious.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "evident"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "bắt đầu lại từ đầu, một lần nữa",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/faith_34624-start-startover-startingline.1200w.tn.webp"
+        },
+        "right": {
+          "type": "text",
+          "text": "anew"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "bóng bay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_Balloon-Bunch.jpeg"
+        },
+        "right": {
+          "type": "text",
+          "text": "balloon"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "đường đi vòng quanh",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06140051_F1Hanoi.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "circuit"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "thiết bị bấm giờ",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/55_1000_F_308205563_jJqE0wuc6IjgIHreCWXPQ30afi4FALdk.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "timer"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "hệ thống giờ làm việc linh hoạt",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_is-flex-time-right-for-your-contact-center.png"
+        },
+        "right": {
+          "type": "text",
+          "text": "flextime"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "máy phát điện",
+          "image": null
+        },
+        "right": {
+          "type": "text",
+          "text": "generator"
+        }
+      },
+      {
+        "pair_id": 8,
+        "left": {
+          "type": "text_vi",
+          "text": "con voi",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/152302-050-1A984FCB_African-savanna-elephant.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "elephant"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  },
+  {
+    "question_id": "match_07",
+    "pairs": [
+      {
+        "pair_id": 1,
+        "left": {
+          "type": "text_vi",
+          "text": "người hướng dẫn hoặc giảng viên đại học",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/06_1000_F_377340603_1LGXt7MMHeqKoZixHxWk2tVa0wig9RN1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "lecturer"
+        }
+      },
+      {
+        "pair_id": 2,
+        "left": {
+          "type": "text_vi",
+          "text": "bánh mì kẹp thịt xay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/Hatch_Green_Chile_Hamburger.jpg_1200px-Hatch_Green_Chile_Hamburger.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "hamburger"
+        }
+      },
+      {
+        "pair_id": 3,
+        "left": {
+          "type": "text_vi",
+          "text": "một cách may mắn, may mắn thay",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/art-wap-article-main_can-fortuitous-mean-fortunate-usage-5918-7e04132c7998e647a0069a685fa8a35e@1x.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "fortunately"
+        }
+      },
+      {
+        "pair_id": 4,
+        "left": {
+          "type": "text_vi",
+          "text": "người cư trú, người sử dụng",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/37_1000_F_273163732_YFVEbyvF9FogVKQpQJfazxTISGFT86SX.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "occupant"
+        }
+      },
+      {
+        "pair_id": 5,
+        "left": {
+          "type": "text_vi",
+          "text": "có ý nghĩa hoặc mục đích",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/85_1000_F_499468526_auB1zwauiQkH4khjBsPxqtOIHhkFjpGt.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "meaningful"
+        }
+      },
+      {
+        "pair_id": 6,
+        "left": {
+          "type": "text_vi",
+          "text": "tham vấn viên, cố vấn",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/11_social-worker-vs-counselor_hero.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "counselor"
+        }
+      },
+      {
+        "pair_id": 7,
+        "left": {
+          "type": "text_vi",
+          "text": "tính linh hoạt, tính linh động",
+          "image": "https://study4.com/media/toeic_course_vocabs/media/07_flexibility1.jpg"
+        },
+        "right": {
+          "type": "text",
+          "text": "flexibility"
+        }
+      }
+    ],
+    "grid_size": {
+      "rows": 4,
+      "cols": 4
+    }
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 112,
+    "questionText": "You must close the application before _____ the installation of the software update.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to begin"
+      },
+      {
+        "label": "B",
+        "text": "beginning"
+      },
+      {
+        "label": "C",
+        "text": "must begin"
+      },
+      {
+        "label": "D",
+        "text": "begins"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau giới từ → Cần điền một danh từ/ Ving→ Loại A, C, D",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 116,
+    "questionText": "Flu season is here, so take advantage of the free flu shots ____ in the lobby",
+    "options": [
+      {
+        "label": "A",
+        "text": "being offered"
+      },
+      {
+        "label": "B",
+        "text": "to offer"
+      },
+      {
+        "label": "C",
+        "text": "offering"
+      },
+      {
+        "label": "D",
+        "text": "offers"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Động từ cần điền “offer” - cung cấp. Danh từ “free flu shots” đứng trước chỗ trống, ta nhận thấy “mũi tiêm phòng cúm” không thể tự cung cấp, chúng phải được cung cấp",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 127,
+    "questionText": "Profits at Talhee Beverage Co. rose about 4 percent last year, according to new figures _____ by the company.",
+    "options": [
+      {
+        "label": "A",
+        "text": "to release"
+      },
+      {
+        "label": "B",
+        "text": "releasing"
+      },
+      {
+        "label": "C",
+        "text": "released"
+      },
+      {
+        "label": "D",
+        "text": "have released"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm trong mệnh đề phụ. Ở đây động từ ‘release’ - công bố, khi đi kèm với ‘figures’ phải được chia ở phân từ quá khứ (số liệu không thể công bố, phải là được công bố)",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 122,
+    "questionText": "Any letter _____ sensitive information should be sent using a courier service.",
+    "options": [
+      {
+        "label": "A",
+        "text": "contains"
+      },
+      {
+        "label": "B",
+        "text": "containing"
+      },
+      {
+        "label": "C",
+        "text": "will contain"
+      },
+      {
+        "label": "D",
+        "text": "has contained"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Trong câu đã có động từ chính “should be sent” → Loại A, C, D",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 123,
+    "questionText": "For the payment _____ last week, the necessary state and federal taxes must be paid by the recipient.",
+    "options": [
+      {
+        "label": "A",
+        "text": "was remitted"
+      },
+      {
+        "label": "B",
+        "text": "remitted"
+      },
+      {
+        "label": "C",
+        "text": "remitting"
+      },
+      {
+        "label": "D",
+        "text": "to remit"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 130,
+    "questionText": "The policy that requires businesses to provide medical insurance applies only to those ------- more than twenty-five people.",
+    "options": [
+      {
+        "label": "A",
+        "text": "employs"
+      },
+      {
+        "label": "B",
+        "text": "employ"
+      },
+      {
+        "label": "C",
+        "text": "employed"
+      },
+      {
+        "label": "D",
+        "text": "employing"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 120,
+    "questionText": "MBR Global Marketing has signed several new client contracts ____ 12 million pounds in annual revenue",
+    "options": [
+      {
+        "label": "A",
+        "text": "totaled"
+      },
+      {
+        "label": "B",
+        "text": "total"
+      },
+      {
+        "label": "C",
+        "text": "totals"
+      },
+      {
+        "label": "D",
+        "text": "totaling"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 116,
+    "questionText": "The non-profit organization released to the press several documents ------- the largest donors and how much they contributed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "detailed"
+      },
+      {
+        "label": "B",
+        "text": "detail"
+      },
+      {
+        "label": "C",
+        "text": "details"
+      },
+      {
+        "label": "D",
+        "text": "detailing"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  }
+]

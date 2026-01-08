@@ -1,0 +1,1707 @@
+[
+  {
+    "question_id": "quiz_01",
+    "question_text": "What does 'absent' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tầng trên, gác, lầu (của một ngôi nhà..)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_378993171_haVpDLLww0HJRhpMQJRtlj6ZMMMjpMLN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_02",
+    "question_text": "What does 'accumulate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tích lũy, gom góp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/z_hand-accumulating-money-men-who-stack-up-hold-their-hands-93665753.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hăng hái, háo hức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không xác định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_03",
+    "question_text": "What does 'adhere' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngoại ô",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_345423233_QEeGOYOCOCHWTk6Os8YKvG3DwL6xuQKB.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tuân theo, tuân thủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "quán ăn rẻ tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chủ nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_04",
+    "question_text": "What does 'appraisal' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đau đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/news_ImageForNews_711050_16503171059359722.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đơn giản hóa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_05",
+    "question_text": "What does 'apprentice' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phá sản, vỡ nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_pearlbankrupty3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không thích hợp, không thích đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự mua lại để giành quyền kiểm soát công ty",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_396231642_tw31dw2xtBjvl7SlUpYxpRSVz8XKSS8C.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_06",
+    "question_text": "What does 'bankrupt' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "quán ăn rẻ tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự hết hạn, sự kết thúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/600xx_16-Expiration_20date.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "phá sản, vỡ nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_pearlbankrupty3.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_07",
+    "question_text": "What does 'businessman' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lính cứu hỏa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_firefightercarhose.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tính hữu hiệu, tính hiệu quả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_08",
+    "question_text": "What does 'caution' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lời cảnh báo, sự cảnh giác",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cautious.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuân theo, làm theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_09",
+    "question_text": "What does 'ceiling' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trần nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Armstrong_RS737.jpeg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "liên quan đến mặt trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giờ ăn trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không thích hợp, không thích đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_10",
+    "question_text": "What does 'clip' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "cắt ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20112515_gettyimages-1218257318-crop-1639999591-1680x1120.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "dầu xăng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_gasoline2.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tính hữu hiệu, tính hiệu quả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_11",
+    "question_text": "What does 'colorful' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "tuân theo, tuân thủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tích lũy, gom góp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/z_hand-accumulating-money-men-who-stack-up-hold-their-hands-93665753.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_12",
+    "question_text": "What does 'compensate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "tuân theo, tuân thủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_13",
+    "question_text": "What does 'comply' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự sắp đặt, dàn bài tổng thể",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhồi nhét, ấn chặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_shutterstock-220553194-finger-vladimir-gjorgiev-1486051737.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuân theo, làm theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_14",
+    "question_text": "What does 'costume' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "cắt ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20112515_gettyimages-1218257318-crop-1639999591-1680x1120.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_15",
+    "question_text": "What does 'diner' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tính hữu hiệu, tính hiệu quả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tay áo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_316129211_14kSLW9jnSYFwygYX2jKw57dLQqwdONU.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quán ăn rẻ tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_16",
+    "question_text": "What does 'duplicate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "người đi bộ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lính cứu hỏa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_firefightercarhose.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự sắp đặt, dàn bài tổng thể",
+        "image_url": null,
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_17",
+    "question_text": "What does 'eager' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự sắp đặt, dàn bài tổng thể",
+        "image_url": null,
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "hăng hái, háo hức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "sự dự đoán về tương lai (ví dụ: dự đoán về doanh số hay thu nhập)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_304996094_8FF4MFNWklIbn9JKeVTPxAGHngkdC10A.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_18",
+    "question_text": "What does 'economist' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đi bộ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "chuyên môn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_367846901_YtM6diLW5myIG6NwDSPh3Bh5UR5DtC2I.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_19",
+    "question_text": "What does 'editorial' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chuyên môn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_367846901_YtM6diLW5myIG6NwDSPh3Bh5UR5DtC2I.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đơn giản hóa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bài xã luận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/posts_1mBuenhNKYOhlZC6ixZ3Kp8O2vXyK4RqX5LsLJH8.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_20",
+    "question_text": "What does 'effectiveness' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tuân theo, tuân thủ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/25_dos_donts.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không ngờ tới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tính hữu hiệu, tính hiệu quả",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_planning-4086860_1920.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_21",
+    "question_text": "What does 'expiration' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự hết hạn, sự kết thúc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/600xx_16-Expiration_20date.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "bài xã luận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/posts_1mBuenhNKYOhlZC6ixZ3Kp8O2vXyK4RqX5LsLJH8.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tuân theo, làm theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_22",
+    "question_text": "What does 'facilitate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tạo điều kiện thuận lợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_build-a-better-solution.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hăng hái, háo hức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "chủ nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bằng lời nói, bằng miệng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_492944523_FZSWG69Zh7rWedofW0GStoDiZ1ieXrOo.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_23",
+    "question_text": "What does 'firefighter' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lính cứu hỏa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/06_firefightercarhose.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tổng lương, bảng lương",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tạo điều kiện thuận lợi",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_build-a-better-solution.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_24",
+    "question_text": "What does 'gasoline' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "dầu xăng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_gasoline2.png",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "đinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "người đi bộ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "loài hoang dã",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_25",
+    "question_text": "What does 'headache' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "đau đầu",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/news_ImageForNews_711050_16503171059359722.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "cắt ngắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20112515_gettyimages-1218257318-crop-1639999591-1680x1120.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_26",
+    "question_text": "What does 'inappropriate' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không thích hợp, không thích đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_27",
+    "question_text": "What does 'internet' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "giờ ăn trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_28",
+    "question_text": "What does 'jam' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thị thực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "nhồi nhét, ấn chặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_shutterstock-220553194-finger-vladimir-gjorgiev-1486051737.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_29",
+    "question_text": "What does 'landlord' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chủ nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "phá sản, vỡ nợ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_pearlbankrupty3.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không xác định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_30",
+    "question_text": "What does 'layout' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "sự sắp đặt, dàn bài tổng thể",
+        "image_url": null,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "hăng hái, háo hức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_31",
+    "question_text": "What does 'lunchtime' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tổng lương, bảng lương",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "giờ ăn trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_32",
+    "question_text": "What does 'nail' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "đinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tích lũy, gom góp",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/z_hand-accumulating-money-men-who-stack-up-hold-their-hands-93665753.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_33",
+    "question_text": "What does 'optimistic' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lạc quan, tích cực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_493349404_Pwr37QnSoizYR8ZdrRxED9Nb9zCXK6kA.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_34",
+    "question_text": "What does 'payroll' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "liên quan đến mặt trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "một cách an toàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/78_1000_F_94437898_hhG7qaXJ0Gi89SEn3AG2Xc97VczuWX13.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tổng lương, bảng lương",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_35",
+    "question_text": "What does 'pedestrian' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người đi bộ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/07_1000_F_84780718_3TQxbdFIA62914yweC3n2u2L5z62TnVM.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "đinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "từ viết tắt của technology - công nghệ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_226982007_WtWlNuKwxAy7VbXEyiACzlyow76jZVKw.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_36",
+    "question_text": "What does 'pharmaceutical' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "bài xã luận",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/posts_1mBuenhNKYOhlZC6ixZ3Kp8O2vXyK4RqX5LsLJH8.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "không xác định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "sự đánh giá, thẩm định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/11_The-Ultimate-Performance-Appraisal-Guide-image.svg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liên quan đến dược phẩm hoặc liên quan đến việc mua bán, sử dụng thuốc",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/98_1000_F_244609855_yUA8MEZL0iOxqcNg7t4GbPfgOLxYp3Ie.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_37",
+    "question_text": "What does 'plausible' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "tay áo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_316129211_14kSLW9jnSYFwygYX2jKw57dLQqwdONU.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhồi nhét, ấn chặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_shutterstock-220553194-finger-vladimir-gjorgiev-1486051737.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "quán ăn rẻ tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_38",
+    "question_text": "What does 'premium' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lực lượng lao động",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_345407586_7xzMvNxw14ryW8Ckh4cmlsi6We71q1in.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lời cảnh báo, sự cảnh giác",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cautious.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "khoản tiền trả thêm",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/93_1000_F_309009345_ZVh3MTQ5IS5Z9g79UGLPkwmsQrf2Sejr.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_39",
+    "question_text": "What does 'projection' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "sự dự đoán về tương lai (ví dụ: dự đoán về doanh số hay thu nhập)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/60_1000_F_304996094_8FF4MFNWklIbn9JKeVTPxAGHngkdC10A.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "hợp lý",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/63_1000_F_314676367_Q7zqT5bilGNqVhPgU9xbsgV8Rv0Pi37y.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_40",
+    "question_text": "What does 'safely' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "một cách an toàn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/78_1000_F_94437898_hhG7qaXJ0Gi89SEn3AG2Xc97VczuWX13.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "trần nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Armstrong_RS737.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_41",
+    "question_text": "What does 'simplify' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "lạc quan, tích cực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/94_1000_F_493349404_Pwr37QnSoizYR8ZdrRxED9Nb9zCXK6kA.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đơn giản hóa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_42",
+    "question_text": "What does 'sleeve' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lời cảnh báo, sự cảnh giác",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/02_cautious.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "thị thực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "tay áo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/92_1000_F_316129211_14kSLW9jnSYFwygYX2jKw57dLQqwdONU.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_43",
+    "question_text": "What does 'solar' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "lực lượng lao động",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_345407586_7xzMvNxw14ryW8Ckh4cmlsi6We71q1in.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tổng lương, bảng lương",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/48_1000_F_75494846_aipa9cuVhOL7vePH9C5C4TQfI2zde9D4.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "liên quan đến mặt trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_44",
+    "question_text": "What does 'specialty' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chuyên môn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_1000_F_367846901_YtM6diLW5myIG6NwDSPh3Bh5UR5DtC2I.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_45",
+    "question_text": "What does 'suburb' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngoại ô",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_345423233_QEeGOYOCOCHWTk6Os8YKvG3DwL6xuQKB.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "thị thực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "doanh nhân",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/12_pexels-photo-288477.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "trả tiền, trả thù lao",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Email_20Blast_20+_20Website_Competitive-Employee-Compensation-01-900x444.png",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_46",
+    "question_text": "What does 'takeover' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không chắc chắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_314842797_5bnHOEQCkU16O0ELXQGi3vYJs2QaiJCe.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "loài hoang dã",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "liên quan đến mặt trời",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/97_1000_F_253259756_iJu5QzdWXTQRSl3rY1XYWTsmkzcsUSh2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "sự mua lại để giành quyền kiểm soát công ty",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/16_1000_F_396231642_tw31dw2xtBjvl7SlUpYxpRSVz8XKSS8C.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_47",
+    "question_text": "What does 'tech' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "ngoại ô",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/32_1000_F_345423233_QEeGOYOCOCHWTk6Os8YKvG3DwL6xuQKB.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "từ viết tắt của technology - công nghệ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/20_1000_F_226982007_WtWlNuKwxAy7VbXEyiACzlyow76jZVKw.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "đinh",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/26_1000_F_84302653_eBiQ4YCWnXVE02aKUSHZ3kBQi8XXcyP7.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không thích hợp, không thích đáng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_sensitive-photo-content-explicit-video-content-inappropriate-content-internet-safety-concept_268834-201.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_48",
+    "question_text": "What does 'unexpected' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "không ngờ tới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "nhà kinh tế học",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/content_economist_2.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "tuân theo, làm theo",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/0qlfBxM1-bM_maxresdefault.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "đơn giản hóa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/65_1000_F_354456539_kyqM5osNwyrjAcVZ3ClekRVfVzkEmF4M.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_49",
+    "question_text": "What does 'unspecified' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tầng trên, gác, lầu (của một ngôi nhà..)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_378993171_haVpDLLww0HJRhpMQJRtlj6ZMMMjpMLN.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Mất tích, không có mặt",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/08_Employee-Absenteeism.png",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không xác định",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/i.stack.imgur.com_mDBuP.png",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_50",
+    "question_text": "What does 'unsure' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trang phục (thường cho những dịp đặc biệt như Halloween)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_Anna-Danigelis-DIY-Couples-Halloween-Costume-Mario-and-Princess-Peach-Homeade.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "không chắc chắn",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/27_1000_F_314842797_5bnHOEQCkU16O0ELXQGi3vYJs2QaiJCe.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_51",
+    "question_text": "What does 'upstairs' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "tầng trên, gác, lầu (của một ngôi nhà..)",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/31_1000_F_378993171_haVpDLLww0HJRhpMQJRtlj6ZMMMjpMLN.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "text": "không ngờ tới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "giờ ăn trưa",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/69_240_F_504546923_645UNEqeDC1nbCS4RwdH40Hwm4WWuSgd.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_52",
+    "question_text": "What does 'verbal' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "hăng hái, háo hức",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/1442981623432-GKNWF81XHQC5TXTFM8TM_gungho.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "trần nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/Armstrong_RS737.jpeg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "quán ăn rẻ tiền",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/04_image2.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "bằng lời nói, bằng miệng",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/45_1000_F_492944523_FZSWG69Zh7rWedofW0GStoDiZ1ieXrOo.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_53",
+    "question_text": "What does 'visa' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "người học việc, người học nghề",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/10_apprentice-chef.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "nhân bản, sao chép",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/images_cach-nhan-ban-post-1.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "thị thực",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/99_1000_F_142299905_j38bOkiO8v4gHem9Obf7aLbMX41Y60Sg.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_54",
+    "question_text": "What does 'wildlife' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "chủ nhà",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/35_1000_F_218243533_raI63wPl23iXVUCfaSFw3APBFDkz8xtp.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "text": "không ngờ tới",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/68_1000_F_467186820_j8arA2LHPZJLlPt0iYssAeR5ZYxzk5GK.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "loài hoang dã",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg",
+        "is_correct": true
+      }
+    ],
+    "shuffle_choices": false
+  },
+  {
+    "question_id": "quiz_55",
+    "question_text": "What does 'workforce' mean?",
+    "choices": [
+      {
+        "id": 1,
+        "text": "mạng internet",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/95_1000_F_105559594_ycywjuCT5acKQIbivmOqHXL5YmK99zJy.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "text": "lực lượng lao động",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/75_1000_F_345407586_7xzMvNxw14ryW8Ckh4cmlsi6We71q1in.jpg",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "text": "Có nhiều màu sắc khác nhau, sặc sỡ",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/free-vector_abstract-background_53876-43362.jpg",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "text": "loài hoang dã",
+        "image_url": "https://study4.com/media/toeic_course_vocabs/media/01_1000_F_348330128_gbGvQ1OtIlz6FW0NwJmn7QofDDxNG3lm.jpg",
+        "is_correct": false
+      }
+    ],
+    "shuffle_choices": false
+  }
+]

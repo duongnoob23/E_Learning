@@ -1,0 +1,242 @@
+[
+  {
+    "question_id": "p2_q1",
+    "question_number": 16,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_16.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Because it's being repaired",
+      "B": "To the south entrance",
+      "C": "Monday through Friday"
+    },
+    "explanation": {
+      "A": "Bởi vì nó đang được sửa chữa",
+      "B": "Đến lối vào phía nam",
+      "C": "Thứ Hai đến Thứ Sáu",
+      "note": "Vì câu hỏi có từ để hỏi ‘why’ - tại sao→ chọn đáp án A (vì bắt đầu bằng từ ‘because’ để giải thích lý do)"
+    }
+  },
+  {
+    "question_id": "p2_q2",
+    "question_number": 21,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/ets21_test1_21.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "To expand our customer base",
+      "B": "Yes, that sounds like a great idea",
+      "C": "Which side do you prefer?"
+    },
+    "explanation": {}
+  },
+  {
+    "question_id": "p2_q3",
+    "question_number": 24,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619508285_1619510993.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "We missed the submission deadline",
+      "B": "Let's watch the evening news",
+      "C": "An international flight"
+    },
+    "explanation": {
+      "A": "Chúng ta đã bỏ lỡ thời hạn nộp hồ sơ",
+      "B": "Hãy xem tin tức buổi tối",
+      "C": "Một chuyến bay quốc tế",
+      "note": "Dựa vào nghĩa của từng đáp án (lý do không quảng cáo trên truyền hình địa phương vì họ đã bỏ lỡ thời hạn nộp hồ sơ)→ chọn đáp án A"
+    }
+  },
+  {
+    "question_id": "p2_q4",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619577808_1619578939.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "A copyright attorney",
+      "B": "Because it's well-known",
+      "C": "Yes, it's very firm"
+    },
+    "explanation": {
+      "A": "luật sư có chuyên môn về pháp luật sở hữu trí tuệ",
+      "B": "Bởi vì nó nổi tiếng",
+      "C": "Có, nó rất chắc chắn",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi ‘why’ (tại sao)→ chọn đáp án B (‘because’ dùng để giải thích lý do)"
+    }
+  },
+  {
+    "question_id": "p2_q5",
+    "question_number": 11,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_1619592449_1619593473.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "At two P.M",
+      "B": "Because the report hasn't been finalized",
+      "C": "Yes, I need to go to the post office"
+    },
+    "explanation": {
+      "A": "Lúc hai giờ chiều",
+      "B": "Bởi vì báo cáo chưa được hoàn thiện",
+      "C": "Vâng, tôi cần đến bưu điện",
+      "note": "Vì câu hỏi bắt đầu bằng từ để hỏi ‘why’ (tại sao) → câu trả lời bắt đầu từ ‘because’ (bởi vì)→ chọn đáp án B"
+    }
+  },
+  {
+    "question_id": "p2_q6",
+    "question_number": 16,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_16.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "He's undergoing intensive training",
+      "B": "Actually, it was rescheduled",
+      "C": "Because the pencil was broken"
+    },
+    "explanation": {
+      "A": "Anh ấy đang được đào tạo chuyên sâu. => cũng có từ \"training\" nhưng nội dung không hề liên quan => loại",
+      "B": "Thực ra, nó đã được lên lịch lại. => chọn",
+      "C": "Bởi vì bút chì đã bị hỏng. => có “Because” để trả lời cho câu hỏi “Why”, tuy nhiên nội dung không hề liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q7",
+    "question_number": 30,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_4_30.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Submit the form online",
+      "B": "Actually, I'm not in charge of editing",
+      "C": "It was written on the menu"
+    },
+    "explanation": {
+      "A": "Hãy gửi biểu mẫu trực tuyến. => cũng có \"submit\" nhưng nội dung cả câu không hề liên quan => loại",
+      "B": "Thực ra tôi không phụ trách biên tập. => ý là mảng biên tập tôi không phụ trách, hãy hỏi người khác => chọn",
+      "C": "Nó được viết trên thực đơn. => có từ \"menu\" nghe gần giống \"manuscript\" để bẫy, ý nghĩa không hề liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q8",
+    "question_number": 14,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_14.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "300 copies, please",
+      "B": "In the storage closet",
+      "C": "It's Sunday"
+    },
+    "explanation": {
+      "A": "300 bản, làm ơn. => đây là câu hỏi Why nên câu trả lời kèm \"please\" cuối câu với ý nhờ vả là không hợp lý => loại",
+      "B": "Trong tủ đựng đồ. => câu hỏi Why chứ không phải câu hỏi Where => loại",
+      "C": "Hôm nay là Chủ nhật. => chọn"
+    }
+  },
+  {
+    "question_id": "p2_q9",
+    "question_number": 20,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/sound_eco_toeic_1000_test_5_20.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "The new advertising strategy",
+      "B": "We still haven't hired anyone",
+      "C": "Every other week"
+    },
+    "explanation": {
+      "A": "Chiến lược quảng cáo mới. => cũng có \"advertising\" nhưng nội dung cả câu không hề liên quan => loại",
+      "B": "Chúng tôi vẫn chưa thuê được ai. => chọn",
+      "C": "Mỗi hai tuần một lần. => đây là câu trả lời cho câu hỏi How often chứ không phải cho câu hỏi Why => loại"
+    }
+  },
+  {
+    "question_id": "p2_q10",
+    "question_number": 13,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q13.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "Because of a scheduling conflict",
+      "B": "Maybe it isn't plugged in",
+      "C": "It was yesterday"
+    },
+    "explanation": {
+      "A": "Do xung đột lịch phát sóng => có Because of để trả lời cho câu hỏi Why nhưng nội dung cả câu không phù hợp => loại",
+      "B": "Chắc là chưa cắm điện => chọn",
+      "C": "Vào hôm qua => nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q11",
+    "question_number": 27,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test6_audios_q27.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "Let me call Ms. Anderson",
+      "B": "I've signed the document",
+      "C": "A cardboard box"
+    },
+    "explanation": {
+      "A": "Để tôi gọi cho cô Anderson => câu trả lời gián tiếp đề cập đến người thứ ba, nội dung phù hợp => chọn",
+      "B": "Tôi đã kí tài liệu rồi => nội dung không liên quan => loại",
+      "C": "Một hộp carton => nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q12",
+    "question_number": 11,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q11.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "We're removing coffee stains",
+      "B": "Into a bigger office",
+      "C": "Because new neighbors are moving in"
+    },
+    "explanation": {
+      "A": "Chúng tôi đang tẩy vết cà phê",
+      "B": "Vào một văn phòng lớn hơn",
+      "C": "Vì hàng xóm mới chuyển đến.Đây là câu hỏi why nên các đáp án A và B là không phù hợp, đáp án C trả lời trực tiếp với các từ chỉ nguyên nhân",
+      "note": "Vì vậy chọn C"
+    }
+  },
+  {
+    "question_id": "p2_q13",
+    "question_number": 19,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test7_audios_q19.mp3",
+    "correct_choice": "C",
+    "transcript": {
+      "A": "At Terminal 6",
+      "B": "He was a travel agent",
+      "C": "We haven't decided on the dates"
+    },
+    "explanation": {
+      "A": "Tại Nhà ga số 6",
+      "B": "Anh ấy là một đại lý du lịch",
+      "C": "Chúng tôi vẫn chưa quyết định ngày.Đây là câu hỏi Why nhưng phần trả lời không có các đáp án trực tiếp, các đáp án A và B không liên quan đến nội dung được hỏi nên chọn đáp án C. Đáp án này giải thích lí do hành lí chưa gửi đi là do chưa quyết định được ngày đi"
+    }
+  },
+  {
+    "question_id": "p2_q14",
+    "question_number": 22,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test8_audios_q22.mp3",
+    "correct_choice": "A",
+    "transcript": {
+      "A": "It was delayed because of construction",
+      "B": "Yes, it's always punctual",
+      "C": "Actually, the tickets are non-refundable"
+    },
+    "explanation": {
+      "A": "Nó bị trì hoãn vì việc xây dựng. => delay = not arrive on time => chọn",
+      "B": "Vâng, nó luôn luôn đúng giờ. => câu hỏi Why chứ không phải câu hỏi Yes/No => loại",
+      "C": "Thực ra, vé không được hoàn lại. => nội dung không liên quan => loại"
+    }
+  },
+  {
+    "question_id": "p2_q15",
+    "question_number": 10,
+    "audio_file": "https://study4.com/media/toeic_course_problems/audio/test9_audios_q10.mp3",
+    "correct_choice": "B",
+    "transcript": {
+      "A": "I was sitting there",
+      "B": "They are watching a video",
+      "C": "Yes, she's off duty"
+    },
+    "explanation": {
+      "B": "Họ đang xem một đoạn video. => chọn",
+      "C": "Vâng, cô ấy đang nghỉ làm. => câu hỏi Why chứ không phải Yes/No => loại"
+    }
+  }
+]

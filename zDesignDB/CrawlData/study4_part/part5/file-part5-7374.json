@@ -1,0 +1,272 @@
+[
+  {
+    "question_id": "p5_q1",
+    "question_number": 122,
+    "questionText": "The team _____ completes the online training first will receive a catered lunch.",
+    "options": [
+      {
+        "label": "A",
+        "text": "whichever"
+      },
+      {
+        "label": "B",
+        "text": "it"
+      },
+      {
+        "label": "C",
+        "text": "that"
+      },
+      {
+        "label": "D",
+        "text": "either"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền đứng sau chủ ngữ, ở sau có 2 động từ → cần tìm một đại từ quan hệ kết hợp cùng vế “completes the online training first” để tạo thành mệnh đề quan hệ bổ nghĩa cho chủ ngữ. → Ta thấy \"that\" thay thế cho danh từ \"team\" đóng vai trò làm chủ ngữ của mệnh đề quan hệ trong câu.",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q2",
+    "question_number": 112,
+    "questionText": "The obstetrics nurses _____ are working under Dorothy Caramella will now be working for Pierre Cocteau.",
+    "options": [
+      {
+        "label": "A",
+        "text": "they"
+      },
+      {
+        "label": "B",
+        "text": "who"
+      },
+      {
+        "label": "C",
+        "text": "when"
+      },
+      {
+        "label": "D",
+        "text": "these"
+      }
+    ],
+    "correctAnswer": "B",
+    "translation": "",
+    "analysis": "Cần tìm một đại từ quan hệ để kết hợp với “are working under Dorothy Caramella” → tạo thành tính từ bổ nghĩa cho cụm danh từ “the obstetrics” trước đó.",
+    "explanation": "Đáp án đúng: B."
+  },
+  {
+    "question_id": "p5_q3",
+    "question_number": 125,
+    "questionText": "Highlee Sportswear, ____ popularity is widespread among athletes, will add a line of children's clothes soon",
+    "options": [
+      {
+        "label": "A",
+        "text": "whose"
+      },
+      {
+        "label": "B",
+        "text": "some"
+      },
+      {
+        "label": "C",
+        "text": "major"
+      },
+      {
+        "label": "D",
+        "text": "which"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền nằm trong vế mệnh đề phụ của câu → cần tìm một đại từ quan hệ. “popularity is widespread among athletes” - “có độ phổ biến được trải rộng trong giới vận động viên” có mối quan hệ sở hữu với chủ ngữ “Highlee Sportswear”",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q4",
+    "question_number": 129,
+    "questionText": "Employees __ cars are parked in designated client spaces should move them immediately",
+    "options": [
+      {
+        "label": "A",
+        "text": "those"
+      },
+      {
+        "label": "B",
+        "text": "other"
+      },
+      {
+        "label": "C",
+        "text": "who"
+      },
+      {
+        "label": "D",
+        "text": "whose"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "Chỗ trống cần điền một đại từ quan hệ phù hợp (đứng sau chủ ngữ employees và phía sau có động từ chính should move). Do phía sau có danh từ (cars) đi liền nên chỉ có thể điền đại từ quan hệ whose để thể hiện tính sở hữu.",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q5",
+    "question_number": 121,
+    "questionText": "Mr. Ross, _____ is repainting the interior of the lobby, was recommended by a friend of the building manager.",
+    "options": [
+      {
+        "label": "A",
+        "text": "himself"
+      },
+      {
+        "label": "B",
+        "text": "he"
+      },
+      {
+        "label": "C",
+        "text": "who"
+      },
+      {
+        "label": "D",
+        "text": "which"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q6",
+    "question_number": 117,
+    "questionText": "Fritz Center, the venue _____ hosts the film industry's awards banquet, is undergoing an ambitious expansion project.",
+    "options": [
+      {
+        "label": "A",
+        "text": "that"
+      },
+      {
+        "label": "B",
+        "text": "where"
+      },
+      {
+        "label": "C",
+        "text": "what"
+      },
+      {
+        "label": "D",
+        "text": "even"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  },
+  {
+    "question_id": "p5_q7",
+    "question_number": 108,
+    "questionText": "The chef ------- prepares the entree for a restaurant critic often comes out to greet him or her in person.",
+    "options": [
+      {
+        "label": "A",
+        "text": "whose"
+      },
+      {
+        "label": "B",
+        "text": "what"
+      },
+      {
+        "label": "C",
+        "text": "either"
+      },
+      {
+        "label": "D",
+        "text": "who"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q8",
+    "question_number": 127,
+    "questionText": "Ms. Stevenson contacted the real estate agent ------- name and phone number appeared on the advertisement.",
+    "options": [
+      {
+        "label": "A",
+        "text": "what"
+      },
+      {
+        "label": "B",
+        "text": "which"
+      },
+      {
+        "label": "C",
+        "text": "whose"
+      },
+      {
+        "label": "D",
+        "text": "who"
+      }
+    ],
+    "correctAnswer": "C",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: C."
+  },
+  {
+    "question_id": "p5_q9",
+    "question_number": 110,
+    "questionText": "The majority of occupants ------- live in Regal Towers are upset about the ongoing problems with their air conditioning systems.",
+    "options": [
+      {
+        "label": "A",
+        "text": "what"
+      },
+      {
+        "label": "B",
+        "text": "where"
+      },
+      {
+        "label": "C",
+        "text": "they"
+      },
+      {
+        "label": "D",
+        "text": "who"
+      }
+    ],
+    "correctAnswer": "D",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: D."
+  },
+  {
+    "question_id": "p5_q10",
+    "question_number": 109,
+    "questionText": "Iolana Dance Troupe stands out because the group knows _____ to integrate a variety of dance styles.",
+    "options": [
+      {
+        "label": "A",
+        "text": "how"
+      },
+      {
+        "label": "B",
+        "text": "that"
+      },
+      {
+        "label": "C",
+        "text": "since"
+      },
+      {
+        "label": "D",
+        "text": "about"
+      }
+    ],
+    "correctAnswer": "A",
+    "translation": "",
+    "analysis": "",
+    "explanation": "Đáp án đúng: A."
+  }
+]
