@@ -173,8 +173,8 @@ export default function CoursePreviewModal({ open, onClose, courseId }) {
                   </p>
                   <div className="admin-course-preview-meta">
                     <span>⭐ {course.rating || "N/A"}</span>
-                    <span>📚 {course.total_lessons || 0} bài học</span>
-                    <span>⏱ {course.total_duration || "N/A"}</span>
+                    <span>{course.total_lessons || 0} bài học</span>
+                    <span>{course.total_duration || "N/A"}</span>
                     {course.total_students && (
                       <span>👥 {course.total_students} học viên</span>
                     )}

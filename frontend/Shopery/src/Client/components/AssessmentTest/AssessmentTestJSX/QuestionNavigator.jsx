@@ -8,52 +8,35 @@ export default function QuestionNavigator({
   onSubmit,
   isSubmitting,
   onNavigate,
+  timeLeft, // ✅ Nhận timeLeft từ parent component
 }) {
-  // ✅ BẮT ĐẦU: thêm state cho đồng hồ đếm ngược
-  // const [timeLeft, setTimeLeft] = useState(120 * 60); // 120 phút = 7200 giây
-  // console.log("PART", partsSummary);
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setTimeLeft((prev) => {
-  //       if (prev <= 1) {
-  //         clearInterval(timer);
-  //         return 0;
-  //       }
-  //       return prev - 1;
-  //     });
-  //   }, 1000);
-
-  //   // cleanup
-  //   return () => clearInterval(timer);
-  // }, []);
-
-  // ✅ Format hiển thị (MM:SS)
+  // ✅ Format hiển thị (HH:MM:SS hoặc MM:SS)
   const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = Math.floor(seconds % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${m}:${s}`;
+    if (seconds === null || seconds === undefined) {
+      return "0:00";
+    }
+    
+    const totalSeconds = Math.max(0, Math.floor(seconds));
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    
+    if (hours > 0) {
+      return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+    return `${minutes}:${secs.toString().padStart(2, "0")}`;
   };
-
-  // // ✅ Nếu muốn, có thể tự động nộp bài khi hết giờ:
-  // useEffect(() => {
-  //   if (timeLeft === 0) {
-  //     alert("Hết thời gian làm bài. Bài sẽ được tự động nộp.");
-  //     onSubmit();
-  //   }
-  // }, [timeLeft, onSubmit]);
-  // // ✅ HẾT PHẦN ĐỒNG HỒ
 
   return (
     <aside className="navigator">
       <div className="navigator__top">
         <div className="navigator__timer">
           Thời gian còn lại:
-          {/* <div className="navigator__time">{formatTime(timeLeft)}</div> */}
-          <div className="navigator__time">0:00</div>
+          <div className="navigator__time" style={{
+            color: timeLeft !== null && timeLeft < 300 ? "#EF4444" : "inherit" // Đỏ khi còn < 5 phút
+          }}>
+            {formatTime(timeLeft)}
+          </div>
         </div>
         <button
           className="navigator__submit"

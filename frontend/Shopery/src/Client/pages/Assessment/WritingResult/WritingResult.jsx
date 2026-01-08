@@ -465,7 +465,7 @@ export default function WritingResult() {
                       <div className="writing-result__advice-list">
                         {scoreData.overall_advice.map((advice, idx) => {
                           // Xử lý các ký tự đặc biệt như emoji và format
-                          const isHeader = advice.includes("📌") || advice.includes("⚠️") || advice.includes("💡") || advice.includes("📝");
+                          const isHeader = advice.includes("📌") || advice.includes("⚠️") || advice.includes("") || advice.includes("📝");
                           const isBullet = advice.trim().startsWith("✓") || advice.trim().startsWith("•");
                           
                           if (isHeader) {

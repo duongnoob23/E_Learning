@@ -903,7 +903,7 @@ def _generate_overall_advice(analysis, text, text_stats):
 
     # Add content suggestions
     if content_feedback["content_suggestions"]:
-        advice.append("\n💡 GỢI Ý CẢI THIỆN NỘI DUNG:")
+        advice.append("\n GỢI Ý CẢI THIỆN NỘI DUNG:")
         for i, suggestion in enumerate(content_feedback["content_suggestions"], 1):
             advice.append(f"  {i}. {suggestion}")
 

@@ -169,7 +169,7 @@ export default function TransactionDetailModal({ orderId, onClose }) {
                     {item.course?.image || item.course_image ? (
                       <img src={item.course?.image || item.course_image} alt="" />
                     ) : (
-                      <div className="item-image-placeholder">📚</div>
+                      <div className="item-image-placeholder"></div>
                     )}
                   </div>
                   <div className="item-info">

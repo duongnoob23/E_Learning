@@ -609,7 +609,7 @@ export default function CreateCoursePage({ onClose, onSave }) {
           (sum, m) => sum + (m.lessons?.length || 0),
           0
         );
-        console.log(`📚 Modules count: ${payloadBefore.modules.length}`);
+        console.log(`Modules count: ${payloadBefore.modules.length}`);
         console.log(`📖 Total lessons: ${totalLessons}`);
       }
 

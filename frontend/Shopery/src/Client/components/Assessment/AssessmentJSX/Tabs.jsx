@@ -83,7 +83,7 @@ const Tabs = (Props) => {
     // console.log(JSON.stringify(result, null, 2));
 
     if (result && +result.EC === 0) {
-      // ✅ Truyền sessionData qua navigation
+    
       navigate("/assessmentTest", {
         state: {
           sessionData: result.DT,
@@ -107,7 +107,7 @@ const Tabs = (Props) => {
           </button>
         ))}
       </div>
-      // phần luyện tập từng phần một
+      Phần luyện tập từng phần một
       {activeTab === "Luyện tập" && (
         <PartSelector data={data} testId={testId} />
       )}
@@ -117,7 +117,7 @@ const Tabs = (Props) => {
           <div className="assessment-tabs_content_fix">
             <div className="assessment-tabs__content">
               <div className="assessment-banner__fullTest">
-                ‼️Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt
+                Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt
                 nhất, bạn cần dành ra 120 phút cho bài test này.
               </div>
               <button

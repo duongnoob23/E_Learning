@@ -410,7 +410,7 @@ frontend/Shopery/src/Admin/features/courses/
 
 ---
 
-## 📚 PHẦN 2: QUẢN LÝ COURSE
+## PHẦN 2: QUẢN LÝ COURSE
 
 ### 🗂️ Cấu trúc Frontend
 

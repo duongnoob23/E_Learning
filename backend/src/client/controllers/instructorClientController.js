@@ -53,7 +53,7 @@ exports.createCourseWithDetails = async (req, res, next) => {
         (sum, m) => sum + (m.lessons?.length || 0),
         0
       );
-      console.log(`📚 Modules count: ${req.body.modules.length}`);
+      console.log(`Modules count: ${req.body.modules.length}`);
       console.log(`📖 Total lessons: ${totalLessons}`);
     }
 

@@ -276,7 +276,7 @@ export default function VideoLessonEditor({ data, onChange }) {
               placeholder="https://www.youtube.com/watch?v=... hoặc https://storage.googleapis.com/..."
             />
             <p className="vle-hint">
-              💡 Hỗ trợ: YouTube URL hoặc Google Cloud Storage URL (MP4, WebM)
+               Hỗ trợ: YouTube URL hoặc Google Cloud Storage URL (MP4, WebM)
             </p>
           </div>
 
@@ -306,7 +306,7 @@ export default function VideoLessonEditor({ data, onChange }) {
               </label>
             </div>
             <p className="vle-hint">
-              💡 Hệ thống sẽ tự động phát hiện loại video từ URL. Bạn có thể
+               Hệ thống sẽ tự động phát hiện loại video từ URL. Bạn có thể
               chọn thủ công nếu cần.
             </p>
           </div>
@@ -479,7 +479,7 @@ export default function VideoLessonEditor({ data, onChange }) {
               </div>
             )}
             <p className="vle-hint">
-              💡 Nội dung này sẽ hiển thị bên dưới video để học viên tham khảo.
+               Nội dung này sẽ hiển thị bên dưới video để học viên tham khảo.
               Hỗ trợ HTML và định dạng văn bản.
             </p>
           </div>

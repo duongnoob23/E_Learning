@@ -35,7 +35,7 @@ const Profile = () => {
   // Navigation menu items
   const menuItems = [
     { id: "my-profile", label: "My Profile", icon: "👤" },
-    { id: "my-courses", label: "My Courses", icon: "📚" },
+    { id: "my-courses", label: "My Courses", icon: "" },
     { id: "wishlists", label: "Wishlists", icon: "❤️" },
     { id: "account-security", label: "Account Security", icon: "✓" },
     { id: "privacy", label: "Privacy", icon: "🔒" },

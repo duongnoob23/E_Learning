@@ -903,7 +903,7 @@ const Test = () => {
             }`}
             onClick={() => setActiveTab("lesson")}
           >
-            📚 Bài Tập
+            Bài Tập
           </button>
           <button
             className={`test-page__tab ${
@@ -943,7 +943,7 @@ const Test = () => {
                     onClick={() => setSelectedLesson(lesson)}
                   >
                     <span className="test-page__lesson-icon">
-                      {lesson.lesson_type === "vocabulary_list" && "📚"}
+                      {lesson.lesson_type === "vocabulary_list" && ""}
                       {lesson.lesson_type === "vocabulary_matching" && "🔗"}
                       {lesson.lesson_type === "vocabulary_translation" && "✍️"}
                       {lesson.lesson_type === "vocabulary_quiz" && "❓"}

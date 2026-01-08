@@ -724,7 +724,7 @@ export default function ListeningEditor({ data, onChange }) {
 
           {/* Hint */}
           <div className="le-hint">
-            💡 <strong>Lưu ý:</strong> Mỗi bài tập cần 1 audio và 9 ô (VI text +
+             <strong>Lưu ý:</strong> Mỗi bài tập cần 1 audio và 9 ô (VI text +
             Image). Chỉ có 1 đáp án đúng. Click "Chọn đúng" trên ô để đánh dấu
             đáp án.
           </div>

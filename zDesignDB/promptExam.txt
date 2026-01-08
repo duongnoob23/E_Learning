@@ -200,7 +200,7 @@ Số thứ tự câu hỏi (trong vòng tròn nhỏ).
 
 Nút [Chi tiết] để xem giải thích hoặc transcript, tùy dạng câu hỏi.
 
-Phía trên cùng của phần này có hộp hướng dẫn xanh với biểu tượng đèn sáng 💡, hướng dẫn người dùng tạo flashcards từ các đoạn highlight, lưu từ vựng, keyword, note học tập, để ôn lại trong tương lai.
+Phía trên cùng của phần này có hộp hướng dẫn xanh với biểu tượng đèn sáng , hướng dẫn người dùng tạo flashcards từ các đoạn highlight, lưu từ vựng, keyword, note học tập, để ôn lại trong tương lai.
 
 Tổng kết
 
@@ -461,7 +461,7 @@ Part 7: dịch toàn bộ đoạn văn + giải thích logic chọn đáp án.
 
 Ngoài ra còn có nút “Chia sẻ kết quả” và “Quay về trang kết quả”.
 
-💡 Chức năng “Giải thích chi tiết toàn bộ”
+ Chức năng “Giải thích chi tiết toàn bộ”
 
 Khi bật chế độ “Hiện giải thích tất cả”, hệ thống hiển thị toàn bộ phần dịch, transcript, và phân tích đáp án cho toàn bộ câu hỏi trong bài thi (không cần bấm từng câu).
 

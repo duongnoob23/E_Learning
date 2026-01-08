@@ -96,7 +96,66 @@ export default function AssessmentTest() {
   const questionRefs = useRef({});
   const leftContainerRef = useRef(null);
   const [questionsData, setQuestionsData] = useState({});
-
+  
+  // ✅ TIMER: Tính toán thời gian làm bài
+  const [timeLeft, setTimeLeft] = useState(null); // Thời gian còn lại (giây)
+  const timerIntervalRef = useRef(null);
+  
+  // Tính toán thời gian ban đầu
+  const initialTimeLimit = useMemo(() => {
+    // Lấy từ sessionData.time_limit_minutes hoặc test.total_duration
+    const timeLimitMinutes = 
+      sessionData?.time_limit_minutes || 
+      sessionData?.test?.total_duration || 
+      120; // Default 120 phút
+    
+    return timeLimitMinutes * 60; // Convert sang giây
+  }, [sessionData]);
+  
+  // ✅ TIMER: Tính toán và đếm ngược thời gian
+  useEffect(() => {
+    if (!sessionData?.start_time || initialTimeLimit <= 0) {
+      return;
+    }
+    
+    // Tính thời gian còn lại dựa trên start_time và time_limit
+    const calculateTimeLeft = () => {
+      const startTime = new Date(sessionData.start_time);
+      const now = new Date();
+      const elapsed = Math.floor((now - startTime) / 1000); // Elapsed in seconds
+      const remaining = Math.max(0, initialTimeLimit - elapsed);
+      return remaining;
+    };
+    
+    // Khởi tạo thời gian còn lại
+    const initialRemaining = calculateTimeLeft();
+    setTimeLeft(initialRemaining);
+    
+    // Nếu đã hết thời gian, không cần start timer
+    if (initialRemaining <= 0) {
+      return;
+    }
+    
+    // Bắt đầu timer đếm ngược mỗi giây
+    timerIntervalRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev === null || prev <= 0) {
+          return 0;
+        }
+        // Đếm ngược 1 giây
+        return prev - 1;
+      });
+    }, 1000);
+    
+    // Cleanup khi unmount
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
+    };
+  }, [initialTimeLimit, sessionData?.start_time]);
+  
   // ✅ Debug: Log answers state changes
   useEffect(() => {
     console.log("📊 [AssessmentTest] answers state changed:", {
@@ -605,6 +664,17 @@ export default function AssessmentTest() {
     }
   };
 
+  // ✅ Tự động nộp bài khi hết thời gian
+  useEffect(() => {
+    if (timeLeft !== null && timeLeft <= 0 && timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+      alert("Hết thời gian làm bài. Bài sẽ được tự động nộp.");
+      handleSubmit();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft]);
+
   const { customNavigate } = useExamLeaveBlocker(
     true,
     "⚠️ Bài kiểm tra chưa được nộp. Bạn có chắc muốn rời khỏi trang không?",
@@ -742,6 +812,7 @@ export default function AssessmentTest() {
               isScoringSpeaking
             }
             onNavigate={handleNavigate}
+            timeLeft={timeLeft}
           />
         </div>
       </div>

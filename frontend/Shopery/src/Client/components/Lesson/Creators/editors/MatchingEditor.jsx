@@ -615,7 +615,7 @@ export default function MatchingEditor({ data, onChange }) {
           {/* Hint */}
           {currentPairs.length > 0 && (
             <div className="me-hint">
-              💡 <strong>Lưu ý:</strong> Mỗi bài tập cần đủ {MAX_PAIRS} cặp (16
+               <strong>Lưu ý:</strong> Mỗi bài tập cần đủ {MAX_PAIRS} cặp (16
               ô) để tạo ma trận 4x4. Hệ thống sẽ tự động trộn các ô cho học
               viên.
             </div>

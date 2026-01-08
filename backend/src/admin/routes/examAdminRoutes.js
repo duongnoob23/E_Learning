@@ -67,7 +67,7 @@ const handleError = (error, req, res) => {
     console.error(`   Message: ${errorInfo.error.message}`);
     console.error(`   Status Code: ${errorInfo.error.statusCode}`);
     if (errorInfo.error.stack) {
-      console.error(`\n📚 Stack Trace:`);
+      console.error(`\nStack Trace:`);
       console.error(errorInfo.error.stack);
     }
     console.error("=".repeat(80) + "\n");

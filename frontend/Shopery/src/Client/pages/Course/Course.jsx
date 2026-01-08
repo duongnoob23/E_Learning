@@ -180,21 +180,15 @@ function Course() {
     <div className="course-container">
       <div className="course-header-section">
         <div className="course-header-wrapper">
-          <div className="course-breadcrumb">
-            <span>Home</span>
-            <i className="fa fa-chevron-right"></i>
-            <span>All Courses</span>
-          </div>
+          
           <div className="course-header-title-row">
             <h1 className="course-header-title">All Courses</h1>
             <div className="course-header-badge">
-              <span className="badge-icon">🎉</span>
+             
               <span>{pagination.total_items || 0} Courses</span>
             </div>
           </div>
-          <p className="course-header-subtitle">
-            Courses that help beginner designers become true unicorns.
-          </p>
+        
           <div className="course-header-controls">
             <div className="course-view-toggle">
               <button
@@ -214,7 +208,7 @@ function Course() {
                 List
               </button>
             </div>
-            <div className="course-results-info">
+            {/* <div className="course-results-info">
               Showing{" "}
               {courses.length > 0
                 ? (currentPage - 1) * pagination.items_per_page + 1
@@ -225,7 +219,7 @@ function Course() {
                 pagination.total_items
               )}{" "}
               of {pagination.total_items} results
-            </div>
+            </div> */}
             <div className="course-sort-wrapper">
               <label htmlFor="sort-select" className="sort-label">
                 Sort by:
@@ -435,22 +429,7 @@ function Course() {
           </div>
         )}
 
-        <div className="course-stats">
-          <div className="stat-item">
-            <i className="fa fa-book"></i>
-            <span>Tổng khóa học: {pagination.total_items}</span>
-          </div>
-          <div className="stat-item">
-            <i className="fa fa-users"></i>
-            <span>Đang hiển thị: {courses.length}</span>
-          </div>
-          <div className="stat-item">
-            <i className="fa fa-clock"></i>
-            <span>
-              Trang: {currentPage}/{pagination.total_pages}
-            </span>
-          </div>
-        </div>
+       
       </div>
     </div>
   );

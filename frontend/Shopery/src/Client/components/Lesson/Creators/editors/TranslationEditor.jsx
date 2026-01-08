@@ -589,7 +589,7 @@ export default function TranslationEditor({ data, onChange }) {
           {/* Hint */}
           {items.length > 0 && (
             <div className="te-hint-box">
-              💡 <strong>Mẹo:</strong> Nhấn Enter trong ô đáp án để thêm đáp án
+               <strong>Mẹo:</strong> Nhấn Enter trong ô đáp án để thêm đáp án
               mới. Paste nhiều đáp án cách nhau dấu phẩy để tự động tách thành
               nhiều đáp án.
             </div>

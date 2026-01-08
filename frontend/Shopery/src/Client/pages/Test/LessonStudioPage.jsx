@@ -4,7 +4,7 @@ import LessonStudio from "../../components/Lesson/Creators/LessonStudio";
 import "./LessonStudioPage.css";
 
 const LESSON_TYPES = [
-  { value: "vocabulary_list", label: "📚 Danh sách từ mới" },
+  { value: "vocabulary_list", label: "Danh sách từ mới" },
   { value: "vocabulary_matching", label: "🔗 Tìm cặp" },
   { value: "vocabulary_translation", label: "✍️ Dịch nghĩa" },
   { value: "vocabulary_quiz", label: "❓ Trắc nghiệm" },

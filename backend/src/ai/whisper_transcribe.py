@@ -95,7 +95,7 @@ def transcribe_file(audio_path, language):
         error_msg = str(e)
         print(f"❌ FileNotFoundError: {error_msg}", file=sys.stderr)
         if "ffmpeg" in error_msg.lower() or "The system cannot find the file specified" in error_msg:
-            print(f"💡 Solution: Cài đặt ffmpeg và thêm vào PATH", file=sys.stderr)
+            print(f" Solution: Cài đặt ffmpeg và thêm vào PATH", file=sys.stderr)
             print(f"   Download: https://ffmpeg.org/download.html", file=sys.stderr)
             print(f"   Hoặc: choco install ffmpeg (nếu dùng Chocolatey)", file=sys.stderr)
             return {"error": "FFmpeg không được tìm thấy. Vui lòng cài đặt ffmpeg để xử lý file audio."}

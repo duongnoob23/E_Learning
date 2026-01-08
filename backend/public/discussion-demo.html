@@ -1,354 +1,406 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discussion Socket.IO Demo</title>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .container {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 10px 0;
-        }
-        .messages {
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
-        }
-        .message {
-            margin: 5px 0;
-            padding: 8px;
-            border-radius: 4px;
-            background-color: white;
-        }
-        .message.system {
-            background-color: #e3f2fd;
-            font-style: italic;
-        }
-        .message.discussion {
-            background-color: #e8f5e8;
-            border-left: 4px solid #4caf50;
-        }
-        .message.comment {
-            background-color: #fff3e0;
-            border-left: 4px solid #ff9800;
-        }
-        input, textarea, button {
-            margin: 5px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .status {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .status.connected {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .status.disconnected {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-        .typing {
-            font-style: italic;
-            color: #666;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .container {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px 0;
+      }
+      .messages {
+        height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #f9f9f9;
+      }
+      .message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: white;
+      }
+      .message.system {
+        background-color: #e3f2fd;
+        font-style: italic;
+      }
+      .message.discussion {
+        background-color: #e8f5e8;
+        border-left: 4px solid #4caf50;
+      }
+      .message.comment {
+        background-color: #fff3e0;
+        border-left: 4px solid #ff9800;
+      }
+      input,
+      textarea,
+      button {
+        margin: 5px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .status {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .status.connected {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .status.disconnected {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .typing {
+        font-style: italic;
+        color: #666;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Discussion Socket.IO Demo</h1>
-    
+
     <!-- Connection Status -->
-    <div id="status" class="status disconnected">
-        Chưa kết nối
-    </div>
+    <div id="status" class="status disconnected">Chưa kết nối</div>
 
     <!-- Authentication -->
     <div class="container">
-        <h3>Xác thực</h3>
-        <input type="text" id="token" placeholder="JWT Token" style="width: 300px;">
-        <br>
-        <button onclick="getDemoToken()">Lấy Demo Token</button>
-        <button onclick="connect()">Kết nối</button>
-        <button onclick="disconnect()">Ngắt kết nối</button>
+      <h3>Xác thực</h3>
+      <input
+        type="text"
+        id="token"
+        placeholder="JWT Token"
+        style="width: 300px"
+      />
+      <br />
+      <button onclick="getDemoToken()">Lấy Demo Token</button>
+      <button onclick="connect()">Kết nối</button>
+      <button onclick="disconnect()">Ngắt kết nối</button>
     </div>
 
     <!-- Join Discussion -->
     <div class="container">
-        <h3>Tham gia thảo luận</h3>
-        <input type="number" id="testId" placeholder="Test ID" value="1">
-        <button onclick="joinDiscussion()">Tham gia</button>
-        <button onclick="leaveDiscussion()">Rời khỏi</button>
+      <h3>Tham gia thảo luận</h3>
+      <input type="number" id="testId" placeholder="Test ID" value="1" />
+      <button onclick="joinDiscussion()">Tham gia</button>
+      <button onclick="leaveDiscussion()">Rời khỏi</button>
     </div>
 
     <!-- Messages -->
     <div class="container">
-        <h3>Tin nhắn</h3>
-        <div id="messages" class="messages"></div>
-        <div id="typing" class="typing"></div>
+      <h3>Tin nhắn</h3>
+      <div id="messages" class="messages"></div>
+      <div id="typing" class="typing"></div>
     </div>
 
     <!-- Create Discussion -->
     <div class="container">
-        <h3>Tạo thảo luận mới</h3>
-        <input type="text" id="discussionTitle" placeholder="Tiêu đề thảo luận" style="width: 300px;">
-        <br>
-        <textarea id="discussionContent" placeholder="Nội dung thảo luận" rows="3" style="width: 300px;"></textarea>
-        <br>
-        <button onclick="createDiscussion()">Tạo thảo luận</button>
+      <h3>Tạo thảo luận mới</h3>
+      <input
+        type="text"
+        id="discussionTitle"
+        placeholder="Tiêu đề thảo luận"
+        style="width: 300px"
+      />
+      <br />
+      <textarea
+        id="discussionContent"
+        placeholder="Nội dung thảo luận"
+        rows="3"
+        style="width: 300px"
+      ></textarea>
+      <br />
+      <button onclick="createDiscussion()">Tạo thảo luận</button>
     </div>
 
     <!-- Add Comment -->
     <div class="container">
-        <h3>Thêm bình luận</h3>
-        <input type="number" id="discussionId" placeholder="Discussion ID">
-        <input type="number" id="parentCommentId" placeholder="Parent Comment ID (optional)">
-        <br>
-        <textarea id="commentContent" placeholder="Nội dung bình luận" rows="2" style="width: 300px;"></textarea>
-        <br>
-        <button onclick="addComment()">Thêm bình luận</button>
+      <h3>Thêm bình luận</h3>
+      <input type="number" id="discussionId" placeholder="Discussion ID" />
+      <input
+        type="number"
+        id="parentCommentId"
+        placeholder="Parent Comment ID (optional)"
+      />
+      <br />
+      <textarea
+        id="commentContent"
+        placeholder="Nội dung bình luận"
+        rows="2"
+        style="width: 300px"
+      ></textarea>
+      <br />
+      <button onclick="addComment()">Thêm bình luận</button>
     </div>
 
     <script>
-        let socket = null;
-        let currentTestId = null;
-        let typingTimer = null;
+      let socket = null;
+      let currentTestId = null;
+      let typingTimer = null;
 
-        function getDemoToken() {
-            fetch('/demo-token')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('token').value = data.token;
-                    addMessage('Demo token đã được tải: ' + data.token.substring(0, 30) + '...', 'system');
-                    addMessage('User demo: ' + data.user.username + ' (ID: ' + data.user.user_id + ')', 'system');
-                })
-                .catch(error => {
-                    addMessage('Lỗi khi lấy demo token: ' + error.message, 'system');
-                });
+      function getDemoToken() {
+        fetch("/demo-token")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("token").value = data.token;
+            addMessage(
+              "Demo token đã được tải: " + data.token.substring(0, 30) + "...",
+              "system"
+            );
+            addMessage(
+              "User demo: " +
+                data.user.username +
+                " (ID: " +
+                data.user.user_id +
+                ")",
+              "system"
+            );
+          })
+          .catch((error) => {
+            addMessage("Lỗi khi lấy demo token: " + error.message, "system");
+          });
+      }
+
+      function connect() {
+        const token = document.getElementById("token").value.trim();
+        if (!token || token === "undefined" || token === "null") {
+          alert("Vui lòng nhập JWT token hợp lệ");
+          return;
         }
 
-        function connect() {
-            const token = document.getElementById('token').value.trim();
-            if (!token || token === 'undefined' || token === 'null') {
-                alert('Vui lòng nhập JWT token hợp lệ');
-                return;
-            }
+        addMessage(
+          `Đang kết nối với token: ${token.substring(0, 20)}...`,
+          "system"
+        );
 
-            addMessage(`Đang kết nối với token: ${token.substring(0, 20)}...`, 'system');
+        socket = io("http://localhost:5000", {
+          auth: {
+            token: token,
+          },
+          query: {
+            token: token,
+          },
+        });
 
-            socket = io('http://localhost:5000', {
-                auth: {
-                    token: token
-                },
-                query: {
-                    token: token
-                }
-            });
+        socket.on("connect", () => {
+          updateStatus("Đã kết nối", true);
+          addMessage("Đã kết nối thành công!", "system");
+        });
 
-            socket.on('connect', () => {
-                updateStatus('Đã kết nối', true);
-                addMessage('Đã kết nối thành công!', 'system');
-            });
+        socket.on("disconnect", () => {
+          updateStatus("Đã ngắt kết nối", false);
+          addMessage("Đã ngắt kết nối!", "system");
+        });
 
-            socket.on('disconnect', () => {
-                updateStatus('Đã ngắt kết nối', false);
-                addMessage('Đã ngắt kết nối!', 'system');
-            });
+        socket.on("connect_error", (error) => {
+          updateStatus("Lỗi kết nối: " + error.message, false);
+          addMessage("Lỗi kết nối: " + error.message, "system");
+          console.error("Socket connection error:", error);
 
-            socket.on('connect_error', (error) => {
-                updateStatus('Lỗi kết nối: ' + error.message, false);
-                addMessage('Lỗi kết nối: ' + error.message, 'system');
-                console.error('Socket connection error:', error);
+          // Hiển thị thông tin debug chi tiết
+          if (error.message.includes("Authentication error")) {
+            addMessage(
+              ' Gợi ý: Hãy click "Lấy Demo Token" để lấy token hợp lệ',
+              "system"
+            );
+          }
+        });
 
-                // Hiển thị thông tin debug chi tiết
-                if (error.message.includes('Authentication error')) {
-                    addMessage('💡 Gợi ý: Hãy click "Lấy Demo Token" để lấy token hợp lệ', 'system');
-                }
-            });
+        // Discussion events
+        socket.on("user_joined_discussion", (data) => {
+          addMessage(`${data.user.full_name} đã tham gia thảo luận`, "system");
+        });
 
-            // Discussion events
-            socket.on('user_joined_discussion', (data) => {
-                addMessage(`${data.user.full_name} đã tham gia thảo luận`, 'system');
-            });
+        socket.on("user_left_discussion", (data) => {
+          addMessage(`${data.user.full_name} đã rời khỏi thảo luận`, "system");
+        });
 
-            socket.on('user_left_discussion', (data) => {
-                addMessage(`${data.user.full_name} đã rời khỏi thảo luận`, 'system');
-            });
+        socket.on("new_discussion", (data) => {
+          addMessage(`Thảo luận mới: ${data.discussion.title}`, "discussion");
+        });
 
-            socket.on('new_discussion', (data) => {
-                addMessage(`Thảo luận mới: ${data.discussion.title}`, 'discussion');
-            });
+        socket.on("new_comment", (data) => {
+          addMessage(
+            `Bình luận mới từ ${data.comment.user.full_name}: ${data.comment.content}`,
+            "comment"
+          );
+        });
 
-            socket.on('new_comment', (data) => {
-                addMessage(`Bình luận mới từ ${data.comment.user.full_name}: ${data.comment.content}`, 'comment');
-            });
+        socket.on("discussion_created", (data) => {
+          addMessage("Thảo luận đã được tạo thành công!", "system");
+        });
 
-            socket.on('discussion_created', (data) => {
-                addMessage('Thảo luận đã được tạo thành công!', 'system');
-            });
+        socket.on("comment_added", (data) => {
+          addMessage("Bình luận đã được thêm thành công!", "system");
+        });
 
-            socket.on('comment_added', (data) => {
-                addMessage('Bình luận đã được thêm thành công!', 'system');
-            });
+        socket.on("discussion_error", (data) => {
+          addMessage("Lỗi: " + data.message, "system");
+        });
 
-            socket.on('discussion_error', (data) => {
-                addMessage('Lỗi: ' + data.message, 'system');
-            });
+        socket.on("comment_error", (data) => {
+          addMessage("Lỗi: " + data.message, "system");
+        });
 
-            socket.on('comment_error', (data) => {
-                addMessage('Lỗi: ' + data.message, 'system');
-            });
+        socket.on("user_typing", (data) => {
+          if (data.typing) {
+            document.getElementById("typing").textContent =
+              `${data.user.full_name} đang gõ...`;
+          } else {
+            document.getElementById("typing").textContent = "";
+          }
+        });
+      }
 
-            socket.on('user_typing', (data) => {
-                if (data.typing) {
-                    document.getElementById('typing').textContent = `${data.user.full_name} đang gõ...`;
-                } else {
-                    document.getElementById('typing').textContent = '';
-                }
-            });
+      function disconnect() {
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+        }
+      }
+
+      function joinDiscussion() {
+        if (!socket) {
+          alert("Vui lòng kết nối trước");
+          return;
         }
 
-        function disconnect() {
-            if (socket) {
-                socket.disconnect();
-                socket = null;
-            }
+        const testId = document.getElementById("testId").value;
+        if (!testId) {
+          alert("Vui lòng nhập Test ID");
+          return;
         }
 
-        function joinDiscussion() {
-            if (!socket) {
-                alert('Vui lòng kết nối trước');
-                return;
-            }
+        currentTestId = testId;
+        socket.emit("join_test_discussion", parseInt(testId));
+        addMessage(`Đã tham gia thảo luận cho Test ID: ${testId}`, "system");
+      }
 
-            const testId = document.getElementById('testId').value;
-            if (!testId) {
-                alert('Vui lòng nhập Test ID');
-                return;
-            }
-
-            currentTestId = testId;
-            socket.emit('join_test_discussion', parseInt(testId));
-            addMessage(`Đã tham gia thảo luận cho Test ID: ${testId}`, 'system');
+      function leaveDiscussion() {
+        if (!socket || !currentTestId) {
+          alert("Chưa tham gia thảo luận nào");
+          return;
         }
 
-        function leaveDiscussion() {
-            if (!socket || !currentTestId) {
-                alert('Chưa tham gia thảo luận nào');
-                return;
-            }
+        socket.emit("leave_test_discussion", parseInt(currentTestId));
+        addMessage(
+          `Đã rời khỏi thảo luận cho Test ID: ${currentTestId}`,
+          "system"
+        );
+        currentTestId = null;
+      }
 
-            socket.emit('leave_test_discussion', parseInt(currentTestId));
-            addMessage(`Đã rời khỏi thảo luận cho Test ID: ${currentTestId}`, 'system');
-            currentTestId = null;
+      function createDiscussion() {
+        if (!socket) {
+          alert("Vui lòng kết nối trước");
+          return;
         }
 
-        function createDiscussion() {
-            if (!socket) {
-                alert('Vui lòng kết nối trước');
-                return;
-            }
+        const testId = document.getElementById("testId").value;
+        const title = document.getElementById("discussionTitle").value;
+        const content = document.getElementById("discussionContent").value;
 
-            const testId = document.getElementById('testId').value;
-            const title = document.getElementById('discussionTitle').value;
-            const content = document.getElementById('discussionContent').value;
+        if (!testId || !title || !content) {
+          alert("Vui lòng điền đầy đủ thông tin");
+          return;
+        }
 
-            if (!testId || !title || !content) {
-                alert('Vui lòng điền đầy đủ thông tin');
-                return;
-            }
+        socket.emit("create_discussion", {
+          test_id: parseInt(testId),
+          title: title,
+          content: content,
+        });
 
-            socket.emit('create_discussion', {
-                test_id: parseInt(testId),
-                title: title,
-                content: content
+        // Clear form
+        document.getElementById("discussionTitle").value = "";
+        document.getElementById("discussionContent").value = "";
+      }
+
+      function addComment() {
+        if (!socket) {
+          alert("Vui lòng kết nối trước");
+          return;
+        }
+
+        const discussionId = document.getElementById("discussionId").value;
+        const content = document.getElementById("commentContent").value;
+        const parentCommentId =
+          document.getElementById("parentCommentId").value;
+
+        if (!discussionId || !content) {
+          alert("Vui lòng điền đầy đủ thông tin");
+          return;
+        }
+
+        socket.emit("add_comment", {
+          test_discussion_id: parseInt(discussionId),
+          content: content,
+          parent_comment_id: parentCommentId ? parseInt(parentCommentId) : null,
+        });
+
+        // Clear form
+        document.getElementById("commentContent").value = "";
+        document.getElementById("parentCommentId").value = "";
+      }
+
+      function updateStatus(message, connected) {
+        const statusEl = document.getElementById("status");
+        statusEl.textContent = message;
+        statusEl.className = connected
+          ? "status connected"
+          : "status disconnected";
+      }
+
+      function addMessage(message, type) {
+        const messagesEl = document.getElementById("messages");
+        const messageEl = document.createElement("div");
+        messageEl.className = `message ${type}`;
+        messageEl.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        messagesEl.appendChild(messageEl);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      // Typing indicators
+      document
+        .getElementById("commentContent")
+        .addEventListener("input", () => {
+          if (!socket || !currentTestId) return;
+
+          clearTimeout(typingTimer);
+          socket.emit("typing_start", {
+            test_id: parseInt(currentTestId),
+            discussion_id: document.getElementById("discussionId").value,
+          });
+
+          typingTimer = setTimeout(() => {
+            socket.emit("typing_stop", {
+              test_id: parseInt(currentTestId),
+              discussion_id: document.getElementById("discussionId").value,
             });
-
-            // Clear form
-            document.getElementById('discussionTitle').value = '';
-            document.getElementById('discussionContent').value = '';
-        }
-
-        function addComment() {
-            if (!socket) {
-                alert('Vui lòng kết nối trước');
-                return;
-            }
-
-            const discussionId = document.getElementById('discussionId').value;
-            const content = document.getElementById('commentContent').value;
-            const parentCommentId = document.getElementById('parentCommentId').value;
-
-            if (!discussionId || !content) {
-                alert('Vui lòng điền đầy đủ thông tin');
-                return;
-            }
-
-            socket.emit('add_comment', {
-                test_discussion_id: parseInt(discussionId),
-                content: content,
-                parent_comment_id: parentCommentId ? parseInt(parentCommentId) : null
-            });
-
-            // Clear form
-            document.getElementById('commentContent').value = '';
-            document.getElementById('parentCommentId').value = '';
-        }
-
-        function updateStatus(message, connected) {
-            const statusEl = document.getElementById('status');
-            statusEl.textContent = message;
-            statusEl.className = connected ? 'status connected' : 'status disconnected';
-        }
-
-        function addMessage(message, type) {
-            const messagesEl = document.getElementById('messages');
-            const messageEl = document.createElement('div');
-            messageEl.className = `message ${type}`;
-            messageEl.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-            messagesEl.appendChild(messageEl);
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-        }
-
-        // Typing indicators
-        document.getElementById('commentContent').addEventListener('input', () => {
-            if (!socket || !currentTestId) return;
-
-            clearTimeout(typingTimer);
-            socket.emit('typing_start', {
-                test_id: parseInt(currentTestId),
-                discussion_id: document.getElementById('discussionId').value
-            });
-
-            typingTimer = setTimeout(() => {
-                socket.emit('typing_stop', {
-                    test_id: parseInt(currentTestId),
-                    discussion_id: document.getElementById('discussionId').value
-                });
-            }, 1000);
+          }, 1000);
         });
     </script>
-</body>
+  </body>
 </html>

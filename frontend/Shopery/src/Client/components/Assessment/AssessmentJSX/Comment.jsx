@@ -227,7 +227,7 @@ export default function Discussion(Props) {
       <div className="discussion-list">
         {discussions.length === 0 ? (
           <div className="no-discussion">
-            <div className="no-discussion-icon">💭</div>
+            <div className="no-discussion-icon"></div>
             <p>Chưa có thảo luận nào.</p>
             <p>Hãy là người đầu tiên chia sẻ ý kiến!</p>
           </div>

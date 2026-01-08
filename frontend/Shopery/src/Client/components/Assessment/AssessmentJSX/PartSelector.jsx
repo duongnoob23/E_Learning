@@ -197,7 +197,7 @@ const PartSelector = (Props) => {
     <>
       <div className="assessment-part">
         <div className="assessment-banner">
-          💡Pro tips: Hình thức luyện tập từng phần và chọn mức thời gian phù
+          Pro tips: Hình thức luyện tập từng phần và chọn mức thời gian phù
           hợp sẽ giúp bạn tập trung vào giải đúng các câu hỏi thay vì phải chịu
           áp lực hoàn thành bài thi.
         </div>

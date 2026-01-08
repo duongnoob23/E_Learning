@@ -531,7 +531,7 @@ export default function EditCourseModal({
   const tabs = [
     { id: 0, name: "Course Info", icon: "📝" },
     { id: 1, name: "Course Intro Video", icon: "🎥" },
-    { id: 2, name: "Course Builder", icon: "📚" },
+    { id: 2, name: "Course Builder", icon: "" },
     { id: 3, name: "Additional Information", icon: "ℹ️" },
   ];
 

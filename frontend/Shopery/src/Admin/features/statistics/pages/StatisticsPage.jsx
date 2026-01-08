@@ -142,7 +142,7 @@ export default function StatisticsPage() {
             title="Khóa học"
             value={formatNumber(overview.courses?.total)}
             subValue={`${overview.courses?.published || 0} đã xuất bản`}
-            icon="📚"
+            icon=""
             color="#10B981"
           />
           <OverviewCard

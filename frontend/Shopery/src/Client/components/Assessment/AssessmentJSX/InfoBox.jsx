@@ -63,12 +63,12 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
         <>
           <div className="assessment-content">
             <ul className="assessment-info__stats">
-              <li>⏱ Thời gian làm bài: {data?.total_duration} phút |</li>
+              <li>Thời gian làm bài: {data?.total_duration} phút |</li>
               <li>7 Phần thi |</li>
-              <li>🧩{data?.total_questions} câu hỏi |</li>
-              <li>💬0 bình luận</li>
+              <li>{data?.total_questions} câu hỏi |</li>
+              <li>0 bình luận</li>
             </ul>
-            <div>👥1 người đã luyện tập đề thi này</div>
+            <div>1 người đã luyện tập đề thi này</div>
 
             <p className="assessment-info__note">
               <i>

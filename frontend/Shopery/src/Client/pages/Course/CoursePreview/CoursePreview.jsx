@@ -122,8 +122,8 @@ const CoursePreview = () => {
           </div>
 
           <div className="course-preview__meta">
-            <span>📚 {course.total_lessons} bài học</span>
-            <span>⏱ {course.total_duration}</span>
+            <span>{course.total_lessons} bài học</span>
+            <span>{course.total_duration}</span>
           </div>
 
           <div className="course-preview__instructor">

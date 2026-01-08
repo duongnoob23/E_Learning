@@ -1003,7 +1003,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
         )}
         {blanks.length === 0 && (
           <p className="sce-hint">
-            💡 Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để
+             Nhập câu hoàn chỉnh trước. Sau đó bật chế độ "Tạo chỗ trống" để
             tạo blanks.
           </p>
         )}
@@ -1030,7 +1030,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
           {isBlankMode && (
             <div className="sce-blank-mode-hint">
               <p>
-                💡 <strong>Hướng dẫn:</strong> Bôi đen từ/cụm từ trong câu trên,
+                 <strong>Hướng dẫn:</strong> Bôi đen từ/cụm từ trong câu trên,
                 sau đó click nút "Tạo Blank" bên dưới
               </p>
               {selectedText && (
@@ -1133,7 +1133,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
       <div className="sce-step">
         <label className="sce-label">Danh sách từ kéo thả (Word Bank)</label>
         <p className="sce-hint">
-          💡 Các đáp án đúng sẽ tự động được thêm vào word bank. Bạn chỉ cần
+           Các đáp án đúng sẽ tự động được thêm vào word bank. Bạn chỉ cần
           thêm các từ nhiễu.
         </p>
         <div className="sce-word-bank-input">
@@ -1182,7 +1182,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
         {blanks.length > 0 && (
           <div className="sce-word-bank-hint">
             <small>
-              💡 Các từ có viền xanh là đáp án của blanks (không thể xóa)
+               Các từ có viền xanh là đáp án của blanks (không thể xóa)
             </small>
           </div>
         )}
@@ -1223,7 +1223,7 @@ export default function SentenceCompletionEditor({ data, onChange }) {
                 className="sce-preview-hint"
                 style={{ marginTop: "12px", color: "#666", fontSize: "14px" }}
               >
-                💡 Bạn chưa thêm từ vào word bank. Hãy thêm các từ nhiễu để học
+                 Bạn chưa thêm từ vào word bank. Hãy thêm các từ nhiễu để học
                 viên có thể kéo thả.
               </div>
             )}

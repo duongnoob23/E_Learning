@@ -321,7 +321,7 @@ export default function DashboardPage() {
         {courseStats?.enrollmentsByMonth && courseStats.enrollmentsByMonth.length > 0 && (
           <div className="chart-card">
             <div className="chart-header">
-              <h3>📚 Đăng ký khóa học theo tháng</h3>
+              <h3>Đăng ký khóa học theo tháng</h3>
             </div>
             <div className="chart-container">
               <Line
@@ -417,7 +417,7 @@ export default function DashboardPage() {
         {courseStats?.topByEnrollment && courseStats.topByEnrollment.length > 0 && (
           <div className="table-card">
             <div className="table-header">
-              <h3>📚 Top 10 khóa học được đăng ký nhiều nhất</h3>
+              <h3>Top 10 khóa học được đăng ký nhiều nhất</h3>
             </div>
             <div className="table-wrapper">
               <table>

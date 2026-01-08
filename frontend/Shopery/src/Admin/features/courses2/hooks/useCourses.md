@@ -1,4 +1,4 @@
-# 📚 TÀI LIỆU API - QUẢN LÝ KHÓA HỌC
+# TÀI LIỆU API - QUẢN LÝ KHÓA HỌC
 
 ## 🔍 TỔNG QUAN
 

@@ -1696,7 +1696,7 @@ exports.submitWritingText = async (writingData) => {
             }))
           );
           console.log(
-            `💡 Suggestion: Use question_id ${writingQuestions[0].question_id} instead of ${question_id}`
+            ` Suggestion: Use question_id ${writingQuestions[0].question_id} instead of ${question_id}`
           );
         } else {
           console.log(

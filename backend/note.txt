@@ -68,7 +68,7 @@ Tạo server đơn giản nhất → Chạy được
 Thêm từng middleware → Tìm ra middleware gây lỗi
 Comment code có vấn đề → Xác định chính xác dòng lỗi
 Thay thế bằng cách khác → Fix và test
-💡 BÀI HỌC:
+ BÀI HỌC:
 Express 5.x vẫn đang beta, có nhiều breaking changes
 Wildcard patterns cần cẩn thận với Express 5.x
 Rate limiting và path-to-regexp có xung đột

@@ -894,7 +894,7 @@ export default function QuizEditor({ data, onChange }) {
 
           {/* Hint */}
           <div className="qe-hint">
-            💡 <strong>Lưu ý:</strong> Câu hỏi có thể là text, image hoặc audio.
+             <strong>Lưu ý:</strong> Câu hỏi có thể là text, image hoặc audio.
             Mỗi đáp án có thể có text và/hoặc image. Chỉ có 1 đáp án đúng.
           </div>
         </>

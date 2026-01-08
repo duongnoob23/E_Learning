@@ -576,7 +576,7 @@ export default function VocabularyListEditor({ data, onChange }) {
       {/* Hint */}
       {words.length > 0 && !showPreview && (
         <div className="vle-hint">
-          💡 <strong>Lưu ý:</strong> Mỗi từ cần có English word và Vietnamese
+           <strong>Lưu ý:</strong> Mỗi từ cần có English word và Vietnamese
           meaning (bắt buộc). Các trường khác (pronunciation, audio, image,
           example) là tùy chọn nhưng sẽ làm phong phú nội dung học tập.
         </div>

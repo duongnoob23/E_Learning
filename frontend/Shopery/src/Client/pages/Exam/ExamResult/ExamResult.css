@@ -32,8 +32,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Error State */
@@ -183,14 +187,14 @@
 }
 
 .status-passed {
-  color: #10B981;
+  color: #10b981;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .status-failed {
-  color: #EF4444;
+  color: #ef4444;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -260,7 +264,7 @@
   align-items: center;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #F3F4F6;
+  border-bottom: 2px solid #f3f4f6;
 }
 
 .section-header h3 {
@@ -299,7 +303,7 @@
 .progress-bar {
   width: 100%;
   height: 8px;
-  background: #E5E7EB;
+  background: #e5e7eb;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -337,7 +341,7 @@
   color: #181818;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #F3F4F6;
+  border-bottom: 2px solid #f3f4f6;
 }
 
 .parts-grid {
@@ -347,10 +351,10 @@
 }
 
 .part-card {
-  background: #F9FAFB;
+  background: #f9fafb;
   border-radius: 8px;
   padding: 1rem;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
 }
 
 .part-header {
@@ -413,7 +417,7 @@
   font-weight: 600;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #F3F4F6;
+  border-bottom: 2px solid #f3f4f6;
 }
 
 .analysis-card ul {
@@ -424,7 +428,7 @@
 
 .analysis-card li {
   padding: 0.75rem 0;
-  border-bottom: 1px solid #F3F4F6;
+  border-bottom: 1px solid #f3f4f6;
   line-height: 1.5;
   position: relative;
   padding-left: 1.5rem;
@@ -435,38 +439,38 @@
 }
 
 .strengths h3 {
-  color: #10B981;
-  border-bottom-color: #D1D5DB;
+  color: #10b981;
+  border-bottom-color: #d1d5db;
 }
 
 .strengths li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #10B981;
+  color: #10b981;
   font-weight: bold;
 }
 
 .weaknesses h3 {
-  color: #EF4444;
-  border-bottom-color: #D1D5DB;
+  color: #ef4444;
+  border-bottom-color: #d1d5db;
 }
 
 .weaknesses li::before {
   content: "⚠";
   position: absolute;
   left: 0;
-  color: #EF4444;
+  color: #ef4444;
   font-weight: bold;
 }
 
 .recommendations h3 {
   color: #181818;
-  border-bottom-color: #D1D5DB;
+  border-bottom-color: #d1d5db;
 }
 
 .recommendations li::before {
-  content: "💡";
+  content: "";
   position: absolute;
   left: 0;
 }
@@ -499,9 +503,9 @@
   gap: 1rem;
   align-items: center;
   padding: 1rem;
-  background: #F9FAFB;
+  background: #f9fafb;
   border-radius: 8px;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
 }
 
 .history-date {

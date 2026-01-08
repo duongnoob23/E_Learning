@@ -653,7 +653,7 @@ export default function ImageChoiceEditor({ data, onChange }) {
 
         {images.length === 0 && (
           <p className="ice-hint">
-            💡 Upload ảnh, sau đó click vào ảnh để chọn đáp án đúng
+             Upload ảnh, sau đó click vào ảnh để chọn đáp án đúng
           </p>
         )}
       </div>

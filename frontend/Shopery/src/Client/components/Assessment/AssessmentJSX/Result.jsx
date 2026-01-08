@@ -359,37 +359,6 @@ function ResultSummary({ data, onViewAnswers, onBackToAssessment }) {
         role="region"
         aria-label="Tổng quan kết quả"
       >
-        <div className="result-banner result-banner--warning" role="alert">
-          <span className="result-banner__icon" aria-hidden>
-            ⚠️
-          </span>
-          <div className="result-banner__text">
-            Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.{" "}
-            <button
-              className="result-banner__link"
-              onClick={() => alert("Tạo mục tiêu (demo)")}
-            >
-              Tạo ngay.
-            </button>
-          </div>
-        </div>
-
-        <div className="result-banner result-banner--info" role="note">
-          <span className="result-banner__icon" aria-hidden>
-            💡
-          </span>
-          <div className="result-banner__text">
-            Bạn có thể tạo flashcards từ highlights (bao gồm các highlights các
-            bạn đã tạo trước đây) trong trang chi tiết kết quả bài thi.{" "}
-            <button
-              className="result-banner__link"
-              onClick={() => alert("Xem hướng dẫn (demo)")}
-            >
-              Xem hướng dẫn.
-            </button>
-          </div>
-        </div>
-
         <div className="result-header">
           <div className="result-header__left">
             <h2 className="result-header__title">
@@ -401,23 +370,6 @@ function ResultSummary({ data, onViewAnswers, onBackToAssessment }) {
                 Test ID: {data.testId}
               </span>
             </div>
-          </div>
-
-          <div className="result-header__actions">
-            <button
-              className="result-btn result-btn--primary"
-              aria-label="Xem đáp án"
-              onClick={onViewAnswers}
-            >
-              Xem đáp án
-            </button>
-            <button
-              className="result-btn result-btn--outline"
-              aria-label="Quay về trang đề thi"
-              onClick={onBackToAssessment}
-            >
-              Quay về trang đề thi
-            </button>
           </div>
         </div>
 
@@ -627,20 +579,6 @@ function ResultAnalysis({ data, activePart, setActivePart, onQuestionClick }) {
         </div>
       </div>
 
-      <div className="result-actions">
-        <button
-          className="result-btn result-btn--outline"
-          onClick={() => alert("Làm lại các câu sai (demo)")}
-        >
-          Làm lại các câu sai
-        </button>
-        <button
-          className="result-btn result-btn--primary"
-          onClick={() => alert("Xem chi tiết đáp án (demo)")}
-        >
-          Xem chi tiết đáp án
-        </button>
-      </div>
     </div>
   );
 }

@@ -604,7 +604,7 @@ export default function GrammarTheoryEditor({ data, onChange }) {
 
           {/* Hint */}
           <div className="gte-hint">
-            💡 <strong>Mẹo:</strong> Dùng toolbar để chèn bảng, hình ảnh, link,
+             <strong>Mẹo:</strong> Dùng toolbar để chèn bảng, hình ảnh, link,
             block Ví dụ (ở chế độ Trang trắng dùng nút “Ví dụ”).
           </div>
         </>
