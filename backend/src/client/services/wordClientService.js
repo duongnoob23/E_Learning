@@ -17,7 +17,10 @@ const multiPAService = require("./multiPAService");
 exports.getWordsByTopic = async (filters) => {
   try {
     const { topicId, q, page = 1, limit = 10 } = filters;
-    const offset = (page - 1) * limit;
+    // Đảm bảo page và limit là số nguyên
+    const pageNum = parseInt(page) || 1;
+    const limitNum = parseInt(limit) || 10;
+    const offset = (pageNum - 1) * limitNum;
 
     const whereConditions = {};
     if (topicId) {
@@ -29,7 +32,7 @@ exports.getWordsByTopic = async (filters) => {
 
     const { count, rows } = await Word.findAndCountAll({
       where: whereConditions,
-      limit: limit,
+      limit: limitNum,
       offset: offset,
     });
 
@@ -39,10 +42,10 @@ exports.getWordsByTopic = async (filters) => {
       DT: {
         words: rows,
         pagination: {
-          current_page: page,
-          total_pages: Math.ceil(count / limit),
+          current_page: pageNum,
+          total_pages: Math.ceil(count / limitNum),
           total_items: count,
-          items_per_page: limit,
+          items_per_page: limitNum,
         },
       },
     };

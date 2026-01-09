@@ -2,12 +2,12 @@ const wordClientService = require("../services/wordClientService");
 // [GET] Words hệ thống theo topic + tìm kiếm
 exports.getWordsByTopic = async (req, res, next) => {
   try {
-    const { topicId,q, page, limit } = req.query;
+    const { topicId, q, page, limit } = req.query;
     const result = await wordClientService.getWordsByTopic({
-      topicId,
+      topicId: topicId ? parseInt(topicId) : undefined,
       q,
-      page,
-      limit,
+      page: page ? parseInt(page) : 1,
+      limit: limit ? parseInt(limit) : 10,
     });
     res.json(result);
   } catch (error) {

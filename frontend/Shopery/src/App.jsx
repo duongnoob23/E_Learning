@@ -13,16 +13,28 @@ import "./assets/styles/global.css";
 import "./assets/styles/reset.css";
 import { queryClient } from "./lib/queryClient";
 import AppRoutes from "./routes/routes";
+import { DictionaryProvider } from "./Client/components/Dictionary/DictionaryContext";
+import FloatingDictionaryButton from "./Client/components/Dictionary/FloatingDictionaryButton";
+import Dictionary from "./Client/components/Dictionary/Dictionary";
+
 function App() {
   return (
     <Provider store={store}>
       <QueryProvider queryClient={queryClient}>
-        <Router>
-          <div className="App">
-            <AppRoutes />
-            {/* <Lesson /> */}
-          </div>
-        </Router>
+        <DictionaryProvider>
+          <Router>
+            <div className="App">
+              <AppRoutes />
+              {/* <Lesson /> */}
+            </div>
+          </Router>
+
+          {/* Floating Dictionary Button */}
+          <FloatingDictionaryButton />
+          
+          {/* Dictionary Component */}
+          <Dictionary />
+        </DictionaryProvider>
       </QueryProvider>
 
       <ToastContainer
