@@ -1,7 +1,18 @@
 // Client/pages/Flashcard/Flashcard.jsx - Redesigned
-import { useState, useEffect } from "react";
-import { FiBook, FiPlus, FiSearch, FiChevronRight, FiGrid, FiList } from "react-icons/fi";
-import { HiOutlineSparkles, HiOutlineBookOpen, HiOutlineAcademicCap } from "react-icons/hi2";
+import { useState } from "react";
+import {
+  FiBook,
+  FiChevronRight,
+  FiGrid,
+  FiList,
+  FiPlus,
+  FiSearch,
+} from "react-icons/fi";
+import {
+  HiOutlineAcademicCap,
+  HiOutlineBookOpen,
+  HiOutlineSparkles,
+} from "react-icons/hi2";
 import CreateTopicModal from "../../components/Flashcard/CreateTopicModal/CreateTopicModal";
 import FlashcardCard from "../../components/Flashcard/FlashcardCard/FlashcardCard";
 import FlashcardDetail from "../../components/Flashcard/FlashcardDetail/FlashcardDetail";
@@ -9,9 +20,9 @@ import FlashcardTabs from "../../components/Flashcard/FlashcardTabs/FlashcardTab
 import { useCreateSet } from "../../services/Word/wordMutations";
 import {
   usePublicTopics,
+  useTodayWords,
   useUserTopics,
   useWordOverview,
-  useTodayWords,
 } from "../../services/Word/wordQueries";
 import "./Flashcard.css";
 
@@ -23,10 +34,16 @@ const Flashcard = () => {
   const [viewMode, setViewMode] = useState("grid"); // "grid" or "list"
 
   // Fetch data từ API
-  const { data: publicTopicsData, isLoading: isLoadingPublic, refetch: refetchPublic } =
-    usePublicTopics(activeTab === "explore");
-  const { data: userTopicsData, isLoading: isLoadingUser, refetch: refetchUser } = 
-    useUserTopics(activeTab === "my-lists" || activeTab === "learning");
+  const {
+    data: publicTopicsData,
+    isLoading: isLoadingPublic,
+    refetch: refetchPublic,
+  } = usePublicTopics(activeTab === "explore");
+  const {
+    data: userTopicsData,
+    isLoading: isLoadingUser,
+    refetch: refetchUser,
+  } = useUserTopics(activeTab === "my-lists" || activeTab === "learning");
   const { data: learningOverviewData } = useWordOverview(true);
   const { data: todayWordsData } = useTodayWords(activeTab === "learning");
 
@@ -46,10 +63,12 @@ const Flashcard = () => {
     difficulty: topic.difficulty || "intermediate",
     topicType: topicType,
     provider: topic.provider || "EngMoon",
-    createdBy: topic.creator ? {
-      name: topic.creator.full_name || topic.creator.username,
-      avatar: topic.creator.avatar_url,
-    } : null,
+    createdBy: topic.creator
+      ? {
+          name: topic.creator.full_name || topic.creator.username,
+          avatar: topic.creator.avatar_url,
+        }
+      : null,
     createdAt: topic.created_at,
   });
 
@@ -81,7 +100,7 @@ const Flashcard = () => {
 
   const getCurrentTopics = () => {
     let topics = [];
-    
+
     switch (activeTab) {
       case "explore":
         if (publicTopicsData?.EC === "0" && publicTopicsData?.DT) {
@@ -137,7 +156,8 @@ const Flashcard = () => {
     ((activeTab === "my-lists" || activeTab === "learning") && isLoadingUser);
 
   // Get learning stats
-  const learningStats = learningOverviewData?.EC === "0" ? learningOverviewData.DT : null;
+  const learningStats =
+    learningOverviewData?.EC === "0" ? learningOverviewData.DT : null;
   const todayWords = todayWordsData?.EC === "0" ? todayWordsData.DT : [];
 
   if (selectedTopic) {
@@ -166,22 +186,6 @@ const Flashcard = () => {
           </div>
 
           {/* Quick Stats */}
-          {learningStats && (
-            <div className="flashcard-quick-stats">
-              <div className="quick-stat">
-                <span className="quick-stat-value">{learningStats.total_words_learned || 0}</span>
-                <span className="quick-stat-label">Đã học</span>
-              </div>
-              <div className="quick-stat">
-                <span className="quick-stat-value">{learningStats.total_words_learning || 0}</span>
-                <span className="quick-stat-label">Đang học</span>
-              </div>
-              <div className="quick-stat">
-                <span className="quick-stat-value">{todayWords.length || 0}</span>
-                <span className="quick-stat-label">Hôm nay</span>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Tabs */}
@@ -194,7 +198,8 @@ const Flashcard = () => {
           </div>
           <div className="info-content">
             <p className="info-text">
-              <strong>Mẹo:</strong> Học đều đặn mỗi ngày với phương pháp Spaced Repetition để ghi nhớ từ vựng lâu hơn!
+              <strong>Mẹo:</strong> Học đều đặn mỗi ngày với phương pháp Spaced
+              Repetition để ghi nhớ từ vựng lâu hơn!
             </p>
           </div>
         </div>
@@ -218,14 +223,18 @@ const Flashcard = () => {
             {/* View Mode Toggle */}
             <div className="view-mode-toggle">
               <button
-                className={`view-mode-btn ${viewMode === "grid" ? "active" : ""}`}
+                className={`view-mode-btn ${
+                  viewMode === "grid" ? "active" : ""
+                }`}
                 onClick={() => setViewMode("grid")}
                 title="Hiển thị dạng lưới"
               >
                 <FiGrid />
               </button>
               <button
-                className={`view-mode-btn ${viewMode === "list" ? "active" : ""}`}
+                className={`view-mode-btn ${
+                  viewMode === "list" ? "active" : ""
+                }`}
                 onClick={() => setViewMode("list")}
                 title="Hiển thị dạng danh sách"
               >
@@ -308,7 +317,9 @@ const Flashcard = () => {
                   {activeTab === "my-lists" && "Danh sách của bạn"}
                   {activeTab === "learning" && "Đang học"}
                 </h3>
-                <span className="section-count">{currentTopics.length} chủ đề</span>
+                <span className="section-count">
+                  {currentTopics.length} chủ đề
+                </span>
               </div>
 
               <div className={`topics-${viewMode}`}>
@@ -327,7 +338,10 @@ const Flashcard = () => {
                     key={topic.id}
                     topic={topic}
                     onClick={handleTopicClick}
-                    showUserInfo={activeTab === "my-lists" || topic.topicType === "user_created"}
+                    showUserInfo={
+                      activeTab === "my-lists" ||
+                      topic.topicType === "user_created"
+                    }
                     viewMode={viewMode}
                   />
                 ))}

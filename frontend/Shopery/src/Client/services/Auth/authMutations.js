@@ -65,13 +65,32 @@ export const useRegister = () => {
 
 export const useVerifyEmail = () => {
   const queryClient = useQueryClient();
+  const { setCredentials } = useAuthStore();
 
   return useMutation({
     mutationFn: authApi1.verifyEmail,
     onSuccess: (data) => {
-      const { EM, EC } = data;
+      const { EM, EC, DT } = data;
       if (EC === "0") {
         toast.success(EM || "Xác thực email thành công!");
+        
+        // Nếu có autoLogin (khi verify trong login), lưu token và user
+        if (DT?.autoLogin && DT?.token) {
+          localStorage.setItem("access_token", DT.token);
+          if (DT?.refresh_token) {
+            localStorage.setItem("refresh_token", DT.refresh_token);
+          }
+          if (DT?.user) {
+            localStorage.setItem("user", JSON.stringify(DT.user));
+          }
+          
+          setCredentials({
+            token: DT.token,
+            refreshToken: DT.refresh_token,
+            user: DT.user,
+          });
+        }
+        
         // Invalidate user query để refetch thông tin mới nhất
         queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
       } else {

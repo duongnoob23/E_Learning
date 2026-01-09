@@ -30,10 +30,11 @@ export const authApi = {
   },
 
   // Verify Email - dùng TanStack Query
-  verifyEmail: async ({ email, otp }) => {
+  verifyEmail: async ({ email, otp, type }) => {
     const response = await axiosInstance.post("/auth/verify-email", {
       email,
       otp,
+      type: type || "register",
     });
     return response.data;
   },

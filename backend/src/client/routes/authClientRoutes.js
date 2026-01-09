@@ -4,6 +4,7 @@ const controller = require("../controllers/authClientController");
 const {
   registerValidator,
   loginValidator,
+  verifyEmailValidator,
 } = require("../validators/authClientValidator");
 /**
  * Auth – client
@@ -31,7 +32,7 @@ router.post("/logout", (req, res) =>
 );
 
 // Xác thực email (từ email_verifications)
-router.post("/verify-email", controller.verifyOtp);
+router.post("/verify-email", verifyEmailValidator, controller.verifyOtp);
 
 // Quên mật khẩu (tạo password_reset_tokens)
 router.post("/forgot-password", controller.forgetPassword);

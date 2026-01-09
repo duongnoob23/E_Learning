@@ -136,7 +136,7 @@ export default function VocabularyList({ lesson }) {
                       }}
                       title="Phát âm UK"
                     >
-                      🔊 UK
+                      UK
                     </button>
                     <button
                       className="vocabulary-audio-btn us-btn"
@@ -146,7 +146,7 @@ export default function VocabularyList({ lesson }) {
                       }}
                       title="Phát âm US"
                     >
-                      🔊 US
+                      US
                     </button>
                   </div>
                 </div>
@@ -295,7 +295,7 @@ export default function VocabularyList({ lesson }) {
                         }}
                         title="Phát âm UK"
                       >
-                        🔊 UK
+                        UK
                       </button>
                       <button
                         className="vocabulary-audio-btn-small us-btn"
@@ -306,7 +306,7 @@ export default function VocabularyList({ lesson }) {
                         }}
                         title="Phát âm US"
                       >
-                        🔊 US
+                        US
                       </button>
                     </div>
                   </div>

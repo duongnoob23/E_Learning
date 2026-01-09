@@ -108,8 +108,8 @@ export default function Part2({ items, onAnswer, registerRef, answers }) {
             <div className="question__left">
               <div className="question__num">{it.id}</div>
             </div>
-            <div className="question__body">
-              <div className="question__audio">🔊 {it.prompt} (audio)</div>
+            <div className="question__body" >
+              <div className="question__audio" style={{width:"100%"}}>{it.prompt} (audio)</div>
               <div className="question__options">
                 {it.options.map((opt, idx) => (
                   <label key={idx} className="option">

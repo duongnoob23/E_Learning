@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { User } = require("../../models");
+const { User, UserRole } = require("../../models");
 const { EmailVerification } = require("../../models");
 const { sendOtpEmail } = require("../../utils/sendEmail");
 const { Op } = require("sequelize");
@@ -30,7 +30,35 @@ exports.login = async (email, password) => {
       };
     }
 
-    if(user.status !== "active") {
+    // Kiểm tra email đã verify chưa
+    if (
+      !user.email_verified ||
+      user.email_verified === 0 ||
+      user.email_verified === false
+    ) {
+      // Gửi OTP mới cho user
+      const otp = generateOtp();
+      const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 phút
+
+      await EmailVerification.createVerification({
+        user_id: user.user_id,
+        email,
+        verification_token: otp,
+        expires_at: expiresAt,
+      });
+      await sendOtpEmail(email, otp);
+
+      return {
+        EM: "Email chưa được xác thực. Vui lòng kiểm tra email để lấy mã OTP.",
+        EC: "3", // Code đặc biệt để frontend biết cần hiển thị OTP modal
+        DT: {
+          requiresOtp: true,
+          email: email,
+        },
+      };
+    }
+
+    if (user.status !== "active") {
       return {
         EM: "Tài khoản chưa được kích hoạt",
         EC: "2",
@@ -174,6 +202,15 @@ exports.register = async (
       phone_number: phoneNumber || null,
       avatar_url: avatarUrl || null,
       status: "unverified",
+      email_verified: 0,
+    });
+
+    // Gán role_id = 2 cho user mới (client role)
+    await UserRole.create({
+      user_id: newUser.user_id,
+      role_id: 2,
+      assigned_at: new Date(),
+      is_active: true,
     });
 
     // Tạo OTP xác thực email
@@ -207,10 +244,7 @@ exports.register = async (
 
 // Xác thực OTP
 exports.verifyOtp = async (email, otp, type) => {
-
-
   try {
-    console.log("run2");
     const emailVerification = await EmailVerification.findValidVerification(
       email,
       otp
@@ -224,16 +258,45 @@ exports.verifyOtp = async (email, otp, type) => {
       };
     }
 
-    // Nếu OTP cho đăng ký thì kích hoạt tài khoản
-    if (type === "register") {
-      const user = await User.findByEmail(email);
-      if (user) {
-        await User.updateUser(user.user_id, { status: "active", email_verified: true });
-      }
+    const user = await User.findByEmail(email);
+    if (!user) {
+      return {
+        EM: "Người dùng không tồn tại",
+        EC: "2",
+        DT: null,
+      };
     }
+
+    // Cập nhật status và email_verified cho cả đăng ký và đăng nhập
+    await User.updateUser(user.user_id, {
+      status: "active",
+      email_verified: 1,
+    });
 
     // Đánh dấu đã xác thực
     await EmailVerification.markAsVerified(emailVerification.verification_id);
+
+    // Nếu là verify khi login, trả về token để đăng nhập luôn
+    if (type === "login") {
+      const token = jwt.sign(
+        { userId: user.user_id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+
+      const updatedUser = await User.findByEmail(email);
+      const { password_hash, ...userWithoutPass } = updatedUser.toJSON();
+
+      return {
+        EM: "Xác thực thành công!",
+        EC: "0",
+        DT: {
+          token,
+          user: userWithoutPass,
+          autoLogin: true,
+        },
+      };
+    }
 
     return {
       EM: "Xác thực thành công!",

@@ -149,11 +149,15 @@ const Register = () => {
         const result = await verifyEmailMutation.mutateAsync({
           email: formData.email,
           otp: code,
+          type: "register",
         });
 
         if (result.data.EC === "0") {
-          toast.success(result.EM || "Xác nhận OTP thành công");
+          // Tắt modal ngay lập tức khi verify thành công
           setShowOtpModal(false);
+          toast.success(result.EM || "Xác nhận OTP thành công");
+          // Navigate sang trang Login sau khi verify thành công
+          navigate("/login");
         } else {
           // Xác thực thất bại
           toast.error(result?.EM || "Mã OTP không đúng hoặc đã hết hạn");
@@ -161,6 +165,7 @@ const Register = () => {
       } catch (error) {
         console.error("Verify email error:", error);
         setErrors("Có lỗi khi xác thực OTP. Vui lòng thử lại.");
+        toast.error(error?.response?.data?.EM || "Có lỗi khi xác thực OTP. Vui lòng thử lại.");
       } finally {
         setIsLoading(false);
       }

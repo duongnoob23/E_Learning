@@ -68,9 +68,13 @@ exports.register = async (req, res, next) => {
 // [POST] client xác thực OTP
 exports.verifyOtp = async (req, res, next) => {
   try {
-    const type = req.params.type;
-    const { email, otp } = req.body;
-    const response = await authClientService.verifyOtp(email, otp, type);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    const { email, otp, type } = req.body;
+    const response = await authClientService.verifyOtp(email, otp, type || "register");
     res.json(response);
   } catch (error) {
     next(error);

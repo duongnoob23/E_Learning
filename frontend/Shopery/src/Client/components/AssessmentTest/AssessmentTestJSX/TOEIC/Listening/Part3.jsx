@@ -14,7 +14,10 @@ export default function Part3({
   const partId = useMemo(() => {
     return partData.find((item, index) => item.part_number == 3);
   }, [partData]);
-  const { data, isLoading, error } = usePartQuestions(partId?.part_id, !!partId);
+  const { data, isLoading, error } = usePartQuestions(
+    partId?.part_id,
+    !!partId
+  );
 
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
@@ -77,7 +80,7 @@ export default function Part3({
                 <div className="question__body">
                   {question.audio_file && (
                     <div className="question__audio">
-                      🔊 <audio controls src={question.audio_file} />
+                      <audio controls src={question.audio_file} />
                     </div>
                   )}
                   <div className="question__prompt">

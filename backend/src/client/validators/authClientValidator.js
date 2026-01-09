@@ -43,7 +43,27 @@ const registerValidator = [
     .withMessage("avatarUrl phải là đường dẫn hợp lệ"),
 ];
 
+const verifyEmailValidator = [
+  body("email")
+    .notEmpty()
+    .withMessage("Email không được để trống")
+    .isEmail()
+    .withMessage("Email không hợp lệ"),
+  body("otp")
+    .notEmpty()
+    .withMessage("Mã OTP không được để trống")
+    .isLength({ min: 6, max: 6 })
+    .withMessage("Mã OTP phải có 6 chữ số")
+    .matches(/^[0-9]{6}$/)
+    .withMessage("Mã OTP chỉ được chứa số"),
+  body("type")
+    .optional()
+    .isIn(["register", "login"])
+    .withMessage("Type phải là 'register' hoặc 'login'"),
+];
+
 module.exports = {
   loginValidator,
   registerValidator,
+  verifyEmailValidator,
 };

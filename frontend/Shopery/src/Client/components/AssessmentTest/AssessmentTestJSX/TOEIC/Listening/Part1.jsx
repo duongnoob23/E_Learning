@@ -73,7 +73,7 @@ export default function Part1({
               {/* Hiển thị audio nếu có */}
               {question.audio_file && (
                 <div className="question__audio">
-                  🔊 <audio controls src={question.audio_file} />
+                  <audio controls src={question.audio_file} />
                 </div>
               )}
 

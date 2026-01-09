@@ -22,26 +22,28 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
   // Helper function để fix image URL - tự động thêm https://study4.com/ nếu chưa có
   const fixImageUrl = (url) => {
     if (!url) return null;
-    
+
     // Nếu đã có http:// hoặc https:// thì giữ nguyên
-    if (url.startsWith('http://') || url.startsWith('https://')) {
+    if (url.startsWith("http://") || url.startsWith("https://")) {
       return url;
     }
-    
+
     // Nếu bắt đầu bằng / thì thêm domain
-    if (url.startsWith('/')) {
+    if (url.startsWith("/")) {
       return `https://study4.com${url}`;
     }
-    
+
     // Nếu không có / ở đầu thì thêm / và domain
     return `https://study4.com/${url}`;
   };
 
   // Fetch words từ API với pagination
-  const {
-    data: wordsData,
-    isLoading: isLoadingWords,
-  } = useWordsBySet(topic?.id, currentPage, limit, !!topic?.id);
+  const { data: wordsData, isLoading: isLoadingWords } = useWordsBySet(
+    topic?.id,
+    currentPage,
+    limit,
+    !!topic?.id
+  );
 
   const { data: progressData } = useProgressByTopic(topic?.id, !!topic?.id);
 
@@ -132,20 +134,6 @@ const FlashcardDetail = ({ topic, onBack, topicType = "system" }) => {
         </div>
 
         {/* Progress Bar */}
-        {totalWords > 0 && (
-          <div className="detail-progress">
-            <div className="progress-info">
-              <span>Tiến độ học</span>
-              <span>{progressPercent}%</span>
-            </div>
-            <div className="progress-bar-container">
-              <div
-                className="progress-bar-fill"
-                style={{ width: `${progressPercent}%` }}
-              ></div>
-            </div>
-          </div>
-        )}
 
         {/* Loading State */}
         {isLoadingWords && (

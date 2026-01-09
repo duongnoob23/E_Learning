@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  useStartExamSession,
   useCancelExamSession,
+  useStartExamSession,
 } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentCSS/Tabs.css";
 import Comment from "../AssessmentJSX/Comment";
-import PartSelector from "./PartSelector";
 import ActiveSessionModal from "./ActiveSessionModal";
+import PartSelector from "./PartSelector";
 
 const tabs = ["Luyện tập", "Full test", "Thảo luận"];
 
@@ -64,7 +64,7 @@ const Tabs = (Props) => {
 
   const [activeTab, setActiveTab] = useState("Luyện tập");
   const navigate = useNavigate();
-  
+
   // Mutations
   const { mutateAsync: createStartExam, isPending: loadingStartExam } =
     useStartExamSession();
@@ -109,7 +109,10 @@ const Tabs = (Props) => {
 
     // ✅ EC = 3 → Có active sessions → Hiển thị modal
     if (result && result.EC === "3" && result.DT?.active_sessions) {
-      console.log("[Tabs] Active sessions detected:", result.DT.active_sessions);
+      console.log(
+        "[Tabs] Active sessions detected:",
+        result.DT.active_sessions
+      );
       setActiveSessions(result.DT.active_sessions);
       setRequestedTestId(result.DT.requested_test_id);
       setShowActiveSessionModal(true);
@@ -137,7 +140,7 @@ const Tabs = (Props) => {
       cached_answers_count_from_backend: session.cached_answers_count || 0,
     });
     setShowActiveSessionModal(false);
-    
+
     // Navigate đến assessmentTest với session data từ active session
     navigate("/assessmentTest", {
       state: {
@@ -204,14 +207,13 @@ const Tabs = (Props) => {
       {activeTab === "Luyện tập" && (
         <PartSelector data={data} testId={testId} />
       )}
-      // Phần làm full test
       {activeTab === "Full test" && (
         <>
           <div className="assessment-tabs_content_fix">
             <div className="assessment-tabs__content">
               <div className="assessment-banner__fullTest">
-                Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt
-                nhất, bạn cần dành ra 120 phút cho bài test này.
+                Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt nhất,
+                bạn cần dành ra 120 phút cho bài test này.
               </div>
               <button
                 className="assessment-tabs__start-btn"
@@ -224,13 +226,11 @@ const Tabs = (Props) => {
           <Comment testId={testId} />
         </>
       )}
-      // Phần thảo luận trong chi tiết đề thi
       {activeTab === "Thảo luận" && (
         <div className="assessment-tabs__content">
           <Comment testId={testId} />
         </div>
       )}
-
       {/* ✅ Active Session Modal */}
       <ActiveSessionModal
         isOpen={showActiveSessionModal}

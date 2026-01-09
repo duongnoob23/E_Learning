@@ -27,7 +27,7 @@ function AudioPlayer({ src, onPlay, questionId, questionIndex }) {
     if (audioRef.current && src) {
       // Chỉ reload nếu src thực sự thay đổi
       if (previousSrcRef.current !== src) {
-        console.log("🔊 AudioPlayer - Loading new audio:", {
+        console.log(" AudioPlayer - Loading new audio:", {
           questionId,
           questionIndex,
           audioUrl: src,

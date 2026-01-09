@@ -16,17 +16,17 @@ export default function WordListDisplay({
   // Helper function để fix image URL - tự động thêm https://study4.com/ nếu chưa có
   const fixImageUrl = (url) => {
     if (!url) return null;
-    
+
     // Nếu đã có http:// hoặc https:// thì giữ nguyên
-    if (url.startsWith('http://') || url.startsWith('https://')) {
+    if (url.startsWith("http://") || url.startsWith("https://")) {
       return url;
     }
-    
+
     // Nếu bắt đầu bằng / thì thêm domain
-    if (url.startsWith('/')) {
+    if (url.startsWith("/")) {
       return `https://study4.com${url}`;
     }
-    
+
     // Nếu không có / ở đầu thì thêm / và domain
     return `https://study4.com/${url}`;
   };
@@ -309,7 +309,7 @@ export default function WordListDisplay({
                       }}
                       title="Phát âm UK"
                     >
-                      🔊 UK
+                      UK
                     </button>
                     <button
                       className="word-audio-btn us-btn"
@@ -319,7 +319,7 @@ export default function WordListDisplay({
                       }}
                       title="Phát âm US"
                     >
-                      🔊 US
+                      US
                     </button>
                   </div>
                 </div>
@@ -441,14 +441,14 @@ export default function WordListDisplay({
                         onClick={() => playWordUK(word.en)}
                         title="Phát âm UK"
                       >
-                        🔊 UK
+                        UK
                       </button>
                       <button
                         className="word-audio-btn-small us-btn"
                         onClick={() => playWordUS(word.en)}
                         title="Phát âm US"
                       >
-                        🔊 US
+                        US
                       </button>
                     </div>
                   </div>

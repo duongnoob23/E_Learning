@@ -6,7 +6,6 @@ import {
 } from "../../../services/Assessment/assessmentQueries";
 import "../AssessmentCSS/Detail.css";
 import InfoBox from "./InfoBox";
-import Sidebar from "./Sidebar";
 import Tabs from "./Tabs";
 
 const Detail = () => {
@@ -15,7 +14,6 @@ const Detail = () => {
   const location = useLocation();
   const testId = location.state?.testId;
   const userStats = location.state?.userStats;
-
 
   const { data: detailsData, isLoading: detailsLoading } = useTestDetail(id);
   const { data: partsData, isLoading: partsLoading } = useTestParts(id);
@@ -41,10 +39,6 @@ const Detail = () => {
       <div className="assessment-detail__main">
         <InfoBox examId={id} data={detailsData.DT} userStats={userStats} />
         <Tabs data={partsData.DT} testId={testId}></Tabs>
-      </div>
-
-      <div className="assessment-detail__sidebar">
-        <Sidebar />
       </div>
     </div>
   );

@@ -40,12 +40,6 @@ const InfoBox = ({ examId, data, testId, userStats }) => {
         >
           Thông tin đề thi
         </button>
-        <button
-          className={`assessment-tab ${activeTab === "answer" ? "active" : ""}`}
-          onClick={() => setActiveTab("answer")}
-        >
-          Đáp án / Transcript
-        </button>
         {isCompleted > 0 && (
           <button
             className={`assessment-tab ${

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OTP from "../../../components/Auth/OTP/OTP";
-import { useLogin } from "../../../services/Auth/authMutations";
+import { useLogin, useVerifyEmail } from "../../../services/Auth/authMutations";
 import "./Login.css";
 const Login = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
@@ -67,6 +67,7 @@ const Login = () => {
   };
 
   const loginMutation = useLogin();
+  const verifyEmailMutation = useVerifyEmail();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // dừng submit
@@ -81,7 +82,12 @@ const Login = () => {
           email: formData.email,
           password: formData.password,
         });
-        if (result.data?.EC === "0") {
+        
+        // Nếu EC === "3" thì cần verify OTP
+        if (result.data?.EC === "3") {
+          setShowOtpModal(true);
+          toast.info(result.data?.EM || "Vui lòng xác thực email");
+        } else if (result.data?.EC === "0") {
           navigate("/");
         }
       } else if (!isLoginMode) {
@@ -90,17 +96,57 @@ const Login = () => {
       }
       // Đăng nhập
     } catch (error) {
-      toast.error(error?.EM || "Đăng nhập thất bại");
+      const errorMessage = error?.response?.data?.EM || error?.EM || "Đăng nhập thất bại";
+      toast.error(errorMessage);
 
       setErrors({
-        submit: error?.EM || "Có lỗi xảy ra",
+        submit: errorMessage,
       });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleOTP = async (e) => {
+  const handleOTP = async ({ message, code }) => {
+    if (message === "RESEND") {
+      // TODO: Gọi API gửi lại OTP nếu cần
+      toast.info("Chức năng gửi lại OTP sẽ được phát triển");
+      return;
+    }
+
+    if (message === "SEND") {
+      setIsLoading(true);
+      setErrors("");
+      try {
+        // Gọi API verify email với type = "login"
+        const result = await verifyEmailMutation.mutateAsync({
+          email: formData.email,
+          otp: code,
+          type: "login",
+        });
+
+        if (result.data.EC === "0") {
+          // Tắt modal ngay lập tức khi verify thành công
+          setShowOtpModal(false);
+          toast.success(result.EM || "Xác nhận OTP thành công");
+          
+          // Nếu có autoLogin và token thì đã được xử lý trong useVerifyEmail mutation
+          // Chỉ cần navigate về trang chủ
+          if (result.data.DT?.autoLogin) {
+            navigate("/");
+          }
+        } else {
+          toast.error(result?.EM || "Mã OTP không đúng hoặc đã hết hạn");
+        }
+      } catch (error) {
+        console.error("Verify email error:", error);
+        const errorMessage = error?.response?.data?.EM || "Có lỗi khi xác thực OTP. Vui lòng thử lại.";
+        setErrors(errorMessage);
+        toast.error(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
   return (
     <>

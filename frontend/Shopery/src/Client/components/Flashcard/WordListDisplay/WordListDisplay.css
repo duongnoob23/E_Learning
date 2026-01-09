@@ -132,7 +132,8 @@
   border-color: #0d9488;
   /* Tăng contrast cho text */
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.25), 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.1);
   padding-top: 32px;
 }
 
@@ -241,8 +242,8 @@
 }
 
 .word-definition {
-  margin-top: 8px;
-  font-size: 38px;
+  margin-top: 2px;
+  font-size: 12px;
   color: #374151;
   line-height: 1.5;
   font-weight: 900;
@@ -255,7 +256,7 @@
 
 .word-flashcard-back .word-definition {
   color: #ffffff;
-  font-size: 42px;
+  font-size: 24px;
   font-weight: 900;
   text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 28px rgba(0, 0, 0, 0.4);
   padding: 0 24px;
@@ -343,13 +344,17 @@
 }
 
 .word-image::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.03) 0%, rgba(20, 184, 166, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(13, 148, 136, 0.03) 0%,
+    rgba(20, 184, 166, 0.03) 100%
+  );
   z-index: 1;
   pointer-events: none;
   border-radius: 16px;
@@ -375,7 +380,8 @@
 
 .word-image:hover {
   border-color: #0d9488;
-  box-shadow: 0 16px 48px rgba(13, 148, 136, 0.25), 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 48px rgba(13, 148, 136, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 /* Back side image styling */
@@ -492,7 +498,8 @@
 
 .word-list-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(13, 148, 136, 0.15), 0 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px rgba(13, 148, 136, 0.15),
+    0 6px 16px rgba(0, 0, 0, 0.1);
   border-color: #0d9488;
 }
 
@@ -620,13 +627,17 @@
 }
 
 .word-list-image::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(13, 148, 136, 0.05) 0%,
+    rgba(20, 184, 166, 0.05) 100%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -673,8 +684,8 @@
   }
 
   .word-flashcard {
-    height: 520px;
-    min-height: 520px;
+    height: 450px;
+    min-height: 450px;
   }
 
   .word-flashcard-front,
@@ -692,7 +703,7 @@
   }
 
   .word-definition {
-    font-size: 32px;
+    font-size: 20px;
   }
 
   .word-flashcard-back .word-definition {
@@ -793,52 +804,3 @@
   transform: scale(1.15);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
