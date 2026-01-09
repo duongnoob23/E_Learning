@@ -117,6 +117,14 @@ export default function AssessmentTest() {
   const leftContainerRef = useRef(null);
   const [questionsData, setQuestionsData] = useState({});
 
+  // ✅ Hook để auto-save và restore đáp án (Redis cache) - Phải khai báo TRƯỚC khi sử dụng
+  const { mutateAsync: autoSaveAnswer } = useAutoSaveAnswer();
+  const { mutateAsync: restoreAnswers } = useRestoreAnswers();
+
+  // ✅ Ref để quản lý debounce timer
+  const autoSaveTimerRef = useRef(null);
+  const AUTO_SAVE_DELAY = 500; // 500ms debounce
+
   // ✅ Debug: Log answers state changes (chỉ log khi có thay đổi)
   // useEffect(() => {
   //   console.log("📊 [AssessmentTest] answers state changed:", {
@@ -127,65 +135,96 @@ export default function AssessmentTest() {
 
   // ✅ RESTORE: Khôi phục đáp án từ Redis cache khi mount
   useEffect(() => {
+    // Chỉ restore khi có session_id
+    if (!sessionData?.exam_session_id) {
+      console.log("ℹ️ [REDIS] No session_id, skipping restore");
+      return;
+    }
+
     const restoreFromCache = async () => {
-      // Ưu tiên 1: Lấy từ cached_answers trong sessionData (đã có sẵn từ startExamSession)
+      console.log(
+        "🔄 [REDIS] Starting restore for session:",
+        sessionData.exam_session_id
+      );
+
+      let restoredAnswers = {};
+
+      // Bước 1: Lấy từ cached_answers trong sessionData (nếu có)
       if (
         sessionData?.cached_answers &&
+        Array.isArray(sessionData.cached_answers) &&
         sessionData.cached_answers.length > 0
       ) {
-        console.log("📥 [REDIS] Restore from sessionData:", {
+        console.log("📥 [REDIS] Found cached_answers in sessionData:", {
           count: sessionData.cached_answers.length,
           answers: sessionData.cached_answers,
         });
-        const restoredAnswers = {};
+
         sessionData.cached_answers.forEach((ans) => {
           if (ans.question_id && ans.selected_choice_id) {
             restoredAnswers[ans.question_id] = ans.selected_choice_id;
           }
         });
-        if (Object.keys(restoredAnswers).length > 0) {
-          setAnswers(restoredAnswers);
-          console.log("✅ [REDIS] Restored answers:", restoredAnswers);
-        }
-        return;
       }
 
-      // Ưu tiên 2: Gọi API restore từ Redis
-      if (sessionData?.exam_session_id) {
-        try {
-          const result = await restoreAnswers(sessionData.exam_session_id);
+      // Bước 2: LUÔN gọi API restore từ Redis để đảm bảo có dữ liệu mới nhất
+      // (Kể cả khi đã có cached_answers từ sessionData)
+      try {
+        console.log(
+          "📞 [REDIS] Calling restore API for session:",
+          sessionData.exam_session_id
+        );
+        const result = await restoreAnswers(sessionData.exam_session_id);
 
-          console.log("📥 [REDIS] Restore API response:", {
-            sessionId: sessionData.exam_session_id,
-            redis_available: result?.DT?.redis_available,
-            answers_count: result?.DT?.count || 0,
-            answers: result?.DT?.answers || [],
-          });
+        console.log("📥 [REDIS] Restore API response:", {
+          sessionId: sessionData.exam_session_id,
+          redis_available: result?.DT?.redis_available,
+          answers_count: result?.DT?.count || 0,
+          answers: result?.DT?.answers || [],
+        });
 
-          if (result?.EC === "0" && result?.DT?.answers?.length > 0) {
-            const restoredAnswers = {};
-            result.DT.answers.forEach((ans) => {
-              if (ans.question_id && ans.selected_choice_id) {
-                restoredAnswers[ans.question_id] = ans.selected_choice_id;
-              }
-            });
-            if (Object.keys(restoredAnswers).length > 0) {
-              setAnswers(restoredAnswers);
-              console.log("✅ [REDIS] Restored answers:", restoredAnswers);
+        if (result?.EC === "0" && result?.DT?.answers?.length > 0) {
+          // Merge với answers từ sessionData (nếu có)
+          result.DT.answers.forEach((ans) => {
+            if (ans.question_id && ans.selected_choice_id) {
+              restoredAnswers[ans.question_id] = ans.selected_choice_id;
             }
-          } else {
-            console.log("ℹ️ [REDIS] No answers in Redis yet");
-          }
-        } catch (error) {
-          console.error("❌ [REDIS] Restore error:", error);
+          });
         }
+      } catch (error) {
+        console.error("❌ [REDIS] Restore API error:", error);
+        // Nếu API lỗi nhưng có cached_answers từ sessionData, vẫn dùng cached_answers
+      }
+
+      // Bước 3: Set answers (merge với existing để tránh mất dữ liệu Speaking/Writing)
+      if (Object.keys(restoredAnswers).length > 0) {
+        setAnswers((prevAnswers) => {
+          const merged = { ...prevAnswers, ...restoredAnswers };
+          console.log("✅ [REDIS] Restored and merged answers:", {
+            restored: Object.keys(restoredAnswers).length,
+            existing: Object.keys(prevAnswers).length,
+            total: Object.keys(merged).length,
+            sample: Object.keys(merged)
+              .slice(0, 5)
+              .map((k) => `${k}:${merged[k]}`),
+          });
+          return merged;
+        });
+      } else {
+        console.log(
+          "ℹ️ [REDIS] No answers found in Redis for session:",
+          sessionData.exam_session_id
+        );
       }
     };
 
-    if (sessionData?.exam_session_id) {
-      restoreFromCache();
-    }
-  }, [sessionData?.exam_session_id]); // Chỉ chạy khi session ID thay đổi
+    // ✅ Luôn gọi restore khi có session_id
+    restoreFromCache();
+  }, [
+    sessionData?.exam_session_id,
+    sessionData?.cached_answers,
+    restoreAnswers,
+  ]); // ✅ Thêm dependencies
 
   // ✅ Cleanup: Clear timer khi unmount
   useEffect(() => {
@@ -263,14 +302,6 @@ export default function AssessmentTest() {
   // Hook để chấm điểm speaking
   const { mutateAsync: scoreSpeaking, isPending: isScoringSpeaking } =
     useScoreSpeaking();
-
-  // ✅ Hook để auto-save và restore đáp án (Redis cache)
-  const { mutateAsync: autoSaveAnswer } = useAutoSaveAnswer();
-  const { mutateAsync: restoreAnswers } = useRestoreAnswers();
-
-  // ✅ Ref để quản lý debounce timer
-  const autoSaveTimerRef = useRef(null);
-  const AUTO_SAVE_DELAY = 500; // 500ms debounce
 
   function registerRef(qid, el) {
     if (el) questionRefs.current[qid] = el;

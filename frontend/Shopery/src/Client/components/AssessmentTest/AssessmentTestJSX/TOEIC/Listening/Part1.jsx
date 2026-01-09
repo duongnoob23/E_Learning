@@ -34,8 +34,6 @@ export default function Part1({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
-  console.log("DATA PART 1", data);
-
   if (loading || isLoading) {
     return (
       <section className="part part--1">

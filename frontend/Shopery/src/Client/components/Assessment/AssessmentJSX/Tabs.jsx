@@ -129,7 +129,13 @@ const Tabs = (Props) => {
 
   // ✅ Handler: Tiếp tục bài thi cũ
   const handleContinueSession = (session) => {
-    console.log("[Tabs] Continuing session:", session);
+    console.log("[Tabs] Continuing session:", {
+      exam_session_id: session.exam_session_id,
+      test_id: session.test_id,
+      cached_answers: session.cached_answers,
+      cached_answers_count: session.cached_answers?.length || 0,
+      cached_answers_count_from_backend: session.cached_answers_count || 0,
+    });
     setShowActiveSessionModal(false);
     
     // Navigate đến assessmentTest với session data từ active session
@@ -143,7 +149,8 @@ const Tabs = (Props) => {
           start_time: session.start_time,
           time_limit_minutes: session.time_limit_minutes,
           selected_parts: session.selected_parts,
-          cached_answers: session.cached_answers, // Đáp án đã lưu từ Redis
+          cached_answers: session.cached_answers || [], // Đáp án đã lưu từ Redis (fallback về [] nếu không có)
+          test: session.test || null, // Đảm bảo có test object
         },
         partData: data,
       },
