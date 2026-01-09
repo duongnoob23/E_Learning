@@ -180,15 +180,13 @@ function Course() {
     <div className="course-container">
       <div className="course-header-section">
         <div className="course-header-wrapper">
-          
           <div className="course-header-title-row">
             <h1 className="course-header-title">All Courses</h1>
             <div className="course-header-badge">
-             
               <span>{pagination.total_items || 0} Courses</span>
             </div>
           </div>
-        
+
           <div className="course-header-controls">
             <div className="course-view-toggle">
               <button
@@ -358,11 +356,11 @@ function Course() {
                       ) : (
                         <>
                           <span className="price">
-                            ${course.price.toFixed(2)}
+                            {course.price.toFixed(2)} đ
                           </span>
                           {course.oldPrice > course.price && (
                             <span className="old-price">
-                              ${course.oldPrice.toFixed(2)}
+                              {course.oldPrice.toFixed(2)} đ
                             </span>
                           )}
                         </>
@@ -428,8 +426,6 @@ function Course() {
             </button>
           </div>
         )}
-
-       
       </div>
     </div>
   );

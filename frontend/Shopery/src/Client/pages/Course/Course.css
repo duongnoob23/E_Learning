@@ -31,7 +31,7 @@ body {
    ============================================ */
 .course-header-section {
   background: linear-gradient(135deg, #e6f7f3 0%, #1ec28b 100%);
-  padding: 100px 0 80px 0;
+  padding: 40px 0 40px 0;
   width: 100%;
 }
 
@@ -180,7 +180,7 @@ body {
 .course-page {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 48px;
+  padding: 10px 15px;
 }
 
 .course-main {
