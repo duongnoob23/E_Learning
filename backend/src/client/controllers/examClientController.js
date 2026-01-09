@@ -583,7 +583,7 @@ exports.autoSaveAnswer = async (req, res, next) => {
 };
 
 // GET /api/exam-sessions/:session_id/restore - Restore đáp án từ cache
-exports.restoreAnswers = async (req, res, next) => {
+exports.g = async (req, res, next) => {
   try {
     const { session_id } = req.params;
     const user_id = req.user.userId;
