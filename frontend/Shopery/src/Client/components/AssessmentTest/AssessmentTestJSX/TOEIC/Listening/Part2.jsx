@@ -15,9 +15,10 @@ export default function Part2({
     return partData.find((item, index) => item.part_number == 2);
   }, [partData]);
   // Gọi API riêng cho Part 2
-  const { data, isLoading, error } = usePartQuestions(partId?.part_id, !!partId);
-
-  console.log("DATA", data);
+  const { data, isLoading, error } = usePartQuestions(
+    partId?.part_id,
+    !!partId
+  );
 
   useEffect(() => {
     if (data?.EC === "0" && data?.DT) {
@@ -101,4 +102,3 @@ export default function Part2({
     </section>
   );
 }
-

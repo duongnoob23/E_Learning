@@ -67,8 +67,13 @@ const AdminLoginPage = () => {
     }
 
     setLoading(true);
+    console.log("🔐 [ADMIN LOGIN PAGE] Starting login...");
+    console.log("📍 Environment:", import.meta.env.MODE);
+    console.log("📍 VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
+    
     try {
       const response = await adminAuthApi.login(formData.email, formData.password);
+      console.log("📥 [ADMIN LOGIN PAGE] Response received:", response);
 
       if (response.EC === "0") {
         // Lưu credentials vào store
@@ -88,11 +93,22 @@ const AdminLoginPage = () => {
         setErrors({ submit: response.EM });
       }
     } catch (error) {
-      console.error("Admin login error:", error);
+      console.error("❌ [ADMIN LOGIN PAGE] Login error:");
+      console.error("   - Error object:", error);
+      console.error("   - Error message:", error.message);
+      console.error("   - Error code:", error.code);
+      console.error("   - Error response:", error.response);
+      console.error("   - Error request:", error.request);
+      console.error("   - Is network error:", !error.response && error.request);
+      
       const errorMessage =
         error.response?.data?.EM ||
         error.message ||
-        "Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại!";
+        (error.code === "ERR_NETWORK" || !error.response 
+          ? "Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng hoặc URL API." 
+          : "Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại!");
+      
+      console.error("   - Final error message:", errorMessage);
       toast.error(errorMessage);
       setErrors({ submit: errorMessage });
     } finally {

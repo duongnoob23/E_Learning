@@ -50,11 +50,28 @@ adminAxiosInstance.interceptors.response.use(
 export const adminAuthApi = {
   // Admin Login
   login: async (email, password) => {
-    const response = await adminAxiosInstance.post("/admin/auth/login", {
-      email,
-      password,
-    });
-    return response.data;
+    console.log("🔐 [FRONTEND] Admin login attempt");
+    console.log("📍 API Base URL:", API_BASE_URL);
+    console.log("📍 Full URL:", `${API_BASE_URL}/admin/auth/login`);
+    console.log("📍 Email:", email);
+    
+    try {
+      const response = await adminAxiosInstance.post("/admin/auth/login", {
+        email,
+        password,
+      });
+      console.log("✅ [FRONTEND] Admin login success:", response.data.EC);
+      return response.data;
+    } catch (error) {
+      console.error("❌ [FRONTEND] Admin login error:");
+      console.error("   - Message:", error.message);
+      console.error("   - Code:", error.code);
+      console.error("   - Response:", error.response?.data);
+      console.error("   - Status:", error.response?.status);
+      console.error("   - URL:", error.config?.url);
+      console.error("   - Base URL:", error.config?.baseURL);
+      throw error;
+    }
   },
 
   // Admin Logout

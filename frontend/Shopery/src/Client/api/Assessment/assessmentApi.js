@@ -182,4 +182,48 @@ export const assessmentApi = {
     );
     return response.data;
   },
+
+  // ========== REDIS CACHE APIs ==========
+
+  // POST /exam/exam-sessions/:session_id/auto-save - Auto-save đáp án vào cache
+  autoSaveAnswer: async (sessionId, questionId, selectedChoiceId) => {
+    const response = await axiosInstance.post(
+      `/exam/exam-sessions/${sessionId}/auto-save`,
+      {
+        question_id: questionId,
+        selected_choice_id: selectedChoiceId,
+      }
+    );
+    return response.data;
+  },
+
+  // GET /exam/exam-sessions/:session_id/restore - Restore đáp án từ cache
+  restoreAnswers: async (sessionId) => {
+    const response = await axiosInstance.get(
+      `/exam/exam-sessions/${sessionId}/restore`
+    );
+    return response.data;
+  },
+
+  // POST /exam/exam-sessions/:session_id/cancel - Hủy phiên thi
+  cancelExamSession: async (sessionId) => {
+    const response = await axiosInstance.post(
+      `/exam/exam-sessions/${sessionId}/cancel`
+    );
+    return response.data;
+  },
+
+  // GET /exam/exam-sessions/active - Lấy tất cả active sessions
+  getAllActiveSessions: async () => {
+    const response = await axiosInstance.get("/exam/exam-sessions/active");
+    return response.data;
+  },
+
+  // GET /exam/exam-sessions/:session_id/debug-cache - Debug: Kiểm tra Redis cache
+  debugCache: async (sessionId) => {
+    const response = await axiosInstance.get(
+      `/exam/exam-sessions/${sessionId}/debug-cache`
+    );
+    return response.data;
+  },
 };

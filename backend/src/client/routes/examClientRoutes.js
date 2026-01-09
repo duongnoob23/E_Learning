@@ -155,6 +155,48 @@ router.patch(
   authorizeByRole("student"),
   ExamClientController.updateExamSession
 );
+
+// ========== REDIS CACHE APIs ==========
+// Auto-save đáp án vào cache
+router.post(
+  "/exam-sessions/:session_id/auto-save",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.autoSaveAnswer
+);
+
+// Restore đáp án từ cache
+router.get(
+  "/exam-sessions/:session_id/restore",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.restoreAnswers
+);
+
+// Hủy phiên thi
+router.post(
+  "/exam-sessions/:session_id/cancel",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.cancelExamSession
+);
+
+// Lấy tất cả active sessions
+router.get(
+  "/exam-sessions/active",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.getAllActiveSessions
+);
+
+// Debug: Kiểm tra Redis cache (chỉ dùng để debug)
+router.get(
+  "/exam-sessions/:session_id/debug-cache",
+  authMiddleware,
+  authorizeByRole("student"),
+  ExamClientController.debugCache
+);
+
 // Discussion Routes
 router.get(
   "/discussions/test/:test_id",
