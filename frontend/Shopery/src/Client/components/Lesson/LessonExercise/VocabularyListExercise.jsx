@@ -44,9 +44,7 @@ export default function VocabularyListExercise({ exerciseData }) {
                         className="vocab-audio-btn"
                         onClick={() => playAudio(word.audio)}
                         title="Phát âm"
-                      >
-                        🔊
-                      </button>
+                      ></button>
                     )}
                   </span>
                 )}
@@ -70,4 +68,3 @@ export default function VocabularyListExercise({ exerciseData }) {
     </div>
   );
 }
-

@@ -79,7 +79,7 @@ export default function Part4({
                 <div className="question__body">
                   {question.audio_file && (
                     <div className="question__audio">
-                      🔊 <audio controls src={question.audio_file} />
+                      <audio controls src={question.audio_file} />
                     </div>
                   )}
                   <div className="question__prompt">

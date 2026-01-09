@@ -3,6 +3,7 @@
 ## 📋 Các bước kiểm tra
 
 ### 1. Chạy SQL INSERT
+
 ```bash
 mysql -u root -p e_learnning6 < zDesignDB/insert_lesson_examples.sql
 ```
@@ -10,16 +11,17 @@ mysql -u root -p e_learnning6 < zDesignDB/insert_lesson_examples.sql
 Hoặc chạy từng câu lệnh trong file SQL.
 
 ### 2. Kiểm tra trong Database
+
 ```sql
 -- Xem tất cả lessons vừa thêm
-SELECT 
+SELECT
   lesson_id,
   title,
   lesson_type,
   has_exercise,
   exercise_type,
   exercise_data
-FROM lessons 
+FROM lessons
 WHERE course_id = 1  -- Thay đổi course_id của bạn
 ORDER BY sort_order;
 ```
@@ -31,6 +33,7 @@ ORDER BY sort_order;
 3. **Kiểm tra các dạng bài tập:**
 
 #### ✅ Multiple Choice (Trắc nghiệm)
+
 - Lesson: "Pronunciation Practice – Bài tập Trắc nghiệm"
 - Kiểm tra:
   - Hiển thị câu hỏi và các lựa chọn
@@ -40,6 +43,7 @@ ORDER BY sort_order;
   - Hiển thị điểm số và pass_score
 
 #### ✅ Pair Matching (Tìm cặp)
+
 - Lesson: "Luyện tập: Tìm cặp từ vựng"
 - Kiểm tra:
   - Hiển thị 2 cột: Từ tiếng Anh và Nghĩa tiếng Việt
@@ -48,6 +52,7 @@ ORDER BY sort_order;
   - Khi ghép hết → Hiển thị "Hoàn thành!"
 
 #### ✅ Translation (Dịch nghĩa)
+
 - Lesson: "Luyện tập: Dịch nghĩa"
 - Kiểm tra:
   - Hiển thị từ cần dịch
@@ -57,13 +62,15 @@ ORDER BY sort_order;
   - Navigation: Trước/Sau
 
 #### ✅ Vocabulary List (Danh sách từ vựng)
+
 - Lesson: "Từ vựng: Danh sách từ vựng (Cơ bản)"
 - Kiểm tra:
   - Hiển thị grid các từ vựng
   - Mỗi card có: từ, phiên âm, nghĩa, ví dụ
-  - Click nút 🔊 để phát âm (nếu có audio)
+  - Click nút để phát âm (nếu có audio)
 
 #### ✅ Video + Exercise
+
 - Lesson: "Present Simple - Lý thuyết và Bài tập"
 - Kiểm tra:
   - Hiển thị video player
@@ -71,6 +78,7 @@ ORDER BY sort_order;
   - Hiển thị bài tập bên dưới
 
 #### ✅ Chỉ Video (không có bài tập)
+
 - Lesson: "Past Simple - Lý thuyết"
 - Kiểm tra:
   - Chỉ hiển thị video và content
@@ -79,14 +87,17 @@ ORDER BY sort_order;
 ## 🐛 Troubleshooting
 
 ### Lỗi: "exercise_data is null"
+
 - Kiểm tra: `exercise_data` có được parse đúng không
 - Frontend tự động parse nếu là string JSON
 
 ### Lỗi: "Loại bài tập không được hỗ trợ"
+
 - Kiểm tra: `exercise_type` có đúng không
 - Các loại hỗ trợ: `multiple_choice`, `pair_matching`, `translation`, `vocabulary_list`
 
 ### Lỗi: "Chưa có câu hỏi nào"
+
 - Kiểm tra: `exercise_data.questions` hoặc `exercise_data.pairs` có dữ liệu không
 - Kiểm tra cấu trúc JSON có đúng không
 
@@ -106,4 +117,3 @@ ORDER BY sort_order;
 - [ ] Đã test Vocabulary List
 - [ ] Đã test Video + Exercise
 - [ ] Đã test chỉ Video (không có exercise)
-

@@ -204,7 +204,7 @@ const FlashcardDetail = ({ topic, onBack, onPractice, onStudy }) => {
                   <span className="pronunciation">
                     {currentWord.pronunciation}
                   </span>
-                  <button className="audio-btn">🔊</button>
+                  <button className="audio-btn"></button>
                 </div>
                 <p className="flip-hint">Nhấp để xem nghĩa</p>
               </div>

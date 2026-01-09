@@ -1,0 +1,75 @@
+{
+  "totalFiles": 20,
+  "analyzedFiles": 20,
+  "topics": {
+    "Travel & Transportation": {
+      "count": 3,
+      "files": [
+        "file-flashcard-45101.json",
+        "file-flashcard-45102.json",
+        "file-flashcard-45103.json"
+      ],
+      "totalWords": 165
+    },
+    "Business & Office": {
+      "count": 3,
+      "files": [
+        "file-flashcard-45104.json",
+        "file-flashcard-45110.json",
+        "file-flashcard-45114.json"
+      ],
+      "totalWords": 165
+    },
+    "Education & Learning": {
+      "count": 2,
+      "files": [
+        "file-flashcard-45105.json",
+        "file-flashcard-45109.json"
+      ],
+      "totalWords": 110
+    },
+    "Daily Life & Activities": {
+      "count": 5,
+      "files": [
+        "file-flashcard-45106.json",
+        "file-flashcard-45108.json",
+        "file-flashcard-45113.json",
+        "file-flashcard-45118.json",
+        "file-flashcard-45120.json"
+      ],
+      "totalWords": 275
+    },
+    "General Vocabulary": {
+      "count": 2,
+      "files": [
+        "file-flashcard-45107.json",
+        "file-flashcard-45119.json"
+      ],
+      "totalWords": 110
+    },
+    "Technology & Communication": {
+      "count": 1,
+      "files": [
+        "file-flashcard-45111.json"
+      ],
+      "totalWords": 55
+    },
+    "Time & Events": {
+      "count": 3,
+      "files": [
+        "file-flashcard-45112.json",
+        "file-flashcard-45116.json",
+        "file-flashcard-45117.json"
+      ],
+      "totalWords": 165
+    },
+    "Health & Medical": {
+      "count": 1,
+      "files": [
+        "file-flashcard-45115.json"
+      ],
+      "totalWords": 55
+    }
+  },
+  "createdAt": "2026-01-09T00:54:29.845Z"
+}

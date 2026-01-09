@@ -1,4 +1,8 @@
-export default function DictionaryResult({ data, type = "en-vi", onWordSelect }) {
+export default function DictionaryResult({
+  data,
+  type = "en-vi",
+  onWordSelect,
+}) {
   if (!data) return null;
 
   const playAudio = (audioUrl, e) => {
@@ -70,9 +74,7 @@ export default function DictionaryResult({ data, type = "en-vi", onWordSelect })
                   className="audio-btn"
                   onClick={() => playAudio(data.audio)}
                   title="Phát âm"
-                >
-                  🔊
-                </button>
+                ></button>
               )}
             </p>
           )}

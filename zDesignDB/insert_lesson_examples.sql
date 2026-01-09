@@ -249,7 +249,7 @@ INSERT INTO lessons (
   1,  -- Thay đổi course_id
   'Từ vựng: Danh sách từ vựng (Cơ bản)',
   'Danh sách các từ vựng cơ bản thông dụng nhất trong tiếng Anh.',
-  'Học và ghi nhớ các từ vựng cơ bản này. Click vào nút 🔊 để nghe phát âm.',
+  'Học và ghi nhớ các từ vựng cơ bản này. Click vào nút  để nghe phát âm.',
   '',
   '',
   'vocabulary_list',

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStartExamSession } from "../../../services/Assessment/assessmentMutations";
 import "../AssessmentCSS/Tabs.css";
-import PartSelector from "./PartSelector";
 import Comment from "../AssessmentJSX/Comment";
+import PartSelector from "./PartSelector";
 const tabs = ["Luyện tập", "Full test", "Thảo luận"];
 
 const parts = [
@@ -99,11 +99,9 @@ const Tabs = (Props) => {
           </button>
         ))}
       </div>
-      // phần luyện tập từng phần một
       {activeTab === "Luyện tập" && (
         <PartSelector data={data} testId={testId} />
       )}
-      // Phần làm full test
       {activeTab === "Full test" && (
         <>
           <div className="assessment-tabs_content_fix">
